@@ -164,6 +164,7 @@ extern const uint8_t txt_title_2[];
 extern const uint8_t txt_title_3[];
 extern const uint8_t txt_title_4[];
 extern const uint8_t txt_title_5[];
+extern const uint8_t txt_title_6[];
 extern const uint8_t txt_caption[];
 extern const uint8_t txt_pause_1[];
 extern const uint8_t txt_pause_2[];

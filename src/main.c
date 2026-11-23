@@ -91,17 +91,18 @@ static void title_screen(void) {
     bkg_text_centered(6, txt_title_2);
     bkg_text_centered(7, txt_title_3);
     bkg_text_centered(10, txt_title_4);
+    bkg_text_centered(14, txt_title_6);
 
     while (1) {
         wait_vbl_done();
         input_update();
-        if (joy_pressed & (J_START | J_A)) break;
+        if (joy_pressed) break;     /* any button starts: no guessing which one */
         t++;
         if ((t & 31) == 0) {
-            if (t & 32) bkg_text_centered(13, txt_title_5);
+            if (t & 32) bkg_text_centered(12, txt_title_5);
             else {
-                for (y = 0; y < 5; y++) row_buf[y] = GLYPH_SPACE;
-                set_bkg_tiles((MAP_W - 5) / 2, 13, 5, 1, row_buf);
+                for (y = 0; y < MAP_W; y++) row_buf[y] = GLYPH_SPACE;
+                set_bkg_tiles(0, 12, MAP_W, 1, row_buf);
             }
         }
         next_random();   /* time spent on the title varies the ambience */
