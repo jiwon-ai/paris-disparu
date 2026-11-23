@@ -318,6 +318,11 @@ PORTER = [
 ]
 # Idle frame: head and shoulders bob down 1px (breathing).
 PORTER_IDLE = ["................"] + PORTER[0:7] + PORTER[8:]
+# Fernand tonight: no coltin (left at the cafe), no plate on the blouse (sold).
+FERNAND = ["................", "................", "................",
+           ".....######.....", "....#ssssss#...."] + PORTER[5:9] + \
+          ["..#oooooooooo#.."] + PORTER[10:]
+FERNAND_IDLE = ["................"] + FERNAND[0:7] + FERNAND[8:]
 
 
 MERCHANT = [
@@ -461,4 +466,6 @@ SPRITE_FRAMES = [
     ("BARGE_R", [r[16:] for r in BARGE]),
     ("PAINTER_0", PAINTER),
     ("PAINTER_1", PAINTER_1),
+    ("FERNAND_0", FERNAND),
+    ("FERNAND_1", FERNAND_IDLE),
 ]

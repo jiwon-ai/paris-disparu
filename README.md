@@ -2,10 +2,12 @@
 
 An original exploration game for the **Game Boy Color**, set in Paris around
 1967. The game is in **English**; signs and place names stay in French. You wander the streets around the old Les Halles market before dawn,
-meet the people who work there, and solve a small, gentle mystery: **who
-leaves a polished apple on Simone's café counter every night?** Clues come
-from people, places, Fernand's crates and the café telephone, and go into a
-notebook (START). No combat, no crime: a story of 1967 night-time work.
+meet the people who work there, and solve a small mystery that could only
+happen there and then: **Fernand, a fort des Halles for thirty years, has
+not come to work tonight.** Everyone knows the market will leave for Rungis.
+Clues come from a petit bleu (pneumatic post), jeton telephone calls, his
+coltin and his fort's plate, and go into a notebook (START). No combat, no
+crime.
 
 ![Title](docs/screenshots/01_title.png) ![Street](docs/screenshots/02_street.png)
 ![Dialogue](docs/screenshots/03_dialogue.png) ![Café](docs/screenshots/05_cafe.png)
@@ -25,7 +27,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Feature | State |
 |---|---|
 | CGB-only ROM with valid header (MBC5, CGB flag 0xC0) | done, checked by `tests/check_rom.py` |
-| The apple mystery: 6 clues (Simone, the apple crate, two phone calls, the painter, the café porter), a reveal with Fernand, two endings (Yes / No), an end screen with clues found and the market's real dates | done, tested (both endings) |
+| The Fernand mystery: 6 clues (the man with the notebook, Simone and the coltin, call 4127, the petit bleu, call 7302 and the plate, Germaine after the crates), Fernand found on the bridge, two endings (Stay / Go with), an end screen with clues found and real dates (Rungis 1969, pneumatique closed 1984) | done, tested (both endings) |
 | Notebook on START: current goal, clues found (n/6), phone numbers learned; a "New clue!" note when one is found | done, tested |
 | Title screen, location caption | done, tested |
 | 6 connected areas: rue Rambuteau, pavilion entrance, pavilion interior, café, quai of the Seine, a bridge | done, tested (screen edges + doors) |
@@ -33,7 +35,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Player: 4-direction movement, walk animation, tile + NPC collision | done, tested |
 | 6 NPCs whose dialogue changes with what you have done (incl. a painter on the bridge) | done, tested |
 | Experience A: carry Fernand's three crates to the right stalls (read the signs; wrong stall gets a reaction; half speed while carrying) | done, tested |
-| Experience B: café scene (Simone sets the mystery; a porter asleep on his feet) | done, tested |
+| Experience B: café scene (Simone keeps Fernand's coltin and his petit bleu; a porter asleep on his feet) | done, tested |
 | Experience C: the café wall telephone. Get a token (jeton) from Simone, then dial a number with the D-pad. Four numbers are hidden in the world (the café wall, the man with the notebook, a bouquiniste's box, the painter); each call is a different scene | done, tested — historical details **to research** |
 | Two-option choices in dialogue | done, tested |
 | NPCs call out short lines by themselves when you come near, hinting at what to do ("A: talk" shown). The line stays until you walk away or press A/B; the opening caption stays 15 s or until A/B | done, tested |

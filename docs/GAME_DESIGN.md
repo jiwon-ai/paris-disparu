@@ -18,25 +18,27 @@ market. All ambience is sparse and quiet: one sound every 1-4 seconds.
 
 ## The mystery (Episode 1 story)
 
-*Fiction.* Every night an apple, polished, appears on Simone's café counter
-with no note. Who leaves it? The player starts in the street; the man with
-the notebook sets up the question, Simone asks the player to find out.
+*Fiction set on documented ground* (see docs/HISTORICAL_RESEARCH.md, "Story
+elements"). 3 a.m., 1967. Fernand, a fort des Halles for thirty years, has
+not come to work. The move of the market to Rungis has been announced and
+is being built; Fernand's friend Marcel went to see it and is giving up.
 
 | Clue (notebook line) | Where | Needs |
 |---|---|---|
-| Apple on counter | Simone, café | — |
-| Big man buys it | delivering Fernand's apple crate to its stall | the crate task |
-| Yellow hat at 3:00 | phone 4127 (the man's old notebooks) | a jeton from Simone |
-| Porter: love book | phone 7302 (card on a bouquiniste's box, quai) | a jeton |
-| "Simone" to Seine | the painter on the bridge | — |
-| Fernand's 3:00 run | the sleeping porter in the café | "Yellow hat" |
+| Fernand is missing | the man with the notebook (street) | — |
+| Coltin left behind | Simone, café: he hung his hat and left; she gives it to you | — |
+| A petit bleu came | phone 4127: a courier brought a pneumatique to the café | a jeton |
+| Bleu: Marcel quits | Simone shows the petit bleu | "A petit bleu came" |
+| Plate sold to Roux | phone 7302 (card on a bouquiniste's box, quai) | a jeton |
+| He fears Rungis | Germaine, after you carry Fernand's crates for Dédé | the crate task |
 
-With "Fernand's 3:00 run" the goal becomes "Talk to Fernand". He confesses
-and asks whether he should tell her himself: **Yes** = he gives her the
-apple openly; **No** = the player keeps his secret. Both end on an end screen
-with the clues found (n/6) and the real dates of the market's move (1969)
-and demolition (early 1970s). B before the question cancels the scene, so
-it cannot be skipped by accident. START on the end screen restarts.
+Fernand stands bareheaded on the bridge (no coltin, no plate on his
+blouse) but only says "Leave me be" until the player has the coltin, the
+petit bleu and the plate. Then he asks what the player would do:
+**Stay** (spend the last winters under the glass) or **Go with** (follow
+the market to Rungis). Both bring him back to the café. End screen: clues
+found (n/6), 3 March 1969 move, pavilions gone in the 1970s, pneumatique
+closed in 1984. B before the question cancels the scene.
 
 ## Characters
 

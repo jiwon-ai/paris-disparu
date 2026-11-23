@@ -7,97 +7,57 @@
 
 # ---------------------------------------------------------------- the stranger
 [stranger_hello]
-MAN WITH NOTEBOOK: Shh. I'm counting.
+MAN WITH NOTEBOOK: Shh. I'm counting. Three lorries. One cat. One raincoat.
 
-Three lorries. One cat. Two flat caps. One person in a raincoat.
+I write down everything that passes in this street. Every night, for years.
 
-Ah, you're the raincoat. I write down everything that passes in this street.
+Every night at three, a yellow hat goes by. Fernand, fort des Halles. Thirty years.
 
-But one thing I can't explain. Every night, an apple appears on Simone's counter, at the café.
+Tonight: no hat. No Fernand. That has never happened. Not once.
 
-Nobody sees who leaves it. Simone would love to know. So would I.
-
-My old notebooks are at home, by the phone. My wife will read them to you: 4127.
+Ask at the café. And my old notebooks are at home: my wife will read them to you. 4127.
 
 [stranger_knows]
-MAN WITH NOTEBOOK: You know who it is. I can see it on your face. Noted. Go on, then.
+MAN WITH NOTEBOOK: You found out where he went. I can see it on your face. Noted.
 
 [stranger_again]
-MAN WITH NOTEBOOK: Ask Simone at the café. And call my notebooks: 4127. Somebody noted something.
+MAN WITH NOTEBOOK: Still no yellow hat. Call my notebooks, 4127. Yesterday may explain tonight.
 
 # ---------------------------------------------------------------- the porter
 [porter_hello]
-FERNAND: Mind your back, coming through! Out wandering at this hour?
+DÉDÉ: You! Have you seen Fernand? Thirty years, he never missed a night.
 
-Then make yourself useful. Three crates for the stalls, inside.
+His cart's still here, full. And my back's done in. Can't lift a thing.
 
-Each crate has its stall. Read the signs and you'll manage. Give me a hand?
+Germaine needs her crates. Each one goes to its stall: read the signs. Help me?
 ? Yes | No
 
 [porter_ask]
-FERNAND: So, are you helping or just watching?
+DÉDÉ: So? Helping with Fernand's crates?
 ? Yes | No
 
 [porter_yes]
-FERNAND: Good. Take them from my cart, one at a time. Look at what's inside.
+DÉDÉ: Good. Take them from the cart, one at a time. Look at what's inside.
 
-And lift with your legs, not your back. A back has to last a lifetime.
+And lift with your legs, like a fort. A back has to last a lifetime.
 
 [porter_no]
-FERNAND: Suit yourself. The crates won't carry themselves, though.
+DÉDÉ: Suit yourself. The crates won't carry themselves, though.
 
 [porter_working]
-FERNAND: Cart's here, stalls are inside. Go on, go on!
+DÉDÉ: Cart's here, stalls are inside. Go on, go on!
 
 [porter_done]
-FERNAND: Three crates, three stalls. Not bad for a beginner.
+DÉDÉ: Three crates, three stalls. Fernand would be proud.
 
-Go to the café on the street. Tell Simone that Fernand sent you.
-
-And, er… don't tell her anything else. There's nothing else. Go on.
-
-[porter_confront]
-FERNAND: Kid. Why are you looking at me like that?
-
-You tell him what you found. The apple, paid for at the stall. The yellow hat at three.
-
-The coffee run that takes him ages, every single night.
-
-Fernand goes red, right up to his hat.
-
-FERNAND: …Yes. It's me. Every night I buy Germaine's best apple.
-
-I polish it on my sleeve all the way to the café. Then I lose my nerve, leave it, and run.
-
-I even bought a book about love letters. I couldn't write a single line.
-
-Say… should I tell her myself? Now, before I lose my nerve again?
-? Yes | No
-
-[end_yes]
-Fernand takes a deep breath and straightens his hat. FERNAND: Right. Now.
-
-At the café, he puts the apple on the counter. Not in secret, this time.
-
-SIMONE: …So it was you. Every night, for a year.
-
-FERNAND: A year and a half. Since the cold winter.
-
-Simone pours two coffees. She says nothing. She doesn't need to.
-
-[end_no]
-FERNAND: Not yet. Some things are easier to say with apples.
-
-You keep his secret. Tomorrow at three, an apple will wait on the counter.
-
-And Simone will smile, as if she didn't know. Maybe she already does.
+Germaine wants a word with you, inside. She knows him better than anyone.
 
 [porter_after]
-FERNAND: Still here? The café is on the street. Simone doesn't bite. Hardly.
+DÉDÉ: Find Fernand, will you? It isn't the same without his big voice.
 
 # ---------------------------------------------------------------- the cart and stalls
 [cart_look]
-Fernand's cart. Three crates, tightly strapped.
+Fernand's cart. Three crates, tightly strapped. Nobody to pull it.
 
 [cart_choux]
 A crate of cabbages (CHOUX). Heavy! The leaves smell of wet earth.
@@ -112,7 +72,7 @@ A crate of carrots (CAROTTES), still covered in soil.
 Your arms are already full.
 
 [cart_empty]
-The cart is empty. Fernand has already forgotten it.
+The cart is empty. Fernand's cart, without Fernand.
 
 [stall_choux]
 Cabbages, stacked in a pyramid.
@@ -125,13 +85,6 @@ Carrots in bunches, leaves pointing up.
 
 [stall_ok]
 You set the crate on the stall. Someone nods, without a word.
-
-[stall_ok_pommes]
-You set the apples on their stall. One apple sits apart, wrapped in paper: RESERVED.
-
-GERMAINE: That one? Set aside every night. A customer pays for my best apple before dawn.
-
-Big shoulders, a hat. That's all I ever see. I'm busy with my cabbages!
 
 [stall_wrong]
 Wrong stall. Read the sign.
@@ -150,44 +103,53 @@ Everything has to look good first. A sad cabbage, nobody wants it.
 
 The price? Depends on the hour, the rain and the customer's face.
 
-[merchant_apple]
-GERMAINE: Apples? I keep the apple stall too. Someone reserves one every night.
+[merchant_rungis]
+GERMAINE: You carried for me? Thank you, dear. Fernand always does it.
 
-Fernand's bringing a crate of them. Help him, and see for yourself.
+All week he talked about one thing. Rungis. The new market they're building out there.
+
+"Concrete and lorries," he said. "No glass, no iron. No place for old forts."
+
+When they move us out there, will they want a man of sixty? He's afraid, dear.
 
 [merchant_again]
 GERMAINE: Move over a bit, you're hiding my cabbages.
 
 # ---------------------------------------------------------------- the cafe
 [cafe_hello]
-SIMONE: Come in, it's cold. Market people eat here while the city sleeps.
+SIMONE: Come in, it's cold. You're looking for Fernand too?
 
-Tell me, you look curious. Can I ask you something?
+He came in at midnight. Didn't say a word. Didn't touch his coffee.
 
-Every night, before I open, I find an apple on my counter. Polished. No note.
+He hung his coltin on that hook and walked out bareheaded. A fort, without his hat!
 
-A whole year of apples! I'd love to know who. Find out, and your coffee's free for life.
-
-[cafe_fernand]
-SIMONE: Fernand sent you? He's a sweet man. Shy as a cat.
-
-He never says more than two words to me. Odd, isn't it?
+Here. Take it to him, if you find him. He'll catch his death.
 
 [cafe_jeton]
 SIMONE: The phone? You need a token, a jeton. Here, have one. Don't lose it.
 
+[cafe_bleu]
+SIMONE: A petit bleu? Yes! The courier brought it yesterday afternoon. Fernand left it here.
+
+It's not mine to read… but it's for his own good. Here.
+
+"Fernand. I went to see Rungis on Sunday. Concrete as far as you can see."
+
+"No glass, no iron, no café on the corner. No room for men like us. I'm stopping. Marcel."
+
+[cafe_bleu_again]
+SIMONE: Poor Marcel. Poor Fernand. Thirty years under that glass roof, both of them.
+
 [cafe_again]
-SIMONE: Any news about my apple? I'm dying to know.
+SIMONE: Any sign of Fernand? His coffee's gone cold.
 
 [worker_hello]
 A PORTER: Shh. I'm sleeping on my feet. That's a skill too.
 
-[worker_run]
-A PORTER: A yellow hat? Kid, every porter at Les Halles wears one.
+[worker_fernand]
+A PORTER: Fernand? Sat on the bench with me at eleven. Kept turning his plate in his hands.
 
-But at three? I'm asleep at three. At three, it's Fernand who goes for the coffee.
-
-Every night. Takes him ages, too. Never brings me a croissant.
+His fort's plate, the one with his name. Like he was saying goodbye to it.
 
 [worker_phone]
 A PORTER: Who did you call? The butcher? Ha! They never pick up before six.
@@ -210,16 +172,16 @@ It rings for ages. "Butcher's! We open at six! Who calls at this hour?" Click.
 [call_4127]
 A woman answers. "His notebooks? Wait…" Pages rustle.
 
-"Every night: 3:00, a yellow hat goes into the café. 3:02, it comes out. Again and again."
+"Yesterday, 4:10 pm: a courier on a moped. A petit bleu, delivered to the café."
 
-"Only porters wear hats like that, dear. Good night!"
+"Midnight: the yellow hat goes into the café. Comes out without it. Strange, dear."
 
 [call_7302]
 A sleepy voice: "Books? At this hour? Are you a poet or an insomniac?"
 
-"A porter? Yes! A big one bought THE ART OF THE LOVE LETTER last week."
+"A fort? Yes! A big one came to my box last night and sold me his plate. FORT, MARCHAND."
 
-"He polished the cover on his sleeve. Said he'd never dare send one. Sweet man."
+"Said he'd have no use for it any more. I didn't want it! I'm keeping it for him."
 
 [call_2508]
 "He's painting? At four in the morning? Tell him the soup is cold."
@@ -230,7 +192,7 @@ A sleepy voice: "Books? At this hour? Are you a poet or an insomniac?"
 It rings into nothing. Nobody. The jeton doesn't come back.
 
 [lift_miss]
-The crate slips back onto the cart. FERNAND: With your legs, I said!
+The crate slips back onto the cart. DÉDÉ: With your legs, I said!
 
 [shelf]
 Bottles lined up in front of the mirror. Some have lost their labels.
@@ -292,9 +254,9 @@ Shutters closed. A half torn poster announces a dance on Saturday.
 [painter_hello]
 THE PAINTER: Don't move! … No, move. I'm painting the Seine, not you.
 
-Some nights a big man in a yellow hat stands right here, talking to the water.
+There's a big fellow at the end of the bridge. No hat. Been there an hour.
 
-Always the same name. "Simone… Simone, I…" Then he gives up and goes back.
+Staring at the glow of the market, like a man looking at a house that's for sale.
 
 If you meet my wife… No. Call her instead: 2508. Tell her I'm painting.
 
@@ -316,19 +278,19 @@ MAN WITH NOTEBOOK: Psst! You there! Come closer.
 MAN WITH NOTEBOOK: Noting, noting…
 
 [bark_porter]
-FERNAND: Hey, you! Give me a hand?
+DÉDÉ: Hey, you! Seen Fernand?
 
 [bark_porter_cart]
-FERNAND: The cart, there! Grab a crate!
+DÉDÉ: The cart, there! Grab a crate!
 
 [bark_porter_carry]
-FERNAND: Inside! Read the signs!
+DÉDÉ: Inside! Read the signs!
 
 [bark_porter_back]
-FERNAND: Well? All delivered?
+DÉDÉ: Well? All delivered?
 
 [bark_porter_done]
-FERNAND: Thanks, kid! Go to the café.
+DÉDÉ: Thanks, kid! See Germaine.
 
 [bark_merchant]
 GERMAINE: Cabbages! Fine cabbages! Cheap!
@@ -337,10 +299,10 @@ GERMAINE: Cabbages! Fine cabbages! Cheap!
 GERMAINE: Oh! Is that for me?
 
 [bark_cafe]
-SIMONE: You there! Come in, I need a sharp eye.
+SIMONE: Come in! Looking for Fernand?
 
 [bark_cafe_met]
-SIMONE: Found my apple man yet?
+SIMONE: Any sign of Fernand?
 
 [bark_cafe_jeton]
 SIMONE: The phone? You need a jeton. Ask me!
@@ -348,11 +310,43 @@ SIMONE: The phone? You need a jeton. Ask me!
 [bark_worker]
 A PORTER: Zzz… zzz…
 
-[bark_porter_stare]
-FERNAND: Why are you staring at me, kid?
+[fernand_hello]
+FERNAND: Leave me be, kid. I'm watching the water.
 
-[bark_worker_hat]
-A PORTER: Zzz… yellow… hats… zzz…
+[fernand_talk]
+FERNAND: Leave me be, kid… What's that? My coltin?
+
+You hand him his hat. You tell him about Marcel's petit bleu. About Mme Roux, keeping his plate.
+
+FERNAND: So you know. Thirty years I've carried for Les Halles. My father before me.
+
+And now they're taking the market out to Rungis. Concrete, lorries. Marcel's right.
+
+Who'll want an old fort out there? Better to stop now, before they stop me.
+
+He turns the coltin in his big hands. FERNAND: What would you do, kid?
+? Stay | Go with
+
+[end_stay]
+You tell him: there are still two winters left under the glass. Spend them here.
+
+FERNAND: Two winters… Germaine's cabbages won't carry themselves, eh?
+
+He puts on his coltin. Together you walk back towards the light of the pavilions.
+
+At the café, Simone heats up his coffee. Dédé laughs. Fernand is back.
+
+[end_go]
+You tell him: if the market goes, go with it. Carry for Germaine out there too.
+
+FERNAND: Out there… The cabbages will be the same cabbages, eh? And my back the same back.
+
+He puts on his coltin. FERNAND: Then we'll all go together. Marcel too. I'll drag him.
+
+At the café, Simone heats up his coffee. Dédé laughs. Fernand is back.
+
+[bark_fernand]
+FERNAND: …
 
 [bark_painter]
 THE PAINTER: Shh… I'm painting the night.

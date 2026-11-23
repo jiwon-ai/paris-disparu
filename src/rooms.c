@@ -89,6 +89,7 @@ static const hotspot_t quai_hotspots[] = {
 /* --- ROOM_PONT: on the bridge --------------------------------------------- */
 static const npc_def_t pont_npcs[] = {
     { 80, 60, SPR_PAINTER_0, 2, NPC_PAINTER },
+    { 92, 100, SPR_FERNAND_0, 1, NPC_FERNAND },   /* bareheaded, looking at the water */
 };
 static const hotspot_t pont_hotspots[] = {
     {  7, 7, 1, 1, DLG_GASLAMP },
@@ -109,6 +110,6 @@ const room_def_t rooms[ROOM_COUNT] = {
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
     { 0, 0, quai_hotspots, 15, 0, 0,
       { ROOM_PONT, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
-    { pont_npcs, 1, pont_hotspots, 5, 0, 0,
+    { pont_npcs, 2, pont_hotspots, 5, 0, 0,
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
 };

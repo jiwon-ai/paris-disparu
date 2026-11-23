@@ -8,9 +8,9 @@
 static const uint8_t * const clue_txt[CLUE_COUNT] = {
     txt_clue_0, txt_clue_1, txt_clue_2, txt_clue_3, txt_clue_4, txt_clue_5
 };
-static const uint8_t * const goal_txt[10] = {
-    txt_goal_0a, txt_goal_0b, txt_goal_1a, txt_goal_1b, txt_goal_2a,
-    txt_goal_2b, txt_goal_3a, txt_goal_3b, txt_goal_4a, txt_goal_4b
+static const uint8_t * const goal_txt[8] = {
+    txt_goal_0a, txt_goal_0b, txt_goal_1a, txt_goal_1b,
+    txt_goal_2a, txt_goal_2b, txt_goal_3a, txt_goal_3b
 };
 static const uint8_t * const num_txt[4] = { txt_num_0, txt_num_1, txt_num_2, txt_num_3 };
 static const uint16_t num_flag[4] = {
@@ -19,10 +19,9 @@ static const uint16_t num_flag[4] = {
 
 /* What to do next, from the furthest step reached. */
 static uint8_t goal(void) {
-    if (clue_flags & CLUE_RUN) return 4;
-    if (clue_flags & CLUE_HAT) return 3;
-    if (clue_flags & CLUE_CASE) return 2;
-    if (game_flags & FLAG_MET_STRANGER) return 1;
+    if ((clue_flags & CLUE_READY) == CLUE_READY) return 3;
+    if (clue_flags & CLUE_COLTIN) return 2;
+    if (clue_flags & CLUE_CASE) return 1;
     return 0;
 }
 
@@ -51,11 +50,13 @@ void end_show(void) {
     box_print(6, 2, txt_end_1);
     box_print(1, 4, txt_end_2);
     set_win_tile_xy(14, 4, txt_digits[clue_total()]);
-    box_print(1, 7, txt_end_3);
-    box_print(1, 8, txt_end_4);
-    box_print(1, 9, txt_end_5);
-    box_print(1, 10, txt_end_6);
-    box_print(1, 11, txt_end_7);
-    box_print(1, 13, txt_end_8);
-    box_print(1, 16, txt_end_9);
+    box_print(1, 6, txt_end_3);
+    box_print(1, 7, txt_end_4);
+    box_print(1, 8, txt_end_5);
+    box_print(1, 9, txt_end_6);
+    box_print(1, 10, txt_end_7);
+    box_print(1, 11, txt_end_8);
+    box_print(1, 12, txt_end_9);
+    box_print(1, 14, txt_end_10);
+    box_print(1, 16, txt_end_11);
 }

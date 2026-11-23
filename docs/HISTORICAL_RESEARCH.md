@@ -63,3 +63,19 @@ details vague until they are verified.
 | Roofs | Blue-grey zinc | Reconstruction, to research |
 | Market dates (setting) | Fruit, flower and vegetable markets moved out in 1969; the market last operated in January 1973 and was demolished in 1973 | **Read** in Wikipedia (secondary); Paris ZigZag gives 1969 for the move to Rungis |
 | Street lighting | Amber lit windows, yellow lamps; gas lamps only on the quai and bridge | See claim 10 |
+
+
+## Story elements (Episode 1 mystery)
+
+Read on 2026-11-23. "Read" = the statement was found in that source; secondary sources only.
+
+| Element used in the game | Status | Source |
+|---|---|---|
+| Pneumatic post (pneumatique) in Paris 1866-1984; messages written on pre-franked forms called "petits bleus" (size and colour); carried to the station nearest the recipient and delivered by courier (on foot, cycle, mopeds from 1930); ~4 million messages in 1960; closed 30 March 1984 | **Read** | [Wikipedia, Paris pneumatic post](https://en.wikipedia.org/wiki/Paris_pneumatic_post) |
+| Forts' coltin: yellow leather, very wide brims, lead cap inside; blouse with a metal plate bearing the arms of Paris, "fort" and the family name | **Read** | [Paris ZigZag, forts des Halles](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/histoire-forts-des-halles-paris/) |
+| Transfer decided 1959, officially announced 1962, works at Rungis from 1964 (so the move was known in 1967) | **Read in one secondary source**, which attributes the decision to two different people; to confirm | [evous.fr](https://www.evous.fr/Du-ventre-de-Paris-a-Rungis-toute,1132285.html) |
+| Rungis opened 3 March 1969; fruit, flower and vegetable markets left Les Halles in 1969 (butchers stayed); last operation 12 Jan 1973 | **Read** | [paris.fr](https://www.paris.fr/pages/rungis-et-paris-une-histoire-commune-6744); [Wikipedia, Les Halles](https://en.wikipedia.org/wiki/Les_Halles) |
+| Au Pied de Cochon (1947) served Les Halles workers and night owls non-stop | **Read** (not used in the game text) | [Sortiraparis](https://www.sortiraparis.com/en/where-to-eat-in-paris/restaurant/articles/334703-history-restaurant-au-pied-de-cochon-paris-1) |
+| A courier delivering a petit bleu to a café for a fort; the exact time (4:10 pm) | **Plausible reconstruction**: delivery by courier is documented, the address and time are invented | — |
+| Fernand, Marcel, Dédé, Mme Roux, the plate sold to a bouquiniste, Marcel's opinion of Rungis, Fernand's age and fears | **Fiction** | — |
+| Jeton telephones in cafés in 1967 | **To research** (kept from earlier builds) | — |

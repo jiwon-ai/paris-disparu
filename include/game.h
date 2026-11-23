@@ -22,6 +22,7 @@
 #define NPC_CAFE     3
 #define NPC_WORKER   4
 #define NPC_PAINTER  5
+#define NPC_FERNAND  6
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001
@@ -36,19 +37,21 @@
 #define FLAG_PHONE_DONE     0x0200
 #define FLAG_FERNAND_TOLD   0x0400  /* Simone heard Fernand sent you */
 #define FLAG_MET_WORKER     0x0800
-#define FLAG_SOLVED         0x1000  /* Fernand confessed: the ending plays */
+#define FLAG_SOLVED         0x1000  /* Fernand found and answered: the ending plays */
 #define FLAG_MET_PAINTER    0x2000
 
 extern uint16_t game_flags;
 
-/* The mystery: who leaves an apple on Simone's counter every night?
+/* The mystery: Fernand, a fort des Halles for thirty years, has not come
+   to work tonight. Where is he, and why? (Fiction; see HISTORICAL_RESEARCH.)
    One bit per clue, in notebook order. */
-#define CLUE_CASE  0x01   /* Simone: an apple every night */
-#define CLUE_STALL 0x02   /* apple crate: a big man reserves one */
-#define CLUE_HAT   0x04   /* call 4127: a yellow hat at 3:00 */
-#define CLUE_BOOK  0x08   /* call 7302: a porter bought a love-letter book */
-#define CLUE_RIVER 0x10   /* the painter: "Simone" said to the Seine */
-#define CLUE_RUN   0x20   /* cafe porter: Fernand does the 3:00 coffee run */
+#define CLUE_CASE    0x01   /* the man with the notebook: no yellow hat tonight */
+#define CLUE_COLTIN  0x02   /* Simone: he left his coltin on the hook */
+#define CLUE_COURIER 0x04   /* call 4127: a petit bleu came for him yesterday */
+#define CLUE_BLEU    0x08   /* Simone shows the petit bleu: Marcel is stopping */
+#define CLUE_PLATE   0x10   /* call 7302: he sold his fort's plate to Mme Roux */
+#define CLUE_RUNGIS  0x20   /* Germaine, after the crates: he fears Rungis */
+#define CLUE_READY   (CLUE_COLTIN | CLUE_BLEU | CLUE_PLATE)  /* enough to talk to him */
 #define CLUE_COUNT 6
 extern uint8_t clue_flags;
 extern uint8_t new_clue;   /* set when a clue was just found; main shows a note */

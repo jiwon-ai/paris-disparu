@@ -223,7 +223,7 @@ static void update_barks(void) {
         uint8_t dx = absdiff(player.x, n->x), dy = absdiff(player.y, n->y);
         uint8_t bit = 1 << i;
         if (dx < 28 && dy < 28) {
-            if ((bark_armed & bit) && bark_from == NO_BARK) {
+            if ((bark_armed & bit) && bark_from != i) {   /* the nearest call wins */
                 bark_armed &= ~bit;
                 caption_timer = 0;      /* a call replaces the opening caption */
                 bark_show(event_bark(n->npc));

@@ -83,7 +83,7 @@
 #define TILE_TREE_BL 48
 #define TILE_TREE_BR 49
 #define TILE_BARRIER 50
-#define SPRITE_TILE_COUNT 88
+#define SPRITE_TILE_COUNT 96
 #define SPR_PLAYER_DOWN_0 0
 #define SPR_PLAYER_DOWN_1 4
 #define SPR_PLAYER_DOWN_2 8
@@ -106,6 +106,8 @@
 #define SPR_BARGE_R 76
 #define SPR_PAINTER_0 80
 #define SPR_PAINTER_1 84
+#define SPR_FERNAND_0 88
+#define SPR_FERNAND_1 92
 
 #define ROOM_STREET 0
 #define ROOM_ENTRANCE 1
@@ -125,9 +127,6 @@ enum {
     DLG_PORTER_NO,
     DLG_PORTER_WORKING,
     DLG_PORTER_DONE,
-    DLG_PORTER_CONFRONT,
-    DLG_END_YES,
-    DLG_END_NO,
     DLG_PORTER_AFTER,
     DLG_CART_LOOK,
     DLG_CART_CHOUX,
@@ -139,19 +138,19 @@ enum {
     DLG_STALL_POMMES,
     DLG_STALL_CAROTTES,
     DLG_STALL_OK,
-    DLG_STALL_OK_POMMES,
     DLG_STALL_WRONG,
     DLG_STALL_WRONG_GERMAINE,
     DLG_STALL_OK_GERMAINE,
     DLG_MERCHANT_HELLO,
-    DLG_MERCHANT_APPLE,
+    DLG_MERCHANT_RUNGIS,
     DLG_MERCHANT_AGAIN,
     DLG_CAFE_HELLO,
-    DLG_CAFE_FERNAND,
     DLG_CAFE_JETON,
+    DLG_CAFE_BLEU,
+    DLG_CAFE_BLEU_AGAIN,
     DLG_CAFE_AGAIN,
     DLG_WORKER_HELLO,
-    DLG_WORKER_RUN,
+    DLG_WORKER_FERNAND,
     DLG_WORKER_PHONE,
     DLG_PHONE_LOOK,
     DLG_PHONE_USE,
@@ -196,8 +195,11 @@ enum {
     DLG_BARK_CAFE_MET,
     DLG_BARK_CAFE_JETON,
     DLG_BARK_WORKER,
-    DLG_BARK_PORTER_STARE,
-    DLG_BARK_WORKER_HAT,
+    DLG_FERNAND_HELLO,
+    DLG_FERNAND_TALK,
+    DLG_END_STAY,
+    DLG_END_GO,
+    DLG_BARK_FERNAND,
     DLG_BARK_PAINTER,
     DLG_COUNT
 };
@@ -238,8 +240,6 @@ extern const uint8_t txt_goal_2a[];
 extern const uint8_t txt_goal_2b[];
 extern const uint8_t txt_goal_3a[];
 extern const uint8_t txt_goal_3b[];
-extern const uint8_t txt_goal_4a[];
-extern const uint8_t txt_goal_4b[];
 extern const uint8_t txt_clue_0[];
 extern const uint8_t txt_clue_1[];
 extern const uint8_t txt_clue_2[];
@@ -259,6 +259,8 @@ extern const uint8_t txt_end_6[];
 extern const uint8_t txt_end_7[];
 extern const uint8_t txt_end_8[];
 extern const uint8_t txt_end_9[];
+extern const uint8_t txt_end_10[];
+extern const uint8_t txt_end_11[];
 extern const uint8_t txt_dmg_1[];
 extern const uint8_t txt_dmg_2[];
 extern const uint8_t txt_lift_1[];
