@@ -32,3 +32,10 @@ Raw notes of pages actually read on 2026-11-23 (via a fetch tool; secondary sour
 - Bidonvilles (laviedesidees, Delon 2017): Nanterre bidonville des Pâquerettes; child born 1963 lived there till ~6; 1960s problem became mal-logement; cités de transit, circular 27 Aug 1971; provisional lasted till 1986. Populations not stated.
 - Ice (pariszigzag glacieres): 19th c. peak; pains de glace 20-40 centimes retail (19th c.); glacières almost all disappeared. => ice delivery in 1960s NOT sourced.
 - Dames pipi (inkl/Independent, Lichfield): free public toilets managed by a dame pipi for small salary + tips; replaced since 1970s by automatic booths; 11 left today; saucer not stated.
+# Les Halles layout, batch 1 (read)
+- en.wiki Les Halles: fruit/flower/veg left 1969, butchers stayed; last operated 12 Jan 1973; Halle aux Blés 1763-69 "at the west end of Les Halles", Bourse de Commerce 1889; Saint-Eustache 16th c.; claims one pavilion to Nogent and one to Yokohama (Yokohama contradicted by others).
+- Larousse: 1854 plan 14 pavilions, 10 done by 1870, later 12; ~40,000 m2; each pavilion central nave with cast-iron columns, double lantern roof; ~8,000 t goods/day; transfer decreed 1962, done March 1969; destroyed from 1971; one pavilion re-erected 1977 Nogent.
+- pariszigzag Halles de Baltard: 12 pavilions, glass + cast iron; "deux blocs homogènes répartis autour d'une rue centrale"; bounded north by Saint-Eustache, west by old Halle au blé (Bourse de Commerce); pavilion 8 = eggs & poultry, saved to Nogent; 27 Feb-1 Mar 1969: 20,000 employees left; Rungis 13 km; destroyed 1971-73.
+- napoleon.org Baltard Pavilion: east section 1854-58, west 1860-74; pav. 8 egg & poultry; demolition began 2 Aug 1970; pav 8 dismantled 1972, rebuilt Nogent 1976, opened 1977.
+- paris.fr Ce que Paris doit à Baltard: pavilions housed butchers, fishmongers, cheesemongers, market gardeners...; glass, cast iron, brick, iron; 1852-1870; first pavilion poultry 1853; Saint-Eustache restored, reinaugurated 1860.
+- paris.fr Gautrand: photographed demolition Aug-Oct 1971; photos at Musée Carnavalet.
