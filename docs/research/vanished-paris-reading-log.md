@@ -1,0 +1,34 @@
+# Reading log: vanished Paris 1960s (raw notes)
+
+Raw notes of pages actually read on 2026-11-23 (via a fetch tool; secondary sources unless stated). Quotes are in the source language. "Not stated" = the page does not say it. The curated database is docs/VANISHED_PARIS_DATABASE.md.
+
+# Batch A (read)
+- Bus platform: paris.fr bus history: "Leur dernier voyage a lieu le 22 janvier 1971", withdrawal of platform buses, last on line 21 (St-Lazare - Porte de Gentilly). 528M riders 1970 vs 852M 1961. Renault TN wiki: TN6 out 1969, TN4F 1970, TN4H 1971; platform use not stated.
+- Vespasiennes (pariszigzag vespasienne-derniere): disappear progressively from 1960s, massively 1980s, replaced by JCDecaux sanisettes; last at 86 bd Arago (14e). 1960s count not stated.
+- Luxembourg chairs (jardin.senat.fr the-seats): fee, concession contracts since 18th c.; 1955 standard model; 1974 Senate made chairs free, bought stock from last concessionaire. 1923 model. Chaisières NOT stated.
+- Scopitone (en.wiki): 16mm film jukebox, patented 1958, Cameca Courbevoie; faded by end of 1960s; last film 1978. French café installation not stated.
+# Batch B (read)
+- Bougnat (en.wiki; pariszigzag bougnats): Auvergnats/Aubrac, firewood+coal delivery + wine; "Vins et charbons", cafés-charbons; golden age 1st half 20th c.; café-charbons have disappeared today; one bougnat still rue Émile-Lepeu. 1960s decline date not stated.
+- New franc (retrowow): 1 Jan 1960, 1 NF=100 old; people still talked in old francs, "mille francs"; shopkeepers & waiters billed in NF but talked old; Giscard 1963 admitted still thinking in old francs; 1963 dropped "new" label. numiscorner: 1 Jan 1960; 1 Jan 1963 'nouveau' dropped; avg salary 61,000 -> 610.
+- Phone letters (britishtelephones tel_hist_paris): 3-letter exchange + 4 digits e.g. CENtral 1234; Paris changeover 1 Oct 1963 new subscribers all-figure; letters kept on dials into 1980s; speaking clock ODÉon 8400; 8 digits 25 Oct 1985. Circular 21 Sep 1963 (histelfrance PDF): pre-Oct-1963 subscribers keep number provisionally; directories all-digits from 1965; ODEon=033, BALzac=225, OPEra=073, SEGur=734.
+  => In 1967 both forms coexist: old subscribers still "ODEon 12-34"-style; new ones 7 digits. Directory digits from 1965.
+- Jeton (numista 16650): PTT token 1937, copper-nickel 4.15g 18mm, deep square groove "P.T.T", engraver Bazor; demonetized (date not stated).
+# Batch C (read)
+- Villette abattoirs (sortiraparis 331385): built 1865-67, largest butchery complex; up to 4M animals/yr; closed 1974. paris.fr lieux disparus 2: inaugurated 21 Oct 1867; activities suspended from 1974; 1922 scandal. Les Halles: 1969 transferred to Rungis; 1979 Forum.
+- Voie Pompidou (en.wiki): Pompidou opened 13-km expressway 1967; right bank car ban 2017 (paris.fr says 2018 start). paris.fr swimming: "the right bank expressway was completed in 1967".
+- Colour TV (ozap): 1 Oct 1967 14h15 SECAM. Speakerines introduced 1935, until early 1990s. ORTF wiki: colour Oct 1967 on 625-line 2nd channel; ads introduced 1968; 3rd channel Dec 1972; licence fee.
+- Deligny (sortiraparis 332277): quai Anatole-France, floating, from 1801; 1960s legendary swimsuit fashion shows; sank 8 Jul 1993. paris.fr swimming: Seine bathing banned 1923 (fine); ~20 floating pools end 19th c.
+# Batch D (read)
+- paris.fr metiers oublies 7409: forts des Halles: "En mars 1969, le transfert ... Rungis sonne le glas de leur corporation"; leather hat lead cap. Other trades 18th-19th c. (allumeur ended w/ electricity, chiffonnier 1883 bins, porteuse de pain ended after WWI) -> NOT 1960s.
+- pariszigzag metiers oublies: rémouleur pushed small grinding wheel, maybe one left; crieur de journaux: "Il en existe un dernier du côté de Saint-Germain-des-Prés" (no year). pariszigzag petits metiers insolites: poinçonneur disappeared 1973 w/ magnetic tickets; rémouleur Marius still 2019.
+- Ouvreuses (simonnetavocat 2026 legal blog): name from keys to open loges (19th); tips were norm; Vilar TNP from 1951 fixed salary; persists in some private theatres; Th. Champs-Élysées ended tipping Sept 2023. Cinema tips not covered. paris.fr cinemas: Arlequin renamed 1962 by Tati.
+- Concierge (TIME 17 Jan 1964, time.com/archive/6813310): 95% women; 80,000 -> 64,000 since WWII; cordon pulled at night, bill 1957 abolished, most doors now electric release; hours 6am-10pm 6 days; garbage, lock doors, pipes; rent-free loge.
+# Batch E (read)
+- Telegram (next.ink 2 May 2018): stopped 30 Apr 2018 23:59, "139 ans après son lancement". 1960s volumes not stated.
+- Halle aux vins (sortiraparis 340379): built 17th c. (Mazarin), until mid-20th c.; barrels by boat via Seine; gradually abandoned; 1950s first university buildings (Jussieu). Demolition years not stated.
+- Tour Montparnasse (en.wiki): built 1969-73 on site of old Montparnasse station; station reconstruction June 1966 - spring 1969. => in 1967 old station area a building site.
+- Hirondelles (pariszigzag): from 1901; nickname from floating cape like the bird; 2,819 bicycle police in 1950, 3 brigades per arrondissement; night patrols; disappeared gradually in 80s, definitively 1984.
+- Le Tabou (en.wiki): opened 11 Apr 1947, 33 rue Dauphine, late licence till 4am revoked; declined. (1940s - NOT 1960s)
+- Bidonvilles (laviedesidees, Delon 2017): Nanterre bidonville des Pâquerettes; child born 1963 lived there till ~6; 1960s problem became mal-logement; cités de transit, circular 27 Aug 1971; provisional lasted till 1986. Populations not stated.
+- Ice (pariszigzag glacieres): 19th c. peak; pains de glace 20-40 centimes retail (19th c.); glacières almost all disappeared. => ice delivery in 1960s NOT sourced.
+- Dames pipi (inkl/Independent, Lichfield): free public toilets managed by a dame pipi for small salary + tips; replaced since 1970s by automatic booths; 11 left today; saucer not stated.
