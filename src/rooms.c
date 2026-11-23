@@ -64,7 +64,7 @@ static const hotspot_t cafe_hotspots[] = {
     {  0, 4, 13, 2, TALK(NPC_CAFE) },  /* talk to Simone across the counter */
     {  1, 1, 12, 3, DLG_SHELF },
     {  3, 10, 2, 1, DLG_TABLE },
-    { 14, 11, 2, 1, DLG_TABLE },
+    { 14, 11, 2, 1, DLG_SOUP },
 };
 static const door_t cafe_doors[] = {
     { 9, 17, 2, 1, ROOM_STREET, 28, 72, DIR_DOWN },

@@ -98,6 +98,25 @@ Read on 2026-11-23 (secondary sources).
 | Allusion: "A singer once made a song about a man like me, out at Porte des Lilas" = Serge Gainsbourg, *Le Poinçonneur des Lilas* (1959) | **Read** (year: Paris ZigZag only). Rights: the song is under copyright; **no lyrics, melody or title are reproduced**, only an allusion to its subject. Legal review advised before release | Paris ZigZag |
 
 
+## Era culture (references in the scenery)
+
+Read on 2026-11-23. Policy: works still under copyright are referred to by
+author and title only (no lyrics, melody, image or text reproduced, all art
+original). Only public-domain text is quoted.
+
+| In the game (where) | Fact | Status / rights | Source |
+|---|---|---|---|
+| Onion soup gratinée on a café table (café) | Eaten at Les Halles between midnight and 8 a.m., by market workers as breakfast and by night owls | **Read**. Not a work: no rights issue | [Paris ZigZag, Gratinée des Halles](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/histoire-dun-plat-parisien-mythique-la-gratinee-des-halles/) |
+| "Salut les copains" left on a table (café) | Magazine 1962-2006, from the Europe 1 radio show (first aired Dec 1959) at the root of yé-yé | **Read**. Title only (trademark/press title): legal check before release | [Wikipedia, magazine](https://en.wikipedia.org/wiki/Salut_les_copains_(magazine)); [Wikipedia, Yé-yé](https://en.wikipedia.org/wiki/Y%C3%A9-y%C3%A9) |
+| A radio playing "a yé-yé song" (café shelf) | Yé-yé pop from the early 1960s | **Read** (genre). No song named or played | Wikipedia, Yé-yé |
+| Poster for Jacques Tati's "Playtime", "Soon." (quai) | Released in France 16 Dec 1967; set in a modern glass-and-steel Paris | **Read**. "Soon" assumes the episode is before mid-December 1967 (the episode's month is not fixed). Title and director named, no poster art reproduced: legal check | [Wikipedia, Playtime](https://en.wikipedia.org/wiki/Playtime) |
+| Playbill for Ionesco's "The Bald Soprano" at the Huchette (hotel) | In permanent showing at the Théâtre de la Huchette since 1957 | **Read**. Title only: legal check | [Wikipedia, The Bald Soprano](https://en.wikipedia.org/wiki/The_Bald_Soprano) |
+| Zola, "Le Ventre de Paris" in a bouquiniste's box (quai) | Novel of 1873 set in and around Les Halles | **Read**. Public domain | [Wikipedia, Le Ventre de Paris](https://en.wikipedia.org/wiki/Le_Ventre_de_Paris) |
+| The painter quotes Baudelaire, "Le Cygne": "Le vieux Paris n'est plus (la forme d'une ville / Change plus vite, hélas ! que le cœur d'un mortel)" | Verse checked word for word; section "Tableaux parisiens" of Les Fleurs du mal | **Read**. Public domain (Baudelaire d. 1867) | [La langue française, Le Cygne](https://www.lalanguefrancaise.com/litterature/baudelaire/le-cygne) |
+| Allusion to Gainsbourg's "Le Poinçonneur des Lilas" (métro) | See "Vanished Paris" above | Under copyright: allusion only | Paris ZigZag |
+| Photography: the Doisneau-inspired photographer | See "Cameos" | — | — |
+
+
 ## Cameos (real people)
 
 Policy: a real person appears only with a documented tie to Les Halles at

@@ -177,6 +177,7 @@ enum {
     DLG_CALL_NONE,
     DLG_LIFT_MISS,
     DLG_SHELF,
+    DLG_SOUP,
     DLG_TABLE,
     DLG_PLAQUE,
     DLG_DOOR,

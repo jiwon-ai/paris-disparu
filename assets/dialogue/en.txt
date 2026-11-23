@@ -187,10 +187,15 @@ It rings into nothing. Nobody. The jeton doesn't come back.
 The crate slips back onto the cart. DÉDÉ: With your legs, I said!
 
 [shelf]
-Bottles lined up in front of the mirror. Some have lost their labels.
+Bottles lined up in front of the mirror. Between them a little radio plays a yé-yé song, very low.
+
+[soup]
+A bowl of onion soup, gratinée, still steaming. Here it's eaten between midnight and dawn.
+
+By market workers starting their day, and by night owls ending theirs.
 
 [table]
-A round table. Someone left a newspaper folded in four.
+A round table. Someone left a copy of "Salut les copains" open on the singers' photos.
 
 # ---------------------------------------------------------------- the street
 [plaque]
@@ -206,7 +211,7 @@ A street lamp. Its yellow light trembles a little.
 A dark shop window. Empty bottles wait for the delivery man.
 
 [hotel]
-HOTEL. On the second floor, one window is still lit.
+HOTEL. One window still lit. In the hall, a playbill: Ionesco, "The Bald Soprano", at the Huchette since 1957.
 
 [cafe_window]
 Behind the misted glass, figures at the counter. It smells of coffee.
@@ -228,7 +233,7 @@ A bookseller's green box, padlocked. On the lid, a card:
 "Old books. Mme Roux. 7302."
 
 [quai_box2]
-Another green box, shut. You can guess the books packed inside, asleep.
+Another green box, shut. Through a crack: an old Zola, "Le Ventre de Paris". A novel set in these very Halles, in 1873.
 
 [gaslamp]
 A gas lamp. Behind the glass, the flame hisses softly.
@@ -240,7 +245,7 @@ A plane tree. Its leaves rustle like paper.
 Below, the Seine. Black, and yet full of lights.
 
 [quai_shop]
-Shutters closed. A half torn poster announces a dance on Saturday.
+Shutters closed. A poster: Jacques Tati's new film, "Playtime". A Paris all glass and steel. "Soon."
 
 # ---------------------------------------------------------------- the bridge
 [painter_hello]
@@ -253,7 +258,9 @@ Staring at the glow of the market, like a man looking at a house that's for sale
 If you meet my wife… No. Call her instead: 2508. Tell her I'm painting.
 
 [painter_again]
-THE PAINTER: Look at the barge. It slips under the bridge like through a door.
+THE PAINTER: A poet wrote it long ago: "Le vieux Paris n'est plus (la forme d'une ville
+
+change plus vite, hélas ! que le cœur d'un mortel)." Baudelaire. So I paint fast.
 
 [barrier]
 Barriers: ROADWORKS. The rest of the bridge will wait for daylight.

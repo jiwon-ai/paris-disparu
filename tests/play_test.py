@@ -542,6 +542,9 @@ check(room() == ROOM_STREET, "entrance west edge back to the street (room %d)" %
 
 print("one more call, then Fernand")
 street_to_cafe()
+goto(116, 100, "xy")
+push("up")
+talk("onion soup")              # vanished Paris: the gratinee of Les Halles
 goto(72, 60, "yx")
 push("up")
 talk("Another jeton")
