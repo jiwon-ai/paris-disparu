@@ -1,6 +1,7 @@
 /* Story logic: where is Fernand? Who says what, the porter's crates, the
    cafe telephone. All state lives in game_flags, clue_flags and the few
    variables below. */
+#pragma bank 5   /* EVENTS_BANK: story logic, called through BANKED trampolines */
 #include "assets.h"
 #include "events.h"
 #include "game.h"
@@ -21,7 +22,7 @@ static uint8_t cameo_met;                /* bit k: cameo NPC_ACTOR + k already m
 /* The clue that completes each quest (the last one is the ending). */
 static const uint8_t quest_clue[QUEST_COUNT - 1] = { CLUE_COLTIN, CLUE_BLEU, CLUE_RUNGIS, CLUE_PLATE };
 
-uint8_t quest_done(uint8_t q) {
+uint8_t quest_done(uint8_t q) BANKED {
     if (q == QUEST_COUNT - 1) return (game_flags & FLAG_SOLVED) != 0;
     return (clue_flags & quest_clue[q]) != 0;
 }
@@ -55,7 +56,7 @@ static void extra(uint8_t x) {
     }
 }
 
-uint8_t extra_total(void) {
+uint8_t extra_total(void) BANKED {
     uint8_t n = 0, x;
     for (x = extra_flags & X_ALL; x; x >>= 1) n += x & 1;
     return n;
@@ -70,42 +71,42 @@ static uint8_t secret(uint8_t n, uint8_t dlg) {
     return dlg;
 }
 
-uint8_t secret_total(void) {
+uint8_t secret_total(void) BANKED {
     uint8_t n = 0;
     uint16_t x;
     for (x = secret_flags; x; x >>= 1) n += x & 1;
     return n;
 }
 
-uint8_t clue_total(void) {
+uint8_t clue_total(void) BANKED {
     uint8_t n = 0, c;
     for (c = clue_flags; c; c >>= 1) n += c & 1;
     return n;
 }
 
-void event_enter_room(uint8_t room) {
+void event_enter_room(uint8_t room) BANKED {
     (void)room;
 }
 
 /* Each crate is a little harder to lift than the last. */
-uint8_t event_lift_level(void) {
+uint8_t event_lift_level(void) BANKED {
     return crates_taken;
 }
 
-uint8_t event_lift_result(uint8_t success) {
+uint8_t event_lift_result(uint8_t success) BANKED {
     if (!success) return DLG_LIFT_MISS;
     carrying = crate_order[crates_taken];
     return crate_take_dlg[crates_taken++];
 }
 
-uint8_t event_punch_result(uint8_t success) {
+uint8_t event_punch_result(uint8_t success) BANKED {
     if (!success) return DLG_PUNCH_MISS;
     if (++punched < 3) return DLG_PUNCH_OK;
     extra(X_TICKETS);
     return DLG_PUNCH_DONE;
 }
 
-uint8_t event_game_result(uint8_t ev, uint8_t success) {
+uint8_t event_game_result(uint8_t ev, uint8_t success) BANKED {
     switch (ev) {
     case EV_SERVE:
         if (!success) return DLG_SERVE_LOSE;
@@ -123,7 +124,7 @@ uint8_t event_game_result(uint8_t ev, uint8_t success) {
     return NO_DIALOGUE;
 }
 
-uint8_t event_dial_result(uint16_t number) {
+uint8_t event_dial_result(uint16_t number) BANKED {
     game_flags = (game_flags & ~FLAG_HAS_JETON) | FLAG_PHONE_DONE;
     switch (number) {
     case 614:  extra(X_BUTCHER); return DLG_CALL_0614;
@@ -134,7 +135,7 @@ uint8_t event_dial_result(uint16_t number) {
     return DLG_CALL_NONE;
 }
 
-uint8_t event_talk(uint8_t npc) {
+uint8_t event_talk(uint8_t npc) BANKED {
     switch (npc) {
     case NPC_STRANGER:
         /* He noticed the missing hat and knows where the notebooks are. */
@@ -241,7 +242,7 @@ uint8_t event_talk(uint8_t npc) {
 }
 
 /* What an NPC calls out when the player comes near: a hint of what to do. */
-uint8_t event_bark(uint8_t npc) {
+uint8_t event_bark(uint8_t npc) BANKED {
     switch (npc) {
     case NPC_STRANGER:
         return HAS(FLAG_MET_STRANGER) ? DLG_BARK_STRANGER_MET : DLG_BARK_STRANGER;
@@ -284,7 +285,7 @@ static uint8_t deliver(uint8_t stall, uint8_t ok_dlg, uint8_t wrong_dlg, uint8_t
     return ok_dlg;
 }
 
-uint8_t event_examine(uint8_t id) {
+uint8_t event_examine(uint8_t id) BANKED {
     if (id == last_look) look_count++;
     else { last_look = id; look_count = 1; }
     if ((uint8_t)(id - DLG_SECRET_COIN) <= DLG_SECRET_MOUSE - DLG_SECRET_COIN) {
@@ -324,7 +325,7 @@ uint8_t event_examine(uint8_t id) {
     return id;
 }
 
-uint8_t event_after(uint8_t dlg, uint8_t choice) {
+uint8_t event_after(uint8_t dlg, uint8_t choice) BANKED {
     switch (dlg) {
     case DLG_PORTER_HELLO:
     case DLG_PORTER_ASK:

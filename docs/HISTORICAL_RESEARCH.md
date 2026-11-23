@@ -162,3 +162,16 @@ Larousse and Wikisource. The Pont Neuf line: [Britannica](https://www.britannica
 | Which pavilion the arch opens into, its produce, the stall layout | **Reconstruction** (1960s pavilion allocation not found) |
 | Métro steps in rue Baltard | **Reconstruction** (1967 entrance locations not found) |
 | The quai's name, the booksellers' boxes at this exact spot | **Not found**; the quai stays unnamed |
+
+
+## Paris design details: métro and street furniture (read 2026-11-23, to draw next)
+
+| Element | Status | Source |
+|---|---|---|
+| The original Les Halles station (line 4) lay under the street that split the twelve pavilions into two groups (= rue Baltard), with **two entrances with a simple wrought-iron surround, on the pavement near Saint-Eustache**; the station was later moved some tens of metres east | **Read** (no Guimard entrance is mentioned for this station; the station's tiles and name plaque are not described) | [fr.Wikipedia, Les Halles (métro de Paris)](https://fr.wikipedia.org/wiki/Les_Halles_(m%C3%A9tro_de_Paris)) |
+| A Guimard entrance nearby: Châtelet, place Sainte-Opportune (rebuilt in 2000) | **Read**; not used for Les Halles | [lartnouveau.com](https://lartnouveau.com/artistes/guimard/metro/metro_chatelet.htm) |
+| Entrance signs over time: Val d'Osne (from 1910, white "METRO" on red), Dervaux candelabra (approved 1924), red M in a blue circle (1937), "antenna" sign (from 1963, blue "METRO" on white, rolled out until 1967), yellow M (1955 at Saint-Michel, general from 1974) | **Read**. Which one stood at Les Halles in 1967: **not found** | [RATP, signposts](https://www.ratp.fr/en/discover/heritage/paris-metro-signposts) |
+| Bevelled white tiles (7.5 x 15 cm) in stations and corridors from 1900; from 1920 station names on ceramic or blue enamel plaques | **Read** | [RATP, friezes](https://www.ratp.fr/en/discover/heritage/friezes-metro) |
+| Morris columns: 451 put up between 1868 and the mid-1870s, for theatre and show posters, painted the green of Paris street furniture | **Read** (presence on these streets in 1967: reconstruction) | [Paris ZigZag](https://www.pariszigzag.fr/histoire-insolite-paris/petite-histoire-des-colonnes-morris) |
+| Wallace fountains from 1872: dark green, large model with four caryatids under a dome | **Read** (presence on these streets in 1967: reconstruction) | [Wikipedia](https://en.wikipedia.org/wiki/Wallace_fountain) |
+| Street name plaques: enamelled, blue background, green frame, white capitals; most with a rounded top showing the arrondissement | **Read** (date of this design not stated) | [French Moments](https://frenchmoments.eu/street-name-plaques-of-paris/) |

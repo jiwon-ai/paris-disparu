@@ -695,3 +695,19 @@ BANK1_SPRITES = [
     ("FILMMAKER", FILMMAKER),
     ("WRITER", WRITER),
 ]
+
+
+# UI icons in VRAM bank 1, 8x16 sprites (palette 3: '#' black, 'o' white):
+# "!" over the person to talk to next, "A" over the player when something
+# in front of them can be talked to or looked at.
+ICON_MARK = [
+    "..####..", ".#oooo#.", ".#o##o#.", ".#o##o#.", ".#o##o#.", ".#o##o#.",
+    ".#oooo#.", ".#o##o#.", ".#oooo#.", "..####..", "...##...", "....#...",
+    "........", "........", "........", "........",
+]
+ICON_PRESS = [
+    "..####..", ".#oooo#.", "#oo##oo#", "#o#oo#o#", "#o####o#", "#o#oo#o#",
+    "#o#oo#o#", ".#oooo#.", "..####..", "...##...", "....#...", "........",
+    "........", "........", "........", "........",
+]
+BANK1_ICONS = [("MARK", ICON_MARK), ("PRESS", ICON_PRESS)]

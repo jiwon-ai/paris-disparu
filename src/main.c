@@ -13,7 +13,7 @@
 #include "sound.h"
 #include "world.h"
 
-enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_LIFT, ST_DIAL, ST_END, ST_GAME };
+enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_LIFT, ST_DIAL, ST_END, ST_GAME, ST_HOWTO };
 
 static uint8_t state;
 static uint8_t cur_dialogue;
@@ -274,9 +274,49 @@ static void change_room(uint8_t exit_code) {
 }
 
 /* Start whatever an interaction returned: text, or an interactive sequence. */
+static uint8_t howto_ev;         /* mini-game waiting behind its rules card */
+static uint8_t howto_seen;       /* bit (EV_* - EV_CATCH): rules already shown */
+static uint16_t idle;            /* frames without input, for the goal reminder */
+
+static void open_dialogue(uint8_t d);
+static void start_game(uint8_t d) {
+    howto_seen |= 1 << (d - EV_CATCH);
+    open_dialogue(d);
+}
+
+/* "!" over the person to talk to next, "A" over the player when A would do
+   something. OAM 14 and 15, tiles in VRAM bank 1. */
+#define MARK_OAM 14
+static void update_markers(void) {
+    uint8_t i, who = goal_npc(), bob = (sys_time >> 4) & 1;
+    const room_def_t *r = &rooms[cur_room];
+    move_sprite(MARK_OAM, 0, 0);
+    move_sprite(MARK_OAM + 1, 0, 0);
+    if (state != ST_WALK) return;
+    for (i = 0; i < r->npc_count; i++) {
+        const npc_def_t *n = &r->npcs[i];
+        if (n->npc == who) {
+            set_sprite_tile(MARK_OAM, SPR1_MARK);
+            set_sprite_prop(MARK_OAM, 3 | S_BANK1);
+            move_sprite(MARK_OAM, n->x + 12, n->y + 2 + bob);
+        }
+    }
+    if (player_interact() != NO_DIALOGUE) {
+        set_sprite_tile(MARK_OAM + 1, SPR1_PRESS);
+        set_sprite_prop(MARK_OAM + 1, 3 | S_BANK1);
+        move_sprite(MARK_OAM + 1, player.x + 12, player.y + 2);
+    }
+}
+
 static void open_dialogue(uint8_t d) {
     caption_timer = 0;           /* the dialogue box replaces any caption */
     bark_from = NO_BARK;
+    if (d >= EV_CATCH && d != EV_END && d != NO_DIALOGUE && !(howto_seen & (1 << (d - EV_CATCH)))) {
+        howto_ev = d;            /* first time: the rules, then A to start */
+        howto_show(d);
+        state = ST_HOWTO;
+        return;
+    }
     if (d == EV_LIFT || d == EV_PUNCH) {
         lift_punch = d == EV_PUNCH;
         if (lift_punch) timing_start(1, txt_punch_1, txt_punch_2);
@@ -492,9 +532,20 @@ void main(void) {
                 if (exit_dir != 0xFF) change_room(exit_dir);
             }
             if (caption_timer && --caption_timer == 0) box_close();
+            if (joy_held) idle = 0;
+            else if (++idle == 600 && !caption_timer && bark_from == NO_BARK) {
+                box_open(4);                   /* standing still: what to do next */
+                goal_print(1);
+                caption_timer = 240;
+            }
             update_barks();
             update_cat();
             update_ambience();
+            break;
+
+        case ST_HOWTO:
+            if (joy_pressed & (J_A | J_START)) start_game(howto_ev);
+            else if (joy_pressed & J_B) { box_close(); state = ST_WALK; }
             break;
 
         case ST_DIALOGUE:
@@ -553,6 +604,7 @@ void main(void) {
             fanfare--;
             if ((fanfare & 7) == 7) sound_note(fanfare_x[fanfare >> 3], fanfare >= 8 ? 0x62 : 0x65);
         }
+        update_markers();
         if (state != ST_END) flicker_lamps();
     }
 }

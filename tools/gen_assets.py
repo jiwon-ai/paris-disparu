@@ -142,6 +142,10 @@ for name, rows in art.BANK1_SPRITES:
     bank1_spr_defs.append((name, PORTRAIT_BASE + len(portrait_data) // 16))
     for (y0, x0) in ((0, 0), (8, 0), (0, 8), (8, 8)):   # TL, BL, TR, BR
         portrait_data += encode_tile([r[x0:x0 + 8] for r in rows[y0:y0 + 8]])
+for name, rows in art.BANK1_ICONS:                       # 8x16: top, bottom
+    rows = ["".join(SPR_MAP[c] for c in r) for r in rows]
+    bank1_spr_defs.append((name, PORTRAIT_BASE + len(portrait_data) // 16))
+    portrait_data += encode_tile(rows[0:8]) + encode_tile(rows[8:16])
 portrait_names = [n for n, _, _ in portraits.PORTRAITS]
 if PORTRAIT_BASE + len(portrait_data) // 16 > 256:
     fail("portrait tiles do not fit in VRAM bank 1")

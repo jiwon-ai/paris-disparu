@@ -4,6 +4,7 @@
 #include "dialogue.h"
 #include "game.h"
 #include "notebook.h"
+#include "events.h"
 
 static const uint8_t * const quest_txt[QUEST_COUNT] = {
     txt_q_0, txt_q_1, txt_q_2, txt_q_3, txt_q_4
@@ -14,12 +15,12 @@ static uint8_t quests_total(void) {
     for (i = 0; i < QUEST_COUNT; i++) n += quest_done(i);
     return n;
 }
-static const uint8_t * const goal_txt[18] = {
+static const uint8_t * const goal_txt[20] = {
     txt_goal_0a, txt_goal_0b, txt_goal_1a, txt_goal_1b,
     txt_goal_2a, txt_goal_2b, txt_goal_3a, txt_goal_3b,
     txt_goal_4a, txt_goal_4b, txt_goal_5a, txt_goal_5b,
     txt_goal_6a, txt_goal_6b, txt_goal_7a, txt_goal_7b,
-    txt_goal_8a, txt_goal_8b
+    txt_goal_8a, txt_goal_8b, txt_goal_9a, txt_goal_9b
 };
 static const uint8_t * const num_txt[4] = { txt_num_0, txt_num_1, txt_num_2, txt_num_3 };
 static const uint16_t num_flag[4] = {
@@ -30,13 +31,58 @@ static const uint16_t num_flag[4] = {
 static uint8_t goal(void) {
     if ((clue_flags & CLUE_READY) == CLUE_READY) return 3;
     if (clue_flags & CLUE_COLTIN) {    /* the first missing clue */
-        if (!(clue_flags & CLUE_BLEU)) return (clue_flags & CLUE_COURIER) ? 4 : 2;
+        if (!(clue_flags & CLUE_BLEU)) {
+            if (clue_flags & CLUE_COURIER) return 4;
+            return (game_flags & (FLAG_HAS_JETON | FLAG_PHONE_DONE)) ? 2 : 9;
+        }
         if (quest_flags & QF_SOUP) return 8;
         return (quest_flags & QF_ROUX) ? 6 : 5;
     }
     if (game_flags & FLAG_MET_CAFE) return 7;   /* the coffee rush */
     if (clue_flags & CLUE_CASE) return 1;
     return 0;
+}
+
+/* Who to talk to for each goal (a "!" is drawn over them). */
+static const uint8_t goal_who[10] = {
+    NPC_STRANGER, NPC_CAFE, 0xFF, NPC_FERNAND, NPC_CAFE,
+    NPC_ROUX, NPC_CAFE, NPC_CAFE, NPC_ROUX, NPC_WORKER
+};
+
+uint8_t goal_npc(void) {
+    return goal_who[goal()];
+}
+
+static const uint16_t num_value[4] = { 614, 4127, 7302, 2508 };
+static uint8_t num_next;
+
+uint16_t notebook_number(void) {
+    uint8_t i;
+    for (i = 0; i < 4; i++) {
+        uint8_t k = num_next++ & 3;
+        if (game_flags & num_flag[k]) return num_value[k];
+    }
+    return 0;
+}
+
+/* Rules card: EV_* - EV_CATCH indexes the rows (EV_END has none). */
+static const uint8_t * const howto_txt[7][5] = {
+    { txt_how_k0, txt_how_k1, txt_how_k2, txt_how_k3, txt_how_k4 },   /* EV_CATCH */
+    { txt_how_c0, txt_how_c1, txt_how_c2, txt_how_c3, txt_how_c4 },   /* EV_CUPS */
+    { txt_how_s0, txt_how_s1, txt_how_s2, txt_how_s3, txt_how_s4 },   /* EV_SERVE */
+    { txt_how_p0, txt_how_l1, txt_how_l2, txt_how_l3, txt_how_l4 },   /* EV_PUNCH */
+    { 0, 0, 0, 0, 0 },                                                 /* EV_END */
+    { txt_how_d0, txt_how_d1, txt_how_d2, txt_how_d3, txt_how_d4 },   /* EV_DIAL */
+    { txt_how_l0, txt_how_l1, txt_how_l2, txt_how_l3, txt_how_l4 },   /* EV_LIFT */
+};
+
+void howto_show(uint8_t ev) {
+    uint8_t i;
+    const uint8_t * const *t = howto_txt[ev - EV_CATCH];
+    box_open(10);
+    box_print(1, 1, txt_howto);
+    for (i = 0; i < 5; i++) box_print(1, 3 + i, t[i]);
+    box_print(1, 8, txt_howto_go);
 }
 
 /* The current goal on two rows of the open box (also under "New clue!"). */

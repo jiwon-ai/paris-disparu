@@ -161,7 +161,12 @@ def dialogue(choice=None, max_pages=24):
     lines = []
     tick(70)
     for _ in range(max_pages):
-        if not window_on() or window_row(1).startswith(("Dial", "Lift!", "Punch!", "New clue", "Extra done", "Secret found", "QUEST COMPLETE",
+        if window_on() and window_row(1) == "HOW TO PLAY":   # rules card: start the game
+            lines.append("<howto %s>" % window_row(3))
+            shot("27_howto_" + window_row(3).split()[-1].lower())
+            tap("a", 6)
+            continue
+        if not window_on() or window_row(1).startswith(("Up/Down", "Lift!", "Punch!", "New clue", "Extra done", "Secret found", "QUEST COMPLETE",
                                                         "Coffee rush", "Watch the", "Which cup", "Got ")) \
                 or window_row(2) == "THE END":
             break
@@ -187,9 +192,18 @@ def win_tile(x, y):
     return mem[base + y * 32 + x]
 
 
+def skip_howto():
+    """The first time a mini-game starts, a rules card comes first: A starts it."""
+    tick(4)
+    if window_on() and window_row(1) == "HOW TO PLAY":
+        shot("27_howto_" + window_row(3).split()[-1].lower())
+        tap("a", 4)
+
+
 def lift(hit=True):
     """Porter's lift: press A when the cursor is inside the zone (or at once to miss)."""
     tap("a", 4)
+    skip_howto()
     if not hit:
         tap("a", 2)
         return
@@ -204,8 +218,20 @@ def lift(hit=True):
         tick(1)
 
 
-def dial(number):
-    """Phone: set the 4 digits with Up and Right, then A."""
+def dial_shown():
+    return "".join(c for c in window_row(3) if c.isdigit())
+
+
+def dial(number, notes=False):
+    """Phone: set the 4 digits with Up and Right (or START: notebook numbers), then A."""
+    if notes:
+        for _ in range(4):
+            tap("start", 4)
+            if dial_shown() == number:
+                break
+        check(dial_shown() == number, "START picks %s from the notebook (%s)" % (number, dial_shown()))
+        tap("a", 0)
+        return
     for i, d in enumerate(number):
         for _ in range(int(d)):
             tap("up", 2)
@@ -526,14 +552,16 @@ def cafe_to_street():
     check(room() == ROOM_STREET and player() == (28, 72), "back in the street at the cafe door: %d %s" % (room(), player()))
 
 
-def phone(number, expect, clue=None):
+def phone(number, expect, clue=None, notes=False):
     goto(128, 60, "yx")
     push("up")
     tap("a", 0)
-    dialogue(choice=0)          # "You have a jeton..." -> Yes -> dial box
-    check(window_on() and "Dial" in window_row(1), "dial box opened: %r" % window_row(1))
+    lines = dialogue(choice=0)  # "You have a jeton..." -> Yes -> (rules, first time) -> dial box
+    if number == "4127":
+        check(any("telephone" in l for l in lines), "the first call shows the phone's rules: %s" % lines[-2:])
+    check(window_on() and "Up/Down" in window_row(1), "dial box opened: %r" % window_row(1))
     before = clues()
-    dial(number)
+    dial(number, notes)
     lines = dialogue()
     check(any(expect in l for l in lines), "calling %s: %s" % (number, lines))
     if clue is not None:
@@ -762,7 +790,7 @@ push("up")
 talk("Carry it")         # Simone's gratinee for Mme Roux
 check(mem[sym["_quest_flags"]] & 2, "carrying the gratinee")
 get_jeton()
-phone("7302", "her box")
+phone("7302", "her box", notes=True)
 for number, expect, n in (("0614", "Butcher", 2), ("2508", "soup", None)):
     get_jeton()
     phone(number, expect)

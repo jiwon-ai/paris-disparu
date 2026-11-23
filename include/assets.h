@@ -99,8 +99,10 @@
 #define SPR1_PHILOSOPHER 240   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_FILMMAKER 244   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_WRITER 248   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_MARK 252   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_PRESS 254   /* VRAM bank 1: use palette | S_BANK1 */
 #define PORTRAIT_BASE 64
-#define PORTRAIT_TILE_COUNT 188
+#define PORTRAIT_TILE_COUNT 192
 #define NO_PORTRAIT 0xFF
 #define SPR_PLAYER_DOWN_0 0
 #define SPR_PLAYER_DOWN_1 4
@@ -369,6 +371,8 @@ extern const uint8_t txt_goal_8a[];
 extern const uint8_t txt_goal_8b[];
 extern const uint8_t txt_goal_3a[];
 extern const uint8_t txt_goal_3b[];
+extern const uint8_t txt_goal_9a[];
+extern const uint8_t txt_goal_9b[];
 extern const uint8_t txt_clue_0[];
 extern const uint8_t txt_clue_1[];
 extern const uint8_t txt_clue_2[];
@@ -396,6 +400,7 @@ extern const uint8_t txt_lift_1[];
 extern const uint8_t txt_lift_2[];
 extern const uint8_t txt_dial_1[];
 extern const uint8_t txt_dial_2[];
+extern const uint8_t txt_dial_3[];
 extern const uint8_t txt_digits[];
 extern const uint8_t txt_bark_hint[];
 extern const uint8_t txt_punch_1[];
@@ -454,6 +459,34 @@ extern const uint8_t txt_q_3[];
 extern const uint8_t txt_q_3r[];
 extern const uint8_t txt_q_4[];
 extern const uint8_t txt_nb_quests[];
+extern const uint8_t txt_howto[];
+extern const uint8_t txt_howto_go[];
+extern const uint8_t txt_how_l0[];
+extern const uint8_t txt_how_l1[];
+extern const uint8_t txt_how_l2[];
+extern const uint8_t txt_how_l3[];
+extern const uint8_t txt_how_l4[];
+extern const uint8_t txt_how_p0[];
+extern const uint8_t txt_how_d0[];
+extern const uint8_t txt_how_d1[];
+extern const uint8_t txt_how_d2[];
+extern const uint8_t txt_how_d3[];
+extern const uint8_t txt_how_d4[];
+extern const uint8_t txt_how_s0[];
+extern const uint8_t txt_how_s1[];
+extern const uint8_t txt_how_s2[];
+extern const uint8_t txt_how_s3[];
+extern const uint8_t txt_how_s4[];
+extern const uint8_t txt_how_c0[];
+extern const uint8_t txt_how_c1[];
+extern const uint8_t txt_how_c2[];
+extern const uint8_t txt_how_c3[];
+extern const uint8_t txt_how_c4[];
+extern const uint8_t txt_how_k0[];
+extern const uint8_t txt_how_k1[];
+extern const uint8_t txt_how_k2[];
+extern const uint8_t txt_how_k3[];
+extern const uint8_t txt_how_k4[];
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];

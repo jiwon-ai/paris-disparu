@@ -1,6 +1,7 @@
 #include <gb/gb.h>
 #include "assets.h"
 #include "dialogue.h"
+#include "notebook.h"
 #include "input.h"
 #include "minigame.h"
 #include "sound.h"
@@ -81,6 +82,7 @@ void dial_start(void) {
     box_open(5);
     box_print(1, 1, txt_dial_1);
     box_print(1, 2, txt_dial_2);
+    box_print(1, 4, txt_dial_3);        /* on the frame */
     draw_dial();
 }
 
@@ -92,6 +94,12 @@ uint8_t dial_update(void) {
     if (joy_pressed & J_A) {
         box_close();
         return MG_SUCCESS;
+    }
+    if (joy_pressed & J_START) {       /* the next number written in the notebook */
+        uint16_t n = notebook_number();
+        digits[0] = n / 1000; digits[1] = n / 100 % 10; digits[2] = n / 10 % 10; digits[3] = n % 10;
+        sound_blip();
+        draw_dial();
     }
     if (joy_pressed & J_UP)    digits[sel] = digits[sel] == 9 ? 0 : digits[sel] + 1;
     if (joy_pressed & J_DOWN)  digits[sel] = digits[sel] == 0 ? 9 : digits[sel] - 1;

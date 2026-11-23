@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <stdint.h>
+#include <gb/gb.h>
 
 /* Screen and sprite geometry */
 #define SCREEN_W 160
@@ -78,7 +79,7 @@ extern uint8_t clue_flags;
 #define X_ALL       (X_TICKETS | X_BUTCHER | X_PAINTER)
 extern uint8_t extra_flags;
 extern uint8_t new_extra;      /* an extra was just completed: show a note */
-uint8_t extra_total(void);
+uint8_t extra_total(void) BANKED;
 
 /* Hidden secrets (secret_flags bits 0-8): seven spots to examine
    (DLG_SECRET_COIN.., bit = id - DLG_SECRET_COIN), knocking three times on
@@ -88,7 +89,7 @@ uint8_t extra_total(void);
 #define SECRET_MOTH  8
 extern uint16_t secret_flags;
 extern uint8_t new_secret;     /* a secret was just found: show a note */
-uint8_t secret_total(void);
+uint8_t secret_total(void) BANKED;
 
 /* Main quests: each is completed by the clue it rewards. */
 #define QUEST_COUNT 5               /* rush, who wrote, crates, plate, Fernand */
@@ -96,8 +97,8 @@ uint8_t secret_total(void);
 #define QF_SOUP     0x02            /* carrying the gratinee for her */
 extern uint8_t quest_flags;
 extern uint8_t new_quest;           /* 1-4: that quest was just completed */
-uint8_t quest_done(uint8_t q);      /* q = 0..QUEST_COUNT-1 */
+uint8_t quest_done(uint8_t q) BANKED;      /* q = 0..QUEST_COUNT-1 */
 extern uint8_t new_clue;   /* set when a clue was just found; main shows a note */
-uint8_t clue_total(void);
+uint8_t clue_total(void) BANKED;
 
 #endif
