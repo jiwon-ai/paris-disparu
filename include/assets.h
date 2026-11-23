@@ -94,8 +94,13 @@
 #define TILE_LANCET_T 57
 #define TILE_LANCET_B 58
 #define SPRITE_TILE_COUNT 128
+#define SPR1_ACTOR 232   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_CHANTEUSE 236   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_PHILOSOPHER 240   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_FILMMAKER 244   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_WRITER 248   /* VRAM bank 1: use palette | S_BANK1 */
 #define PORTRAIT_BASE 64
-#define PORTRAIT_TILE_COUNT 108
+#define PORTRAIT_TILE_COUNT 188
 #define NO_PORTRAIT 0xFF
 #define SPR_PLAYER_DOWN_0 0
 #define SPR_PLAYER_DOWN_1 4
@@ -280,6 +285,16 @@ enum {
     DLG_BARK_ROUX_SOUP,
     DLG_BARK_CAFE_RUSH,
     DLG_BARK_WORKER_CUPS,
+    DLG_ACTOR_HELLO,
+    DLG_ACTOR_AGAIN,
+    DLG_CHANTEUSE_HELLO,
+    DLG_CHANTEUSE_AGAIN,
+    DLG_PHILOSOPHER_HELLO,
+    DLG_PHILOSOPHER_AGAIN,
+    DLG_FILMMAKER_HELLO,
+    DLG_FILMMAKER_AGAIN,
+    DLG_WRITER_HELLO,
+    DLG_WRITER_AGAIN,
     DLG_COUNT
 };
 

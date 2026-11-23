@@ -27,6 +27,13 @@
 #define NPC_PUNCHER  8   /* metro ticket puncher (poinconneur) */
 #define NPC_SINGER   9   /* cameo: a singer out at night */
 #define NPC_ROUX     10  /* Mme Roux, bouquiniste, at her box on the quai */
+/* Cameos 11-15, in this order: dialogue DLG_ACTOR_HELLO + 2k (first talk)
+   and + 2k + 1 (a hint) for k = npc - NPC_ACTOR. */
+#define NPC_ACTOR       11
+#define NPC_CHANTEUSE   12
+#define NPC_PHILOSOPHER 13
+#define NPC_FILMMAKER   14
+#define NPC_WRITER      15
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001

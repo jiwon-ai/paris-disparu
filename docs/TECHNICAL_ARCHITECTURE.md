@@ -28,7 +28,10 @@
 
 - Bank 0, tiles 0-127: sprites (16x16 characters in 8x16 sprite mode, 4 tiles per frame).
 - Bank 0, tiles 128-236: font and text box frame.
-- Bank 1, tiles 0-255: scenery tiles (selected with BG attribute bit 3).
+- Bank 1, tiles 0-63: scenery tiles (selected with BG attribute bit 3).
+- Bank 1, tiles 64-231: dialogue portraits (12 tiles each); 232-251: one-frame
+  cameo sprites (`SPR1_*`). An NPC with `palette | S_BANK1` (OAM attribute bit 3)
+  draws from bank 1 and has no idle animation. All are reloaded by `load_bank1()`.
 - Window map: dialogue box at the bottom of the screen. Box tiles have the
   BG-priority attribute and use colour 1 as paper (never colour 0), so the box
   covers sprites on CGB.
@@ -109,4 +112,4 @@ pages); the overflow is stored in bank 3 after the title art
 
 Dialogue ids: up to 0xF7 (0xF8-0xFE are EV_* events, 0xFF none). Hotspot
 dialogues must stay below 0x80 (TALK flag); gen_assets.py checks rooms.c.
-Bank 0 is almost full: new code should go to banked functions.
+Bank 0 is full (about 60 bytes free after the cameos): new code must go to banked functions (`#pragma bank`) first.

@@ -22,11 +22,13 @@ typedef struct {
     uint8_t to_x, to_y, to_dir;   /* arrival position (pixels) and facing */
 } door_t;
 
+#define S_BANK1 0x08     /* OAM attribute: tile data from VRAM bank 1 */
+
 /* A non-player character placed in a room, in pixel coordinates. */
 typedef struct {
     uint8_t x, y;
     uint8_t frame;       /* first of two idle frames (SPR_*) */
-    uint8_t palette;     /* sprite palette 0-7 */
+    uint8_t palette;     /* sprite palette 0-7, | S_BANK1 for a one-frame cameo in VRAM bank 1 */
     uint8_t npc;         /* NPC_* id, see events.c */
 } npc_def_t;
 

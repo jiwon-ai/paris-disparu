@@ -5,6 +5,7 @@ Newest first. Dates are 2026.
 
 | Date | Feedback / decision | What changed |
 |---|---|---|
+| 11-23 | Two famous people is too few; fix the engine to raise sprite capacity | Cameo sprites and portraits now also live in VRAM bank 1. 5 more cameos (7 in all): actor (Belmondo), chanteuse (Gréco), philosopher (Sartre), filmmaker (Tati), writer (Queneau); each a first talk + a hint (secrets or quest); sources and legal flags in HISTORICAL_RESEARCH Cameos |
 | 11-23 | Text is hard to read | Bold font (2-px vertical strokes, tighter letter spacing); dialogue shows 2 lines per page with a blank row between; barks shortened to 2 lines |
 | 11-23 | Hidden things to find by poking around (cute) | 9 secrets: 7 spots (coin, cat's eyes, carved heart, the cat asleep in the café, pigeon, Pont Neuf faces, metro mouse) + 2 gags (knock 3x on the hotel door, stare 5x at a lamp); "Secret found! n/9" with a two-note ding; count in the notebook and on the end screen |
 | 11-23 | Record everything on GitHub | Every change is committed to `dev` with docs; this log |

@@ -198,7 +198,7 @@ void actors_draw(void) {
             uint8_t k = order[i] - 1;
             const npc_def_t *n = &rooms[cur_room].npcs[k];
             /* Slow two-frame idle, offset per NPC so they do not breathe in sync. */
-            uint8_t f = ((uint8_t)(frame_count + k * 23) >> 5) & 1;
+            uint8_t f = (n->palette & S_BANK1) ? 0 : ((uint8_t)(frame_count + k * 23) >> 5) & 1;
             draw16(oam, n->x, n->y, n->frame + f * 4, n->palette);
         }
     }

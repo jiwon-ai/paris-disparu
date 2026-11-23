@@ -135,6 +135,13 @@ for name, grid, _ in portraits.PORTRAITS:
         for half in range(2):
             for y0 in (half * 16, half * 16 + 8):
                 portrait_data += encode_tile([r[col * 8:col * 8 + 8] for r in rows[y0:y0 + 8]])
+# Cameo sprites (16x16, one frame) follow the portraits in VRAM bank 1.
+bank1_spr_defs = []
+for name, rows in art.BANK1_SPRITES:
+    rows = ["".join(SPR_MAP[c] for c in r) for r in rows]
+    bank1_spr_defs.append((name, PORTRAIT_BASE + len(portrait_data) // 16))
+    for (y0, x0) in ((0, 0), (8, 0), (0, 8), (8, 8)):   # TL, BL, TR, BR
+        portrait_data += encode_tile([r[x0:x0 + 8] for r in rows[y0:y0 + 8]])
 portrait_names = [n for n, _, _ in portraits.PORTRAITS]
 if PORTRAIT_BASE + len(portrait_data) // 16 > 256:
     fail("portrait tiles do not fit in VRAM bank 1")
@@ -349,6 +356,8 @@ H.append("\n#define ENV_TILE_COUNT %d" % len(env_names))
 for name, idx in env_index.items():
     H.append("#define TILE_%s %d" % (c_name(name), idx))
 H.append("#define SPRITE_TILE_COUNT %d" % (len(spr_data) // 16))
+for name, t in bank1_spr_defs:
+    H.append("#define SPR1_%s %d   /* VRAM bank 1: use palette | S_BANK1 */" % (name, t))
 H.append("#define PORTRAIT_BASE %d\n#define PORTRAIT_TILE_COUNT %d\n#define NO_PORTRAIT 0xFF"
          % (PORTRAIT_BASE, len(portrait_data) // 16))
 for name, idx in spr_defs:

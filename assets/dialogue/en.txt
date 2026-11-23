@@ -586,3 +586,40 @@ SIMONE: Quick! Tables waiting!
 
 [bark_worker_cups]
 A PORTER: Pssst. Want a jeton?
+
+# ---------------------------------------------------------------- cameos (2)
+# Unnamed, recognisable by allusion; their presence tonight is fiction. Keep
+# the order: hello, again for each (see NPC_ACTOR in include/game.h).
+[actor_hello]
+THE ACTOR: Supper at the brasserie on rue Coquillière, then a walk through the market. The best end to a night.
+
+Fans? At four in the morning only the porters are awake. And you.
+
+[actor_again]
+THE ACTOR: A tip from a man who reads scripts: look where nobody looks. Gutters, corners, lamps. Paris hides its little jokes.
+
+[chanteuse_hello]
+THE CHANTEUSE: I came over from Saint-Germain. Over there they talk about books all night. Here, at least, people work.
+
+A young songwriter once wrote me a song. Now he wanders by the river, I hear.
+
+[chanteuse_again]
+THE CHANTEUSE: A man who stops working stops singing. Bring your porter back what he left behind. His hat first.
+
+[philosopher_hello]
+THE PHILOSOPHER: Usually I write in a café in Saint-Germain, with my companion. Tonight I wanted to see people who make things with their hands.
+
+[philosopher_again]
+THE PHILOSOPHER: Your porter is free to leave. Free to stay, too. Bring him reasons, not orders.
+
+[filmmaker_hello]
+THE FILMMAKER: My new film opens in December. A city of glass and steel. I came to look at the old one before it goes.
+
+[filmmaker_again]
+THE FILMMAKER: Watch people, not things. That hotel door in rue Rambuteau: knock, wait, knock again. Comedy is patience.
+
+[writer_hello]
+THE WRITER: I once wrote about a girl who came to Paris only to ride the métro. It was on strike, of course.
+
+[writer_again]
+THE WRITER: Look at the tiles, low down by the wall. Even mice take the métro. Some without a ticket.

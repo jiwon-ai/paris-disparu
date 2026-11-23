@@ -159,6 +159,66 @@ def singer():
     return outline(g)
 
 
+def actor():
+    g = blank()
+    shoulders(g, "o")                        # jacket
+    rect(g, 9, 24, 14, 31, "s")              # open shirt collar
+    face(g, cy=16)
+    ellipse(g, 12, 9.5, 7, 3.5, "#")         # tousled hair
+    for x in (6, 9, 14, 17):
+        g[6][x] = "#"
+    g[19][12] = g[18][12] = "#"              # strong nose
+    return outline(g)
+
+
+def chanteuse():
+    g = blank()
+    shoulders(g, "#")                        # dark dress
+    rect(g, 10, 22, 13, 25, "s")             # neck
+    rect(g, 3, 10, 7, 27, "#")               # long dark hair
+    rect(g, 16, 10, 20, 27, "#")
+    face(g, cy=16)
+    ellipse(g, 12, 9, 7.5, 4.5, "#")
+    rect(g, 7, 10, 16, 11, "#")              # fringe
+    g[15][8] = g[15][15] = "#"               # dark eye make-up
+    return outline(g)
+
+
+def philosopher():
+    g = blank()
+    shoulders(g, "o")                        # jacket
+    rect(g, 11, 24, 12, 31, "#")             # tie
+    face(g, cy=16)
+    ellipse(g, 12, 9.5, 6.5, 2.5, "#")       # thin, combed-back hair
+    rect(g, 7, 14, 10, 16, "#")              # thick round glasses
+    rect(g, 13, 14, 16, 16, "#")
+    g[15][8] = g[15][15] = "s"
+    return outline(g)
+
+
+def filmmaker():
+    g = blank()
+    shoulders(g, "o")                        # coat
+    rect(g, 11, 24, 12, 31, "#")
+    face(g, cy=17)
+    ellipse(g, 12, 9, 9, 2, "o")             # hat brim
+    ellipse(g, 12, 6, 5, 3.5, "o")
+    rect(g, 7, 8, 16, 8, "#")                # hat band
+    return outline(g)
+
+
+def writer():
+    g = blank()
+    shoulders(g, "o")                        # suit
+    rect(g, 10, 24, 13, 25, "#")             # bow tie
+    face(g, cy=16)
+    ellipse(g, 12, 10, 6.5, 3, "#")          # receding hair
+    rect(g, 7, 15, 10, 15, "#")              # glasses
+    rect(g, 13, 15, 16, 15, "#")
+    rect(g, 10, 15, 13, 15, "#")
+    return outline(g)
+
+
 # Order = portrait index used by the game; palette = sprite palette index.
 PORTRAITS = [
     ("SIMONE", simone(), 3),
@@ -170,6 +230,11 @@ PORTRAITS = [
     ("THE PHOTOGRAPHER", photographer(), 4),
     ("TICKET PUNCHER", puncher(), 4),
     ("THE SINGER", singer(), 4),
+    ("THE ACTOR", actor(), 4),
+    ("THE CHANTEUSE", chanteuse(), 3),
+    ("THE PHILOSOPHER", philosopher(), 4),
+    ("THE FILMMAKER", filmmaker(), 0),
+    ("THE WRITER", writer(), 4),
 ]
 # Other speakers who reuse a portrait.
 ALIASES = {"A PORTER": "DÉDÉ"}
