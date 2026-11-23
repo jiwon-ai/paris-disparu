@@ -23,7 +23,7 @@ import portraits  # noqa: E402
 
 MAP_W, MAP_H = 20, 18
 FONT_BASE = 128          # font tiles live at 128.. in VRAM bank 0
-TEXT_COLS, TEXT_ROWS = 18, 3
+TEXT_COLS, TEXT_ROWS = 18, 2   # dialogue: 2 lines a page, a blank row between
 PAGE_SIZE = TEXT_COLS * TEXT_ROWS
 ROOMS = ["street", "entrance", "market", "cafe", "quai", "pont", "metro"]   # order defines ROOM_* ids
 
@@ -271,7 +271,7 @@ for did, paras, ln in entries:
     if len(pages) == first:
         fail("en.txt:[%s] has no text" % did)
     if did.startswith("bark_") and len(pages) - first != 1:
-        fail("en.txt:[%s]: a bark must fit on one page (3 lines of 18)" % did)
+        fail("en.txt:[%s]: a bark must fit on one page (2 lines of 18)" % did)
     dlg_index.append((did, first, len(pages) - first))
 # Portrait = the speaker named before ':' at the start of the entry.
 dlg_portrait = []

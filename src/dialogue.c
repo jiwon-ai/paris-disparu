@@ -81,7 +81,7 @@ void box_print(uint8_t x, uint8_t y, const uint8_t *text) {
 static void clear_text(void) {
     uint8_t x, y;
     for (x = 0; x < TEXT_COLS; x++) row_buf[x] = GLYPH_SPACE;
-    for (y = 0; y < TEXT_ROWS; y++) set_win_tiles(1, 1 + y, TEXT_COLS, 1, row_buf);
+    for (y = 0; y < TEXT_ROWS; y++) set_win_tiles(1, 1 + 2 * y, TEXT_COLS, 1, row_buf);
     set_win_tile_xy(MAP_W - 2, DLG_ROWS - 1, GLYPH_BOX_B);
     pos = 0;
     blink = 0;
@@ -148,14 +148,14 @@ uint8_t dialogue_update(void) {
             /* Reveal the rest of the page at once. */
             uint8_t y;
             for (y = 0; y < TEXT_ROWS; y++)
-                set_win_tiles(1, 1 + y, TEXT_COLS, 1, text + y * TEXT_COLS);
+                set_win_tiles(1, 1 + 2 * y, TEXT_COLS, 1, text + y * TEXT_COLS);
             pos = PAGE_SIZE;
             return 1;
         }
         /* Skip runs of spaces so line padding costs no time. */
         while (pos < PAGE_SIZE && text[pos] == GLYPH_SPACE) pos++;
         if (pos < PAGE_SIZE) {
-            set_win_tile_xy(1 + pos % TEXT_COLS, 1 + pos / TEXT_COLS, text[pos]);
+            set_win_tile_xy(1 + pos % TEXT_COLS, 1 + 2 * (pos / TEXT_COLS), text[pos]);
             if ((pos & 3) == 0) sound_blip();
             pos++;
         }
@@ -194,7 +194,7 @@ void bark_show(uint8_t id) {
     load_page();
     box_open(DLG_ROWS);
     for (y = 0; y < TEXT_ROWS; y++)
-        set_win_tiles(1, 1 + y, TEXT_COLS, 1, page_buf + y * TEXT_COLS);
+        set_win_tiles(1, 1 + 2 * y, TEXT_COLS, 1, page_buf + y * TEXT_COLS);
     box_print(10, DLG_ROWS - 1, txt_bark_hint);   /* "A: talk" on the frame */
     portrait_hide();
     portrait_show(dlg_portrait[id]);

@@ -156,7 +156,7 @@ def push(button, frames=90):
     tick(30)   # room fade / settle
 
 
-def dialogue(choice=None, max_pages=12):
+def dialogue(choice=None, max_pages=24):
     """Read a whole dialogue: returns the first line of each page seen."""
     lines = []
     tick(70)
@@ -172,9 +172,14 @@ def dialogue(choice=None, max_pages=12):
             lines.append("<choice %d>" % (choice or 0))
             tick(60)
             continue
-        lines.append(" ".join(window_row(r) for r in (1, 2, 3)))
+        lines.append(page_text())
         tap("a", 70)
     return lines
+
+
+def page_text():
+    """The text box's rows 1-3 as one line (dialogue uses rows 1 and 3)."""
+    return " ".join(r for r in (window_row(1), window_row(2), window_row(3)) if r)
 
 
 def win_tile(x, y):
@@ -382,17 +387,17 @@ tap("b", 4)
 goto(106, 90, "yx")
 push("up")
 check(player() == (106, 62), "next to the man with the notebook: %s" % (player(),))
-bark = " ".join(window_row(r) for r in (1, 2, 3))
+bark = page_text()
 check(window_on() and "Psst" in bark, "he calls out by himself when approached: %r" % bark)
 shot("13_bark")
 tick(600)
-check(window_on() and "Psst" in " ".join(window_row(r) for r in (1, 2, 3)),
+check(window_on() and "Psst" in page_text(),
       "his line stays while the player stands near (10 s)")
 hold("down", 60)
 check(not window_on(), "walking away closes his line (y=%d)" % player()[1])
 goto(106, 90, "yx")
 push("up")
-check(window_on() and "Psst" in " ".join(window_row(r) for r in (1, 2, 3)),
+check(window_on() and "Psst" in page_text(),
       "coming back, he calls out again")
 tap("right", 2)
 tap("a", 0)
@@ -404,7 +409,7 @@ check(window_on() and "New clue" in window_row(1) and clues() == 0x01, "the miss
 tap("b", 4)
 check(not window_on(), "A pages through and closes (%d pages)" % (len(lines) + 1))
 tap("a", 50)
-check(window_on() and "yellow hat" in " ".join(window_row(r) for r in (1, 2, 3)), "repeat line: %r" % window_row(2))
+check(window_on() and "yellow" in page_text(), "repeat line: %r" % page_text())
 tap("b", 4)
 check(not window_on(), "B closes the dialogue")
 tap("a", 50)
@@ -452,12 +457,12 @@ push("down")
 check(player()[1] < 104, "the photographer stands in the way (y=%d)" % player()[1])
 tap("a", 70)
 shot("16_photographer")
-lines = [" ".join(window_row(r) for r in (1, 2, 3))] + dialogue()
+lines = [page_text()] + dialogue()
 check(any("Rungis" in l for l in lines) and any("Fernand" in l for l in lines),
       "the photographer's cameo mentions Rungis and Fernand (%d pages)" % len(lines))
 to_dede()
 check(player() == (64, 46), "below Dede: %s" % (player(),))
-bark = " ".join(window_row(r) for r in (1, 2, 3))
+bark = page_text()
 check("Seen Fernand" in bark, "Dede calls out by himself: %r" % bark)
 talk("DÉDÉ", choice=0)
 
@@ -544,7 +549,7 @@ push("left")
 talk("The price")               # the merchant herself
 goto(110, 66, "xy")
 push("right")
-secret("tiny heart", 5)
+secret("tiny", 5)
 to_entrance()
 fetch_crate("apples")
 to_market()
@@ -588,14 +593,14 @@ push("up")
 check(player()[1] == 38, "stopped by the counter (y=%d)" % player()[1])
 tap("a", 0)
 lines = dialogue(choice=0)
-check(any("Give me a hand" in l for l in lines) and window_row(1).startswith("Coffee rush"), "Simone asks for help: the coffee rush")
+check(any("Give me a" in l for l in lines) and window_row(1).startswith("Coffee rush"), "Simone asks for help: the coffee rush")
 shot("23_serve")
 play_serve(win=False)
 lines = dialogue(choice=0)
 check(any("wrong cups" in l for l in lines), "a bad rush: Simone asks again")
 play_serve()
 lines = dialogue()
-check(any("Fernand's hat" in l for l in lines), "a good rush: Simone gives the coltin")
+check(any("Fernand's" in l for l in lines), "a good rush: Simone gives the coltin")
 quest_note("Coffee rush", 0x02)
 goto(128, 60, "yx")
 push("up")
@@ -629,7 +634,7 @@ shot("21_singer")
 talk("books along")              # his hint: the first missing clue (the plate)
 goto(40, 64, "yx")
 push("up")
-talk("something hot first")   # Mme Roux has his plate: the trade starts
+talk("something hot")   # Mme Roux has his plate: the trade starts
 check(mem[sym["_quest_flags"]] & 1, "Mme Roux's request noted")
 goto(24, 64, "yx")
 push("down")
@@ -668,7 +673,7 @@ check(room() == ROOM_METRO and player() == (72, 108), "down the metro steps into
 shot("17_metro")
 goto(84, 72, "xy")
 push("up")
-check(window_on() and "Tickets" in window_row(1) + window_row(2), "the puncher calls out: %r" % window_row(2))
+check(window_on() and "Tickets" in window_row(1) + window_row(3), "the puncher calls out: %r" % window_row(3))
 talk("No ticket")
 goto(28, 72, "yx")
 push("up")
@@ -725,10 +730,10 @@ push("up")
 talk("onion soup")              # vanished Paris: the gratinee of Les Halles
 goto(72, 60, "yx")
 push("up")
-talk("Carry it gently")         # Simone's gratinee for Mme Roux
+talk("Carry it")         # Simone's gratinee for Mme Roux
 check(mem[sym["_quest_flags"]] & 2, "carrying the gratinee")
 get_jeton()
-phone("7302", "gone to her box")
+phone("7302", "her box")
 for number, expect, n in (("0614", "Butcher", 2), ("2508", "soup", None)):
     get_jeton()
     phone(number, expect)
@@ -760,7 +765,7 @@ check("FERNAND" in window_row(1), "Fernand's silent call-out: %r" % window_row(1
 full = clues()
 for have, says, goal in ((0x01, "Simone's café", "Help Simone"),
                          (0x07, "courier came", "Tell Simone"),
-                         (0x0F, "by the books", "Mme Roux wants")):
+                         (0x0F, "books", "Mme Roux wants")):
     mem[sym["_clue_flags"]] = have
     tap("a", 70)
     lines = dialogue()
@@ -773,10 +778,10 @@ for have, says, goal in ((0x01, "Simone's café", "Help Simone"),
 mem[sym["_clue_flags"]] = full
 tap("a", 70)
 shot("15_fernand")
-lines = dialogue(choice=0, max_pages=40)
+lines = dialogue(choice=0, max_pages=60)
 check(any("My coltin" in l for l in lines), "Fernand opens up: %d pages" % len(lines))
 check(any("two winters" in l for l in lines), "ending: he stays for the last winters")
-check(any("full of holes" in l for l in lines), "every extra done: the photographer's bonus scene")
+check(any("ticket full" in l for l in lines), "every extra done: the photographer's bonus scene")
 check(window_on() and window_row(2) == "THE END" and "6/6" in window_row(4) and "3/3" in window_row(5) and "9/9" in window_row(13),
       "end screen: %r %r %r" % (window_row(2), window_row(4), window_row(5)))
 check(flags() & FLAG_SOLVED, "mystery solved (FLAG_SOLVED)")

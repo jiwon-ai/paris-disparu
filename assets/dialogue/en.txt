@@ -1,5 +1,5 @@
 # English dialogue (the game's language). [id] starts an entry; a blank line forces a new page.
-# Text is word-wrapped to 18 columns, 3 lines per page, by tools/gen_assets.py.
+# Text is word-wrapped to 18 columns, 2 lines per page, by tools/gen_assets.py.
 # A last line "? Yes | No" ends the entry with a two-way choice.
 # Lines starting with "bark_" must fit on one page.
 # All characters and situations are fictional (see docs/HISTORICAL_RESEARCH.md).
@@ -306,7 +306,7 @@ The Pont Neuf: despite its name, the oldest bridge in Paris. Below, the water ra
 # ---------------------------------------------------------------- barks
 # One-page lines that NPCs call out by themselves when the player comes close.
 [bark_stranger]
-MAN WITH NOTEBOOK: Psst! About Fernand…
+MAN WITH NOTEBOOK: Psst! Fernand…
 
 [bark_stranger_met]
 MAN WITH NOTEBOOK: Noting, noting…
@@ -315,7 +315,7 @@ MAN WITH NOTEBOOK: Noting, noting…
 DÉDÉ: Hey, you! Seen Fernand?
 
 [bark_porter_cart]
-DÉDÉ: The cart, there! Grab a crate!
+DÉDÉ: The cart! Grab a crate!
 
 [bark_porter_carry]
 DÉDÉ: Inside! Read the signs!
@@ -327,19 +327,19 @@ DÉDÉ: Well? All delivered?
 DÉDÉ: Thanks, kid! See Germaine.
 
 [bark_merchant]
-GERMAINE: Cabbages! Fine cabbages! Cheap!
+GERMAINE: Fine cabbages! Cheap!
 
 [bark_merchant_choux]
 GERMAINE: Oh! Is that for me?
 
 [bark_cafe]
-SIMONE: Come in! Looking for Fernand?
+SIMONE: Come in! After Fernand?
 
 [bark_cafe_met]
 SIMONE: Any sign of Fernand?
 
 [bark_cafe_jeton]
-SIMONE: The phone? You need a jeton. Ask me!
+SIMONE: Phone? You need a jeton!
 
 [bark_worker]
 A PORTER: Zzz… zzz…
@@ -411,13 +411,13 @@ THE PHOTOGRAPHER: The light's changing. In an hour the market will look like any
 THE PHOTOGRAPHER: You found Fernand? Bring him back under the glass. I'd like one more picture of him.
 
 [bark_photo]
-THE PHOTOGRAPHER: Shh. Don't move. The light!
+THE PHOTOGRAPHER: Shh. Don't move!
 
 [bark_fernand]
 FERNAND: …
 
 [bark_painter]
-THE PAINTER: Shh… I'm painting the night.
+THE PAINTER: Shh… I'm painting.
 
 [puncher_hello]
 TICKET PUNCHER: Ticket, kid! Nobody goes down to the trains without a hole in his ticket.
@@ -463,7 +463,7 @@ TICKET PUNCHER: A singer once made a song about a man like me, out at Porte des 
 Now everybody hums it at me. Clac! Your fort went towards the river, kid.
 
 [bark_puncher]
-TICKET PUNCHER: Tickets! Tickets, please!
+TICKET PUNCHER: Tickets, please!
 
 [bark_puncher_done]
 TICKET PUNCHER: Clac! Clac!
@@ -516,7 +516,7 @@ THE SINGER: A fort sells his brass plate only when he's had enough. Ask the book
 THE SINGER: You know everything now. Your fort is on the bridge, kid. Go, before the light comes.
 
 [bark_singer]
-THE SINGER: …la la… No. Not that one.
+THE SINGER: La la… No. Not that.
 
 [cafe_rush]
 SIMONE: Still here? The coffee rush won't wait. Help me and the coltin's yours.
@@ -582,7 +582,7 @@ MME ROUX: Brr! Who's up so early?
 MME ROUX: Is that soup I smell?
 
 [bark_cafe_rush]
-SIMONE: Quick, the tables are waiting!
+SIMONE: Quick! Tables waiting!
 
 [bark_worker_cups]
 A PORTER: Pssst. Want a jeton?

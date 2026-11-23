@@ -9,8 +9,8 @@
 #define MAP_W 20
 #define MAP_H 18
 #define TEXT_COLS 18
-#define TEXT_ROWS 3
-#define PAGE_SIZE 54
+#define TEXT_ROWS 2
+#define PAGE_SIZE 36
 
 #define ASSET_BANK 1   /* bank of src/assets.c, normally mapped */
 #define DLG_BANK 2     /* bank of src/dialogue_text.c */
@@ -444,7 +444,7 @@ extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];
 extern const uint8_t title_attr[];
 extern const palette_color_t title_pal[];
-#define DLG_PAGES_LO 303   /* pages in bank DLG_BANK; the rest in TITLE_BANK */
+#define DLG_PAGES_LO 455   /* pages in bank DLG_BANK; the rest in TITLE_BANK */
 extern const uint8_t dlg_pages_hi[];  /* bank TITLE_BANK */
 
 #endif

@@ -1,8 +1,9 @@
 """Original 8x8 bitmap font for PARIS DISPARU (French character set).
 
 Each glyph is up to 8 rows of 5 columns ('#' = ink, '.' = paper).
-Glyphs are drawn in columns 1-5 of the 8x8 tile, so columns 0, 6 and 7
-stay empty and act as letter spacing. Rows not listed are blank.
+Glyphs are drawn in columns 1-5 of the 8x8 tile and then made bold (vertical
+strokes 2 px, see _bold), so they use columns 1-6; columns 0 and 7 stay
+empty and act as letter spacing. Rows not listed are blank.
 Capitals use rows 0-6; lowercase x-height is rows 2-6; descenders use row 7.
 Accents on lowercase letters sit on rows 0-1.
 """
@@ -147,5 +148,13 @@ def glyph_rows(ch):
             out.append((src + "........")[:8])
             continue
         src = (src + ".....")[:5]
-        out.append("." + src + "..")
+        out.append(_bold("." + src + ".."))
     return out
+
+
+def _bold(row):
+    """Thicken vertical strokes to 2 px for legibility: each ink pixel also
+    inks its right neighbour, unless that would close a 1-px gap."""
+    r = row + "."
+    return "".join("#" if r[c] == "#" or (c > 0 and r[c - 1] == "#" and r[c + 1] != "#") else "."
+                   for c in range(8))
