@@ -146,6 +146,19 @@ def puncher():
     return outline(g)
 
 
+def singer():
+    g = blank()
+    shoulders(g, "o")                        # dark jacket
+    rect(g, 10, 24, 13, 31, "s")             # open white shirt
+    face(g, cy=16)
+    ellipse(g, 12, 9.5, 7, 4, "#")           # tousled dark hair
+    for x in (5, 8, 15, 18):
+        g[6][x] = "#"
+    for x in (9, 11, 13, 15):                # stubble
+        g[20][x] = "#"
+    return outline(g)
+
+
 # Order = portrait index used by the game; palette = sprite palette index.
 PORTRAITS = [
     ("SIMONE", simone(), 3),
@@ -156,6 +169,7 @@ PORTRAITS = [
     ("THE PAINTER", painter(), 2),
     ("THE PHOTOGRAPHER", photographer(), 4),
     ("TICKET PUNCHER", puncher(), 4),
+    ("THE SINGER", singer(), 4),
 ]
 # Other speakers who reuse a portrait.
 ALIASES = {"A PORTER": "DÉDÉ"}

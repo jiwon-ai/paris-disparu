@@ -103,8 +103,13 @@ void dialogue_start(uint8_t id) {
 
 /* Copy the current page from the dialogue ROM bank into RAM. */
 static void load_page(void) {
-    SWITCH_ROM(DLG_BANK);
-    memcpy(page_buf, dlg_pages + (uint16_t)page * PAGE_SIZE, PAGE_SIZE);
+    if (page < DLG_PAGES_LO) {
+        SWITCH_ROM(DLG_BANK);
+        memcpy(page_buf, dlg_pages + page * PAGE_SIZE, PAGE_SIZE);
+    } else {                    /* the overflow lives after the title art */
+        SWITCH_ROM(TITLE_BANK);
+        memcpy(page_buf, dlg_pages_hi + (page - DLG_PAGES_LO) * PAGE_SIZE, PAGE_SIZE);
+    }
     SWITCH_ROM(ASSET_BANK);
 }
 

@@ -88,9 +88,9 @@
 #define TILE_STAIRS 52
 #define TILE_RAIL 53
 #define TILE_BARRIER 54
-#define SPRITE_TILE_COUNT 120
+#define SPRITE_TILE_COUNT 128
 #define PORTRAIT_BASE 64
-#define PORTRAIT_TILE_COUNT 96
+#define PORTRAIT_TILE_COUNT 108
 #define NO_PORTRAIT 0xFF
 #define SPR_PLAYER_DOWN_0 0
 #define SPR_PLAYER_DOWN_1 4
@@ -122,6 +122,8 @@
 #define SPR_CAT_RUN 108
 #define SPR_PUNCHER_0 112
 #define SPR_PUNCHER_1 116
+#define SPR_SINGER_0 120
+#define SPR_SINGER_1 124
 
 #define ROOM_STREET 0
 #define ROOM_ENTRANCE 1
@@ -239,6 +241,12 @@ enum {
     DLG_METRO_GATE,
     DLG_PAINTER_WIFE,
     DLG_END_BONUS,
+    DLG_SINGER_HELLO,
+    DLG_SINGER_HAT,
+    DLG_SINGER_BLEU,
+    DLG_SINGER_PLATE,
+    DLG_SINGER_READY,
+    DLG_BARK_SINGER,
     DLG_COUNT
 };
 
@@ -371,5 +379,7 @@ extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];
 extern const uint8_t title_attr[];
 extern const palette_color_t title_pal[];
+#define DLG_PAGES_LO 303   /* pages in bank DLG_BANK; the rest in TITLE_BANK */
+extern const uint8_t dlg_pages_hi[];  /* bank TITLE_BANK */
 
 #endif

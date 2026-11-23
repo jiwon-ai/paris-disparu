@@ -151,6 +151,13 @@ uint8_t event_talk(uint8_t npc) {
         if (!HAS(FLAG_MET_PHOTO)) { SET(FLAG_MET_PHOTO); return DLG_PHOTO_HELLO; }
         return DLG_PHOTO_AGAIN;
 
+    case NPC_SINGER:    /* the cameo: then a hint at the first missing clue */
+        if (!(extra_flags & X_MET_SINGER)) { extra(X_MET_SINGER); return DLG_SINGER_HELLO; }
+        if ((clue_flags & CLUE_READY) == CLUE_READY) return DLG_SINGER_READY;
+        if (!CLUE(CLUE_COLTIN)) return DLG_SINGER_HAT;
+        if (!CLUE(CLUE_BLEU)) return DLG_SINGER_BLEU;
+        return DLG_SINGER_PLATE;
+
     case NPC_PUNCHER:
         if (punched >= 3) return DLG_PUNCHER_AFTER;
         if (HAS(FLAG_TICKET)) return DLG_PUNCHER_TICKET;
@@ -188,6 +195,8 @@ uint8_t event_bark(uint8_t npc) {
         return DLG_BARK_FERNAND;
     case NPC_PHOTO:
         return DLG_BARK_PHOTO;
+    case NPC_SINGER:
+        return DLG_BARK_SINGER;
     case NPC_PUNCHER:
         return punched >= 3 ? DLG_BARK_PUNCHER_DONE : DLG_BARK_PUNCHER;
     }

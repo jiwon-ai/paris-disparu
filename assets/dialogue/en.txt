@@ -458,3 +458,27 @@ At the café door the photographer lowers his camera. THE PHOTOGRAPHER: You were
 The métro, the butcher, the painter's wife… Here.
 
 He promises you a print: you, laughing, holding a ticket full of holes.
+
+[singer_hello]
+THE SINGER: Shh. I'm listening to the Seine. It hums in a minor key.
+
+I came down for the onion soup. Round here they serve it all night, to forts and to people like me.
+
+Once I wrote a song about a man who punches holes in métro tickets. There's one like him under the market.
+
+A missing fort, you say? Come back if you're stuck. I notice things. It's my job.
+
+[singer_hat]
+THE SINGER: A fort without his hat is like a song without words. Somebody kept his hat. Try the café.
+
+[singer_bleu]
+THE SINGER: Somebody wrote to your fort. In Paris, little blue letters fly through pipes under the streets. Ask who brought it.
+
+[singer_plate]
+THE SINGER: A fort sells his brass plate only when he's had enough. Ask the books along the quai.
+
+[singer_ready]
+THE SINGER: You know everything now. Your fort is on the bridge, kid. Go, before the light comes.
+
+[bark_singer]
+THE SINGER: …la la… No. Not that one.

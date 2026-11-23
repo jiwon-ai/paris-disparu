@@ -71,6 +71,9 @@ static const door_t cafe_doors[] = {
 };
 
 /* --- ROOM_QUAI: the quai on the right bank --------------------------------- */
+static const npc_def_t quai_npcs[] = {
+    { 120, 60, SPR_SINGER_0, 4, NPC_SINGER },     /* listening to the river */
+};
 static const hotspot_t quai_hotspots[] = {
     {  3, 12, 2, 1, DLG_QUAI_BOX },    /* Mme Roux's box: reachable between the trees */
     {  0, 12, 2, 1, DLG_QUAI_BOX2 },
@@ -125,7 +128,7 @@ const room_def_t rooms[ROOM_COUNT] = {
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
     { cafe_npcs, 2, cafe_hotspots, 5, cafe_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
-    { 0, 0, quai_hotspots, 15, 0, 0,
+    { quai_npcs, 1, quai_hotspots, 15, 0, 0,
       { ROOM_PONT, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { pont_npcs, 2, pont_hotspots, 5, 0, 0,
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },

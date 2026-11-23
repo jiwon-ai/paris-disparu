@@ -435,6 +435,26 @@ PUNCHER = [
     ".....##..##.....",
     "....###..###....",
 ]
+# A singer out at night by the river (cameo: see docs/HISTORICAL_RESEARCH.md,
+# "Cameos"). Tousled hair, white shirt, dark jacket, hands in pockets.
+SINGER = [
+    "................",
+    "....#.####......",
+    "...#########....",
+    "...##########...",
+    "....#ssssss#....",
+    "....s#ss#ss.....",
+    ".....ssssss.....",
+    "......####......",
+    "....#oossoo#....",
+    "...#ooossooo#...",
+    "...#ooossooo#...",
+    "...#oo#ss#oo#...",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....##..##.....",
+    "....###..###....",
+]
 # The cafe cat (side view, facing left): sitting and running.
 CAT_SIT = ["................"] * 5 + [
     "..#...#.........",
@@ -555,4 +575,6 @@ SPRITE_FRAMES = [
     ("CAT_RUN", CAT_RUN),
     ("PUNCHER_0", PUNCHER),
     ("PUNCHER_1", bob(PUNCHER)),
+    ("SINGER_0", SINGER),
+    ("SINGER_1", bob(SINGER)),
 ]

@@ -88,3 +88,10 @@ All art and text are plain text so changes are reviewable:
 - Street-lamp glow (BG palette 3, colours 2-3) moves between three close
   levels at random every 8 frames.
 - ROM banks: 0 code, 1 assets, 2 dialogue, 3 title art.
+
+
+## Dialogue banks
+
+Dialogue pages (54 bytes each) fill ROM bank 2 (`dlg_pages`, DLG_PAGES_LO
+pages); the overflow is stored in bank 3 after the title art
+(`dlg_pages_hi`). `dialogue.c` maps the right bank per page.
