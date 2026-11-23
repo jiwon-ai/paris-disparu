@@ -73,3 +73,9 @@ Raw notes of pages actually read on 2026-11-23 (via a fetch tool; secondary sour
 - PTT leaflet April 1963 (histelfrance): explains why new subscribers wait (free pair + exchange equipment needed). TIME 7 Jun 1976 "Rewiring France": waits up to seven years; "from 1935 to 1968 almost no new equipment was installed"; 1962 minister called phone a "gimmick"; 291,000 new orders 1968.
 - Observatoire de Paris talking clock: born 1933 (Esclangon), world first; ended 1 Jul 2022; 1960s number not stated here (britishtelephones: ODÉon 8400 from inception).
 - roger-viollet taximeter: photo captions only (1966 model in taxi; 1954 Peugeot 203 taxi). Weak.
+# Les Halles academic batch (read)
+- Krzyzanowski 2013 (Univ. d'Évry master's thesis), first ~21 pp verbatim: no transaction at Halles on 3 Mar 1969; "La circulation est impossible une bonne partie de la nuit."; "Les légumes envahissent les rues et sont vendus à même le sol."; Rungis officially chosen 13 Jul 1962 (Debré); construction 6 years. Pages 21-42 via tool SUMMARY only (not verbatim): 1948 pavilion table (3 meat; 4 poultry/game; 5 tripe/charcuterie/meat; 6 offal + F&V; 7, 8 F&V; 9, 11 fish; 10 butter/eggs; 12 cheese/oysters); pav. 1-2 built 1935-48; 1960 hours F&V 3:30/4:00-7:30, BOF 7:30-10:30, poultry 7:30-9:30, fish 6:30-9:00; 480 mandataires, 435 commissionnaires, 1,200 wholesalers, 1,600 producers; carreau decrees 1897, 1907; 1960: 1,040 cultivators, 638 market gardeners.
+- Britannica The Halles: central market 1183-1969; "10 originals ... built between 1854 and 1866, and two 1936 reproductions"; torn down 1971; Forum 1979.
+- paris.fr Rungis voyage: "Rester sur le carreau" origin; forts' carrying now automated.
+- sortiraparis trou des Halles: hole for almost seven years.
+- evous: move in one weekend: 20,000 people, 1,000 firms, 10,000 m3 equipment, 5,000 t goods, 1,500 trucks; inconsistent on decision date (1959 vs 1962); unreliable on pavilion dating.
