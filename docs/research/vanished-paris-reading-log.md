@@ -63,3 +63,13 @@ Raw notes of pages actually read on 2026-11-23 (via a fetch tool; secondary sour
 - Gallica Baltard & Callet book (bpt6k6484147c): FETCH FAILED.
 - Consistency check: east group = 7-12 (1858 article); 1971 demolition of the six pavilions east of rue Baltard + pav 8 dismantled 1971-72 => pav 8 in east group; meat (pav 3, west group) stayed until 1973 => consistent with butchers staying after 1969.
 - 1960s allocation pavilion by pavilion: NOT FOUND.
+# Streets, tickets, batch G (read)
+- en.wiki Rue du Pont-Neuf: runs from Pont Neuf (south) north to Les Halles; 1854 decree planned street Pont Neuf - Halles; named 1867; part between rue Berger and rue Rambuteau "renamed the Rue Baltard in 1877", removed for the Forum; continues north as rue Montorgueil.
+  => rue Baltard = the central N-S street between the two pavilion groups, from rue Berger (S) to rue Rambuteau (N).
+- en.wiki Rue Rambuteau: from rue des Archives to rue Coquillière; created 1838, named 1839; 13 m wide.
+- pariszigzag ticket history: 1958 tariff: havane 2nd class, green 1st; carnet 30 F 2nd / 45 F 1st (1958, old francs); 1967-70 end of first cycle of "alphabet tarifaire"; 1968 tickets valid on buses. paris.fr: 1951 2nd 20 F, 1st 30 F; 1973 magnetic stripe, tickets lemon yellow.
+- pariszigzag old tickets found: punched by poinçonneurs until early 1970s; one punch = single, double punch = return; ads printed on ticket backs.
+- Gauloises (en.wiki): launched 1910 by SEITA; traditional short, wide, unfiltered, dark tobacco; "peculiarly French shade of blue" pack; Disque Bleu March 1954. SEITA (en.wiki): former state tobacco monopoly; Gauloises & Gitanes 1910; private by 1999.
+- PTT leaflet April 1963 (histelfrance): explains why new subscribers wait (free pair + exchange equipment needed). TIME 7 Jun 1976 "Rewiring France": waits up to seven years; "from 1935 to 1968 almost no new equipment was installed"; 1962 minister called phone a "gimmick"; 291,000 new orders 1968.
+- Observatoire de Paris talking clock: born 1933 (Esclangon), world first; ended 1 Jul 2022; 1960s number not stated here (britishtelephones: ODÉon 8400 from inception).
+- roger-viollet taximeter: photo captions only (1966 model in taxi; 1954 Peugeot 203 taxi). Weak.
