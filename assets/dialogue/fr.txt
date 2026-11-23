@@ -15,6 +15,8 @@ Je note tout ce qui passe dans cette rue. Personne ne le fait jamais.
 
 Le bruit, au bout? Les Halles. Allez-y. Je vous noterai au retour.
 
+Et si vous voyez quelque chose d'étonnant, appelez-moi. 4127. Je note aussi les appels.
+
 [stranger_wait]
 L'HOMME AU CARNET: Une personne en imperméable hésite devant un réverbère. Noté.
 
@@ -26,6 +28,9 @@ L'HOMME AU CARNET: Une personne revient, les bras fatigués. Elle a porté des c
 
 [stranger_phone]
 L'HOMME AU CARNET: Elle a téléphoné, aussi. À qui? Non, ne dites rien. Je ne note pas les secrets.
+
+[stranger_river]
+L'HOMME AU CARNET: Une personne revient de la Seine. Ses chaussures sont humides. Noté.
 
 # ---------------------------------------------------------------- the porter
 [porter_hello]
@@ -143,19 +148,36 @@ UN FORT: Tu as appelé qui? La boucherie? Ha! Ils ne décrochent jamais avant si
 [phone_look]
 Un téléphone, accroché au mur. Il y a une fente… trop petite pour une pièce.
 
+Au mur, griffonné au crayon: BOUCHERIE 0614.
+
 [phone_use]
 Tu as un jeton. Tu le glisses dans la fente?
 ? Oui | Non
 
-[phone_call]
-Le jeton tombe avec un bruit sec. Tu composes un numéro au hasard…
+[cafe_jeton_more]
+SIMONE: Encore un jeton? Tiens. Tu téléphones à tout Paris, ce matin.
 
-« Allô? Allô, la boucherie? … Non? Mais alors qui êtes-vous? »
+[call_0614]
+Ça sonne longtemps. « Boucherie! On ouvre à six heures! Qui appelle à une heure pareille? » Clac.
 
-On a raccroché. Le jeton, lui, ne revient pas.
+[call_4127]
+« Allô? Ah, c'est vous, l'imperméable. Vous appelez d'un café: j'entends les tasses. Noté. »
 
-[phone_after]
-Le téléphone se tait. Il attend le prochain jeton.
+[call_7302]
+Une voix endormie: « Des livres? À cette heure? Vous êtes poète ou insomniaque? »
+
+« Les deux? Alors passez à midi. »
+
+[call_2508]
+« Il peint? À quatre heures du matin? Dites-lui que la soupe est froide. »
+
+« Et que je l'aime. Mais surtout, la soupe. »
+
+[call_none]
+Ça sonne dans le vide. Personne. Le jeton ne revient pas.
+
+[lift_miss]
+La caisse glisse et retombe dans la charrette. FERNAND: Avec les jambes, j'ai dit!
 
 [shelf]
 Des bouteilles, alignées devant le miroir. Certaines n'ont plus d'étiquette.
@@ -191,3 +213,41 @@ Des cageots vides, empilés. Ils repartiront ce soir.
 
 [column]
 Une colonne de fonte. Elle est froide, et un peu collante.
+
+# ---------------------------------------------------------------- the quai
+[quai_box]
+Une boîte verte de bouquiniste, cadenassée. Sur le couvercle, une carte:
+
+« Livres anciens. Mme Roux. 7302. »
+
+[quai_box2]
+Une autre boîte verte, fermée. On devine les livres serrés dedans, qui dorment.
+
+[gaslamp]
+Un bec de gaz. Derrière la vitre, la flamme siffle doucement.
+
+[tree]
+Un platane. Ses feuilles font un bruit de papier froissé.
+
+[river]
+En bas, la Seine. Noire, et pourtant pleine de lumières.
+
+[quai_shop]
+Volets fermés. Une affiche à moitié arrachée annonce un bal samedi.
+
+# ---------------------------------------------------------------- the bridge
+[painter_hello]
+LE PEINTRE: Ne bouge pas! … Non, bouge. Je peins la Seine, pas toi.
+
+La nuit, l'eau a des couleurs que personne ne regarde. Moi, je les vole.
+
+Si tu croises ma femme… Non. Appelle-la plutôt: 2508. Dis-lui que je peins.
+
+[painter_again]
+LE PEINTRE: Regarde la péniche. Elle passe sous le pont comme sous une porte.
+
+[barrier]
+Des barrières: TRAVAUX. Le reste du pont attendra le jour.
+
+[watch_water]
+Tu te penches. L'eau file sous le pont, très vite, sans un bruit.

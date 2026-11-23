@@ -5,7 +5,7 @@
 - GBDK-2020 4.3.0, C (SDCC), `make`.
 - Cartridge header set by `makebin` flags in the `Makefile`: CGB only (`-Wm-yC`,
   0x143 = 0xC0), MBC5 (`-Wm-yt0x19`) so that ROM banking can be added without
-  changing the cartridge type. Current ROM: 32 KiB, no banking yet.
+  changing the cartridge type. Current ROM: 64 KiB (4 banks). Code is in bank 0, `src/assets.c` in bank 1 (always mapped), `src/dialogue_text.c` in bank 2; `dialogue.c` maps bank 2 with `SWITCH_ROM` only to copy one page into RAM.
 - On a monochrome Game Boy the game shows a "Game Boy Color required" message
   (`_cpu != CGB_TYPE` check in `main.c`).
 
@@ -20,6 +20,8 @@
 | `src/rooms.c` | room contents: NPCs, hotspots, exits (data) |
 | `src/dialogue.c` | window-layer text box, paged typewriter dialogue |
 | `src/sound.c` | sound effects on the APU registers |
+| `src/events.c` | story logic: who says what, crates, tokens, phone numbers |
+| `src/minigame.c` | the lift timing bar and the telephone dial |
 | `src/assets.c` | generated: tiles, palettes, maps, collision, dialogue pages |
 
 ## VRAM layout (CGB)
@@ -54,6 +56,10 @@ All art and text are plain text so changes are reviewable:
   player can overlap facades visually.
 - Sprites are assigned OAM slots by y every frame so the lower character is
   drawn in front.
+- The barge uses the sprite "behind background" flag. Water tiles are mostly
+  colour 0 and the bridge tiles use colours 1-3, so the barge is visible on the
+  river and disappears under the bridge. The café counter uses the BG priority
+  attribute instead, to hide Simone's legs.
 
 ## Tests
 

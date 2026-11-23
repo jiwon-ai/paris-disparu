@@ -8,20 +8,23 @@
 #include "events.h"
 #include "game.h"
 #include "input.h"
+#include "minigame.h"
 #include "sound.h"
 #include "world.h"
 
-enum { ST_WALK, ST_DIALOGUE, ST_PAUSE };
+enum { ST_WALK, ST_DIALOGUE, ST_PAUSE, ST_LIFT, ST_DIAL };
 
 static uint8_t state;
 static uint8_t cur_dialogue;
 static uint8_t caption_timer;
 static uint8_t ambience_timer;
 static uint8_t rng = 0x5A;
+static uint8_t anim_frame;
+static uint8_t barge_x;
 
 /* Title screen colours: dark paper, cream ink (palette 5 is reused). */
 static const palette_color_t title_palette[4] = {
-    RGB(3, 3, 8), RGB(3, 3, 8), RGB(12, 10, 9), RGB(30, 27, 19)
+    RGB(4, 5, 11), RGB(4, 5, 11), RGB(12, 10, 9), RGB(30, 27, 19)
 };
 
 static uint8_t row_buf[MAP_W];
@@ -139,11 +142,45 @@ static void change_room(uint8_t exit_code) {
     enter_room(dest);
 }
 
+/* Start whatever an interaction returned: text, or an interactive sequence. */
 static void open_dialogue(uint8_t d) {
     caption_timer = 0;
-    cur_dialogue = d;
-    dialogue_start(d);
-    state = ST_DIALOGUE;
+    if (d == EV_LIFT) {
+        lift_start(event_lift_level());
+        state = ST_LIFT;
+    } else if (d == EV_DIAL) {
+        dial_start();
+        state = ST_DIAL;
+    } else if (d == NO_DIALOGUE) {
+        state = ST_WALK;
+    } else {
+        cur_dialogue = d;
+        dialogue_start(d);
+        state = ST_DIALOGUE;
+    }
+}
+
+/* Moving water and the barge that passes under the bridge. */
+static void animate_river(void) {
+    uint8_t has_water = cur_room == ROOM_QUAI || cur_room == ROOM_PONT;
+    anim_frame++;
+    if (has_water && (anim_frame & 31) == 0) {
+        VBK_REG = VBK_ATTRIBUTES;     /* scenery tiles are in VRAM bank 1 */
+        set_bkg_data(TILE_WATER, 1, water_frames + ((anim_frame >> 5) & 1) * 16);
+        VBK_REG = VBK_TILES;
+    }
+    if (cur_room == ROOM_PONT) {
+        uint8_t i;
+        if (anim_frame & 1) barge_x++;
+        for (i = 0; i < 4; i++) {
+            set_sprite_tile(36 + i, (i < 2 ? SPR_BARGE_L : SPR_BARGE_R) + (i & 1) * 2);
+            set_sprite_prop(36 + i, 1 | S_PRIORITY);   /* behind the bridge */
+            move_sprite(36 + i, barge_x + i * 8, 16 + 100);
+        }
+    } else {
+        uint8_t i;
+        for (i = 36; i < 40; i++) move_sprite(i, 0, 0);
+    }
 }
 
 /* Scene-based ambience: short noise bursts at irregular intervals. */
@@ -166,6 +203,10 @@ static void update_ambience(void) {
     case AMBIENCE_HALL:
         sound_market(3 + (r & 1));
         ambience_timer = 16 + (r & 31);
+        break;
+    case AMBIENCE_RIVER:
+        sound_water();
+        ambience_timer = 60 + (r & 63);
         break;
     case AMBIENCE_CAFE:
         sound_blip();       /* a cup on a saucer */
@@ -232,11 +273,22 @@ void main(void) {
 
         case ST_DIALOGUE:
             if (!dialogue_update()) {
-                uint8_t next = event_after(cur_dialogue, dialogue_choice);
-                if (next != NO_DIALOGUE) open_dialogue(next);
-                else state = ST_WALK;
+                open_dialogue(event_after(cur_dialogue, dialogue_choice));
             }
             break;
+
+        case ST_LIFT: {
+            uint8_t r = lift_update();
+            if (r != MG_RUNNING) open_dialogue(event_lift_result(r == MG_SUCCESS));
+            break;
+        }
+
+        case ST_DIAL: {
+            uint8_t r = dial_update();
+            if (r == MG_SUCCESS) open_dialogue(event_dial_result(dial_number()));
+            else if (r == MG_FAIL) state = ST_WALK;   /* hung up: token kept */
+            break;
+        }
 
         case ST_PAUSE:
             if (joy_pressed & (J_START | J_B)) {
@@ -246,5 +298,6 @@ void main(void) {
             break;
         }
         actors_draw();
+        animate_river();
     }
 }

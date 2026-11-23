@@ -1,5 +1,6 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
+#include <string.h>
 #include "assets.h"
 #include "dialogue.h"
 #include "game.h"
@@ -10,6 +11,8 @@
 #define DLG_ROWS 5
 
 static uint8_t row_buf[MAP_W];
+static uint8_t page_buf[PAGE_SIZE];
+static void load_page(void);
 static uint8_t page;        /* absolute page index in dlg_pages */
 static uint8_t pages_left;  /* pages after the current one */
 static uint8_t pos;         /* characters revealed on the current page */
@@ -70,13 +73,17 @@ void dialogue_start(uint8_t id) {
     dialogue_choice = 1;
     page = dlg_first_page[id];
     pages_left = dlg_page_count[id] - 1;
+    load_page();
     box_open(DLG_ROWS);
     clear_text();
     sound_confirm();
 }
 
-static const uint8_t *page_ptr(void) {
-    return dlg_pages + (uint16_t)page * PAGE_SIZE;
+/* Copy the current page from the dialogue ROM bank into RAM. */
+static void load_page(void) {
+    SWITCH_ROM(DLG_BANK);
+    memcpy(page_buf, dlg_pages + (uint16_t)page * PAGE_SIZE, PAGE_SIZE);
+    SWITCH_ROM(ASSET_BANK);
 }
 
 static void draw_choice(void) {
@@ -88,7 +95,7 @@ static void draw_choice(void) {
 }
 
 uint8_t dialogue_update(void) {
-    const uint8_t *text = page_ptr();
+    const uint8_t *text = page_buf;
 
     if (joy_pressed & J_B) {   /* B always closes; a pending choice counts as "no" */
         dialogue_choice = 1;
@@ -146,6 +153,7 @@ uint8_t dialogue_update(void) {
         }
         page++;
         pages_left--;
+        load_page();
         clear_text();
     }
     return 1;

@@ -24,6 +24,11 @@ not yet been consulted.
 | 6 | Café wall telephones in 1960s Paris were operated with tokens (jetons) bought at the counter. | Experience C | To research (search results only, not read) | [Wikipedia, Telephone token](https://en.wikipedia.org/wiki/Telephone_token); [Numista catalogue entry](https://en.numista.com/16650) |
 | 7 | The central market sold wholesale; produce was displayed by type at stalls inside the pavilions. | Experience A | To research | Archives de Paris; INA |
 | 8 | Porters ("forts") carried loads on their backs for merchants. | Fernand, Experience A | To research | |
+| 10 | Some Paris street lamps were still gas-lit in 1967 (the game shows gas lamps on the quai and the bridge, electric-looking lanterns elsewhere). | quai, bridge | Plausible, weakly sourced. One blog says the last fixtures of the public gaslight network were converted to electricity in 1975; another article only says gas and electricity competed "until the middle of the 20th century". No primary source read. | [French Moments, "Last gas streetlamp in Paris"](https://frenchmoments.eu/last-gas-streetlamp-in-paris/); [Light ZOOM Lumière, histoire électrique et lumineuse de Paris](https://www.lightzoomlumiere.fr/article/histoire-electrique-et-lumineuse-de-la-ville-de-paris/) |
+| 11 | Bouquinistes' green boxes on the Seine parapets. | quai | To research (dates, colour regulations in 1967) | |
+| 12 | Barges on the Seine in central Paris at night. | bridge | To research | |
+| 13 | Phone numbers in the game are 4 digits. This is a gameplay simplification, not historical: Paris numbers of the period were longer. | café phone | Deliberate simplification | — |
+| 14 | The bridge is unnamed and the quai is generic: they suggest the area between Les Halles and the Seine (e.g. towards Pont Neuf) without reproducing a specific bridge. | quai, bridge | Reconstruction | — |
 | 9 | All characters (Fernand, Germaine, Simone, the man with the notebook, the sleeping porter), their words, prices and jokes. The man with the notebook is an original character inspired by the idea of urban observation (Perec); no text is quoted. | everywhere | Fiction | — |
 
 ## Candidate experiences (to research before implementation)

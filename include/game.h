@@ -21,6 +21,7 @@
 #define NPC_MERCHANT 2
 #define NPC_CAFE     3
 #define NPC_WORKER   4
+#define NPC_PAINTER  5
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001
@@ -35,6 +36,8 @@
 #define FLAG_PHONE_DONE     0x0200
 #define FLAG_FERNAND_TOLD   0x0400  /* Simone heard Fernand sent you */
 #define FLAG_MET_WORKER     0x0800
+#define FLAG_VISITED_RIVER  0x1000
+#define FLAG_MET_PAINTER    0x2000
 
 extern uint16_t game_flags;
 

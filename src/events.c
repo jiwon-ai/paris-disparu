@@ -19,6 +19,29 @@ static const uint8_t crate_take_dlg[3] = { DLG_CART_CHOUX, DLG_CART_POMMES, DLG_
 
 void event_enter_room(uint8_t room) {
     if (room == ROOM_ENTRANCE || room == ROOM_MARKET) SET(FLAG_VISITED_MARKET);
+    if (room == ROOM_QUAI || room == ROOM_PONT) SET(FLAG_VISITED_RIVER);
+}
+
+/* Each crate is a little harder to lift than the last. */
+uint8_t event_lift_level(void) {
+    return crates_taken;
+}
+
+uint8_t event_lift_result(uint8_t success) {
+    if (!success) return DLG_LIFT_MISS;
+    carrying = crate_order[crates_taken];
+    return crate_take_dlg[crates_taken++];
+}
+
+uint8_t event_dial_result(uint16_t number) {
+    game_flags = (game_flags & ~FLAG_HAS_JETON) | FLAG_PHONE_DONE;
+    switch (number) {
+    case 614:  return DLG_CALL_0614;
+    case 4127: return DLG_CALL_4127;
+    case 7302: return DLG_CALL_7302;
+    case 2508: return DLG_CALL_2508;
+    }
+    return DLG_CALL_NONE;
 }
 
 uint8_t event_talk(uint8_t npc) {
@@ -28,6 +51,7 @@ uint8_t event_talk(uint8_t npc) {
         if (!HAS(FLAG_MET_STRANGER)) { SET(FLAG_MET_STRANGER); return DLG_STRANGER_HELLO; }
         if (HAS(FLAG_PHONE_DONE)) return DLG_STRANGER_PHONE;
         if (HAS(FLAG_TASK_DONE)) return DLG_STRANGER_CRATES;
+        if (HAS(FLAG_VISITED_RIVER)) return DLG_STRANGER_RIVER;
         if (HAS(FLAG_VISITED_MARKET)) return DLG_STRANGER_MARKET;
         return DLG_STRANGER_WAIT;
 
@@ -48,9 +72,10 @@ uint8_t event_talk(uint8_t npc) {
         return DLG_MERCHANT_AGAIN;
 
     case NPC_CAFE:
-        if (HAS(FLAG_SAW_PHONE) && !HAS(FLAG_HAS_JETON) && !HAS(FLAG_PHONE_DONE)) {
+        if (HAS(FLAG_SAW_PHONE) && !HAS(FLAG_HAS_JETON)) {
+            /* A token each time you ask: calls are the fun part. */
             SET(FLAG_HAS_JETON);
-            return DLG_CAFE_JETON;
+            return HAS(FLAG_PHONE_DONE) ? DLG_CAFE_JETON_MORE : DLG_CAFE_JETON;
         }
         if (HAS(FLAG_TASK_DONE) && !HAS(FLAG_FERNAND_TOLD)) {
             SET(FLAG_FERNAND_TOLD | FLAG_MET_CAFE);
@@ -62,6 +87,10 @@ uint8_t event_talk(uint8_t npc) {
     case NPC_WORKER:
         if (HAS(FLAG_PHONE_DONE)) return DLG_WORKER_PHONE;
         return DLG_WORKER_HELLO;
+
+    case NPC_PAINTER:
+        if (!HAS(FLAG_MET_PAINTER)) { SET(FLAG_MET_PAINTER); return DLG_PAINTER_HELLO; }
+        return DLG_PAINTER_AGAIN;
     }
     return NO_DIALOGUE;
 }
@@ -80,8 +109,7 @@ uint8_t event_examine(uint8_t id) {
         if (!HAS(FLAG_TASK_ACTIVE)) return crates_taken == 3 ? DLG_CART_EMPTY : DLG_CART_LOOK;
         if (carrying != NO_CRATE) return DLG_CART_FULL;
         if (crates_taken == 3) return DLG_CART_EMPTY;
-        carrying = crate_order[crates_taken];
-        return crate_take_dlg[crates_taken++];
+        return EV_LIFT;
 
     case DLG_STALL_CHOUX:
         return deliver(CRATE_CHOUX, DLG_STALL_OK_GERMAINE, DLG_STALL_WRONG_GERMAINE, DLG_STALL_CHOUX);
@@ -91,7 +119,6 @@ uint8_t event_examine(uint8_t id) {
         return deliver(CRATE_CAROTTES, DLG_STALL_OK, DLG_STALL_WRONG, DLG_STALL_CAROTTES);
 
     case DLG_PHONE_LOOK:
-        if (HAS(FLAG_PHONE_DONE)) return DLG_PHONE_AFTER;
         if (HAS(FLAG_HAS_JETON)) return DLG_PHONE_USE;
         SET(FLAG_SAW_PHONE);
         return DLG_PHONE_LOOK;
@@ -112,10 +139,7 @@ uint8_t event_after(uint8_t dlg, uint8_t choice) {
     case DLG_CAFE_HELLO:
         return choice == 0 ? DLG_CAFE_YES : DLG_CAFE_NO;
     case DLG_PHONE_USE:
-        if (choice == 0) {
-            game_flags = (game_flags & ~FLAG_HAS_JETON) | FLAG_PHONE_DONE;
-            return DLG_PHONE_CALL;
-        }
+        if (choice == 0) return EV_DIAL;
         break;
     }
     return NO_DIALOGUE;

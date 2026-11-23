@@ -31,3 +31,11 @@ void sound_market(uint8_t vol) {
     NR43_REG = 0x45;
     NR44_REG = 0x80;
 }
+
+/* Channel 4: soft, long hiss - water against the quay. */
+void sound_water(void) {
+    NR41_REG = 0x00;
+    NR42_REG = 0x17;   /* volume 1, slow decay */
+    NR43_REG = 0x67;
+    NR44_REG = 0x80;
+}

@@ -67,13 +67,48 @@ static const door_t cafe_doors[] = {
     { 9, 17, 2, 1, ROOM_STREET, 28, 72, DIR_DOWN },
 };
 
+/* --- ROOM_QUAI: the quai on the right bank --------------------------------- */
+static const hotspot_t quai_hotspots[] = {
+    {  3, 12, 2, 1, DLG_QUAI_BOX },    /* Mme Roux's box: reachable between the trees */
+    {  0, 12, 2, 1, DLG_QUAI_BOX2 },
+    { 14, 12, 2, 1, DLG_QUAI_BOX2 },
+    { 17, 12, 2, 1, DLG_QUAI_BOX2 },
+    {  0, 12, 20, 1, DLG_RIVER },     /* the rest of the parapet */
+    {  2, 7, 1, 1, DLG_GASLAMP },
+    { 17, 7, 1, 1, DLG_GASLAMP },
+    {  7, 11, 1, 1, DLG_GASLAMP },
+    { 12, 11, 1, 1, DLG_GASLAMP },
+    {  1, 10, 2, 2, DLG_TREE },
+    {  5, 10, 2, 2, DLG_TREE },
+    { 13, 10, 2, 2, DLG_TREE },
+    { 17, 10, 2, 2, DLG_TREE },
+    {  0, 5, 7, 2, DLG_QUAI_SHOP },
+    { 13, 5, 7, 2, DLG_QUAI_SHOP },
+};
+
+/* --- ROOM_PONT: on the bridge --------------------------------------------- */
+static const npc_def_t pont_npcs[] = {
+    { 80, 60, SPR_PAINTER_0, 2, NPC_PAINTER },
+};
+static const hotspot_t pont_hotspots[] = {
+    {  7, 7, 1, 1, DLG_GASLAMP },
+    { 12, 9, 1, 1, DLG_GASLAMP },
+    {  8, 16, 4, 1, DLG_BARRIER },
+    {  6, 0, 2, 18, DLG_WATCH_WATER },    /* west parapet */
+    { 12, 0, 2, 18, DLG_WATCH_WATER },    /* east parapet */
+};
+
 const room_def_t rooms[ROOM_COUNT] = {
     { street_npcs, 1, street_hotspots, 8, street_doors, 1,
-      { NO_EXIT, NO_EXIT, NO_EXIT, ROOM_ENTRANCE }, AMBIENCE_STREET },
+      { ROOM_QUAI, NO_EXIT, NO_EXIT, ROOM_ENTRANCE }, AMBIENCE_STREET },
     { entrance_npcs, 1, entrance_hotspots, 3, entrance_doors, 1,
       { NO_EXIT, NO_EXIT, ROOM_STREET, NO_EXIT }, AMBIENCE_MARKET },
     { market_npcs, 1, market_hotspots, 6, market_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
     { cafe_npcs, 2, cafe_hotspots, 5, cafe_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
+    { 0, 0, quai_hotspots, 15, 0, 0,
+      { ROOM_PONT, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
+    { pont_npcs, 1, pont_hotspots, 5, 0, 0,
+      { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
 };

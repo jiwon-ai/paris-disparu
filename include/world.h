@@ -35,6 +35,7 @@ typedef struct {
 #define AMBIENCE_MARKET 2   /* constant, busy */
 #define AMBIENCE_HALL   3   /* inside the pavilion, echoing */
 #define AMBIENCE_CAFE   4   /* cups and saucers */
+#define AMBIENCE_RIVER  5   /* water against the quay */
 
 typedef struct {
     const npc_def_t *npcs;

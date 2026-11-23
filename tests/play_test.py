@@ -19,7 +19,7 @@ import font  # noqa: E402
 
 FONT_BASE = 128
 CHARS = list(font.GLYPHS.keys())
-ROOM_STREET, ROOM_ENTRANCE, ROOM_MARKET, ROOM_CAFE = range(4)
+ROOM_STREET, ROOM_ENTRANCE, ROOM_MARKET, ROOM_CAFE, ROOM_QUAI, ROOM_PONT = range(6)
 FLAG_TASK_DONE, FLAG_PHONE_DONE = 0x0008, 0x0200
 failures = []
 
@@ -40,6 +40,11 @@ def symbols(rom):
 
 
 sym = symbols(ROM)
+HDR = {}
+for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "include", "assets.h")):
+    m = re.match(r"#define (\w+) (\d+)$", line.strip())
+    if m:
+        HDR[m.group(1)] = int(m.group(2))
 pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False)
 mem = pb.memory
 
@@ -152,7 +157,7 @@ def dialogue(choice=None, max_pages=12):
     lines = []
     tick(70)
     for _ in range(max_pages):
-        if not window_on():
+        if not window_on() or window_row(1).startswith(("Compose", "Soulève")):
             break
         if "▶" in window_row(2):
             if choice == 1:
@@ -164,6 +169,39 @@ def dialogue(choice=None, max_pages=12):
         lines.append(" ".join(window_row(r) for r in (1, 2, 3)))
         tap("a", 70)
     return lines
+
+
+def win_tile(x, y):
+    base = 0x9C00 if mem[0xFF40] & 0x40 else 0x9800
+    return mem[base + y * 32 + x]
+
+
+def lift(hit=True):
+    """Porter's lift: press A when the cursor is inside the zone (or at once to miss)."""
+    tap("a", 4)
+    if not hit:
+        tap("a", 2)
+        return
+    for _ in range(400):
+        cols = [x for x in range(2, 18) if win_tile(x, 3) == HDR["GLYPH_BAR_CURSOR"]]
+        if cols and 9 <= cols[0] <= 10:
+            pb.button_press("a")
+            tick(1)
+            pb.button_release("a")
+            tick(2)
+            return
+        tick(1)
+
+
+def dial(number):
+    """Phone: set the 4 digits with Up and Right, then A."""
+    for i, d in enumerate(number):
+        for _ in range(int(d)):
+            tap("up", 2)
+        if i < 3:
+            tap("right", 2)
+    shot("09_dial")
+    tap("a", 0)
 
 
 def talk(expect, choice=None):
@@ -195,8 +233,7 @@ hold("right", 120)
 check(player()[0] == 67, "lamp post blocks at x=67 (x=%d)" % player()[0])
 hold("up", 60)
 check(player()[1] == 62, "facade blocks at y=62 (y=%d)" % player()[1])
-hold("down", 200)
-check(player()[1] == 128, "bottom edge blocks at y=128 (y=%d)" % player()[1])
+hold("down", 40)
 hold("left", 200)
 check(player()[0] == -3, "left edge blocks at x=-3 (x=%d)" % player()[0])
 
@@ -237,7 +274,12 @@ push("up")
 talk("jeton")
 goto(128, 60, "yx")
 push("up")
-lines = talk("jeton", choice=0)
+tap("a", 0)
+dialogue(choice=0)          # "Tu as un jeton…" -> Oui -> dial box
+check(window_on() and "numéro" in window_row(1), "dial box opened: %r" % window_row(1))
+dial("0614")
+lines = dialogue()
+check(any("Boucherie" in l for l in lines), "calling 0614 reaches the butcher: %s" % lines[:1])
 check(flags() & FLAG_PHONE_DONE, "telephone call made (FLAG_PHONE_DONE)")
 shot("06_phone")
 goto(88, 60, "yx")
@@ -258,10 +300,17 @@ check(player() == (100, 66), "below Fernand: %s" % (player(),))
 talk("FERNAND", choice=0)
 
 
-def fetch_crate(expect):
+def fetch_crate(expect, miss_first=False):
     goto(124, 90, "yx")
     push("up")
-    talk(expect)
+    if miss_first:
+        lift(hit=False)
+        lines = dialogue()
+        check(any("retombe" in l for l in lines), "missing the lift drops the crate: %s" % lines[:1])
+        check(mem[sym["_carrying"]] == 0xFF, "not carrying after a miss")
+    lift()
+    lines = dialogue()
+    check(any(expect in l for l in lines), "lifted the crate of %s: %s" % (expect, lines[:1]))
 
 
 def to_market():
@@ -276,7 +325,7 @@ def to_entrance():
     check(room() == ROOM_ENTRANCE, "back out to the entrance (room %d)" % room())
 
 
-fetch_crate("choux")
+fetch_crate("choux", miss_first=True)
 check(mem[sym["_carrying"]] == 0, "carrying the cabbages")
 to_market()
 shot("08_market")
@@ -314,6 +363,32 @@ goto(106, 90, "yx")
 push("up")
 tap("right", 2)
 talk("secrets")
+
+print("the Seine")
+goto(60, 120, "xy")
+push("down")
+check(room() == ROOM_QUAI, "south edge of the street leads to the quai (room %d)" % room())
+shot("10_quai")
+goto(24, 64, "yx")
+push("down")
+talk("7302")
+goto(72, 60, "yx")
+push("down")
+check(room() == ROOM_PONT, "the bridge deck leads onto the bridge (room %d, %s)" % (room(), player()))
+x0 = mem[0xFE00 + 36 * 4 + 1]
+tick(60)
+x1 = mem[0xFE00 + 36 * 4 + 1]
+check(x0 != x1, "the barge moves (%d -> %d)" % (x0, x1))
+push("down")
+check(player()[1] < 72, "the painter blocks the middle of the deck (y=%d)" % player()[1])
+talk("PEINTRE")
+shot("11_pont")
+goto(66, 110, "xy")
+push("down")
+check(player()[1] < 118, "roadworks barrier stops the player (y=%d)" % player()[1])
+talk("TRAVAUX")
+push("up", 400)
+check(room() == ROOM_QUAI, "back up to the quai (room %d)" % room())
 
 pb.stop(save=False)
 print("\n%d failure(s)" % len(failures))

@@ -12,8 +12,10 @@
 #define TEXT_ROWS 3
 #define PAGE_SIZE 54
 
+#define ASSET_BANK 1   /* bank of src/assets.c, normally mapped */
+#define DLG_BANK 2     /* bank of src/dialogue_text.c */
 #define FONT_BASE 128
-#define FONT_TILE_COUNT 109
+#define FONT_TILE_COUNT 112
 #define GLYPH_SPACE 128
 #define GLYPH_ARROW_DOWN 227
 #define GLYPH_ARROW_RIGHT 228
@@ -25,8 +27,11 @@
 #define GLYPH_BOX_BL 234
 #define GLYPH_BOX_B 235
 #define GLYPH_BOX_BR 236
+#define GLYPH_BAR 237
+#define GLYPH_BAR_ZONE 238
+#define GLYPH_BAR_CURSOR 239
 
-#define ENV_TILE_COUNT 39
+#define ENV_TILE_COUNT 51
 #define TILE_SKY 0
 #define TILE_ROOFTOP 1
 #define TILE_ROOF 2
@@ -66,7 +71,19 @@
 #define TILE_ZINC_FRONT 36
 #define TILE_CHECKER 37
 #define TILE_TABLE 38
-#define SPRITE_TILE_COUNT 72
+#define TILE_WATER 39
+#define TILE_PARAPET 40
+#define TILE_BOX_L 41
+#define TILE_BOX_R 42
+#define TILE_BPAR_L 43
+#define TILE_BPAR_R 44
+#define TILE_GASLAMP 45
+#define TILE_TREE_TL 46
+#define TILE_TREE_TR 47
+#define TILE_TREE_BL 48
+#define TILE_TREE_BR 49
+#define TILE_BARRIER 50
+#define SPRITE_TILE_COUNT 88
 #define SPR_PLAYER_DOWN_0 0
 #define SPR_PLAYER_DOWN_1 4
 #define SPR_PLAYER_DOWN_2 8
@@ -85,12 +102,18 @@
 #define SPR_STRANGER_0 60
 #define SPR_STRANGER_1 64
 #define SPR_CRATE 68
+#define SPR_BARGE_L 72
+#define SPR_BARGE_R 76
+#define SPR_PAINTER_0 80
+#define SPR_PAINTER_1 84
 
 #define ROOM_STREET 0
 #define ROOM_ENTRANCE 1
 #define ROOM_MARKET 2
 #define ROOM_CAFE 3
-#define ROOM_COUNT 4
+#define ROOM_QUAI 4
+#define ROOM_PONT 5
+#define ROOM_COUNT 6
 
 enum {
     DLG_STRANGER_HELLO,
@@ -98,6 +121,7 @@ enum {
     DLG_STRANGER_MARKET,
     DLG_STRANGER_CRATES,
     DLG_STRANGER_PHONE,
+    DLG_STRANGER_RIVER,
     DLG_PORTER_HELLO,
     DLG_PORTER_ASK,
     DLG_PORTER_YES,
@@ -130,8 +154,13 @@ enum {
     DLG_WORKER_PHONE,
     DLG_PHONE_LOOK,
     DLG_PHONE_USE,
-    DLG_PHONE_CALL,
-    DLG_PHONE_AFTER,
+    DLG_CAFE_JETON_MORE,
+    DLG_CALL_0614,
+    DLG_CALL_4127,
+    DLG_CALL_7302,
+    DLG_CALL_2508,
+    DLG_CALL_NONE,
+    DLG_LIFT_MISS,
     DLG_SHELF,
     DLG_TABLE,
     DLG_PLAQUE,
@@ -143,6 +172,16 @@ enum {
     DLG_PAVILION,
     DLG_CRATES,
     DLG_COLUMN,
+    DLG_QUAI_BOX,
+    DLG_QUAI_BOX2,
+    DLG_GASLAMP,
+    DLG_TREE,
+    DLG_RIVER,
+    DLG_QUAI_SHOP,
+    DLG_PAINTER_HELLO,
+    DLG_PAINTER_AGAIN,
+    DLG_BARRIER,
+    DLG_WATCH_WATER,
     DLG_COUNT
 };
 
@@ -150,6 +189,7 @@ extern const palette_color_t bg_palettes[32];
 extern const palette_color_t spr_palettes[32];
 extern const uint8_t font_tiles[];
 extern const uint8_t env_tiles[];
+extern const uint8_t water_frames[];   /* 2 tiles, swapped into TILE_WATER */
 extern const uint8_t sprite_tiles[];
 extern const uint8_t * const room_tiles[ROOM_COUNT];
 extern const uint8_t * const room_attrs[ROOM_COUNT];
@@ -170,5 +210,10 @@ extern const uint8_t txt_pause_1[];
 extern const uint8_t txt_pause_2[];
 extern const uint8_t txt_dmg_1[];
 extern const uint8_t txt_dmg_2[];
+extern const uint8_t txt_lift_1[];
+extern const uint8_t txt_lift_2[];
+extern const uint8_t txt_dial_1[];
+extern const uint8_t txt_dial_2[];
+extern const uint8_t txt_digits[];
 
 #endif
