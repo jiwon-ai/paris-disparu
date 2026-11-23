@@ -146,6 +146,7 @@ uint8_t cups_update(void) {
             c_timer = 8;
             if (++c_swaps == 7) {
                 c_phase = 2;
+                for (c_timer = 1; c_timer < 19; c_timer++) set_win_tile_xy(c_timer, 1, GLYPH_SPACE);
                 box_print(1, 1, txt_cup_pick);
                 cups_draw(0xFF, 0xFF, 0);
             }
