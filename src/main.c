@@ -198,6 +198,8 @@ static void title_screen(void) {
         for (f = 0; f < 8; f++) wait_vbl_done();
         title_fade(y);
     }
+    bkg_fill_row(MAP_H - 1, GLYPH_SPACE, 5);      /* creator credit, bottom row */
+    bkg_text_centered(MAP_H - 1, txt_title_6);
 
     while (1) {
         wait_vbl_done();

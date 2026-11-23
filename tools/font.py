@@ -124,6 +124,8 @@ GLYPHS = {
     "+": [".....", "..#..", "..#..", "#####", "..#..", "..#.."],
     "=": [".....", ".....", "#####", ".....", "#####"],
     "°": [".##..", "#..#.", ".##.."],
+    # Copyright sign: 7 columns wide (fills columns 0-6 of the tile).
+    "©": ["..###..", ".#...#.", "#..##.#", "#.#...#", "#..##.#", ".#...#.", "..###.."],
     # UI symbols (not typed in dialogue text; referenced by name in code).
     "▼": [".....", ".....", ".....", "#####", ".###.", "..#.."],
     "▶": [".#...", ".##..", ".###.", ".####", ".###.", ".##..", ".#..."],
@@ -138,6 +140,9 @@ def glyph_rows(ch):
     out = []
     for r in range(8):
         src = rows[r] if r < len(rows) else "....."
+        if len(src) > 5:                       # wide symbol: no left margin
+            out.append((src + "........")[:8])
+            continue
         src = (src + ".....")[:5]
         out.append("." + src + "..")
     return out

@@ -16,21 +16,21 @@
 #define DLG_BANK 2     /* bank of src/dialogue_text.c */
 #define TITLE_BANK 3   /* bank of src/title_art.c */
 #define FONT_BASE 128
-#define FONT_TILE_COUNT 112
+#define FONT_TILE_COUNT 113
 #define GLYPH_SPACE 128
-#define GLYPH_ARROW_DOWN 227
-#define GLYPH_ARROW_RIGHT 228
-#define GLYPH_BOX_TL 229
-#define GLYPH_BOX_T 230
-#define GLYPH_BOX_TR 231
-#define GLYPH_BOX_L 232
-#define GLYPH_BOX_R 233
-#define GLYPH_BOX_BL 234
-#define GLYPH_BOX_B 235
-#define GLYPH_BOX_BR 236
-#define GLYPH_BAR 237
-#define GLYPH_BAR_ZONE 238
-#define GLYPH_BAR_CURSOR 239
+#define GLYPH_ARROW_DOWN 228
+#define GLYPH_ARROW_RIGHT 229
+#define GLYPH_BOX_TL 230
+#define GLYPH_BOX_T 231
+#define GLYPH_BOX_TR 232
+#define GLYPH_BOX_L 233
+#define GLYPH_BOX_R 234
+#define GLYPH_BOX_BL 235
+#define GLYPH_BOX_B 236
+#define GLYPH_BOX_BR 237
+#define GLYPH_BAR 238
+#define GLYPH_BAR_ZONE 239
+#define GLYPH_BAR_CURSOR 240
 
 #define ENV_TILE_COUNT 55
 #define TILE_SKY 0
@@ -374,6 +374,7 @@ extern const uint8_t txt_next_5[];
 extern const uint8_t txt_next_6[];
 extern const uint8_t txt_next_7[];
 extern const uint8_t txt_next_8[];
+extern const uint8_t txt_title_6[];
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];
