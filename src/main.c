@@ -48,6 +48,10 @@ static uint8_t cat_wp, cat_run;
 
 static void update_cat(void) {
     int16_t tx, ty;
+    if (cur_room == ROOM_CAFE && (game_flags & FLAG_CAT_GONE)) {   /* asleep in the corner */
+        sprite16(CAT_OAM, 4, 118, SPR_CAT_SIT, 7);
+        return;
+    }
     if (cur_room != ROOM_STREET || (game_flags & FLAG_CAT_GONE)) {
         move_sprite(CAT_OAM, 0, 0);
         move_sprite(CAT_OAM + 1, 0, 0);
@@ -311,15 +315,17 @@ static void open_dialogue(uint8_t d) {
             goal_print(2);                 /* what to do next, at a glance */
             caption_timer = 240;
             sound_confirm();
-        } else if (new_extra) {  /* a side goal done */
-            new_extra = 0;
+        } else if (new_extra | new_secret) {   /* a side goal done, or a secret */
+            uint8_t sec = new_secret;
+            new_extra = new_secret = 0;
             box_open(4);
-            box_print(1, 1, txt_extra_done);
-            set_win_tile_xy(15, 1, txt_digits[extra_total()]);
-            box_print(16, 1, txt_extra_of);
+            box_print(1, 1, sec ? txt_secret_done : txt_extra_done);
+            set_win_tile_xy(15, 1, txt_digits[sec ? secret_total() : extra_total()]);
+            box_print(16, 1, sec ? txt_secret_of : txt_extra_of);
             box_print(1, 2, txt_extra_more);
             caption_timer = 240;
-            sound_confirm();
+            if (sec) fanfare = 16;         /* a little two-note "ding" */
+            else sound_confirm();
         }
     } else {
         cur_dialogue = d;

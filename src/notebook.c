@@ -86,6 +86,8 @@ void extras_show(void) {
     }
     box_print(1, 13, txt_x_note_1);
     box_print(1, 14, txt_x_note_2);
+    box_print(1, 15, txt_secrets);
+    set_win_tile_xy(15, 15, txt_digits[secret_total()]);
     box_print(1, 17, txt_nb_prev);
     box_print(14, 17, txt_nb_close);
 }
@@ -119,6 +121,8 @@ void end_show(void) {
     box_print(1, 10, txt_end_7);
     box_print(1, 11, txt_end_8);
     box_print(1, 12, txt_end_9);
+    box_print(1, 13, txt_secrets);
+    set_win_tile_xy(15, 13, txt_digits[secret_total()]);
     box_print(1, 14, txt_end_10);
     box_print(1, 16, txt_end_11);
 }

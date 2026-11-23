@@ -5,6 +5,36 @@
 # All characters and situations are fictional (see docs/HISTORICAL_RESEARCH.md).
 # French place names, signs and a few words (jeton, Monsieur) are kept on purpose.
 
+# ---------------------------------------------------------------- secrets
+# Hidden things found by poking around (secret_flags). Keep the seven hotspot
+# secrets together and in this order: their bit is id - DLG_SECRET_COIN.
+[secret_coin]
+Between two cobbles, something shines: a little coin! You make a wish and keep it.
+
+[secret_eyes]
+In the dark of the covered street, two green eyes blink. A market cat, guarding a cabbage leaf like a treasure.
+
+[secret_heart]
+Someone has scratched a tiny heart into the cast iron. Inside it: J + M.
+
+[secret_cat]
+The cat from the street! Curled up in the corner, warm and purring. It opens one eye, then purrs louder.
+
+[secret_pigeon]
+A pigeon with a crust of bread bigger than its head. It hops away. It will not share.
+
+[secret_mascaron]
+Along the cornice, carved stone faces grin at the river. One of them seems to wink at you.
+
+[secret_mouse]
+A tiny mouse scurries along the white tiles… and slips under the gate. No ticket!
+
+[secret_knock]
+Knock, knock, knock. A window flies open: "THREE IN THE MORNING! Some people sleep!" Bang. The snoring starts again.
+
+[secret_moth]
+You stare at the lamp for a long time. A moth stares back. Neither of you blinks first.
+
 # ---------------------------------------------------------------- the stranger
 [stranger_hello]
 MAN WITH NOTEBOOK: Every night at three, Fernand's yellow hat goes by. Tonight: nothing. Noted.

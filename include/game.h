@@ -73,6 +73,16 @@ extern uint8_t extra_flags;
 extern uint8_t new_extra;      /* an extra was just completed: show a note */
 uint8_t extra_total(void);
 
+/* Hidden secrets (secret_flags bits 0-8): seven spots to examine
+   (DLG_SECRET_COIN.., bit = id - DLG_SECRET_COIN), knocking three times on
+   the hotel door, staring five times at a street lamp. */
+#define SECRET_COUNT 9
+#define SECRET_KNOCK 7
+#define SECRET_MOTH  8
+extern uint16_t secret_flags;
+extern uint8_t new_secret;     /* a secret was just found: show a note */
+uint8_t secret_total(void);
+
 /* Main quests: each is completed by the clue it rewards. */
 #define QUEST_COUNT 5               /* rush, who wrote, crates, plate, Fernand */
 #define QF_ROUX     0x01            /* Mme Roux asked for a gratinee */

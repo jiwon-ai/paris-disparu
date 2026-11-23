@@ -15,6 +15,7 @@ static const hotspot_t street_hotspots[] = {
     {  2, 9, 1, 2, DLG_LAMP },
     { 10, 9, 1, 2, DLG_LAMP },
     { 18, 9, 1, 2, DLG_LAMP },
+    {  7, 11, 1, 1, DLG_SECRET_COIN },  /* a coin in the gutter */
     {  0, 7, 6, 2, DLG_CAFE_WINDOW },
     {  8, 7, 6, 2, DLG_SHOP },
 };
@@ -31,7 +32,7 @@ static const hotspot_t entrance_hotspots[] = {
     {  5, 6, 3, 1, DLG_CART_LOOK },   /* the cart: handled by events */
     { 13, 9, 2, 2, DLG_CRATES },
     { 10, 12, 5, 1, DLG_METRO_SIGN },
-    {  0, 7, 4, 2, DLG_COVERED },     /* covered street, west group */
+    {  0, 7, 4, 2, DLG_SECRET_EYES },  /* covered street, west group: a cat's eyes */
     { 16, 12, 4, 2, DLG_COVERED },    /* covered street, east group */
     {  0, 0, 4, 18, DLG_PAVILION },
     { 16, 0, 4, 18, DLG_PAVILION },
@@ -50,7 +51,7 @@ static const hotspot_t market_hotspots[] = {
     {  7, 3, 6, 3, DLG_STALL_POMMES },
     { 14, 3, 6, 3, DLG_STALL_CAROTTES },
     {  4, 9, 1, 2, DLG_COLUMN },
-    { 16, 9, 1, 2, DLG_COLUMN },
+    { 16, 9, 1, 2, DLG_SECRET_HEART },
     {  1, 13, 2, 2, DLG_CRATES },
 };
 static const door_t market_doors[] = {
@@ -68,6 +69,7 @@ static const hotspot_t cafe_hotspots[] = {
     {  1, 1, 12, 3, DLG_SHELF },
     {  3, 10, 2, 1, DLG_TABLE },
     { 14, 11, 2, 1, DLG_SOUP },
+    {  0, 15, 2, 2, DLG_SECRET_CAT },  /* the street cat, once it has run in */
 };
 static const door_t cafe_doors[] = {
     { 9, 17, 2, 1, ROOM_STREET, 28, 72, DIR_DOWN },
@@ -88,7 +90,7 @@ static const hotspot_t quai_hotspots[] = {
     { 17, 7, 1, 1, DLG_GASLAMP },
     {  7, 11, 1, 1, DLG_GASLAMP },
     { 12, 11, 1, 1, DLG_GASLAMP },
-    {  1, 10, 2, 2, DLG_TREE },
+    {  1, 10, 2, 2, DLG_SECRET_PIGEON },
     {  5, 10, 2, 2, DLG_TREE },
     { 13, 10, 2, 2, DLG_TREE },
     { 17, 10, 2, 2, DLG_TREE },
@@ -105,6 +107,7 @@ static const hotspot_t pont_hotspots[] = {
     {  7, 7, 1, 1, DLG_GASLAMP },
     { 12, 9, 1, 1, DLG_GASLAMP },
     {  8, 16, 4, 1, DLG_BARRIER },
+    {  6, 2, 2, 3, DLG_SECRET_MASCARON },
     {  6, 0, 2, 18, DLG_WATCH_WATER },    /* west parapet */
     { 12, 0, 2, 18, DLG_WATCH_WATER },    /* east parapet */
 };
@@ -118,24 +121,25 @@ static const hotspot_t metro_hotspots[] = {
     { 12, 5, 4, 2, DLG_METRO_GATE },
     {  5, 1, 10, 1, DLG_METRO_NAME },
     {  0, 0, 20, 7, DLG_METRO_TILES },
+    {  0, 16, 4, 2, DLG_SECRET_MOUSE },
 };
 static const door_t metro_doors[] = {
     { 8, 17, 4, 1, ROOM_ENTRANCE, 64, 100, DIR_LEFT },
 };
 
 const room_def_t rooms[ROOM_COUNT] = {
-    { street_npcs, 1, street_hotspots, 8, street_doors, 1,
+    { street_npcs, 1, street_hotspots, 9, street_doors, 1,
       { ROOM_ENTRANCE, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_STREET },
     { entrance_npcs, 2, entrance_hotspots, 7, entrance_doors, 2,
       { ROOM_QUAI, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_MARKET },
     { market_npcs, 1, market_hotspots, 6, market_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
-    { cafe_npcs, 2, cafe_hotspots, 5, cafe_doors, 1,
+    { cafe_npcs, 2, cafe_hotspots, 6, cafe_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
     { quai_npcs, 2, quai_hotspots, 15, 0, 0,
       { ROOM_PONT, ROOM_ENTRANCE, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
-    { pont_npcs, 2, pont_hotspots, 5, 0, 0,
+    { pont_npcs, 2, pont_hotspots, 6, 0, 0,
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
-    { metro_npcs, 1, metro_hotspots, 4, metro_doors, 1,
+    { metro_npcs, 1, metro_hotspots, 5, metro_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
 };

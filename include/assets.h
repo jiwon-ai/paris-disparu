@@ -140,6 +140,15 @@
 #define ROOM_COUNT 7
 
 enum {
+    DLG_SECRET_COIN,
+    DLG_SECRET_EYES,
+    DLG_SECRET_HEART,
+    DLG_SECRET_CAT,
+    DLG_SECRET_PIGEON,
+    DLG_SECRET_MASCARON,
+    DLG_SECRET_MOUSE,
+    DLG_SECRET_KNOCK,
+    DLG_SECRET_MOTH,
     DLG_STRANGER_HELLO,
     DLG_STRANGER_KNOWS,
     DLG_STRANGER_AGAIN,
@@ -381,6 +390,9 @@ extern const uint8_t txt_nb_prev[];
 extern const uint8_t txt_extra_done[];
 extern const uint8_t txt_extra_of[];
 extern const uint8_t txt_extra_more[];
+extern const uint8_t txt_secret_done[];
+extern const uint8_t txt_secret_of[];
+extern const uint8_t txt_secrets[];
 extern const uint8_t txt_x_title[];
 extern const uint8_t txt_x_todo[];
 extern const uint8_t txt_x_done[];

@@ -112,3 +112,23 @@ runs ahead in short dashes to the café door, and the game says "Follow!".
 
 ## Controls
 D-pad walk · A (or START) talk/examine/confirm/next page · B close · START notebook.
+
+
+## Secrets (9)
+
+Found by examining things (A) or by insisting. Each shows "Secret found! n/9";
+the notebook (page 2) and the end screen count them. All are fiction except
+the Pont Neuf mascarons (carved stone faces on the cornice: Musée Carnavalet,
+"Mascaron du Pont Neuf"; Atlas Obscura).
+
+| # | Where | How |
+|---|---|---|
+| 1 | rue Rambuteau | the gutter (curb, x7): a coin |
+| 2 | rue Rambuteau | examine a street lamp 5 times in a row: a moth |
+| 3 | rue Rambuteau | examine the hotel door 3 times in a row: someone shouts |
+| 4 | rue Baltard | the dark covered street (west): a cat's eyes |
+| 5 | pavilion | the right-hand column: a carved heart "J + M" |
+| 6 | café | the street cat, asleep in the corner (after it ran in) |
+| 7 | quai | the left-most tree: a pigeon |
+| 8 | Pont Neuf | the west parapet near the top: carved faces |
+| 9 | métro | the bottom-left wall: a mouse without a ticket |

@@ -161,7 +161,7 @@ def dialogue(choice=None, max_pages=12):
     lines = []
     tick(70)
     for _ in range(max_pages):
-        if not window_on() or window_row(1).startswith(("Dial", "Lift!", "Punch!", "New clue", "Extra done", "QUEST COMPLETE",
+        if not window_on() or window_row(1).startswith(("Dial", "Lift!", "Punch!", "New clue", "Extra done", "Secret found", "QUEST COMPLETE",
                                                         "Coffee rush", "Watch the", "Which cup", "Got ")) \
                 or window_row(2) == "THE END":
             break
@@ -298,6 +298,22 @@ def get_jeton():
 
 
 # ----------------------------------------------------------------------------
+DEBUG = 0
+def player_dir():
+    return mem[sym["_player"] + 4]
+
+
+def secret(expect, n, presses=1):
+    """Examine what the player faces (presses times); the last look is secret n/9."""
+    for _ in range(presses):
+        tap("a", 0)
+        lines = dialogue()
+        if DEBUG: print("   press", player(), player_dir(), lines[:1], window_on() and window_row(1))
+    check(any(expect in l for l in lines) and window_on() and "Secret found" in window_row(1)
+          and "%d/9" % n in window_row(1), "secret %d: %r -> %s %r" % (n, expect, lines[:1], window_row(1)))
+    tap("b", 4)
+
+
 def street_to_baltard():
     goto(88, 120, "xy")
     push("down")
@@ -408,8 +424,27 @@ check("4127" in window_row(13), "the notebooks' number is written down: %r" % wi
 tap("start", 10)
 check(not window_on(), "START closes the notebook")
 
+print("secrets in rue Rambuteau")
+goto(52, 86, "yx")
+tap("up", 2)
+secret("coin", 1)
+goto(14, 82, "yx")
+push("up")
+secret("moth", 2, presses=5)
+goto(76, 90, "yx")
+push("up")
+secret("Knock", 3, presses=3)
+tap("start", 10)
+tap("right", 10)
+check("Secrets found 3/9" in window_row(15), "the notebook counts the secrets: %r" % window_row(15))
+tap("start", 10)
+
 print("rue Baltard: Dede and Fernand's crates")
 street_to_baltard()
+goto(88, 56, "xy")
+goto(32, 56, "xy")
+push("left")
+secret("covered street", 4)
 shot("07_entrance")
 goto(88, 80, "xy")
 goto(32, 80, "xy")
@@ -507,6 +542,9 @@ push("up")
 talk("My cabbages")
 push("left")
 talk("The price")               # the merchant herself
+goto(110, 66, "xy")
+push("right")
+secret("tiny heart", 5)
 to_entrance()
 fetch_crate("apples")
 to_market()
@@ -542,6 +580,10 @@ print("the cafe: the coltin, the telephone, the petit bleu")
 baltard_to_street()
 street_to_cafe()
 shot("05_cafe")
+goto(14, 112, "yx")
+tap("left", 2)
+secret("cat from", 6)
+goto(72, 100, "xy")
 push("up")
 check(player()[1] == 38, "stopped by the counter (y=%d)" % player()[1])
 tap("a", 0)
@@ -572,6 +614,9 @@ cafe_to_street()
 
 print("the Seine")
 street_to_quai()
+goto(4, 60, "yx")
+push("down")
+secret("pigeon", 7)
 shot("10_quai")
 goto(100, 60, "yx")
 push("right")
@@ -596,6 +641,10 @@ x0 = mem[0xFE00 + 36 * 4 + 1]
 tick(60)
 x1 = mem[0xFE00 + 36 * 4 + 1]
 check(x0 != x1, "the barge moves (%d -> %d)" % (x0, x1))
+goto(64, 16, "xy")
+push("left")
+secret("cornice", 8)
+goto(72, 16, "xy")
 push("down")
 check(player()[1] < 72, "the painter blocks the middle of the deck (y=%d)" % player()[1])
 talk("big fellow")
@@ -661,6 +710,9 @@ shot("19_extras")
 tap("start", 10)
 shot("18_punch")
 talk("Porte des Lilas")
+goto(12, 100, "yx")
+push("down")
+secret("tiny mouse", 9)
 goto(76, 100, "xy")
 push("down")
 check(room() == ROOM_ENTRANCE and player() == (64, 100), "back up the steps to rue Baltard (room %d %s)" % (room(), player()))
@@ -725,7 +777,7 @@ lines = dialogue(choice=0, max_pages=40)
 check(any("My coltin" in l for l in lines), "Fernand opens up: %d pages" % len(lines))
 check(any("two winters" in l for l in lines), "ending: he stays for the last winters")
 check(any("full of holes" in l for l in lines), "every extra done: the photographer's bonus scene")
-check(window_on() and window_row(2) == "THE END" and "6/6" in window_row(4) and "3/3" in window_row(5),
+check(window_on() and window_row(2) == "THE END" and "6/6" in window_row(4) and "3/3" in window_row(5) and "9/9" in window_row(13),
       "end screen: %r %r %r" % (window_row(2), window_row(4), window_row(5)))
 check(flags() & FLAG_SOLVED, "mystery solved (FLAG_SOLVED)")
 shot("14_end")

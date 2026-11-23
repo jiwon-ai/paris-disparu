@@ -13,6 +13,9 @@ uint8_t extra_flags;
 uint8_t new_extra;
 uint8_t quest_flags;
 uint8_t new_quest;
+uint16_t secret_flags;
+uint8_t new_secret;
+static uint8_t last_look, look_count;   /* the same thing examined n times in a row */
 
 /* The clue that completes each quest (the last one is the ending). */
 static const uint8_t quest_clue[QUEST_COUNT - 1] = { CLUE_COLTIN, CLUE_BLEU, CLUE_RUNGIS, CLUE_PLATE };
@@ -54,6 +57,22 @@ static void extra(uint8_t x) {
 uint8_t extra_total(void) {
     uint8_t n = 0, x;
     for (x = extra_flags & X_ALL; x; x >>= 1) n += x & 1;
+    return n;
+}
+
+static uint8_t secret(uint8_t n, uint8_t dlg) {
+    uint16_t bit = (uint16_t)1 << n;
+    if (!(secret_flags & bit)) {
+        secret_flags |= bit;
+        new_secret = 1;
+    }
+    return dlg;
+}
+
+uint8_t secret_total(void) {
+    uint8_t n = 0;
+    uint16_t x;
+    for (x = secret_flags; x; x >>= 1) n += x & 1;
     return n;
 }
 
@@ -258,6 +277,14 @@ static uint8_t deliver(uint8_t stall, uint8_t ok_dlg, uint8_t wrong_dlg, uint8_t
 }
 
 uint8_t event_examine(uint8_t id) {
+    if (id == last_look) look_count++;
+    else { last_look = id; look_count = 1; }
+    if ((uint8_t)(id - DLG_SECRET_COIN) <= DLG_SECRET_MOUSE - DLG_SECRET_COIN) {
+        if (id == DLG_SECRET_CAT && !HAS(FLAG_CAT_GONE)) return NO_DIALOGUE;   /* not in yet */
+        return secret(id - DLG_SECRET_COIN, id);
+    }
+    if (id == DLG_HOTEL && look_count == 3) return secret(SECRET_KNOCK, DLG_SECRET_KNOCK);
+    if (id == DLG_LAMP && look_count == 5) return secret(SECRET_MOTH, DLG_SECRET_MOTH);
     switch (id) {
     case DLG_CART_LOOK:
         if (!HAS(FLAG_TASK_ACTIVE)) return crates_taken == 3 ? DLG_CART_EMPTY : DLG_CART_LOOK;

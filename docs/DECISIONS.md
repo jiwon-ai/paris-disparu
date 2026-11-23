@@ -5,6 +5,7 @@ Newest first. Dates are 2026.
 
 | Date | Feedback / decision | What changed |
 |---|---|---|
+| 11-23 | Hidden things to find by poking around (cute) | 9 secrets: 7 spots (coin, cat's eyes, carved heart, the cat asleep in the café, pigeon, Pont Neuf faces, metro mouse) + 2 gags (knock 3x on the hotel door, stare 5x at a lamp); "Secret found! n/9" with a two-note ding; count in the notebook and on the end screen |
 | 11-23 | Record everything on GitHub | Every change is committed to `dev` with docs; this log |
 | 11-23 | Show the real Les Halles of the 1960s | Research in docs/VANISHED_PARIS_DATABASE.md (PR #2). Maps now follow it: rue Rambuteau (north, Saint-Eustache's east end) → rue Baltard between the pavilion groups → south to the quai and the Pont Neuf |
 | 11-23 | Cuter graphics, more game features (inventory, money, save, run, map, album) | Planned after the quest rework |
