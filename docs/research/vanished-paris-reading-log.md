@@ -39,3 +39,19 @@ Raw notes of pages actually read on 2026-11-23 (via a fetch tool; secondary sour
 - napoleon.org Baltard Pavilion: east section 1854-58, west 1860-74; pav. 8 egg & poultry; demolition began 2 Aug 1970; pav 8 dismantled 1972, rebuilt Nogent 1976, opened 1977.
 - paris.fr Ce que Paris doit à Baltard: pavilions housed butchers, fishmongers, cheesemongers, market gardeners...; glass, cast iron, brick, iron; 1852-1870; first pavilion poultry 1853; Saint-Eustache restored, reinaugurated 1860.
 - paris.fr Gautrand: photographed demolition Aug-Oct 1971; photos at Musée Carnavalet.
+# Batch F (read)
+- Métro 1st class (pariszigzag metro-rer-premiere-classe): since 1900; 1st-class cars recognisable by yellow markings, generally at ends of trains; supplement modest; ended on métro 1 Aug 1991 (Slate: 30 Jul 1991 17h); RER A 1999. Slate: 1900 2nd 15c, 1st 25c, 1st ticket red or turquoise; leather banquettes vs wooden slats; abolished 1946, restored 1948; 1982 2nd allowed in 1st at peak.
+- Bercy (en.wiki Wine warehouses): until 1960s blended wine enriched merchants, then decline; 1964 leases not renewed, modernisation prohibited; barrels by boat, later wagons-foudres; 9.48 km of track; 1979 arena; last cellars destroyed 1993.
+- Vaugirard horse market (pariszigzag): moved to 15e 1907 next to Vaugirard abattoirs (since 1898); market closed 1976; halls destroyed early 1980s; horse-head gate rue Brancion; book market since 1987.
+- VéloSoleX (en.wiki): mass-produced 1946-1988; 7-8M sold; popular with schoolchildren, students, plant workers; S3800 1966 most sold; black frame; "la bicyclette qui roule toute seule".
+- Bal musette (INA fresques Dasavi00705): born early 20th c., mainly rue de Lappe (Bastille), Balajo; accordion + percussion + double bass; cramped, couples danced tightly; decline not stated.
+- Bains-douches (INED 2017): 16 free facilities, 500 showers today; 67% of users lack shower. 1960s figures not stated.
+- Kiosques (paris.fr): first 1857 Grands Boulevards, lit; Hachette bought AAP 1948. 1960s / criers not stated.
+# Halles night, batch (read)
+- Au Chien qui Fume (sortiraparis 334662): 33 rue du Pont-Neuf, opposite Baltard pavilions, haunt of forts; early-morning clientele, pot-au-feu, wine.
+- Au Pied de Cochon (sortiraparis 334703): opened 1947 at 6 rue Coquillière next to market; first non-stop day+night brasserie; pig's trotters gribiche, onion soup etc.
+- Bonjour Paris (Becquiot 2013, author's own 1965 memory): "Back in 1965, the wholesale market ... began functioning at 9 in the evening and continued until retail vendors took over at 8 am"; butchers in splattered white with hooks & carcasses; women shouting with lettuces; kiosk open 4:30, bundles of papers; all-night bistro, Gitanes smell; onion soup from midnight after shows; espresso, tartines, calvados at dawn; forts carry 400 lbs 65 yards; 12 pavilions.
+- Saveur (Wetherall 2009): pavilions poultry & game, tripe/offal, fish & shellfish, meat, B.O.F. (butter-eggs-cheese), fruit & veg, flowers; 20 h/day 365 days; meat cutter worked 1am-11am, coffee at 3, big meal at 5; first pavilions emptied early 1 Mar 1969; Chez Clovis rue Berger; Chez Denise (Tour de Montlhéry) taken over 1966; Aux Tonneaux des Halles behind St-Eustache on rue Montorgueil.
+- INA mediaclip i21307814 (14 Jan 1969, ORTF): Doisneau photo report on Halles at night months before transfer.
+- chezjim Paris Food History walk: oyster market once on rue Montorgueil; Au Pied de Cochon 6 rue Coquillière all night; Le Pharamond 24 rue de la Grande-Truanderie (tripes à la mode de Caen, workers early morning); Au Père Tranquille 16 rue Pierre-Lescot (workers downstairs, partiers upstairs); Chien qui Fume 33 rue du Pont-Neuf; market closed 1969.
+- sortiraparis 338865: up to 20,000 workers/day; trucks, wheelbarrows, merchants shouting, coffee & croissants smell.
