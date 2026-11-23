@@ -34,6 +34,9 @@ jobs:
       - name: Gameplay test (PyBoy, headless)
         run: python3 tests/play_test.py build/paris-disparu.gbc
 
+      - name: Player visible in every area (PyBoy)
+        run: python3 tests/visibility_test.py build/paris-disparu.gbc
+
       - uses: actions/upload-artifact@v4
         with:
           name: paris-disparu-rom

@@ -20,5 +20,6 @@ void player_unstick(void);
 uint8_t player_interact(void); /* hotspot id / TALK(npc) in front, or NO_DIALOGUE */
 void actors_draw(void);
 void actors_hide(void);
+void sprite16(uint8_t oam, int16_t x, int16_t y, uint8_t tile, uint8_t prop);  /* free 16x16 sprite */
 
 #endif

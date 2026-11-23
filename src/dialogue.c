@@ -131,7 +131,7 @@ uint8_t dialogue_update(void) {
             draw_choice();
             sound_blip();
         }
-        if (joy_pressed & J_A) {
+        if (joy_pressed & (J_A | J_START)) {
             box_close();
             return 0;
         }
@@ -139,7 +139,7 @@ uint8_t dialogue_update(void) {
     }
 
     if (pos < PAGE_SIZE) {
-        if (joy_pressed & J_A) {
+        if (joy_pressed & (J_A | J_START)) {
             /* Reveal the rest of the page at once. */
             uint8_t y;
             for (y = 0; y < TEXT_ROWS; y++)
@@ -161,7 +161,7 @@ uint8_t dialogue_update(void) {
     blink++;
     set_win_tile_xy(MAP_W - 2, DLG_ROWS - 1,
                     (blink & 0x10) ? GLYPH_BOX_B : GLYPH_ARROW_DOWN);
-    if (joy_pressed & J_A) {
+    if (joy_pressed & (J_A | J_START)) {
         if (pages_left == 0) {
             if (choice) {
                 clear_text();

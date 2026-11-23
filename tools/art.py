@@ -403,6 +403,32 @@ PHOTOGRAPHER = [
     ".....##..##.....",
     "....###..###....",
 ]
+# The cafe cat (side view, facing left): sitting and running.
+CAT_SIT = ["................"] * 5 + [
+    "..#...#.........",
+    ".#o#.#o#........",
+    ".#ooooo#........",
+    ".#sosos#........",
+    ".#ooooo#.....#..",
+    "..#ooo#.....#o#.",
+    "..#ooooo#...#o#.",
+    ".#ooooooo#.#o#..",
+    ".#ooooooo##o#...",
+    ".#oo#oo#ooo#....",
+    "..##.##.###.....",
+]
+CAT_RUN = ["................"] * 6 + [
+    "..#...#.........",
+    ".#o#.#o#........",
+    ".#ooooo#######..",
+    ".#sosooooooooo##",
+    "..#oooooooooo#..",
+    "...#oo##oo##o#..",
+    "..#o#..#o#.#o#..",
+    "..##...##...##..",
+    "................",
+    "................",
+]
 CRATE = [
     "................",
     "................",
@@ -493,4 +519,6 @@ SPRITE_FRAMES = [
     ("FERNAND_1", FERNAND_IDLE),
     ("PHOTO_0", PHOTOGRAPHER),
     ("PHOTO_1", bob(PHOTOGRAPHER)),
+    ("CAT_SIT", CAT_SIT),
+    ("CAT_RUN", CAT_RUN),
 ]

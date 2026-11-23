@@ -33,8 +33,10 @@ is being built; Fernand's friend Marcel went to see it and is giving up.
 | He fears Rungis | Germaine, after you carry Fernand's crates for Dédé | the crate task |
 
 Fernand stands bareheaded on the bridge (no coltin, no plate on his
-blouse) but only says "Leave me be" until the player has the coltin, the
-petit bleu and the plate. Then he asks what the player would do:
+blouse). Until the player has the coltin, the petit bleu and the plate he
+says what is still missing (his hat at Simone's; who wrote to him; the plate
+sold "on the quai, by the books"), and the notebook goal names the next step
+(phone 4127 / tell Simone / look by the river / phone 7302). Then he asks what the player would do:
 **Stay** (spend the last winters under the glass) or **Go with** (follow
 the market to Rungis). Both bring him back to the café. End screen: clues
 found (n/6), 3 March 1969 move, pavilions gone in the 1970s, pneumatique
@@ -62,5 +64,11 @@ closed in 1984. B before the question cancels the scene.
   The game does not explain; asking Simone gets a token. Using it dials a
   wrong number (the butcher's), and the token does not come back.
 
+## Opening (first minute)
+Title, then a 3-page skippable intro (setting, tonight's goal, controls; A next,
+B/START skip). The player starts next to the café with a one-line goal on
+screen ("Find Fernand, the missing porter!"). A cat sits nearby: walk up and it
+runs ahead in short dashes to the café door, and the game says "Follow!".
+
 ## Controls
-D-pad walk · A talk/examine/confirm · B close · START pause.
+D-pad walk · A (or START) talk/examine/confirm/next page · B close · START notebook.

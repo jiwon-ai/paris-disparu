@@ -40,6 +40,7 @@
 #define FLAG_MET_WORKER     0x0800
 #define FLAG_SOLVED         0x1000  /* Fernand found and answered: the ending plays */
 #define FLAG_MET_PHOTO      0x4000
+#define FLAG_CAT_GONE       0x8000  /* the cat has led the player to the cafe */
 #define FLAG_MET_PAINTER    0x2000
 
 extern uint16_t game_flags;

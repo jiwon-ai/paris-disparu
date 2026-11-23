@@ -59,13 +59,23 @@ static uint8_t blocked(int16_t x, int16_t y) {
     return 0;
 }
 
-/* After a room change, step down (or up) until the feet are on free ground. */
+/* After a room change, find free ground for the feet: first straight down
+   or up (up to 48 px), then sideways along the entry row. Entering the quai
+   or the bridge from the side of the opening used to leave the player
+   inside a wall, pushed off the top of the screen: invisible. */
 void player_unstick(void) {
+    int16_t y0 = player.y, x0 = player.x;
     uint8_t i;
     for (i = 0; i < 48 && blocked(player.x, player.y); i++) player.y++;
     if (i < 48) return;
-    player.y -= 48;
+    player.y = y0;
     for (i = 0; i < 48 && blocked(player.x, player.y); i++) player.y--;
+    if (i < 48 && player.y >= -9) return;
+    player.y = y0;
+    for (i = 1; i < SCREEN_W; i++) {
+        if (x0 + i <= SCREEN_W - 13 && !blocked(x0 + i, y0)) { player.x = x0 + i; return; }
+        if (x0 - i >= -3 && !blocked(x0 - i, y0)) { player.x = x0 - i; return; }
+    }
 }
 
 uint8_t player_update(void) {
@@ -192,6 +202,10 @@ void actors_draw(void) {
             draw16(oam, n->x, n->y, n->frame + f * 4, n->palette);
         }
     }
+}
+
+void sprite16(uint8_t oam, int16_t x, int16_t y, uint8_t tile, uint8_t prop) {
+    draw16(oam, x, y, tile, prop);
 }
 
 void actors_hide(void) {

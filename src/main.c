@@ -23,6 +23,52 @@ static uint16_t caption_timer;  /* opening caption: closes when it reaches 0 */
 static uint8_t bark_from;       /* NPC index whose line is on screen, or NO_BARK */
 static uint8_t bark_armed;      /* bit n: NPC n of this room may call out again */
 static uint16_t ambience_timer;
+
+/* The cafe cat: sits in the street at the start and, when the player comes
+   near, darts away along the pavement to the cafe door and slips inside.
+   A first thing to do that needs no reading, and it shows the way. */
+#define CAT_OAM 12
+static const int16_t cat_path[][2] = { { 56, 92 }, { 44, 92 }, { 36, 84 }, { 30, 76 }, { 30, 62 } };
+#define CAT_STEPS 5
+int16_t cat_x = 56, cat_y = 92;
+static void close_caption(void);
+static uint8_t cat_wp, cat_run;
+
+static void update_cat(void) {
+    int16_t tx, ty;
+    if (cur_room != ROOM_STREET || (game_flags & FLAG_CAT_GONE)) {
+        move_sprite(CAT_OAM, 0, 0);
+        move_sprite(CAT_OAM + 1, 0, 0);
+        return;
+    }
+    if (!cat_run) {
+        int16_t dx = player.x - cat_x, dy = player.y - cat_y;
+        if (dx > -28 && dx < 28 && dy > -28 && dy < 28) {
+            cat_run = 1;
+            sound_clink();                 /* a startled little mew */
+        }
+    }
+    if (cat_run) {
+        tx = cat_path[cat_wp][0];
+        ty = cat_path[cat_wp][1];
+        if (cat_x < tx) cat_x++; else if (cat_x > tx) cat_x--;
+        if (cat_y < ty) cat_y++; else if (cat_y > ty) cat_y--;
+        if (cat_x == tx && cat_y == ty) {
+            if (++cat_wp == CAT_STEPS) {   /* in through the cafe door */
+                game_flags |= FLAG_CAT_GONE;
+                close_caption();
+                box_open(4);
+                box_print(1, 1, txt_cat_gone);
+                box_print(1, 2, txt_cat_gone_2);
+                caption_timer = 240;
+                sound_clink();
+                return;
+            }
+            cat_run = cat_wp < 2;          /* pauses on the way: catch up! */
+        }
+    }
+    sprite16(CAT_OAM, cat_x, cat_y, cat_run ? SPR_CAT_RUN : SPR_CAT_SIT, 7);
+}
 static uint8_t rng = 0x5A;
 static uint8_t anim_frame;
 static uint8_t barge_x;
@@ -114,6 +160,23 @@ static void title_fade(uint8_t level) {
     SWITCH_ROM(ASSET_BANK);
     fade_buf[5 * 4 + 1] = fade_buf[5 * 4];   /* font text paper = night */
     set_bkg_palette(0, 8, fade_buf);
+}
+
+/* Setting, goal and controls on three short pages. A: next, B/START: skip. */
+static void intro(void) {
+    uint8_t page = 0;
+    intro_show(0);
+    while (1) {
+        wait_vbl_done();
+        input_update();
+        if (joy_pressed & (J_B | J_START)) break;
+        if (joy_pressed & J_A) {
+            sound_blip();
+            if (++page == 3) break;
+            intro_show(page);
+        }
+    }
+    box_close();
 }
 
 /* Key art: a night view of Les Halles (tools/title_art.py). Its tiles use
@@ -208,8 +271,9 @@ static void open_dialogue(uint8_t d) {
         state = ST_WALK;
         if (new_clue) {          /* tell the player the notebook changed */
             new_clue = 0;
-            box_open(3);
+            box_open(5);
             box_print(1, 1, txt_new_clue);
+            goal_print(2);                 /* what to do next, at a glance */
             caption_timer = 240;
             sound_confirm();
         }
@@ -336,8 +400,9 @@ void main(void) {
     DISPLAY_ON;
 
     title_screen();
+    intro();
 
-    player_place(28, 72, DIR_RIGHT);
+    player_place(84, 92, DIR_LEFT);
     enter_room(ROOM_STREET);
     box_open(4);
     box_print(1, 1, txt_caption);
@@ -377,6 +442,7 @@ void main(void) {
             }
             if (caption_timer && --caption_timer == 0) box_close();
             update_barks();
+            update_cat();
             update_ambience();
             break;
 

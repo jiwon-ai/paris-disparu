@@ -95,6 +95,7 @@ uint8_t event_talk(uint8_t npc) {
     case NPC_CAFE:
         if (!HAS(FLAG_MET_CAFE)) {      /* she hands over his coltin */
             SET(FLAG_MET_CAFE);
+            found(CLUE_CASE);
             found(CLUE_COLTIN);
             return DLG_CAFE_HELLO;
         }
@@ -124,7 +125,9 @@ uint8_t event_talk(uint8_t npc) {
         return DLG_PHOTO_AGAIN;
 
     case NPC_FERNAND:   /* he only opens up to someone who understands */
-        return (clue_flags & CLUE_READY) == CLUE_READY ? DLG_FERNAND_TALK : DLG_FERNAND_HELLO;
+        if ((clue_flags & CLUE_READY) == CLUE_READY) return DLG_FERNAND_TALK;
+        if (!CLUE(CLUE_COLTIN)) return DLG_FERNAND_HELLO;      /* says what is missing */
+        return CLUE(CLUE_BLEU) ? DLG_FERNAND_PLATE : DLG_FERNAND_WHY;
     }
     return NO_DIALOGUE;
 }

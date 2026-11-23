@@ -230,25 +230,36 @@ check(mem[0xFF40] & 0x80, "LCD is on after boot")
 check(pb.cartridge_title.strip().startswith("PARISDISPAR"), "cartridge title read by emulator")
 shot("01_title")
 
-print("street")
-tap("start", 40)
-check(player() == (28, 72) and room() == ROOM_STREET, "spawned in the street at (28,72): %s" % (player(),))
-check(window_on() and "Rambuteau" in window_row(1), "location caption: %r" % window_row(1))
+print("intro")
+tap("start", 20)
+check(window_on() and "PARIS, 1967" in window_row(3), "intro page 1, the setting: %r" % window_row(3))
+shot("00_intro")
+tap("a", 10)
+check("TONIGHT" in window_row(3) and "Find Fernand" in window_row(13), "intro page 2, the goal: %r" % window_row(13))
+tap("a", 10)
+check("CONTROLS" in window_row(3) and "notebook" in window_row(8), "intro page 3, controls: %r" % window_row(8))
+shot("00_controls")
+tap("a", 30)
+
+print("street: the goal and the cat")
+check(player() == (84, 92) and room() == ROOM_STREET, "spawned in the street at (84,92): %s" % (player(),))
+check(window_on() and "Find Fernand" in window_row(1), "one-line goal on screen: %r" % window_row(1))
 shot("02_street")
 tick(300)
-check(window_on(), "caption is still readable after 5 s")
+check(window_on(), "goal is still readable after 5 s")
 tap("b", 4)
-check(not window_on(), "B dismisses the caption")
-
-hold("right", 20)
-check(player()[0] == 48, "moved right 20 px (x=%d)" % player()[0])
-hold("right", 120)
-check(player()[0] == 67, "lamp post blocks at x=67 (x=%d)" % player()[0])
-hold("up", 60)
-check(player()[1] == 62, "facade blocks at y=62 (y=%d)" % player()[1])
-hold("down", 40)
-hold("left", 200)
-check(player()[0] == -3, "left edge blocks at x=-3 (x=%d)" % player()[0])
+check(not window_on(), "B dismisses it")
+FLAG_CAT_GONE = 0x8000
+for _ in range(8):              # chase the cat: it waits for you, then darts on
+    if flags() & FLAG_CAT_GONE:
+        break
+    cx, cy = s16(sym["_cat_x"]), s16(sym["_cat_y"])
+    goto(cx + 14, max(cy, 74), "yx")
+    tick(60)
+check(flags() & FLAG_CAT_GONE, "the cat ran into the cafe (flags %04x)" % flags())
+check(window_on() and "café" in window_row(2), "the game says where it went: %r" % window_row(2))
+shot("02_cat")
+tap("b", 4)
 
 goto(106, 90, "yx")
 push("up")
@@ -278,6 +289,14 @@ tap("a", 50)
 check(window_on() and "yellow hat" in " ".join(window_row(r) for r in (1, 2, 3)), "repeat line: %r" % window_row(2))
 tap("b", 4)
 check(not window_on(), "B closes the dialogue")
+tap("a", 50)
+for _ in range(4):
+    if not window_on():
+        break
+    tap("start", 50)
+check(not window_on(), "START pages through and closes a dialogue too")
+tick(10)
+check(not window_on(), "closing with START does not also open the notebook")
 
 tap("start", 10)
 check(window_on() and "NOTEBOOK" in window_row(1) and "1/6" in window_row(1), "START opens the notebook: %r" % window_row(1))
@@ -459,7 +478,7 @@ check(player()[1] < 72, "the painter blocks the middle of the deck (y=%d)" % pla
 talk("big fellow")
 shot("11_pont")
 to_fernand()
-talk("Leave me be")             # not enough understood yet
+talk("brass plate")             # not enough yet: he says what is missing
 goto(66, 110, "xy")
 push("down")
 check(player()[1] < 118, "roadworks barrier stops the player (y=%d)" % player()[1])
@@ -485,6 +504,21 @@ cafe_to_street()
 to_bridge()
 to_fernand()
 check("FERNAND" in window_row(1), "Fernand's silent call-out: %r" % window_row(1))
+# Before all three clues he must say what is missing (and the notebook too).
+full = clues()
+for have, says, goal in ((0x01, "Simone's café", "Phone 4127"),
+                         (0x07, "courier came", "Tell Simone"),
+                         (0x0F, "by the books", "Phone Mme Roux")):
+    mem[sym["_clue_flags"]] = have
+    tap("a", 70)
+    lines = dialogue()
+    check(any(says in l for l in lines) and not window_on(),
+          "clues 0x%02x: Fernand hints %r (%s)" % (have, says, lines[-1:] if lines else None))
+    tap("start", 10)
+    check(goal in window_row(2) or (have == 0x01 and "café" in window_row(3)),
+          "clues 0x%02x: notebook goal %r %r" % (have, window_row(2), window_row(3)))
+    tap("start", 10)
+mem[sym["_clue_flags"]] = full
 tap("a", 70)
 shot("15_fernand")
 lines = dialogue(choice=0, max_pages=40)

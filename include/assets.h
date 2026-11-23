@@ -84,7 +84,7 @@
 #define TILE_TREE_BL 48
 #define TILE_TREE_BR 49
 #define TILE_BARRIER 50
-#define SPRITE_TILE_COUNT 104
+#define SPRITE_TILE_COUNT 112
 #define PORTRAIT_BASE 64
 #define PORTRAIT_TILE_COUNT 84
 #define NO_PORTRAIT 0xFF
@@ -114,6 +114,8 @@
 #define SPR_FERNAND_1 92
 #define SPR_PHOTO_0 96
 #define SPR_PHOTO_1 100
+#define SPR_CAT_SIT 104
+#define SPR_CAT_RUN 108
 
 #define ROOM_STREET 0
 #define ROOM_ENTRANCE 1
@@ -202,6 +204,8 @@ enum {
     DLG_BARK_CAFE_JETON,
     DLG_BARK_WORKER,
     DLG_FERNAND_HELLO,
+    DLG_FERNAND_WHY,
+    DLG_FERNAND_PLATE,
     DLG_FERNAND_TALK,
     DLG_END_STAY,
     DLG_END_GO,
@@ -232,8 +236,35 @@ extern const uint8_t portrait_tiles[];
 extern const uint8_t portrait_pal[];          /* sprite palette per portrait */
 extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */
 extern const uint8_t txt_title_5[];
+extern const uint8_t txt_intro_a0[];
+extern const uint8_t txt_intro_a1[];
+extern const uint8_t txt_intro_a2[];
+extern const uint8_t txt_intro_a3[];
+extern const uint8_t txt_intro_a4[];
+extern const uint8_t txt_intro_a5[];
+extern const uint8_t txt_intro_a6[];
+extern const uint8_t txt_intro_a7[];
+extern const uint8_t txt_intro_b0[];
+extern const uint8_t txt_intro_b1[];
+extern const uint8_t txt_intro_b2[];
+extern const uint8_t txt_intro_b3[];
+extern const uint8_t txt_intro_b4[];
+extern const uint8_t txt_intro_b5[];
+extern const uint8_t txt_intro_b6[];
+extern const uint8_t txt_intro_b7[];
+extern const uint8_t txt_intro_b8[];
+extern const uint8_t txt_intro_c0[];
+extern const uint8_t txt_intro_c1[];
+extern const uint8_t txt_intro_c2[];
+extern const uint8_t txt_intro_c3[];
+extern const uint8_t txt_intro_c4[];
+extern const uint8_t txt_intro_c5[];
+extern const uint8_t txt_intro_c6[];
+extern const uint8_t txt_intro_more[];
 extern const uint8_t txt_caption[];
 extern const uint8_t txt_caption_2[];
+extern const uint8_t txt_cat_gone[];
+extern const uint8_t txt_cat_gone_2[];
 extern const uint8_t txt_new_clue[];
 extern const uint8_t txt_nb_title[];
 extern const uint8_t txt_nb_clues[];
@@ -246,6 +277,12 @@ extern const uint8_t txt_goal_1a[];
 extern const uint8_t txt_goal_1b[];
 extern const uint8_t txt_goal_2a[];
 extern const uint8_t txt_goal_2b[];
+extern const uint8_t txt_goal_4a[];
+extern const uint8_t txt_goal_4b[];
+extern const uint8_t txt_goal_5a[];
+extern const uint8_t txt_goal_5b[];
+extern const uint8_t txt_goal_6a[];
+extern const uint8_t txt_goal_6b[];
 extern const uint8_t txt_goal_3a[];
 extern const uint8_t txt_goal_3b[];
 extern const uint8_t txt_clue_0[];

@@ -7,15 +7,9 @@
 
 # ---------------------------------------------------------------- the stranger
 [stranger_hello]
-MAN WITH NOTEBOOK: Shh. I'm counting. Three lorries. One cat. One raincoat.
+MAN WITH NOTEBOOK: Every night at three, Fernand's yellow hat goes by. Tonight: nothing. Noted.
 
-I write down everything that passes in this street. Every night, for years.
-
-Every night at three, a yellow hat goes by. Fernand, fort des Halles. Thirty years.
-
-Tonight: no hat. No Fernand. That has never happened. Not once.
-
-Ask at the café. And my old notebooks are at home: my wife will read them to you. 4127.
+My old notebooks are at home. My wife reads them out. Call 4127, from the café.
 
 [stranger_knows]
 MAN WITH NOTEBOOK: You found out where he went. I can see it on your face. Noted.
@@ -117,13 +111,11 @@ GERMAINE: Move over a bit, you're hiding my cabbages.
 
 # ---------------------------------------------------------------- the cafe
 [cafe_hello]
-SIMONE: Come in, it's cold. You're looking for Fernand too?
+SIMONE: That cat! Always first in. You're looking for Fernand too?
 
-He came in at midnight. Didn't say a word. Didn't touch his coffee.
+He came in at midnight, hung his coltin on that hook and walked out bareheaded.
 
-He hung his coltin on that hook and walked out bareheaded. A fort, without his hat!
-
-Here. Take it to him, if you find him. He'll catch his death.
+A fort without his hat! Take it to him, if you find him.
 
 [cafe_jeton]
 SIMONE: The phone? You need a token, a jeton. Here, have one. Don't lose it.
@@ -272,7 +264,7 @@ You lean over. The water races under the bridge, fast, without a sound.
 # ---------------------------------------------------------------- barks
 # One-page lines that NPCs call out by themselves when the player comes close.
 [bark_stranger]
-MAN WITH NOTEBOOK: Psst! You there! Come closer.
+MAN WITH NOTEBOOK: Psst! About Fernand…
 
 [bark_stranger_met]
 MAN WITH NOTEBOOK: Noting, noting…
@@ -312,6 +304,18 @@ A PORTER: Zzz… zzz…
 
 [fernand_hello]
 FERNAND: Leave me be, kid. I'm watching the water.
+
+He rubs his bare head. FERNAND: Cold, without my coltin. I left it at Simone's café.
+
+[fernand_why]
+FERNAND: My coltin… Simone kept it, eh? Doesn't matter.
+
+Why I left? Ask whoever wrote to me. A courier came to the café yesterday.
+
+[fernand_plate]
+FERNAND: Marcel's bleu… So you read it.
+
+My brass plate? Gone. I sold it to someone on the quai, by the books. Go and ask.
 
 [fernand_talk]
 FERNAND: Leave me be, kid… What's that? My coltin?

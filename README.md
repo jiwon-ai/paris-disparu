@@ -40,6 +40,9 @@ Everything below is in the ROM and exercised by the automated play-through
 | Experience B: café scene (Simone keeps Fernand's coltin and his petit bleu; a porter asleep on his feet) | done, tested |
 | Experience C: the café wall telephone. Get a token (jeton) from Simone, then dial a number with the D-pad. Four numbers are hidden in the world (the café wall, the man with the notebook, a bouquiniste's box, the painter); each call is a different scene | done, tested — historical details **to research** |
 | Two-option choices in dialogue | done, tested |
+| Opening: skippable 3-page intro (setting, goal, controls), one-line goal on screen, a cat to chase to the café | done, tested |
+| Fernand and the notebook always say what is still missing | done, tested |
+| Player sprite visible after every room change (`tests/visibility_test.py`) | done, tested |
 | NPCs call out short lines by themselves when you come near, hinting at what to do ("A: talk" shown). The line stays until you walk away or press A/B; the opening caption stays 15 s or until A/B | done, tested |
 | Quiet scene-based sound: a soft knock every 1-3 s in the market, water on the quai, a faint cup tick in the café; one soft chime when a dialogue opens | done. Captured from the emulator (PyBoy) and checked for pitch, level and rate, **not yet heard by a person** |
 | Music | not started |
@@ -84,6 +87,7 @@ Other targets:
 make assets      # regenerate assets from tools/*.py and assets/ (python3)
 make check       # asset freshness + ROM header validation
 python3 tests/play_test.py build/paris-disparu.gbc [screenshot_dir]   # needs: pip install pyboy
+python3 tests/visibility_test.py build/paris-disparu.gbc
 ```
 
 ## Running
