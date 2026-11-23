@@ -18,4 +18,13 @@ void dial_start(void);
 uint8_t dial_update(void);
 uint16_t dial_number(void);   /* the 4 digits as a decimal number */
 
+/* Quest mini-games (games.c). */
+void serve_start(void);
+uint8_t serve_update(void);
+void cups_start(void);
+uint8_t cups_update(void);
+uint8_t cups_answer(void);
+void catch_start(void);
+uint8_t catch_update(void);
+
 #endif

@@ -11,6 +11,16 @@ uint8_t clue_flags;
 uint8_t new_clue;
 uint8_t extra_flags;
 uint8_t new_extra;
+uint8_t quest_flags;
+uint8_t new_quest;
+
+/* The clue that completes each quest (the last one is the ending). */
+static const uint8_t quest_clue[QUEST_COUNT - 1] = { CLUE_COLTIN, CLUE_BLEU, CLUE_RUNGIS, CLUE_PLATE };
+
+uint8_t quest_done(uint8_t q) {
+    if (q == QUEST_COUNT - 1) return (game_flags & FLAG_SOLVED) != 0;
+    return (clue_flags & quest_clue[q]) != 0;
+}
 uint8_t carrying = NO_CRATE;
 static uint8_t crates_taken;     /* 0-3, taken from Fernand's cart */
 static uint8_t crates_delivered; /* 0-3 */
@@ -25,8 +35,11 @@ static const uint8_t crate_take_dlg[3] = { DLG_CART_CHOUX, DLG_CART_POMMES, DLG_
 #define CLUE(c) (clue_flags & (c))
 
 static void found(uint8_t c) {
+    uint8_t q;
     if (!CLUE(c)) {
         clue_flags |= c;
+        for (q = 0; q < QUEST_COUNT - 1; q++)
+            if (quest_clue[q] == c) { new_quest = q + 1; return; }
         new_clue = 1;
     }
 }
@@ -72,12 +85,30 @@ uint8_t event_punch_result(uint8_t success) {
     return DLG_PUNCH_DONE;
 }
 
+uint8_t event_game_result(uint8_t ev, uint8_t success) {
+    switch (ev) {
+    case EV_SERVE:
+        if (!success) return DLG_SERVE_LOSE;
+        found(CLUE_COLTIN);
+        return DLG_SERVE_WIN;
+    case EV_CUPS:
+        if (!success) return DLG_CUPS_LOSE;
+        SET(FLAG_HAS_JETON);
+        return DLG_CUPS_WIN;
+    case EV_CATCH:
+        if (!success) return DLG_CATCH_LOSE;
+        found(CLUE_RUNGIS);
+        return DLG_MERCHANT_RUNGIS;
+    }
+    return NO_DIALOGUE;
+}
+
 uint8_t event_dial_result(uint16_t number) {
     game_flags = (game_flags & ~FLAG_HAS_JETON) | FLAG_PHONE_DONE;
     switch (number) {
     case 614:  extra(X_BUTCHER); return DLG_CALL_0614;
     case 4127: found(CLUE_COURIER); return DLG_CALL_4127;
-    case 7302: found(CLUE_PLATE);   return DLG_CALL_7302;
+    case 7302: return DLG_CALL_7302;
     case 2508: extra(X_WIFE); return DLG_CALL_2508;
     }
     return DLG_CALL_NONE;
@@ -109,31 +140,31 @@ uint8_t event_talk(uint8_t npc) {
 
     case NPC_MERCHANT:
         if (!HAS(FLAG_MET_MERCHANT)) { SET(FLAG_MET_MERCHANT); return DLG_MERCHANT_HELLO; }
-        if (HAS(FLAG_TASK_DONE) && !CLUE(CLUE_RUNGIS)) {   /* the crates earn her trust */
-            found(CLUE_RUNGIS);
-            return DLG_MERCHANT_RUNGIS;
-        }
+        if (HAS(FLAG_TASK_DONE) && !CLUE(CLUE_RUNGIS))   /* the crates earn her trust */
+            return DLG_MERCHANT_CATCH;                    /* ... and one more job */
         return DLG_MERCHANT_AGAIN;
 
     case NPC_CAFE:
-        if (!HAS(FLAG_MET_CAFE)) {      /* she hands over his coltin */
+        if (!HAS(FLAG_MET_CAFE)) {      /* the rush: help, and she gives his coltin */
             SET(FLAG_MET_CAFE);
             found(CLUE_CASE);
-            found(CLUE_COLTIN);
             return DLG_CAFE_HELLO;
         }
+        if (!CLUE(CLUE_COLTIN)) return DLG_CAFE_RUSH;
         if (CLUE(CLUE_COURIER) && !CLUE(CLUE_BLEU)) {
             found(CLUE_BLEU);
             return DLG_CAFE_BLEU;
         }
-        if (HAS(FLAG_SAW_PHONE) && !HAS(FLAG_HAS_JETON)) {
-            /* A token each time you ask: calls are how you learn things. */
-            SET(FLAG_HAS_JETON);
-            return HAS(FLAG_PHONE_DONE) ? DLG_CAFE_JETON_MORE : DLG_CAFE_JETON;
+        if ((quest_flags & QF_ROUX) && !(quest_flags & QF_SOUP) && !CLUE(CLUE_PLATE)) {
+            quest_flags |= QF_SOUP;     /* a gratinee to take away, for Mme Roux */
+            return DLG_CAFE_SOUP;
         }
+        if (HAS(FLAG_SAW_PHONE) && !HAS(FLAG_HAS_JETON))
+            return DLG_CAFE_JETON;      /* out of jetons: the porter has some */
         return CLUE(CLUE_BLEU) ? DLG_CAFE_BLEU_AGAIN : DLG_CAFE_AGAIN;
 
     case NPC_WORKER:
+        if (HAS(FLAG_SAW_PHONE) && !HAS(FLAG_HAS_JETON)) return DLG_WORKER_CUPS;
         if (!HAS(FLAG_MET_WORKER)) { SET(FLAG_MET_WORKER); return DLG_WORKER_HELLO; }
         if (HAS(FLAG_PHONE_DONE)) return DLG_WORKER_PHONE;
         return DLG_WORKER_FERNAND;
@@ -150,6 +181,17 @@ uint8_t event_talk(uint8_t npc) {
         if ((clue_flags & CLUE_READY) == CLUE_READY) return DLG_PHOTO_KNOWS;
         if (!HAS(FLAG_MET_PHOTO)) { SET(FLAG_MET_PHOTO); return DLG_PHOTO_HELLO; }
         return DLG_PHOTO_AGAIN;
+
+    case NPC_ROUX:      /* the plate, for a hot gratinee */
+        if (CLUE(CLUE_PLATE)) return DLG_ROUX_AFTER;
+        if (quest_flags & QF_SOUP) {
+            quest_flags &= ~QF_SOUP;
+            found(CLUE_PLATE);
+            return DLG_ROUX_SOUP;
+        }
+        if (quest_flags & QF_ROUX) return DLG_ROUX_WAIT;
+        quest_flags |= QF_ROUX;
+        return DLG_ROUX_HELLO;
 
     case NPC_SINGER:    /* the cameo: then a hint at the first missing clue */
         if (!(extra_flags & X_MET_SINGER)) { extra(X_MET_SINGER); return DLG_SINGER_HELLO; }
@@ -185,9 +227,11 @@ uint8_t event_bark(uint8_t npc) {
     case NPC_MERCHANT:
         return carrying == CRATE_CHOUX ? DLG_BARK_MERCHANT_CHOUX : DLG_BARK_MERCHANT;
     case NPC_CAFE:
+        if (HAS(FLAG_MET_CAFE) && !CLUE(CLUE_COLTIN)) return DLG_BARK_CAFE_RUSH;
         if (HAS(FLAG_SAW_PHONE) && !HAS(FLAG_HAS_JETON)) return DLG_BARK_CAFE_JETON;
         return HAS(FLAG_MET_CAFE) ? DLG_BARK_CAFE_MET : DLG_BARK_CAFE;
     case NPC_WORKER:
+        if (HAS(FLAG_SAW_PHONE) && !HAS(FLAG_HAS_JETON)) return DLG_BARK_WORKER_CUPS;
         return DLG_BARK_WORKER;
     case NPC_PAINTER:
         return DLG_BARK_PAINTER;
@@ -197,6 +241,8 @@ uint8_t event_bark(uint8_t npc) {
         return DLG_BARK_PHOTO;
     case NPC_SINGER:
         return DLG_BARK_SINGER;
+    case NPC_ROUX:
+        return (quest_flags & QF_SOUP) ? DLG_BARK_ROUX_SOUP : DLG_BARK_ROUX;
     case NPC_PUNCHER:
         return punched >= 3 ? DLG_BARK_PUNCHER_DONE : DLG_BARK_PUNCHER;
     }
@@ -264,6 +310,19 @@ uint8_t event_after(uint8_t dlg, uint8_t choice) {
         return EV_END;
     case DLG_PHONE_USE:
         if (choice == 0) return EV_DIAL;
+        break;
+    case DLG_CAFE_HELLO:           /* "Give me a hand?" */
+    case DLG_CAFE_RUSH:
+    case DLG_SERVE_LOSE:
+        if (choice == 0) return EV_SERVE;
+        break;
+    case DLG_WORKER_CUPS:
+    case DLG_CUPS_LOSE:
+        if (choice == 0) return EV_CUPS;
+        break;
+    case DLG_MERCHANT_CATCH:
+    case DLG_CATCH_LOSE:
+        if (choice == 0) return EV_CATCH;
         break;
     case DLG_PUNCHER_TICKET:       /* "Want a go?" */
     case DLG_PUNCH_OK:             /* "Next one?" */

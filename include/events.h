@@ -15,6 +15,9 @@ extern uint8_t carrying;   /* crate type held by the player, or NO_CRATE */
 #define EV_DIAL 0xFD   /* dial a number on the cafe telephone */
 #define EV_END  0xFC   /* the mystery is solved: end screen */
 #define EV_PUNCH 0xFB  /* punch a passenger's ticket in the metro (timing) */
+#define EV_SERVE 0xFA  /* the cafe coffee rush */
+#define EV_CUPS  0xF9  /* the porter's cup game, for a jeton */
+#define EV_CATCH 0xF8  /* catch Germaine's cabbages */
 
 /* Each returns the dialogue to show, EV_*, or NO_DIALOGUE. */
 uint8_t event_talk(uint8_t npc);
@@ -25,6 +28,7 @@ void event_enter_room(uint8_t room);
 uint8_t event_lift_level(void);
 uint8_t event_lift_result(uint8_t success);
 uint8_t event_punch_result(uint8_t success);
+uint8_t event_game_result(uint8_t ev, uint8_t success);   /* EV_SERVE/CUPS/CATCH */
 uint8_t event_dial_result(uint16_t number);
 
 #endif

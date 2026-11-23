@@ -115,10 +115,13 @@ SIMONE: That cat! Always first in. You're looking for Fernand too?
 
 He came in at midnight, hung his coltin on that hook and walked out bareheaded.
 
-A fort without his hat! Take it to him, if you find him.
+But look at this crowd! The night shift wants feeding. Give me a hand, and the coltin's yours.
+? Yes | No
 
 [cafe_jeton]
-SIMONE: The phone? You need a token, a jeton. Here, have one. Don't lose it.
+SIMONE: The phone? You need a token, a jeton. I'm out of them!
+
+The porter at the bar has a pocketful. Beat him at his cup game.
 
 [cafe_bleu]
 SIMONE: A petit bleu? Yes! The courier brought it yesterday afternoon. Fernand left it here.
@@ -169,11 +172,7 @@ A woman answers. "His notebooks? Wait…" Pages rustle.
 "Midnight: the yellow hat goes into the café. Comes out without it. Strange, dear."
 
 [call_7302]
-A sleepy voice: "Books? At this hour? Are you a poet or an insomniac?"
-
-"A fort? Yes! A big one came to my box last night and sold me his plate. FORT, MARCHAND."
-
-"Said he'd have no use for it any more. I didn't want it! I'm keeping it for him."
+A man yawns: "My wife? Books, books… She's already gone to her box on the quai."
 
 [call_2508]
 "He's painting? At four in the morning? Tell him the soup is cold."
@@ -327,7 +326,7 @@ My brass plate? Gone. I sold it to someone on the quai, by the books. Go and ask
 [fernand_talk]
 FERNAND: Leave me be, kid… What's that? My coltin?
 
-You hand him his hat. You tell him about Marcel's petit bleu. About Mme Roux, keeping his plate.
+You hand him his hat, his brass plate, and you tell him about Marcel's petit bleu.
 
 FERNAND: So you know. Thirty years I've carried for Les Halles. My father before me.
 
@@ -482,3 +481,72 @@ THE SINGER: You know everything now. Your fort is on the bridge, kid. Go, before
 
 [bark_singer]
 THE SINGER: …la la… No. Not that one.
+
+[cafe_rush]
+SIMONE: Still here? The coffee rush won't wait. Help me and the coltin's yours.
+? Yes | No
+
+[serve_win]
+SIMONE: Five tables, and not a drop spilt! You've got it in your blood.
+
+She takes the coltin off its hook. SIMONE: Here. Fernand's hat. Bring it back to him.
+
+[serve_lose]
+SIMONE: Oh là là, the wrong cups everywhere! Again, but listen to the tables.
+? Yes | No
+
+[cafe_soup]
+SIMONE: A gratinée for Mme Roux? She's frozen on that quai every morning, poor thing.
+
+Here, hot from the oven. Carry it gently!
+
+[worker_cups]
+A PORTER: A jeton? I've got a pocketful. Win one: find it under my cups.
+? Yes | No
+
+[cups_win]
+A PORTER: Ha! Sharp eyes. Here's your jeton. Don't call the butcher, he bites.
+
+[cups_lose]
+A PORTER: Empty! It was under the other one. Again?
+? Yes | No
+
+[merchant_catch]
+GERMAINE: You carried for Fernand, dear. One more favour: my pyramid's falling apart!
+
+Catch the cabbages as they roll off. Then I'll tell you what's eating Fernand.
+? Yes | No
+
+[catch_lose]
+GERMAINE: My poor cabbages, all over the floor! Try again?
+? Yes | No
+
+[roux_hello]
+MME ROUX: Brr! Opening my box at this hour, for the early birds.
+
+A brass plate? Yes, a big fort sold it to me last night. FORT, MARCHAND. He'll have no use for it, he said.
+
+I didn't want it! You can have it back. But bring me something hot first. A gratinée!
+
+[roux_wait]
+MME ROUX: A gratinée, dear. Simone's café, up the street. My fingers are blue.
+
+[roux_soup]
+MME ROUX: A gratinée! Still steaming! You're an angel.
+
+Here: his brass plate. A fort without his plate is just a big man with a sore back.
+
+[roux_after]
+MME ROUX: Zola, Hugo, Balzac… Old books for an old Paris. Mind how you go.
+
+[bark_roux]
+MME ROUX: Brr! Who's up so early?
+
+[bark_roux_soup]
+MME ROUX: Is that soup I smell?
+
+[bark_cafe_rush]
+SIMONE: Quick, the tables are waiting!
+
+[bark_worker_cups]
+A PORTER: Pssst. Want a jeton?

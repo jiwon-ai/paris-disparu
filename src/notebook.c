@@ -5,14 +5,21 @@
 #include "game.h"
 #include "notebook.h"
 
-static const uint8_t * const clue_txt[CLUE_COUNT] = {
-    txt_clue_0, txt_clue_1, txt_clue_2, txt_clue_3, txt_clue_4, txt_clue_5
+static const uint8_t * const quest_txt[QUEST_COUNT] = {
+    txt_q_0, txt_q_1, txt_q_2, txt_q_3, txt_q_4
 };
-static const uint8_t * const goal_txt[14] = {
+
+static uint8_t quests_total(void) {
+    uint8_t i, n = 0;
+    for (i = 0; i < QUEST_COUNT; i++) n += quest_done(i);
+    return n;
+}
+static const uint8_t * const goal_txt[18] = {
     txt_goal_0a, txt_goal_0b, txt_goal_1a, txt_goal_1b,
     txt_goal_2a, txt_goal_2b, txt_goal_3a, txt_goal_3b,
     txt_goal_4a, txt_goal_4b, txt_goal_5a, txt_goal_5b,
-    txt_goal_6a, txt_goal_6b
+    txt_goal_6a, txt_goal_6b, txt_goal_7a, txt_goal_7b,
+    txt_goal_8a, txt_goal_8b
 };
 static const uint8_t * const num_txt[4] = { txt_num_0, txt_num_1, txt_num_2, txt_num_3 };
 static const uint16_t num_flag[4] = {
@@ -24,8 +31,10 @@ static uint8_t goal(void) {
     if ((clue_flags & CLUE_READY) == CLUE_READY) return 3;
     if (clue_flags & CLUE_COLTIN) {    /* the first missing clue */
         if (!(clue_flags & CLUE_BLEU)) return (clue_flags & CLUE_COURIER) ? 4 : 2;
-        return (game_flags & FLAG_KNOW_7302) ? 6 : 5;
+        if (quest_flags & QF_SOUP) return 8;
+        return (quest_flags & QF_ROUX) ? 6 : 5;
     }
+    if (game_flags & FLAG_MET_CAFE) return 7;   /* the coffee rush */
     if (clue_flags & CLUE_CASE) return 1;
     return 0;
 }
@@ -41,14 +50,16 @@ void notebook_show(void) {
     uint8_t i, y, g = goal() * 2;
     box_open(SCREEN_H / 8);
     box_print(1, 1, txt_nb_title);
-    set_win_tile_xy(15, 1, txt_digits[clue_total()]);
+    set_win_tile_xy(15, 1, txt_digits[quests_total()]);
     box_print(16, 1, txt_nb_of);
     box_print(1, 2, goal_txt[g]);
     box_print(1, 3, goal_txt[g + 1]);
-    box_print(1, 5, txt_nb_clues);   /* entries below fill the 18 inner columns */
-    y = 6;
-    for (i = 0; i < CLUE_COUNT; i++)
-        if (clue_flags & (1 << i)) box_print(1, y++, clue_txt[i]);
+    box_print(1, 5, txt_nb_quests);
+    for (i = 0; i < QUEST_COUNT; i++) {
+        box_print(1, 6 + i, quest_done(i) ? txt_x_done : txt_x_todo);
+        box_print(4, 6 + i, quest_txt[i]);
+    }
+    (void)y;
     box_print(1, 12, txt_nb_phone);
     y = 13;
     for (i = 0; i < 4; i++)

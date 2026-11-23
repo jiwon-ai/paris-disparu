@@ -40,6 +40,8 @@ Everything below is in the ROM and exercised by the automated play-through
 | Experience B: café scene (Simone keeps Fernand's coltin and his petit bleu; a porter asleep on his feet) | done, tested |
 | Experience C: the café wall telephone. Get a token (jeton) from Simone, then dial a number with the D-pad. Four numbers are hidden in the world (the café wall, the man with the notebook, a bouquiniste's box, the painter); each call is a different scene | done, tested — historical details **to research** |
 | Two-option choices in dialogue | done, tested |
+| Quest chain (5 quests) with "QUEST COMPLETE!" and fanfare; new mini-games: coffee rush (serve), cup game (jeton), catch the cabbages; Mme Roux trade (gratinée for the plate) | done, tested |
+| Title credit "© Jiwon" | done |
 | Opening: skippable 3-page intro (setting, goal, controls), one-line goal on screen, a cat to chase to the café | done, tested |
 | Fernand and the notebook always say what is still missing | done, tested |
 | Second cameo: an unnamed singer by the river (inspired by Serge Gainsbourg, logged with sources and a legal-review flag) who then gives hints | done, tested |

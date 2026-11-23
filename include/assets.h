@@ -15,22 +15,23 @@
 #define ASSET_BANK 1   /* bank of src/assets.c, normally mapped */
 #define DLG_BANK 2     /* bank of src/dialogue_text.c */
 #define TITLE_BANK 3   /* bank of src/title_art.c */
+#define PORTRAIT_BANK 4 /* bank of src/portrait_art.c */
 #define FONT_BASE 128
-#define FONT_TILE_COUNT 113
+#define FONT_TILE_COUNT 115
 #define GLYPH_SPACE 128
-#define GLYPH_ARROW_DOWN 228
-#define GLYPH_ARROW_RIGHT 229
-#define GLYPH_BOX_TL 230
-#define GLYPH_BOX_T 231
-#define GLYPH_BOX_TR 232
-#define GLYPH_BOX_L 233
-#define GLYPH_BOX_R 234
-#define GLYPH_BOX_BL 235
-#define GLYPH_BOX_B 236
-#define GLYPH_BOX_BR 237
-#define GLYPH_BAR 238
-#define GLYPH_BAR_ZONE 239
-#define GLYPH_BAR_CURSOR 240
+#define GLYPH_ARROW_DOWN 230
+#define GLYPH_ARROW_RIGHT 231
+#define GLYPH_BOX_TL 232
+#define GLYPH_BOX_T 233
+#define GLYPH_BOX_TR 234
+#define GLYPH_BOX_L 235
+#define GLYPH_BOX_R 236
+#define GLYPH_BOX_BL 237
+#define GLYPH_BOX_B 238
+#define GLYPH_BOX_BR 239
+#define GLYPH_BAR 240
+#define GLYPH_BAR_ZONE 241
+#define GLYPH_BAR_CURSOR 242
 
 #define ENV_TILE_COUNT 55
 #define TILE_SKY 0
@@ -247,6 +248,23 @@ enum {
     DLG_SINGER_PLATE,
     DLG_SINGER_READY,
     DLG_BARK_SINGER,
+    DLG_CAFE_RUSH,
+    DLG_SERVE_WIN,
+    DLG_SERVE_LOSE,
+    DLG_CAFE_SOUP,
+    DLG_WORKER_CUPS,
+    DLG_CUPS_WIN,
+    DLG_CUPS_LOSE,
+    DLG_MERCHANT_CATCH,
+    DLG_CATCH_LOSE,
+    DLG_ROUX_HELLO,
+    DLG_ROUX_WAIT,
+    DLG_ROUX_SOUP,
+    DLG_ROUX_AFTER,
+    DLG_BARK_ROUX,
+    DLG_BARK_ROUX_SOUP,
+    DLG_BARK_CAFE_RUSH,
+    DLG_BARK_WORKER_CUPS,
     DLG_COUNT
 };
 
@@ -264,7 +282,7 @@ extern const uint16_t dlg_first_page[DLG_COUNT];
 extern const uint8_t dlg_page_count[DLG_COUNT];
 extern const uint8_t dlg_choice[DLG_COUNT];   /* 0 = none, else pair index + 1 */
 extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
-extern const uint8_t portrait_tiles[];
+extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */
 extern const uint8_t portrait_pal[];          /* sprite palette per portrait */
 extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */
 extern const uint8_t txt_title_5[];
@@ -315,6 +333,10 @@ extern const uint8_t txt_goal_5a[];
 extern const uint8_t txt_goal_5b[];
 extern const uint8_t txt_goal_6a[];
 extern const uint8_t txt_goal_6b[];
+extern const uint8_t txt_goal_7a[];
+extern const uint8_t txt_goal_7b[];
+extern const uint8_t txt_goal_8a[];
+extern const uint8_t txt_goal_8b[];
 extern const uint8_t txt_goal_3a[];
 extern const uint8_t txt_goal_3b[];
 extern const uint8_t txt_clue_0[];
@@ -375,6 +397,30 @@ extern const uint8_t txt_next_6[];
 extern const uint8_t txt_next_7[];
 extern const uint8_t txt_next_8[];
 extern const uint8_t txt_title_6[];
+extern const uint8_t txt_srv_title[];
+extern const uint8_t txt_srv_of[];
+extern const uint8_t txt_srv_0[];
+extern const uint8_t txt_srv_1[];
+extern const uint8_t txt_srv_2[];
+extern const uint8_t txt_srv_table[];
+extern const uint8_t txt_srv_ok[];
+extern const uint8_t txt_srv_bad[];
+extern const uint8_t txt_cup[];
+extern const uint8_t txt_coin[];
+extern const uint8_t txt_cup_watch[];
+extern const uint8_t txt_cup_pick[];
+extern const uint8_t txt_catch_hud[];
+extern const uint8_t txt_quest_done[];
+extern const uint8_t txt_q_0[];
+extern const uint8_t txt_q_0r[];
+extern const uint8_t txt_q_1[];
+extern const uint8_t txt_q_1r[];
+extern const uint8_t txt_q_2[];
+extern const uint8_t txt_q_2r[];
+extern const uint8_t txt_q_3[];
+extern const uint8_t txt_q_3r[];
+extern const uint8_t txt_q_4[];
+extern const uint8_t txt_nb_quests[];
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];

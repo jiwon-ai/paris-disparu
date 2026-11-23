@@ -25,20 +25,29 @@ elements"). 3 a.m., 1967. Fernand, a fort des Halles for thirty years, has
 not come to work. The move of the market to Rungis has been announced and
 is being built; Fernand's friend Marcel went to see it and is giving up.
 
-| Clue (notebook line) | Where | Needs |
-|---|---|---|
-| Fernand is missing | the man with the notebook (street) | — |
-| Coltin left behind | Simone, café: he hung his hat and left; she gives it to you | — |
-| A petit bleu came | phone 4127: a courier brought a pneumatique to the café | a jeton |
-| Bleu: Marcel quits | Simone shows the petit bleu | "A petit bleu came" |
-| Plate sold to Roux | phone 7302 (card on a bouquiniste's box, quai) | a jeton |
-| He fears Rungis | Germaine, after you carry Fernand's crates for Dédé | the crate task |
+Since 2026-11-23 the main path is a chain of **quests**, each finished by a
+mini-game or a trade (user feedback: "make it play like a real game, with
+mini-games and quests"). The notebook (START) lists them; finishing one
+shows a "QUEST COMPLETE!" box with a four-note fanfare.
+
+| Quest | Giver / where | How it is done | Reward (clue) |
+|---|---|---|---|
+| 1 Coffee rush | Simone, café | **Serve**: 5 orders, pick COFFEE/SOUP/BREAD before the bar empties, 4 right to win | Fernand's coltin |
+| 2 Who wrote him? | phone in the café | win a jeton at the porter's **cup game**, **dial** 4127 (courier), then Simone shows the petit bleu | the petit bleu (Marcel quits) |
+| 3 Dédé's crates | Dédé, entrance; Germaine, pavilion | **lift** 3 crates (timing), carry each to the right stall, then **catch** 6 of Germaine's cabbages (3 misses allowed) | Germaine tells about Rungis |
+| 4 The brass plate | Mme Roux, quai | trade: she wants a hot gratinée; Simone gives one; bring it to her | his brass plate |
+| 5 Find Fernand | the bridge | give back coltin, plate and the bleu, choose Stay / Go with | the ending |
+
+Optional: métro ticket punching, phone the butcher, the painter's wife
+(notebook page 2, see "Side goals"). Jetons are won again at the cups for
+each call.
 
 Fernand stands bareheaded on the bridge (no coltin, no plate on his
 blouse). Until the player has the coltin, the petit bleu and the plate he
 says what is still missing (his hat at Simone's; who wrote to him; the plate
 sold "on the quai, by the books"), and the notebook goal names the next step
-(phone 4127 / tell Simone / look by the river / phone 7302). Then he asks what the player would do:
+(help Simone / phone 4127 / tell Simone / look by the river / bring Mme Roux
+a gratinée). Then he asks what the player would do:
 **Stay** (spend the last winters under the glass) or **Go with** (follow
 the market to Rungis). Both bring him back to the café. End screen: clues
 found (n/6), 3 March 1969 move, pavilions gone in the 1970s, pneumatique

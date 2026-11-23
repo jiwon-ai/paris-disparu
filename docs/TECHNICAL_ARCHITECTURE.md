@@ -95,3 +95,18 @@ All art and text are plain text so changes are reviewable:
 Dialogue pages (54 bytes each) fill ROM bank 2 (`dlg_pages`, DLG_PAGES_LO
 pages); the overflow is stored in bank 3 after the title art
 (`dlg_pages_hi`). `dialogue.c` maps the right bank per page.
+
+## ROM layout (128 KiB, MBC5, 8 banks)
+
+| Bank | Content |
+|---|---|
+| 0 | code (~14.7 KiB of 16) |
+| 1 | assets, always mapped (tiles, maps, palettes, UI text, dialogue index) |
+| 2 | dialogue pages (first DLG_PAGES_LO) |
+| 3 | title art + dialogue overflow |
+| 4 | portrait tiles (copied to VRAM bank 1 by load_bank1) |
+| 5-7 | free |
+
+Dialogue ids: up to 0xF7 (0xF8-0xFE are EV_* events, 0xFF none). Hotspot
+dialogues must stay below 0x80 (TALK flag); gen_assets.py checks rooms.c.
+Bank 0 is almost full: new code should go to banked functions.

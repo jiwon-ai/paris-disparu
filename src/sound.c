@@ -53,3 +53,12 @@ void sound_clink(void) {
     NR23_REG = 0xC1;
     NR24_REG = 0x87;
 }
+
+/* Channel 1: one square note, x = 2048 - 131072 / Hz; env = NR12 value. */
+void sound_note(uint16_t x, uint8_t env) {
+    NR10_REG = 0x00;
+    NR11_REG = 0x80;
+    NR12_REG = env;
+    NR13_REG = (uint8_t)x;
+    NR14_REG = 0x80 | (uint8_t)(x >> 8);
+}

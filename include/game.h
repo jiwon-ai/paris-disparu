@@ -26,6 +26,7 @@
 #define NPC_PHOTO    7   /* cameo: a photographer at dawn */
 #define NPC_PUNCHER  8   /* metro ticket puncher (poinconneur) */
 #define NPC_SINGER   9   /* cameo: a singer out at night */
+#define NPC_ROUX     10  /* Mme Roux, bouquiniste, at her box on the quai */
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001
@@ -71,6 +72,14 @@ extern uint8_t clue_flags;
 extern uint8_t extra_flags;
 extern uint8_t new_extra;      /* an extra was just completed: show a note */
 uint8_t extra_total(void);
+
+/* Main quests: each is completed by the clue it rewards. */
+#define QUEST_COUNT 5               /* rush, who wrote, crates, plate, Fernand */
+#define QF_ROUX     0x01            /* Mme Roux asked for a gratinee */
+#define QF_SOUP     0x02            /* carrying the gratinee for her */
+extern uint8_t quest_flags;
+extern uint8_t new_quest;           /* 1-4: that quest was just completed */
+uint8_t quest_done(uint8_t q);      /* q = 0..QUEST_COUNT-1 */
 extern uint8_t new_clue;   /* set when a clue was just found; main shows a note */
 uint8_t clue_total(void);
 

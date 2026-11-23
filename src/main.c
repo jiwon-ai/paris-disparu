@@ -13,7 +13,7 @@
 #include "sound.h"
 #include "world.h"
 
-enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_LIFT, ST_DIAL, ST_END };
+enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_LIFT, ST_DIAL, ST_END, ST_GAME };
 
 static uint8_t state;
 static uint8_t cur_dialogue;
@@ -33,7 +33,17 @@ static const int16_t cat_path[][2] = { { 56, 92 }, { 44, 92 }, { 36, 84 }, { 30,
 int16_t cat_x = 56, cat_y = 92;
 static void close_caption(void);
 static uint8_t lift_punch;
-static uint8_t nb_page, teaser_seen;      /* the timing bar is the metro punch, not a crate */
+static uint8_t nb_page, teaser_seen;
+static uint8_t game_ev;          /* EV_SERVE / EV_CUPS / EV_CATCH while in ST_GAME */
+static uint8_t fanfare;          /* frames left of the quest-complete jingle */
+static const uint16_t fanfare_x[4] = { 1985, 1964, 1949, 1923 };   /* C7 G6 E6 C6, played backwards */
+
+static const uint8_t * const quest_name[QUEST_COUNT - 1] = {
+    txt_q_0, txt_q_1, txt_q_2, txt_q_3
+};
+static const uint8_t * const quest_got[QUEST_COUNT - 1] = {
+    txt_q_0r, txt_q_1r, txt_q_2r, txt_q_3r
+};      /* the timing bar is the metro punch, not a crate */
 static uint8_t cat_wp, cat_run;
 
 static void update_cat(void) {
@@ -109,7 +119,9 @@ static void bkg_text_centered(uint8_t y, const uint8_t *t) {
 static void load_bank1(void) {
     VBK_REG = VBK_ATTRIBUTES;
     set_bkg_data(0, ENV_TILE_COUNT, env_tiles);
+    SWITCH_ROM(PORTRAIT_BANK);
     set_sprite_data(PORTRAIT_BASE, PORTRAIT_TILE_COUNT, portrait_tiles);
+    SWITCH_ROM(ASSET_BANK);
     VBK_REG = VBK_TILES;
 }
 
@@ -269,13 +281,30 @@ static void open_dialogue(uint8_t d) {
     } else if (d == EV_DIAL) {
         dial_start();
         state = ST_DIAL;
+    } else if (d == EV_SERVE || d == EV_CUPS || d == EV_CATCH) {
+        game_ev = d;
+        if (d == EV_SERVE) serve_start();
+        else if (d == EV_CUPS) cups_start();
+        else catch_start();
+        state = ST_GAME;
     } else if (d == EV_END) {
         end_show();
         sound_confirm();
         state = ST_END;
     } else if (d == NO_DIALOGUE) {
         state = ST_WALK;
-        if (new_clue) {          /* tell the player the notebook changed */
+        if (new_quest) {         /* the big moment: a quest is done */
+            uint8_t q = new_quest - 1;
+            new_quest = 0;
+            new_clue = 0;
+            box_open(6);
+            box_print(1, 1, txt_quest_done);
+            box_print(1, 2, quest_name[q]);
+            box_print(1, 3, quest_got[q]);
+            box_print(1, 4, txt_extra_more);
+            caption_timer = 300;
+            fanfare = 32;
+        } else if (new_clue) {   /* tell the player the notebook changed */
             new_clue = 0;
             box_open(5);
             box_print(1, 1, txt_new_clue);
@@ -494,6 +523,15 @@ void main(void) {
             }
             break;
 
+        case ST_GAME: {
+            uint8_t r;
+            if (game_ev == EV_SERVE) r = serve_update();
+            else if (game_ev == EV_CUPS) r = cups_update();
+            else r = catch_update();
+            if (r != MG_RUNNING) open_dialogue(event_game_result(game_ev, r == MG_SUCCESS));
+            break;
+        }
+
         case ST_END:          /* START: the next episode's teaser, then the title */
             if (joy_pressed & J_START) {
                 if (teaser_seen) reset();
@@ -505,6 +543,10 @@ void main(void) {
         }
         actors_draw();
         animate_river();
+        if (fanfare) {           /* four rising notes, 8 frames apart */
+            fanfare--;
+            if ((fanfare & 7) == 7) sound_note(fanfare_x[fanfare >> 3], fanfare >= 8 ? 0x62 : 0x65);
+        }
         if (state != ST_END) flicker_lamps();
     }
 }
