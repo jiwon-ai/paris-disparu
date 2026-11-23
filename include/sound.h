@@ -6,7 +6,8 @@
 void sound_init(void);
 void sound_blip(void);          /* text typing tick */
 void sound_confirm(void);       /* opening a dialogue / menu */
-void sound_market(uint8_t vol); /* distant market clatter, vol 1-7 */
+void sound_market(uint8_t vol); /* a dull knock in the market, vol 1-4 */
 void sound_water(void);         /* the river */
+void sound_clink(void);         /* a cup in the cafe */
 
 #endif

@@ -16,9 +16,12 @@ enum { ST_WALK, ST_DIALOGUE, ST_PAUSE, ST_LIFT, ST_DIAL };
 
 static uint8_t state;
 static uint8_t cur_dialogue;
-static uint8_t caption_timer;   /* caption or bark box: closes when it reaches 0 */
+#define CAPTION_FRAMES 900      /* the opening caption stays 15 s unless A/B closes it */
+#define NO_BARK 0xFF
+static uint16_t caption_timer;  /* opening caption: closes when it reaches 0 */
+static uint8_t bark_from;       /* NPC index whose line is on screen, or NO_BARK */
 static uint8_t bark_armed;      /* bit n: NPC n of this room may call out again */
-static uint8_t ambience_timer;
+static uint16_t ambience_timer;
 static uint8_t rng = 0x5A;
 static uint8_t anim_frame;
 static uint8_t barge_x;
@@ -114,11 +117,14 @@ static void title_screen(void) {
     sound_confirm();
 }
 
+static void close_caption(void) {
+    if (caption_timer || bark_from != NO_BARK) box_close();
+    caption_timer = 0;
+    bark_from = NO_BARK;
+}
+
 static void enter_room(uint8_t room) {
-    if (caption_timer) {         /* a bark from the previous room stays behind */
-        caption_timer = 0;
-        box_close();
-    }
+    close_caption();             /* nothing from the previous room stays behind */
     actors_hide();
     world_load(room);
     actors_init_room();
@@ -150,7 +156,8 @@ static void change_room(uint8_t exit_code) {
 
 /* Start whatever an interaction returned: text, or an interactive sequence. */
 static void open_dialogue(uint8_t d) {
-    caption_timer = 0;
+    caption_timer = 0;           /* the dialogue box replaces any caption */
+    bark_from = NO_BARK;
     if (d == EV_LIFT) {
         lift_start(event_lift_level());
         state = ST_LIFT;
@@ -194,7 +201,8 @@ static uint8_t absdiff(int16_t a, int16_t b) {
     return d > 255 ? 255 : (uint8_t)d;
 }
 
-/* NPCs call out a short line when the player comes close, once per approach. */
+/* NPCs call out a short line when the player comes close, once per approach.
+   The line stays on screen until the player walks away or presses A/B. */
 static void update_barks(void) {
     const room_def_t *r = &rooms[cur_room];
     uint8_t i;
@@ -203,20 +211,23 @@ static void update_barks(void) {
         uint8_t dx = absdiff(player.x, n->x), dy = absdiff(player.y, n->y);
         uint8_t bit = 1 << i;
         if (dx < 28 && dy < 28) {
-            if (bark_armed & bit) {
+            if ((bark_armed & bit) && bark_from == NO_BARK) {
                 bark_armed &= ~bit;
+                caption_timer = 0;      /* a call replaces the opening caption */
                 bark_show(event_bark(n->npc));
                 sound_blip();
-                caption_timer = 150;
+                bark_from = i;
                 return;
             }
         } else if (dx > 48 || dy > 48) {
             bark_armed |= bit;      /* walked away: may call out again next time */
+            if (bark_from == i) close_caption();
         }
     }
 }
 
-/* Scene-based ambience: short noise bursts at irregular intervals. */
+/* Scene-based ambience: rare, quiet sounds at irregular intervals
+   (one every 1-4 s), never a continuous noise. */
 static void update_ambience(void) {
     uint8_t r;
     if (ambience_timer) {
@@ -224,26 +235,25 @@ static void update_ambience(void) {
         return;
     }
     r = next_random();
+    ambience_timer = 90 + (r & 127);
     switch (rooms[cur_room].ambience) {
-    case AMBIENCE_STREET:   /* louder towards the east end, where the market is */
-        sound_market(1 + (uint8_t)(player.x >> 5));
-        ambience_timer = 40 + (r & 63);
+    case AMBIENCE_STREET:   /* only near the east end, where the market is */
+        if (player.x > 96) sound_market(1);
         break;
     case AMBIENCE_MARKET:
-        sound_market(5 + (r & 1));
-        ambience_timer = 12 + (r & 31);
+        sound_market(2 + (r & 1));
+        ambience_timer = 60 + (r & 127);
         break;
     case AMBIENCE_HALL:
-        sound_market(3 + (r & 1));
-        ambience_timer = 16 + (r & 31);
+        sound_market(2);
         break;
     case AMBIENCE_RIVER:
         sound_water();
-        ambience_timer = 60 + (r & 63);
+        ambience_timer = 70 + (r & 63);
         break;
     case AMBIENCE_CAFE:
-        sound_blip();       /* a cup on a saucer */
-        ambience_timer = 90 + r;
+        sound_clink();
+        ambience_timer = 180 + r;
         break;
     default:
         ambience_timer = 255;
@@ -268,7 +278,8 @@ void main(void) {
     enter_room(ROOM_STREET);
     box_open(3);
     box_print(1, 1, txt_caption);
-    caption_timer = 150;
+    caption_timer = CAPTION_FRAMES;
+    bark_from = NO_BARK;
     state = ST_WALK;
 
     while (1) {
@@ -279,6 +290,7 @@ void main(void) {
         case ST_WALK:
             if (joy_pressed & J_START) {
                 caption_timer = 0;
+                bark_from = NO_BARK;
                 box_open(4);
                 box_print(7, 1, txt_pause_1);
                 box_print(2, 2, txt_pause_2);
@@ -296,6 +308,7 @@ void main(void) {
                     }
                 }
             }
+            if (joy_pressed & (J_A | J_B)) close_caption();   /* read it: dismiss */
             {
                 uint8_t exit_dir = player_update();
                 if (exit_dir != 0xFF) change_room(exit_dir);

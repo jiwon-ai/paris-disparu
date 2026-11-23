@@ -12,8 +12,9 @@ missed permanently.
 [ Café ] <- door - [ rue Rambuteau ] -- east edge --> [ Pavilion entrance ]
 ```
 
-The player starts in the quiet street at 3h10. Market noise (noise channel)
-gets louder towards the east edge, pulling the player towards the market.
+The player starts in the quiet street at 3h10. Near the east edge a soft
+knock (noise channel) is heard now and then, pulling the player towards the
+market. All ambience is sparse and quiet: one sound every 1-4 seconds.
 
 ## Characters
 
