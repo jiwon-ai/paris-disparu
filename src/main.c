@@ -479,6 +479,7 @@ static void update_ambience(void) {
 
 void main(void) {
     DISPLAY_OFF;
+    LCDC_REG &= ~LCDCF_BG8000;   /* BG tiles 0-127 at 0x9000: frees 0x8000-0x8FFF for sprites */
     if (_cpu != CGB_TYPE) dmg_screen();
 
     sound_init();

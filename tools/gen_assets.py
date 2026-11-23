@@ -106,8 +106,8 @@ env_index = {n: i for i, n in enumerate(env_names)}
 env_data = []
 for n in env_names:
     env_data += encode_tile(art.TILES[n])
-if len(env_names) > 256:
-    fail("too many background tiles")
+if len(env_names) > 128:   # VRAM bank 1 BG tiles 0-127 (0x9000-0x97FF)
+    fail("too many background tiles (%d > 128)" % len(env_names))
 
 # ---------------------------------------------------------------------------
 # Sprites
@@ -127,7 +127,7 @@ if len(spr_data) // 16 > FONT_BASE:
     fail("sprite tiles overlap the font")
 
 # Dialogue portraits: 24x32 busts = 3 columns x 2 rows of 8x16 sprites.
-PORTRAIT_BASE = 64      # sprite tiles 64.. in VRAM bank 1 (scenery uses 0..ENV-1)
+PORTRAIT_BASE = 64      # sprite tiles 64.. in VRAM bank 1 (0x8400); scenery is at 0x9000
 portrait_data = []
 for name, grid, _ in portraits.PORTRAITS:
     rows = ["".join(SPR_MAP[c] for c in r) for r in portraits.rows(grid)]

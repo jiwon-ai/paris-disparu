@@ -26,10 +26,18 @@
 
 ## VRAM layout (CGB)
 
-- Bank 0, tiles 0-127: sprites (16x16 characters in 8x16 sprite mode, 4 tiles per frame).
-- Bank 0, tiles 128-236: font and text box frame.
-- Bank 1, tiles 0-63: scenery tiles (selected with BG attribute bit 3).
-- Bank 1, tiles 64-231: dialogue portraits (12 tiles each); 232-251: one-frame
+Background tiles use the 0x8800 addressing mode (LCDC bit 4 = 0, set
+explicitly at the start of `main()`; it was already GBDK's default, measured
+LCDC = 0xE7). BG tile indices 0-127 are at 0x9000-0x97FF and 128-255 at
+0x8800-0x8FFF; sprites always use 0x8000-0x8FFF. `set_bkg_data` follows the
+LCDC mode. Measured in PyBoy: the scenery is in VRAM bank 1 at 0x9000.
+
+- Bank 0, 0x8000-0x87FF (sprite tiles 0-127): character sprites (8x16 mode, 4 tiles per frame).
+- Bank 0, 0x8800-0x8FFF (BG/sprite tiles 128-242): font and text box frame.
+- Bank 0, 0x9000-0x97FF (BG tiles 0-127): free (reserved for streamed Korean text).
+- Bank 1, 0x9000-0x97FF (BG tiles 0-127): scenery tiles (BG attribute bit 3);
+  up to 128 tiles, checked by `tools/gen_assets.py`.
+- Bank 1, sprite tiles 64-231: dialogue portraits (12 tiles each); 232-251: one-frame
   cameo sprites (`SPR1_*`). An NPC with `palette | S_BANK1` (OAM attribute bit 3)
   draws from bank 1 and has no idle animation. All are reloaded by `load_bank1()`.
 - Window map: dialogue box at the bottom of the screen. Box tiles have the
