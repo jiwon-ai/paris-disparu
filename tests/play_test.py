@@ -298,6 +298,34 @@ def get_jeton():
 
 
 # ----------------------------------------------------------------------------
+def street_to_baltard():
+    goto(88, 120, "xy")
+    push("down")
+    check(room() == ROOM_ENTRANCE, "south from rue Rambuteau into rue Baltard (room %d, %s)" % (room(), player()))
+
+
+def baltard_to_street():
+    if player()[1] > 88:            # below the photographer and the metro: go round
+        goto(60, 80, "yx")
+    goto(88, 80, "xy")
+    push("up", 200)
+    check(room() == ROOM_STREET, "north end of rue Baltard back to rue Rambuteau (room %d)" % room())
+
+
+def street_to_quai():
+    street_to_baltard()
+    goto(88, 80, "xy")
+    goto(60, 80, "xy")
+    push("down", 200)
+    check(room() == ROOM_QUAI, "south end of rue Baltard leads to the quai (room %d, %s)" % (room(), player()))
+
+
+def to_dede():
+    goto(88, 70, "xy")
+    goto(64, 70, "xy")
+    push("up")
+
+
 print("boot")
 tick(150)   # boot + title fade-in
 check(mem[0xFF40] & 0x80, "LCD is on after boot")
@@ -380,12 +408,11 @@ check("4127" in window_row(13), "the notebooks' number is written down: %r" % wi
 tap("start", 10)
 check(not window_on(), "START closes the notebook")
 
-print("market entrance: Dede and Fernand's crates")
-goto(140, 90, "yx")
-push("right")
-check(room() == ROOM_ENTRANCE, "east edge leads to the pavilion (room %d, %s)" % (room(), player()))
+print("rue Baltard: Dede and Fernand's crates")
+street_to_baltard()
 shot("07_entrance")
-goto(24, 90, "yx")
+goto(88, 80, "xy")
+goto(32, 80, "xy")
 push("down")
 check(player()[1] < 104, "the photographer stands in the way (y=%d)" % player()[1])
 tap("a", 70)
@@ -393,16 +420,16 @@ shot("16_photographer")
 lines = [" ".join(window_row(r) for r in (1, 2, 3))] + dialogue()
 check(any("Rungis" in l for l in lines) and any("Fernand" in l for l in lines),
       "the photographer's cameo mentions Rungis and Fernand (%d pages)" % len(lines))
-goto(100, 90, "yx")
-push("up")
-check(player() == (100, 66), "below Dede: %s" % (player(),))
+to_dede()
+check(player() == (64, 46), "below Dede: %s" % (player(),))
 bark = " ".join(window_row(r) for r in (1, 2, 3))
 check("Seen Fernand" in bark, "Dede calls out by himself: %r" % bark)
 talk("DÉDÉ", choice=0)
 
 
 def fetch_crate(expect, miss_first=False):
-    goto(124, 90, "yx")
+    goto(88, 70, "xy")
+    goto(48, 70, "xy")
     push("up")
     if miss_first:
         lift(hit=False)
@@ -415,8 +442,9 @@ def fetch_crate(expect, miss_first=False):
 
 
 def to_market():
-    goto(72, 90, "yx")
-    push("up")
+    goto(110, 46, "xy")
+    goto(110, 26, "xy")
+    push("right")
     check(room() == ROOM_MARKET, "through the arch into the pavilion (room %d)" % room())
 
 
@@ -455,9 +483,7 @@ def phone(number, expect, clue=None):
 
 
 def to_bridge():
-    goto(60, 120, "xy")
-    push("down")
-    check(room() == ROOM_QUAI, "south edge of the street leads to the quai (room %d)" % room())
+    street_to_quai()
     goto(72, 60, "yx")
     push("down")
     check(room() == ROOM_PONT, "the bridge deck leads onto the bridge (room %d, %s)" % (room(), player()))
@@ -494,8 +520,7 @@ goto(112, 38, "xy")
 push("up")
 talk("You set the crate")
 to_entrance()
-goto(100, 90, "yx")
-push("up")
+to_dede()
 talk("proud")
 check(flags() & FLAG_TASK_DONE, "porter's task done (FLAG_TASK_DONE)")
 to_market()
@@ -514,9 +539,7 @@ quest_note("crates", 0x20)
 to_entrance()
 
 print("the cafe: the coltin, the telephone, the petit bleu")
-goto(60, 90, "yx")
-push("left", 200)
-check(room() == ROOM_STREET, "west edge leads back to the street (room %d)" % room())
+baltard_to_street()
 street_to_cafe()
 shot("05_cafe")
 push("up")
@@ -548,9 +571,7 @@ talk("Marcel", clue=0x08)
 cafe_to_street()
 
 print("the Seine")
-goto(60, 120, "xy")
-push("down")
-check(room() == ROOM_QUAI, "south edge of the street leads to the quai (room %d)" % room())
+street_to_quai()
 shot("10_quai")
 goto(100, 60, "yx")
 push("right")
@@ -589,13 +610,10 @@ push("up", 400)
 check(room() == ROOM_QUAI, "back up to the quai (room %d)" % room())
 goto(60, 40, "xy")
 push("up", 200)
-check(room() == ROOM_STREET, "quai leads back up to the street (room %d)" % room())
+check(room() == ROOM_ENTRANCE, "quai leads back up to rue Baltard (room %d)" % room())
 
 print("metro: the ticket puncher (Les Halles station)")
-goto(140, 100, "yx")
-push("right")
-check(room() == ROOM_ENTRANCE, "street east edge to the market entrance (room %d)" % room())
-goto(100, 116, "yx")
+goto(60, 100, "yx")
 push("right")
 check(room() == ROOM_METRO and player() == (72, 108), "down the metro steps into the ticket hall: room %d %s" % (room(), player()))
 shot("17_metro")
@@ -643,12 +661,10 @@ shot("19_extras")
 tap("start", 10)
 shot("18_punch")
 talk("Porte des Lilas")
-goto(76, 120, "xy")
+goto(76, 100, "xy")
 push("down")
-check(room() == ROOM_ENTRANCE, "back up the steps to the market (room %d %s)" % (room(), player()))
-goto(60, 100, "yx")
-push("left")
-check(room() == ROOM_STREET, "entrance west edge back to the street (room %d)" % room())
+check(room() == ROOM_ENTRANCE and player() == (64, 100), "back up the steps to rue Baltard (room %d %s)" % (room(), player()))
+baltard_to_street()
 
 print("one more call, then Fernand")
 street_to_cafe()
@@ -673,9 +689,7 @@ check(any("7302" in window_row(r) for r in range(13, 17)), "Mme Roux's number no
 shot("04_notebook")
 tap("start", 10)
 cafe_to_street()
-goto(60, 120, "xy")
-push("down")
-check(room() == ROOM_QUAI, "down to the quai with the soup (room %d)" % room())
+street_to_quai()
 goto(40, 64, "yx")
 push("up")
 talk("an angel", clue=0x10)     # the trade: soup for the brass plate

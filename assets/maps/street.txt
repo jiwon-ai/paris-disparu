@@ -1,14 +1,14 @@
 ; Rue Rambuteau, north edge of Les Halles (20x18 tiles). Legend: tools/art.py
-; The cafe door is at x=4; the market is through the east edge.
-^^^^^^^^^^^^^^^^^^^^
-RRMRRRRMRRRRMRRRRMRR
-====================
-#W#K#W##W#K#W##K#W##
-#w#k#w##w#k#w##k#w##
-P###################
-AAAAAA##AAAAAA######
-GGGGDG##GGDGGG#D####
-GGGGEG##GGdGGG#d####
+; Cafe door at x=4. East end of Saint-Eustache at x=14-19. South: rue Baltard.
+^^^^^^^^^^^^^^+ ++ +
+RRMRRRRMRRRRMRCNCCNC
+==============CuCCuC
+#W#K#W##W#K#W#CNCCNC
+#w#k#w##w#k#w#CuCCuC
+P#############CCCCCC
+AAAAAA##AAAAAACNCCNC
+GGGGDG##GGDGGGCuCCuC
+GGGGEG##GGdGGGCCCCCC
 ..L.......L.......L.
 ..|.......|.......|.
 ____________________

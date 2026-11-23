@@ -6,7 +6,7 @@ Newest first. Dates are 2026.
 | Date | Feedback / decision | What changed |
 |---|---|---|
 | 11-23 | Record everything on GitHub | Every change is committed to `dev` with docs; this log |
-| 11-23 | Show the real Les Halles of the 1960s | Research in docs/VANISHED_PARIS_DATABASE.md (PR #2); maps to follow (next) |
+| 11-23 | Show the real Les Halles of the 1960s | Research in docs/VANISHED_PARIS_DATABASE.md (PR #2). Maps now follow it: rue Rambuteau (north, Saint-Eustache's east end) → rue Baltard between the pavilion groups → south to the quai and the Pont Neuf |
 | 11-23 | Cuter graphics, more game features (inventory, money, save, run, map, album) | Planned after the quest rework |
 | 11-23 | Credit the creator: "© Jiwon", no year | Title screen bottom row, new © glyph |
 | 11-23 | Play like a real game: quests, mini-games, fetch/trade, vanished objects | Quest chain with 3 new mini-games (serve, cups, catch) and the Mme Roux trade; QUEST COMPLETE box and fanfare |

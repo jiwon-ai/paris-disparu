@@ -217,7 +217,13 @@ Behind the misted glass, figures at the counter. It smells of coffee.
 
 # ---------------------------------------------------------------- the pavilion
 [pavilion]
-Glass and iron, very high. The light from inside makes the street shine.
+Pavilions of glass and iron on both sides. This is rue Baltard, the open street between the two groups.
+
+[covered]
+A covered street joins this pavilion to the next one.
+
+[eustache]
+The church of Saint-Eustache. Its east end looks down the central street of the market.
 
 [crates]
 Empty crates, stacked up. They'll go back out tonight.
@@ -265,7 +271,7 @@ change plus vite, hélas ! que le cœur d'un mortel)." Baudelaire. So I paint fa
 Barriers: ROADWORKS. The rest of the bridge will wait for daylight.
 
 [watch_water]
-You lean over. The water races under the bridge, fast, without a sound.
+The Pont Neuf: despite its name, the oldest bridge in Paris. Below, the water races by without a sound.
 
 # ---------------------------------------------------------------- barks
 # One-page lines that NPCs call out by themselves when the player comes close.

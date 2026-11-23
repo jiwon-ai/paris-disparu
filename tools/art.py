@@ -175,6 +175,16 @@ TILES = {
                  "10100101", "10000001", "11111111", "00000000"],
     "barrier":  ["00000000", "33223322", "33223322", "11111111",
                  "01000010", "01000010", "01000010", "00000000"],
+    # Saint-Eustache, east end: pinnacle against the sky, buttressed stone,
+    # pointed (lancet) windows. Original simplified drawing, palette 0.
+    "pinnacle": ["00010000", "00010000", "00121000", "00121000",
+                 "01222100", "01232100", "12222210", "12232210"],
+    "buttress": ["12222321", "12222321", "11222321", "12222321",
+                 "12222321", "11111111", "12232221", "12232221"],
+    "lancet_t": ["22222222", "22211222", "22100122", "21000012",
+                 "21000012", "21010012", "21010012", "21010012"],
+    "lancet_b": ["21010012", "21010012", "21010012", "21010012",
+                 "21111112", "22222222", "11111111", "22222222"],
 }
 
 # Map legend: character -> (tile name, bg palette, solid[, priority over sprites])
@@ -236,6 +246,10 @@ LEGEND = {
     "J": ("gate", 7, True),             # metro: gate to the platform
     "U": ("stairs", 2, False),          # metro steps
     "V": ("rail", 3, True),             # railing round a metro entrance
+    "+": ("pinnacle", 0, True),         # Saint-Eustache
+    "C": ("buttress", 0, True),
+    "N": ("lancet_t", 0, True),
+    "u": ("lancet_b", 0, True),
 }
 
 # ---------------------------------------------------------------------------

@@ -10,8 +10,8 @@ static const npc_def_t street_npcs[] = {
 };
 static const hotspot_t street_hotspots[] = {
     {  0, 5, 1, 4, DLG_PLAQUE },     /* plaque above reach: whole wall column */
-    { 10, 7, 1, 2, DLG_DOOR },
-    { 15, 7, 1, 2, DLG_HOTEL },
+    { 10, 7, 1, 2, DLG_HOTEL },
+    { 14, 5, 6, 4, DLG_EUSTACHE },  /* east end of the church */
     {  2, 9, 1, 2, DLG_LAMP },
     { 10, 9, 1, 2, DLG_LAMP },
     { 18, 9, 1, 2, DLG_LAMP },
@@ -22,20 +22,23 @@ static const door_t street_doors[] = {
     { 4, 7, 1, 2, ROOM_CAFE, 72, 118, DIR_UP },
 };
 
-/* --- ROOM_ENTRANCE: in front of the pavilion ------------------------------ */
+/* --- ROOM_ENTRANCE: rue Baltard, the open street between the pavilions --- */
 static const npc_def_t entrance_npcs[] = {
-    { 100, 60, SPR_PORTER_0, 1, NPC_PORTER },
-    { 24, 104, SPR_PHOTO_0, 4, NPC_PHOTO },     /* photographing the unloading */
+    { 64, 40, SPR_PORTER_0, 1, NPC_PORTER },    /* Dede, beside the cart */
+    { 32, 100, SPR_PHOTO_0, 4, NPC_PHOTO },     /* photographing the unloading */
 };
 static const hotspot_t entrance_hotspots[] = {
-    { 15, 9, 3, 1, DLG_CART_LOOK },   /* the cart: handled by events */
-    {  5, 9, 2, 2, DLG_CRATES },
-    {  0, 2, 20, 6, DLG_PAVILION },
-    { 14, 14, 5, 1, DLG_METRO_SIGN },
+    {  5, 6, 3, 1, DLG_CART_LOOK },   /* the cart: handled by events */
+    { 13, 9, 2, 2, DLG_CRATES },
+    { 10, 12, 5, 1, DLG_METRO_SIGN },
+    {  0, 7, 4, 2, DLG_COVERED },     /* covered street, west group */
+    { 16, 12, 4, 2, DLG_COVERED },    /* covered street, east group */
+    {  0, 0, 4, 18, DLG_PAVILION },
+    { 16, 0, 4, 18, DLG_PAVILION },
 };
 static const door_t entrance_doors[] = {
-    { 9, 5, 3, 3, ROOM_MARKET, 72, 112, DIR_UP },
-    { 16, 15, 2, 2, ROOM_METRO, 72, 108, DIR_UP },   /* down the metro steps */
+    { 16, 3, 3, 3, ROOM_MARKET, 72, 112, DIR_UP },
+    { 11, 13, 2, 2, ROOM_METRO, 72, 108, DIR_UP },   /* down the metro steps */
 };
 
 /* --- ROOM_MARKET: inside the pavilion -------------------------------------- */
@@ -51,7 +54,7 @@ static const hotspot_t market_hotspots[] = {
     {  1, 13, 2, 2, DLG_CRATES },
 };
 static const door_t market_doors[] = {
-    { 8, 17, 4, 1, ROOM_ENTRANCE, 72, 58, DIR_DOWN },
+    { 8, 17, 4, 1, ROOM_ENTRANCE, 112, 26, DIR_LEFT },
 };
 
 /* --- ROOM_CAFE ------------------------------------------------------------- */
@@ -117,20 +120,20 @@ static const hotspot_t metro_hotspots[] = {
     {  0, 0, 20, 7, DLG_METRO_TILES },
 };
 static const door_t metro_doors[] = {
-    { 8, 17, 4, 1, ROOM_ENTRANCE, 104, 116, DIR_LEFT },
+    { 8, 17, 4, 1, ROOM_ENTRANCE, 64, 100, DIR_LEFT },
 };
 
 const room_def_t rooms[ROOM_COUNT] = {
     { street_npcs, 1, street_hotspots, 8, street_doors, 1,
-      { ROOM_QUAI, NO_EXIT, NO_EXIT, ROOM_ENTRANCE }, AMBIENCE_STREET },
-    { entrance_npcs, 2, entrance_hotspots, 4, entrance_doors, 2,
-      { NO_EXIT, NO_EXIT, ROOM_STREET, NO_EXIT }, AMBIENCE_MARKET },
+      { ROOM_ENTRANCE, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_STREET },
+    { entrance_npcs, 2, entrance_hotspots, 7, entrance_doors, 2,
+      { ROOM_QUAI, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_MARKET },
     { market_npcs, 1, market_hotspots, 6, market_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
     { cafe_npcs, 2, cafe_hotspots, 5, cafe_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
     { quai_npcs, 2, quai_hotspots, 15, 0, 0,
-      { ROOM_PONT, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
+      { ROOM_PONT, ROOM_ENTRANCE, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { pont_npcs, 2, pont_hotspots, 5, 0, 0,
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { metro_npcs, 1, metro_hotspots, 4, metro_doors, 1,

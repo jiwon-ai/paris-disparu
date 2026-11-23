@@ -6,15 +6,18 @@ missed permanently.
 
 ## Map (current build)
 
+Follows the real 1960s geography (sources: docs/HISTORICAL_RESEARCH.md,
+"Real geography of the maps"). North is up.
+
 ```
-            [ Pavilion interior ]
-                     ^ arch
-[ Café ] <- door - [ rue Rambuteau ] -- east edge --> [ Pavilion entrance ]
-                         | south                              | métro steps
-                     [ Quai ] -- bridge deck --> [ Pont ]   [ Métro ticket hall ]
+[ Café ] <- door - [ rue Rambuteau ]  (Saint-Eustache's east end, north side)
+                         | south
+[ Pavilion interior ] <- arch - [ rue Baltard ] -- métro steps --> [ Métro ticket hall ]
+                         | south (towards rue du Pont-Neuf)
+                     [ Quai ] -- bridge deck --> [ Pont Neuf ]
 ```
 
-The player starts in the quiet street at 3h10. Near the east edge a soft
+The player starts in the quiet street at 3h10. Near the south side a soft
 knock (noise channel) is heard now and then, pulling the player towards the
 market. All ambience is sparse and quiet: one sound every 1-4 seconds.
 
@@ -58,7 +61,7 @@ closed in 1984. B before the question cancels the scene.
 | NPC | Where | Role |
 |---|---|---|
 | The man with the notebook | street | first encounter; notes what the player has done since (market, crates, phone) — attention is noticed |
-| Fernand, porter | pavilion entrance | offers Experience A |
+| Fernand, porter | rue Baltard | offers Experience A |
 | Germaine, merchant | interior, cabbage stall | prices, rhythm of the market; reacts to wrong deliveries |
 | Simone, café worker | café, behind the counter | coffee choice, gives the telephone token |
 | A porter at the counter | café | "sleeps standing up"; comments on the phone call |

@@ -87,17 +87,18 @@ hold("b", 2)                     # skip the intro
 pb.tick(40, False)
 hold("b", 2)                     # close the opening caption
 STREET, ENTRANCE, QUAI, PONT = 0, 1, 4, 5
-for x in (4, 20, 40, 60, 80, 100, 130):
-    cross("street", x, 126, "down", QUAI)       # quai opening is x=56-95
-    cross("quai", x if 56 <= x <= 84 else 60, 0, "up", STREET)
+for x in (4, 20, 40, 60, 80, 100, 130):         # rue Rambuteau <-> rue Baltard
+    cross("street", x, 126, "down", ENTRANCE)   # rue Baltard is open at x=32-127
+    cross("entrance", x if 32 <= x <= 112 else 88, 0, "up", STREET)
+cross("street", 60, 126, "down", ENTRANCE)
+for x in (36, 60, 84, 100, 112):                # rue Baltard <-> quai
+    cross("entrance", x, 126, "down", QUAI)     # quai opening is x=56-103
+    cross("quai", x if 56 <= x <= 84 else 60, 0, "up", ENTRANCE)
 for x in (66, 72, 80):                          # the quai's south edge is open only at the deck
-    cross("street", 60, 126, "down", QUAI)
+    cross("entrance", 60, 126, "down", QUAI)
     cross("quai", x, 127, "down", PONT)
     cross("pont", x, 0, "up", QUAI)
-    cross("quai", 60, 0, "up", STREET)
-for y in (64, 80, 100, 120):
-    cross("street", 147, y, "right", ENTRANCE)
-    cross("entrance", -3, y, "left", STREET)
+    cross("quai", 60, 0, "up", ENTRANCE)
 
 pb.stop(save=False)
 print("\n%d failure(s)" % len(failures))

@@ -32,7 +32,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Title key art (night view: church with lantern tower behind a lit iron-and-glass pavilion, gas lamps, a fort carrying a crate), fade-in; speaker portraits on the dialogue box; flickering lamp light | done, tested in PyBoy; composition is original and not a measured drawing of Saint-Eustache |
 | One cameo: an unnamed photographer at dawn, inspired by a real photographer's documented weekly visits to Les Halles (see docs/HISTORICAL_RESEARCH.md, Cameos; needs legal review before release) | done, tested |
 | Location caption | done, tested |
-| 6 connected areas: rue Rambuteau, pavilion entrance, pavilion interior, café, quai of the Seine, a bridge | done, tested (screen edges + doors) |
+| 7 connected areas on the real layout: rue Rambuteau, rue Baltard, pavilion interior, café, métro ticket hall, quai of the Seine, Pont Neuf | done, tested (screen edges + doors) |
 | Seine: animated water, a barge that passes under the bridge, gas lamps, bouquinistes' boxes, plane trees | done, tested (barge movement checked in RAM) |
 | Player: 4-direction movement, walk animation, tile + NPC collision | done, tested |
 | 6 NPCs whose dialogue changes with what you have done (incl. a painter on the bridge) | done, tested |

@@ -408,8 +408,8 @@ static void update_ambience(void) {
     r = next_random();
     ambience_timer = 90 + (r & 127);
     switch (rooms[cur_room].ambience) {
-    case AMBIENCE_STREET:   /* only near the east end, where the market is */
-        if (player.x > 96) sound_market(1);
+    case AMBIENCE_STREET:   /* only near the south side, where the market is */
+        if (player.y > 100) sound_market(1);
         break;
     case AMBIENCE_MARKET:
         sound_market(2 + (r & 1));

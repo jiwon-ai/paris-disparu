@@ -138,3 +138,22 @@ person eating onion soup or spending the night at Les Halles in the 1960s
 (Paris ZigZag and Bonjour Paris name restaurants and anonymous night people
 only), so no other cameo was added. Georges Pompidou's link to the site is
 later (the cultural use of the pavilions, 1969-71, per Bonjour Paris).
+
+
+## Real geography of the maps (2026-11-23)
+
+Sources: docs/VANISHED_PARIS_DATABASE.md, Part 1 (research PR #2), which cites
+fr.Wikipedia "Halles de Paris", en.Wikipedia "Rue du Pont-Neuf", Paris ZigZag,
+Larousse and Wikisource. The Pont Neuf line: [Britannica](https://www.britannica.com/topic/Pont-Neuf),
+[Wikipedia](https://en.wikipedia.org/wiki/Pont_Neuf), [Sortiraparis](https://www.sortiraparis.com/en/what-to-visit-in-paris/history-heritage/articles/173577-history-pont-neuf-paris).
+
+| Element used in the game | Status |
+|---|---|
+| Rue Rambuteau runs along the north side of the market; the route goes south from it into the market | **Read** |
+| Saint-Eustache on the north side, its east end (chevet) level with the central street | **Read**. Drawing and exact position on screen: **reconstruction** (simplified original art, not a copy of the building) |
+| The central street between the two groups of six pavilions is rue Baltard, open to the sky; pavilions of each group joined by covered streets | **Read** |
+| Going south, rue Baltard continues as rue du Pont-Neuf to the Pont Neuf and the Seine (so the quai is reached through the market, not from rue Rambuteau) | **Read** |
+| The bridge screen is the Pont Neuf, "the oldest bridge in Paris despite its name" | **Read** |
+| Which pavilion the arch opens into, its produce, the stall layout | **Reconstruction** (1960s pavilion allocation not found) |
+| Métro steps in rue Baltard | **Reconstruction** (1967 entrance locations not found) |
+| The quai's name, the booksellers' boxes at this exact spot | **Not found**; the quai stays unnamed |
