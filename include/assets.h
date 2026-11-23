@@ -14,6 +14,7 @@
 
 #define ASSET_BANK 1   /* bank of src/assets.c, normally mapped */
 #define DLG_BANK 2     /* bank of src/dialogue_text.c */
+#define TITLE_BANK 3   /* bank of src/title_art.c */
 #define FONT_BASE 128
 #define FONT_TILE_COUNT 112
 #define GLYPH_SPACE 128
@@ -84,6 +85,9 @@
 #define TILE_TREE_BR 49
 #define TILE_BARRIER 50
 #define SPRITE_TILE_COUNT 96
+#define PORTRAIT_BASE 64
+#define PORTRAIT_TILE_COUNT 72
+#define NO_PORTRAIT 0xFF
 #define SPR_PLAYER_DOWN_0 0
 #define SPR_PLAYER_DOWN_1 4
 #define SPR_PLAYER_DOWN_2 8
@@ -218,12 +222,10 @@ extern const uint16_t dlg_first_page[DLG_COUNT];
 extern const uint8_t dlg_page_count[DLG_COUNT];
 extern const uint8_t dlg_choice[DLG_COUNT];   /* 0 = none, else pair index + 1 */
 extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
-extern const uint8_t txt_title_1[];
-extern const uint8_t txt_title_2[];
-extern const uint8_t txt_title_3[];
-extern const uint8_t txt_title_4[];
+extern const uint8_t portrait_tiles[];
+extern const uint8_t portrait_pal[];          /* sprite palette per portrait */
+extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */
 extern const uint8_t txt_title_5[];
-extern const uint8_t txt_title_6[];
 extern const uint8_t txt_caption[];
 extern const uint8_t txt_caption_2[];
 extern const uint8_t txt_new_clue[];
@@ -269,5 +271,10 @@ extern const uint8_t txt_dial_1[];
 extern const uint8_t txt_dial_2[];
 extern const uint8_t txt_digits[];
 extern const uint8_t txt_bark_hint[];
+#define TITLE_TILE_COUNT 176
+extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
+extern const uint8_t title_map[];
+extern const uint8_t title_attr[];
+extern const palette_color_t title_pal[];
 
 #endif

@@ -68,3 +68,23 @@ All art and text are plain text so changes are reviewable:
   coordinates in RAM (`_player` from the `.noi` symbol file) and the window
   tile map for dialogue text.
 - `.github/workflows/build.yml` runs build, checks and the gameplay test.
+
+
+## Title key art and portraits
+
+- `tools/title_art.py` draws the 160x144 title illustration in code and
+  converts it to CGB tiles: each 8x8 tile takes the best of 8 palettes
+  (palette 5 is reserved for the blinking "Press START" font text). The
+  generator writes `src/title_art.c` into ROM bank 3 (`TITLE_BANK`). During
+  the title its tiles use VRAM bank 1 indices 0..; `load_bank1()` puts the
+  scenery tiles and portraits back afterwards. The title fades in from black
+  (palettes scaled in 4 steps). Preview: `python3 tools/title_art.py` writes
+  `docs/art/title_preview.png`.
+- `tools/portraits.py` draws six 24x32 speaker busts. They are sprite tiles
+  in VRAM bank 1 from `PORTRAIT_BASE` (64), shown as six 8x16 sprites (OAM
+  24-29) on top of the dialogue box, with the speaker's sprite palette. The
+  portrait of each dialogue is the name before ':' on its first page
+  (`dlg_portrait[]`, generated).
+- Street-lamp glow (BG palette 3, colours 2-3) moves between three close
+  levels at random every 8 frames.
+- ROM banks: 0 code, 1 assets, 2 dialogue, 3 title art.

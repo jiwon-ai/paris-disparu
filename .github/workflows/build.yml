@@ -23,7 +23,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install test emulator
-        run: pip install pyboy==2.9.0
+        run: pip install pyboy==2.9.0 pillow==12.3.0
 
       - name: Build ROM
         run: make GBDK_HOME=$HOME/gbdk

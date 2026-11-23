@@ -29,7 +29,8 @@ Everything below is in the ROM and exercised by the automated play-through
 | CGB-only ROM with valid header (MBC5, CGB flag 0xC0) | done, checked by `tests/check_rom.py` |
 | The Fernand mystery: 6 clues (the man with the notebook, Simone and the coltin, call 4127, the petit bleu, call 7302 and the plate, Germaine after the crates), Fernand found on the bridge, two endings (Stay / Go with), an end screen with clues found and real dates (Rungis 1969, pneumatique closed 1984) | done, tested (both endings) |
 | Notebook on START: current goal, clues found (n/6), phone numbers learned; a "New clue!" note when one is found | done, tested |
-| Title screen, location caption | done, tested |
+| Title key art (night view: church with lantern tower behind a lit iron-and-glass pavilion, gas lamps, a fort carrying a crate), fade-in; speaker portraits on the dialogue box; flickering lamp light | done, tested in PyBoy; composition is original and not a measured drawing of Saint-Eustache |
+| Location caption | done, tested |
 | 6 connected areas: rue Rambuteau, pavilion entrance, pavilion interior, café, quai of the Seine, a bridge | done, tested (screen edges + doors) |
 | Seine: animated water, a barge that passes under the bridge, gas lamps, bouquinistes' boxes, plane trees | done, tested (barge movement checked in RAM) |
 | Player: 4-direction movement, walk animation, tile + NPC collision | done, tested |

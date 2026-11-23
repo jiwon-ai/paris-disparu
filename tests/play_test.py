@@ -225,7 +225,7 @@ def talk(expect, choice=None, clue=None):
 
 # ----------------------------------------------------------------------------
 print("boot")
-tick(90)
+tick(150)   # boot + title fade-in
 check(mem[0xFF40] & 0x80, "LCD is on after boot")
 check(pb.cartridge_title.strip().startswith("PARISDISPAR"), "cartridge title read by emulator")
 shot("01_title")
@@ -477,7 +477,8 @@ cafe_to_street()
 to_bridge()
 to_fernand()
 check("FERNAND" in window_row(1), "Fernand's silent call-out: %r" % window_row(1))
-tap("a", 0)
+tap("a", 70)
+shot("15_fernand")
 lines = dialogue(choice=0, max_pages=40)
 check(any("My coltin" in l for l in lines), "Fernand opens up: %d pages" % len(lines))
 check(any("two winters" in l for l in lines), "ending: he stays for the last winters")

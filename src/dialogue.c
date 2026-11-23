@@ -48,8 +48,28 @@ void box_open(uint8_t rows) {
     SHOW_WIN;
 }
 
+/* Speaker portrait: six 8x16 sprites standing on the top-left of the box.
+   Tiles are in VRAM bank 1 (attribute bit 3), loaded by load_graphics(). */
+#define PORTRAIT_OAM 24
+static void portrait_show(uint8_t p) {
+    uint8_t i;
+    if (p == NO_PORTRAIT) return;
+    for (i = 0; i < 6; i++) {
+        uint8_t n = PORTRAIT_OAM + i;
+        set_sprite_tile(n, PORTRAIT_BASE + p * 12 + i * 2);
+        set_sprite_prop(n, portrait_pal[p] | 0x08);
+        move_sprite(n, 8 + 8 + (i >> 1) * 8, SCREEN_H - DLG_ROWS * 8 - 32 + 16 + (i & 1) * 16);
+    }
+}
+
+static void portrait_hide(void) {
+    uint8_t i;
+    for (i = 0; i < 6; i++) move_sprite(PORTRAIT_OAM + i, 0, 0);
+}
+
 void box_close(void) {
     HIDE_WIN;
+    portrait_hide();
 }
 
 void box_print(uint8_t x, uint8_t y, const uint8_t *text) {
@@ -76,6 +96,8 @@ void dialogue_start(uint8_t id) {
     load_page();
     box_open(DLG_ROWS);
     clear_text();
+    portrait_hide();
+    portrait_show(dlg_portrait[id]);
     sound_confirm();
 }
 
@@ -168,5 +190,7 @@ void bark_show(uint8_t id) {
     box_open(DLG_ROWS);
     for (y = 0; y < TEXT_ROWS; y++)
         set_win_tiles(1, 1 + y, TEXT_COLS, 1, page_buf + y * TEXT_COLS);
-    box_print(10, DLG_ROWS - 1, txt_bark_hint);   /* "A: parler" on the frame */
+    box_print(10, DLG_ROWS - 1, txt_bark_hint);   /* "A: talk" on the frame */
+    portrait_hide();
+    portrait_show(dlg_portrait[id]);
 }

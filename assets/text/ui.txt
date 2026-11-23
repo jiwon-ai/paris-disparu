@@ -1,10 +1,5 @@
 # One-line UI strings: key = text (max 20 characters; boxed text max 18)
-title_1 = PARIS DISPARU
-title_2 = A life that
-title_3 = no longer exists
-title_4 = Les Halles, 1967
 title_5 = Press START
-title_6 = A: talk  B: close
 caption = Rue Rambuteau 3:10
 caption_2 = START: notebook
 new_clue = New clue! (START)

@@ -27,10 +27,6 @@ static uint8_t rng = 0x5A;
 static uint8_t anim_frame;
 static uint8_t barge_x;
 
-/* Title screen colours: dark paper, cream ink (palette 5 is reused). */
-static const palette_color_t title_palette[4] = {
-    RGB(4, 5, 11), RGB(4, 5, 11), RGB(12, 10, 9), RGB(30, 27, 19)
-};
 
 static uint8_t row_buf[MAP_W];
 
@@ -61,13 +57,19 @@ static void bkg_text_centered(uint8_t y, const uint8_t *t) {
     set_bkg_tiles((MAP_W - n) / 2, y, n, 1, t);
 }
 
+/* VRAM bank 1: scenery tiles and dialogue portraits (the title art borrows it). */
+static void load_bank1(void) {
+    VBK_REG = VBK_ATTRIBUTES;
+    set_bkg_data(0, ENV_TILE_COUNT, env_tiles);
+    set_sprite_data(PORTRAIT_BASE, PORTRAIT_TILE_COUNT, portrait_tiles);
+    VBK_REG = VBK_TILES;
+}
+
 static void load_graphics(void) {
     VBK_REG = VBK_TILES;
     set_sprite_data(0, SPRITE_TILE_COUNT, sprite_tiles);
     set_bkg_data(FONT_BASE, FONT_TILE_COUNT, font_tiles);
-    VBK_REG = VBK_ATTRIBUTES;          /* bank 1: scenery tiles */
-    set_bkg_data(0, ENV_TILE_COUNT, env_tiles);
-    VBK_REG = VBK_TILES;
+    load_bank1();
 }
 
 /* Shown if the cartridge is started on a monochrome Game Boy. */
@@ -86,20 +88,51 @@ static void dmg_screen(void) {
     while (1) wait_vbl_done();
 }
 
+#define TITLE_TEXT_ROW 16
+
+/* Copy one row of the title art back (it lives in ROM bank TITLE_BANK). */
+static void title_art_row(uint8_t y) {
+    SWITCH_ROM(TITLE_BANK);
+    VBK_REG = VBK_ATTRIBUTES;
+    set_bkg_tiles(0, y, MAP_W, 1, title_attr + y * MAP_W);
+    VBK_REG = VBK_TILES;
+    set_bkg_tiles(0, y, MAP_W, 1, title_map + y * MAP_W);
+    SWITCH_ROM(ASSET_BANK);
+}
+
+/* Title palettes scaled by level/4 (0 = black): a short fade-in. */
+static palette_color_t fade_buf[32];
+static void title_fade(uint8_t level) {
+    uint8_t i;
+    SWITCH_ROM(TITLE_BANK);
+    for (i = 0; i < 32; i++) {
+        uint16_t c = title_pal[i];
+        uint8_t r = c & 31, g = (c >> 5) & 31, b = (c >> 10) & 31;
+        fade_buf[i] = (uint16_t)((r * level) >> 2) | ((uint16_t)((g * level) >> 2) << 5)
+                      | ((uint16_t)((b * level) >> 2) << 10);   /* CGB 15-bit BGR */
+    }
+    SWITCH_ROM(ASSET_BANK);
+    fade_buf[5 * 4 + 1] = fade_buf[5 * 4];   /* font text paper = night */
+    set_bkg_palette(0, 8, fade_buf);
+}
+
+/* Key art: a night view of Les Halles (tools/title_art.py). Its tiles use
+   VRAM bank 1, so the scenery tiles are reloaded afterwards. */
 static void title_screen(void) {
     uint8_t y, t = 0;
 
-    set_bkg_palette(0, 8, bg_palettes);
-    set_bkg_palette(5, 1, title_palette);
-    for (y = 0; y < 15; y++) bkg_fill_row(y, GLYPH_SPACE, 5);
-    bkg_fill_row(15, TILE_SKY, 7 | 0x08);
-    bkg_fill_row(16, TILE_ROOFTOP, 7 | 0x08);
-    bkg_fill_row(17, TILE_ROOF, 7 | 0x08);
-    bkg_text_centered(4, txt_title_1);
-    bkg_text_centered(6, txt_title_2);
-    bkg_text_centered(7, txt_title_3);
-    bkg_text_centered(10, txt_title_4);
-    bkg_text_centered(14, txt_title_6);
+    title_fade(0);
+    SWITCH_ROM(TITLE_BANK);
+    VBK_REG = VBK_ATTRIBUTES;
+    set_bkg_data(0, TITLE_TILE_COUNT, title_tiles);
+    VBK_REG = VBK_TILES;
+    SWITCH_ROM(ASSET_BANK);
+    for (y = 0; y < MAP_H; y++) title_art_row(y);
+    for (y = 1; y <= 4; y++) {
+        uint8_t f;
+        for (f = 0; f < 8; f++) wait_vbl_done();
+        title_fade(y);
+    }
 
     while (1) {
         wait_vbl_done();
@@ -107,15 +140,17 @@ static void title_screen(void) {
         if (joy_pressed) break;     /* any button starts: no guessing which one */
         t++;
         if ((t & 31) == 0) {
-            if (t & 32) bkg_text_centered(12, txt_title_5);
-            else {
-                for (y = 0; y < MAP_W; y++) row_buf[y] = GLYPH_SPACE;
-                set_bkg_tiles(0, 12, MAP_W, 1, row_buf);
+            if (t & 32) {
+                bkg_fill_row(TITLE_TEXT_ROW, GLYPH_SPACE, 5);
+                bkg_text_centered(TITLE_TEXT_ROW, txt_title_5);
+            } else {
+                title_art_row(TITLE_TEXT_ROW);
             }
         }
         next_random();   /* time spent on the title varies the ambience */
     }
     sound_confirm();
+    load_bank1();                      /* scenery and portraits back into bank 1 */
 }
 
 static void close_caption(void) {
@@ -206,6 +241,22 @@ static void animate_river(void) {
         uint8_t i;
         for (i = 36; i < 40; i++) move_sprite(i, 0, 0);
     }
+}
+
+/* Lamp light breathes a little: palette 3 (street lamps) colours 2-3
+   move between three close levels at random. */
+static const palette_color_t lamp_glow[3][2] = {
+    { RGB(28, 23, 9), RGB(31, 31, 22) },
+    { RGB(27, 21, 8), RGB(31, 29, 19) },
+    { RGB(29, 24, 10), RGB(31, 31, 24) },
+};
+static void flicker_lamps(void) {
+    uint8_t k;
+    if (anim_frame & 7) return;
+    k = next_random() & 3;
+    if (k == 3) k = 0;
+    set_bkg_palette_entry(3, 2, lamp_glow[k][0]);
+    set_bkg_palette_entry(3, 3, lamp_glow[k][1]);
 }
 
 static uint8_t absdiff(int16_t a, int16_t b) {
@@ -361,5 +412,6 @@ void main(void) {
         }
         actors_draw();
         animate_river();
+        if (state != ST_END) flicker_lamps();
     }
 }
