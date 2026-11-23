@@ -10,6 +10,8 @@ missed permanently.
             [ Pavilion interior ]
                      ^ arch
 [ Café ] <- door - [ rue Rambuteau ] -- east edge --> [ Pavilion entrance ]
+                         | south                              | métro steps
+                     [ Quai ] -- bridge deck --> [ Pont ]   [ Métro ticket hall ]
 ```
 
 The player starts in the quiet street at 3h10. Near the east edge a soft
@@ -53,6 +55,13 @@ closed in 1984. B before the question cancels the scene.
 | A porter at the counter | café | "sleeps standing up"; comments on the phone call |
 
 ## Experiences
+
+- **Métro ticket hall (vanished Paris).** Steps down from the pavilion
+  entrance. The ticket puncher won't let you through without a ticket; buy a
+  second-class ticket at the window, he punches it ("Clac!") and lets you try
+  his job: punch three passengers' tickets with a timing bar. Reward: he saw
+  a big fort with no hat go off towards the river (a hint for the bridge).
+  Optional. Sources and status in HISTORICAL_RESEARCH, "Vanished Paris".
 
 - **A — Fernand's crates.** Accept with Oui/Non. Take crates one by one from
   his cart (cabbages, apples, carrots), carry them inside at half speed, and

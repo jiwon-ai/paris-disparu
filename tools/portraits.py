@@ -134,6 +134,18 @@ def photographer():
     return outline(g)
 
 
+def puncher():
+    g = blank()
+    shoulders(g, "o")                        # uniform jacket
+    for y in (26, 29):                       # buttons
+        g[y][12] = "#"
+    face(g, cy=16)
+    ellipse(g, 12, 9, 6.5, 3, "#")           # peaked cap
+    rect(g, 5, 11, 18, 11, "#")              # its peak
+    rect(g, 10, 8, 13, 8, "s")               # cap badge
+    return outline(g)
+
+
 # Order = portrait index used by the game; palette = sprite palette index.
 PORTRAITS = [
     ("SIMONE", simone(), 3),
@@ -143,6 +155,7 @@ PORTRAITS = [
     ("MAN WITH NOTEBOOK", stranger(), 4),
     ("THE PAINTER", painter(), 2),
     ("THE PHOTOGRAPHER", photographer(), 4),
+    ("TICKET PUNCHER", puncher(), 4),
 ]
 # Other speakers who reuse a portrait.
 ALIASES = {"A PORTER": "DÉDÉ"}

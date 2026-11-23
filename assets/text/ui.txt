@@ -78,3 +78,5 @@ dial_1 = Dial a number
 dial_2 = Up/Down, then A
 digits = 0123456789
 bark_hint = A: talk
+punch_1 = Punch! Press A in
+punch_2 = the marked zone.

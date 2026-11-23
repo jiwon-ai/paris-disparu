@@ -19,7 +19,7 @@ import font  # noqa: E402
 
 FONT_BASE = 128
 CHARS = list(font.GLYPHS.keys())
-ROOM_STREET, ROOM_ENTRANCE, ROOM_MARKET, ROOM_CAFE, ROOM_QUAI, ROOM_PONT = range(6)
+ROOM_STREET, ROOM_ENTRANCE, ROOM_MARKET, ROOM_CAFE, ROOM_QUAI, ROOM_PONT, ROOM_METRO = range(7)
 FLAG_TASK_DONE, FLAG_PHONE_DONE, FLAG_SOLVED = 0x0008, 0x0200, 0x1000
 failures = []
 
@@ -161,7 +161,7 @@ def dialogue(choice=None, max_pages=12):
     lines = []
     tick(70)
     for _ in range(max_pages):
-        if not window_on() or window_row(1).startswith(("Dial", "Lift!", "New clue")) \
+        if not window_on() or window_row(1).startswith(("Dial", "Lift!", "Punch!", "New clue")) \
                 or window_row(2) == "THE END":
             break
         if "▶" in window_row(2):
@@ -488,6 +488,57 @@ check(room() == ROOM_QUAI, "back up to the quai (room %d)" % room())
 goto(60, 40, "xy")
 push("up", 200)
 check(room() == ROOM_STREET, "quai leads back up to the street (room %d)" % room())
+
+print("metro: the ticket puncher (Les Halles station)")
+goto(140, 100, "yx")
+push("right")
+check(room() == ROOM_ENTRANCE, "street east edge to the market entrance (room %d)" % room())
+goto(100, 116, "yx")
+push("right")
+check(room() == ROOM_METRO and player() == (72, 108), "down the metro steps into the ticket hall: room %d %s" % (room(), player()))
+shot("17_metro")
+goto(84, 72, "xy")
+push("up")
+check(window_on() and "Tickets" in window_row(1) + window_row(2), "the puncher calls out: %r" % window_row(2))
+talk("No ticket")
+goto(28, 72, "yx")
+push("up")
+talk("second-class ticket")
+check(flags() & 0x0400, "bought a ticket (FLAG_TICKET)")
+talk("newspaper")
+goto(84, 72, "yx")
+push("up")
+tap("a", 0)
+lines = dialogue()
+check(any("Clac" in l for l in lines) and window_on(), "he punches the ticket and offers a go: %s" % lines[:1])
+def punch(hit=True):
+    """The punch bar is already up: press A in the zone, or far from it to miss."""
+    for _ in range(400):
+        cols = [x for x in range(2, 18) if win_tile(x, 3) == HDR["GLYPH_BAR_CURSOR"]]
+        if cols and ((9 <= cols[0] <= 10) if hit else cols[0] <= 4):
+            tap("a", 2)
+            return
+        tick(1)
+
+
+punch(hit=False)
+lines = dialogue(choice=0)
+check(any("punched the air" in l for l in lines) and window_on(), "a miss: %s" % lines[:1])
+for n in range(3):
+    punch()
+    lines = dialogue(choice=0 if n < 2 else None)
+    if n < 2:
+        check(any("clean hole" in l for l in lines) and window_on(), "passenger %d: clean hole: %s" % (n + 1, lines[:1]))
+check(mem[sym["_punched"]] == 3, "three tickets punched (%d)" % mem[sym["_punched"]])
+check(any("river" in l for l in lines) and not window_on(), "his hint: Fernand went towards the river: %s" % lines[-1:])
+shot("18_punch")
+talk("Porte des Lilas")
+goto(76, 120, "xy")
+push("down")
+check(room() == ROOM_ENTRANCE, "back up the steps to the market (room %d %s)" % (room(), player()))
+goto(60, 100, "yx")
+push("left")
+check(room() == ROOM_STREET, "entrance west edge back to the street (room %d)" % room())
 
 print("one more call, then Fernand")
 street_to_cafe()

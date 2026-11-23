@@ -24,7 +24,7 @@ MAP_W, MAP_H = 20, 18
 FONT_BASE = 128          # font tiles live at 128.. in VRAM bank 0
 TEXT_COLS, TEXT_ROWS = 18, 3
 PAGE_SIZE = TEXT_COLS * TEXT_ROWS
-ROOMS = ["street", "entrance", "market", "cafe", "quai", "pont"]   # order defines ROOM_* ids
+ROOMS = ["street", "entrance", "market", "cafe", "quai", "pont", "metro"]   # order defines ROOM_* ids
 
 errors = []
 

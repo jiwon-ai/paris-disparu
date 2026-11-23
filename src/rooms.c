@@ -31,9 +31,11 @@ static const hotspot_t entrance_hotspots[] = {
     { 15, 9, 3, 1, DLG_CART_LOOK },   /* the cart: handled by events */
     {  5, 9, 2, 2, DLG_CRATES },
     {  0, 2, 20, 6, DLG_PAVILION },
+    { 14, 14, 5, 1, DLG_METRO_SIGN },
 };
 static const door_t entrance_doors[] = {
     { 9, 5, 3, 3, ROOM_MARKET, 72, 112, DIR_UP },
+    { 16, 15, 2, 2, ROOM_METRO, 72, 108, DIR_UP },   /* down the metro steps */
 };
 
 /* --- ROOM_MARKET: inside the pavilion -------------------------------------- */
@@ -100,10 +102,24 @@ static const hotspot_t pont_hotspots[] = {
     { 12, 0, 2, 18, DLG_WATCH_WATER },    /* east parapet */
 };
 
+/* --- ROOM_METRO: the ticket hall of Les Halles station -------------------- */
+static const npc_def_t metro_npcs[] = {
+    { 84, 52, SPR_PUNCHER_0, 4, NPC_PUNCHER },    /* at the platform gate */
+};
+static const hotspot_t metro_hotspots[] = {
+    {  2, 4, 3, 3, DLG_METRO_WINDOW },
+    { 12, 5, 4, 2, DLG_METRO_GATE },
+    {  5, 1, 10, 1, DLG_METRO_NAME },
+    {  0, 0, 20, 7, DLG_METRO_TILES },
+};
+static const door_t metro_doors[] = {
+    { 8, 17, 4, 1, ROOM_ENTRANCE, 104, 116, DIR_LEFT },
+};
+
 const room_def_t rooms[ROOM_COUNT] = {
     { street_npcs, 1, street_hotspots, 8, street_doors, 1,
       { ROOM_QUAI, NO_EXIT, NO_EXIT, ROOM_ENTRANCE }, AMBIENCE_STREET },
-    { entrance_npcs, 2, entrance_hotspots, 3, entrance_doors, 1,
+    { entrance_npcs, 2, entrance_hotspots, 4, entrance_doors, 2,
       { NO_EXIT, NO_EXIT, ROOM_STREET, NO_EXIT }, AMBIENCE_MARKET },
     { market_npcs, 1, market_hotspots, 6, market_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
@@ -113,4 +129,6 @@ const room_def_t rooms[ROOM_COUNT] = {
       { ROOM_PONT, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { pont_npcs, 2, pont_hotspots, 5, 0, 0,
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
+    { metro_npcs, 1, metro_hotspots, 4, metro_doors, 1,
+      { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
 };

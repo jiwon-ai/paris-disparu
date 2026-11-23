@@ -25,9 +25,14 @@ static void draw_bar(void) {
 }
 
 void lift_start(uint8_t level) {
+    timing_start(level, txt_lift_1, txt_lift_2);
+}
+
+/* The same timing bar, with its own two lines of instructions. */
+void timing_start(uint8_t level, const uint8_t *line1, const uint8_t *line2) {
     box_open(5);
-    box_print(1, 1, txt_lift_1);
-    box_print(1, 2, txt_lift_2);
+    box_print(1, 1, line1);
+    box_print(1, 2, line2);
     if (level > 2) level = 2;
     zone_lo = zone_lo_by_level[level];
     zone_hi = zone_hi_by_level[level];

@@ -81,6 +81,23 @@ Read on 2026-11-23. "Read" = the statement was found in that source; secondary s
 | Jeton telephones in cafés in 1967 | **To research** (kept from earlier builds) | — |
 
 
+## Vanished Paris: the métro ticket hall (Les Halles station)
+
+Read on 2026-11-23 (secondary sources).
+
+| Element used in the game | Status | Source |
+|---|---|---|
+| Ticket punchers (poinçonneurs) sat in a metal booth at the top of the stairs or stood at the platform gate and punched each ticket with a metal punch; they disappeared in October 1973 when magnetic tickets and automatic gates were generalised, so they were still at work in 1967 | **Read** (Paris ZigZag gives Oct 1973; Paris.fr dates the generalisation of the magnetic strip to Oct 1973 and the first automatic gate trials to April 1968; Sortiraparis says magnetic tickets 1968 and machines 1973 — the sources differ on the start, all agree punchers were there before 1968) | [Paris ZigZag](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/la-petite-histoire-des-poinconneurs-du-metro/); [Paris.fr](https://www.paris.fr/pages/le-ticket-de-metro-rejoint-le-poinconneur-des-lilas-24553); [Sortiraparis](https://www.sortiraparis.com/en/what-to-visit-in-paris/history-heritage/articles/307669-did-you-know-that-the-metro-ticket-originally-cost-15-centimes-a-look-back-at-its-history) |
+| Two classes until 1991; tickets sold at a window in each station | **Read** | Paris ZigZag; Paris.fr; Sortiraparis (same pages) |
+| "A small brown second-class ticket" | **Reconstruction**: Paris.fr says the 1958 tariff made second-class tickets *havane* (tan) and first-class green; that this was still the colour in 1967 is assumed | Paris.fr |
+| Les Halles station, line 4, opened 21 April 1908 to serve the market; rebuilt ~10 m east in 1977 for the RER | **Read** | [Wikipedia, Les Halles station](https://en.wikipedia.org/wiki/Les_Halles_station) |
+| White tiles in stations since 1900 (hygiene, reflect the poor light) | **Read**. Note: the same source says some stations were re-tiled orange ("style Mouton") from the 1950s-60s; which style Les Halles had in 1967 was **not found** | [Paris ZigZag, carrelage](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/dou-vient-le-carrelage-du-metro/) |
+| A street entrance with railings and a "MÉTRO" sign next to the pavilion; the look of the ticket hall, the gate, the clerk | **Reconstruction** (exact entrance location and design in 1967 not found; no Guimard design is claimed) | — |
+| The puncher's words, the punch mini-game, his sighting of Fernand | **Fiction** | — |
+| Métro opening hours in 1967 (whether a puncher would be on duty at 3-5 a.m.) | **Not found**. The game avoids giving a time: he says "here come the first passengers" | — |
+| Allusion: "A singer once made a song about a man like me, out at Porte des Lilas" = Serge Gainsbourg, *Le Poinçonneur des Lilas* (1959) | **Read** (year: Paris ZigZag only). Rights: the song is under copyright; **no lyrics, melody or title are reproduced**, only an allusion to its subject. Legal review advised before release | Paris ZigZag |
+
+
 ## Cameos (real people)
 
 Policy: a real person appears only with a documented tie to Les Halles at

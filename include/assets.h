@@ -32,7 +32,7 @@
 #define GLYPH_BAR_ZONE 238
 #define GLYPH_BAR_CURSOR 239
 
-#define ENV_TILE_COUNT 51
+#define ENV_TILE_COUNT 55
 #define TILE_SKY 0
 #define TILE_ROOFTOP 1
 #define TILE_ROOF 2
@@ -83,10 +83,14 @@
 #define TILE_TREE_TR 47
 #define TILE_TREE_BL 48
 #define TILE_TREE_BR 49
-#define TILE_BARRIER 50
-#define SPRITE_TILE_COUNT 112
+#define TILE_MTILE 50
+#define TILE_GATE 51
+#define TILE_STAIRS 52
+#define TILE_RAIL 53
+#define TILE_BARRIER 54
+#define SPRITE_TILE_COUNT 120
 #define PORTRAIT_BASE 64
-#define PORTRAIT_TILE_COUNT 84
+#define PORTRAIT_TILE_COUNT 96
 #define NO_PORTRAIT 0xFF
 #define SPR_PLAYER_DOWN_0 0
 #define SPR_PLAYER_DOWN_1 4
@@ -116,6 +120,8 @@
 #define SPR_PHOTO_1 100
 #define SPR_CAT_SIT 104
 #define SPR_CAT_RUN 108
+#define SPR_PUNCHER_0 112
+#define SPR_PUNCHER_1 116
 
 #define ROOM_STREET 0
 #define ROOM_ENTRANCE 1
@@ -123,7 +129,8 @@
 #define ROOM_CAFE 3
 #define ROOM_QUAI 4
 #define ROOM_PONT 5
-#define ROOM_COUNT 6
+#define ROOM_METRO 6
+#define ROOM_COUNT 7
 
 enum {
     DLG_STRANGER_HELLO,
@@ -215,6 +222,20 @@ enum {
     DLG_BARK_PHOTO,
     DLG_BARK_FERNAND,
     DLG_BARK_PAINTER,
+    DLG_PUNCHER_HELLO,
+    DLG_METRO_WINDOW,
+    DLG_METRO_WINDOW_AGAIN,
+    DLG_PUNCHER_TICKET,
+    DLG_PUNCH_OK,
+    DLG_PUNCH_MISS,
+    DLG_PUNCH_DONE,
+    DLG_PUNCHER_AFTER,
+    DLG_BARK_PUNCHER,
+    DLG_BARK_PUNCHER_DONE,
+    DLG_METRO_SIGN,
+    DLG_METRO_NAME,
+    DLG_METRO_TILES,
+    DLG_METRO_GATE,
     DLG_COUNT
 };
 
@@ -314,6 +335,8 @@ extern const uint8_t txt_dial_1[];
 extern const uint8_t txt_dial_2[];
 extern const uint8_t txt_digits[];
 extern const uint8_t txt_bark_hint[];
+extern const uint8_t txt_punch_1[];
+extern const uint8_t txt_punch_2[];
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];

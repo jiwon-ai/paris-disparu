@@ -12,6 +12,7 @@ uint8_t new_clue;
 uint8_t carrying = NO_CRATE;
 static uint8_t crates_taken;     /* 0-3, taken from Fernand's cart */
 static uint8_t crates_delivered; /* 0-3 */
+uint8_t punched;                 /* passengers' tickets punched for the poinconneur */
 
 /* The cart hands out crates in this order; the player must read the stall signs. */
 static const uint8_t crate_order[3] = { CRATE_CHOUX, CRATE_POMMES, CRATE_CAROTTES };
@@ -47,6 +48,11 @@ uint8_t event_lift_result(uint8_t success) {
     if (!success) return DLG_LIFT_MISS;
     carrying = crate_order[crates_taken];
     return crate_take_dlg[crates_taken++];
+}
+
+uint8_t event_punch_result(uint8_t success) {
+    if (!success) return DLG_PUNCH_MISS;
+    return ++punched < 3 ? DLG_PUNCH_OK : DLG_PUNCH_DONE;
 }
 
 uint8_t event_dial_result(uint16_t number) {
@@ -124,6 +130,11 @@ uint8_t event_talk(uint8_t npc) {
         if (!HAS(FLAG_MET_PHOTO)) { SET(FLAG_MET_PHOTO); return DLG_PHOTO_HELLO; }
         return DLG_PHOTO_AGAIN;
 
+    case NPC_PUNCHER:
+        if (punched >= 3) return DLG_PUNCHER_AFTER;
+        if (HAS(FLAG_TICKET)) return DLG_PUNCHER_TICKET;
+        return DLG_PUNCHER_HELLO;
+
     case NPC_FERNAND:   /* he only opens up to someone who understands */
         if ((clue_flags & CLUE_READY) == CLUE_READY) return DLG_FERNAND_TALK;
         if (!CLUE(CLUE_COLTIN)) return DLG_FERNAND_HELLO;      /* says what is missing */
@@ -156,6 +167,8 @@ uint8_t event_bark(uint8_t npc) {
         return DLG_BARK_FERNAND;
     case NPC_PHOTO:
         return DLG_BARK_PHOTO;
+    case NPC_PUNCHER:
+        return punched >= 3 ? DLG_BARK_PUNCHER_DONE : DLG_BARK_PUNCHER;
     }
     return NO_DIALOGUE;
 }
@@ -186,6 +199,11 @@ uint8_t event_examine(uint8_t id) {
     case DLG_STALL_CAROTTES:
         return deliver(CRATE_CAROTTES, DLG_STALL_OK, DLG_STALL_WRONG, DLG_STALL_CAROTTES);
 
+    case DLG_METRO_WINDOW:
+        if (HAS(FLAG_TICKET)) return DLG_METRO_WINDOW_AGAIN;
+        SET(FLAG_TICKET);
+        return DLG_METRO_WINDOW;
+
     case DLG_PHONE_LOOK:
         if (HAS(FLAG_HAS_JETON)) return DLG_PHONE_USE;
         SET(FLAG_SAW_PHONE);
@@ -213,6 +231,11 @@ uint8_t event_after(uint8_t dlg, uint8_t choice) {
         return EV_END;
     case DLG_PHONE_USE:
         if (choice == 0) return EV_DIAL;
+        break;
+    case DLG_PUNCHER_TICKET:       /* "Want a go?" */
+    case DLG_PUNCH_OK:             /* "Next one?" */
+    case DLG_PUNCH_MISS:
+        if (choice == 0) return EV_PUNCH;
         break;
     }
     return NO_DIALOGUE;

@@ -376,3 +376,64 @@ FERNAND: …
 
 [bark_painter]
 THE PAINTER: Shh… I'm painting the night.
+
+[puncher_hello]
+TICKET PUNCHER: Ticket, kid! Nobody goes down to the trains without a hole in his ticket.
+
+No ticket? The window's just there. Knock, the clerk's only dozing.
+
+[metro_window]
+You tap on the glass. A sleepy clerk slides a small brown second-class ticket under it.
+
+[metro_window_again]
+The clerk has gone back to his newspaper.
+
+[puncher_ticket]
+TICKET PUNCHER: Let's see it. Clac! A neat little hole. Good for one trip.
+
+Hundreds a day, clac, clac. Fancy a go? Here come the first passengers.
+? Yes | No
+
+[punch_ok]
+Clac! A clean hole. The passenger nods and goes through.
+
+TICKET PUNCHER: Not bad! Another one?
+? Yes | No
+
+[punch_miss]
+Clac! You punched the air. The passenger sighs.
+
+TICKET PUNCHER: Again, kid. Wrist, not shoulder.
+? Yes | No
+
+[punch_done]
+Clac! Three clean holes. TICKET PUNCHER: You've got the wrist, kid!
+
+They say one day machines will check the tickets by themselves. Then what will I do?
+
+Here, about your fort. A big one came down tonight. No hat, no ticket. He didn't want a train.
+
+He just stood here, then went back up and off towards the river.
+
+[puncher_after]
+TICKET PUNCHER: A singer once made a song about a man like me, out at Porte des Lilas.
+
+Now everybody hums it at me. Clac! Your fort went towards the river, kid.
+
+[bark_puncher]
+TICKET PUNCHER: Tickets! Tickets, please!
+
+[bark_puncher_done]
+TICKET PUNCHER: Clac! Clac!
+
+[metro_sign]
+Steps down to the Métro. A warm breath of air comes up from below.
+
+[metro_name]
+The station's name: LES HALLES. Line 4 has stopped under the market since 1908.
+
+[metro_tiles]
+Small white tiles, like in every station since 1900. They catch what little light there is.
+
+[metro_gate]
+The gate to the platform. Beyond it, the tunnel smells of hot iron and dust.

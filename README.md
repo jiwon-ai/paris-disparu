@@ -42,6 +42,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Two-option choices in dialogue | done, tested |
 | Opening: skippable 3-page intro (setting, goal, controls), one-line goal on screen, a cat to chase to the café | done, tested |
 | Fernand and the notebook always say what is still missing | done, tested |
+| Vanished Paris: Les Halles métro ticket hall, a ticket puncher (poinçonneur, gone since 1973) and a punch mini-game | done, tested |
 | Player sprite visible after every room change (`tests/visibility_test.py`) | done, tested |
 | NPCs call out short lines by themselves when you come near, hinting at what to do ("A: talk" shown). The line stays until you walk away or press A/B; the opening caption stays 15 s or until A/B | done, tested |
 | Quiet scene-based sound: a soft knock every 1-3 s in the market, water on the quai, a faint cup tick in the café; one soft chime when a dialogue opens | done. Captured from the emulator (PyBoy) and checked for pitch, level and rate, **not yet heard by a person** |

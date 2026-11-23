@@ -24,6 +24,7 @@
 #define NPC_PAINTER  5
 #define NPC_FERNAND  6
 #define NPC_PHOTO    7   /* cameo: a photographer at dawn */
+#define NPC_PUNCHER  8   /* metro ticket puncher (poinconneur) */
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001
@@ -36,7 +37,7 @@
 #define FLAG_SAW_PHONE      0x0080
 #define FLAG_HAS_JETON      0x0100
 #define FLAG_PHONE_DONE     0x0200
-#define FLAG_FERNAND_TOLD   0x0400  /* Simone heard Fernand sent you */
+#define FLAG_TICKET         0x0400  /* bought a metro ticket */
 #define FLAG_MET_WORKER     0x0800
 #define FLAG_SOLVED         0x1000  /* Fernand found and answered: the ending plays */
 #define FLAG_MET_PHOTO      0x4000

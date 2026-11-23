@@ -32,6 +32,7 @@ static const int16_t cat_path[][2] = { { 56, 92 }, { 44, 92 }, { 36, 84 }, { 30,
 #define CAT_STEPS 5
 int16_t cat_x = 56, cat_y = 92;
 static void close_caption(void);
+static uint8_t lift_punch;      /* the timing bar is the metro punch, not a crate */
 static uint8_t cat_wp, cat_run;
 
 static void update_cat(void) {
@@ -257,8 +258,10 @@ static void change_room(uint8_t exit_code) {
 static void open_dialogue(uint8_t d) {
     caption_timer = 0;           /* the dialogue box replaces any caption */
     bark_from = NO_BARK;
-    if (d == EV_LIFT) {
-        lift_start(event_lift_level());
+    if (d == EV_LIFT || d == EV_PUNCH) {
+        lift_punch = d == EV_PUNCH;
+        if (lift_punch) timing_start(1, txt_punch_1, txt_punch_2);
+        else lift_start(event_lift_level());
         state = ST_LIFT;
     } else if (d == EV_DIAL) {
         dial_start();
@@ -454,7 +457,9 @@ void main(void) {
 
         case ST_LIFT: {
             uint8_t r = lift_update();
-            if (r != MG_RUNNING) open_dialogue(event_lift_result(r == MG_SUCCESS));
+            if (r != MG_RUNNING)
+                open_dialogue(lift_punch ? event_punch_result(r == MG_SUCCESS)
+                                         : event_lift_result(r == MG_SUCCESS));
             break;
         }
 
