@@ -383,6 +383,26 @@ STRANGER = [
     ".....##...##....",
     "....###...###...",
 ]
+# A photographer who comes to the market at dawn (cameo: see
+# docs/HISTORICAL_RESEARCH.md, "Cameos"). Flat cap, camera at the chest.
+PHOTOGRAPHER = [
+    "................",
+    "................",
+    ".....######.....",
+    "....#########...",
+    "....#ssssss#....",
+    "....#s#ss#s#....",
+    ".....#ssss#.....",
+    "....#oooooo#....",
+    "...#oooooooo#...",
+    "...#o######o#...",
+    "...#o#ssss#o#...",
+    "...#o######o#...",
+    "...#oooooooo#...",
+    "....#oooooo#....",
+    ".....##..##.....",
+    "....###..###....",
+]
 CRATE = [
     "................",
     "................",
@@ -471,4 +491,6 @@ SPRITE_FRAMES = [
     ("PAINTER_1", PAINTER_1),
     ("FERNAND_0", FERNAND),
     ("FERNAND_1", FERNAND_IDLE),
+    ("PHOTO_0", PHOTOGRAPHER),
+    ("PHOTO_1", bob(PHOTOGRAPHER)),
 ]

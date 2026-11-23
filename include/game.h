@@ -23,6 +23,7 @@
 #define NPC_WORKER   4
 #define NPC_PAINTER  5
 #define NPC_FERNAND  6
+#define NPC_PHOTO    7   /* cameo: a photographer at dawn */
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001
@@ -38,6 +39,7 @@
 #define FLAG_FERNAND_TOLD   0x0400  /* Simone heard Fernand sent you */
 #define FLAG_MET_WORKER     0x0800
 #define FLAG_SOLVED         0x1000  /* Fernand found and answered: the ending plays */
+#define FLAG_MET_PHOTO      0x4000
 #define FLAG_MET_PAINTER    0x2000
 
 extern uint16_t game_flags;

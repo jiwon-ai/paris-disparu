@@ -123,6 +123,17 @@ def painter():
     return outline(g)
 
 
+def photographer():
+    g = blank()
+    shoulders(g, "o")                        # dark jacket
+    rect(g, 7, 26, 16, 31, "#")              # camera at the chest
+    ellipse(g, 11.5, 29, 2.5, 2.5, "s")      # lens
+    face(g, cy=16)
+    ellipse(g, 12, 9.5, 6.5, 2.5, "o")       # flat cap
+    rect(g, 12, 10, 19, 11, "o")             # its peak
+    return outline(g)
+
+
 # Order = portrait index used by the game; palette = sprite palette index.
 PORTRAITS = [
     ("SIMONE", simone(), 3),
@@ -131,6 +142,7 @@ PORTRAITS = [
     ("GERMAINE", germaine(), 2),
     ("MAN WITH NOTEBOOK", stranger(), 4),
     ("THE PAINTER", painter(), 2),
+    ("THE PHOTOGRAPHER", photographer(), 4),
 ]
 # Other speakers who reuse a portrait.
 ALIASES = {"A PORTER": "DÉDÉ"}

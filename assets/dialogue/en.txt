@@ -336,6 +336,8 @@ He puts on his coltin. Together you walk back towards the light of the pavilions
 
 At the café, Simone heats up his coffee. Dédé laughs. Fernand is back.
 
+At the door, the photographer raises his camera. Click. One more face of Les Halles, before it all goes.
+
 [end_go]
 You tell him: if the market goes, go with it. Carry for Germaine out there too.
 
@@ -344,6 +346,26 @@ FERNAND: Out there… The cabbages will be the same cabbages, eh? And my back th
 He puts on his coltin. FERNAND: Then we'll all go together. Marcel too. I'll drag him.
 
 At the café, Simone heats up his coffee. Dédé laughs. Fernand is back.
+
+At the door, the photographer raises his camera. Click. One more face of Les Halles, before it all goes.
+
+[photo_hello]
+THE PHOTOGRAPHER: Don't mind me. Once a week I come up from Montrouge at three in the morning.
+
+For this. The lorries, the crates, the steam off the porters' backs. Nobody looks at it.
+
+They'll take all this out to Rungis soon. So I photograph it. Every week, while it's here.
+
+A fort was missing tonight? The big one, Fernand. I photographed him last week, laughing under his hat.
+
+[photo_again]
+THE PHOTOGRAPHER: The light's changing. In an hour the market will look like any other place.
+
+[photo_knows]
+THE PHOTOGRAPHER: You found Fernand? Bring him back under the glass. I'd like one more picture of him.
+
+[bark_photo]
+THE PHOTOGRAPHER: Shh. Don't move. The light!
 
 [bark_fernand]
 FERNAND: …

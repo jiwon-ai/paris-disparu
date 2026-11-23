@@ -25,6 +25,7 @@ static const door_t street_doors[] = {
 /* --- ROOM_ENTRANCE: in front of the pavilion ------------------------------ */
 static const npc_def_t entrance_npcs[] = {
     { 100, 60, SPR_PORTER_0, 1, NPC_PORTER },
+    { 24, 104, SPR_PHOTO_0, 4, NPC_PHOTO },     /* photographing the unloading */
 };
 static const hotspot_t entrance_hotspots[] = {
     { 15, 9, 3, 1, DLG_CART_LOOK },   /* the cart: handled by events */
@@ -102,7 +103,7 @@ static const hotspot_t pont_hotspots[] = {
 const room_def_t rooms[ROOM_COUNT] = {
     { street_npcs, 1, street_hotspots, 8, street_doors, 1,
       { ROOM_QUAI, NO_EXIT, NO_EXIT, ROOM_ENTRANCE }, AMBIENCE_STREET },
-    { entrance_npcs, 1, entrance_hotspots, 3, entrance_doors, 1,
+    { entrance_npcs, 2, entrance_hotspots, 3, entrance_doors, 1,
       { NO_EXIT, NO_EXIT, ROOM_STREET, NO_EXIT }, AMBIENCE_MARKET },
     { market_npcs, 1, market_hotspots, 6, market_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },

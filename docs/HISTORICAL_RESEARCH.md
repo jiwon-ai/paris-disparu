@@ -79,3 +79,24 @@ Read on 2026-11-23. "Read" = the statement was found in that source; secondary s
 | A courier delivering a petit bleu to a café for a fort; the exact time (4:10 pm) | **Plausible reconstruction**: delivery by courier is documented, the address and time are invented | — |
 | Fernand, Marcel, Dédé, Mme Roux, the plate sold to a bouquiniste, Marcel's opinion of Rungis, Fernand's age and fears | **Fiction** | — |
 | Jeton telephones in cafés in 1967 | **To research** (kept from earlier builds) | — |
+
+
+## Cameos (real people)
+
+Policy: a real person appears only with a documented tie to Les Halles at
+the time, is **never named**, is recognisable only by hints, says nothing
+quoted from their work, and does nothing defamatory or intimate. No photo
+or work of theirs is reproduced. **A lawyer must review every cameo before
+any commercial release** (in France, personality and image rights, and the
+heirs' rights over a name and reputation, may apply even to an unnamed
+but recognisable person).
+
+| In the game | Inspired by | Evidence of the tie (read 2026-11-23) | Fact / fiction | Risk note |
+|---|---|---|---|---|
+| THE PHOTOGRAPHER (entrance, flat cap, camera at the chest): comes "once a week from Montrouge at three in the morning" to photograph the market before it goes to Rungis; in both endings he takes one more picture | Robert Doisneau (1912-1994) | Time Out: first picture at Les Halles in 1933; "In the 60s, he would go there once a week at dawn"; recorded the 1969 move and the 1971 destruction. Colleen's Paris: rose at 3 a.m., travelled from Montrouge once a week, photographed workers unloading at dawn. Sources: [Time Out](https://www.timeout.com/paris/en/things-to-do/attractions/doisneau-paris-les-halles), [Colleen's Paris](https://colleensparis.com/2012/02/doisneau-photos-show-old-les-halles/) (both secondary, 2012) | **Read:** weekly dawn visits, Montrouge, 3 a.m., photographing the market before the move. **Fiction:** that he was there on this night, that he photographed Fernand, everything he says | Unnamed; no likeness of his face is attempted (generic 24x32 bust); his photographs are not reproduced or imitated. Lawyer review still required; his estate manages his work and name |
+
+Candidates looked for and **not** used: no source read names a famous
+person eating onion soup or spending the night at Les Halles in the 1960s
+(Paris ZigZag and Bonjour Paris name restaurants and anonymous night people
+only), so no other cameo was added. Georges Pompidou's link to the site is
+later (the cultural use of the pavilions, 1969-71, per Bonjour Paris).

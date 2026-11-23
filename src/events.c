@@ -118,6 +118,11 @@ uint8_t event_talk(uint8_t npc) {
         if (!HAS(FLAG_MET_PAINTER)) { SET(FLAG_MET_PAINTER); return DLG_PAINTER_HELLO; }
         return DLG_PAINTER_AGAIN;
 
+    case NPC_PHOTO:     /* the cameo: what he says depends on how far you got */
+        if ((clue_flags & CLUE_READY) == CLUE_READY) return DLG_PHOTO_KNOWS;
+        if (!HAS(FLAG_MET_PHOTO)) { SET(FLAG_MET_PHOTO); return DLG_PHOTO_HELLO; }
+        return DLG_PHOTO_AGAIN;
+
     case NPC_FERNAND:   /* he only opens up to someone who understands */
         return (clue_flags & CLUE_READY) == CLUE_READY ? DLG_FERNAND_TALK : DLG_FERNAND_HELLO;
     }
@@ -146,6 +151,8 @@ uint8_t event_bark(uint8_t npc) {
         return DLG_BARK_PAINTER;
     case NPC_FERNAND:
         return DLG_BARK_FERNAND;
+    case NPC_PHOTO:
+        return DLG_BARK_PHOTO;
     }
     return NO_DIALOGUE;
 }
