@@ -29,7 +29,7 @@ not yet been consulted.
 | 12 | Barges on the Seine in central Paris at night. | bridge | To research | |
 | 13 | Phone numbers in the game are 4 digits. This is a gameplay simplification, not historical: Paris numbers of the period were longer. | café phone | Deliberate simplification | — |
 | 14 | The bridge is unnamed and the quai is generic: they suggest the area between Les Halles and the Seine (e.g. towards Pont Neuf) without reproducing a specific bridge. | quai, bridge | Reconstruction | — |
-| 9 | All characters (Fernand, Germaine, Simone, the man with the notebook, the sleeping porter), their words, prices and jokes. The man with the notebook is an original character inspired by the idea of urban observation (Perec); no text is quoted. | everywhere | Fiction | — |
+| 9 | All characters (Fernand, Germaine, Simone, the man with the notebook, the sleeping porter, the painter, Mme Roux), the apple mystery and its endings, their words, prices and jokes. The man with the notebook is an original character inspired by the idea of urban observation (Perec); no text is quoted. | everywhere | Fiction | — |
 
 ## Candidate experiences (to research before implementation)
 

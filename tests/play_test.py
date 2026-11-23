@@ -20,7 +20,7 @@ import font  # noqa: E402
 FONT_BASE = 128
 CHARS = list(font.GLYPHS.keys())
 ROOM_STREET, ROOM_ENTRANCE, ROOM_MARKET, ROOM_CAFE, ROOM_QUAI, ROOM_PONT = range(6)
-FLAG_TASK_DONE, FLAG_PHONE_DONE = 0x0008, 0x0200
+FLAG_TASK_DONE, FLAG_PHONE_DONE, FLAG_SOLVED = 0x0008, 0x0200, 0x1000
 failures = []
 
 
@@ -61,6 +61,10 @@ def player():
 
 def room():
     return mem[sym["_cur_room"]]
+
+
+def clues():
+    return mem[sym["_clue_flags"]]
 
 
 def flags():
@@ -157,7 +161,8 @@ def dialogue(choice=None, max_pages=12):
     lines = []
     tick(70)
     for _ in range(max_pages):
-        if not window_on() or window_row(1).startswith(("Dial", "Lift!")):
+        if not window_on() or window_row(1).startswith(("Dial", "Lift!", "New clue")) \
+                or window_row(2) == "THE END":
             break
         if "▶" in window_row(2):
             if choice == 1:
@@ -204,11 +209,17 @@ def dial(number):
     tap("a", 0)
 
 
-def talk(expect, choice=None):
+def talk(expect, choice=None, clue=None):
+    """Talk/examine; clue = the clue bit this should add (its note is checked and closed)."""
+    before = clues()
     tap("a", 0)
     lines = dialogue(choice)
+    if clue is not None:
+        note = window_on() and "New clue" in window_row(1)
+        check(note and clues() == before | clue, "new clue 0x%02x noted (clues 0x%02x)" % (clue, clues()))
+        tap("b", 4)
     ok = any(expect in l for l in lines)
-    check(ok and not window_on(), "dialogue %r (%d pages, first: %r)" % (expect, len(lines), lines[0] if lines else ""))
+    check(ok and not window_on(), "dialogue %r (%d pages, first: %r)" % (expect, len(lines), lines if not ok else lines[0]))
     return lines
 
 
@@ -262,46 +273,17 @@ shot("03_dialogue")
 lines = dialogue()
 check(not window_on(), "A pages through and closes (%d pages)" % (len(lines) + 1))
 tap("a", 50)
-check(window_on() and "hesitates" in window_row(2) + window_row(3), "repeat line differs: %r" % window_row(2))
+check(window_on() and "Ask Simone" in window_row(1) + window_row(2), "repeat line sends you to Simone: %r" % window_row(1))
 tap("b", 4)
 check(not window_on(), "B closes the dialogue")
 
 tap("start", 10)
-check(window_on() and "PAUSE" in window_row(1), "START opens the pause box")
-shot("04_pause")
+check(window_on() and "NOTEBOOK" in window_row(1) and "0/6" in window_row(1), "START opens the notebook: %r" % window_row(1))
+check("café" in window_row(3), "goal: ask at the cafe: %r" % window_row(3))
+check("4127" in window_row(13), "the notebooks' number is written down: %r" % window_row(13))
+shot("04_notebook")
 tap("start", 10)
-check(not window_on(), "START closes the pause box")
-
-print("cafe")
-goto(28, 90, "yx")
-push("up")
-check(room() == ROOM_CAFE and player() == (72, 118), "entered the cafe through its door: room %d %s" % (room(), player()))
-shot("05_cafe")
-push("up")
-check(player()[1] == 38, "stopped by the counter (y=%d)" % player()[1])
-talk("SIMONE", choice=0)
-goto(128, 60, "yx")
-push("up")
-talk("telephone")
-goto(72, 60, "yx")
-push("up")
-talk("jeton")
-goto(128, 60, "yx")
-push("up")
-tap("a", 0)
-dialogue(choice=0)          # "Tu as un jeton…" -> Oui -> dial box
-check(window_on() and "Dial" in window_row(1), "dial box opened: %r" % window_row(1))
-dial("0614")
-lines = dialogue()
-check(any("Butcher" in l for l in lines), "calling 0614 reaches the butcher: %s" % lines[:1])
-check(flags() & FLAG_PHONE_DONE, "telephone call made (FLAG_PHONE_DONE)")
-shot("06_phone")
-goto(88, 60, "yx")
-push("up")
-talk("butcher")
-goto(72, 100, "yx")
-push("down")
-check(room() == ROOM_STREET and player() == (28, 72), "back in the street at the cafe door: %d %s" % (room(), player()))
+check(not window_on(), "START closes the notebook")
 
 print("market entrance and the porter")
 goto(140, 90, "yx")
@@ -341,6 +323,34 @@ def to_entrance():
     check(room() == ROOM_ENTRANCE, "back out to the entrance (room %d)" % room())
 
 
+def street_to_cafe():
+    goto(28, 90, "yx")
+    push("up")
+    check(room() == ROOM_CAFE and player() == (72, 118), "entered the cafe through its door: room %d %s" % (room(), player()))
+
+
+def cafe_to_street():
+    goto(72, 100, "yx")
+    push("down")
+    check(room() == ROOM_STREET and player() == (28, 72), "back in the street at the cafe door: %d %s" % (room(), player()))
+
+
+def phone(number, expect, clue=None):
+    goto(128, 60, "yx")
+    push("up")
+    tap("a", 0)
+    dialogue(choice=0)          # "You have a jeton..." -> Yes -> dial box
+    check(window_on() and "Dial" in window_row(1), "dial box opened: %r" % window_row(1))
+    before = clues()
+    dial(number)
+    lines = dialogue()
+    check(any(expect in l for l in lines), "calling %s: %s" % (number, lines))
+    if clue is not None:
+        check(window_on() and "New clue" in window_row(1) and clues() == before | clue,
+              "call %s adds clue 0x%02x (clues 0x%02x)" % (number, clue, clues()))
+        tap("b", 4)
+
+
 fetch_crate("cabbages", miss_first=True)
 check(mem[sym["_carrying"]] == 0, "carrying the cabbages")
 to_market()
@@ -358,7 +368,7 @@ fetch_crate("apples")
 to_market()
 goto(72, 38, "xy")
 push("up")
-talk("You set the crate")
+talk("RESERVED", clue=0x02)     # the apple crate: a big man reserves one
 to_entrance()
 fetch_crate("carrots")
 to_market()
@@ -371,14 +381,29 @@ push("up")
 talk("beginner")
 check(flags() & FLAG_TASK_DONE, "porter's task done (FLAG_TASK_DONE)")
 
-print("back to the street")
+print("the cafe: the case, the telephone")
 goto(60, 90, "yx")
 push("left", 200)
 check(room() == ROOM_STREET, "west edge leads back to the street (room %d)" % room())
-goto(106, 90, "yx")
+street_to_cafe()
+shot("05_cafe")
 push("up")
-tap("right", 2)
-talk("secrets")
+check(player()[1] == 38, "stopped by the counter (y=%d)" % player()[1])
+talk("No note", clue=0x01)
+talk("Shy as")            # Fernand sent you
+goto(128, 60, "yx")
+push("up")
+talk("telephone")
+goto(72, 60, "yx")
+push("up")
+talk("jeton")
+phone("4127", "yellow hat", clue=0x04)
+check(flags() & FLAG_PHONE_DONE, "telephone call made (FLAG_PHONE_DONE)")
+shot("06_phone")
+goto(88, 60, "yx")
+push("up")
+talk("Fernand who goes", clue=0x20)
+cafe_to_street()
 
 print("the Seine")
 goto(60, 120, "xy")
@@ -397,7 +422,7 @@ x1 = mem[0xFE00 + 36 * 4 + 1]
 check(x0 != x1, "the barge moves (%d -> %d)" % (x0, x1))
 push("down")
 check(player()[1] < 72, "the painter blocks the middle of the deck (y=%d)" % player()[1])
-talk("PAINTER")
+talk("PAINTER", clue=0x10)
 shot("11_pont")
 goto(66, 110, "xy")
 push("down")
@@ -405,6 +430,36 @@ check(player()[1] < 118, "roadworks barrier stops the player (y=%d)" % player()[
 talk("ROADWORKS")
 push("up", 400)
 check(room() == ROOM_QUAI, "back up to the quai (room %d)" % room())
+goto(60, 40, "xy")
+push("up", 200)
+check(room() == ROOM_STREET, "quai leads back up to the street (room %d)" % room())
+
+print("one more call, then Fernand")
+street_to_cafe()
+goto(72, 60, "yx")
+push("up")
+talk("Another jeton")
+phone("7302", "A big one", clue=0x08)
+tap("start", 10)
+check("6/6" in window_row(1) and "Fernand" in window_row(2), "notebook: 6/6 clues, goal Fernand: %r %r" % (window_row(1), window_row(2)))
+check("7302" in window_row(15) or "7302" in window_row(14), "Mme Roux's number noted")
+shot("04_notebook")
+tap("start", 10)
+cafe_to_street()
+goto(140, 90, "yx")
+push("right")
+goto(100, 90, "yx")
+push("up")
+check("staring" in " ".join(window_row(r) for r in (1, 2, 3)), "Fernand notices the stare: %r" % window_row(1))
+tap("a", 0)
+lines = dialogue(choice=0, max_pages=40)
+check(any("It's me" in l for l in lines), "Fernand confesses: %d pages" % len(lines))
+check(any("two coffees" in l for l in lines), "ending: he tells her himself")
+check(window_on() and window_row(2) == "THE END" and "6/6" in window_row(4), "end screen: %r %r" % (window_row(2), window_row(4)))
+check(flags() & FLAG_SOLVED, "mystery solved (FLAG_SOLVED)")
+shot("14_end")
+tap("start", 60)
+check(not window_on() and clues() == 0, "START at the end returns to a fresh title screen")
 
 pb.stop(save=False)
 print("\n%d failure(s)" % len(failures))

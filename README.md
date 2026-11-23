@@ -2,14 +2,16 @@
 
 An original exploration game for the **Game Boy Color**, set in Paris around
 1967. The game is in **English**; signs and place names stay in French. You wander the streets around the old Les Halles market before dawn,
-meet the people who work there, and take part in everyday life that no longer
-exists. No combat, no quest markers, no collectibles: the historical
-experiences are the reward.
+meet the people who work there, and solve a small, gentle mystery: **who
+leaves a polished apple on Simone's café counter every night?** Clues come
+from people, places, Fernand's crates and the café telephone, and go into a
+notebook (START). No combat, no crime: a story of 1967 night-time work.
 
 ![Title](docs/screenshots/01_title.png) ![Street](docs/screenshots/02_street.png)
 ![Dialogue](docs/screenshots/03_dialogue.png) ![Café](docs/screenshots/05_cafe.png)
 ![Entrance](docs/screenshots/07_entrance.png) ![Market](docs/screenshots/08_market.png)
 ![Quai](docs/screenshots/10_quai.png) ![Bridge](docs/screenshots/12_barge.png) ![Telephone](docs/screenshots/09_dial.png)
+![Notebook](docs/screenshots/04_notebook.png) ![End](docs/screenshots/14_end.png)
 
 Screenshots are captured automatically by `tests/play_test.py` in the PyBoy
 emulator.
@@ -23,13 +25,15 @@ Everything below is in the ROM and exercised by the automated play-through
 | Feature | State |
 |---|---|
 | CGB-only ROM with valid header (MBC5, CGB flag 0xC0) | done, checked by `tests/check_rom.py` |
-| Title screen, location caption, START pause | done, tested |
+| The apple mystery: 6 clues (Simone, the apple crate, two phone calls, the painter, the café porter), a reveal with Fernand, two endings (Yes / No), an end screen with clues found and the market's real dates | done, tested (both endings) |
+| Notebook on START: current goal, clues found (n/6), phone numbers learned; a "New clue!" note when one is found | done, tested |
+| Title screen, location caption | done, tested |
 | 6 connected areas: rue Rambuteau, pavilion entrance, pavilion interior, café, quai of the Seine, a bridge | done, tested (screen edges + doors) |
 | Seine: animated water, a barge that passes under the bridge, gas lamps, bouquinistes' boxes, plane trees | done, tested (barge movement checked in RAM) |
 | Player: 4-direction movement, walk animation, tile + NPC collision | done, tested |
 | 6 NPCs whose dialogue changes with what you have done (incl. a painter on the bridge) | done, tested |
 | Experience A: carry Fernand's three crates to the right stalls (read the signs; wrong stall gets a reaction; half speed while carrying) | done, tested |
-| Experience B: café scene (Simone, a porter asleep on his feet, Oui/Non choice) | done, tested |
+| Experience B: café scene (Simone sets the mystery; a porter asleep on his feet) | done, tested |
 | Experience C: the café wall telephone. Get a token (jeton) from Simone, then dial a number with the D-pad. Four numbers are hidden in the world (the café wall, the man with the notebook, a bouquiniste's box, the painter); each call is a different scene | done, tested — historical details **to research** |
 | Two-option choices in dialogue | done, tested |
 | NPCs call out short lines by themselves when you come near, hinting at what to do ("A: talk" shown). The line stays until you walk away or press A/B; the opening caption stays 15 s or until A/B | done, tested |
@@ -38,8 +42,9 @@ Everything below is in the ROM and exercised by the automated play-through
 | Message on a monochrome Game Boy | written, **not tested** |
 | SameBoy / BGB / real hardware / ModRetro Chromatic | **not tested yet** |
 
-A first-time play-through is currently short (a few minutes, not yet the
-10-15 minute target); see [ROADMAP](docs/ROADMAP.md).
+A first-time play-through to the ending has not been timed with a player
+yet (target 10-15 minutes); see [ROADMAP](docs/ROADMAP.md). The mystery and
+all characters are fiction (see docs/HISTORICAL_RESEARCH.md).
 
 ## Controls
 

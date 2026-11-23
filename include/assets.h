@@ -117,17 +117,17 @@
 
 enum {
     DLG_STRANGER_HELLO,
-    DLG_STRANGER_WAIT,
-    DLG_STRANGER_MARKET,
-    DLG_STRANGER_CRATES,
-    DLG_STRANGER_PHONE,
-    DLG_STRANGER_RIVER,
+    DLG_STRANGER_KNOWS,
+    DLG_STRANGER_AGAIN,
     DLG_PORTER_HELLO,
     DLG_PORTER_ASK,
     DLG_PORTER_YES,
     DLG_PORTER_NO,
     DLG_PORTER_WORKING,
     DLG_PORTER_DONE,
+    DLG_PORTER_CONFRONT,
+    DLG_END_YES,
+    DLG_END_NO,
     DLG_PORTER_AFTER,
     DLG_CART_LOOK,
     DLG_CART_CHOUX,
@@ -139,18 +139,19 @@ enum {
     DLG_STALL_POMMES,
     DLG_STALL_CAROTTES,
     DLG_STALL_OK,
+    DLG_STALL_OK_POMMES,
     DLG_STALL_WRONG,
     DLG_STALL_WRONG_GERMAINE,
     DLG_STALL_OK_GERMAINE,
     DLG_MERCHANT_HELLO,
+    DLG_MERCHANT_APPLE,
     DLG_MERCHANT_AGAIN,
     DLG_CAFE_HELLO,
-    DLG_CAFE_YES,
-    DLG_CAFE_NO,
     DLG_CAFE_FERNAND,
     DLG_CAFE_JETON,
     DLG_CAFE_AGAIN,
     DLG_WORKER_HELLO,
+    DLG_WORKER_RUN,
     DLG_WORKER_PHONE,
     DLG_PHONE_LOOK,
     DLG_PHONE_USE,
@@ -192,8 +193,11 @@ enum {
     DLG_BARK_MERCHANT,
     DLG_BARK_MERCHANT_CHOUX,
     DLG_BARK_CAFE,
+    DLG_BARK_CAFE_MET,
     DLG_BARK_CAFE_JETON,
     DLG_BARK_WORKER,
+    DLG_BARK_PORTER_STARE,
+    DLG_BARK_WORKER_HAT,
     DLG_BARK_PAINTER,
     DLG_COUNT
 };
@@ -208,7 +212,7 @@ extern const uint8_t * const room_tiles[ROOM_COUNT];
 extern const uint8_t * const room_attrs[ROOM_COUNT];
 extern const uint8_t * const room_solid[ROOM_COUNT];
 extern const uint8_t dlg_pages[];
-extern const uint8_t dlg_first_page[DLG_COUNT];
+extern const uint16_t dlg_first_page[DLG_COUNT];
 extern const uint8_t dlg_page_count[DLG_COUNT];
 extern const uint8_t dlg_choice[DLG_COUNT];   /* 0 = none, else pair index + 1 */
 extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
@@ -219,8 +223,42 @@ extern const uint8_t txt_title_4[];
 extern const uint8_t txt_title_5[];
 extern const uint8_t txt_title_6[];
 extern const uint8_t txt_caption[];
-extern const uint8_t txt_pause_1[];
-extern const uint8_t txt_pause_2[];
+extern const uint8_t txt_caption_2[];
+extern const uint8_t txt_new_clue[];
+extern const uint8_t txt_nb_title[];
+extern const uint8_t txt_nb_clues[];
+extern const uint8_t txt_nb_phone[];
+extern const uint8_t txt_nb_close[];
+extern const uint8_t txt_nb_of[];
+extern const uint8_t txt_goal_0a[];
+extern const uint8_t txt_goal_0b[];
+extern const uint8_t txt_goal_1a[];
+extern const uint8_t txt_goal_1b[];
+extern const uint8_t txt_goal_2a[];
+extern const uint8_t txt_goal_2b[];
+extern const uint8_t txt_goal_3a[];
+extern const uint8_t txt_goal_3b[];
+extern const uint8_t txt_goal_4a[];
+extern const uint8_t txt_goal_4b[];
+extern const uint8_t txt_clue_0[];
+extern const uint8_t txt_clue_1[];
+extern const uint8_t txt_clue_2[];
+extern const uint8_t txt_clue_3[];
+extern const uint8_t txt_clue_4[];
+extern const uint8_t txt_clue_5[];
+extern const uint8_t txt_num_0[];
+extern const uint8_t txt_num_1[];
+extern const uint8_t txt_num_2[];
+extern const uint8_t txt_num_3[];
+extern const uint8_t txt_end_1[];
+extern const uint8_t txt_end_2[];
+extern const uint8_t txt_end_3[];
+extern const uint8_t txt_end_4[];
+extern const uint8_t txt_end_5[];
+extern const uint8_t txt_end_6[];
+extern const uint8_t txt_end_7[];
+extern const uint8_t txt_end_8[];
+extern const uint8_t txt_end_9[];
 extern const uint8_t txt_dmg_1[];
 extern const uint8_t txt_dmg_2[];
 extern const uint8_t txt_lift_1[];

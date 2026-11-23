@@ -11,28 +11,19 @@ MAN WITH NOTEBOOK: Shh. I'm counting.
 
 Three lorries. One cat. Two flat caps. One person in a raincoat.
 
-Ah, you're the raincoat. Good evening. Or good morning. Hard to say at this hour.
+Ah, you're the raincoat. I write down everything that passes in this street.
 
-I write down everything that passes in this street. Nobody else ever does.
+But one thing I can't explain. Every night, an apple appears on Simone's counter, at the café.
 
-That noise down there? Les Halles. Go and see. I'll note you when you're back.
+Nobody sees who leaves it. Simone would love to know. So would I.
 
-And if you see something surprising, call me: 4127. I note calls too.
+My old notebooks are at home, by the phone. My wife will read them to you: 4127.
 
-[stranger_wait]
-MAN WITH NOTEBOOK: A person in a raincoat hesitates under a lamp. Noted.
+[stranger_knows]
+MAN WITH NOTEBOOK: You know who it is. I can see it on your face. Noted. Go on, then.
 
-[stranger_market]
-MAN WITH NOTEBOOK: A person comes back from the market. Smells of cabbage. Noted.
-
-[stranger_crates]
-MAN WITH NOTEBOOK: A person comes back with tired arms. Carried crates. Noted!
-
-[stranger_phone]
-MAN WITH NOTEBOOK: You made a phone call, too. Who to? No, don't tell me. I don't note secrets.
-
-[stranger_river]
-MAN WITH NOTEBOOK: A person comes back from the Seine. Damp shoes. Noted.
+[stranger_again]
+MAN WITH NOTEBOOK: Ask Simone at the café. And call my notebooks: 4127. Somebody noted something.
 
 # ---------------------------------------------------------------- the porter
 [porter_hello]
@@ -61,9 +52,45 @@ FERNAND: Cart's here, stalls are inside. Go on, go on!
 [porter_done]
 FERNAND: Three crates, three stalls. Not bad for a beginner.
 
-I carry loads like that all night. By morning I can't feel my shoulders.
-
 Go to the café on the street. Tell Simone that Fernand sent you.
+
+And, er… don't tell her anything else. There's nothing else. Go on.
+
+[porter_confront]
+FERNAND: Kid. Why are you looking at me like that?
+
+You tell him what you found. The apple, paid for at the stall. The yellow hat at three.
+
+The coffee run that takes him ages, every single night.
+
+Fernand goes red, right up to his hat.
+
+FERNAND: …Yes. It's me. Every night I buy Germaine's best apple.
+
+I polish it on my sleeve all the way to the café. Then I lose my nerve, leave it, and run.
+
+I even bought a book about love letters. I couldn't write a single line.
+
+Say… should I tell her myself? Now, before I lose my nerve again?
+? Yes | No
+
+[end_yes]
+Fernand takes a deep breath and straightens his hat. FERNAND: Right. Now.
+
+At the café, he puts the apple on the counter. Not in secret, this time.
+
+SIMONE: …So it was you. Every night, for a year.
+
+FERNAND: A year and a half. Since the cold winter.
+
+Simone pours two coffees. She says nothing. She doesn't need to.
+
+[end_no]
+FERNAND: Not yet. Some things are easier to say with apples.
+
+You keep his secret. Tomorrow at three, an apple will wait on the counter.
+
+And Simone will smile, as if she didn't know. Maybe she already does.
 
 [porter_after]
 FERNAND: Still here? The café is on the street. Simone doesn't bite. Hardly.
@@ -99,6 +126,13 @@ Carrots in bunches, leaves pointing up.
 [stall_ok]
 You set the crate on the stall. Someone nods, without a word.
 
+[stall_ok_pommes]
+You set the apples on their stall. One apple sits apart, wrapped in paper: RESERVED.
+
+GERMAINE: That one? Set aside every night. A customer pays for my best apple before dawn.
+
+Big shoulders, a hat. That's all I ever see. I'm busy with my cabbages!
+
 [stall_wrong]
 Wrong stall. Read the sign.
 
@@ -116,33 +150,44 @@ Everything has to look good first. A sad cabbage, nobody wants it.
 
 The price? Depends on the hour, the rain and the customer's face.
 
+[merchant_apple]
+GERMAINE: Apples? I keep the apple stall too. Someone reserves one every night.
+
+Fernand's bringing a crate of them. Help him, and see for yourself.
+
 [merchant_again]
 GERMAINE: Move over a bit, you're hiding my cabbages.
 
 # ---------------------------------------------------------------- the cafe
 [cafe_hello]
-SIMONE: Come in, it's cold. Market people have lunch here while the city sleeps.
+SIMONE: Come in, it's cold. Market people eat here while the city sleeps.
 
-A coffee?
-? Yes | No
+Tell me, you look curious. Can I ask you something?
 
-[cafe_yes]
-SIMONE: There. Scalding. Don't blow on it, I take it personally.
+Every night, before I open, I find an apple on my counter. Polished. No note.
 
-[cafe_no]
-SIMONE: As you like. The counter never closes anyway.
+A whole year of apples! I'd love to know who. Find out, and your coffee's free for life.
 
 [cafe_fernand]
-SIMONE: Fernand sent you? Then it's on the house. Don't tell anyone.
+SIMONE: Fernand sent you? He's a sweet man. Shy as a cat.
+
+He never says more than two words to me. Odd, isn't it?
 
 [cafe_jeton]
 SIMONE: The phone? You need a token, a jeton. Here, have one. Don't lose it.
 
 [cafe_again]
-SIMONE: Another one? You'll be shaking all day.
+SIMONE: Any news about my apple? I'm dying to know.
 
 [worker_hello]
 A PORTER: Shh. I'm sleeping on my feet. That's a skill too.
+
+[worker_run]
+A PORTER: A yellow hat? Kid, every porter at Les Halles wears one.
+
+But at three? I'm asleep at three. At three, it's Fernand who goes for the coffee.
+
+Every night. Takes him ages, too. Never brings me a croissant.
 
 [worker_phone]
 A PORTER: Who did you call? The butcher? Ha! They never pick up before six.
@@ -163,12 +208,18 @@ SIMONE: Another jeton? Here. You're calling half of Paris this morning.
 It rings for ages. "Butcher's! We open at six! Who calls at this hour?" Click.
 
 [call_4127]
-"Hello? Ah, it's you, the raincoat. Calling from a café: I can hear the cups. Noted."
+A woman answers. "His notebooks? Wait…" Pages rustle.
+
+"Every night: 3:00, a yellow hat goes into the café. 3:02, it comes out. Again and again."
+
+"Only porters wear hats like that, dear. Good night!"
 
 [call_7302]
 A sleepy voice: "Books? At this hour? Are you a poet or an insomniac?"
 
-"Both? Then come by at noon."
+"A porter? Yes! A big one bought THE ART OF THE LOVE LETTER last week."
+
+"He polished the cover on his sleeve. Said he'd never dare send one. Sweet man."
 
 [call_2508]
 "He's painting? At four in the morning? Tell him the soup is cold."
@@ -241,7 +292,9 @@ Shutters closed. A half torn poster announces a dance on Saturday.
 [painter_hello]
 THE PAINTER: Don't move! … No, move. I'm painting the Seine, not you.
 
-At night the water has colours nobody looks at. I steal them.
+Some nights a big man in a yellow hat stands right here, talking to the water.
+
+Always the same name. "Simone… Simone, I…" Then he gives up and goes back.
 
 If you meet my wife… No. Call her instead: 2508. Tell her I'm painting.
 
@@ -284,13 +337,22 @@ GERMAINE: Cabbages! Fine cabbages! Cheap!
 GERMAINE: Oh! Is that for me?
 
 [bark_cafe]
-SIMONE: Come in! A little coffee?
+SIMONE: You there! Come in, I need a sharp eye.
+
+[bark_cafe_met]
+SIMONE: Found my apple man yet?
 
 [bark_cafe_jeton]
 SIMONE: The phone? You need a jeton. Ask me!
 
 [bark_worker]
 A PORTER: Zzz… zzz…
+
+[bark_porter_stare]
+FERNAND: Why are you staring at me, kid?
+
+[bark_worker_hat]
+A PORTER: Zzz… yellow… hats… zzz…
 
 [bark_painter]
 THE PAINTER: Shh… I'm painting the night.

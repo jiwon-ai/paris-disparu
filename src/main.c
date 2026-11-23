@@ -9,10 +9,11 @@
 #include "game.h"
 #include "input.h"
 #include "minigame.h"
+#include "notebook.h"
 #include "sound.h"
 #include "world.h"
 
-enum { ST_WALK, ST_DIALOGUE, ST_PAUSE, ST_LIFT, ST_DIAL };
+enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_LIFT, ST_DIAL, ST_END };
 
 static uint8_t state;
 static uint8_t cur_dialogue;
@@ -164,8 +165,19 @@ static void open_dialogue(uint8_t d) {
     } else if (d == EV_DIAL) {
         dial_start();
         state = ST_DIAL;
+    } else if (d == EV_END) {
+        end_show();
+        sound_confirm();
+        state = ST_END;
     } else if (d == NO_DIALOGUE) {
         state = ST_WALK;
+        if (new_clue) {          /* tell the player the notebook changed */
+            new_clue = 0;
+            box_open(3);
+            box_print(1, 1, txt_new_clue);
+            caption_timer = 240;
+            sound_confirm();
+        }
     } else {
         cur_dialogue = d;
         dialogue_start(d);
@@ -276,8 +288,9 @@ void main(void) {
 
     player_place(28, 72, DIR_RIGHT);
     enter_room(ROOM_STREET);
-    box_open(3);
+    box_open(4);
     box_print(1, 1, txt_caption);
+    box_print(1, 2, txt_caption_2);
     caption_timer = CAPTION_FRAMES;
     bark_from = NO_BARK;
     state = ST_WALK;
@@ -291,11 +304,9 @@ void main(void) {
             if (joy_pressed & J_START) {
                 caption_timer = 0;
                 bark_from = NO_BARK;
-                box_open(4);
-                box_print(7, 1, txt_pause_1);
-                box_print(2, 2, txt_pause_2);
+                notebook_show();
                 sound_confirm();
-                state = ST_PAUSE;
+                state = ST_NOTEBOOK;
                 break;
             }
             if (joy_pressed & J_A) {
@@ -337,11 +348,15 @@ void main(void) {
             break;
         }
 
-        case ST_PAUSE:
+        case ST_NOTEBOOK:
             if (joy_pressed & (J_START | J_B)) {
                 box_close();
                 state = ST_WALK;
             }
+            break;
+
+        case ST_END:
+            if (joy_pressed & J_START) reset();   /* back to the title */
             break;
         }
         actors_draw();

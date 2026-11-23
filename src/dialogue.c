@@ -13,7 +13,7 @@
 static uint8_t row_buf[MAP_W];
 static uint8_t page_buf[PAGE_SIZE];
 static void load_page(void);
-static uint8_t page;        /* absolute page index in dlg_pages */
+static uint16_t page;       /* absolute page index in dlg_pages */
 static uint8_t pages_left;  /* pages after the current one */
 static uint8_t pos;         /* characters revealed on the current page */
 static uint8_t blink;
@@ -97,8 +97,8 @@ static void draw_choice(void) {
 uint8_t dialogue_update(void) {
     const uint8_t *text = page_buf;
 
-    if (joy_pressed & J_B) {   /* B always closes; a pending choice counts as "no" */
-        dialogue_choice = 1;
+    if (joy_pressed & J_B) {   /* B always closes: "no" on the options, 2 before them */
+        dialogue_choice = in_choice ? 1 : 2;
         box_close();
         return 0;
     }
