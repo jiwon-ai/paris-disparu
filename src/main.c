@@ -5,6 +5,7 @@
 #include "assets.h"
 #include "actor.h"
 #include "dialogue.h"
+#include "events.h"
 #include "game.h"
 #include "input.h"
 #include "sound.h"
@@ -13,6 +14,7 @@
 enum { ST_WALK, ST_DIALOGUE, ST_PAUSE };
 
 static uint8_t state;
+static uint8_t cur_dialogue;
 static uint8_t caption_timer;
 static uint8_t ambience_timer;
 static uint8_t rng = 0x5A;
@@ -111,29 +113,66 @@ static void enter_room(uint8_t room) {
     actors_hide();
     world_load(room);
     actors_init_room();
+    player_unstick();
+    event_enter_room(room);
+    ambience_timer = 20;
     actors_draw();
 }
 
-static void change_room(uint8_t dir) {
-    uint8_t dest = rooms[cur_room].exits[dir];
-    switch (dir) {
-    case DIR_LEFT:  player.x = SCREEN_W - 13 - 1; break;
-    case DIR_RIGHT: player.x = -2; break;
-    case DIR_UP:    player.y = SCREEN_H - 16 - 1; break;
-    default:        player.y = -9; break;
+/* exit_code from player_update(): a screen edge DIR_* or PLAYER_DOOR | index. */
+static void change_room(uint8_t exit_code) {
+    uint8_t dest;
+    if (exit_code & PLAYER_DOOR) {
+        const door_t *d = &rooms[cur_room].doors[exit_code & 0x3F];
+        dest = d->room;
+        player_place(d->to_x, d->to_y, d->to_dir);
+    } else {
+        dest = rooms[cur_room].exits[exit_code];
+        switch (exit_code) {
+        case DIR_LEFT:  player.x = SCREEN_W - 13 - 1; break;
+        case DIR_RIGHT: player.x = -2; break;
+        case DIR_UP:    player.y = SCREEN_H - 16 - 1; break;
+        default:        player.y = -9; break;
+        }
     }
     enter_room(dest);
 }
 
+static void open_dialogue(uint8_t d) {
+    caption_timer = 0;
+    cur_dialogue = d;
+    dialogue_start(d);
+    state = ST_DIALOGUE;
+}
+
+/* Scene-based ambience: short noise bursts at irregular intervals. */
 static void update_ambience(void) {
-    if (!rooms[cur_room].ambience) return;
+    uint8_t r;
     if (ambience_timer) {
         ambience_timer--;
         return;
     }
-    /* Louder towards the east end of the street, where the market is. */
-    sound_market(1 + (uint8_t)(player.x >> 5));
-    ambience_timer = 40 + (next_random() & 63);
+    r = next_random();
+    switch (rooms[cur_room].ambience) {
+    case AMBIENCE_STREET:   /* louder towards the east end, where the market is */
+        sound_market(1 + (uint8_t)(player.x >> 5));
+        ambience_timer = 40 + (r & 63);
+        break;
+    case AMBIENCE_MARKET:
+        sound_market(5 + (r & 1));
+        ambience_timer = 12 + (r & 31);
+        break;
+    case AMBIENCE_HALL:
+        sound_market(3 + (r & 1));
+        ambience_timer = 16 + (r & 31);
+        break;
+    case AMBIENCE_CAFE:
+        sound_blip();       /* a cup on a saucer */
+        ambience_timer = 90 + r;
+        break;
+    default:
+        ambience_timer = 255;
+    }
 }
 
 void main(void) {
@@ -173,12 +212,13 @@ void main(void) {
                 break;
             }
             if (joy_pressed & J_A) {
-                uint8_t d = player_interact();
-                if (d != NO_DIALOGUE) {
-                    caption_timer = 0;
-                    dialogue_start(d);
-                    state = ST_DIALOGUE;
-                    break;
+                uint8_t id = player_interact();
+                if (id != NO_DIALOGUE) {
+                    uint8_t d = event_examine(id);
+                    if (d != NO_DIALOGUE) {
+                        open_dialogue(d);
+                        break;
+                    }
                 }
             }
             {
@@ -190,7 +230,11 @@ void main(void) {
             break;
 
         case ST_DIALOGUE:
-            if (!dialogue_update()) state = ST_WALK;
+            if (!dialogue_update()) {
+                uint8_t next = event_after(cur_dialogue, dialogue_choice);
+                if (next != NO_DIALOGUE) open_dialogue(next);
+                else state = ST_WALK;
+            }
             break;
 
         case ST_PAUSE:

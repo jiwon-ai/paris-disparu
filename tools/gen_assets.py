@@ -22,7 +22,7 @@ MAP_W, MAP_H = 20, 18
 FONT_BASE = 128          # font tiles live at 128.. in VRAM bank 0
 TEXT_COLS, TEXT_ROWS = 18, 3
 PAGE_SIZE = TEXT_COLS * TEXT_ROWS
-ROOMS = ["street"]       # order defines ROOM_* ids
+ROOMS = ["street", "entrance", "market", "cafe"]   # order defines ROOM_* ids
 
 errors = []
 
@@ -147,9 +147,11 @@ for room in ROOMS:
             if ch not in art.LEGEND:
                 fail("%s: unknown map character %r at %d,%d" % (path, ch, x, y))
                 ch = " "
-            tname, pal, sol = art.LEGEND[ch]
+            entry = art.LEGEND[ch]
+            tname, pal, sol = entry[:3]
+            prio = len(entry) > 3 and entry[3]
             tiles.append(env_index[tname])
-            attrs.append(pal | ATTR_BANK1)
+            attrs.append(pal | ATTR_BANK1 | (ATTR_PRIORITY if prio else 0))
             solid.append(1 if sol else 0)
     for x, y, text, where in signs:
         for i, code in enumerate(encode_text(text, where)):
@@ -197,6 +199,7 @@ def wrap(paragraph, where):
 
 dlg_path = os.path.join(ROOT, "assets", "dialogue", "fr.txt")
 entries = []           # (id, [paragraph, ...])
+choices = {}           # id -> (option 1, option 2) or None
 para = []
 for ln, line in enumerate(open(dlg_path, encoding="utf-8"), 1):
     line = line.rstrip("\n")
@@ -204,6 +207,13 @@ for ln, line in enumerate(open(dlg_path, encoding="utf-8"), 1):
         continue
     if line.startswith("[") and line.endswith("]"):
         entries.append((line[1:-1], [], ln))
+        choices[line[1:-1]] = None
+        continue
+    if line.startswith("? ") and entries:
+        opts = tuple(o.strip() for o in line[2:].split("|"))
+        if len(opts) != 2 or any(not o or len(o) > 7 for o in opts):
+            fail("fr.txt:%d: a choice needs exactly two options of 1-7 characters" % ln)
+        choices[entries[-1][0]] = opts
         continue
     if not entries:
         if line.strip():
@@ -235,6 +245,19 @@ for did, paras, ln in entries:
     if len(pages) == first:
         fail("fr.txt:[%s] has no text" % did)
     dlg_index.append((did, first, len(pages) - first))
+choice_pairs = []      # distinct option pairs; dlg_choice holds index + 1
+dlg_choice = []
+for did, _, _ in dlg_index:
+    opts = choices.get(did)
+    if opts is None:
+        dlg_choice.append(0)
+        continue
+    if opts not in choice_pairs:
+        choice_pairs.append(opts)
+    dlg_choice.append(choice_pairs.index(opts) + 1)
+choice_text = []
+for a, b in choice_pairs:
+    choice_text.append(encode_text(a.ljust(7), "choice") + encode_text(b.ljust(7), "choice"))
 if len(pages) > 255:
     fail("too many dialogue pages for an 8-bit page index")
 
@@ -298,6 +321,8 @@ H.append("extern const uint8_t * const room_solid[ROOM_COUNT];")
 H.append("extern const uint8_t dlg_pages[];")
 H.append("extern const uint8_t dlg_first_page[DLG_COUNT];")
 H.append("extern const uint8_t dlg_page_count[DLG_COUNT];")
+H.append("extern const uint8_t dlg_choice[DLG_COUNT];   /* 0 = none, else pair index + 1 */")
+H.append("extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */")
 for key, _ in ui:
     H.append("extern const uint8_t txt_%s[];" % key)
 H.append("\n#endif")
@@ -325,7 +350,9 @@ C.append("")
 flat = [b for p in pages for b in p]
 C.append("const uint8_t dlg_pages[] = {\n%s\n};" % c_bytes(flat, PAGE_SIZE // 3))
 C.append("const uint8_t dlg_first_page[DLG_COUNT] = { %s };" % ", ".join(str(f) for _, f, _ in dlg_index))
-C.append("const uint8_t dlg_page_count[DLG_COUNT] = { %s };\n" % ", ".join(str(n) for _, _, n in dlg_index))
+C.append("const uint8_t dlg_page_count[DLG_COUNT] = { %s };" % ", ".join(str(n) for _, _, n in dlg_index))
+C.append("const uint8_t dlg_choice[DLG_COUNT] = { %s };" % ", ".join(str(c) for c in dlg_choice))
+C.append("const uint8_t choice_text[] = {\n%s\n};\n" % c_bytes([b for t in choice_text for b in t] or [0], 14))
 for key, data in ui:
     C.append("const uint8_t txt_%s[] = { %s, 0x00 };" % (key, ",".join("0x%02X" % b for b in data)))
 C.append("")

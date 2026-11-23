@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Headless gameplay test of the ROM in the PyBoy emulator (CGB mode).
+"""Headless play-through of Episode 1 in the PyBoy emulator (CGB mode).
 
 Drives the joypad and checks RAM / VRAM state: boot, title, movement,
-collision, NPC dialogue (A to advance, B to close) and the pause box.
-Optionally saves screenshots:  python3 tests/play_test.py ROM [SHOT_DIR]
+collision, room changes, every NPC, choices, the porter's crates, the cafe
+telephone and the pause box.
+Usage: python3 tests/play_test.py ROM [SCREENSHOT_DIR]
 """
 import os
 import re
@@ -18,6 +19,8 @@ import font  # noqa: E402
 
 FONT_BASE = 128
 CHARS = list(font.GLYPHS.keys())
+ROOM_STREET, ROOM_ENTRANCE, ROOM_MARKET, ROOM_CAFE = range(4)
+FLAG_TASK_DONE, FLAG_PHONE_DONE = 0x0008, 0x0200
 failures = []
 
 
@@ -28,9 +31,8 @@ def check(cond, msg):
 
 
 def symbols(rom):
-    noi = os.path.splitext(rom)[0] + ".noi"
     out = {}
-    for line in open(noi):
+    for line in open(os.path.splitext(rom)[0] + ".noi"):
         m = re.match(r"DEF (\S+) 0x([0-9A-Fa-f]+)", line)
         if m:
             out[m.group(1)] = int(m.group(2), 16)
@@ -49,21 +51,34 @@ def s16(addr):
 
 def player():
     a = sym["_player"]
-    return s16(a), s16(a + 2), mem[a + 4]
+    return s16(a), s16(a + 2)
+
+
+def room():
+    return mem[sym["_cur_room"]]
+
+
+def flags():
+    a = sym["_game_flags"]
+    return mem[a] | (mem[a + 1] << 8)
+
+
+def tick(n=1):
+    pb.tick(n, True)
 
 
 def hold(button, frames):
     pb.button_press(button)
-    pb.tick(frames, True)
+    tick(frames)
     pb.button_release(button)
-    pb.tick(1, True)
+    tick(1)
 
 
 def tap(button, wait=8):
     pb.button_press(button)
-    pb.tick(2, True)
+    tick(2)
     pb.button_release(button)
-    pb.tick(wait, True)
+    tick(wait)
 
 
 def window_on():
@@ -74,86 +89,231 @@ def window_row(row):
     base = 0x9C00 if mem[0xFF40] & 0x40 else 0x9800
     text = ""
     for x in range(20):
-        t = mem[base + row * 32 + x]
-        i = t - FONT_BASE
+        i = mem[base + row * 32 + x] - FONT_BASE
         text += CHARS[i] if 0 <= i < len(CHARS) else "|"
-    return text
+    return text.strip("|").strip()
 
 
 def shot(name):
     if SHOTS:
         os.makedirs(SHOTS, exist_ok=True)
-        img = pb.screen.image.resize((480, 432))
-        img.save(os.path.join(SHOTS, name + ".png"))
+        pb.screen.image.resize((480, 432)).save(os.path.join(SHOTS, name + ".png"))
 
 
+def walk(axis, target, limit=600):
+    """Walk along one axis until the coordinate reaches target or the player stops."""
+    idx = 0 if axis == "x" else 1
+    start_room = room()
+    stuck = 0
+    for _ in range(limit):
+        pos = player()[idx]
+        if pos == target or room() != start_room:
+            break
+        if axis == "x":
+            button = "right" if target > pos else "left"
+        else:
+            button = "down" if target > pos else "up"
+        pb.button_press(button)
+        tick(1)
+        pb.button_release(button)
+        tick(1)
+        stuck = stuck + 1 if player()[idx] == pos else 0
+        if stuck > 6:
+            break
+    tick(1)
+    return player()[idx]
+
+
+def goto(x, y, order="yx"):
+    for axis in order:
+        walk(axis, x if axis == "x" else y)
+    return player()
+
+
+def push(button, frames=90):
+    """Walk until blocked or until a door/edge takes the player to another room."""
+    start = room()
+    pb.button_press(button)
+    last, still = None, 0
+    for _ in range(frames):
+        tick(1)
+        if room() != start:
+            break
+        still = still + 1 if player() == last else 0
+        last = player()
+        if still > 4:
+            break
+    pb.button_release(button)
+    tick(30)   # room fade / settle
+
+
+def dialogue(choice=None, max_pages=12):
+    """Read a whole dialogue: returns the first line of each page seen."""
+    lines = []
+    tick(70)
+    for _ in range(max_pages):
+        if not window_on():
+            break
+        if "▶" in window_row(2):
+            if choice == 1:
+                tap("right", 4)
+            tap("a", 30)
+            lines.append("<choice %d>" % (choice or 0))
+            tick(60)
+            continue
+        lines.append(" ".join(window_row(r) for r in (1, 2, 3)))
+        tap("a", 70)
+    return lines
+
+
+def talk(expect, choice=None):
+    tap("a", 0)
+    lines = dialogue(choice)
+    ok = any(expect in l for l in lines)
+    check(ok and not window_on(), "dialogue %r (%d pages, first: %r)" % (expect, len(lines), lines[0] if lines else ""))
+    return lines
+
+
+# ----------------------------------------------------------------------------
 print("boot")
-pb.tick(90, True)
+tick(90)
 check(mem[0xFF40] & 0x80, "LCD is on after boot")
 check(pb.cartridge_title.strip().startswith("PARISDISPAR"), "cartridge title read by emulator")
 shot("01_title")
 
-print("title -> street")
+print("street")
 tap("start", 40)
-x, y, d = player()
-check((x, y) == (28, 72), "player spawned at (28,72), got (%d,%d)" % (x, y))
-check(window_on() and "Rambuteau" in window_row(1), "location caption shown: %r" % window_row(1))
+check(player() == (28, 72) and room() == ROOM_STREET, "spawned in the street at (28,72): %s" % (player(),))
+check(window_on() and "Rambuteau" in window_row(1), "location caption: %r" % window_row(1))
 shot("02_street")
-pb.tick(160, True)
+tick(160)
 check(not window_on(), "caption closes by itself")
 
-print("movement and collision")
 hold("right", 20)
-x2, y2, d = player()
-check(x2 == x + 20 and d == 3, "moved right 20 px facing right (x=%d)" % x2)
+check(player()[0] == 48, "moved right 20 px (x=%d)" % player()[0])
 hold("right", 120)
-x3, _, _ = player()
-check(x3 == 67, "stopped by the lamp post at x=67 (x=%d)" % x3)
+check(player()[0] == 67, "lamp post blocks at x=67 (x=%d)" % player()[0])
 hold("up", 60)
-_, y4, _ = player()
-check(y4 == 62, "stopped by the facade at y=62 (y=%d)" % y4)
+check(player()[1] == 62, "facade blocks at y=62 (y=%d)" % player()[1])
 hold("down", 200)
-_, y5, _ = player()
-check(y5 == 128, "stopped at the bottom edge y=128 (y=%d)" % y5)
+check(player()[1] == 128, "bottom edge blocks at y=128 (y=%d)" % player()[1])
 hold("left", 200)
-x6, _, _ = player()
-check(x6 == -3, "stopped at the left edge x=-3 (x=%d)" % x6)
+check(player()[0] == -3, "left edge blocks at x=-3 (x=%d)" % player()[0])
 
-print("talk to the porter")
-hold("right", 109)          # x = 106
-hold("up", 80)              # back to the pavement under the facade
-x7, y7, _ = player()
-check((x7, y7) == (106, 62), "next to the porter at (106,62), got (%d,%d)" % (x7, y7))
-tap("right", 4)
-tap("a", 90)
-check(window_on(), "dialogue box opened")
-check(window_row(1).strip("|").startswith("FERNAND"), "first line: %r" % window_row(1))
+goto(106, 90, "yx")
+push("up")
+check(player() == (106, 62), "next to the man with the notebook: %s" % (player(),))
+tap("right", 2)
+tap("a", 0)
+tick(70)
+check(window_row(1).startswith("L'HOMME AU CARNET"), "speaker shown: %r" % window_row(1))
 shot("03_dialogue")
-pages = 1
-for _ in range(10):
-    tap("a", 70)  # next page; 70 frames is enough to type a full page
-    if not window_on():
-        break
-    pages += 1
-check(not window_on(), "dialogue closed after the last page (%d pages)" % pages)
-check(mem[sym["_game_flags"]] & 1, "FLAG_MET_PORTER set")
-
-tap("a", 60)
-check(window_on() and "Encore" in window_row(1), "second talk uses the repeat line: %r" % window_row(1))
+lines = dialogue()
+check(not window_on(), "A pages through and closes (%d pages)" % (len(lines) + 1))
+tap("a", 50)
+check(window_on() and "hésite" in window_row(2) + window_row(3), "repeat line differs: %r" % window_row(2))
 tap("b", 4)
 check(not window_on(), "B closes the dialogue")
 
-print("examine and pause")
-hold("left", 60)            # x = 47: in front of the shop window at tiles 8-13
-hold("up", 4)
-tap("a", 90)
-check(window_on(), "examining the shopfront opens text: %r" % window_row(1))
-tap("b", 4)
 tap("start", 10)
 check(window_on() and "PAUSE" in window_row(1), "START opens the pause box")
 shot("04_pause")
 tap("start", 10)
 check(not window_on(), "START closes the pause box")
+
+print("cafe")
+goto(28, 90, "yx")
+push("up")
+check(room() == ROOM_CAFE and player() == (72, 118), "entered the cafe through its door: room %d %s" % (room(), player()))
+shot("05_cafe")
+push("up")
+check(player()[1] == 38, "stopped by the counter (y=%d)" % player()[1])
+talk("SIMONE", choice=0)
+goto(128, 60, "yx")
+push("up")
+talk("téléphone")
+goto(72, 60, "yx")
+push("up")
+talk("jeton")
+goto(128, 60, "yx")
+push("up")
+lines = talk("jeton", choice=0)
+check(flags() & FLAG_PHONE_DONE, "telephone call made (FLAG_PHONE_DONE)")
+shot("06_phone")
+goto(88, 60, "yx")
+push("up")
+talk("boucherie")
+goto(72, 100, "yx")
+push("down")
+check(room() == ROOM_STREET and player() == (28, 72), "back in the street at the cafe door: %d %s" % (room(), player()))
+
+print("market entrance and the porter")
+goto(140, 90, "yx")
+push("right")
+check(room() == ROOM_ENTRANCE, "east edge leads to the pavilion (room %d, %s)" % (room(), player()))
+shot("07_entrance")
+goto(100, 90, "yx")
+push("up")
+check(player() == (100, 66), "below Fernand: %s" % (player(),))
+talk("FERNAND", choice=0)
+
+
+def fetch_crate(expect):
+    goto(124, 90, "yx")
+    push("up")
+    talk(expect)
+
+
+def to_market():
+    goto(72, 90, "yx")
+    push("up")
+    check(room() == ROOM_MARKET, "through the arch into the pavilion (room %d)" % room())
+
+
+def to_entrance():
+    goto(72, 100, "yx")
+    push("down")
+    check(room() == ROOM_ENTRANCE, "back out to the entrance (room %d)" % room())
+
+
+fetch_crate("choux")
+check(mem[sym["_carrying"]] == 0, "carrying the cabbages")
+to_market()
+shot("08_market")
+goto(72, 38, "xy")
+push("up")
+talk("bon étal")
+goto(36, 38, "xy")
+push("up")
+talk("Mes choux")
+push("left")
+talk("Le prix")               # the merchant herself
+to_entrance()
+fetch_crate("pommes")
+to_market()
+goto(72, 38, "xy")
+push("up")
+talk("Tu poses")
+to_entrance()
+fetch_crate("carottes")
+to_market()
+goto(112, 38, "xy")
+push("up")
+talk("Tu poses")
+to_entrance()
+goto(100, 90, "yx")
+push("up")
+talk("débutant")
+check(flags() & FLAG_TASK_DONE, "porter's task done (FLAG_TASK_DONE)")
+
+print("back to the street")
+goto(60, 90, "yx")
+push("left", 200)
+check(room() == ROOM_STREET, "west edge leads back to the street (room %d)" % room())
+goto(106, 90, "yx")
+push("up")
+tap("right", 2)
+talk("secrets")
 
 pb.stop(save=False)
 print("\n%d failure(s)" % len(failures))

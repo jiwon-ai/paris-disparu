@@ -5,38 +5,54 @@
 
 #define NO_EXIT 0xFF
 #define NO_DIALOGUE 0xFF
-#define MAX_NPCS 6
+#define MAX_NPCS 4
+#define TALK(npc) (0x80 | (npc))   /* hotspot that talks to an NPC (e.g. across a counter) */
 
-/* Something to examine with A, in tile coordinates. */
+/* Something to examine with A, in tile coordinates.
+   id is a dialogue id, or TALK(npc). */
 typedef struct {
     uint8_t x, y, w, h;
-    uint8_t dlg;
+    uint8_t id;
 } hotspot_t;
+
+/* Walking into this rectangle (tile coordinates) moves the player to another room. */
+typedef struct {
+    uint8_t x, y, w, h;
+    uint8_t room;
+    uint8_t to_x, to_y, to_dir;   /* arrival position (pixels) and facing */
+} door_t;
 
 /* A non-player character placed in a room, in pixel coordinates. */
 typedef struct {
     uint8_t x, y;
     uint8_t frame;       /* first of two idle frames (SPR_*) */
     uint8_t palette;     /* sprite palette 0-7 */
-    uint8_t dlg_first;   /* dialogue the first time */
-    uint8_t dlg_repeat;  /* dialogue afterwards */
-    uint8_t flag;        /* game_flags bit set after the first talk */
+    uint8_t npc;         /* NPC_* id, see events.c */
 } npc_def_t;
+
+#define AMBIENCE_NONE   0
+#define AMBIENCE_STREET 1   /* market noise louder towards the east */
+#define AMBIENCE_MARKET 2   /* constant, busy */
+#define AMBIENCE_HALL   3   /* inside the pavilion, echoing */
+#define AMBIENCE_CAFE   4   /* cups and saucers */
 
 typedef struct {
     const npc_def_t *npcs;
     uint8_t npc_count;
     const hotspot_t *hotspots;
     uint8_t hotspot_count;
-    uint8_t exits[4];    /* destination room per DIR_*, or NO_EXIT */
-    uint8_t ambience;    /* 1 = market sounds get louder towards the east */
+    const door_t *doors;
+    uint8_t door_count;
+    uint8_t exits[4];    /* destination room per DIR_* screen edge, or NO_EXIT */
+    uint8_t ambience;
 } room_def_t;
 
 extern const room_def_t rooms[];
 extern uint8_t cur_room;
 
 void world_load(uint8_t room);
-uint8_t world_solid(int16_t px, int16_t py);      /* pixel coordinates */
-uint8_t world_hotspot(int16_t px, int16_t py);   /* dialogue id or NO_DIALOGUE */
+uint8_t world_solid(int16_t px, int16_t py);     /* pixel coordinates */
+uint8_t world_hotspot(int16_t px, int16_t py);   /* hotspot id or NO_DIALOGUE */
+uint8_t world_door(int16_t px, int16_t py);      /* door index or NO_EXIT */
 
 #endif

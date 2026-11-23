@@ -1,0 +1,19 @@
+; In front of a market pavilion (20x18). West edge: rue Rambuteau. Arch at x=9-11: inside.
+^^^^^^^^^^^^^^^^^^^^
+RRRRRRRRRRRRRRRRRRRR
+IgggIgggIgggIgggIggg
+IgggIgggIgggIgggIggg
+====================
+IgggIgggIOOOIgggIggg
+IgggIgggIoooIgggIggg
+IgggIgggIoooIgggIggg
+....................
+.....XX........HHH..
+.....XX.............
+____________________
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+....................

@@ -14,8 +14,10 @@ extern player_t player;
 
 void actors_init_room(void);              /* spawn NPCs of cur_room */
 void player_place(int16_t x, int16_t y, uint8_t dir);
-uint8_t player_update(void);              /* returns exit direction or 0xFF */
-uint8_t player_interact(void);            /* dialogue id in front, or NO_DIALOGUE */
+#define PLAYER_DOOR 0x40
+uint8_t player_update(void);   /* 0xFF, an edge exit DIR_*, or PLAYER_DOOR | door index */
+void player_unstick(void);
+uint8_t player_interact(void); /* hotspot id / TALK(npc) in front, or NO_DIALOGUE */
 void actors_draw(void);
 void actors_hide(void);
 

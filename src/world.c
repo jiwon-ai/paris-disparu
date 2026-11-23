@@ -37,7 +37,21 @@ uint8_t world_hotspot(int16_t px, int16_t py) {
     for (i = 0; i < r->hotspot_count; i++) {
         const hotspot_t *h = &r->hotspots[i];
         if (tx >= h->x && tx < h->x + h->w && ty >= h->y && ty < h->y + h->h)
-            return h->dlg;
+            return h->id;
     }
     return NO_DIALOGUE;
+}
+
+uint8_t world_door(int16_t px, int16_t py) {
+    const room_def_t *r = &rooms[cur_room];
+    uint8_t tx, ty, i;
+    if (px < 0 || py < 0 || px >= SCREEN_W || py >= SCREEN_H) return NO_EXIT;
+    tx = (uint8_t)(px >> 3);
+    ty = (uint8_t)(py >> 3);
+    for (i = 0; i < r->door_count; i++) {
+        const door_t *d = &r->doors[i];
+        if (tx >= d->x && tx < d->x + d->w && ty >= d->y && ty < d->y + d->h)
+            return i;
+    }
+    return NO_EXIT;
 }

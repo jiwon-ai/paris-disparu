@@ -4,6 +4,7 @@
 #include "game.h"
 #include "input.h"
 #include "world.h"
+#include "events.h"
 
 /* Player collision box (feet), relative to the sprite's top-left. */
 #define HIT_X0 3
@@ -18,10 +19,10 @@
 #define NPC_Y1 15
 
 player_t player;
-uint8_t game_flags;
 
 static uint8_t npc_count;
 static uint8_t frame_count;
+static uint8_t slow_step;
 
 /* Walk cycle: stand, step, stand, other step. */
 static const uint8_t walk_cycle[4] = { 0, 1, 0, 2 };
@@ -38,7 +39,7 @@ void player_place(int16_t x, int16_t y, uint8_t dir) {
 void actors_init_room(void) {
     uint8_t i;
     npc_count = rooms[cur_room].npc_count;
-    for (i = (npc_count + 1) * 2; i < 40; i++) move_sprite(i, 0, 0);
+    for (i = 2 + (npc_count + 1) * 2; i < 40; i++) move_sprite(i, 0, 0);
 }
 
 /* Does the player's feet box at (x, y) hit the map or an NPC? */
@@ -58,6 +59,15 @@ static uint8_t blocked(int16_t x, int16_t y) {
     return 0;
 }
 
+/* After a room change, step down (or up) until the feet are on free ground. */
+void player_unstick(void) {
+    uint8_t i;
+    for (i = 0; i < 48 && blocked(player.x, player.y); i++) player.y++;
+    if (i < 48) return;
+    player.y -= 48;
+    for (i = 0; i < 48 && blocked(player.x, player.y); i++) player.y--;
+}
+
 uint8_t player_update(void) {
     int8_t dx = 0, dy = 0;
     const room_def_t *r = &rooms[cur_room];
@@ -74,6 +84,22 @@ uint8_t player_update(void) {
         return 0xFF;
     }
     player.anim++;
+
+    /* Carrying a crate: half speed (parity kept across taps of the D-pad). */
+    slow_step ^= 1;
+    if (carrying != NO_CRATE && slow_step) return 0xFF;
+
+    /* Walking into a door. */
+    {
+        int16_t px = player.x + 8, py = player.y + 12;
+        uint8_t d;
+        if (dx < 0) px = player.x + HIT_X0 - 2;
+        else if (dx > 0) px = player.x + HIT_X1 + 2;
+        else if (dy < 0) py = player.y + HIT_Y0 - 4;
+        else py = player.y + HIT_Y1 + 4;
+        d = world_door(px, py);
+        if (d != NO_EXIT) return PLAYER_DOOR | d;
+    }
 
     /* Leaving through a screen edge that has an exit. */
     if (dx < 0 && player.x + HIT_X0 <= 0 && r->exits[DIR_LEFT] != NO_EXIT) return DIR_LEFT;
@@ -101,11 +127,8 @@ uint8_t player_interact(void) {
 
     for (i = 0; i < npc_count; i++) {
         const npc_def_t *n = &rooms[cur_room].npcs[i];
-        if (px >= n->x && px < n->x + ACTOR_WIDTH && py >= n->y && py < n->y + ACTOR_HEIGHT) {
-            if (game_flags & n->flag) return n->dlg_repeat;
-            game_flags |= n->flag;
-            return n->dlg_first;
-        }
+        if (px >= n->x && px < n->x + ACTOR_WIDTH && py >= n->y && py < n->y + ACTOR_HEIGHT)
+            return TALK(n->npc);
     }
     return world_hotspot(px, py);
 }
@@ -148,8 +171,16 @@ void actors_draw(void) {
         order[j] = i;
     }
 
+    if (carrying != NO_CRATE) {
+        /* Held above the head; OAM 0-1 so it is drawn over everything. */
+        draw16(0, player.x, player.y - 9, SPR_CRATE, 5 + carrying);
+    } else {
+        move_sprite(0, 0, 0);
+        move_sprite(1, 0, 0);
+    }
+
     for (i = 0; i < count; i++) {
-        uint8_t oam = i * 2;
+        uint8_t oam = 2 + i * 2;
         if (order[i] == 0) {
             uint8_t tile = dir_base[player.dir] + walk_cycle[(player.anim >> 3) & 3] * 4;
             draw16(oam, player.x, player.y, tile, player.dir == DIR_LEFT ? S_FLIPX : 0);

@@ -1,17 +1,169 @@
 # French dialogue. [id] starts an entry; a blank line forces a new page.
 # Text is word-wrapped to 18 columns, 3 lines per page, by tools/gen_assets.py.
-# All characters and situations are fictional reconstructions (see docs/HISTORICAL_RESEARCH.md).
+# A last line "? Oui | Non" ends the entry with a two-way choice.
+# All characters and situations are fictional (see docs/HISTORICAL_RESEARCH.md).
 
+# ---------------------------------------------------------------- the stranger
+[stranger_hello]
+L'HOMME AU CARNET: Chut. Je compte.
+
+Trois camions. Un chat. Deux casquettes. Une personne en imperméable.
+
+Ah, c'est vous, l'imperméable. Bonsoir. Ou bonjour. À cette heure, on ne sait plus.
+
+Je note tout ce qui passe dans cette rue. Personne ne le fait jamais.
+
+Le bruit, au bout? Les Halles. Allez-y. Je vous noterai au retour.
+
+[stranger_wait]
+L'HOMME AU CARNET: Une personne en imperméable hésite devant un réverbère. Noté.
+
+[stranger_market]
+L'HOMME AU CARNET: Une personne revient du marché. Elle sent le chou. Noté.
+
+[stranger_crates]
+L'HOMME AU CARNET: Une personne revient, les bras fatigués. Elle a porté des caisses. Noté!
+
+[stranger_phone]
+L'HOMME AU CARNET: Elle a téléphoné, aussi. À qui? Non, ne dites rien. Je ne note pas les secrets.
+
+# ---------------------------------------------------------------- the porter
 [porter_hello]
-FERNAND: Attention, ça passe! Tu traînes à trois heures du matin, toi?
+FERNAND: Attention, ça passe! Tu traînes à cette heure-ci, toi?
 
-Moi, je commence. Écoute: les moteurs, les cris… Les Halles sont déjà réveillées.
+Alors rends-toi utile. Trois caisses à livrer aux étals, à l'intérieur.
 
-Va voir au bout de la rue. Mais regarde où tu mets les pieds.
+Chaque caisse a son étal. Tu sais lire? Alors tu sais faire. Tu m'aides?
+? Oui | Non
 
-[porter_again]
-FERNAND: Encore là? Le marché ne t'attendra pas, tu sais.
+[porter_ask]
+FERNAND: Alors, tu m'aides ou tu regardes?
+? Oui | Non
 
+[porter_yes]
+FERNAND: Bien. Prends-les dans ma charrette, une par une. Regarde ce qu'il y a dedans.
+
+Et porte avec les jambes, pas avec le dos. Le dos, c'est pour la vie.
+
+[porter_no]
+FERNAND: Comme tu veux. Les caisses, elles, ne vont pas se porter toutes seules.
+
+[porter_working]
+FERNAND: La charrette est là, les étals sont dedans. Allez, allez!
+
+[porter_done]
+FERNAND: Trois caisses, trois étals. Pas mal, pour un débutant.
+
+Moi, j'en porte comme ça toute la nuit. Le matin, je ne sens plus mes épaules.
+
+Va au café, dans la rue. Dis à Simone que c'est Fernand qui t'envoie.
+
+[porter_after]
+FERNAND: Encore là? Le café, c'est dans la rue. Simone ne mord pas. Presque pas.
+
+# ---------------------------------------------------------------- the cart and stalls
+[cart_look]
+La charrette de Fernand. Trois caisses, bien sanglées.
+
+[cart_choux]
+Une caisse de choux. Lourde! Les feuilles sentent la terre mouillée.
+
+[cart_pommes]
+Une caisse de pommes. Elles roulent un peu à chaque pas.
+
+[cart_carottes]
+Une caisse de carottes, encore pleines de terre.
+
+[cart_full]
+Tu as déjà les bras pleins.
+
+[cart_empty]
+La charrette est vide. Fernand l'a déjà oubliée.
+
+[stall_choux]
+Des choux, rangés en pyramide.
+
+[stall_pommes]
+Des pommes, frottées une par une pour qu'elles brillent.
+
+[stall_carottes]
+Des carottes en bottes, les fanes vers le haut.
+
+[stall_ok]
+Tu poses la caisse sur l'étal. Quelqu'un hoche la tête, sans un mot.
+
+[stall_wrong]
+Ce n'est pas le bon étal. Regarde l'enseigne.
+
+[stall_wrong_germaine]
+GERMAINE: Ça, chez moi? Ici, c'est des choux, mon petit. Lis l'enseigne!
+
+[stall_ok_germaine]
+GERMAINE: Mes choux! Pose-les là, doucement. Merci, mon petit.
+
+# ---------------------------------------------------------------- the merchant
+[merchant_hello]
+GERMAINE: Tu cherches quoi, à cette heure? Les acheteurs arrivent bientôt.
+
+Il faut que tout soit beau avant. Un chou qui a mauvaise mine, personne n'en veut.
+
+Le prix? Ça dépend de l'heure, de la pluie et de la tête du client.
+
+[merchant_again]
+GERMAINE: Pousse-toi un peu, tu me caches mes choux.
+
+# ---------------------------------------------------------------- the cafe
+[cafe_hello]
+SIMONE: Entre, il fait frais. Ici, ceux du marché déjeunent quand les autres dorment.
+
+Un café?
+? Oui | Non
+
+[cafe_yes]
+SIMONE: Voilà. Brûlant. Ne souffle pas dessus, ça me vexe.
+
+[cafe_no]
+SIMONE: Comme tu veux. Le comptoir, lui, ne ferme pas.
+
+[cafe_fernand]
+SIMONE: Fernand t'envoie? Alors c'est la maison qui offre. Ne le répète pas.
+
+[cafe_jeton]
+SIMONE: Le téléphone? Il te faut un jeton. Tiens, un. Ne le perds pas.
+
+[cafe_again]
+SIMONE: Encore un? Tu vas trembler toute la journée.
+
+[worker_hello]
+UN FORT: Chut. Je dors debout. C'est un métier, ça aussi.
+
+[worker_phone]
+UN FORT: Tu as appelé qui? La boucherie? Ha! Ils ne décrochent jamais avant six heures.
+
+[phone_look]
+Un téléphone, accroché au mur. Il y a une fente… trop petite pour une pièce.
+
+[phone_use]
+Tu as un jeton. Tu le glisses dans la fente?
+? Oui | Non
+
+[phone_call]
+Le jeton tombe avec un bruit sec. Tu composes un numéro au hasard…
+
+« Allô? Allô, la boucherie? … Non? Mais alors qui êtes-vous? »
+
+On a raccroché. Le jeton, lui, ne revient pas.
+
+[phone_after]
+Le téléphone se tait. Il attend le prochain jeton.
+
+[shelf]
+Des bouteilles, alignées devant le miroir. Certaines n'ont plus d'étiquette.
+
+[table]
+Une table ronde. Quelqu'un y a oublié un journal plié en quatre.
+
+# ---------------------------------------------------------------- the street
 [plaque]
 Une plaque bleue, émaillée: RUE RAMBUTEAU.
 
@@ -26,3 +178,16 @@ Vitrine éteinte. Des bouteilles vides attendent le livreur.
 
 [hotel]
 HOTEL. Au deuxième, une fenêtre est encore allumée.
+
+[cafe_window]
+Derrière la vitre embuée, des silhouettes au comptoir. Ça sent le café.
+
+# ---------------------------------------------------------------- the pavilion
+[pavilion]
+Du verre et du fer, très haut. La lumière du dedans fait briller la rue.
+
+[crates]
+Des cageots vides, empilés. Ils repartiront ce soir.
+
+[column]
+Une colonne de fonte. Elle est froide, et un peu collante.

@@ -21,7 +21,10 @@ not yet been consulted.
 | 3 | The market's busiest hours were at night and before dawn. | 3 h 10 setting, noise | To research | INA archives on night at Les Halles |
 | 4 | "Forts des Halles" were porters with an official status at the market. | Fernand | To research (status, numbers, dates) | Archives de Paris; secondary sources |
 | 5 | Paris street-name plaques are blue enamel. | plaque text | To research for 1967 specifically | |
-| 6 | Fernand, his words, the snoring neighbour, the hotel window | dialogue | Fiction | — |
+| 6 | Café wall telephones in 1960s Paris were operated with tokens (jetons) bought at the counter. | Experience C | To research (search results only, not read) | [Wikipedia, Telephone token](https://en.wikipedia.org/wiki/Telephone_token); [Numista catalogue entry](https://en.numista.com/16650) |
+| 7 | The central market sold wholesale; produce was displayed by type at stalls inside the pavilions. | Experience A | To research | Archives de Paris; INA |
+| 8 | Porters ("forts") carried loads on their backs for merchants. | Fernand, Experience A | To research | |
+| 9 | All characters (Fernand, Germaine, Simone, the man with the notebook, the sleeping porter), their words, prices and jokes. The man with the notebook is an original character inspired by the idea of urban observation (Perec); no text is quoted. | everywhere | Fiction | — |
 
 ## Candidate experiences (to research before implementation)
 

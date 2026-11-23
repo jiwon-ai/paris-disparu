@@ -1,4 +1,5 @@
 ; Rue Rambuteau, north edge of Les Halles (20x18 tiles). Legend: tools/art.py
+; The cafe door is at x=4; the market is through the east edge.
 ^^^^^^^^^^^^^^^^^^^^
 RRMRRRRMRRRRMRRRRMRR
 ====================
@@ -6,8 +7,8 @@ RRMRRRRMRRRRMRRRRMRR
 #w#k#w##w#k#w##k#w##
 P###################
 AAAAAA##AAAAAA######
-GGGDGG##GGDGGG#D####
-GGGdGG##GGdGGG#d####
+GGGGDG##GGDGGG#D####
+GGGGEG##GGdGGG#d####
 ..L.......L.......L.
 ..|.......|.......|.
 ____________________
@@ -18,5 +19,5 @@ ____________________
 ,,,,,,,,,,,,,,,,,,,,
 ....................
 ; signs: x y text
-!sign 1 6 VINS
+!sign 1 6 CAFÉ
 !sign 8 5 HOTEL

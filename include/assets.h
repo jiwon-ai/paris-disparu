@@ -26,7 +26,7 @@
 #define GLYPH_BOX_B 235
 #define GLYPH_BOX_BR 236
 
-#define ENV_TILE_COUNT 21
+#define ENV_TILE_COUNT 39
 #define TILE_SKY 0
 #define TILE_ROOFTOP 1
 #define TILE_ROOF 2
@@ -48,7 +48,25 @@
 #define TILE_LAMP_POST 18
 #define TILE_CRATE 19
 #define TILE_PLAQUE 20
-#define SPRITE_TILE_COUNT 44
+#define TILE_GLASS 21
+#define TILE_COLUMN 22
+#define TILE_ARCH 23
+#define TILE_OPENING 24
+#define TILE_CART 25
+#define TILE_FLOOR 26
+#define TILE_CABBAGE 27
+#define TILE_APPLES 28
+#define TILE_CARROTS 29
+#define TILE_COUNTER 30
+#define TILE_PANEL 31
+#define TILE_SHELF 32
+#define TILE_MIRROR 33
+#define TILE_PHONE 34
+#define TILE_ZINC_TOP 35
+#define TILE_ZINC_FRONT 36
+#define TILE_CHECKER 37
+#define TILE_TABLE 38
+#define SPRITE_TILE_COUNT 72
 #define SPR_PLAYER_DOWN_0 0
 #define SPR_PLAYER_DOWN_1 4
 #define SPR_PLAYER_DOWN_2 8
@@ -60,18 +78,71 @@
 #define SPR_PLAYER_SIDE_2 32
 #define SPR_PORTER_0 36
 #define SPR_PORTER_1 40
+#define SPR_MERCHANT_0 44
+#define SPR_MERCHANT_1 48
+#define SPR_CAFE_0 52
+#define SPR_CAFE_1 56
+#define SPR_STRANGER_0 60
+#define SPR_STRANGER_1 64
+#define SPR_CRATE 68
 
 #define ROOM_STREET 0
-#define ROOM_COUNT 1
+#define ROOM_ENTRANCE 1
+#define ROOM_MARKET 2
+#define ROOM_CAFE 3
+#define ROOM_COUNT 4
 
 enum {
+    DLG_STRANGER_HELLO,
+    DLG_STRANGER_WAIT,
+    DLG_STRANGER_MARKET,
+    DLG_STRANGER_CRATES,
+    DLG_STRANGER_PHONE,
     DLG_PORTER_HELLO,
-    DLG_PORTER_AGAIN,
+    DLG_PORTER_ASK,
+    DLG_PORTER_YES,
+    DLG_PORTER_NO,
+    DLG_PORTER_WORKING,
+    DLG_PORTER_DONE,
+    DLG_PORTER_AFTER,
+    DLG_CART_LOOK,
+    DLG_CART_CHOUX,
+    DLG_CART_POMMES,
+    DLG_CART_CAROTTES,
+    DLG_CART_FULL,
+    DLG_CART_EMPTY,
+    DLG_STALL_CHOUX,
+    DLG_STALL_POMMES,
+    DLG_STALL_CAROTTES,
+    DLG_STALL_OK,
+    DLG_STALL_WRONG,
+    DLG_STALL_WRONG_GERMAINE,
+    DLG_STALL_OK_GERMAINE,
+    DLG_MERCHANT_HELLO,
+    DLG_MERCHANT_AGAIN,
+    DLG_CAFE_HELLO,
+    DLG_CAFE_YES,
+    DLG_CAFE_NO,
+    DLG_CAFE_FERNAND,
+    DLG_CAFE_JETON,
+    DLG_CAFE_AGAIN,
+    DLG_WORKER_HELLO,
+    DLG_WORKER_PHONE,
+    DLG_PHONE_LOOK,
+    DLG_PHONE_USE,
+    DLG_PHONE_CALL,
+    DLG_PHONE_AFTER,
+    DLG_SHELF,
+    DLG_TABLE,
     DLG_PLAQUE,
     DLG_DOOR,
     DLG_LAMP,
     DLG_SHOP,
     DLG_HOTEL,
+    DLG_CAFE_WINDOW,
+    DLG_PAVILION,
+    DLG_CRATES,
+    DLG_COLUMN,
     DLG_COUNT
 };
 
@@ -86,6 +157,8 @@ extern const uint8_t * const room_solid[ROOM_COUNT];
 extern const uint8_t dlg_pages[];
 extern const uint8_t dlg_first_page[DLG_COUNT];
 extern const uint8_t dlg_page_count[DLG_COUNT];
+extern const uint8_t dlg_choice[DLG_COUNT];   /* 0 = none, else pair index + 1 */
+extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
 extern const uint8_t txt_title_1[];
 extern const uint8_t txt_title_2[];
 extern const uint8_t txt_title_3[];

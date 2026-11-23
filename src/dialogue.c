@@ -14,6 +14,9 @@ static uint8_t page;        /* absolute page index in dlg_pages */
 static uint8_t pages_left;  /* pages after the current one */
 static uint8_t pos;         /* characters revealed on the current page */
 static uint8_t blink;
+static uint8_t choice;      /* 0 = no choice pending, else pair index + 1 */
+static uint8_t in_choice;   /* 1 while the options are shown */
+uint8_t dialogue_choice;    /* result: 0 = first option, 1 = second */
 
 void box_open(uint8_t rows) {
     uint8_t y, x;
@@ -62,6 +65,9 @@ static void clear_text(void) {
 }
 
 void dialogue_start(uint8_t id) {
+    choice = dlg_choice[id];
+    in_choice = 0;
+    dialogue_choice = 1;
     page = dlg_first_page[id];
     pages_left = dlg_page_count[id] - 1;
     box_open(DLG_ROWS);
@@ -73,12 +79,34 @@ static const uint8_t *page_ptr(void) {
     return dlg_pages + (uint16_t)page * PAGE_SIZE;
 }
 
+static void draw_choice(void) {
+    const uint8_t *t = choice_text + (uint16_t)(choice - 1) * 14;
+    set_win_tile_xy(3, 2, dialogue_choice == 0 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+    set_win_tiles(4, 2, 7, 1, t);
+    set_win_tile_xy(11, 2, dialogue_choice == 1 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+    set_win_tiles(12, 2, 7, 1, t + 7);
+}
+
 uint8_t dialogue_update(void) {
     const uint8_t *text = page_ptr();
 
-    if (joy_pressed & J_B) {
+    if (joy_pressed & J_B) {   /* B always closes; a pending choice counts as "no" */
+        dialogue_choice = 1;
         box_close();
         return 0;
+    }
+
+    if (in_choice) {
+        if (joy_pressed & (J_LEFT | J_RIGHT)) {
+            dialogue_choice ^= 1;
+            draw_choice();
+            sound_blip();
+        }
+        if (joy_pressed & J_A) {
+            box_close();
+            return 0;
+        }
+        return 1;
     }
 
     if (pos < PAGE_SIZE) {
@@ -106,6 +134,13 @@ uint8_t dialogue_update(void) {
                     (blink & 0x10) ? GLYPH_BOX_B : GLYPH_ARROW_DOWN);
     if (joy_pressed & J_A) {
         if (pages_left == 0) {
+            if (choice) {
+                clear_text();
+                in_choice = 1;
+                dialogue_choice = 0;
+                draw_choice();
+                return 1;
+            }
             box_close();
             return 0;
         }

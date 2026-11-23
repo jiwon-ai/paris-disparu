@@ -7,32 +7,36 @@ exists. No combat, no quest markers, no collectibles: the historical
 experiences are the reward.
 
 ![Title](docs/screenshots/01_title.png) ![Street](docs/screenshots/02_street.png)
-![Dialogue](docs/screenshots/03_dialogue.png)
+![Dialogue](docs/screenshots/03_dialogue.png) ![Café](docs/screenshots/05_cafe.png)
+![Entrance](docs/screenshots/07_entrance.png) ![Market](docs/screenshots/08_market.png)
 
 Screenshots are captured automatically by `tests/play_test.py` in the PyBoy
 emulator.
 
 ## Status
 
-**Milestone 1 (first playable) — implemented.** Everything below is in the
-ROM and checked by the automated emulator test, unless marked otherwise.
+**Episode 1 vertical slice (Les Halles, 1967) — first complete version.**
+Everything below is in the ROM and exercised by the automated play-through
+(`tests/play_test.py`), unless marked otherwise.
 
 | Feature | State |
 |---|---|
 | CGB-only ROM with valid header (MBC5, CGB flag 0xC0) | done, checked by `tests/check_rom.py` |
-| Title screen | done |
-| Rue Rambuteau street scene, original pixel art | done (1 screen) |
-| Player: 4-direction movement, walk animation | done |
-| Tile collision (facades, lamp posts, screen edges) and NPC collision | done, tested |
-| NPC (Fernand, market porter) with French dialogue, first/repeat lines | done, tested |
-| Examine objects with A (doors, lamps, shop windows, street plaque) | done |
-| Dialogue box: typewriter text, A = next page, B = close | done, tested |
-| START pause box | done, tested |
-| Distant market noise that gets louder towards the market | done, **not verified by ear** (tests run with sound off) |
-| Message on a monochrome Game Boy | done, **not tested** |
-| Market entrance, market interior, café, 3 other NPCs, 3 experiences | planned (see [ROADMAP](docs/ROADMAP.md)) |
-| Music | planned |
-| Real hardware / ModRetro Chromatic | **not tested yet** |
+| Title screen, location caption, START pause | done, tested |
+| 4 connected areas: rue Rambuteau, pavilion entrance, pavilion interior, café | done, tested (screen edges + doors) |
+| Player: 4-direction movement, walk animation, tile + NPC collision | done, tested |
+| 5 NPCs with French dialogue that changes with what you have done | done, tested |
+| Experience A: carry Fernand's three crates to the right stalls (read the signs; wrong stall gets a reaction; half speed while carrying) | done, tested |
+| Experience B: café scene (Simone, a porter asleep on his feet, Oui/Non choice) | done, tested |
+| Experience C: the café wall telephone that needs a token (jeton) | done, tested — historical details **to research**, see below |
+| Two-option choices in dialogue | done, tested |
+| Scene-based ambient sound (market noise louder towards the market, café cups) | done, **not verified by ear** |
+| Music | not started |
+| Message on a monochrome Game Boy | written, **not tested** |
+| SameBoy / BGB / real hardware / ModRetro Chromatic | **not tested yet** |
+
+A first-time play-through is currently short (a few minutes, not yet the
+10-15 minute target); see [ROADMAP](docs/ROADMAP.md).
 
 ## Controls
 
@@ -58,7 +62,7 @@ tar xzf gbdk-linux64.tar.gz -C ~
 make GBDK_HOME=~/gbdk
 ```
 
-Output: `build/paris-disparu.gbc` (32 KiB). The generated asset files
+Output: `build/paris-disparu.gbc` (32 KiB, about 22 KiB used; bank 0 is nearly full, so the next content step needs ROM banking). The generated asset files
 `src/assets.c` and `include/assets.h` are committed, so Python is not needed
 for a plain build.
 
