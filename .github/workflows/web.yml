@@ -1,0 +1,54 @@
+name: web
+
+# Builds the ROM, packages the browser version (itch.io-ready zip) and tests
+# it in headless Chromium. Download "paris-disparu-web" from the run's
+# artifacts and upload the zip inside it to itch.io.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    env:
+      GBDK_VERSION: 4.3.0
+      PLAYWRIGHT_VERSION: 1.63.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install GBDK-2020
+        run: |
+          curl -sSL -o gbdk.tar.gz \
+            https://github.com/gbdk-2020/gbdk-2020/releases/download/${GBDK_VERSION}/gbdk-linux64.tar.gz
+          tar xzf gbdk.tar.gz -C "$HOME"
+
+      - name: Build ROM
+        run: make GBDK_HOME=$HOME/gbdk
+
+      - name: Package web player
+        run: python3 web/build.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright + Chromium
+        run: |
+          npm install --no-save playwright@${PLAYWRIGHT_VERSION}
+          npx playwright install --with-deps chromium
+
+      - name: Test web player (headless Chromium)
+        run: node web/test_web.js build/web-shots
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paris-disparu-web
+          path: build/paris-disparu-web.zip
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: paris-disparu-web-screenshots
+          path: build/web-shots
