@@ -1,0 +1,22 @@
+; Rue Rambuteau, north edge of Les Halles (20x18 tiles). Legend: tools/art.py
+^^^^^^^^^^^^^^^^^^^^
+RRMRRRRMRRRRMRRRRMRR
+====================
+#W#K#W##W#K#W##K#W##
+#w#k#w##w#k#w##k#w##
+P###################
+AAAAAA##AAAAAA######
+GGGDGG##GGDGGG#D####
+GGGdGG##GGdGGG#d####
+..L.......L.......L.
+..|.......|.......|.
+____________________
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+....................
+; signs: x y text
+!sign 1 6 VINS
+!sign 8 5 HOTEL

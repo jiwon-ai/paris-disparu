@@ -1,0 +1,40 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  rom:
+    runs-on: ubuntu-latest
+    env:
+      GBDK_VERSION: 4.3.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install GBDK-2020
+        run: |
+          curl -sSL -o gbdk.tar.gz \
+            https://github.com/gbdk-2020/gbdk-2020/releases/download/${GBDK_VERSION}/gbdk-linux64.tar.gz
+          tar xzf gbdk.tar.gz -C "$HOME"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test emulator
+        run: pip install pyboy==2.9.0
+
+      - name: Build ROM
+        run: make GBDK_HOME=$HOME/gbdk
+
+      - name: Asset and header checks
+        run: make check GBDK_HOME=$HOME/gbdk
+
+      - name: Gameplay test (PyBoy, headless)
+        run: python3 tests/play_test.py build/paris-disparu.gbc
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paris-disparu-rom
+          path: build/paris-disparu.gbc

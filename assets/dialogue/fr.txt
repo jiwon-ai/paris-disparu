@@ -1,0 +1,28 @@
+# French dialogue. [id] starts an entry; a blank line forces a new page.
+# Text is word-wrapped to 18 columns, 3 lines per page, by tools/gen_assets.py.
+# All characters and situations are fictional reconstructions (see docs/HISTORICAL_RESEARCH.md).
+
+[porter_hello]
+FERNAND: Attention, ça passe! Tu traînes à trois heures du matin, toi?
+
+Moi, je commence. Écoute: les moteurs, les cris… Les Halles sont déjà réveillées.
+
+Va voir au bout de la rue. Mais regarde où tu mets les pieds.
+
+[porter_again]
+FERNAND: Encore là? Le marché ne t'attendra pas, tu sais.
+
+[plaque]
+Une plaque bleue, émaillée: RUE RAMBUTEAU.
+
+[door]
+La porte est fermée. Derrière, quelqu'un ronfle.
+
+[lamp]
+Un réverbère. Sa lumière jaune tremble un peu.
+
+[shop]
+Vitrine éteinte. Des bouteilles vides attendent le livreur.
+
+[hotel]
+HOTEL. Au deuxième, une fenêtre est encore allumée.
