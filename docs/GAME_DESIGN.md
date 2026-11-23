@@ -73,6 +73,25 @@ closed in 1984. B before the question cancels the scene.
   The game does not explain; asking Simone gets a token. Using it dials a
   wrong number (the butcher's), and the token does not come back.
 
+## Side goals (notebook page 2, LEFT/RIGHT)
+
+| Extra | How | Payoff |
+|---|---|---|
+| Punch tickets | métro: buy a ticket, punch 3 passengers' tickets | the puncher saw Fernand head for the river |
+| Phone the early butcher | café phone, 0614 (pencilled on the wall) | a gag; counts for the bonus |
+| A message for the painter | phone 2508 (his wife), then tell him | he packs up and goes home |
+
+A note "Extra done! n/3" appears each time. All three: a bonus scene with
+the photographer before the end screen. The end screen shows clues n/6 and
+extras n/3.
+
+## Hook to Episode 2
+
+After the end screen, START shows "NEXT: EPISODE 2": 3 March 1969, the last
+night of the fruit and vegetable trade at Les Halles (Rungis opened that day,
+see HISTORICAL_RESEARCH), and an open thread from Episode 1: Fernand's brass
+plate is gone from Mme Roux's box. Who took it? (fiction).
+
 ## Opening (first minute)
 Title, then a 3-page skippable intro (setting, tonight's goal, controls; A next,
 B/START skip). The player starts next to the café with a one-line goal on

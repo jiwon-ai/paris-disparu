@@ -9,6 +9,8 @@
 uint16_t game_flags;
 uint8_t clue_flags;
 uint8_t new_clue;
+uint8_t extra_flags;
+uint8_t new_extra;
 uint8_t carrying = NO_CRATE;
 static uint8_t crates_taken;     /* 0-3, taken from Fernand's cart */
 static uint8_t crates_delivered; /* 0-3 */
@@ -27,6 +29,19 @@ static void found(uint8_t c) {
         clue_flags |= c;
         new_clue = 1;
     }
+}
+
+static void extra(uint8_t x) {
+    if (!(extra_flags & x)) {
+        extra_flags |= x;
+        if (x & X_ALL) new_extra = 1;
+    }
+}
+
+uint8_t extra_total(void) {
+    uint8_t n = 0, x;
+    for (x = extra_flags & X_ALL; x; x >>= 1) n += x & 1;
+    return n;
 }
 
 uint8_t clue_total(void) {
@@ -52,16 +67,18 @@ uint8_t event_lift_result(uint8_t success) {
 
 uint8_t event_punch_result(uint8_t success) {
     if (!success) return DLG_PUNCH_MISS;
-    return ++punched < 3 ? DLG_PUNCH_OK : DLG_PUNCH_DONE;
+    if (++punched < 3) return DLG_PUNCH_OK;
+    extra(X_TICKETS);
+    return DLG_PUNCH_DONE;
 }
 
 uint8_t event_dial_result(uint16_t number) {
     game_flags = (game_flags & ~FLAG_HAS_JETON) | FLAG_PHONE_DONE;
     switch (number) {
-    case 614:  return DLG_CALL_0614;
+    case 614:  extra(X_BUTCHER); return DLG_CALL_0614;
     case 4127: found(CLUE_COURIER); return DLG_CALL_4127;
     case 7302: found(CLUE_PLATE);   return DLG_CALL_7302;
-    case 2508: return DLG_CALL_2508;
+    case 2508: extra(X_WIFE); return DLG_CALL_2508;
     }
     return DLG_CALL_NONE;
 }
@@ -123,6 +140,10 @@ uint8_t event_talk(uint8_t npc) {
 
     case NPC_PAINTER:
         if (!HAS(FLAG_MET_PAINTER)) { SET(FLAG_MET_PAINTER); return DLG_PAINTER_HELLO; }
+        if ((extra_flags & X_WIFE) && !(extra_flags & X_PAINTER)) {   /* her message */
+            extra(X_PAINTER);
+            return DLG_PAINTER_WIFE;
+        }
         return DLG_PAINTER_AGAIN;
 
     case NPC_PHOTO:     /* the cameo: what he says depends on how far you got */
@@ -227,7 +248,10 @@ uint8_t event_after(uint8_t dlg, uint8_t choice) {
         SET(FLAG_SOLVED);
         return choice == 0 ? DLG_END_STAY : DLG_END_GO;
     case DLG_END_STAY:
-    case DLG_END_GO:
+    case DLG_END_GO:               /* every extra done: one more scene */
+        if ((extra_flags & X_ALL) == X_ALL) return DLG_END_BONUS;
+        return EV_END;
+    case DLG_END_BONUS:
         return EV_END;
     case DLG_PHONE_USE:
         if (choice == 0) return EV_DIAL;

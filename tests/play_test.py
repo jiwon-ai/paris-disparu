@@ -161,7 +161,7 @@ def dialogue(choice=None, max_pages=12):
     lines = []
     tick(70)
     for _ in range(max_pages):
-        if not window_on() or window_row(1).startswith(("Dial", "Lift!", "Punch!", "New clue")) \
+        if not window_on() or window_row(1).startswith(("Dial", "Lift!", "Punch!", "New clue", "Extra done")) \
                 or window_row(2) == "THE END":
             break
         if "▶" in window_row(2):
@@ -530,7 +530,15 @@ for n in range(3):
     if n < 2:
         check(any("clean hole" in l for l in lines) and window_on(), "passenger %d: clean hole: %s" % (n + 1, lines[:1]))
 check(mem[sym["_punched"]] == 3, "three tickets punched (%d)" % mem[sym["_punched"]])
-check(any("river" in l for l in lines) and not window_on(), "his hint: Fernand went towards the river: %s" % lines[-1:])
+check(any("river" in l for l in lines), "his hint: Fernand went towards the river: %s" % lines[-1:])
+check(window_on() and "Extra done" in window_row(1) and "1/3" in window_row(1), "side goal noted: %r" % window_row(1))
+tap("b", 4)
+tap("start", 10)
+tap("right", 10)
+check("EXTRAS" in window_row(1) and window_row(3).startswith("OK") and window_row(6).startswith("--"),
+      "notebook page 2 lists the extras: %r %r" % (window_row(3), window_row(6)))
+shot("19_extras")
+tap("start", 10)
 shot("18_punch")
 talk("Porte des Lilas")
 goto(76, 120, "xy")
@@ -549,6 +557,14 @@ goto(72, 60, "yx")
 push("up")
 talk("Another jeton")
 phone("7302", "his plate", clue=0x10)
+for number, expect, n in (("0614", "Butcher", 2), ("2508", "soup", None)):
+    goto(72, 60, "yx")
+    push("up")
+    talk("jeton")
+    phone(number, expect)
+    if n:
+        check(window_on() and "Extra done" in window_row(1) and "%d/3" % n in window_row(1), "extra: %r" % window_row(1))
+        tap("b", 4)
 tap("start", 10)
 check("6/6" in window_row(1) and "Find Fernand" in window_row(2), "notebook: 6/6 clues, goal: %r %r" % (window_row(1), window_row(2)))
 check(any("7302" in window_row(r) for r in range(13, 17)), "Mme Roux's number noted")
@@ -556,6 +572,12 @@ shot("04_notebook")
 tap("start", 10)
 cafe_to_street()
 to_bridge()
+push("down")
+tap("a", 0)
+lines = dialogue()
+check(any("Cold soup" in l for l in lines), "the painter gets his wife's message: %s" % lines[:1])
+check(window_on() and "3/3" in window_row(1), "all three extras done: %r" % window_row(1))
+tap("b", 4)
 to_fernand()
 check("FERNAND" in window_row(1), "Fernand's silent call-out: %r" % window_row(1))
 # Before all three clues he must say what is missing (and the notebook too).
@@ -578,9 +600,15 @@ shot("15_fernand")
 lines = dialogue(choice=0, max_pages=40)
 check(any("My coltin" in l for l in lines), "Fernand opens up: %d pages" % len(lines))
 check(any("two winters" in l for l in lines), "ending: he stays for the last winters")
-check(window_on() and window_row(2) == "THE END" and "6/6" in window_row(4), "end screen: %r %r" % (window_row(2), window_row(4)))
+check(any("full of holes" in l for l in lines), "every extra done: the photographer's bonus scene")
+check(window_on() and window_row(2) == "THE END" and "6/6" in window_row(4) and "3/3" in window_row(5),
+      "end screen: %r %r %r" % (window_row(2), window_row(4), window_row(5)))
 check(flags() & FLAG_SOLVED, "mystery solved (FLAG_SOLVED)")
 shot("14_end")
+tap("start", 20)
+check(window_on() and "EPISODE 2" in window_row(2) and "Who took it" in window_row(13),
+      "START shows the next episode's hook: %r / %r" % (window_row(2), window_row(13)))
+shot("20_next")
 tap("start", 60)
 check(not window_on() and clues() == 0, "START at the end returns to a fresh title screen")
 

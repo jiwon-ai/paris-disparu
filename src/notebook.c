@@ -53,7 +53,44 @@ void notebook_show(void) {
     y = 13;
     for (i = 0; i < 4; i++)
         if (game_flags & num_flag[i]) box_print(1, y++, num_txt[i]);
+    box_print(1, 17, txt_nb_next);
     box_print(14, 17, txt_nb_close);
+}
+
+/* Second page: optional side goals, each with where to look. */
+static const uint8_t * const extra_txt[X_COUNT * 2] = {
+    txt_x_0, txt_x_0h, txt_x_1, txt_x_1h, txt_x_2, txt_x_2h
+};
+
+void extras_show(void) {
+    uint8_t i;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_x_title);
+    set_win_tile_xy(15, 1, txt_digits[extra_total()]);
+    box_print(16, 1, txt_extra_of);
+    for (i = 0; i < X_COUNT; i++) {
+        box_print(1, 3 + i * 3, (extra_flags & (1 << i)) ? txt_x_done : txt_x_todo);
+        box_print(5, 3 + i * 3, extra_txt[i * 2]);
+        box_print(5, 4 + i * 3, extra_txt[i * 2 + 1]);
+    }
+    box_print(1, 13, txt_x_note_1);
+    box_print(1, 14, txt_x_note_2);
+    box_print(1, 17, txt_nb_prev);
+    box_print(14, 17, txt_nb_close);
+}
+
+/* After the end screen: a look at the next episode. */
+static const uint8_t * const teaser_txt[12] = {
+    txt_next_0, 0, txt_next_1, txt_next_2, txt_next_3, txt_next_4, 0,
+    txt_next_5, txt_next_6, txt_next_7, 0, txt_next_8
+};
+
+void teaser_show(void) {
+    uint8_t i;
+    box_open(SCREEN_H / 8);
+    for (i = 0; i < 12; i++)
+        if (teaser_txt[i]) box_print(1, 2 + i, teaser_txt[i]);
+    box_print(1, 16, txt_end_11);
 }
 
 void end_show(void) {
@@ -62,6 +99,8 @@ void end_show(void) {
     box_print(6, 2, txt_end_1);
     box_print(1, 4, txt_end_2);
     set_win_tile_xy(14, 4, txt_digits[clue_total()]);
+    box_print(1, 5, txt_end_x);
+    set_win_tile_xy(14, 5, txt_digits[extra_total()]);
     box_print(1, 6, txt_end_3);
     box_print(1, 7, txt_end_4);
     box_print(1, 8, txt_end_5);

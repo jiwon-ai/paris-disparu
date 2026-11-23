@@ -42,6 +42,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Two-option choices in dialogue | done, tested |
 | Opening: skippable 3-page intro (setting, goal, controls), one-line goal on screen, a cat to chase to the café | done, tested |
 | Fernand and the notebook always say what is still missing | done, tested |
+| Side goals: 3 extras on notebook page 2 with payoffs, a bonus ending scene, and an Episode 2 hook screen | done, tested |
 | Era culture in the scenery (onion soup, Salut les copains, yé-yé radio, Tati's Playtime poster, Ionesco playbill, Zola, a Baudelaire verse), each sourced with rights status | done, tested (soup) |
 | Vanished Paris: Les Halles métro ticket hall, a ticket puncher (poinçonneur, gone since 1973) and a punch mini-game | done, tested |
 | Player sprite visible after every room change (`tests/visibility_test.py`) | done, tested |

@@ -444,3 +444,17 @@ Small white tiles, like in every station since 1900. They catch what little ligh
 
 [metro_gate]
 The gate to the platform. Beyond it, the tunnel smells of hot iron and dust.
+
+[painter_wife]
+THE PAINTER: You called her? What did she say?
+
+Cold soup… and she loves me. But mostly the soup. Ha! That's her.
+
+I'll finish this sky and go home. Thank you, kid. Go easy with the big fellow.
+
+[end_bonus]
+At the café door the photographer lowers his camera. THE PHOTOGRAPHER: You were everywhere tonight.
+
+The métro, the butcher, the painter's wife… Here.
+
+He promises you a print: you, laughing, holding a ticket full of holes.

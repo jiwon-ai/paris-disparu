@@ -32,7 +32,8 @@ static const int16_t cat_path[][2] = { { 56, 92 }, { 44, 92 }, { 36, 84 }, { 30,
 #define CAT_STEPS 5
 int16_t cat_x = 56, cat_y = 92;
 static void close_caption(void);
-static uint8_t lift_punch;      /* the timing bar is the metro punch, not a crate */
+static uint8_t lift_punch;
+static uint8_t nb_page, teaser_seen;      /* the timing bar is the metro punch, not a crate */
 static uint8_t cat_wp, cat_run;
 
 static void update_cat(void) {
@@ -279,6 +280,15 @@ static void open_dialogue(uint8_t d) {
             goal_print(2);                 /* what to do next, at a glance */
             caption_timer = 240;
             sound_confirm();
+        } else if (new_extra) {  /* a side goal done */
+            new_extra = 0;
+            box_open(4);
+            box_print(1, 1, txt_extra_done);
+            set_win_tile_xy(15, 1, txt_digits[extra_total()]);
+            box_print(16, 1, txt_extra_of);
+            box_print(1, 2, txt_extra_more);
+            caption_timer = 240;
+            sound_confirm();
         }
     } else {
         cur_dialogue = d;
@@ -423,6 +433,7 @@ void main(void) {
             if (joy_pressed & J_START) {
                 caption_timer = 0;
                 bark_from = NO_BARK;
+                nb_page = 0;
                 notebook_show();
                 sound_confirm();
                 state = ST_NOTEBOOK;
@@ -474,11 +485,20 @@ void main(void) {
             if (joy_pressed & (J_START | J_B)) {
                 box_close();
                 state = ST_WALK;
+            } else if (joy_pressed & (J_LEFT | J_RIGHT)) {   /* clues <-> extras */
+                nb_page ^= 1;
+                if (nb_page) extras_show(); else notebook_show();
+                sound_blip();
             }
             break;
 
-        case ST_END:
-            if (joy_pressed & J_START) reset();   /* back to the title */
+        case ST_END:          /* START: the next episode's teaser, then the title */
+            if (joy_pressed & J_START) {
+                if (teaser_seen) reset();
+                teaser_seen = 1;
+                teaser_show();
+                sound_confirm();
+            }
             break;
         }
         actors_draw();

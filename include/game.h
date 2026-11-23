@@ -58,6 +58,17 @@ extern uint16_t game_flags;
 #define CLUE_READY   (CLUE_COLTIN | CLUE_BLEU | CLUE_PLATE)  /* enough to talk to him */
 #define CLUE_COUNT 6
 extern uint8_t clue_flags;
+
+/* Optional side goals (extra_flags bits), shown on the notebook's second page. */
+#define X_TICKETS   0x01   /* punched three passengers' tickets in the metro */
+#define X_BUTCHER   0x02   /* phoned the butcher (0614) */
+#define X_PAINTER   0x04   /* phoned the painter's wife, then told him */
+#define X_WIFE      0x08   /* (step) phoned the painter's wife */
+#define X_COUNT     3
+#define X_ALL       (X_TICKETS | X_BUTCHER | X_PAINTER)
+extern uint8_t extra_flags;
+extern uint8_t new_extra;      /* an extra was just completed: show a note */
+uint8_t extra_total(void);
 extern uint8_t new_clue;   /* set when a clue was just found; main shows a note */
 uint8_t clue_total(void);
 

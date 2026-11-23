@@ -237,6 +237,8 @@ enum {
     DLG_METRO_NAME,
     DLG_METRO_TILES,
     DLG_METRO_GATE,
+    DLG_PAINTER_WIFE,
+    DLG_END_BONUS,
     DLG_COUNT
 };
 
@@ -338,6 +340,32 @@ extern const uint8_t txt_digits[];
 extern const uint8_t txt_bark_hint[];
 extern const uint8_t txt_punch_1[];
 extern const uint8_t txt_punch_2[];
+extern const uint8_t txt_nb_next[];
+extern const uint8_t txt_nb_prev[];
+extern const uint8_t txt_extra_done[];
+extern const uint8_t txt_extra_of[];
+extern const uint8_t txt_extra_more[];
+extern const uint8_t txt_x_title[];
+extern const uint8_t txt_x_todo[];
+extern const uint8_t txt_x_done[];
+extern const uint8_t txt_x_0[];
+extern const uint8_t txt_x_0h[];
+extern const uint8_t txt_x_1[];
+extern const uint8_t txt_x_1h[];
+extern const uint8_t txt_x_2[];
+extern const uint8_t txt_x_2h[];
+extern const uint8_t txt_x_note_1[];
+extern const uint8_t txt_x_note_2[];
+extern const uint8_t txt_end_x[];
+extern const uint8_t txt_next_0[];
+extern const uint8_t txt_next_1[];
+extern const uint8_t txt_next_2[];
+extern const uint8_t txt_next_3[];
+extern const uint8_t txt_next_4[];
+extern const uint8_t txt_next_5[];
+extern const uint8_t txt_next_6[];
+extern const uint8_t txt_next_7[];
+extern const uint8_t txt_next_8[];
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];

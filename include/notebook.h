@@ -5,6 +5,8 @@
 void notebook_show(void);   /* START: goal, clues found, phone numbers known */
 void end_show(void);        /* the mystery is solved */
 void goal_print(uint8_t y); /* current goal, two rows, in the open box */
-void intro_show(uint8_t page);  /* explanation after the title, pages 0-2 */
+void intro_show(uint8_t page);
+void extras_show(void);
+void teaser_show(void);  /* explanation after the title, pages 0-2 */
 
 #endif
