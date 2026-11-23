@@ -1,3 +1,5 @@
+# NOT USED BY THE BUILD: the game is in English (assets/dialogue/en.txt).
+# Kept as a draft for a future French version; it may be out of date.
 # French dialogue. [id] starts an entry; a blank line forces a new page.
 # Text is word-wrapped to 18 columns, 3 lines per page, by tools/gen_assets.py.
 # A last line "? Oui | Non" ends the entry with a two-way choice.

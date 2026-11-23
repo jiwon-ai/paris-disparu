@@ -1,7 +1,7 @@
 # PARIS DISPARU — La vie qui n'existe plus
 
 An original exploration game for the **Game Boy Color**, set in Paris around
-1967. You wander the streets around the old Les Halles market before dawn,
+1967. The game is in **English**; signs and place names stay in French. You wander the streets around the old Les Halles market before dawn,
 meet the people who work there, and take part in everyday life that no longer
 exists. No combat, no quest markers, no collectibles: the historical
 experiences are the reward.
@@ -89,7 +89,7 @@ BGB or on hardware.
 
 ```
 src/            game code (C)            include/   headers
-assets/maps/    room maps as text        assets/dialogue/fr.txt   French dialogue
+assets/maps/    room maps as text        assets/dialogue/en.txt   dialogue (English)
 assets/text/    UI strings               tools/     font, art and asset generator
 tests/          ROM header check, emulator gameplay test
 docs/           design, architecture, research, roadmap

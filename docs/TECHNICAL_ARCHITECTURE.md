@@ -40,7 +40,7 @@ All art and text are plain text so changes are reviewable:
 - `tools/font.py` — original 8x8 font including French accents (é è ê ë à â ç î ï ô û ù œ É È À Ç « »).
 - `tools/art.py` — palettes, background tiles, map legend, sprites.
 - `assets/maps/*.txt` — 20x18 room maps, plus painted signs.
-- `assets/dialogue/fr.txt` — dialogue; word-wrapped to 18 columns, 3 lines per page.
+- `assets/dialogue/en.txt` — dialogue (English); word-wrapped to 18 columns, 3 lines per page. `fr.txt` is an unused French draft kept for a later localisation.
 - `tools/gen_assets.py` — validates everything (map size, unknown characters,
   glyphs missing from the font, words longer than a line) and writes
   `src/assets.c` / `include/assets.h`. `--check` fails if the committed files

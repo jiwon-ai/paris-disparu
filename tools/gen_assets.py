@@ -201,7 +201,7 @@ def wrap(paragraph, where):
     return lines
 
 
-dlg_path = os.path.join(ROOT, "assets", "dialogue", "fr.txt")
+dlg_path = os.path.join(ROOT, "assets", "dialogue", "en.txt")
 entries = []           # (id, [paragraph, ...])
 choices = {}           # id -> (option 1, option 2) or None
 para = []
@@ -216,12 +216,12 @@ for ln, line in enumerate(open(dlg_path, encoding="utf-8"), 1):
     if line.startswith("? ") and entries:
         opts = tuple(o.strip() for o in line[2:].split("|"))
         if len(opts) != 2 or any(not o or len(o) > 7 for o in opts):
-            fail("fr.txt:%d: a choice needs exactly two options of 1-7 characters" % ln)
+            fail("en.txt:%d: a choice needs exactly two options of 1-7 characters" % ln)
         choices[entries[-1][0]] = opts
         continue
     if not entries:
         if line.strip():
-            fail("fr.txt:%d: text before first [id]" % ln)
+            fail("en.txt:%d: text before first [id]" % ln)
         continue
     paras = entries[-1][1]
     if not line.strip():
@@ -235,21 +235,21 @@ for ln, line in enumerate(open(dlg_path, encoding="utf-8"), 1):
 pages, dlg_index, seen = [], [], set()
 for did, paras, ln in entries:
     if did in seen:
-        fail("fr.txt:%d: duplicate id %s" % (ln, did))
+        fail("en.txt:%d: duplicate id %s" % (ln, did))
     seen.add(did)
     first = len(pages)
     for p in [p for p in paras if p]:
-        lines = wrap(p, "fr.txt:[%s]" % did)
+        lines = wrap(p, "en.txt:[%s]" % did)
         for i in range(0, len(lines), TEXT_ROWS):
             page = []
             for row in range(TEXT_ROWS):
                 text = lines[i + row] if i + row < len(lines) else ""
-                page += encode_text(text.ljust(TEXT_COLS), "fr.txt:[%s]" % did)
+                page += encode_text(text.ljust(TEXT_COLS), "en.txt:[%s]" % did)
             pages.append(page)
     if len(pages) == first:
-        fail("fr.txt:[%s] has no text" % did)
+        fail("en.txt:[%s] has no text" % did)
     if did.startswith("bark_") and len(pages) - first != 1:
-        fail("fr.txt:[%s]: a bark must fit on one page (3 lines of 18)" % did)
+        fail("en.txt:[%s]: a bark must fit on one page (3 lines of 18)" % did)
     dlg_index.append((did, first, len(pages) - first))
 choice_pairs = []      # distinct option pairs; dlg_choice holds index + 1
 dlg_choice = []

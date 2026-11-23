@@ -16,7 +16,7 @@ not yet been consulted.
 
 | # | Claim | Where in game | Status | Sources to check |
 |---|---|---|---|---|
-| 1 | The central wholesale market (Baltard pavilions) was still operating at Les Halles in 1967; the wholesale trade moved to Rungis in 1969 and the pavilions were demolished in the early 1970s. | setting | To research (sources identified, not yet read) | [Larousse, "les Halles de Paris"](https://www.larousse.fr/encyclopedie/divers/les_Halles_de_Paris/123023); [Wikipedia, Les Halles](https://en.wikipedia.org/wiki/Les_Halles) |
+| 1 | The central wholesale market (Baltard pavilions) was still operating at Les Halles in 1967; the wholesale trade moved to Rungis in 1969 and the pavilions were demolished in the early 1970s. | setting | Read in secondary sources (see Colours table below); primary source to check | [Larousse, "les Halles de Paris"](https://www.larousse.fr/encyclopedie/divers/les_Halles_de_Paris/123023); [Wikipedia, Les Halles](https://en.wikipedia.org/wiki/Les_Halles) |
 | 2 | Rue Rambuteau runs along the north side of the Les Halles district. | street name | To research | Plan de Paris 1960s (Gallica) |
 | 3 | The market's busiest hours were at night and before dawn. | 3 h 10 setting, noise | To research | INA archives on night at Les Halles |
 | 4 | "Forts des Halles" were porters with an official status at the market. | Fernand | To research (status, numbers, dates) | Archives de Paris; secondary sources |
@@ -42,3 +42,24 @@ not yet been consulted.
 
 Rule: the game never presents a To research item as fact. Dialogue keeps such
 details vague until they are verified.
+
+## Clothing (sprites)
+
+| Who | What the sprite shows | Status | Source |
+|---|---|---|---|
+| Fernand and the porter in the café (forts des Halles) | The "coltin", a yellow leather hat with very wide brims, and a work blouse with a metal badge | **Read in a secondary source**: Paris ZigZag describes the coltin as "en cuir jaune avec de très larges bords" (with a lead cap inside) and the blouses with a metal plate bearing the Paris arms and the porter's name. The article does not say what was worn in 1967 specifically, and gives no blouse colour: the blue-grey is a reconstruction. | [Paris ZigZag, "Connaissez-vous les forts des Halles…"](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/histoire-forts-des-halles-paris/) |
+| Simone (café) | Black waistcoat over a white shirt, long white apron | The outfit of Paris café waiters ("black vests and white aprons", "ankle-length white aprons") is **read in a secondary source** about one café; it does not give dates. Giving it to a woman running a small bistro is a reconstruction. | [Les Deux Magots, "140 years of fashion"](https://lesdeuxmagots.fr/en/140years-fashion) |
+| Germaine (merchant) | Dress, apron, headscarf | Reconstruction, to research | |
+| Player | Beige raincoat | Reconstruction, to research (1960s street fashion) | |
+| Man with the notebook | Grey overcoat and hat | Reconstruction, to research | |
+| Painter | Smock and beret | Reconstruction (a cliché, kept deliberately light) | |
+
+## Colours (backgrounds)
+
+| Element | Colour choice | Status |
+|---|---|---|
+| Facades | Warm cream-beige stone, darkened for night | Reconstruction based on Paris buildings being built in limestone; no source read yet for 1967 facade colour (soot and cleaning campaigns are to research) |
+| Pavilions of Les Halles | Glass and iron | Materials **read**: Wikipedia calls Baltard's structure "the famous glass and iron structure". The paint colour of the iron is not given there: dark neutral grey is a placeholder. [Wikipedia, Les Halles](https://en.wikipedia.org/wiki/Les_Halles) |
+| Roofs | Blue-grey zinc | Reconstruction, to research |
+| Market dates (setting) | Fruit, flower and vegetable markets moved out in 1969; the market last operated in January 1973 and was demolished in 1973 | **Read** in Wikipedia (secondary); Paris ZigZag gives 1969 for the move to Rungis |
+| Street lighting | Amber lit windows, yellow lamps; gas lamps only on the quai and bridge | See claim 10 |

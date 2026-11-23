@@ -1,0 +1,296 @@
+# English dialogue (the game's language). [id] starts an entry; a blank line forces a new page.
+# Text is word-wrapped to 18 columns, 3 lines per page, by tools/gen_assets.py.
+# A last line "? Yes | No" ends the entry with a two-way choice.
+# Lines starting with "bark_" must fit on one page.
+# All characters and situations are fictional (see docs/HISTORICAL_RESEARCH.md).
+# French place names, signs and a few words (jeton, Monsieur) are kept on purpose.
+
+# ---------------------------------------------------------------- the stranger
+[stranger_hello]
+MAN WITH NOTEBOOK: Shh. I'm counting.
+
+Three lorries. One cat. Two flat caps. One person in a raincoat.
+
+Ah, you're the raincoat. Good evening. Or good morning. Hard to say at this hour.
+
+I write down everything that passes in this street. Nobody else ever does.
+
+That noise down there? Les Halles. Go and see. I'll note you when you're back.
+
+And if you see something surprising, call me: 4127. I note calls too.
+
+[stranger_wait]
+MAN WITH NOTEBOOK: A person in a raincoat hesitates under a lamp. Noted.
+
+[stranger_market]
+MAN WITH NOTEBOOK: A person comes back from the market. Smells of cabbage. Noted.
+
+[stranger_crates]
+MAN WITH NOTEBOOK: A person comes back with tired arms. Carried crates. Noted!
+
+[stranger_phone]
+MAN WITH NOTEBOOK: You made a phone call, too. Who to? No, don't tell me. I don't note secrets.
+
+[stranger_river]
+MAN WITH NOTEBOOK: A person comes back from the Seine. Damp shoes. Noted.
+
+# ---------------------------------------------------------------- the porter
+[porter_hello]
+FERNAND: Mind your back, coming through! Out wandering at this hour?
+
+Then make yourself useful. Three crates for the stalls, inside.
+
+Each crate has its stall. Read the signs and you'll manage. Give me a hand?
+? Yes | No
+
+[porter_ask]
+FERNAND: So, are you helping or just watching?
+? Yes | No
+
+[porter_yes]
+FERNAND: Good. Take them from my cart, one at a time. Look at what's inside.
+
+And lift with your legs, not your back. A back has to last a lifetime.
+
+[porter_no]
+FERNAND: Suit yourself. The crates won't carry themselves, though.
+
+[porter_working]
+FERNAND: Cart's here, stalls are inside. Go on, go on!
+
+[porter_done]
+FERNAND: Three crates, three stalls. Not bad for a beginner.
+
+I carry loads like that all night. By morning I can't feel my shoulders.
+
+Go to the café on the street. Tell Simone that Fernand sent you.
+
+[porter_after]
+FERNAND: Still here? The café is on the street. Simone doesn't bite. Hardly.
+
+# ---------------------------------------------------------------- the cart and stalls
+[cart_look]
+Fernand's cart. Three crates, tightly strapped.
+
+[cart_choux]
+A crate of cabbages (CHOUX). Heavy! The leaves smell of wet earth.
+
+[cart_pommes]
+A crate of apples (POMMES). They roll a little with every step.
+
+[cart_carottes]
+A crate of carrots (CAROTTES), still covered in soil.
+
+[cart_full]
+Your arms are already full.
+
+[cart_empty]
+The cart is empty. Fernand has already forgotten it.
+
+[stall_choux]
+Cabbages, stacked in a pyramid.
+
+[stall_pommes]
+Apples, polished one by one so they shine.
+
+[stall_carottes]
+Carrots in bunches, leaves pointing up.
+
+[stall_ok]
+You set the crate on the stall. Someone nods, without a word.
+
+[stall_wrong]
+Wrong stall. Read the sign.
+
+[stall_wrong_germaine]
+GERMAINE: That, here? This is a cabbage stall, dear. Read the sign!
+
+[stall_ok_germaine]
+GERMAINE: My cabbages! Put them down there, gently. Thank you, dear.
+
+# ---------------------------------------------------------------- the merchant
+[merchant_hello]
+GERMAINE: What are you after at this hour? The buyers will be here soon.
+
+Everything has to look good first. A sad cabbage, nobody wants it.
+
+The price? Depends on the hour, the rain and the customer's face.
+
+[merchant_again]
+GERMAINE: Move over a bit, you're hiding my cabbages.
+
+# ---------------------------------------------------------------- the cafe
+[cafe_hello]
+SIMONE: Come in, it's cold. Market people have lunch here while the city sleeps.
+
+A coffee?
+? Yes | No
+
+[cafe_yes]
+SIMONE: There. Scalding. Don't blow on it, I take it personally.
+
+[cafe_no]
+SIMONE: As you like. The counter never closes anyway.
+
+[cafe_fernand]
+SIMONE: Fernand sent you? Then it's on the house. Don't tell anyone.
+
+[cafe_jeton]
+SIMONE: The phone? You need a token, a jeton. Here, have one. Don't lose it.
+
+[cafe_again]
+SIMONE: Another one? You'll be shaking all day.
+
+[worker_hello]
+A PORTER: Shh. I'm sleeping on my feet. That's a skill too.
+
+[worker_phone]
+A PORTER: Who did you call? The butcher? Ha! They never pick up before six.
+
+[phone_look]
+A telephone on the wall. There's a slot… too small for a coin.
+
+Scribbled in pencil on the wall: BUTCHER 0614.
+
+[phone_use]
+You have a jeton. Drop it in the slot?
+? Yes | No
+
+[cafe_jeton_more]
+SIMONE: Another jeton? Here. You're calling half of Paris this morning.
+
+[call_0614]
+It rings for ages. "Butcher's! We open at six! Who calls at this hour?" Click.
+
+[call_4127]
+"Hello? Ah, it's you, the raincoat. Calling from a café: I can hear the cups. Noted."
+
+[call_7302]
+A sleepy voice: "Books? At this hour? Are you a poet or an insomniac?"
+
+"Both? Then come by at noon."
+
+[call_2508]
+"He's painting? At four in the morning? Tell him the soup is cold."
+
+"And that I love him. But mostly, the soup."
+
+[call_none]
+It rings into nothing. Nobody. The jeton doesn't come back.
+
+[lift_miss]
+The crate slips back onto the cart. FERNAND: With your legs, I said!
+
+[shelf]
+Bottles lined up in front of the mirror. Some have lost their labels.
+
+[table]
+A round table. Someone left a newspaper folded in four.
+
+# ---------------------------------------------------------------- the street
+[plaque]
+A blue enamel street sign: RUE RAMBUTEAU.
+
+[door]
+The door is shut. Behind it, someone is snoring.
+
+[lamp]
+A street lamp. Its yellow light trembles a little.
+
+[shop]
+A dark shop window. Empty bottles wait for the delivery man.
+
+[hotel]
+HOTEL. On the second floor, one window is still lit.
+
+[cafe_window]
+Behind the misted glass, figures at the counter. It smells of coffee.
+
+# ---------------------------------------------------------------- the pavilion
+[pavilion]
+Glass and iron, very high. The light from inside makes the street shine.
+
+[crates]
+Empty crates, stacked up. They'll go back out tonight.
+
+[column]
+A cast-iron column. Cold, and a little sticky.
+
+# ---------------------------------------------------------------- the quai
+[quai_box]
+A bookseller's green box, padlocked. On the lid, a card:
+
+"Old books. Mme Roux. 7302."
+
+[quai_box2]
+Another green box, shut. You can guess the books packed inside, asleep.
+
+[gaslamp]
+A gas lamp. Behind the glass, the flame hisses softly.
+
+[tree]
+A plane tree. Its leaves rustle like paper.
+
+[river]
+Below, the Seine. Black, and yet full of lights.
+
+[quai_shop]
+Shutters closed. A half torn poster announces a dance on Saturday.
+
+# ---------------------------------------------------------------- the bridge
+[painter_hello]
+THE PAINTER: Don't move! … No, move. I'm painting the Seine, not you.
+
+At night the water has colours nobody looks at. I steal them.
+
+If you meet my wife… No. Call her instead: 2508. Tell her I'm painting.
+
+[painter_again]
+THE PAINTER: Look at the barge. It slips under the bridge like through a door.
+
+[barrier]
+Barriers: ROADWORKS. The rest of the bridge will wait for daylight.
+
+[watch_water]
+You lean over. The water races under the bridge, fast, without a sound.
+
+# ---------------------------------------------------------------- barks
+# One-page lines that NPCs call out by themselves when the player comes close.
+[bark_stranger]
+MAN WITH NOTEBOOK: Psst! You there! Come closer.
+
+[bark_stranger_met]
+MAN WITH NOTEBOOK: Noting, noting…
+
+[bark_porter]
+FERNAND: Hey, you! Give me a hand?
+
+[bark_porter_cart]
+FERNAND: The cart, there! Grab a crate!
+
+[bark_porter_carry]
+FERNAND: Inside! Read the signs!
+
+[bark_porter_back]
+FERNAND: Well? All delivered?
+
+[bark_porter_done]
+FERNAND: Thanks, kid! Go to the café.
+
+[bark_merchant]
+GERMAINE: Cabbages! Fine cabbages! Cheap!
+
+[bark_merchant_choux]
+GERMAINE: Oh! Is that for me?
+
+[bark_cafe]
+SIMONE: Come in! A little coffee?
+
+[bark_cafe_jeton]
+SIMONE: The phone? You need a jeton. Ask me!
+
+[bark_worker]
+A PORTER: Zzz… zzz…
+
+[bark_painter]
+THE PAINTER: Shh… I'm painting the night.

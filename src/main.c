@@ -115,6 +115,10 @@ static void title_screen(void) {
 }
 
 static void enter_room(uint8_t room) {
+    if (caption_timer) {         /* a bark from the previous room stays behind */
+        caption_timer = 0;
+        box_close();
+    }
     actors_hide();
     world_load(room);
     actors_init_room();

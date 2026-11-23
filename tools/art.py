@@ -8,13 +8,13 @@ CGB palette. Sprites are 16x16: '.' transparent, '#' = colour 1 (outline),
 # ---------------------------------------------------------------------------
 # CGB palettes, RGB components 0-31.
 # ---------------------------------------------------------------------------
-STONE = (15, 14, 16)
+STONE = (18, 16, 13)   # Paris limestone (cream-beige), seen at night
 
 BG_PALETTES = [
     # 0 stone facade: night, shadow, stone, highlight
-    [(5, 5, 11), (9, 9, 14), STONE, (21, 20, 20)],
+    [(4, 4, 9), (10, 9, 10), STONE, (24, 22, 17)],
     # 1 lit window: stone, frame, amber, warm light
-    [STONE, (5, 5, 10), (29, 20, 7), (31, 29, 17)],
+    [STONE, (5, 5, 8), (29, 20, 7), (31, 28, 16)],
     # 2 street: gap, shade, setts/slabs, highlight
     [(4, 4, 8), (8, 8, 12), (12, 12, 15), (17, 16, 17)],
     # 3 street lamp: pavement, iron, glow, hot glow
@@ -32,10 +32,10 @@ BG_PALETTES = [
 SPR_PALETTES = [
     # colour 0 is transparent for sprites
     [(0, 0, 0), (3, 3, 6), (20, 16, 9), (28, 21, 16)],   # 0 player: beige coat
-    [(0, 0, 0), (3, 3, 6), (7, 11, 22), (28, 26, 22)],   # 1 porter: blue work clothes
+    [(0, 0, 0), (3, 3, 6), (8, 11, 17), (27, 21, 9)],    # 1 fort: blue-grey blouse, yellow leather coltin
     [(0, 0, 0), (3, 3, 6), (18, 6, 6), (28, 21, 16)],    # 2 merchant
-    [(0, 0, 0), (3, 3, 6), (26, 26, 26), (25, 18, 13)],  # 3 cafe worker
-    [(0, 0, 0), (3, 3, 6), (10, 14, 10), (27, 20, 15)],  # 4 stranger
+    [(0, 0, 0), (3, 3, 6), (28, 28, 27), (25, 18, 13)],  # 3 cafe: black waistcoat (outline colour), white apron
+    [(0, 0, 0), (3, 3, 6), (12, 11, 10), (27, 20, 15)],  # 4 stranger: grey overcoat and hat
     [(0, 0, 0), (3, 3, 6), (8, 19, 6), (24, 16, 7)],     # 5 crate of cabbages
     [(0, 0, 0), (3, 3, 6), (23, 5, 5), (24, 16, 7)],     # 6 crate of apples
     [(0, 0, 0), (3, 3, 6), (30, 15, 3), (24, 16, 7)],    # 7 crate of carrots
@@ -298,20 +298,21 @@ def mirror(rows):
 
 
 PORTER = [
-    ".....######.....",
-    "....#ssssss#....",
-    "..#ssssssssss#..",
-    "..############..",
+    # The "coltin": a yellow leather hat with very wide brims (see docs/HISTORICAL_RESEARCH.md)
+    "......####......",
+    ".....#ssss#.....",
+    "#ssssssssssssss#",
+    ".##############.",
     "....#ssssss#....",
     "....#s#ss#s#....",
     ".....#ssss#.....",
     "...##oooooo##...",
     "..#oooooooooo#..",
-    "..#ooo#oo#ooo#..",
+    "..#oo#ss#oooo#..",   # metal badge on the blouse
     "..so#oooooo#os..",
     "...#oooooooo#...",
-    "...#ooo##ooo#...",
-    "....#oo##oo#....",
+    "...#oooooooo#...",
+    "....#ooooooo#...",
     "....###..###....",
     "...####..####...",
 ]
@@ -338,22 +339,23 @@ MERCHANT = [
     "....###....###..",
 ]
 CAFE = [
+    # Black waistcoat over a white shirt, long white apron
     "......####......",
     ".....######.....",
     "....########....",
     "....#ssssss#....",
     "....s#ssss#s....",
     ".....ssssss.....",
-    "......#ss#......",
+    "......#oo#......",
+    "....o######o....",
+    "...oo######oo...",
+    "...o########o...",
+    "...s#oooooo#s...",
     "....#oooooo#....",
-    "...#oooooooo#...",
-    "...#oo####oo#...",
-    "...so######os...",
-    "....########....",
-    "....########....",
-    ".....######.....",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....#oooo#.....",
     ".....##..##.....",
-    "....###..###....",
 ]
 STRANGER = [
     "................",
