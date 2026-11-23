@@ -659,9 +659,9 @@ const uint8_t * const room_tiles[ROOM_COUNT] = { street_tiles, entrance_tiles, m
 const uint8_t * const room_attrs[ROOM_COUNT] = { street_attrs, entrance_attrs, market_attrs, cafe_attrs, quai_attrs, pont_attrs };
 const uint8_t * const room_solid[ROOM_COUNT] = { street_solid, entrance_solid, market_solid, cafe_solid, quai_solid, pont_solid };
 
-const uint8_t dlg_first_page[DLG_COUNT] = { 0, 11, 13, 15, 17, 19, 21, 27, 28, 32, 34, 36, 42, 44, 46, 48, 50, 51, 52, 53, 54, 56, 57, 59, 60, 62, 64, 70, 72, 75, 77, 78, 80, 82, 83, 85, 87, 90, 91, 93, 96, 99, 102, 106, 108, 110, 112, 114, 115, 116, 117, 119, 121, 123, 125, 127, 129, 132, 134, 136, 138, 140, 142, 148, 150, 152 };
-const uint8_t dlg_page_count[DLG_COUNT] = { 11, 2, 2, 2, 2, 2, 6, 1, 4, 2, 2, 6, 2, 2, 2, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2, 2, 6, 2, 3, 2, 1, 2, 2, 1, 2, 2, 3, 1, 2, 3, 3, 3, 4, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 6, 2, 2, 2 };
-const uint8_t dlg_choice[DLG_COUNT] = { 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+const uint8_t dlg_first_page[DLG_COUNT] = { 0, 11, 13, 15, 17, 19, 21, 27, 28, 32, 34, 36, 42, 44, 46, 48, 50, 51, 52, 53, 54, 56, 57, 59, 60, 62, 64, 70, 72, 75, 77, 78, 80, 82, 83, 85, 87, 90, 91, 93, 96, 99, 102, 106, 108, 110, 112, 114, 115, 116, 117, 119, 121, 123, 125, 127, 129, 132, 134, 136, 138, 140, 142, 148, 150, 152, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166 };
+const uint8_t dlg_page_count[DLG_COUNT] = { 11, 2, 2, 2, 2, 2, 6, 1, 4, 2, 2, 6, 2, 2, 2, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2, 2, 6, 2, 3, 2, 1, 2, 2, 1, 2, 2, 3, 1, 2, 3, 3, 3, 4, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 6, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+const uint8_t dlg_choice[DLG_COUNT] = { 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 const uint8_t choice_text[] = {
     0x8F,0xB3,0xA7,0x80,0x80,0x80,0x80,0x8E,0xAD,0xAC,0x80,0x80,0x80,0x80,
 };
@@ -682,4 +682,5 @@ const uint8_t txt_lift_2[] = { 0x81,0x80,0xA2,0x9F,0xAC,0xB1,0x80,0xAA,0x9F,0x80
 const uint8_t txt_dial_1[] = { 0x83,0xAD,0xAB,0xAE,0xAD,0xB1,0xA3,0x80,0xAA,0xA3,0x80,0xAC,0xB3,0xAB,0xBC,0xB0,0xAD, 0x00 };
 const uint8_t txt_dial_2[] = { 0x88,0x9F,0xB3,0xB2,0xDB,0x82,0x9F,0xB1,0xD3,0x80,0xAE,0xB3,0xA7,0xB1,0x80,0x81, 0x00 };
 const uint8_t txt_digits[] = { 0xC6,0xC7,0xC8,0xC9,0xCA,0xCB,0xCC,0xCD,0xCE,0xCF, 0x00 };
+const uint8_t txt_bark_hint[] = { 0x81,0xD6,0x80,0xAE,0x9F,0xB0,0xAA,0xA3,0xB0, 0x00 };
 

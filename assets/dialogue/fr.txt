@@ -251,3 +251,44 @@ Des barrières: TRAVAUX. Le reste du pont attendra le jour.
 
 [watch_water]
 Tu te penches. L'eau file sous le pont, très vite, sans un bruit.
+
+# ---------------------------------------------------------------- barks
+# One-page lines that NPCs say by themselves when the player comes close.
+[bark_stranger]
+L'HOMME AU CARNET: Psst! Vous, là! Approchez.
+
+[bark_stranger_met]
+L'HOMME AU CARNET: Je note, je note…
+
+[bark_porter]
+FERNAND: Eh, toi! Un coup de main?
+
+[bark_porter_cart]
+FERNAND: La charrette, là! Prends une caisse!
+
+[bark_porter_carry]
+FERNAND: Dedans! Lis bien les enseignes!
+
+[bark_porter_back]
+FERNAND: Alors? Elles sont livrées?
+
+[bark_porter_done]
+FERNAND: Merci, petit! Va au café, en face.
+
+[bark_merchant]
+GERMAINE: Choux! Beaux choux! Pas cher!
+
+[bark_merchant_choux]
+GERMAINE: Oh! C'est pour moi, ça?
+
+[bark_cafe]
+SIMONE: Entre! Un petit café?
+
+[bark_cafe_jeton]
+SIMONE: Le téléphone? Il faut un jeton. Demande!
+
+[bark_worker]
+UN FORT: Zzz… zzz…
+
+[bark_painter]
+LE PEINTRE: Chut… je peins la nuit.

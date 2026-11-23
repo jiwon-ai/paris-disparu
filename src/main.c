@@ -16,7 +16,8 @@ enum { ST_WALK, ST_DIALOGUE, ST_PAUSE, ST_LIFT, ST_DIAL };
 
 static uint8_t state;
 static uint8_t cur_dialogue;
-static uint8_t caption_timer;
+static uint8_t caption_timer;   /* caption or bark box: closes when it reaches 0 */
+static uint8_t bark_armed;      /* bit n: NPC n of this room may call out again */
 static uint8_t ambience_timer;
 static uint8_t rng = 0x5A;
 static uint8_t anim_frame;
@@ -119,6 +120,7 @@ static void enter_room(uint8_t room) {
     actors_init_room();
     player_unstick();
     event_enter_room(room);
+    bark_armed = 0xFF;
     ambience_timer = 20;
     actors_draw();
 }
@@ -180,6 +182,33 @@ static void animate_river(void) {
     } else {
         uint8_t i;
         for (i = 36; i < 40; i++) move_sprite(i, 0, 0);
+    }
+}
+
+static uint8_t absdiff(int16_t a, int16_t b) {
+    int16_t d = a > b ? a - b : b - a;
+    return d > 255 ? 255 : (uint8_t)d;
+}
+
+/* NPCs call out a short line when the player comes close, once per approach. */
+static void update_barks(void) {
+    const room_def_t *r = &rooms[cur_room];
+    uint8_t i;
+    for (i = 0; i < r->npc_count; i++) {
+        const npc_def_t *n = &r->npcs[i];
+        uint8_t dx = absdiff(player.x, n->x), dy = absdiff(player.y, n->y);
+        uint8_t bit = 1 << i;
+        if (dx < 28 && dy < 28) {
+            if (bark_armed & bit) {
+                bark_armed &= ~bit;
+                bark_show(event_bark(n->npc));
+                sound_blip();
+                caption_timer = 150;
+                return;
+            }
+        } else if (dx > 48 || dy > 48) {
+            bark_armed |= bit;      /* walked away: may call out again next time */
+        }
     }
 }
 
@@ -268,6 +297,7 @@ void main(void) {
                 if (exit_dir != 0xFF) change_room(exit_dir);
             }
             if (caption_timer && --caption_timer == 0) box_close();
+            update_barks();
             update_ambience();
             break;
 

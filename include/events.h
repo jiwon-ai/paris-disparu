@@ -16,6 +16,7 @@ extern uint8_t carrying;   /* crate type held by the player, or NO_CRATE */
 
 /* Each returns the dialogue to show, EV_*, or NO_DIALOGUE. */
 uint8_t event_talk(uint8_t npc);
+uint8_t event_bark(uint8_t npc);   /* line called out when the player is near */
 uint8_t event_examine(uint8_t id);
 uint8_t event_after(uint8_t dlg, uint8_t choice);  /* follow-up after a dialogue closes */
 void event_enter_room(uint8_t room);

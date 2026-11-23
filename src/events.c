@@ -95,6 +95,29 @@ uint8_t event_talk(uint8_t npc) {
     return NO_DIALOGUE;
 }
 
+/* What an NPC calls out when the player comes near: a hint of what to do. */
+uint8_t event_bark(uint8_t npc) {
+    switch (npc) {
+    case NPC_STRANGER:
+        return HAS(FLAG_MET_STRANGER) ? DLG_BARK_STRANGER_MET : DLG_BARK_STRANGER;
+    case NPC_PORTER:
+        if (HAS(FLAG_TASK_DONE)) return DLG_BARK_PORTER_DONE;
+        if (!HAS(FLAG_TASK_ACTIVE)) return DLG_BARK_PORTER;
+        if (carrying != NO_CRATE) return DLG_BARK_PORTER_CARRY;
+        if (crates_delivered == 3) return DLG_BARK_PORTER_BACK;
+        return DLG_BARK_PORTER_CART;
+    case NPC_MERCHANT:
+        return carrying == CRATE_CHOUX ? DLG_BARK_MERCHANT_CHOUX : DLG_BARK_MERCHANT;
+    case NPC_CAFE:
+        return (HAS(FLAG_SAW_PHONE) && !HAS(FLAG_HAS_JETON)) ? DLG_BARK_CAFE_JETON : DLG_BARK_CAFE;
+    case NPC_WORKER:
+        return DLG_BARK_WORKER;
+    case NPC_PAINTER:
+        return DLG_BARK_PAINTER;
+    }
+    return NO_DIALOGUE;
+}
+
 static uint8_t deliver(uint8_t stall, uint8_t ok_dlg, uint8_t wrong_dlg, uint8_t look_dlg) {
     if (carrying == NO_CRATE) return look_dlg;
     if (carrying != stall) return wrong_dlg;

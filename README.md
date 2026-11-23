@@ -32,6 +32,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Experience B: café scene (Simone, a porter asleep on his feet, Oui/Non choice) | done, tested |
 | Experience C: the café wall telephone. Get a token (jeton) from Simone, then dial a number with the D-pad. Four numbers are hidden in the world (the café wall, the man with the notebook, a bouquiniste's box, the painter); each call is a different scene | done, tested — historical details **to research** |
 | Two-option choices in dialogue | done, tested |
+| NPCs call out short French lines by themselves when you come near, hinting at what to do ("A: parler" shown) | done, tested |
 | Scene-based ambient sound (market noise louder towards the market, café cups) | done, **not verified by ear** |
 | Music | not started |
 | Message on a monochrome Game Boy | written, **not tested** |

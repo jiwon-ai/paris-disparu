@@ -248,6 +248,8 @@ for did, paras, ln in entries:
             pages.append(page)
     if len(pages) == first:
         fail("fr.txt:[%s] has no text" % did)
+    if did.startswith("bark_") and len(pages) - first != 1:
+        fail("fr.txt:[%s]: a bark must fit on one page (3 lines of 18)" % did)
     dlg_index.append((did, first, len(pages) - first))
 choice_pairs = []      # distinct option pairs; dlg_choice holds index + 1
 dlg_choice = []

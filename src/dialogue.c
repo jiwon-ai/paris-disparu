@@ -158,3 +158,15 @@ uint8_t dialogue_update(void) {
     }
     return 1;
 }
+
+/* A one-page line an NPC says by itself: drawn at once, no input needed.
+   The caller closes it with box_close() after a while. */
+void bark_show(uint8_t id) {
+    uint8_t y;
+    page = dlg_first_page[id];
+    load_page();
+    box_open(DLG_ROWS);
+    for (y = 0; y < TEXT_ROWS; y++)
+        set_win_tiles(1, 1 + y, TEXT_COLS, 1, page_buf + y * TEXT_COLS);
+    box_print(10, DLG_ROWS - 1, txt_bark_hint);   /* "A: parler" on the frame */
+}

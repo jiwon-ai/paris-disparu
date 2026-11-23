@@ -182,6 +182,19 @@ enum {
     DLG_PAINTER_AGAIN,
     DLG_BARRIER,
     DLG_WATCH_WATER,
+    DLG_BARK_STRANGER,
+    DLG_BARK_STRANGER_MET,
+    DLG_BARK_PORTER,
+    DLG_BARK_PORTER_CART,
+    DLG_BARK_PORTER_CARRY,
+    DLG_BARK_PORTER_BACK,
+    DLG_BARK_PORTER_DONE,
+    DLG_BARK_MERCHANT,
+    DLG_BARK_MERCHANT_CHOUX,
+    DLG_BARK_CAFE,
+    DLG_BARK_CAFE_JETON,
+    DLG_BARK_WORKER,
+    DLG_BARK_PAINTER,
     DLG_COUNT
 };
 
@@ -215,5 +228,6 @@ extern const uint8_t txt_lift_2[];
 extern const uint8_t txt_dial_1[];
 extern const uint8_t txt_dial_2[];
 extern const uint8_t txt_digits[];
+extern const uint8_t txt_bark_hint[];
 
 #endif
