@@ -9,7 +9,9 @@ void notebook_show(void) BANKED;   /* START: goal, clues found, phone numbers kn
 uint16_t ambience_play(uint8_t r) BANKED;   /* a room sound; frames to the next */
 void coin_note(void) BANKED;
 void rat_update(uint8_t walking) BANKED;
-void bubble_update(uint8_t npc) BANKED;    /* speech bubble over NPC npc (NO_BARK: none) */   /* the rat by the Bourse (OAM 18-19) */            /* caption: a coin picked up */
+void bubble_update(uint8_t npc) BANKED;
+extern uint8_t npc_tile[8];                /* VRAM bank-1 tile of each NPC of this room */
+void pool_load(void) BANKED;               /* copy this room's bank-1 sprites into VRAM */    /* speech bubble over NPC npc (NO_BARK: none) */   /* the rat by the Bourse (OAM 18-19) */            /* caption: a coin picked up */
 void day_start(void) BANKED;        /* ending: daybreak on the quai */
 uint8_t day_update(uint8_t pressed) BANKED;   /* 1 when the player goes on */
 void end_show(void) BANKED;        /* the mystery is solved */

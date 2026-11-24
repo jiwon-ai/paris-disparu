@@ -813,13 +813,7 @@ RAT = [              # a market rat, side view facing right (palette 4: grey, pi
     "s.#o##o###o#....",
     ".ss#..#...#.....",
 ]
-BANK1_SPRITES = [
-    ("ACTOR", ACTOR),
-    ("CHANTEUSE", CHANTEUSE),
-    ("PHILOSOPHER", PHILOSOPHER),
-    ("FILMMAKER", FILMMAKER),
-    ("WRITER", WRITER),
-]
+BANK1_SPRITES = []   # cameos moved to the per-room pool (BANK1_LOW_SPRITES)
 
 
 # UI icons in VRAM bank 1, 8x16 sprites (palette 3: '#' black, 'o' white):
@@ -1078,20 +1072,25 @@ WAITER = [           # brasserie waiter: moustache, bow tie, waistcoat, long apr
     ".....##..##.....",
     "....###..###....",
 ]
-BANK1_LOW_SPRITES = [
-    ("THIEF_0", THIEF_0),
+BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
+    ("THIEF_0", THIEF_0),  # copied per room into a pool (pool_load, notebook.c)
     ("THIEF_1", THIEF_1),
+    ("SPARKLE", SPARKLE),
     ("NOVELIST", NOVELIST),
     ("PLAYWRIGHT", PLAYWRIGHT),
     ("CRITIC", CRITIC),
     ("YOUNG_MAN", YOUNG_MAN),
-    ("SPARKLE", SPARKLE),
     ("ROUX", ROUX),
     ("COOK", COOK),
     ("FORT2", FORT2),
     ("SLEEPER", SLEEPER),
     ("WORKER_CAFE", WORKER_CAFE),
     ("WAITER", WAITER),
+    ("ACTOR", ACTOR),
+    ("CHANTEUSE", CHANTEUSE),
+    ("PHILOSOPHER", PHILOSOPHER),
+    ("FILMMAKER", FILMMAKER),
+    ("WRITER", WRITER),
 ]
 
 

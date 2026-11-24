@@ -163,27 +163,29 @@
 #define TILE_POSTER_2 122
 #define TILE_POSTER_3 123
 #define SPRITE_TILE_COUNT 128
-#define SPR1_ACTOR 232   /* VRAM bank 1: use palette | S_BANK1 */
-#define SPR1_CHANTEUSE 236   /* VRAM bank 1: use palette | S_BANK1 */
-#define SPR1_PHILOSOPHER 240   /* VRAM bank 1: use palette | S_BANK1 */
-#define SPR1_FILMMAKER 244   /* VRAM bank 1: use palette | S_BANK1 */
-#define SPR1_WRITER 248   /* VRAM bank 1: use palette | S_BANK1 */
-#define SPR1_MARK 252   /* VRAM bank 1: use palette | S_BANK1 */
-#define SPR1_PRESS 254   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_MARK 232   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_PRESS 234   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_THIEF_0 0   /* VRAM bank 1, low tiles */
 #define SPR1_THIEF_1 4   /* VRAM bank 1, low tiles */
-#define SPR1_NOVELIST 8   /* VRAM bank 1, low tiles */
-#define SPR1_PLAYWRIGHT 12   /* VRAM bank 1, low tiles */
-#define SPR1_CRITIC 16   /* VRAM bank 1, low tiles */
-#define SPR1_YOUNG_MAN 20   /* VRAM bank 1, low tiles */
-#define SPR1_SPARKLE 24   /* VRAM bank 1, low tiles */
+#define SPR1_SPARKLE 8   /* VRAM bank 1, low tiles */
+#define SPR1_NOVELIST 12   /* VRAM bank 1, low tiles */
+#define SPR1_PLAYWRIGHT 16   /* VRAM bank 1, low tiles */
+#define SPR1_CRITIC 20   /* VRAM bank 1, low tiles */
+#define SPR1_YOUNG_MAN 24   /* VRAM bank 1, low tiles */
 #define SPR1_ROUX 28   /* VRAM bank 1, low tiles */
 #define SPR1_COOK 32   /* VRAM bank 1, low tiles */
 #define SPR1_FORT2 36   /* VRAM bank 1, low tiles */
 #define SPR1_SLEEPER 40   /* VRAM bank 1, low tiles */
 #define SPR1_WORKER_CAFE 44   /* VRAM bank 1, low tiles */
 #define SPR1_WAITER 48   /* VRAM bank 1, low tiles */
-#define LOW_TILE_COUNT 52
+#define SPR1_ACTOR 52   /* VRAM bank 1, low tiles */
+#define SPR1_CHANTEUSE 56   /* VRAM bank 1, low tiles */
+#define SPR1_PHILOSOPHER 60   /* VRAM bank 1, low tiles */
+#define SPR1_FILMMAKER 64   /* VRAM bank 1, low tiles */
+#define SPR1_WRITER 68   /* VRAM bank 1, low tiles */
+#define LOW_TILE_COUNT 72   /* all pool sprites, in ROM */
+#define LOW_FIXED 12        /* tiles always loaded (thief, sparkle) */
+#define POOL_SLOTS 10       /* bank-1 sprites one room can hold */
 /* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */
 #define ITEM_TILE 52
 #define NO_ITEM 0
@@ -211,7 +213,7 @@
 #define GLYPH_CUP 227
 #define GLYPH_COIN 228
 #define PORTRAIT_BASE 64
-#define PORTRAIT_TILE_COUNT 192
+#define PORTRAIT_TILE_COUNT 172
 #define NO_PORTRAIT 0xFF
 #define SPR_PLAYER_DOWN_0 0
 #define SPR_PLAYER_DOWN_1 4

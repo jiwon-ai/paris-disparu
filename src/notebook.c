@@ -304,6 +304,31 @@ void rat_update(uint8_t walking) BANKED {
              RAT_TILE, 4 | S_BANK1 | (rat_left ? S_FLIPX : 0));
 }
 
+/* Bank-1 sprites (cameos, Mme Roux, the waiter...) are kept in ROM and
+   copied, per room, into VRAM bank 1 tiles LOW_FIXED.. (POOL_SLOTS of them):
+   any number of such characters in the game, up to POOL_SLOTS per room. */
+uint8_t npc_tile[8];
+
+void pool_load(void) BANKED {
+    static uint8_t buf[64];
+    uint8_t i, j, used = 0, slot_frame[POOL_SLOTS];
+    const room_def_t *r = &rooms[cur_room];
+    for (i = 0; i < r->npc_count && i < 8; i++) {
+        uint8_t f = r->npcs[i].frame;
+        if (!(r->npcs[i].palette & S_BANK1) || f < LOW_FIXED) { npc_tile[i] = f; continue; }
+        for (j = 0; j < used && slot_frame[j] != f; j++) ;
+        if (j == used) {
+            if (used == POOL_SLOTS) { npc_tile[i] = 0; continue; }
+            slot_frame[used++] = f;
+            far_read(PORTRAIT_BANK, low_tiles + (uint16_t)f * 16, buf, 64);
+            VBK_REG = 1;
+            set_sprite_data(LOW_FIXED + j * 4, 4, buf);
+            VBK_REG = 0;
+        }
+        npc_tile[i] = LOW_FIXED + j * 4;
+    }
+}
+
 /* A speech bubble over the NPC who calls out (index in this room, or
    NO_BARK): it bobs until the player walks away; A opens the talk. */
 #define BUBBLE_OAM 35

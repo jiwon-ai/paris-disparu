@@ -5,6 +5,7 @@
 #include "input.h"
 #include "world.h"
 #include "events.h"
+#include "notebook.h"
 
 /* Player collision box (feet), relative to the sprite's top-left. */
 #define HIT_X0 3
@@ -39,6 +40,7 @@ void player_place(int16_t x, int16_t y, uint8_t dir) {
 void actors_init_room(void) {
     uint8_t i;
     npc_count = rooms[cur_room].npc_count;
+    pool_load();                 /* this room's bank-1 sprites */
     for (i = 2 + (npc_count + 1) * 2; i < 40; i++) move_sprite(i, 0, 0);
 }
 
@@ -201,7 +203,7 @@ void actors_draw(void) {
             const npc_def_t *n = &rooms[cur_room].npcs[k];
             /* Slow two-frame idle, offset per NPC so they do not breathe in sync. */
             uint8_t f = (n->palette & S_BANK1) ? 0 : ((uint8_t)(frame_count + k * 23) >> 5) & 1;
-            draw16(oam, n->x, n->y, n->frame + f * 4, n->palette);
+            draw16(oam, n->x, n->y, (n->palette & S_BANK1) ? npc_tile[k] : n->frame + f * 4, n->palette);
         }
     }
 }

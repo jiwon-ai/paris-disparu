@@ -161,12 +161,12 @@ for name, rows in art.BANK1_LOW_SPRITES:
     low_defs.append((name, len(low_data) // 16))
     for (y0, x0) in ((0, 0), (8, 0), (0, 8), (8, 8)):
         low_data += encode_tile([r[x0:x0 + 8] for r in rows[y0:y0 + 8]])
-if len(low_data) // 16 > PORTRAIT_BASE:
-    fail("low bank-1 sprites overlap the portraits")
+LOW_FIXED = 3 * 4         # thief (2 frames) and sparkle stay loaded at tiles 0-11
+if len(low_data) // 16 > 256:
+    fail("too many pool sprites")
 # Item pictures: same 24x32 layout, loaded one at a time to bank-1 tile ITEM_TILE.
 ITEM_TILE = 52            # after the low sprites; 12 tiles, up to PORTRAIT_BASE 64
-if len(low_data) // 16 > ITEM_TILE:
-    fail("low bank-1 sprites overlap the item picture tiles")
+POOL_SLOTS = (ITEM_TILE - LOW_FIXED) // 4   # per room, tiles 12-51
 item_data = []
 for name, grid, _ in items.ITEMS:
     rows = ["".join(SPR_MAP[c] for c in r) for r in portraits.rows(grid)]
@@ -427,7 +427,9 @@ for name, t in bank1_spr_defs:
     H.append("#define SPR1_%s %d   /* VRAM bank 1: use palette | S_BANK1 */" % (name, t))
 for name, t in low_defs:
     H.append("#define SPR1_%s %d   /* VRAM bank 1, low tiles */" % (name, t))
-H.append("#define LOW_TILE_COUNT %d" % (len(low_data) // 16))
+H.append("#define LOW_TILE_COUNT %d   /* all pool sprites, in ROM */" % (len(low_data) // 16))
+H.append("#define LOW_FIXED %d        /* tiles always loaded (thief, sparkle) */" % LOW_FIXED)
+H.append("#define POOL_SLOTS %d       /* bank-1 sprites one room can hold */" % POOL_SLOTS)
 H.append("/* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */")
 H.append("#define ITEM_TILE %d" % ITEM_TILE)
 H.append("#define NO_ITEM 0")

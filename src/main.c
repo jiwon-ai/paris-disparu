@@ -166,7 +166,7 @@ static void load_bank1(void) {
     SWITCH_ROM(PORTRAIT_BANK);
     set_bkg_data(0, ENV_TILE_COUNT, env_tiles);
     set_sprite_data(PORTRAIT_BASE, PORTRAIT_TILE_COUNT, portrait_tiles);
-    set_sprite_data(0, LOW_TILE_COUNT, low_tiles);   /* thief: bank 1, 0x8000 */
+    set_sprite_data(0, LOW_FIXED, low_tiles);   /* thief, sparkle: bank 1, 0x8000 */
     SWITCH_ROM(ASSET_BANK);
     VBK_REG = VBK_TILES;
 }
