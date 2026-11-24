@@ -222,76 +222,76 @@ Une voix calme, seule sur la ligne, égrène l'heure, seconde après seconde. L'
 La caisse retombe sur la charrette. DÉDÉ : Avec les jambes, j'ai dit !
 
 [shelf]
-Des bouteilles alignées devant la glace. Entre elles, une petite radio joue une chanson yé-yé, tout bas.
+Des bouteilles devant le miroir, et un petit poste qui joue un air yé-yé, tout bas. Ma grande sœur monterait le son à fond.
 
 [soup]
-Un bol de soupe à l'oignon, gratinée, encore fumante. Ici, on la mange entre minuit et l'aube.
+Une soupe à l'oignon gratinée, encore fumante. Qui mange de la soupe à quatre heures du matin ?
 
-Les gens du marché qui commencent leur journée, et les noctambules qui finissent la leur.
+Tout le monde, ici. Les forts avant le travail, les noctambules avant d'aller dormir.
 
 [table]
-Une table ronde. Quelqu'un a laissé un « Salut les copains » ouvert sur les photos des chanteurs.
+Quelqu'un a laissé « Salut les copains » ouvert sur les photos des chanteurs. J'ai le même numéro sous mon lit.
 
 # ---------------------------------------------------------------- the street
 [plaque]
-Une plaque de rue en émail bleu : RUE RAMBUTEAU.
+RUE RAMBUTEAU, en blanc sur émail bleu. Au moins, je sais où je suis.
 
 [door]
-La porte est fermée. Derrière, quelqu'un ronfle.
+Fermée. Quelqu'un ronfle derrière. Il a de la chance.
 
 [lamp]
-Un réverbère. Sa lumière jaune tremble un peu.
+Le réverbère clignote. Un peu inquiétant.
 
 [shop]
-Une vitrine sombre. Des bouteilles vides attendent le livreur.
+Une vitrine éteinte. Des bouteilles vides attendent le livreur. Pas un seul bonbon.
 
 [hotel]
-HOTEL. Une fenêtre encore allumée. Dans l'entrée, une affiche : Ionesco, « La Cantatrice chauve », à la Huchette depuis 1957.
+HOTEL. Une fenêtre encore allumée. Dans l'entrée, une affiche : Ionesco, « La Cantatrice chauve », à la Huchette depuis 1957. Dix ans la même pièce ?
 
 [cafe_window]
-Derrière la vitre embuée, des silhouettes au comptoir. Ça sent le café.
+Vitre embuée, du monde au comptoir. Ça sent le café. Je suis gelé.
 
 # ---------------------------------------------------------------- the pavilion
 [pavilion]
-Des pavillons de verre et de fer des deux côtés. C'est la rue Baltard, la rue à ciel ouvert entre les deux groupes.
+Du verre et du fer des deux côtés, comme des serres géantes. La rue Baltard passe juste au milieu.
 
 [covered]
-Une rue couverte relie ce pavillon au suivant.
+Une rue couverte vers le pavillon suivant. Au moins, on y est au sec.
 
 [eustache]
-L'église Saint-Eustache. Son chevet regarde la rue centrale du marché.
+Saint-Eustache, immense, qui regarde la grande rue du marché. Ses cloches doivent réveiller tout le monde.
 
 [crates]
-Des cageots vides, empilés. Ils repartiront ce soir.
+Des cageots vides, empilés plus haut que moi. Ils seront pleins ce soir.
 
 [morris]
-Une colonne Morris, peinte du vert du mobilier urbain parisien. Des affiches pour les pièces et les spectacles de ce soir.
+Une colonne Morris verte, couverte d'affiches pour les spectacles de ce soir. J'irais à tous.
 
 [wallace]
-Une fontaine Wallace : quatre dames immobiles soutiennent une petite coupole de fonte. L'eau est gratuite, et froide.
+Une fontaine Wallace : quatre dames de pierre qui tiennent un petit dôme de fer. L'eau est gratuite, et glacée. Brr.
 
 [lorry]
-Un camion de la campagne, garé le long du trottoir. Les caisses en descendent à la main, vers les pavillons.
+Un camion de la campagne, on le décharge à la main. La nuit, il y en a partout autour du marché.
 
-Chaque nuit, les rues autour du marché se remplissent de camions comme celui-ci. Le chauffeur ronfle dans sa cabine.
+Le chauffeur dort dans sa cabine. Il ronfle. Comment il fait ?
 
 [solex]
-Un VéloSolex noir est appuyé au mur : un vélo avec un petit moteur. Un galet entraîne la roue avant.
+Un VéloSolex noir contre le mur. Mon cousin va au lycée avec : le galet sur la roue avant pédale à sa place.
 
-Léger, et pas cher à faire rouler. La moitié des étudiants et des ouvriers de France en ont un.
+Il dit qu'il ne tombe jamais en panne. Il le dit souvent.
 
 [busstop]
-Un arrêt de bus. Personne n'attend à cette heure.
+Un arrêt de bus. Personne à cette heure-ci.
 
-Le jour, certains bus parisiens ont encore une plate-forme ouverte à l'arrière, en plein air.
+Le jour, je monte sur la plate-forme ouverte à l'arrière. Le vent dans la figure !
 
 [defense]
-Peint le long du mur, au-dessus des boutiques : DÉFENSE D'AFFICHER, LOI DU 29 JUILLET 1881.
+Peint en travers du mur : DÉFENSE D'AFFICHER, LOI DU 29 JUILLET 1881.
 
-La loi sur la presse de 1881 permet aux propriétaires d'interdire les affiches sur leurs murs. Les affiches vont sur les colonnes Morris… en général.
+Et juste en dessous… une affiche. Évidemment.
 
 [column]
-Une colonne en fonte. Froide, et un peu collante.
+Une colonne en fonte. Froide, et un peu collante. Beurk.
 
 # ---------------------------------------------------------------- the quai
 [quai_box]
@@ -300,19 +300,19 @@ Une boîte verte de bouquiniste, cadenassée. Sur le couvercle, une carte :
 « Livres anciens. Mme Roux. MED 7302. »
 
 [quai_box2]
-Une autre boîte verte, fermée. Par une fente : un vieux Zola, « Le Ventre de Paris ». Un roman qui se passe ici même, aux Halles, en 1873.
+Une autre boîte verte, fermée. Par une fente : un vieux Zola, « Le Ventre de Paris ». Celui-là parle des Halles ! En 1873.
 
 [gaslamp]
-Un bec de gaz. Derrière la vitre, la flamme siffle doucement.
+Un bec de gaz. La flamme siffle derrière la vitre comme un chat endormi.
 
 [tree]
-Un platane. Ses feuilles bruissent comme du papier.
+Un platane. Les feuilles crissent comme du papier.
 
 [river]
-En bas, la Seine. Noire, et pourtant pleine de lumières.
+La Seine, en bas. Noire, mais pleine de lumières.
 
 [quai_shop]
-Volets fermés. Une affiche : le nouveau film de Jacques Tati, « Playtime ». Un Paris tout en verre et en acier. « Prochainement. »
+Rideau baissé. Une affiche du nouveau film de Jacques Tati, « Playtime » : un Paris tout en verre et en acier. « Prochainement. » Drôle, ici tout est en vieille pierre.
 
 # ---------------------------------------------------------------- the bridge
 [painter_hello]
@@ -334,7 +334,7 @@ Tout Paris a fait la queue au Petit Palais cette année pour l'or de Toutânkham
 Ma femme est allée au nouvel Orchestre de Paris la semaine dernière. Très chic. Moi, je suis resté ici avec le fleuve.
 
 [barrier]
-Barrières : TRAVAUX. Le reste du pont attendra le jour.
+TRAVAUX. Le reste du pont attendra le jour.
 
 [watch_water]
 Le Pont-Neuf : malgré son nom, le plus vieux pont de Paris. En dessous, l'eau file sans un bruit.
@@ -513,29 +513,29 @@ LE POINÇONNEUR : Clac ! Clac !
 L'escalier du métro. Un souffle d'air chaud monte d'en bas.
 
 [metro_name]
-Le nom de la station : LES HALLES. La ligne 4 s'arrête sous le marché depuis 1908.
+LES HALLES. Papa dit que la ligne 4 s'arrête sous le marché depuis 1908. C'est plus vieux que Pépé !
 
 [metro_tiles]
-De petits carreaux blancs, comme dans toutes les stations depuis 1900. Ils attrapent le peu de lumière qu'il y a.
+Des petits carreaux blancs, les mêmes dans toutes les stations. Ils brillent même dans le noir.
 
 [metro_gate]
-Le portillon vers le quai. Au-delà, le tunnel sent le fer chaud et la poussière.
+La grille du quai. En bas, ça sent le fer chaud et la poussière.
 
-Depuis cet été, tous les trains de la ligne 4 roulent sur pneus. Plus silencieux que les vieilles roues en acier.
+Depuis cet été, les rames de la ligne 4 roulent sur pneus. C'est bien plus silencieux.
 
-Pas cette nuit, pourtant. Fernand d'abord. Le reste de la ligne attendra.
+Mais pas ce soir. D'abord Fernand.
 
 [baskets]
-Des paniers d'osier pleins de poireaux et d'oignons, qui attendent les acheteurs du matin.
+Des paniers de poireaux et d'oignons. J'ai déjà les yeux qui piquent.
 
 [poster]
-Des affiches collées coude à coude. Ici, en bas, personne ne se soucie de la loi de 1881.
+Des affiches collées épaule contre épaule. Ici, personne ne se soucie de la loi de 1881.
 
 [bench]
-Un banc en bois, poli par mille manteaux qui attendaient.
+Un banc de bois, poli par mille manteaux.
 
 [chairs]
-Des chaises de bistrot en bois courbé. L'une est encore tiède.
+Des chaises de bistrot en bois courbé. Celle-ci est encore chaude.
 
 [metro_map]
 LIGNE 4 : PORTE DE CLIGNANCOURT - PORTE D'ORLÉANS. Un rond blanc autour de LES HALLES : vous êtes ici.
@@ -792,30 +792,30 @@ Tout Paris a fait la queue. Plus d'un million de personnes. Garde-le : un jour, 
 
 # ---------------------------------------------------------------- l'ouest des Halles (2026-11-24)
 [bourse]
-LA BOURSE DE COMMERCE : une rotonde sous une coupole de fer couverte de cuivre. Halle aux blés bâtie en 1763-1769, elle abrite la Bourse de commerce depuis 1885.
+LA BOURSE DE COMMERCE : un bâtiment rond sous une coupole de fer. Pépé dit que c'était la halle aux blés. Maintenant, des messieurs y crient le prix du blé.
 
 [bourse_door]
-La grande porte est fermée pour la nuit. Derrière, les cours du blé et du sucre attendent le matin.
+La grande porte est fermée. Derrière, les prix du blé et du sucre dorment jusqu'au matin.
 
 [medici]
-LA COLONNE MÉDICIS : une colonne de pierre seule contre la rotonde, avec une cage de fer tout en haut. On l'a bâtie pour observer les astres, pour l'astrologie.
+Une colonne de pierre toute seule contre la rotonde, avec une cage de fer en haut. Quelqu'un montait là-haut lire les étoiles. Courageux.
 
 [vespasienne]
-UNE VESPASIENNE : un urinoir de rue en fonte verte, un écran devant, une lanterne dessus. Deux godillots dépassent sous l'écran. Quelqu'un siffle dedans.
+Pouah, ça pue. Une pissotière en fonte verte, deux chaussures sous le paravent, quelqu'un qui siffle dedans.
 
-Paris les a installées parce que les hommes se soulageaient contre n'importe quel mur. Des édits royaux l'interdisaient dès 1770. Le mur d'à côté dit que beaucoup le font encore.
+Il y en a tellement, à Paris. Et le mur d'à côté sent encore plus fort.
 
 [rat]
-Un rat traverse les pavés sans se presser. Il y en a tant autour du marché que l'hygiène est une des raisons de son départ.
+Un rat ! Il traverse les pavés comme s'il était chez lui. Autour du marché, il y en a partout.
 
 [brasserie_front]
-UNE BRASSERIE, éclairée du haut en bas. Elle ne ferme jamais : des forts à une table, des noctambules en tenue de soirée à la suivante.
+Une brasserie, éclairée de haut en bas. Des forts à une table, des gens en tenue de soirée à la suivante. Elle ferme un jour ?
 
 [west_pavilion]
-Les pavillons de l'ouest, de verre et de fer. Une rue couverte les traverse jusqu'à la rue Baltard.
+Encore des pavillons de verre et de fer. La rue couverte ramène rue Baltard.
 
 [hotel_keys]
-Le tableau des clés. Presque tous les crochets sont vides : les clients dorment, ou sont aux Halles.
+Le tableau des clés. Presque tous les crochets sont vides : tout le monde dort, ou traîne aux Halles.
 
 [hotel_mirror]
 Un miroir piqué. Tu as la tête de quelqu'un qui n'a pas dormi. C'est le cas.
@@ -831,13 +831,13 @@ LE VEILLEUR DE NUIT : Un jeton ? Bon, je vous passe la ligne. Donnez-moi le num�
 ? Oui | Non
 
 [bra_mirror]
-Des miroirs sur tous les murs. La salle a l'air deux fois plus pleine, et deux fois plus bruyante.
+Des miroirs sur tous les murs. Deux fois plus de monde, deux fois plus de bruit.
 
 [bra_table]
-Tables de marbre, serviettes en papier, un pot de moutarde. La soupe à l'oignon de quelqu'un refroidit.
+Des tables de marbre, un pot de moutarde, la soupe à l'oignon de quelqu'un qui refroidit. Quel gâchis.
 
 [hotel_chair]
-Un fauteuil usé. Le journal du veilleur est plié dessus, ouvert à la page des courses.
+Un fauteuil usé. Le journal du veilleur est plié à la page des courses. Je parie qu'il a perdu.
 
 [waiter_hello]
 LE GARÇON : Ouvert toute la nuit, toutes les nuits, depuis 47. Des forts à une table, des noctambules à la suivante. Qu'est-ce que je vous sers ?
@@ -861,6 +861,6 @@ UN FORT : Fernand ? Il s'assoit toujours là, près du miroir. Pas ce soir. Drô
 LE GARÇON : Un jeton pour le téléphone ? Vos vingt centimes sur le zinc... voilà. Votre jeton.
 
 [car]
-Une petite deux-chevaux grise garée le long du trottoir. « Un parapluie sur roues », dit-on. Un béret traîne sur le siège.
+Tiens, une deux-chevaux grise. La même que celle de mon oncle ! Lui, il l'appelle « le parapluie sur roues ».
 
-On en fabrique depuis 1948. Tout le monde a un oncle qui en a une.
+Quelqu'un a oublié un béret sur le siège.

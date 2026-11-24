@@ -177,7 +177,7 @@ for name, grid, _ in items.ITEMS:
 # HUD icons (8x16, two tiles each): what the player carries, top-left.
 icon_data = []
 for name, grid, _ in items.ITEMS:
-    rows16 = ["".join(SPR_MAP[c] for c in r) for r in items.icon(grid)]
+    rows16 = ["".join(SPR_MAP[c] for c in r) for r in items.icon(name)]
     icon_data += encode_tile(rows16[:8]) + encode_tile(rows16[8:])
 portrait_names = [n for n, _, _ in portraits.PORTRAITS]
 if PORTRAIT_BASE + len(portrait_data) // 16 > 256:

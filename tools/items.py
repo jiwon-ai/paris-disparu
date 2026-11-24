@@ -93,14 +93,14 @@ def gratinee():
 
 
 def jeton():
-    """A telephone token (palette 1). Its look is not in the sources read:
-    a plain metal disc with a groove, a reconstruction."""
+    """A PTT telephone token (palette 3): copper-nickel disc with a deep
+    groove down the middle (Numista 16650); drawn simplified."""
     g = blank()
-    ellipse(g, 12, 17, 10, 10, "s")
+    ellipse(g, 12, 17, 10, 10, "o")
+    ellipse(g, 12, 17, 8, 8, "s")            # raised rim, then the face
     ellipse(g, 12, 17, 7, 7, "o")
-    ellipse(g, 12, 17, 6, 6, "s")
-    rect(g, 10, 15, 14, 19, "o")             # centre slot
-    rect(g, 11, 15, 13, 19, "s")
+    rect(g, 10, 10, 14, 24, "#")             # the deep square groove (P.T.T)
+    rect(g, 11, 11, 13, 23, "s")
     return outline(g)
 
 
@@ -158,31 +158,87 @@ def stub():
     return outline(g)
 
 
-def icon(g):
-    """8x16 HUD icon from a 24x32 picture: each 3x3 block becomes its most
-    common colour (empty when under 4 pixels are drawn), outlined in colour 1,
-    centred in the 16-pixel height."""
-    from collections import Counter
-    h0, w0 = len(g), len(g[0])
-    out = []
-    for by in range(0, h0 - 1, 3):
-        row = []
-        for bx in range(0, w0, 3):
-            cells = [g[y][x] for y in range(by, min(by + 3, h0)) for x in range(bx, bx + 3)]
-            solid = [c for c in cells if c != "."]
-            row.append("." if len(solid) < 4 else Counter(solid).most_common(1)[0][0])
-        out.append(row)
-    h, w = len(out), len(out[0])
-    res = [r[:] for r in out]
-    for y in range(h):
-        for x in range(w):
-            if out[y][x] == "." and any(0 <= y + dy < h and 0 <= x + dx < w and out[y + dy][x + dx] not in ".#"
-                                        for dy, dx in ((0, 1), (1, 0), (0, -1), (-1, 0))):
-                res[y][x] = "#"
-    top = (16 - h) // 2
-    blank_row = "." * w
-    return [blank_row] * top + ["".join(r) for r in res] + [blank_row] * (16 - h - top)
+# HUD icons (8 px wide), drawn by hand: same characters as the pictures.
+# Centred in an 8x16 sprite by icon(). Each follows its picture's sources.
+ICONS = {
+    "CUP": [".s..s...",
+            "........",
+            "######..",
+            "#oooo###",
+            "#oooo#.#",
+            "#oooo###",
+            ".####...",
+            "########"],
+    "COLTIN": ["..####..",
+               ".#ssss#.",
+               ".#ssss#.",
+               ".#oooo#.",
+               "#ssssss#",
+               ".######."],
+    "BLEU": ["########",             # the petit bleu: a folded, sealed card
+             "##oooo##",
+             "#o#oo#o#",
+             "#oo##oo#",
+             "#oooooo#",
+             "########"],
+    "PLATE": [".######.",            # brass plate, the ship of Paris
+              "#ssssss#",
+              "#sss#ss#",
+              "#ss##ss#",
+              "#s####s#",
+              "#ss##ss#",
+              ".#ssss#.",
+              "..####.."],
+    "GRATINEE": [".######.",
+                 "#oooooo#",
+                 "#o#oo#o#",
+                 "########",
+                 "#ssssss#",
+                 ".#ssss#.",
+                 "..####.."],
+    "JETON": ["..####..",            # PTT token: disc, deep groove down the middle
+              ".#oooo#.",
+              "#oo##oo#",
+              "#oo##oo#",
+              "#oo##oo#",
+              "#oo##oo#",
+              ".#oooo#.",
+              "..####.."],
+    "TICKET": ["########",
+               "#oooooo#",
+               "#o###oo#",
+               "#oooooo#",
+               "#o##ooo#",
+               "########"],
+    "GREEN": ["########",
+              "#oooooo#",
+              "#o##oos#",
+              "#ooooos#",
+              "#o##oos#",
+              "########"],
+    "ROLLER": [".######.",           # ridged roller on its axle
+               "##o#o#o#",
+               "##o#o#o#",
+               "##o#o#o#",
+               "##o#o#o#",
+               ".######."],
+    "STUB": ["########",
+             "#ssssss#",
+             "#s####s#",
+             "#ssooss#",
+             "#sossos#",
+             "#ssooss#",
+             "#ssssss#",
+             "########"],
+}
 
+
+def icon(name):
+    """The 8x16 HUD icon of an item, its drawing centred vertically."""
+    g = ICONS[name]
+    assert all(len(r) == 8 for r in g), name
+    top = (16 - len(g)) // 2
+    return ["........"] * top + g + ["........"] * (16 - len(g) - top)
 
 # (enum name, grid, sprite palette)
 ITEMS = [
@@ -191,7 +247,7 @@ ITEMS = [
     ("BLEU", bleu(), 1),
     ("PLATE", plate(), 1),
     ("GRATINEE", gratinee(), 7),
-    ("JETON", jeton(), 1),
+    ("JETON", jeton(), 3),   # copper-nickel: silvery (Numista 16650)
     ("TICKET", ticket_brown(), 0),
     ("GREEN", ticket_green(), 5),
     ("ROLLER", roller(), 4),

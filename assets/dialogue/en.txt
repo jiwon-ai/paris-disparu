@@ -227,81 +227,81 @@ It rings into nothing. Nobody. The jeton doesn't come back.
 The crate slips back onto the cart. DÉDÉ: With your legs, I said!
 
 [shelf]
-Bottles lined up in front of the mirror. Between them a little radio plays a yé-yé song, very low.
+Bottles in front of the mirror, and a little radio playing a yé-yé song, very low. My big sister would turn it right up.
 
 [soup]
-A bowl of onion soup, gratinée, still steaming. Here it's eaten between midnight and dawn.
+Onion soup, gratinée, still steaming. Who eats soup at four in the morning?
 
-By market workers starting their day, and by night owls ending theirs.
+Everyone here, it seems. The porters before work, the night owls before bed.
 
 [table]
-A round table. Someone left a copy of "Salut les copains" open on the singers' photos.
+Someone left "Salut les copains" open at the singers' photos. I've got the same issue under my bed.
 
 # ---------------------------------------------------------------- the street
 [plaque]
-A blue enamel street sign: RUE RAMBUTEAU.
+RUE RAMBUTEAU, white on blue enamel. At least I know where I am.
 
 [door]
-The door is shut. Behind it, someone is snoring.
+Shut. Someone's snoring behind it. Lucky them.
 
 [lamp]
-A street lamp. Its yellow light trembles a little.
+The street lamp flickers. A bit spooky.
 
 [shop]
-A dark shop window. Empty bottles wait for the delivery man.
+A dark shop window. Empty bottles waiting for the delivery man. Not one sweet.
 
 [hotel]
-HOTEL. One window still lit. In the hall, a playbill: Ionesco, "The Bald Soprano", at the Huchette since 1957.
+HOTEL. One window still lit. A playbill in the hall: Ionesco, "The Bald Soprano", at the Huchette since 1957. Ten years of the same play?
 
 [cafe_window]
-Behind the misted glass, figures at the counter. It smells of coffee.
+Steamed-up glass, people at the counter. It smells of coffee. I'm frozen.
 
 # ---------------------------------------------------------------- the pavilion
 [pavilion]
-Pavilions of glass and iron on both sides. This is rue Baltard, the open street between the two groups.
+Glass and iron on both sides, like giant greenhouses. Rue Baltard runs right between them.
 
 [covered]
-A covered street joins this pavilion to the next one.
+A covered street to the next pavilion. Dry in there, at least.
 
 [eustache]
-The church of Saint-Eustache. Its east end looks down the central street of the market.
+Saint-Eustache, enormous, staring down the main street of the market. Its bells must wake everybody.
 
 [crates]
-Empty crates, stacked up. They'll go back out tonight.
+Empty crates, stacked higher than me. They'll be full again tonight.
 
 [morris]
-A Morris column, painted the green of Paris street furniture. Posters for tonight's plays and shows.
+A green Morris column, plastered with posters for tonight's shows. I'd go to all of them.
 
 [wallace]
-A Wallace fountain: four stone-still ladies hold up a little iron dome. The water is free, and cold.
+A Wallace fountain: four stone ladies holding up a tiny iron dome. Free water, ice cold. Brr.
 
 [lorry]
-A lorry from the country, parked at the kerb. Crates go off it by hand, towards the pavilions.
+A lorry from the country, crates going off it by hand. At night they're everywhere round the market.
 
-Every night the streets round the market fill with lorries like this one. The driver snores in his cab.
+The driver's asleep in his cab. Snoring. How?
 
 [car]
-A little grey deux-chevaux parked by the kerb. "An umbrella on wheels", people call it. A beret lies on the seat.
+Hey, a grey deux-chevaux. Just like my uncle's! He calls his "the umbrella on wheels".
 
-They have been making them since 1948. Everybody's uncle has one.
+Someone left a beret on the seat.
 
 [solex]
-A black VéloSolex leans on the wall: a bicycle with a little motor. A roller turns the front wheel.
+A black VéloSolex against the wall. My cousin rides one to school: the roller on the front wheel does the pedalling.
 
-Light and cheap to run. Half the students and factory workers in France ride one.
+He says it never breaks down. He says that a lot.
 
 [busstop]
-A bus stop. Nobody is waiting at this hour.
+A bus stop. Nobody waiting at this hour.
 
-By day some Paris buses still have an open platform at the back, out in the air.
+In the daytime I ride on the open platform at the back. Wind in your face!
 
 [defense]
-Painted along the wall above the shops: DÉFENSE D'AFFICHER, LOI DU 29 JUILLET 1881. Post no bills.
+Painted right across the wall: DÉFENSE D'AFFICHER, LOI DU 29 JUILLET 1881. Post no bills.
 
-The press law of 1881 lets owners forbid posters on their walls. Posters go on the Morris columns instead… mostly.
+And just underneath... a poster. Of course.
 
 [column]
-A cast-iron column. Cold, and a little sticky.
+A cast-iron column. Cold, and a bit sticky. Yuck.
 
 # ---------------------------------------------------------------- the quai
 [quai_box]
@@ -310,47 +310,47 @@ A bookseller's green box, padlocked. On the lid, a card:
 "Old books. Mme Roux. MED 7302."
 
 [quai_box2]
-Another green box, shut. Through a crack: an old Zola, "Le Ventre de Paris". A novel set in these very Halles, in 1873.
+Another green box, shut. Through a crack: an old Zola, "Le Ventre de Paris". That one's about Les Halles! In 1873.
 
 [gaslamp]
-A gas lamp. Behind the glass, the flame hisses softly.
+A gas lamp. The flame hisses behind the glass like a sleepy cat.
 
 [tree]
-A plane tree. Its leaves rustle like paper.
+A plane tree. The leaves rattle like paper.
 
 [river]
-Below, the Seine. Black, and yet full of lights.
+The Seine down below. Black, but full of lights.
 
 [quai_shop]
-Shutters closed. A poster: Jacques Tati's new film, "Playtime". A Paris all glass and steel. "Soon."
+Shutters down. A poster for Jacques Tati's new film, "Playtime": a Paris all glass and steel. "Soon." Funny, round here it's all old stone.
 
 # ---------------------------------------------------------------- west end (2026-11-24)
 # Sources: HISTORICAL_RESEARCH.md "West end of Les Halles" and "Street life".
 [bourse]
-THE BOURSE DE COMMERCE: a round building under an iron dome sheathed in copper. Built in 1763-69 as the grain hall, it has housed the commodities exchange since 1885.
+THE BOURSE DE COMMERCE: a round building under an iron dome. Grandpa says it was the grain hall once. Now men shout wheat prices in there.
 
 [bourse_door]
-The great door is shut for the night. Behind it, prices of wheat and sugar wait for morning.
+The big door's shut. Behind it, the wheat and sugar prices are asleep till morning.
 
 [medici]
-THE MEDICI COLUMN: a lone stone column against the rotunda, with an iron cage at the very top. It was built for watching the stars, for astrology.
+A lone stone column against the rotunda, with an iron cage on top. Someone used to climb up there to read the stars. Brave.
 
 [vespasienne]
-A VESPASIENNE: a street urinal in green cast iron, a screen in front, a lamp on top. Two boots show under the screen. Someone inside is whistling.
+Ugh, it stinks. A green iron pissoir, two boots under the screen, someone whistling inside.
 
-Paris put these up because men relieved themselves against any wall. Royal edicts forbade it from 1770. The wall next door says plenty still do.
+Paris has so many of these. And the wall next door still smells worse.
 
 [rat]
-A rat crosses the cobbles, in no hurry at all. There are so many round the market that hygiene is one reason it has to leave Paris.
+A rat! Strolling across the cobbles like it owns the place. Round the market they're everywhere.
 
 [brasserie_front]
-A BRASSERIE, lit from top to bottom. It never closes: forts at one table, night owls in evening clothes at the next.
+A brasserie, lit up from top to bottom. Porters at one table, people in evening clothes at the next. Does it ever close?
 
 [west_pavilion]
-The west pavilions, glass and iron. A covered street runs through them back to rue Baltard.
+More pavilions of glass and iron. The covered street goes back to rue Baltard.
 
 [hotel_keys]
-The key board. Most hooks are empty: the guests are asleep, or out at Les Halles.
+The key board. Most of the hooks are empty: everyone's asleep, or out at the market.
 
 [hotel_mirror]
 A spotted mirror. You look like someone who hasn't slept. You haven't.
@@ -366,13 +366,13 @@ THE NIGHT PORTER: A jeton? Right, I'll put you through. Give me the number.
 ? Yes | No
 
 [bra_mirror]
-Mirrors all along the walls. The room looks twice as full, and twice as loud.
+Mirrors all along the walls. Twice the people, twice the noise.
 
 [bra_table]
-Marble tables, paper napkins, a pot of mustard. Someone's onion soup is going cold.
+Marble tables, a pot of mustard, somebody's onion soup going cold. What a waste.
 
 [hotel_chair]
-A worn armchair. The porter's newspaper is folded on it, open at the racing page.
+A worn armchair. The porter's paper is folded at the racing page. I bet he lost.
 
 [waiter_jeton]
 THE WAITER: A jeton for the telephone? Twenty centimes on the zinc... there. Here's your jeton.
@@ -397,7 +397,7 @@ All Paris queued at the Petit Palais this year for Tutankhamun's gold. Me, I pai
 My wife went to the new Orchestre de Paris last week. Very grand. I stayed here with the river.
 
 [barrier]
-Barriers: ROADWORKS. The rest of the bridge will wait for daylight.
+ROADWORKS. The rest of the bridge will have to wait for daylight.
 
 [watch_water]
 The Pont Neuf: despite its name, the oldest bridge in Paris. Below, the water races by without a sound.
@@ -461,29 +461,29 @@ TICKET PUNCHER: Clac! Clac!
 Steps down to the Métro. A warm breath of air comes up from below.
 
 [metro_name]
-The station's name: LES HALLES. Line 4 has stopped under the market since 1908.
+LES HALLES. Dad says line 4 has stopped under the market since 1908. That's older than Grandpa!
 
 [metro_tiles]
-Small white tiles, like in every station since 1900. They catch what little light there is.
+Little white tiles, the same in every station. They shine even in the dark.
 
 [metro_gate]
-The gate to the platform. Beyond it, the tunnel smells of hot iron and dust.
+The gate to the platform. Down there it smells of hot iron and dust.
 
-Since this summer, every train on line 4 runs on rubber tyres. Quieter than the old steel wheels.
+Since the summer the trains on line 4 run on rubber tyres. So much quieter.
 
-Not tonight, though. Fernand first. The rest of the line can wait.
+Not tonight, though. Fernand first.
 
 [baskets]
-Wicker baskets of leeks and onions, waiting for the morning's buyers.
+Baskets of leeks and onions. My eyes are watering already.
 
 [poster]
-Posters pasted shoulder to shoulder. Down here, nobody minds the law of 1881.
+Posters glued shoulder to shoulder. Nobody down here cares about the law of 1881.
 
 [bench]
-A wooden bench, polished by a thousand waiting coats.
+A wooden bench, polished by a thousand coats.
 
 [chairs]
-Bentwood café chairs. One still warm.
+Bentwood café chairs. This one's still warm.
 
 [metro_map]
 LINE 4: PORTE DE CLIGNANCOURT to PORTE D'ORLÉANS. A white ring round LES HALLES: you are here.

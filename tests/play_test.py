@@ -988,7 +988,7 @@ print("one more call, then Fernand")
 street_to_cafe()
 goto(116, 100, "xy")
 push("up")
-talk("onion soup")              # vanished Paris: the gratinee of Les Halles
+talk("Onion soup")              # vanished Paris: the gratinee of Les Halles
 goto(72, 60, "yx")
 push("up")
 talk("Carry it", got=("gratinée", "ITEM_GRATINEE"))   # Simone's gratinee for Mme Roux
