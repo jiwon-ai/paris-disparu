@@ -477,6 +477,8 @@ for _i in EXCHANGES:
     H.append("#define EX_%s %d" % (_name, _i))
 for k, (name, _, _) in enumerate(items.ITEMS):
     H.append("#define ITEM_%s %d" % (name, k + 1))
+H.append("#define GLYPH_DOT %d\n#define GLYPH_PIPE %d\n#define GLYPH_NOTE %d\n#define GLYPH_HEART %d\n#define GLYPH_SLASH %d\n#define GLYPH_A_BUTTON %d"
+         % tuple(font_index[c] for c in "·|♪♥/A"))
 H.append("#define GLYPH_DIGIT0 %d\n#define GLYPH_CUP %d\n#define GLYPH_COIN %d"
          % (font_index["0"], encode_char("∩", "glyph"), encode_char("●", "glyph")))
 H.append("#define PORTRAIT_BASE %d\n#define PORTRAIT_TILE_COUNT %d\n#define NO_PORTRAIT 0xFF"

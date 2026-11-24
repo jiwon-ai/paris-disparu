@@ -48,24 +48,17 @@ uint8_t item_note(void) BANKED {
 #define HUD_TILE 246
 static const uint8_t hud_oam[HUD_MAX] = { 22, 23, 32, 33 };
 static const uint8_t hud_order[] = {        /* most useful first */
-    ITEM_JETON, ITEM_GRATINEE, ITEM_PLATE, ITEM_COLTIN, ITEM_BLEU, ITEM_TICKET,
-    ITEM_GREEN, ITEM_ROLLER, ITEM_STUB
+    ITEM_PLATE, ITEM_TICKET, ITEM_JETON, ITEM_MUTE, ITEM_VIOLET
 };
 static uint16_t hud_now = 0xFFFF;           /* bit ITEM_*: drawn now */
 
 static uint16_t held(void) {
     uint16_t m = 0;
-    uint8_t i;
-    if (!(game_flags & FLAG_SOLVED)) {      /* the clues go back to Fernand at the end */
-        if (clue_flags & CLUE_COLTIN) m |= 1 << ITEM_COLTIN;
-        if (clue_flags & CLUE_BLEU) m |= 1 << ITEM_BLEU;
-        if (clue_flags & CLUE_PLATE) m |= 1 << ITEM_PLATE;
-    }
-    if (quest_flags & QF_SOUP) m |= 1 << ITEM_GRATINEE;
-    if (game_flags & FLAG_HAS_JETON) m |= 1 << ITEM_JETON;
-    if (game_flags & FLAG_TICKET) m |= 1 << ITEM_TICKET;
-    for (i = 0; i < 3; i++)                 /* curiosities until explained */
-        if ((curio_flags & (0x11 << i)) == (1 << i)) m |= 1 << (ITEM_GREEN + i);
+    if ((clue_flags & K_PLATE) && !(game_flags & F_SOLVED)) m |= 1 << ITEM_PLATE;
+    if (game_flags & F_TICKET) m |= 1 << ITEM_TICKET;
+    if (game_flags & F_JETON) m |= 1 << ITEM_JETON;
+    if ((game_flags & (F_MUTE | F_INSIDE)) == F_MUTE) m |= 1 << ITEM_MUTE;
+    if (game_flags & F_VIOLET) m |= 1 << ITEM_VIOLET;
     return m;
 }
 

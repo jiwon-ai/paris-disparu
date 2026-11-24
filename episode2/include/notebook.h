@@ -20,7 +20,8 @@ void intro_show(uint8_t page) BANKED;
 void extras_show(void) BANKED;
 void nb_open(void) BANKED;             /* START: the notebook's first page */
 void nb_turn(uint8_t right) BANKED;    /* left/right: notebook, poem, extras, album, mysteries */
-void curio_show(void) BANKED;   /* the curiosities, found and identified */
+void epilogue_show(void) BANKED;   /* 3 March 1969: the lorries leave */
+uint8_t howto_has(uint8_t ev) BANKED;  /* a rules card exists for EV_* */
 void album_show(void) BANKED;   /* the vanished-Paris objects found */
 uint16_t notebook_number(void) BANKED;  /* the next phone number known, cycling (0 if none) */
 extern uint8_t notebook_exch;          /* ... and its exchange */

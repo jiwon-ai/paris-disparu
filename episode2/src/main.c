@@ -16,7 +16,7 @@
 #include "ko.h"
 #include "world.h"
 
-enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_LIFT, ST_DIAL, ST_END, ST_GAME, ST_HOWTO, ST_DAWN };
+enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_METRO, ST_DIAL, ST_END, ST_GAME, ST_HOWTO, ST_DAWN, ST_EPILOGUE };
 
 static uint8_t state;
 static uint8_t cur_dialogue;
@@ -28,19 +28,11 @@ static uint8_t bark_from;       /* NPC index whose line is on screen, or NO_BARK
 static uint8_t bark_armed;      /* bit n: NPC n of this room may call out again */
 static uint16_t ambience_timer;
 
-/* The cafe cat: sits in the street at the start and, when the player comes
-   near, darts away along the pavement to the cafe door and slips inside.
-   A first thing to do that needs no reading, and it shows the way. */
-#define CAT_OAM 12
-static const int16_t cat_path[][2] = { { 56, 92 }, { 44, 92 }, { 36, 84 }, { 30, 76 }, { 30, 62 } };
-#define CAT_STEPS 5
-int16_t cat_x = 56, cat_y = 92;
 static void close_caption(void);
-static uint8_t lift_punch;
 static uint8_t teaser_seen;
-static uint8_t game_ev;          /* EV_SERVE / EV_CUPS / EV_CATCH while in ST_GAME */
+static uint8_t game_ev;          /* EV_* while in ST_GAME */
 static uint8_t fanfare;          /* frames left of the quest-complete jingle */
-static uint8_t howto_seen;       /* bit (EV_* - EV_FIRST): rules already shown */
+static uint16_t howto_seen;      /* bit (EV_* - EV_FIRST): rules already shown */
 static uint8_t sparkle;          /* frames left of the "got it!" star over the player */
 static uint8_t shake;            /* frames left of a small screen shake */
 #define SPARKLE_OAM 20           /* free: games use 16-17, portraits 24+ */
@@ -80,55 +72,13 @@ static void update_juice(void) {
 static const uint16_t fanfare_x[4] = { 1985, 1964, 1949, 1923 };   /* C7 G6 E6 C6, played backwards */
 
 static const uint8_t * const quest_name[QUEST_COUNT - 1] = {
-    txt_q_0, txt_q_1, txt_q_2, txt_q_3
+    txt_q_0, txt_q_1, txt_q_2, txt_q_3, txt_q_4
 };
 static const uint8_t * const quest_got[QUEST_COUNT - 1] = {
-    txt_q_0r, txt_q_1r, txt_q_2r, txt_q_3r
-};      /* the timing bar is the metro punch, not a crate */
-static uint8_t cat_wp, cat_run;
+    txt_q_0r, txt_q_1r, txt_q_2r, txt_q_3r, txt_q_4r
+};
 
-static void update_cat(void) {
-    int16_t tx, ty;
-    if (cur_room == ROOM_CAFE && (game_flags & FLAG_CAT_GONE)) {   /* asleep in the corner */
-        sprite16(CAT_OAM, 4, 118, SPR_CAT_SIT, 7);
-        return;
-    }
-    if (cur_room != ROOM_STREET || (game_flags & FLAG_CAT_GONE)) {
-        move_sprite(CAT_OAM, 0, 0);
-        move_sprite(CAT_OAM + 1, 0, 0);
-        return;
-    }
-    if (!cat_run) {
-        int16_t dx = player.x - cat_x, dy = player.y - cat_y;
-        if (dx > -28 && dx < 28 && dy > -28 && dy < 28) {
-            cat_run = 1;
-            sound_clink();                 /* a startled little mew */
-        }
-    }
-    if (cat_run) {
-        tx = cat_path[cat_wp][0];
-        ty = cat_path[cat_wp][1];
-        if (cat_x < tx) cat_x++; else if (cat_x > tx) cat_x--;
-        if (cat_y < ty) cat_y++; else if (cat_y > ty) cat_y--;
-        if (cat_x == tx && cat_y == ty) {
-            if (++cat_wp == CAT_STEPS) {   /* in through the cafe door */
-                game_flags |= FLAG_CAT_GONE;
-                close_caption();
-                box_open(4);
-                box_print(1, 1, txt_cat_gone);
-                box_print(1, 2, txt_cat_gone_2);
-                caption_timer = 240;
-                caption_note = 1;
-                sound_clink();
-                return;
-            }
-            cat_run = cat_wp < 2;          /* pauses on the way: catch up! */
-        }
-    }
-    sprite16(CAT_OAM, cat_x, cat_y, cat_run ? SPR_CAT_RUN : SPR_CAT_SIT, 7);
-}
 static uint8_t rng = 0x5A;
-static uint8_t barge_x;
 
 
 static uint8_t row_buf[MAP_W];
@@ -266,9 +216,9 @@ static void intro(void) {
 /* Save/continue: one slot in battery-backed cartridge RAM (MBC5+RAM+BATTERY).
    Written after every room change and every closed dialogue; checked with a
    magic word and a checksum, so blank or random RAM reads as "no save". */
-#define SAVE_SIZE (12 + EVENT_SAVE_SIZE + 1)
+#define SAVE_SIZE (13 + EVENT_SAVE_SIZE + 1)
 static uint8_t save_buf[SAVE_SIZE];
-static const uint8_t save_magic[4] = { 'P', 'D', 'S', '4' };
+static const uint8_t save_magic[4] = { 'P', 'E', '2', '1' };   /* Episode 2 */
 
 static uint8_t save_sum(void) {
     uint8_t i, s = 0xA5;
@@ -283,9 +233,10 @@ static void save_write(void) {
     save_buf[5] = (uint8_t)player.x;  save_buf[6] = (uint8_t)((uint16_t)player.x >> 8);
     save_buf[7] = (uint8_t)player.y;  save_buf[8] = (uint8_t)((uint16_t)player.y >> 8);
     save_buf[9] = player.dir;
-    save_buf[10] = howto_seen;
+    save_buf[10] = (uint8_t)howto_seen;
     save_buf[11] = music_muted;
-    event_pack(save_buf + 12);
+    save_buf[12] = (uint8_t)(howto_seen >> 8);
+    event_pack(save_buf + 13);
     save_buf[SAVE_SIZE - 1] = save_sum();
     ENABLE_RAM;
     SWITCH_RAM(0);
@@ -383,10 +334,11 @@ static void close_caption(void) {
 /* Dawn creeps in with each quest done (the clock runs 3 a.m. to 7 a.m.). */
 static uint8_t dawn_now(void) {
     uint8_t i, n = 0;
-    for (i = 0; i < 4; i++) n += quest_done(i);
+    for (i = 0; i < QUEST_COUNT - 1; i++) n += quest_done(i);
     return n;
 }
 
+static int16_t enc_x, enc_y;      /* the stranger walking up (encounter) */
 static void enter_room(uint8_t room) {
     close_caption();             /* nothing from the previous room stays behind */
     actors_hide();
@@ -394,17 +346,25 @@ static void enter_room(uint8_t room) {
     actors_init_room();
     player_unstick();
     event_enter_room(room);
+    enc_x = player.x < 80 ? 168 : -16;     /* someone comes from the far side */
+    enc_y = player.y;
     bark_armed = 0xFF;
     ambience_timer = 20;
     actors_draw();
 }
 
+static void open_dialogue(uint8_t d);
 /* exit_code from player_update(): a screen edge DIR_* or PLAYER_DOOR | index. */
 static void change_room(uint8_t exit_code) {
     uint8_t dest;
     if (exit_code & PLAYER_DOOR) {
         const door_t *d = &rooms[cur_room].doors[exit_code & 0x3F];
         dest = d->room;
+        if (dest == ROOM_CAVEAU && !(game_flags & F_INSIDE)) {   /* the doorman */
+            player.y += 6;
+            open_dialogue(event_talk(NPC_DOORMAN));
+            return;
+        }
         player_place(d->to_x, d->to_y, d->to_dir);
     } else {
         dest = rooms[cur_room].exits[exit_code];
@@ -423,7 +383,6 @@ static void change_room(uint8_t exit_code) {
 static uint8_t howto_ev;         /* mini-game waiting behind its rules card */
 static uint16_t idle;            /* frames without input, for the goal reminder */
 
-static void open_dialogue(uint8_t d);
 static void start_game(uint8_t d) {
     howto_seen |= 1 << (d - EV_FIRST);
     open_dialogue(d);
@@ -456,35 +415,35 @@ static void update_markers(void) {
 static void open_dialogue(uint8_t d) {
     caption_timer = 0;           /* the dialogue box replaces any caption */
     bark_from = NO_BARK;
-    if (d >= EV_FIRST && d != EV_END && d != NO_DIALOGUE && !(howto_seen & (1 << (d - EV_FIRST)))) {
+    if (d >= EV_FIRST && d != NO_DIALOGUE && howto_has(d) && !(howto_seen & (1u << (d - EV_FIRST)))) {
         howto_ev = d;            /* first time: the rules, then A to start */
         howto_show(d);
         state = ST_HOWTO;
         return;
     }
-    if (d == EV_LIFT || d == EV_PUNCH) {
-        lift_punch = d == EV_PUNCH;
-        if (lift_punch) timing_start(1, txt_punch_1, txt_punch_2);
-        else lift_start(event_lift_level());
-        music_play(SONG_GAME);
-        state = ST_LIFT;
+    if (d == EV_METRO) {
+        metro_start();
+        state = ST_METRO;
     } else if (d == EV_DIAL) {
         dial_start();
         state = ST_DIAL;
-    } else if (d == EV_SERVE || d == EV_CUPS || d == EV_CATCH || d == EV_CHASE) {
+    } else if (d == EV_CUPS || d == EV_CHASE || d == EV_PETANQUE || d == EV_JAZZ
+               || d == EV_FIND || d == EV_TOSS) {
         game_ev = d;
         music_play(SONG_GAME);
-        if (d == EV_SERVE) serve_start();
-        else if (d == EV_CUPS) cups_start();
+        if (d == EV_CUPS) cups_start();
         else if (d == EV_CHASE) { chase_start(); shake = 16; }   /* the bump */
-        else catch_start();
+        else if (d == EV_PETANQUE) petanque_start();
+        else if (d == EV_JAZZ) jazz_start();
+        else if (d == EV_FIND) find_start();
+        else toss_start();
         state = ST_GAME;
-    } else if (d == EV_END) {    /* daybreak on the quai, then the end screen */
+    } else if (d == EV_END) {    /* dawn over the flower bed, then the poem */
         save_erase();
         box_close();
         music_play(SONG_TITLE);
-        player_place(32, 68, DIR_DOWN);   /* at a café table, rue Rambuteau */
-        enter_room(ROOM_STREET);
+        player_place(120, 100, DIR_UP);
+        enter_room(ROOM_EUSTACHE);
         day_start();
         state = ST_DAWN;
     } else if (d == NO_DIALOGUE) {
@@ -513,26 +472,13 @@ static void open_dialogue(uint8_t d) {
             caption_note = 1;
             sound_confirm();
             sparkle = SPARKLE_FRAMES;
-        } else if (new_curio) {  /* a vanished object found, or explained */
-            uint8_t solved = new_curio == 2;
-            new_curio = 0;
-            box_open(4);
-            box_print(1, 1, solved ? txt_cu_solved : txt_cu_found);
-            if (solved) {
-                box_tile(16, 1, txt_digits[curio_total()]);
-                box_print(17, 1, txt_cu_of);
-            }
-            box_print(1, 2, solved ? txt_cu_solved2 : txt_cu_found2);
-            caption_timer = 240;
-            caption_note = 1;
-            fanfare = 16;
-            sparkle = SPARKLE_FRAMES;
         } else if (new_extra | new_secret) {   /* a side goal done, or a secret */
             uint8_t sec = new_secret;
             new_extra = new_secret = 0;
             box_open(4);
             box_print(1, 1, sec ? txt_secret_done : txt_extra_done);
-            box_tile(15, 1, txt_digits[sec ? secret_total() : extra_total()]);
+            if (sec && secret_total() >= 10) box_tile(14, 1, txt_digits[1]);
+            box_tile(15, 1, txt_digits[sec ? secret_total() % 10 : extra_total()]);
             box_print(16, 1, sec ? txt_secret_of : txt_extra_of);
             box_print(1, 2, txt_extra_more);
             caption_timer = 240;
@@ -541,6 +487,16 @@ static void open_dialogue(uint8_t d) {
             else sound_confirm();
             sparkle = SPARKLE_FRAMES;
         }
+        new_album = 0;
+        if (new_money && !caption_timer) {   /* a coin earned */
+            new_money = 0;
+            box_open(3);
+            box_print(1, 1, txt_money_got);
+            caption_timer = 120;
+            caption_note = 1;
+            sound_confirm();
+        }
+        new_money = 0;
         if (item_note()) {       /* the object itself, over the note or alone */
             caption_timer = 240;
             caption_note = 1;
@@ -553,27 +509,59 @@ static void open_dialogue(uint8_t d) {
     }
 }
 
-/* Moving water and the barge that passes under the bridge. */
+/* Moving water on the quai (Episode 1 tiles only). */
 static void animate_river(void) {
-    uint8_t has_water = cur_room == ROOM_QUAI || cur_room == ROOM_PONT;
     anim_frame++;
-    if (has_water && !ko_borrowed && (anim_frame & 31) == 0) {   /* not while Korean text holds the tiles */
+    if (cur_room == ROOM_QUAI && !ko_borrowed && (anim_frame & 31) == 0) {
         VBK_REG = VBK_ATTRIBUTES;     /* scenery tiles are in VRAM bank 1 */
         set_bkg_data(TILE_WATER, 1, water_frames + ((anim_frame >> 5) & 1) * 16);
         VBK_REG = VBK_TILES;
     }
-    if (cur_room == ROOM_PONT) {
-        uint8_t i;
-        if (anim_frame & 1) barge_x++;
-        for (i = 0; i < 4; i++) {
-            set_sprite_tile(36 + i, (i < 2 ? SPR_BARGE_L : SPR_BARGE_R) + (i & 1) * 2);
-            set_sprite_prop(36 + i, 1 | S_PRIORITY);   /* behind the bridge */
-            move_sprite(36 + i, barge_x + i * 8, 16 + 100);
-        }
-    } else {
-        uint8_t i;
-        for (i = 36; i < 40; i++) move_sprite(i, 0, 0);
+}
+
+/* A random encounter: a tramp or a pickpocket walks up to the poet. */
+#define ENC_OAM 36
+static void update_encounter(void) {
+    if (!encounter || state != ST_WALK) {
+        move_sprite(ENC_OAM, 0, 0);
+        move_sprite(ENC_OAM + 1, 0, 0);
+        return;
     }
+    if (enc_x < player.x - 14) enc_x += 2;
+    else if (enc_x > player.x + 14) enc_x -= 2;
+    if (enc_y < player.y) enc_y++;
+    else if (enc_y > player.y) enc_y--;
+    sprite16(ENC_OAM, enc_x, enc_y, encounter == 2 ? SPR1_THIEF_0 : SPR1_SLEEPER,
+             (encounter == 2 ? 4 : 1) | S_BANK1 | (enc_x > player.x ? S_FLIPX : 0));
+    if (enc_x >= player.x - 14 && enc_x <= player.x + 14 && enc_y == player.y) {
+        uint8_t who = encounter;
+        encounter = 0;
+        move_sprite(ENC_OAM, 0, 0);
+        move_sprite(ENC_OAM + 1, 0, 0);
+        if (who == 2) {
+            if (money) money--;
+            shake = 12;
+            open_dialogue(DLG_PICKPOCKET);
+        } else {
+            open_dialogue(DLG_TRAMP_HELLO);
+        }
+    }
+}
+
+/* Coins, top right: a coin icon and the count (font digit as a sprite). */
+#define MONEY_OAM 18              /* free since the Ep1 rat is gone */
+static void update_money(uint8_t on) {
+    if (!on) {
+        move_sprite(MONEY_OAM, 0, 0);
+        move_sprite(MONEY_OAM + 1, 0, 0);
+        return;
+    }
+    set_sprite_tile(MONEY_OAM, txt_coin[0]);
+    set_sprite_prop(MONEY_OAM, 3);
+    move_sprite(MONEY_OAM, 148, 20);
+    set_sprite_tile(MONEY_OAM + 1, txt_digits[money]);
+    set_sprite_prop(MONEY_OAM + 1, 3);
+    move_sprite(MONEY_OAM + 1, 156, 20);
 }
 
 /* Lamp light breathes a little: palette 3 (street lamps) colours 2-3
@@ -628,8 +616,10 @@ static void update_barks(void) {
    (one every 1-4 s), never a continuous noise. */
 /* Music for each room, in ROOM_* order (tools/music.py). */
 static const uint8_t room_song[ROOM_COUNT] = {
-    SONG_STREET, SONG_MARKET, SONG_MARKET, SONG_CAFE, SONG_RIVER, SONG_RIVER, SONG_METRO,
-    SONG_STREET, SONG_CAFE, SONG_CAFE    /* Bourse, hotel, brasserie */
+    SONG_MARKET, SONG_STREET, SONG_CAFE, SONG_RIVER, SONG_METRO,   /* Les Halles */
+    SONG_STREET, SONG_STREET, SONG_STREET,                         /* Cité */
+    SONG_STREET, SONG_CAFE, SONG_GAME, SONG_RIVER,                 /* Saint-Michel */
+    SONG_STREET, SONG_CAFE                                         /* Saint-Germain */
 };
 
 static void update_ambience(void) {
@@ -654,8 +644,8 @@ void main(void) {
     title_screen();
     lang_menu();
     if (save_read() && continue_menu()) {   /* back where the player left off */
-        event_unpack(save_buf + 12);
-        howto_seen = save_buf[10];
+        event_unpack(save_buf + 13);
+        howto_seen = save_buf[10] | ((uint16_t)save_buf[12] << 8);
         music_set_muted(save_buf[11]);
         player_place((int16_t)(save_buf[5] | ((uint16_t)save_buf[6] << 8)),
                      (int16_t)(save_buf[7] | ((uint16_t)save_buf[8] << 8)), save_buf[9]);
@@ -666,9 +656,10 @@ void main(void) {
         goal_print(2);
     } else {
         intro();
-        player_place(84, 92, DIR_LEFT);
+        player_place(72, 120, DIR_UP);
         dawn_stage = 0;
-        enter_room(ROOM_STREET);
+        money = 2;                         /* two coins in the poet's pocket */
+        enter_room(ROOM_BALTARD);
         box_open(4);
         box_print(1, 1, txt_caption);
         box_print(1, 2, txt_caption_2);
@@ -735,7 +726,7 @@ void main(void) {
                 caption_note = 0;   /* a reminder: a call may replace it */
             }
             update_barks();
-            update_cat();
+            update_encounter();
             update_ambience();
             music_play(room_song[cur_room]);   /* no-op while it already plays */
             break;
@@ -751,11 +742,16 @@ void main(void) {
             }
             break;
 
-        case ST_LIFT: {
-            uint8_t r = lift_update();
-            if (r != MG_RUNNING)
-                open_dialogue(lift_punch ? event_punch_result(r == MG_SUCCESS)
-                                         : event_lift_result(r == MG_SUCCESS));
+        case ST_METRO: {
+            uint8_t r = metro_update();
+            if (r == MG_SUCCESS) {
+                event_metro(metro_choice);
+                sound_confirm();
+                player_place(metro_x, metro_y, DIR_DOWN);
+                enter_room(metro_room);
+                save_write();
+                state = ST_WALK;
+            } else if (r == MG_FAIL) state = ST_WALK;
             break;
         }
 
@@ -784,16 +780,28 @@ void main(void) {
 
         case ST_GAME: {
             uint8_t r;
-            if (game_ev == EV_SERVE) r = serve_update();
-            else if (game_ev == EV_CUPS) r = cups_update();
+            if (game_ev == EV_CUPS) r = cups_update();
             else if (game_ev == EV_CHASE) r = chase_update();
-            else r = catch_update();
+            else if (game_ev == EV_PETANQUE) r = petanque_update();
+            else if (game_ev == EV_JAZZ) r = jazz_update();
+            else if (game_ev == EV_FIND) r = find_update();
+            else r = toss_update();
             if (r != MG_RUNNING) open_dialogue(event_game_result(game_ev, r == MG_SUCCESS));
             break;
         }
 
         case ST_DAWN:         /* daybreak; A/START after the caption: the end screen */
             if (day_update(joy_pressed)) {
+                epilogue_show();
+                sound_confirm();
+                state = ST_EPILOGUE;
+            }
+            break;
+
+        case ST_EPILOGUE:     /* 3 March 1969; START: the end screen */
+            if (joy_pressed & (J_UP | J_DOWN)) {
+                if (box_more()) sound_blip();
+            } else if (joy_pressed & (J_START | J_A)) {
                 end_show();
                 sound_confirm();
                 state = ST_END;
@@ -820,7 +828,7 @@ void main(void) {
         update_markers();
         update_juice();
         hud_update(state == ST_WALK || state == ST_DIALOGUE);   /* carried items, top-left */
-        rat_update(state == ST_WALK);
+        update_money(state == ST_WALK || state == ST_NOTEBOOK);
         bubble_update(state == ST_WALK ? bark_from : NO_BARK);
         if (state != ST_END && state != ST_DAWN) flicker_lamps();
     }

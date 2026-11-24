@@ -8,61 +8,6 @@
 #include "ko.h"        /* far_read */
 #include "sound.h"
 
-#define BAR_X 2
-#define BAR_LEN 16
-
-/* ---------------------------------------------------------------- lift */
-static uint8_t cur, dir, speed, timer, zone_lo, zone_hi;
-static const uint8_t zone_lo_by_level[3] = { 6, 7, 7 };
-static const uint8_t zone_hi_by_level[3] = { 9, 8, 8 };
-static const uint8_t speed_by_level[3]   = { 4, 4, 3 };   /* frames per cell */
-
-static void draw_bar(void) {
-    uint8_t i, t;
-    for (i = 0; i < BAR_LEN; i++) {
-        if (i == cur) t = GLYPH_BAR_CURSOR;
-        else if (i >= zone_lo && i <= zone_hi) t = GLYPH_BAR_ZONE;
-        else t = GLYPH_BAR;
-        box_tile(BAR_X + i, 3, t);
-    }
-}
-
-void lift_start(uint8_t level) BANKED {
-    timing_start(level, txt_lift_1, txt_lift_2);
-}
-
-/* The same timing bar, with its own two lines of instructions. */
-void timing_start(uint8_t level, const uint8_t *line1, const uint8_t *line2) BANKED {
-    box_open(5);
-    box_print(1, 1, line1);
-    box_print(1, 2, line2);
-    if (level > 2) level = 2;
-    zone_lo = zone_lo_by_level[level];
-    zone_hi = zone_hi_by_level[level];
-    speed = speed_by_level[level];
-    cur = 0;
-    dir = 1;
-    timer = 0;
-    draw_bar();
-}
-
-uint8_t lift_update(void) BANKED {
-    if (joy_pressed & J_A) {
-        box_close();
-        return (cur >= zone_lo && cur <= zone_hi) ? MG_SUCCESS : MG_FAIL;
-    }
-    if (++timer >= speed) {
-        timer = 0;
-        if (dir) {
-            if (++cur == BAR_LEN - 1) dir = 0;
-        } else {
-            if (--cur == 0) dir = 1;
-        }
-        draw_bar();
-    }
-    return MG_RUNNING;
-}
-
 /* ---------------------------------------------------------------- dial */
 /* A 1967 Paris number: a three-letter exchange (ODÉon 8400) and 4 digits.
    Slot 0 is the exchange, slots 1-4 the digits. */

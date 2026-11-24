@@ -60,10 +60,10 @@ Look at them. Dancing round the crates. Like a wedding. Or a funeral.
 Come. The sun's coming up and they're throwing flowers. Help me throw mine!
 
 [bark_fernand]
-FERNAND: My plate, artist! Mme Roux, quai.
+FERNAND: My plate! Ask Mme Roux!
 
 [bark_fernand_trail]
-FERNAND: Red scarf, métro. Go, go!
+FERNAND: Red scarf. Métro. Go!
 
 # ---------------------------------------------------------------- Mme Roux
 [roux_hello]
@@ -77,7 +77,7 @@ He dropped this. A métro ticket. Here, take it. You'll catch him. I'm too old f
 MME ROUX: Red scarf. Skinny. He went down into the métro, rue Baltard.
 
 [bark_roux]
-MME ROUX: Thief! Oh, you! Come here!
+MME ROUX: Psst! You! Come here!
 
 # ---------------------------------------------------------------- Les Halles people
 [porter_hello]
@@ -110,7 +110,7 @@ ACCORDION: They asked for one more waltz. Then one more. I'll play till my finge
 ACCORDION: Requests? Everybody wants the same three songs tonight. The sad ones.
 
 [bark_musician]
-ACCORDION: One, two, three. One, two...
+ACCORDION: One, two, three...
 
 [dancer_hello]
 DANCER: Don't stand there, dance! Tomorrow they'll take the crates and the music with them.
@@ -290,7 +290,7 @@ The jazz cellar? Down the little street, on the right. They'll let anybody in. A
 STUDENT: Down the street, the cellar with the music. Can't miss it.
 
 [bark_student]
-STUDENT: Hey, poet! Got a cigarette? No?
+STUDENT: Hey, poet! A smoke? No?
 
 [doorman_hello]
 DOORMAN: Full. Members only. Musicians only. Tonight, nobody.
@@ -379,7 +379,7 @@ That plate is what his father wanted. Tell him you know that. Talk to him like a
 OLD POET: Talk to Lulu like a man. And write, young man. Every night.
 
 [bark_old_poet]
-OLD POET: You there. Yes, you. Sit.
+OLD POET: You. Yes, you. Sit.
 
 [waiter2_hello]
 WAITER: Closing soon. Well, closing is a big word. We never really close.
@@ -400,7 +400,7 @@ A bookshop, still lit. Books in the window lean on each other like tired friends
 A card is stuck in the window: "Poems wanted. ODÉ 6120." You note it down.
 
 [metro_sg]
-METRO SAINT-GERMAIN-DES-PRÉS. Steps down beside the church.
+The métro, Saint-Germain. Steps down beside the church.
 
 # ---------------------------------------------------------------- Lulu
 [lulu_hidden]
