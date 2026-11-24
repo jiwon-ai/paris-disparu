@@ -116,21 +116,35 @@ def convert(img, palettes, limit=128):
             index[k] = len(uniq)
             uniq.append(k)
     tmap = [index[k] for k in keys]
-    # Too many tiles: fold the least used tile into its nearest neighbour.
+    # Too many tiles: fold the tile whose loss shows least (times used x
+    # pixels differing from its nearest neighbour) into that neighbour.
     alive = list(range(len(uniq)))
     remap = list(range(len(uniq)))
-    while len(alive) > limit:
-        use = {t: 0 for t in alive}
-        for t in tmap:
-            use[remap[t]] += 1
-        victim = min(alive, key=lambda t: (use[t], t))
+    if len(alive) > limit:
+        flat = [[int(c) for r in t for c in r] for t in uniq]
         def dist(a, b):
-            return sum(ca != cb for ra, rb in zip(uniq[a], uniq[b]) for ca, cb in zip(ra, rb))
-        target = min((t for t in alive if t != victim), key=lambda t: dist(victim, t))
-        for i, r in enumerate(remap):
-            if r == victim:
-                remap[i] = target
-        alive.remove(victim)
+            return sum(x != y for x, y in zip(flat[a], flat[b]))
+        n = len(uniq)
+        D = [[0] * n for _ in range(n)]
+        for a in range(n):
+            for b in range(a + 1, n):
+                D[a][b] = D[b][a] = dist(a, b)
+        use = [0] * n
+        for t in tmap:
+            use[t] += 1
+        while len(alive) > limit:
+            best = None
+            for v in alive:
+                tgt = min((t for t in alive if t != v), key=lambda t: D[v][t])
+                cost = use[v] * D[v][tgt]
+                if best is None or cost < best[0]:
+                    best = (cost, v, tgt)
+            _, victim, target = best
+            for i, r in enumerate(remap):
+                if r == victim:
+                    remap[i] = target
+            use[target] += use[victim]
+            alive.remove(victim)
     order = {t: i for i, t in enumerate(alive)}
     tiles = [list(uniq[t]) for t in alive]
     tmap = [order[remap[t]] for t in tmap]

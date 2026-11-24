@@ -79,10 +79,6 @@ BOX_TILES = {
     "BAR":    ["........", "........", "........", "########", "########", "........", "........", "........"],
     "BAR_ZONE": ["........", "........", "########", "########", "########", "########", "........", "........"],
     "BAR_CURSOR": ["...##...", "..####..", ".######.", "########", "########", ".######.", "..####..", "...##..."],
-    # coffee gauge: the dark zone is framed above and below, coffee is mid tone
-    "POUR_ZONE": ["........", "########", "........", "########", "########", "........", "########", "........"],
-    "COFFEE": ["........", "........", "22222222", "22222222", "22222222", "22222222", "........", "........"],
-    "COFFEE_ZONE": ["........", "########", "22222222", "22222222", "22222222", "22222222", "########", "........"],
 }
 
 font_chars = list(font.GLYPHS.keys())
@@ -160,6 +156,8 @@ for name, rows in art.BANK1_ICONS:                       # 8x16: top, bottom
     rows = ["".join(SPR_MAP[c] for c in r) for r in rows]
     bank1_spr_defs.append((name, PORTRAIT_BASE + len(portrait_data) // 16))
     portrait_data += encode_tile(rows[0:8]) + encode_tile(rows[8:16])
+if PORTRAIT_BASE + len(portrait_data) // 16 > 236:
+    fail("VRAM bank 1 tiles 236-247 are the coin count and the item icons (items.c, main.c)")
 # Extra sprites at tile 0.. of VRAM bank 1 (free since scenery is at 0x9000).
 low_data, low_defs = [], []
 for name, rows in art.BANK1_LOW_SPRITES:

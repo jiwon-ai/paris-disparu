@@ -59,8 +59,8 @@ static const hotspot_t quai_hotspots[] = {
 
 /* --- Les Halles ticket hall -------------------------------------------- */
 static const hotspot_t metro_hotspots[] = {
-    {  2, 4, 3, 3, DLG_METRO_PLATFORM },   /* the window, then the gate */
-    { 12, 5, 4, 2, DLG_METRO_PLATFORM },
+    {  3, 4, 3, 5, DLG_METRO_PLATFORM },   /* the window, then the gate */
+    { 12, 5, 4, 4, DLG_METRO_PLATFORM },
 };
 static const door_t metro_doors[] = {
     { 8, 17, 4, 1, ROOM_BALTARD, 64, 100, DIR_LEFT },

@@ -13,5 +13,8 @@ uint8_t item_note(void) BANKED;   /* picture over the open caption, or a "You go
                                      caption of its own (returns 1 then) */
 
 void hud_update(uint8_t on) BANKED; /* carried-item icons top-left; 0 hides them */
+void money_hud(uint8_t on) BANKED;  /* coin count top-right; 0 hides it */
+void encounter_place(void) BANKED;  /* entering a room: the stranger starts off screen */
+uint8_t encounter_update(uint8_t on) BANKED;   /* 1 tramp / 2 pickpocket reached the poet */
 
 #endif

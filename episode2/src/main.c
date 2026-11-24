@@ -338,7 +338,6 @@ static uint8_t dawn_now(void) {
     return n;
 }
 
-static int16_t enc_x, enc_y;      /* the stranger walking up (encounter) */
 static void enter_room(uint8_t room) {
     close_caption();             /* nothing from the previous room stays behind */
     actors_hide();
@@ -346,8 +345,7 @@ static void enter_room(uint8_t room) {
     actors_init_room();
     player_unstick();
     event_enter_room(room);
-    enc_x = player.x < 80 ? 168 : -16;     /* someone comes from the far side */
-    enc_y = player.y;
+    encounter_place();
     bark_armed = 0xFF;
     ambience_timer = 20;
     actors_draw();
@@ -519,51 +517,6 @@ static void animate_river(void) {
     }
 }
 
-/* A random encounter: a tramp or a pickpocket walks up to the poet. */
-#define ENC_OAM 36
-static void update_encounter(void) {
-    if (!encounter || state != ST_WALK) {
-        move_sprite(ENC_OAM, 0, 0);
-        move_sprite(ENC_OAM + 1, 0, 0);
-        return;
-    }
-    if (enc_x < player.x - 14) enc_x += 2;
-    else if (enc_x > player.x + 14) enc_x -= 2;
-    if (enc_y < player.y) enc_y++;
-    else if (enc_y > player.y) enc_y--;
-    sprite16(ENC_OAM, enc_x, enc_y, encounter == 2 ? SPR1_THIEF_0 : SPR1_SLEEPER,
-             (encounter == 2 ? 4 : 1) | S_BANK1 | (enc_x > player.x ? S_FLIPX : 0));
-    if (enc_x >= player.x - 14 && enc_x <= player.x + 14 && enc_y == player.y) {
-        uint8_t who = encounter;
-        encounter = 0;
-        move_sprite(ENC_OAM, 0, 0);
-        move_sprite(ENC_OAM + 1, 0, 0);
-        if (who == 2) {
-            if (money) money--;
-            shake = 12;
-            open_dialogue(DLG_PICKPOCKET);
-        } else {
-            open_dialogue(DLG_TRAMP_HELLO);
-        }
-    }
-}
-
-/* Coins, top right: a coin icon and the count (font digit as a sprite). */
-#define MONEY_OAM 18              /* free since the Ep1 rat is gone */
-static void update_money(uint8_t on) {
-    if (!on) {
-        move_sprite(MONEY_OAM, 0, 0);
-        move_sprite(MONEY_OAM + 1, 0, 0);
-        return;
-    }
-    set_sprite_tile(MONEY_OAM, txt_coin[0]);
-    set_sprite_prop(MONEY_OAM, 3);
-    move_sprite(MONEY_OAM, 148, 20);
-    set_sprite_tile(MONEY_OAM + 1, txt_digits[money]);
-    set_sprite_prop(MONEY_OAM + 1, 3);
-    move_sprite(MONEY_OAM + 1, 156, 20);
-}
-
 /* Lamp light breathes a little: palette 3 (street lamps) colours 2-3
    move between three close levels at random. */
 static const palette_color_t lamp_glow[3][2] = {
@@ -726,7 +679,16 @@ void main(void) {
                 caption_note = 0;   /* a reminder: a call may replace it */
             }
             update_barks();
-            update_encounter();
+            {
+                uint8_t who = encounter_update(1);
+                if (who == 2) {             /* the pickpocket: one coin gone */
+                    if (money) money--;
+                    shake = 12;
+                    open_dialogue(DLG_PICKPOCKET);
+                } else if (who) {
+                    open_dialogue(DLG_TRAMP_HELLO);
+                }
+            }
             update_ambience();
             music_play(room_song[cur_room]);   /* no-op while it already plays */
             break;
@@ -828,7 +790,7 @@ void main(void) {
         update_markers();
         update_juice();
         hud_update(state == ST_WALK || state == ST_DIALOGUE);   /* carried items, top-left */
-        update_money(state == ST_WALK || state == ST_NOTEBOOK);
+        money_hud(state == ST_WALK || state == ST_NOTEBOOK);
         bubble_update(state == ST_WALK ? bark_from : NO_BARK);
         if (state != ST_END && state != ST_DAWN) flicker_lamps();
     }

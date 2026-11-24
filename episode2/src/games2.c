@@ -339,32 +339,32 @@ uint8_t toss_update(void) BANKED {
    top to bottom (the line runs north-south). Open stops can be chosen;
    Up/Down moves, A rides, B goes back. */
 uint8_t metro_choice;
-static const uint8_t mp_row[STOP_COUNT] = { 5, 9, 11, 15 };   /* Les Halles, Cité, St-Michel, St-Germain */
+static const uint8_t mp_row[STOP_COUNT] = { 5, 9, 11, 15 };   /* rows of the box */   /* Les Halles, Cité, St-Michel, St-Germain */
 static uint8_t mp_sel;
 
 static void mp_draw(void) {
     uint8_t i;
     for (i = 0; i < STOP_COUNT; i++)
-        box_tile(2, mp_row[i], i == mp_sel ? GLYPH_ARROW_RIGHT : G_SPACE);
+        box_tile(1, mp_row[i], i == mp_sel ? GLYPH_ARROW_RIGHT : G_SPACE);
 }
 
 void metro_start(void) BANKED {
     uint8_t r;
     box_open(SCREEN_H / 8);
     box_print(1, 1, txt_mp_title);
-    for (r = 3; r <= 16; r++) box_tile(4, r, GLYPH_PIPE);
-    box_print(6, 3, txt_mp_s0);       /* Étienne Marcel (closed tonight) */
-    box_print(6, 5, txt_mp_s1);       /* LES HALLES */
-    box_print(6, 7, txt_mp_s2);       /* Châtelet */
-    box_print(6, 9, txt_mp_s3);       /* CITÉ */
-    box_print(6, 11, txt_mp_s4);      /* SAINT-MICHEL */
-    box_print(6, 13, txt_mp_s5);      /* Odéon */
-    box_print(6, 15, txt_mp_s6);      /* ST-GERMAIN */
-    for (r = 0; r < STOP_COUNT; r++) box_tile(4, mp_row[r], GLYPH_COIN);
-    box_tile(4, 3, GLYPH_DOT);
-    box_tile(4, 7, GLYPH_DOT);
-    box_tile(4, 13, GLYPH_DOT);
-    box_print(1, 17, txt_mp_keys);
+    for (r = 3; r <= 15; r++) box_tile(3, r, GLYPH_PIPE);
+    box_print(5, 3, txt_mp_s0);       /* Étienne Marcel (closed tonight) */
+    box_print(5, 5, txt_mp_s1);       /* LES HALLES */
+    box_print(5, 7, txt_mp_s2);       /* Châtelet */
+    box_print(5, 9, txt_mp_s3);       /* CITÉ */
+    box_print(5, 11, txt_mp_s4);      /* SAINT-MICHEL */
+    box_print(5, 13, txt_mp_s5);      /* Odéon */
+    box_print(5, 15, txt_mp_s6);      /* ST-GERMAIN */
+    for (r = 0; r < STOP_COUNT; r++) box_tile(3, mp_row[r], GLYPH_COIN);
+    box_tile(3, 3, GLYPH_DOT);
+    box_tile(3, 7, GLYPH_DOT);
+    box_tile(3, 13, GLYPH_DOT);
+    box_print(1, 16, txt_mp_keys);
     mp_sel = cur_room == ROOM_METRO ? 1 : 0;
     box_flush();
     mp_draw();
