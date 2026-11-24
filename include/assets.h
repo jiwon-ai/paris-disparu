@@ -155,7 +155,12 @@
 #define SPR1_CRITIC 16   /* VRAM bank 1, low tiles */
 #define SPR1_YOUNG_MAN 20   /* VRAM bank 1, low tiles */
 #define SPR1_SPARKLE 24   /* VRAM bank 1, low tiles */
-#define LOW_TILE_COUNT 28
+#define SPR1_ROUX 28   /* VRAM bank 1, low tiles */
+#define SPR1_COOK 32   /* VRAM bank 1, low tiles */
+#define SPR1_FORT2 36   /* VRAM bank 1, low tiles */
+#define SPR1_SLEEPER 40   /* VRAM bank 1, low tiles */
+#define SPR1_WORKER_CAFE 44   /* VRAM bank 1, low tiles */
+#define LOW_TILE_COUNT 48
 #define GLYPH_DIGIT0 198
 #define GLYPH_CUP 227
 #define GLYPH_COIN 228

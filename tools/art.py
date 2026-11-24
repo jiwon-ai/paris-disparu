@@ -36,7 +36,7 @@ SPR_PALETTES = [
     [(0, 0, 0), (3, 3, 6), (8, 11, 17), (27, 21, 9)],    # 1 fort: blue-grey blouse, yellow leather coltin
     [(0, 0, 0), (3, 3, 6), (18, 6, 6), (28, 21, 16)],    # 2 merchant
     [(0, 0, 0), (3, 3, 6), (28, 28, 27), (25, 18, 13)],  # 3 cafe: black waistcoat (outline colour), white apron
-    [(0, 0, 0), (3, 3, 6), (12, 11, 10), (27, 20, 15)],  # 4 stranger: grey overcoat and hat
+    [(0, 0, 0), (3, 3, 6), (15, 15, 16), (27, 20, 15)],  # 4 stranger: grey overcoat and hat (cool grey, apart from the beige player)
     [(0, 0, 0), (3, 3, 6), (8, 19, 6), (24, 16, 7)],     # 5 crate of cabbages
     [(0, 0, 0), (3, 3, 6), (23, 5, 5), (24, 16, 7)],     # 6 crate of apples
     [(0, 0, 0), (3, 3, 6), (30, 15, 3), (24, 16, 7)],    # 7 crate of carrots
@@ -868,6 +868,101 @@ YOUNG_MAN = [        # lanky student, longish hair, books under the arm
     ".....#o..o#.....",
     "....##....##....",
 ]
+# People of the night, each with their own silhouette (2026-11-24, after
+# "everyone dresses alike"). Coltin: read (HISTORICAL_RESEARCH Clothing);
+# the rest are drawing choices, no claim.
+ROUX = [             # bouquiniste: hair in a bun, scarf, long coat, gloved hands
+    "......###.......",
+    ".....#####......",
+    "....#######.....",
+    "....#ssssss#....",
+    "....s#ss#ss.....",
+    ".....ssssss.....",
+    "....##s##s##....",
+    "...#oo####oo#...",
+    "...#oooooooo#...",
+    "..s#oooooooo#s..",
+    "...#oooooooo#...",
+    "...#oooooooo#...",
+    "..#oooooooooo#..",
+    "..#oooooooooo#..",
+    "...##########...",
+    "....##....##....",
+]
+COOK = [             # moustache, white double-breasted jacket, a basket on the arm
+    "................",
+    ".....#####......",
+    "....#######.....",
+    "....#ssssss#....",
+    "....s#ss#ss.....",
+    ".....#####......",
+    "......ssss......",
+    "....#oooooo#....",
+    "...#o#oo#oo#....",
+    "...#oooooo#s###.",
+    "...#oooooo#####.",
+    "...#oooooo#s#s#.",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....##..##.....",
+    "....###..###....",
+]
+FORT2 = [            # a fort with a sack on his shoulder (coltin)
+    "......####......",
+    ".....#ssss#.....",
+    "#ssssssssssssss#",
+    ".##############.",
+    "....#ssssss#####",
+    "....#s#ss#s#sss#",
+    ".....#ssss#ssss#",
+    "...##oooooo#sss#",
+    "..#oooooooo####.",
+    "..#oo#ss#ooo#...",
+    "..so#oooooo#os..",
+    "...#oooooooo#...",
+    "...#oooooooo#...",
+    "....#ooooooo#...",
+    "....###..###....",
+    "...####..####...",
+]
+SLEEPER = [          # flat cap, dark scarf, eyes shut, hands in pockets
+    "................",
+    "................",
+    ".....######.....",
+    "....#########...",
+    "....#ssssss#....",
+    "....s##s##s.....",
+    ".....ssssss.....",
+    "....########....",
+    "...#oooooooo#...",
+    "...#oooooooo#...",
+    "...#o#oooo#o#...",
+    "...#oooooooo#...",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....##..##.....",
+    "....###..###....",
+]
+WORKER_CAFE = [      # a fort dozing at the counter: coltin, eyes shut, a cup
+    "......####......",
+    ".....#ssss#.....",
+    "#ssssssssssssss#",
+    ".##############.",
+    "....#ssssss#....",
+    "....s##s##s.....",
+    ".....#ssss#.....",
+    "...##oooooo##...",
+    "..#oooooooooo#..",
+    "..#oo#ss#oooo#..",
+    "..so#oooooo#s##.",
+    "...#oooooooo#s#.",
+    "...#oooooooo#...",
+    "....#ooooooo#...",
+    "....###..###....",
+    "...####..####...",
+]
+
+
 def _sparkle():
     """16x16 four-point star with short diagonals: the "got it!" burst.
     Sprite palette 7 (orange 'o', gold 's')."""
@@ -896,6 +991,11 @@ BANK1_LOW_SPRITES = [
     ("CRITIC", CRITIC),
     ("YOUNG_MAN", YOUNG_MAN),
     ("SPARKLE", SPARKLE),
+    ("ROUX", ROUX),
+    ("COOK", COOK),
+    ("FORT2", FORT2),
+    ("SLEEPER", SLEEPER),
+    ("WORKER_CAFE", WORKER_CAFE),
 ]
 
 

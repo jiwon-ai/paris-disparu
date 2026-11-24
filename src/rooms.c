@@ -8,7 +8,7 @@
 static const npc_def_t street_npcs[] = {
     { 120, 64, SPR_STRANGER_0, 4, NPC_STRANGER },
     { 136, 100, SPR1_CHANTEUSE, 3 | S_BANK1, NPC_CHANTEUSE },   /* cameo */
-    { 24, 108, SPR1_ACTOR, 4 | S_BANK1, NPC_ACTOR },            /* cameo */
+    { 24, 108, SPR1_ACTOR, 6 | S_BANK1, NPC_ACTOR },            /* cameo */
 };
 static const hotspot_t street_hotspots[] = {
     {  0, 5, 1, 4, DLG_PLAQUE },     /* plaque above reach: whole wall column */
@@ -32,8 +32,8 @@ static const door_t street_doors[] = {
 /* --- ROOM_ENTRANCE: rue Baltard, the open street between the pavilions --- */
 static const npc_def_t entrance_npcs[] = {
     { 64, 40, SPR_PORTER_0, 1, NPC_PORTER },    /* Dede, beside the cart */
-    { 32, 100, SPR_PHOTO_0, 4, NPC_PHOTO },     /* photographing the unloading */
-    { 40, 16, SPR1_FILMMAKER, 0 | S_BANK1, NPC_FILMMAKER },     /* cameo */
+    { 32, 100, SPR_PHOTO_0, 2, NPC_PHOTO },     /* photographing the unloading */
+    { 40, 16, SPR1_FILMMAKER, 4 | S_BANK1, NPC_FILMMAKER },     /* cameo */
 };
 static const hotspot_t entrance_hotspots[] = {
     {  5, 6, 3, 1, DLG_CART_LOOK },   /* the cart: handled by events */
@@ -52,8 +52,8 @@ static const door_t entrance_doors[] = {
 /* --- ROOM_MARKET: inside the pavilion -------------------------------------- */
 static const npc_def_t market_npcs[] = {
     { 16, 40, SPR_MERCHANT_0, 2, NPC_MERCHANT },
-    { 136, 96, SPR_PORTER_0, 1, NPC_FORT2 },      /* another fort, resting */
-    { 48, 120, SPR_CAFE_0, 3, NPC_COOK },         /* a cook in a white apron, eyeing the crates */
+    { 136, 96, SPR1_FORT2, 1 | S_BANK1, NPC_FORT2 },      /* another fort, resting */
+    { 48, 120, SPR1_COOK, 3 | S_BANK1, NPC_COOK },         /* a cook in a white apron, eyeing the crates */
 };
 static const hotspot_t market_hotspots[] = {
     {  1, 3, 5, 3, DLG_STALL_CHOUX },
@@ -72,9 +72,9 @@ static const door_t market_doors[] = {
 /* --- ROOM_CAFE ------------------------------------------------------------- */
 static const npc_def_t cafe_npcs[] = {
     { 40, 18, SPR_CAFE_0, 3, NPC_CAFE },
-    { 88, 40, SPR_PORTER_0, 1, NPC_WORKER },
+    { 88, 40, SPR1_WORKER_CAFE, 1 | S_BANK1, NPC_WORKER },
     { 24, 64, SPR1_PHILOSOPHER, 4 | S_BANK1, NPC_PHILOSOPHER }, /* cameo */
-    { 44, 80, SPR1_CRITIC, 0 | S_BANK1, NPC_CRITIC },          /* cameo */
+    { 44, 80, SPR1_CRITIC, 6 | S_BANK1, NPC_CRITIC },          /* cameo */
 };
 static const hotspot_t cafe_hotspots[] = {
     { 17, 3, 1, 1, DLG_PHONE_LOOK },
@@ -93,8 +93,8 @@ static const door_t cafe_doors[] = {
 /* --- ROOM_QUAI: the quai on the right bank --------------------------------- */
 static const npc_def_t quai_npcs[] = {
     { 120, 60, SPR_SINGER_0, 4, NPC_SINGER },     /* listening to the river */
-    { 40, 46, SPR_MERCHANT_0, 4, NPC_ROUX },      /* Mme Roux, near her box */
-    { 136, 44, SPR1_NOVELIST, 3 | S_BANK1, NPC_NOVELIST },      /* cameo */
+    { 40, 46, SPR1_ROUX, 5 | S_BANK1, NPC_ROUX },      /* Mme Roux, near her box */
+    { 136, 44, SPR1_NOVELIST, 6 | S_BANK1, NPC_NOVELIST },      /* cameo */
 };
 static const hotspot_t quai_hotspots[] = {
     {  3, 12, 2, 1, DLG_QUAI_BOX },    /* Mme Roux's box: reachable between the trees */
@@ -133,9 +133,9 @@ static const hotspot_t pont_hotspots[] = {
 /* --- ROOM_METRO: the ticket hall of Les Halles station -------------------- */
 static const npc_def_t metro_npcs[] = {
     { 84, 52, SPR_PUNCHER_0, 4, NPC_PUNCHER },    /* at the platform gate */
-    { 136, 80, SPR1_WRITER, 4 | S_BANK1, NPC_WRITER },          /* cameo */
-    { 140, 104, SPR1_YOUNG_MAN, 4 | S_BANK1, NPC_YOUNG_MAN },   /* cameo */
-    { 48, 112, SPR_STRANGER_0, 1, NPC_SLEEPER },  /* blue work clothes, by the bench */
+    { 136, 80, SPR1_WRITER, 2 | S_BANK1, NPC_WRITER },          /* cameo */
+    { 140, 104, SPR1_YOUNG_MAN, 5 | S_BANK1, NPC_YOUNG_MAN },   /* cameo */
+    { 48, 112, SPR1_SLEEPER, 1 | S_BANK1, NPC_SLEEPER },  /* blue work clothes, by the bench */
 };
 static const hotspot_t metro_hotspots[] = {
     {  2, 4, 3, 3, DLG_METRO_WINDOW },

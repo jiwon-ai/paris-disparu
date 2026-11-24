@@ -52,7 +52,12 @@ details vague until they are verified.
 | Germaine (merchant) | Dress, apron, headscarf | Reconstruction, to research | |
 | Player | Beige raincoat | Reconstruction, to research (1960s street fashion) | |
 | Man with the notebook | Grey overcoat and hat | Reconstruction, to research | |
-| Painter | Smock and beret | Reconstruction (a cliché, kept deliberately light) | |
+| Painter | Smock and beret | Reconstruction (a cliché, kept deliberately light) |
+| Mme Roux (bouquiniste), 2026-11-24 | Hair in a bun, scarf, long green coat, gloved hands | Reconstruction, drawing choice (no source on bouquinistes' dress read) |
+| Market cook, 2026-11-24 | Moustache, white double-breasted jacket, basket | Reconstruction, drawing choice |
+| Second fort (market), café fort, 2026-11-24 | Coltin (read, see first row); one carries a sack, one dozes with a cup | Coltin read; poses are fiction |
+| Night worker (métro), 2026-11-24 | Flat cap, dark scarf, blue work jacket | Reconstruction, drawing choice |
+| Cameo colours (actor, critic, novelist red; young man green; writer dark red; filmmaker, photographer recoloured) | Colours chosen so no two people in a room share a palette | Drawing choice, no likeness or claim | |
 
 ## Colours (backgrounds)
 
