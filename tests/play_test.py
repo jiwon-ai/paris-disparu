@@ -175,7 +175,7 @@ def dialogue(choice=None, max_pages=24):
             tap("a", 6)
             continue
         if not window_on() or window_row(1).startswith(("Up/Down", "Lift!", "Punch!", "New clue", "Extra done", "Secret found", "QUEST COMPLETE",
-                                                        "Coffee rush", "Watch the", "Which cup", "Got ", "Catch him",
+                                                        "Pour coffee", "Watch the", "Which cup", "Got ", "Catch him",
                                                         "Curiosity", "Mystery solved")) \
                 or window_row(2) == "THE END":
             break
@@ -274,24 +274,22 @@ def quest_note(name, clue):
 
 
 def play_serve(win=True):
-    """Coffee rush: read each order and serve it (or serve the wrong thing)."""
-    items = ("COFFEE", "SOUP", "BREAD")
-    xs = (1, 8, 13)
-    for _ in range(3000):
-        if not (window_on() and window_row(1).startswith("Coffee rush")):
+    """Pour coffee: hold A until the coffee reaches the dark zone (win) or
+    hold it until it spills (lose), for each cup."""
+    for _ in range(40):
+        if not (window_on() and window_row(1).startswith("Pour coffee")):
             return
-        r2 = window_row(2)
-        want = next((i for i, w in enumerate(items) if "Order:" in r2 and w in r2), None)
-        sel = [i for i, x in enumerate(xs) if win_tile(x, 4) == HDR["GLYPH_ARROW_RIGHT"]]
-        if want is None or not sel:
+        if "Let go" not in window_row(4):
             tick(1)
             continue
-        target, cur = (want if win else (want + 1) % 3), sel[0]
-        while cur != target:
-            tap("right", 2)
-            cur = (cur + 1) % 3
-        tap("a", 2)
-        tick(34)
+        pb.button_press("a")
+        for _ in range(200):
+            tick(1)
+            full = sum(1 for x in range(2, 18) if win_tile(x, 3) == HDR["GLYPH_BAR_CURSOR"])
+            if (win and full == 12) or "Oops" in window_row(4):
+                break
+        pb.button_release("a")
+        tick(60)
 
 
 def play_cups(win=True):
@@ -728,11 +726,11 @@ push("up")
 check(player()[1] == 38, "stopped by the counter (y=%d)" % player()[1])
 tap("a", 0)
 lines = dialogue(choice=0)
-check(any("Give me a" in l for l in lines) and window_row(1).startswith("Coffee rush"), "Simone asks for help: the coffee rush")
+check(any("Give me a" in l for l in lines) and window_row(1).startswith("Pour coffee"), "Simone asks for help: pour the coffee")
 shot("23_serve")
 play_serve(win=False)
 lines = dialogue(choice=0)
-check(any("wrong cups" in l for l in lines), "a bad rush: Simone asks again")
+check(any("coffee everywhere" in l for l in lines), "a bad rush: Simone asks again")
 play_serve()
 lines = dialogue()
 check(any("Fernand's" in l for l in lines), "a good rush: Simone gives the coltin")

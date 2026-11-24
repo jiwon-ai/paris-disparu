@@ -24,75 +24,77 @@ static void put_digit(uint8_t x, uint8_t y, uint8_t n) {
 }
 
 /* ------------------------------------------------------------ coffee rush
-   A customer orders one of three things before the bar runs out. 5 orders,
-   4 right to win. */
-#define SERVE_ROUNDS 5
-#define SERVE_NEED   4
-static const uint8_t * const srv_item[3] = { txt_srv_0, txt_srv_1, txt_srv_2 };
-static const uint8_t srv_x[3] = { 2, 9, 14 };
-static uint8_t s_round, s_want, s_sel, s_hits, s_cells, s_tick, s_speed, s_pause;
-
-static void serve_draw_sel(void) {
-    uint8_t i;
-    for (i = 0; i < 3; i++)
-        box_tile(srv_x[i] - 1, 4, i == s_sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
-}
+   Pour a coffee: hold A and the cup fills; let go while it is in the dark
+   zone. Too little or spilt over: try the next cup. 3 cups, 2 good to win.
+   (Replaced the three-item order game, 2026-11-24: players found it hard.) */
+#define SERVE_ROUNDS 3
+#define SERVE_NEED   2
+#define CUP_LEN      16              /* bar cells, columns 2-17 */
+#define ZONE_LO      10              /* good cells 10-13 */
+#define ZONE_HI      13
+static uint8_t s_round, s_hits, s_fill, s_tick, s_pause, s_pouring;
 
 static void serve_draw_bar(void) {
-    uint8_t i;
-    for (i = 0; i < 16; i++) box_tile(2 + i, 3, i < s_cells ? GLYPH_BAR_ZONE : GLYPH_BAR);
+    uint8_t i, t;
+    for (i = 0; i < CUP_LEN; i++) {
+        if (i < s_fill) t = GLYPH_BAR_CURSOR;                  /* coffee */
+        else if (i >= ZONE_LO && i <= ZONE_HI) t = GLYPH_BAR_ZONE;
+        else t = GLYPH_BAR;
+        box_tile(2 + i, 3, t);
+    }
 }
 
 static void serve_order(void) {
-    s_want = rnd() % 3;
-    s_cells = 16;
+    s_fill = 0;
     s_tick = 0;
-    s_speed = 7 - s_round;            /* frames per cell: faster each order */
-    box_clear(2);
-    box_print(1, 2, txt_srv_table);          /* "Order:" - the one thing to match */
-    box_print(8, 2, srv_item[s_want]);
+    s_pouring = 0;
+    box_clear(4);
+    box_print(1, 4, txt_srv_hint);
     serve_draw_bar();
 }
 
 void serve_start(void) BANKED {
-    uint8_t i;
     seed = DIV_REG | 1;
-    s_round = s_hits = s_sel = s_pause = 0;
+    s_round = s_hits = s_pause = 0;
     box_open(6);
     box_print(1, 1, txt_srv_title);
-    for (i = 0; i < 3; i++) box_print(srv_x[i], 4, srv_item[i]);
     put_digit(16, 1, 0);
     box_print(17, 1, txt_srv_of);
-    serve_draw_sel();
+    box_print(1, 2, txt_srv_hold);
+    box_tile(1, 3, GLYPH_CUP);          /* the cup, filling to the right */
     serve_order();
 }
 
 static uint8_t serve_next(uint8_t hit) {
     if (hit) { s_hits++; sound_confirm(); } else sound_clink();
-    box_clear(2);
     put_digit(16, 1, s_hits);
-    box_print(1, 2, hit ? txt_srv_ok : txt_srv_bad);
-    s_pause = 30;                       /* show the result a moment */
+    box_clear(4);
+    box_print(1, 4, hit ? txt_srv_ok : txt_srv_bad);
+    s_pause = 45;                       /* show the result a moment */
     return MG_RUNNING;
 }
 
 uint8_t serve_update(void) BANKED {
     if (s_pause) {
         if (--s_pause) return MG_RUNNING;
-        if (++s_round == SERVE_ROUNDS) {
+        if (++s_round == SERVE_ROUNDS || s_hits >= SERVE_NEED
+                || s_hits + SERVE_ROUNDS - s_round < SERVE_NEED) {
             box_close();
             return s_hits >= SERVE_NEED ? MG_SUCCESS : MG_FAIL;
         }
         serve_order();
         return MG_RUNNING;
     }
-    if (joy_pressed & J_LEFT)  { s_sel = s_sel ? s_sel - 1 : 2; serve_draw_sel(); sound_blip(); }
-    if (joy_pressed & J_RIGHT) { s_sel = s_sel == 2 ? 0 : s_sel + 1; serve_draw_sel(); sound_blip(); }
-    if (joy_pressed & J_A) return serve_next(s_sel == s_want);
-    if (++s_tick >= s_speed) {
-        s_tick = 0;
-        if (--s_cells == 0) return serve_next(0);   /* too slow */
-        serve_draw_bar();
+    if (joy_held & J_A) {
+        s_pouring = 1;
+        if (++s_tick >= 8) {            /* one cell every 8 frames: slow and steady */
+            s_tick = 0;
+            if (++s_fill > CUP_LEN - 1) return serve_next(0);   /* spilt over */
+            serve_draw_bar();
+            if ((s_fill & 1) == 0) sound_blip();
+        }
+    } else if (s_pouring) {             /* let go: judge the level */
+        return serve_next(s_fill > ZONE_LO && s_fill <= ZONE_HI + 1);
     }
     return MG_RUNNING;
 }

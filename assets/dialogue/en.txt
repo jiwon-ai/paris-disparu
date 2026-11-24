@@ -590,12 +590,12 @@ SIMONE: Still here? The coffee rush won't wait. Help me and the coltin's yours.
 ? Yes | No
 
 [serve_win]
-SIMONE: Five tables, and not a drop spilt! You've got it in your blood.
+SIMONE: Not a drop spilt! You've got it in your blood.
 
 She takes the coltin off its hook. SIMONE: Here. Fernand's hat. Bring it back to him.
 
 [serve_lose]
-SIMONE: Oh là là, the wrong cups everywhere! Again, but listen to the tables.
+SIMONE: Oh là là, coffee everywhere! Again: let go when it reaches the dark part.
 ? Yes | No
 
 [cafe_soup]
