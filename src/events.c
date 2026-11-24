@@ -333,7 +333,7 @@ uint8_t event_talk(uint8_t npc) BANKED {
             return DLG_WAITER_JETON;
         }
         /* fall through */
-    case NPC_NIGHTPORTER: case NPC_SOUPER: {   /* first line, then a second */
+    case NPC_NIGHTPORTER: case NPC_SOUPER: case NPC_ARCHIVIST: {   /* first line, then a second */
         uint8_t k = npc - NPC_ACTOR;
         uint16_t bit = 1u << k;
         if (cameo_met & bit) return DLG_ACTOR_HELLO + 2 * k + 1;   /* his or her hint */

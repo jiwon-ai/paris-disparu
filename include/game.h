@@ -45,6 +45,7 @@
 #define NPC_WAITER      23  /* west end, 2026-11-24: the brasserie waiter, */
 #define NPC_NIGHTPORTER 24  /* the hotel's night porter, */
 #define NPC_SOUPER      25  /* a fort over his soup */
+#define NPC_ARCHIVIST   26  /* cameo, brasserie: big hair and a beard (Perec, unnamed) */
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001

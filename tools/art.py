@@ -1072,6 +1072,24 @@ WAITER = [           # brasserie waiter: moustache, bow tie, waistcoat, long apr
     ".....##..##.....",
     "....###..###....",
 ]
+ARCHIVIST = [        # lots of wavy hair, sideburns, a beard but no moustache
+    "...#.##.##.#....",
+    "..###########...",
+    "..############..",
+    "..###ssssss###..",
+    "..##s#ss#sss##..",
+    "..##ssssssss##..",
+    "...##ssssss##...",
+    "....##s##s##....",
+    "....########....",
+    "...#oo####oo#...",
+    "...#oooooooo#...",
+    "...so#oooo#os...",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....##..##.....",
+    "....###..###....",
+]
 BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
     ("THIEF_0", THIEF_0),  # copied per room into a pool (pool_load, notebook.c)
     ("THIEF_1", THIEF_1),
@@ -1091,6 +1109,7 @@ BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
     ("PHILOSOPHER", PHILOSOPHER),
     ("FILMMAKER", FILMMAKER),
     ("WRITER", WRITER),
+    ("ARCHIVIST", ARCHIVIST),
 ]
 
 

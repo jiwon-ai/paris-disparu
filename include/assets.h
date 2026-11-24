@@ -183,7 +183,8 @@
 #define SPR1_PHILOSOPHER 60   /* VRAM bank 1, low tiles */
 #define SPR1_FILMMAKER 64   /* VRAM bank 1, low tiles */
 #define SPR1_WRITER 68   /* VRAM bank 1, low tiles */
-#define LOW_TILE_COUNT 72   /* all pool sprites, in ROM */
+#define SPR1_ARCHIVIST 72   /* VRAM bank 1, low tiles */
+#define LOW_TILE_COUNT 76   /* all pool sprites, in ROM */
 #define LOW_FIXED 12        /* tiles always loaded (thief, sparkle) */
 #define POOL_SLOTS 10       /* bank-1 sprites one room can hold */
 /* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */
@@ -438,6 +439,8 @@ enum {
     DLG_NIGHTPORTER_AGAIN,
     DLG_SOUPER_HELLO,
     DLG_SOUPER_AGAIN,
+    DLG_ARCHIVIST_HELLO,
+    DLG_ARCHIVIST_AGAIN,
     DLG_CURIO_0_FIND,
     DLG_CURIO_1_FIND,
     DLG_CURIO_2_FIND,

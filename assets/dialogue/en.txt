@@ -733,6 +733,16 @@ A FORT, over his soup: First hot thing since midnight. Thirty years of this. Whe
 [souper_again]
 A FORT: Fernand? He always sits there, by the mirror. Not tonight. Funny, that.
 
+[archivist_hello]
+THE ARCHIVIST: You can't sleep either? A book of mine came out this year, about a man who sleeps. And look at me, wide awake.
+
+By day I file papers in a lab that studies the brain. By night I count things. Tables in here: six. Mirrors: lots.
+
+This spring some writers let me into their club. We write with rules, like a game.
+
+[archivist_again]
+THE ARCHIVIST: Lost someone? Make a list. Everything he left behind, one by one. A list always helps.
+
 # ---------------------------------------------------------------- curiosities
 # Vanished objects found as "???" (curio_flags), then shown to the one person
 # who knows what they are. Keep the three _find entries, then the three

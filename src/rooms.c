@@ -171,6 +171,7 @@ static const door_t hotel_doors[] = {
 static const npc_def_t brasserie_npcs[] = {
     { 112, 18, SPR1_WAITER, 3 | S_BANK1, NPC_WAITER },
     { 88, 64, SPR1_FORT2, 1 | S_BANK1, NPC_SOUPER },  /* at the middle table */
+    { 124, 102, SPR1_ARCHIVIST, 6 | S_BANK1, NPC_ARCHIVIST },  /* cameo, by the far table */
 };
 static const hotspot_t brasserie_hotspots[] = {
     {  1, 3, 1, 1, DLG_PHONE_LOOK },      /* the second public telephone */
@@ -228,6 +229,6 @@ const room_def_t rooms[ROOM_COUNT] = {
       { NO_EXIT, NO_EXIT, NO_EXIT, ROOM_ENTRANCE }, AMBIENCE_STREET },
     { hotel_npcs, 1, hotel_hotspots, 7, hotel_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
-    { brasserie_npcs, 2, brasserie_hotspots, 10, brasserie_doors, 1,
+    { brasserie_npcs, 3, brasserie_hotspots, 10, brasserie_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
 };
