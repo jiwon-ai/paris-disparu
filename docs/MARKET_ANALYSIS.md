@@ -133,3 +133,24 @@ mini-games, secrets, cameos, a hook to Episode 2.
 - Typical price of a paid GB/GBC ROM on itch.io: not researched with a source.
 - How much a browser build raises plays versus a download: no source found;
   the recommendation rests on the demo/itch evidence above.
+
+## 6. Episode structure: Paris grows by métro (Jiwon's idea, 2026-11-24)
+
+Each finished episode opens a new neighbourhood, reached from the métro
+ticket hall that already exists in Episode 1. Why it fits the evidence above:
+
+- Gradual unlocking: Shovel Knight opened levels "in sets of two then three"
+  instead of all at once so players are not overwhelmed
+  ([Kotaku 2018](https://kotaku.com/how-shovel-knights-developers-modernized-nes-game-desig-1829767941)).
+- A growing world is a visible goal and a hook to the next episode, and each
+  new area can carry its own "vanished Paris" objects for the album (P1 item 7).
+  *(judgement)*
+
+What it needs:
+
+- **One ROM with save** (P0 item 4), so unlocked stations carry over. MBC5
+  allows ROMs far larger than the current 128 KiB, so space is not the limit.
+- A métro map screen as the hub: stations greyed out until their episode is
+  finished.
+- Each station and line must be checked for 1967 before it is used (stations
+  that opened, closed or were renamed later); none are assumed here.
