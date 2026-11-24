@@ -1,0 +1,22 @@
+; Inside the pavilion (20x18). Exit at the bottom, x=8-11.
+gggggggggggggggggggg
+====================
+####################
+#vvvvv#aaaaaa#nnnnnn
+#vvvvv#aaaaaa#nnnnnn
+#TTTTT#TTTTTT#TTTTTT
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffIfffffffffffIfff
+ffffIfffffffffffIfff
+ffffffffffffffffffXX
+ffffffffffffffffffXX
+fXXfffffffffffffffff
+fXXfffffffffffffffff
+ffffffffffffffffιιιι
+ffffffffffffffffιιιι
+IIIIIIIIffffIIIIIIII
+!sign 1 2 CHOUX
+!sign 7 2 POMMES
+!sign 12 1 CAROTTES

@@ -1,0 +1,463 @@
+# Episode 2 dialogue (English). [id] starts an entry; a blank line forces a new page.
+# Text is word-wrapped to 18 columns, 2 lines per page, by tools/gen_assets.py.
+# A last line "? Yes | No" ends the entry with a two-way choice.
+# Lines starting with "bark_" must fit on one page.
+# Night of 27-28 February 1969, the last night of the market at Les Halles.
+# All characters and situations are fictional (see docs/episode2/RESEARCH.md).
+# Rule: nobody explains history. People just live in it.
+
+# ---------------------------------------------------------------- secrets
+# Keep these together and in this order: bit = id - DLG_SECRET_RIBBON.
+[secret_ribbon]
+A ribbon on the cobbles, from a bouquet. You tie it round your notebook.
+
+[secret_owl]
+High on the tower, something moves. A stone bird? No. It blinks.
+
+[secret_lovers]
+On the bench under the trees, two people share one coat. You tiptoe away.
+
+[secret_shard]
+In the dirt by the dig's fence: a bit of old pot, painted blue. Older than the street lamps. Older than the street.
+
+[secret_dragon]
+A winged dragon guards the fountain, mouth open. You growl at it. It doesn't blink.
+
+[secret_drumstick]
+A drumstick on the stairs. Someone's playing with only one tonight.
+
+[secret_sleepcat]
+A cat asleep on a pile of newspapers. Yesterday's news makes a warm bed.
+
+[secret_moon]
+In the black water, the moon breaks into a hundred coins. Nobody can spend them.
+
+[secret_bells]
+You count the bells. Two. Three. You lost count. Paris didn't.
+
+[secret_initials]
+Carved in the table: two letters and a heart. The varnish has grown over them.
+
+# ---------------------------------------------------------------- the start
+[fernand_hello]
+FERNAND: There you are, artist. Last night under the glass. Tomorrow, Rungis.
+
+I wanted my plate on my blouse at dawn. One last time. Mme Roux kept it for me.
+
+She just came running. It's gone! Go and see her, on the quai. Please.
+
+[fernand_wait]
+FERNAND: My plate, artist. Before dawn. Mme Roux saw something, on the quai.
+
+[fernand_trail]
+FERNAND: A boy in a red scarf? Then he's long gone. Follow him. The métro runs till late.
+
+[fernand_back]
+FERNAND: You found it? My plate! Thirty years on my chest.
+
+Look at them. Dancing round the crates. Like a wedding. Or a funeral.
+
+Come. The sun's coming up and they're throwing flowers. Help me throw mine!
+
+[bark_fernand]
+FERNAND: My plate, artist! Mme Roux, quai.
+
+[bark_fernand_trail]
+FERNAND: Red scarf, métro. Go, go!
+
+# ---------------------------------------------------------------- Mme Roux
+[roux_hello]
+MME ROUX: Gone! His plate! I turned round to light my stove. A second!
+
+A boy. Skinny, red scarf, fast as a sparrow. He ran up to the métro.
+
+He dropped this. A métro ticket. Here, take it. You'll catch him. I'm too old for running.
+
+[roux_again]
+MME ROUX: Red scarf. Skinny. He went down into the métro, rue Baltard.
+
+[bark_roux]
+MME ROUX: Thief! Oh, you! Come here!
+
+# ---------------------------------------------------------------- Les Halles people
+[porter_hello]
+DÉDÉ: Last night, kid. Last night. I'm giving my coins away.
+
+Want to play? Find the coin under the cup, keep it.
+? Play | No
+
+[porter_again]
+DÉDÉ: One more? Find the coin, keep it.
+? Play | No
+
+[porter_no]
+DÉDÉ: Suit yourself. Look at them dance. Thirty years I carried crates here.
+
+[cups_win]
+DÉDÉ: Sharp eyes! It's yours. Buy yourself a jeton. Or a métro ticket.
+
+[cups_lose]
+DÉDÉ: Ha! Under that one. Again?
+? Play | No
+
+[cups_broke]
+DÉDÉ: I've no more coins, kid. You've cleaned me out. Go on, have fun.
+
+[musician_hello]
+ACCORDION: They asked for one more waltz. Then one more. I'll play till my fingers drop.
+
+[musician_again]
+ACCORDION: Requests? Everybody wants the same three songs tonight. The sad ones.
+
+[bark_musician]
+ACCORDION: One, two, three. One, two...
+
+[dancer_hello]
+DANCER: Don't stand there, dance! Tomorrow they'll take the crates and the music with them.
+
+[cafe_hello]
+SIMONE: You again! Coffee's on me tonight. Last night of the market, last night of my best customers.
+
+The phone's there if you need it. A coin for a jeton.
+
+[cafe_again]
+SIMONE: Need a jeton for the phone? One coin.
+? Yes | No
+
+[cafe_jeton]
+SIMONE: There. Mind you call someone nice.
+
+[cafe_nomoney]
+SIMONE: No coins? Dédé's giving his away at the cups, rue Baltard.
+
+[phone_look]
+A telephone. It takes jetons, not coins. Simone sells them.
+
+[phone_use]
+Make a call?
+? Call | No
+
+[call_clock]
+"At the third stroke, it will be..." The speaking clock. Even tonight, it doesn't sleep.
+
+[call_none]
+Nobody answers. Just a long, sad tone.
+
+[call_notes]
+MAN WITH NOTEBOOK: You again! I've written down everything about tonight. A boy in a red scarf. Noted.
+
+He asked me the way to the Latin Quarter. I told him. Was that wrong?
+
+[call_mother]
+A tired voice: "Lucien? Is that you? ... Oh. Sorry. If you see my boy, tell him to come home. I'm not angry."
+
+[call_drummer]
+A croaky voice: "The drummer? That's me. I've got flu. Tell them to keep the beat without me. Atchoo!"
+
+[call_editor]
+"Editions of the Night, good evening. Poems? Leave them on the step. We read everything. Eventually."
+
+[flowerbed]
+Flowers in front of the church. Azaleas, roses, tulips, all lit up. The flower sellers' goodbye.
+
+[flowerbed_take]
+You take one azalea. Nobody minds. Tonight everything is being given away.
+
+[crates_pyramid]
+Crates stacked into pyramids. People dance round them as if they were Christmas trees.
+
+[eustache_lit]
+The church is lit up tonight. It's watched the market for four hundred years.
+
+[metro_window]
+TICKET WINDOW: A ticket? One coin. The trains are running. Where to, young man?
+? Buy | No
+
+[metro_window_ok]
+TICKET WINDOW: There. Mind the doors.
+
+[metro_window_poor]
+TICKET WINDOW: No money, no ticket. That's the rule. Even tonight.
+
+[metro_window_free]
+TICKET WINDOW: Empty pockets? ... Go on. Just tonight. Don't tell my boss.
+
+[metro_platform]
+The train's here. Choose a stop on line 4.
+
+[metro_noticket]
+You need a ticket. Buy one at the window.
+
+[metro_sign]
+METRO. The steps go down into the warm. It smells of rubber and iron.
+
+# ---------------------------------------------------------------- Cité
+[cite_hello]
+The Cité. The island in the middle of Paris. Everything here is old, even the silence.
+
+[flower_seller_hello]
+FLOWER SELLER: You're up late, young man! Me, I'm up early. Same thing at this hour.
+
+A violet for your sweetheart? One coin.
+? Buy | No
+
+[flower_seller_buy]
+FLOWER SELLER: There. Smell that. Spring's coming, whatever they do to Les Halles.
+
+[flower_seller_no]
+FLOWER SELLER: Too poor or too shy? Both, I'd say. Come back.
+
+[flower_seller_poor]
+FLOWER SELLER: No coins? Then smile. That's free.
+
+[stalls_closed]
+The flower stalls are shut. Green iron, padlocks, a smell of wet earth.
+
+[petanque_hello]
+OLD MAN: Shh! We're measuring. Ten centimetres, I say. Eight, says he.
+
+A red scarf? Play a game with us and we'll talk. Three boules, closest to the jack wins.
+? Play | No
+
+[petanque_again]
+OLD MAN: Another game? Three boules. Closest wins.
+? Play | No
+
+[petanque_win]
+OLD MAN: Look at that! Kissing the jack! All right, all right.
+
+The red scarf, that's Lucien. Lulu, they call him. The Sparrow. Steals like one, too.
+
+His father was a fort at Les Halles. Gone two winters now. The boy's gone wild since.
+
+[petanque_lose]
+OLD MAN: Bah! Not bad for a poet. Again?
+? Play | No
+
+[petanque_after]
+OLD MAN: Lulu, the Sparrow. Didn't hear it from me.
+
+[petanque_other]
+OTHER OLD MAN: Eight centimetres. He always says ten. Forty years he's been wrong.
+
+[bark_petanque]
+OLD MAN: Shh! We're measuring!
+
+[clocharde_hello]
+OLD WOMAN: The pigeons know me. The bells know me. Do you know me? No.
+
+A boy ran past here. Red scarf. He dropped his jacket. I'm sitting on it. It's warm.
+
+There's a paper in the pocket. A phone number. Here, I can't call anyone anyway.
+
+[clocharde_violet]
+OLD WOMAN: A violet? For me? Nobody gave me a flower since... since the war. Which war, I forget.
+
+[clocharde_again]
+OLD WOMAN: The pigeons are asleep. So should you be.
+
+[bark_clocharde]
+OLD WOMAN: Ssh. The pigeons sleep.
+
+[nd_facade]
+Notre-Dame. Kings in a row, all with their heads on. The rose window glows like an ember.
+
+[nd_poem]
+Stone saints all night with nobody to bless. You bless them instead.
+
+[dig_fence]
+A wooden fence round a big hole. They're digging under the square. Hoping to find old Paris. Or a car park.
+
+[dauphine_trees]
+Trees with no leaves yet. They look like hands holding up the dark.
+
+[metro_cite]
+METRO CITÉ. The stairs go down into the island. The train comes from under the river.
+
+# ---------------------------------------------------------------- Saint-Michel
+[fountain]
+The fountain. An angel stepping on a devil. The devil doesn't look too worried.
+
+[fountain_mute]
+Something in the basin. A trumpet mute! Wet, but fine. Someone will miss this.
+
+[student_hello]
+STUDENT: You look lost. Everybody here is lost. That's why we come.
+
+The jazz cellar? Down the little street, on the right. They'll let anybody in. Almost.
+
+[student_again]
+STUDENT: Down the street, the cellar with the music. Can't miss it.
+
+[bark_student]
+STUDENT: Hey, poet! Got a cigarette? No?
+
+[doorman_hello]
+DOORMAN: Full. Members only. Musicians only. Tonight, nobody.
+
+[doorman_mute]
+DOORMAN: That's Ray's mute! He's been crying for it all night. In you go, and give it back.
+
+[doorman_after]
+DOORMAN: In or out. You're letting the cold in.
+
+[bark_doorman]
+DOORMAN: Full!
+
+[trumpet_hello]
+TRUMPET: My mute! Man, you saved my night. Our drummer's sick. Can you keep a beat?
+
+Just hit A when the note reaches the line. Don't think. Feel it.
+? Play | No
+
+[trumpet_again]
+TRUMPET: Sit in for one more?
+? Play | No
+
+[trumpet_nomute]
+TRUMPET: Lost my mute. Can't play soft without it. Who plays loud at three in the morning?
+
+[jazz_win]
+TRUMPET: Yeah! You've got it! You can come back any night.
+
+Lulu? Red scarf? He comes to listen sometimes, by the stairs. Never pays.
+
+He sleeps down by the river. The low quay, under the bridge. With the others who sleep out.
+
+[jazz_lose]
+TRUMPET: Close! Lost the beat at the end. Again?
+? Play | No
+
+[trumpet_after]
+TRUMPET: Under the bridge, by the water. Go easy on him. He's just a kid.
+
+[cellar_crowd]
+Smoke, brick, and a hundred people in a room for fifty. Everybody's nodding the same way.
+
+[cellar_poem]
+The music goes up the stairs and out into the night. Nobody can stop it at the door.
+
+[huchette_street]
+A street so narrow the houses almost touch. Music comes up through the cobbles.
+
+[sm_pave]
+A loose cobblestone. You could lift it. You put it back. Some things have had enough.
+
+[sm_pave_take]
+You put it in your pocket instead. It's heavier than a poem.
+
+[basport_stairs]
+Stone stairs down to the water. The bridge above. The city's noise stops at the third step.
+
+[metro_sm]
+METRO SAINT-MICHEL. Under the fountain, the trains.
+
+# ---------------------------------------------------------------- Saint-Germain
+[sg_church]
+The old church. Its square bell tower has watched a thousand nights. It looks tired. You know how it feels.
+
+[old_poet_hello]
+OLD POET: Sit. A young poet, I can tell. You look at things too long.
+
+Lulu? I know him. He brings me cigarettes he's found. I pay him in verses. He hates that.
+
+Finish my line and I'll tell you about him. "The night is..."
+? long | young
+
+[old_poet_two]
+OLD POET: Good. Next: "...and the city..."
+? sings | sleeps
+
+[old_poet_done]
+OLD POET: Not bad. Not bad at all. Write it down, before it flies off.
+
+Lulu doesn't steal for money. His father was a fort. Never got his plate before he died.
+
+That plate is what his father wanted. Tell him you know that. Talk to him like a man.
+
+[old_poet_again]
+OLD POET: Talk to Lulu like a man. And write, young man. Every night.
+
+[bark_old_poet]
+OLD POET: You there. Yes, you. Sit.
+
+[waiter2_hello]
+WAITER: Closing soon. Well, closing is a big word. We never really close.
+
+[philosopher2_hello]
+PHILOSOPHER: Last year, they said the beach was under the cobbles. Tonight it's just mud. Still, we looked.
+
+[sg_terrace]
+The terrace is half empty. Chairs face the street, like an audience waiting for the play.
+
+[sg_poem]
+Every chair on this terrace has heard a poem. Some of them, twice.
+
+[bookshop]
+A bookshop, still lit. Books in the window lean on each other like tired friends.
+
+[bookshop_card]
+A card is stuck in the window: "Poems wanted. ODÉ 6120." You note it down.
+
+[metro_sg]
+METRO SAINT-GERMAIN-DES-PRÉS. Steps down beside the church.
+
+# ---------------------------------------------------------------- Lulu
+[lulu_hidden]
+Sleepers under the bridge, wrapped in coats and newspapers. One of them has a red scarf.
+
+[lulu_hello]
+LULU: What do you want? Cops send you? Get lost.
+
+[lulu_partial]
+LULU: You don't know anything about me. Nobody does. Leave me alone.
+
+[lulu_talk]
+LULU: ... Lucien. Yeah. The old men talk too much.
+
+My dad carried crates for twenty years. They never gave him a plate. Said he wasn't there long enough.
+
+I just wanted... to hold one. For him. Tonight, the last night. Stupid, eh?
+
+Here. Give it back to the big man. Tell him... tell him my dad knew him.
+
+[lulu_mother]
+You tell him his mother called. He looks at the water a long time. "Yeah. Maybe I'll go home."
+
+[lulu_after]
+LULU: Go on. Before the sun comes up. They throw flowers at dawn, I heard.
+
+[bark_lulu]
+LULU: Leave me alone.
+
+# ---------------------------------------------------------------- encounters
+[tramp_hello]
+TRAMP: Spare a coin, young man? For a hot drink. I'll give you something back. A secret.
+? Give | No
+
+[tramp_give]
+TRAMP: Bless you. Here's the secret: the stars are still there. Behind all the street lamps.
+
+And one more. Under the bridge at Saint-Michel, the coins in the water are the moon. Look.
+
+[tramp_no]
+TRAMP: Fair enough. Nobody has anything tonight.
+
+[tramp_poor]
+TRAMP: You've got less than me! Here, sit a minute. Sitting is free.
+
+[pickpocket]
+Bump! "Sorry, mister!" A boy in a cap runs off. One coin lighter. Hey!
+
+[chase_win]
+Got him! He empties his pockets: your coin, and one more. "Keep it! Just don't call the cops!"
+
+[chase_lose]
+Gone round the corner. Your coin goes with him. Paris gives, Paris takes.
+
+[found_coin]
+A coin on the ground! You pick it up.
+
+# ---------------------------------------------------------------- ending
+[end_dawn]
+The sky goes grey, then pink. Somebody shouts, and the flowers start to fly.

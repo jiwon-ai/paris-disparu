@@ -1,0 +1,20 @@
+; Quai on the right bank of the Seine (20x18). North: the street leading back
+; to Les Halles. South: the bridge (deck at x=8-11).
+^^^^^^^,,,,,,^^^^^^^
+RRMRRRR,,,,,,RRMRRRR
+=======,,,,,,=======
+#W#K#W#,,,,,,#W#K#W#
+#w#k#w#,,,,,,#w#k#w#
+GGDGGG#,,,,,,#GGGDGG
+GGdGGG#,,,,,,#GGGdGG
+..l....,,,,,,....l..
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+.{}..{}......{}.7{}.
+.()..()l....l().8().
+[]-[]--<bbbb>-[]-[]-
+~~~~~~~<bbbb>~~~~~~~
+~~~~~~~<bbbb>~~~~~~~
+~~~~~~~<bbbb>~~~~~~~
+~~~~~~~<bbbb>~~~~~~~
+~~~~~~~<bbbb>~~~~~~~
