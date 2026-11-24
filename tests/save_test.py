@@ -119,7 +119,7 @@ pos = g.player()
 ram = io.BytesIO()
 g.pb.stop(ram_file=ram)
 data = ram.getvalue()
-check(data[:4] == b"PDS3", "cartridge RAM holds the save: %r" % data[:4])
+check(data[:4] == b"PDS4", "cartridge RAM holds the save: %r" % data[:4])
 
 print("2. continue")
 g = Game(io.BytesIO(data))
@@ -173,7 +173,7 @@ print("4. curiosities: a saved game carrying one, shown to the one who knows")
 
 
 def crafted(room, x, y, d, curio):
-    b = list(b"PDS3") + [room, x & 255, x >> 8, y & 255, y >> 8, d, 1, 0] + [0] * 13 + [curio]
+    b = list(b"PDS4") + [room, x & 255, x >> 8, y & 255, y >> 8, d, 1, 0] + [0] * 13 + [curio, 0]
     return bytes(b + [(0xA5 + sum(b)) & 255]) + bytes(8192 - len(b) - 1)
 
 

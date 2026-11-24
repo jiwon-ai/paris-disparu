@@ -369,6 +369,9 @@ Marble tables, paper napkins, a pot of mustard. Someone's onion soup is going co
 [hotel_chair]
 A worn armchair. The porter's newspaper is folded on it, open at the racing page.
 
+[waiter_jeton]
+THE WAITER: A jeton for the telephone? Twenty centimes on the zinc... there. Here's your jeton.
+
 # ---------------------------------------------------------------- the bridge
 [painter_hello]
 THE PAINTER: Don't move! … No, move. I'm painting the Seine, not you.

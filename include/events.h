@@ -23,7 +23,13 @@ extern uint8_t carrying;   /* crate type held by the player, or NO_CRATE */
 #define EV_FIRST EV_CHASE   /* lowest EV_*: dialogue ids stay below it */
 
 /* Each returns the dialogue to show, EV_*, or NO_DIALOGUE. */
-#define EVENT_SAVE_SIZE 14
+#define EVENT_SAVE_SIZE 15
+#define COIN_COUNT 1
+extern uint8_t coin_flags;
+uint8_t coin_here(void) BANKED;                 /* coin lying in this room, or 0xFF */
+uint8_t coin_x(uint8_t i) BANKED;               /* its tile */
+uint8_t coin_y(uint8_t i) BANKED;
+uint8_t coin_take(int16_t px, int16_t py) BANKED;   /* feet there: 1 when picked up */
 void event_pack(uint8_t *b) BANKED;          /* story state -> EVENT_SAVE_SIZE bytes */
 void event_unpack(const uint8_t *b) BANKED;
 uint8_t event_talk(uint8_t npc) BANKED;

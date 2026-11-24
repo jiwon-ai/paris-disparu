@@ -348,6 +348,7 @@ enum {
     DLG_BRA_MIRROR,
     DLG_BRA_TABLE,
     DLG_HOTEL_CHAIR,
+    DLG_WAITER_JETON,
     DLG_PAINTER_HELLO,
     DLG_PAINTER_AGAIN,
     DLG_BARRIER,
@@ -740,6 +741,9 @@ extern const uint8_t ui_text[];
 #define txt_day_1 (ui_text + 3455)
 #define txt_day_2 (ui_text + 3469)
 #define txt_day_3 (ui_text + 3481)
+#define txt_coin_0 (ui_text + 3498)
+#define txt_coin_1 (ui_text + 3516)
+#define txt_coin_2 (ui_text + 3535)
 /* French (src/fr_data.c, bank FR_BANK; pages in FR_PAGE_BANK..) */
 #define FR_BANK 11
 #define FR_PAGE_BANK 12

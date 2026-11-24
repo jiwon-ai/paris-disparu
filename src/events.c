@@ -20,6 +20,7 @@ uint16_t secret_flags;
 uint8_t new_secret;
 uint8_t curio_flags;
 uint8_t new_curio;
+uint8_t coin_flags;               /* bit i: coin i picked up */
 static uint8_t last_look, look_count;
 static uint16_t cameo_met;                /* bit k: cameo NPC_ACTOR + k already met */   /* the same thing examined n times in a row */
 
@@ -44,6 +45,7 @@ void event_pack(uint8_t *b) BANKED {
     b[7] = (uint8_t)cameo_met;    b[8] = (uint8_t)(cameo_met >> 8);
     b[9] = carrying;  b[10] = crates_taken;  b[11] = crates_delivered;  b[12] = punched;
     b[13] = curio_flags;
+    b[14] = coin_flags;
 }
 
 void event_unpack(const uint8_t *b) BANKED {
@@ -53,10 +55,38 @@ void event_unpack(const uint8_t *b) BANKED {
     cameo_met = b[7] | ((uint16_t)b[8] << 8);
     carrying = b[9];  crates_taken = b[10];  crates_delivered = b[11];  punched = b[12];
     curio_flags = b[13];
+    coin_flags = b[14];
     new_clue = new_extra = new_quest = new_secret = new_curio = 0;
     last_look = look_count = 0;
 }
 
+
+/* Loose change: a 20-centime coin (1967 Marianne, sourced) on the setts by
+   the Bourse; walking over it picks it up, and the brasserie waiter sells a
+   jeton for it. coin_flags: bit 0 found, bit 1 spent. Room, tile x, tile y. */
+static const uint8_t coin_spot[COIN_COUNT][3] = {
+    { ROOM_BOURSE, 13, 15 },
+};
+
+/* The coin still lying in this room: its index, or 0xFF. */
+uint8_t coin_here(void) BANKED {
+    uint8_t i;
+    for (i = 0; i < COIN_COUNT; i++)
+        if (coin_spot[i][0] == cur_room && !(coin_flags & (1 << i))) return i;
+    return 0xFF;
+}
+
+uint8_t coin_x(uint8_t i) BANKED { return coin_spot[i][1]; }
+uint8_t coin_y(uint8_t i) BANKED { return coin_spot[i][2]; }
+
+/* Feet at pixel (px, py): picks the coin up; returns coins found, or 0. */
+uint8_t coin_take(int16_t px, int16_t py) BANKED {
+    uint8_t i = coin_here();
+    if (i == 0xFF || px < 0 || py < 0 || (uint8_t)(px >> 3) != coin_spot[i][1]
+        || (uint8_t)(py >> 3) != coin_spot[i][2]) return 0;
+    coin_flags |= 1 << i;
+    return 1;
+}
 
 /* The cart hands out crates in this order; the player must read the stall signs. */
 static const uint8_t crate_order[3] = { CRATE_CHOUX, CRATE_POMMES, CRATE_CAROTTES };
@@ -295,7 +325,15 @@ uint8_t event_talk(uint8_t npc) BANKED {
     case NPC_ACTOR: case NPC_CHANTEUSE: case NPC_PHILOSOPHER: case NPC_FILMMAKER: case NPC_WRITER:
     case NPC_NOVELIST: case NPC_PLAYWRIGHT: case NPC_CRITIC: case NPC_YOUNG_MAN:
     case NPC_FORT2: case NPC_COOK: case NPC_SLEEPER:
-    case NPC_WAITER: case NPC_NIGHTPORTER: case NPC_SOUPER: {   /* first line, then a second */
+    case NPC_WAITER:            /* the coin from the street buys a jeton */
+        if (coin_flags == 1 && !HAS(FLAG_HAS_JETON)) {
+            coin_flags = 3;
+            SET(FLAG_HAS_JETON);
+            new_item = ITEM_JETON;
+            return DLG_WAITER_JETON;
+        }
+        /* fall through */
+    case NPC_NIGHTPORTER: case NPC_SOUPER: {   /* first line, then a second */
         uint8_t k = npc - NPC_ACTOR;
         uint16_t bit = 1u << k;
         if (cameo_met & bit) return DLG_ACTOR_HELLO + 2 * k + 1;   /* his or her hint */

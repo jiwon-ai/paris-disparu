@@ -299,7 +299,7 @@ static void add(uint8_t kind, uint8_t x, uint8_t y, uint8_t tile, const uint8_t 
 }
 
 static const uint8_t *find_ui(uint16_t off) {
-    uint8_t lo = 0, hi = KO_UI_COUNT, mid;
+    uint16_t lo = 0, hi = KO_UI_COUNT, mid;
     while (lo < hi) {
         mid = (lo + hi) >> 1;
         if (ko_ui_off[mid] == off) return ko_ui_ptr[mid];

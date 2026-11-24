@@ -191,6 +191,14 @@ the all-night brasserie (ROOM_BRASSERIE) and the hotel on rue Rambuteau (ROOM_HO
 | A telephone at the hotel reception: in the 1960s a guest went down to reception and asked to be put through to the switchboard; a phone in the room was "un luxe réservé aux palaces" | **Read** (one secondary source, 2026, general, not Paris-specific) | [Le Tribunal du Net, chambre d'hôtel en France il y a 60 ans](https://www.letribunaldunet.fr/insolite/chambre-hotel-france-60-ans-evolution-choc.html), read 2026-11-24 |
 | The porter connecting the call for a jeton | **Fiction** (kept so the jeton puzzle stays the same) | — |
 
+## Loose change: a 20-centime coin (2026-11-24)
+
+| Element | Status | Source |
+|---|---|---|
+| A 20-centime coin dated 1967, Paris mint, "Marianne" type: bust of the Republic in a Phrygian cap, legend REPUBLIQUE FRANÇAISE; reverse "20 CENTIMES" over 1967 in a laurel branch and an ear of wheat, LIBERTE EGALITE FRATERNITE; bronze-aluminium, 23.43 mm, 4.01 g; 138,782,305 struck in 1967; signatures LAGRIFFOUL and A. DIEUDONNE | **Read** | [CGB, 20 centimes Marianne 1967 (F.156/7)](https://www.cgbfr.com/20-centimes-marianne-1967-paris-f-156-7-ttb,v40_2345,a.html) |
+| So many struck that such coins were in everyday pockets in 1967 | **Inference** from the mintage | — |
+| One coin lying by the Bourse, its glint; the brasserie waiter selling a jeton for it at twenty centimes | **Fiction** (game; the real price of a jeton in 1967 was not found) | — |
+
 ## Game clock and dawn (2026-11-24)
 
 The notebook shows 03:00 at the start and one hour later per quest done, up

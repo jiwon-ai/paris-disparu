@@ -256,3 +256,6 @@ day_0 = TUE 21 NOV 1967
 day_1 = About 8 a.m.,
 day_2 = day breaks.
 day_3 = END OF EPISODE 1
+coin_0 = A coin underfoot!
+coin_1 = 20 centimes, 1967.
+coin_2 = Jeton: brasserie?

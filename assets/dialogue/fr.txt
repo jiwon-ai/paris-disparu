@@ -856,3 +856,6 @@ UN FORT, devant sa soupe : Premier truc chaud depuis minuit. Trente ans de ça. 
 
 [souper_again]
 UN FORT : Fernand ? Il s'assoit toujours là, près du miroir. Pas ce soir. Drôle, ça.
+
+[waiter_jeton]
+LE GARÇON : Un jeton pour le téléphone ? Vos vingt centimes sur le zinc... voilà. Votre jeton.

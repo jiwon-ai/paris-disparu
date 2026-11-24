@@ -555,6 +555,41 @@ goto(76, 38, "xy")
 goto(76, 120, "yx")
 push("down")
 check(room() == ROOM_BOURSE, "back out to the Bourse (room %d)" % room())
+# A 20-centime coin lies on the setts by the old grain hall: walk over it.
+check(mem[sym["_coin_flags"]] == 0, "no coin picked up yet")
+glint = False
+for _ in range(70):
+    tick(1)
+    if mem[0xFE00 + 30 * 4] != 0:
+        glint = True
+        tick(2)
+        shot("43_coin_glint")
+        break
+check(glint, "the coin glints on the ground now and then (OAM 30)")
+goto(100, 110, "xy")
+tick(4)
+check(mem[sym["_coin_flags"]] == 1 and window_on() and "coin" in window_row(1) and "brasserie" in window_row(3),
+      "walking over the coin picks it up: %r / %r" % (window_row(1), window_row(3)))
+shot("43_coin")
+tap("b", 6)
+goto(100, 64, "xy")
+push("up")
+goto(104, 118, "xy")
+goto(104, 38, "xy")
+face("up")
+t = read_text()
+gf = mem[sym["_game_flags"]] | mem[sym["_game_flags"] + 1] << 8
+check(any("your jeton" in p for p in t) and gf & 0x0100 and mem[sym["_coin_flags"]] == 3,
+      "the waiter sells a jeton for the coin: %s (flags 0x%04x)" % (t[:1], gf))
+tick(10)
+tap("b", 10)
+goto(44, 38, "xy")
+goto(44, 110, "yx")
+goto(76, 110, "xy")
+goto(76, 120, "yx")
+push("down")
+check(room() == ROOM_BOURSE, "out to the Bourse again (room %d, %s)" % (room(), player()))
+goto(100, 64, "xy")
 goto(140, 64, "xy")
 goto(140, 52, "yx")
 push("right", 200)

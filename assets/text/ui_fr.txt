@@ -226,3 +226,6 @@ day_0 = MARDI 21 NOV. 1967
 day_1 = Vers 8 heures,
 day_2 = le jour se lève.
 day_3 = FIN DE L'ÉPISODE 1
+coin_0 = Une pièce au sol !
+coin_1 = 20 centimes, 1967.
+coin_2 = Jeton : brasserie

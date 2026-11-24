@@ -45,9 +45,11 @@ static uint8_t sparkle;          /* frames left of the "got it!" star over the p
 static uint8_t shake;            /* frames left of a small screen shake */
 #define SPARKLE_OAM 20           /* free: games use 16-17, portraits 24+ */
 #define SPARKLE_FRAMES 96
+#define COIN_OAM 30              /* the glint of a coin on the ground */
 
 /* Juice: the star rises and blinks over the player's head; the screen
    shakes by a pixel or two. Both are cosmetic and stop by themselves. */
+static uint8_t anim_frame;
 static void update_juice(void) {
     if (sparkle) {
         sparkle--;
@@ -58,6 +60,15 @@ static void update_juice(void) {
         } else {
             sprite16(SPARKLE_OAM, player.x, player.y - 16 - ((SPARKLE_FRAMES - sparkle) >> 4),
                      SPR1_SPARKLE, 7 | S_BANK1);
+        }
+    }
+    {   /* a coin on the ground glints now and then */
+        uint8_t c = state == ST_WALK ? coin_here() : 0xFF;
+        if (c != 0xFF && (anim_frame & 63) < 10)
+            sprite16(COIN_OAM, coin_x(c) * 8 - 4, coin_y(c) * 8 - 4, SPR1_SPARKLE, 7 | S_BANK1);
+        else {
+            move_sprite(COIN_OAM, 0, 0);
+            move_sprite(COIN_OAM + 1, 0, 0);
         }
     }
     if (shake) {
@@ -117,7 +128,6 @@ static void update_cat(void) {
     sprite16(CAT_OAM, cat_x, cat_y, cat_run ? SPR_CAT_RUN : SPR_CAT_SIT, 7);
 }
 static uint8_t rng = 0x5A;
-static uint8_t anim_frame;
 static uint8_t barge_x;
 
 
@@ -257,7 +267,7 @@ static void intro(void) {
    magic word and a checksum, so blank or random RAM reads as "no save". */
 #define SAVE_SIZE (12 + EVENT_SAVE_SIZE + 1)
 static uint8_t save_buf[SAVE_SIZE];
-static const uint8_t save_magic[4] = { 'P', 'D', 'S', '3' };
+static const uint8_t save_magic[4] = { 'P', 'D', 'S', '4' };
 
 static uint8_t save_sum(void) {
     uint8_t i, s = 0xA5;
@@ -733,6 +743,18 @@ void main(void) {
             {
                 uint8_t exit_dir = player_update();
                 if (exit_dir != 0xFF) change_room(exit_dir);
+                else if ((exit_dir = coin_take(player.x + 8, player.y + 13)) != 0) {
+                    close_caption();           /* a coin underfoot */
+                    box_open(5);
+                    box_print(1, 1, txt_coin_0);
+                    box_print(1, 2, txt_coin_1);
+                    box_print(1, 3, txt_coin_2);
+                    caption_timer = 180;
+                    caption_note = 1;
+                    sound_confirm();
+                    sparkle = SPARKLE_FRAMES;
+                    save_write();
+                }
             }
             if (caption_timer && --caption_timer == 0) box_close();
             if (joy_held) idle = 0;
