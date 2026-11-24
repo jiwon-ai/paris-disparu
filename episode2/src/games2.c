@@ -11,6 +11,8 @@
 #include "game.h"
 #include "input.h"
 #include "minigame.h"
+#include "ko.h"     /* lang */
+#include "notebook.h"
 #include "sound.h"
 #include "world.h"
 
@@ -30,7 +32,7 @@ static uint8_t rnd2(void) {
 #define PT_C0 2
 #define PT_C1 17
 static uint8_t pt_tries;         /* games lost so far: slower */
-static uint8_t pt_jack, pt_pos, pt_dir, pt_tick, pt_ball, pt_best, pt_pause, pt_demo;
+static uint8_t pt_jack, pt_pos, pt_dir, pt_tick, pt_ball, pt_best, pt_pause, pt_demo, pt_wait;
 
 static void pt_draw_bar(void) {
     uint8_t c;
@@ -42,9 +44,10 @@ static void pt_new_ball(void) {
     pt_pos = PT_C0;
     pt_dir = 1;
     pt_tick = 0;
+    pt_wait = 30;                /* A pressed during the pause does not throw */
     box_clear(6);
     box_print(1, 6, pt_demo ? txt_g_watch : txt_pt_hint);
-    box_tile(13, 1, GLYPH_DIGIT0 + pt_ball + 1);
+    box_tile(16, 1, (uint8_t)(GLYPH_DIGIT0 + pt_ball + 1));
 }
 
 void petanque_start(void) BANKED {
@@ -52,7 +55,7 @@ void petanque_start(void) BANKED {
     seed2 = DIV_REG | 1;
     box_open(8);
     box_print(1, 1, txt_pt_title);
-    box_print(14, 1, txt_pt_of);
+    box_print(17, 1, txt_pt_of);
     pt_jack = 7 + (rnd2() % 8);
     for (c = 1; c < 19; c++) box_tile(c, 3, c == pt_jack ? GLYPH_DOT : G_SPACE);
     pt_ball = 0;
@@ -92,7 +95,8 @@ uint8_t petanque_update(void) BANKED {
     if (pt_demo) {
         if (pt_pos == pt_jack && pt_dir) hit = 1;          /* the game presses A */
         if ((pt_tick & 8) == 0) box_tile(18, 6, GLYPH_A_BUTTON);
-    } else if (joy_pressed & J_A) hit = 1;
+    } else if (pt_wait) pt_wait--;
+    else if (joy_pressed & J_A) hit = 1;
     if (!hit) return MG_RUNNING;
     box_tile(pt_pos, 4, GLYPH_COIN);                       /* the boule lands */
     d = pt_pos > pt_jack ? pt_pos - pt_jack : pt_jack - pt_pos;
@@ -113,7 +117,7 @@ uint8_t petanque_update(void) BANKED {
 #define JZ_NEED 5
 static uint8_t jz_tries;
 static uint8_t jz_col[3];        /* up to three notes on screen; 0 = none */
-static uint8_t jz_sent, jz_hits, jz_done, jz_tick, jz_gap, jz_demo, jz_flash;
+static uint8_t jz_sent, jz_hits, jz_done, jz_tick, jz_gap, jz_demo, jz_flash, jz_lock;
 
 static void jz_hud(void) {
     box_tile(15, 1, GLYPH_DIGIT0 + jz_hits);
@@ -131,7 +135,7 @@ void jazz_start(void) BANKED {
     box_tile(JZ_LINE, 4, GLYPH_PIPE);
     box_print(1, 6, txt_g_watch);
     for (i = 0; i < 3; i++) jz_col[i] = 0;
-    jz_sent = jz_hits = jz_done = jz_tick = jz_flash = 0;
+    jz_sent = jz_hits = jz_done = jz_tick = jz_flash = jz_lock = 0;
     jz_gap = 1;
     jz_demo = 2;                 /* two notes played by the game */
     jz_hud();
@@ -180,6 +184,7 @@ uint8_t jazz_update(void) BANKED {
             box_tile(jz_col[i], 3, GLYPH_NOTE);
         }
     }
+    if (jz_lock) { jz_lock--; return MG_RUNNING; }
     for (i = 0; i < 3; i++) {
         uint8_t c = jz_col[i];
         if (!c) continue;
@@ -190,7 +195,10 @@ uint8_t jazz_update(void) BANKED {
             return MG_RUNNING;
         }
     }
-    if (!jz_demo && (joy_pressed & J_A)) sound_blip();   /* a tap with no note */
+    if (!jz_demo && (joy_pressed & J_A)) {   /* a tap with no note: a short stumble */
+        sound_blip();
+        jz_lock = 20;
+    }
     return MG_RUNNING;
 }
 
@@ -200,13 +208,13 @@ uint8_t jazz_update(void) BANKED {
    A wakes that sleeper. Each wrong guess shows the scarf for longer. */
 #define FD_OAM 16                 /* 16-17 hand, 24-35 the six sleepers */
 #define FD_Y 92
-static uint8_t fd_sel, fd_who, fd_wrong, fd_tick, fd_pause;
+static uint8_t fd_sel, fd_who, fd_wrong, fd_tick, fd_pause, fd_tile;
 static const uint8_t fd_x[6] = { 12, 36, 60, 84, 108, 132 };
 
 static void fd_draw(void) {
     uint8_t i, peek = fd_tick < 24 + fd_wrong * 24;
     for (i = 0; i < 6; i++)
-        sprite16(24 + i * 2, fd_x[i], FD_Y, SPR1_SLEEPER,
+        sprite16(24 + i * 2, fd_x[i], FD_Y, fd_tile,
                  (i == fd_who && peek ? 6 : 1) | S_BANK1 | ((i & 1) ? S_FLIPX : 0));
     sprite16(FD_OAM, fd_x[fd_sel], FD_Y - 16 - ((sys_time >> 3) & 1), SPR1_PRESS, 3 | S_BANK1);
     move_sprite(FD_OAM + 1, 0, 0);
@@ -215,6 +223,7 @@ static void fd_draw(void) {
 void find_start(void) BANKED {
     seed2 = DIV_REG | 1;
     actors_hide();
+    fd_tile = pool_tile(SPR1_SLEEPER);
     fd_who = rnd2() % 6;
     fd_sel = 0;
     fd_wrong = 0;
@@ -267,7 +276,7 @@ uint8_t find_update(void) BANKED {
 #define TS_DANCERS 4
 static int16_t ts_fx, ts_fy;
 static int8_t ts_vy;
-static uint8_t ts_left, ts_caught, ts_end;
+static uint8_t ts_left, ts_caught, ts_end, ts_tile;
 static int16_t ts_dx[TS_DANCERS];
 static int8_t ts_dv[TS_DANCERS];
 
@@ -275,6 +284,7 @@ void toss_start(void) BANKED {
     uint8_t i;
     seed2 = DIV_REG | 1;
     actors_hide();
+    ts_tile = pool_tile(SPR1_DANCER);
     for (i = 0; i < TS_DANCERS; i++) {
         ts_dx[i] = 16 + i * 36;
         ts_dv[i] = (i & 1) ? -1 : 1;
@@ -312,7 +322,7 @@ uint8_t toss_update(void) BANKED {
     for (i = 0; i < TS_DANCERS; i++) {          /* round and round */
         if ((sys_time & 1) == 0) ts_dx[i] += ts_dv[i];
         if (ts_dx[i] < 4 || ts_dx[i] > 140) ts_dv[i] = -ts_dv[i];
-        sprite16(24 + i * 2, ts_dx[i], 64 + ((sys_time >> 3) + i & 1) * 2, SPR1_DANCER,
+        sprite16(24 + i * 2, ts_dx[i], 64 + (((sys_time >> 3) + i) & 1) * 2, ts_tile,
                  (i & 1 ? 6 : 2) | S_BANK1 | (ts_dv[i] < 0 ? S_FLIPX : 0));
     }
     if (ts_fy >= 0) {
@@ -339,7 +349,9 @@ uint8_t toss_update(void) BANKED {
    top to bottom (the line runs north-south). Open stops can be chosen;
    Up/Down moves, A rides, B goes back. */
 uint8_t metro_choice;
-static const uint8_t mp_row[STOP_COUNT] = { 5, 9, 11, 15 };   /* rows of the box */   /* Les Halles, Cité, St-Michel, St-Germain */
+static const uint8_t mp_row_en[STOP_COUNT] = { 5, 9, 11, 15 };   /* rows of the box */
+static const uint8_t mp_row_ko[STOP_COUNT] = { 3, 4, 5, 6 };      /* Korean: 16 px rows, stops only */
+static const uint8_t *mp_row;   /* Les Halles, Cité, St-Michel, St-Germain */
 static uint8_t mp_sel;
 
 static void mp_draw(void) {
@@ -352,19 +364,30 @@ void metro_start(void) BANKED {
     uint8_t r;
     box_open(SCREEN_H / 8);
     box_print(1, 1, txt_mp_title);
-    for (r = 3; r <= 15; r++) box_tile(3, r, GLYPH_PIPE);
-    box_print(5, 3, txt_mp_s0);       /* Étienne Marcel (closed tonight) */
-    box_print(5, 5, txt_mp_s1);       /* LES HALLES */
-    box_print(5, 7, txt_mp_s2);       /* Châtelet */
-    box_print(5, 9, txt_mp_s3);       /* CITÉ */
-    box_print(5, 11, txt_mp_s4);      /* SAINT-MICHEL */
-    box_print(5, 13, txt_mp_s5);      /* Odéon */
-    box_print(5, 15, txt_mp_s6);      /* ST-GERMAIN */
-    for (r = 0; r < STOP_COUNT; r++) box_tile(3, mp_row[r], GLYPH_COIN);
-    box_tile(3, 3, GLYPH_DOT);
-    box_tile(3, 7, GLYPH_DOT);
-    box_tile(3, 13, GLYPH_DOT);
-    box_print(1, 16, txt_mp_keys);
+    if (lang) {                      /* Korean lines are twice as tall: the four stops */
+        mp_row = mp_row_ko;
+        box_print(5, 3, txt_mp_s1);
+        box_print(5, 4, txt_mp_s3);
+        box_print(5, 5, txt_mp_s4);
+        box_print(5, 6, txt_mp_s6);
+        for (r = 0; r < STOP_COUNT; r++) box_tile(3, mp_row[r], GLYPH_COIN);
+        box_print(1, 8, txt_mp_keys);
+    } else {
+        mp_row = mp_row_en;
+        for (r = 3; r <= 15; r++) box_tile(3, r, GLYPH_PIPE);
+        box_print(5, 3, txt_mp_s0);       /* Étienne Marcel */
+        box_print(5, 5, txt_mp_s1);       /* LES HALLES */
+        box_print(5, 7, txt_mp_s2);       /* Châtelet */
+        box_print(5, 9, txt_mp_s3);       /* CITÉ */
+        box_print(5, 11, txt_mp_s4);      /* SAINT-MICHEL */
+        box_print(5, 13, txt_mp_s5);      /* Odéon */
+        box_print(5, 15, txt_mp_s6);      /* ST-GERMAIN */
+        for (r = 0; r < STOP_COUNT; r++) box_tile(3, mp_row[r], GLYPH_COIN);
+        box_tile(3, 3, GLYPH_DOT);
+        box_tile(3, 7, GLYPH_DOT);
+        box_tile(3, 13, GLYPH_DOT);
+        box_print(1, 16, txt_mp_keys);
+    }
     mp_sel = cur_room == ROOM_METRO ? 1 : 0;
     box_flush();
     mp_draw();

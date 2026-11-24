@@ -341,6 +341,22 @@ void pool_load(void) BANKED {
     }
 }
 
+/* The VRAM tile of bank-1 sprite f for a mini-game: the room's copy if an
+   NPC here uses it, else copied into the last pool slot. */
+uint8_t pool_tile(uint8_t f) BANKED {
+    static uint8_t buf[64];
+    const room_def_t *r = &rooms[cur_room];
+    uint8_t i;
+    if (f < LOW_FIXED) return f;
+    for (i = 0; i < r->npc_count && i < 8; i++)
+        if (r->npcs[i].frame == f && (r->npcs[i].palette & S_BANK1)) return npc_tile[i];
+    far_read(PORTRAIT_BANK, low_tiles + (uint16_t)f * 16, buf, 64);
+    VBK_REG = 1;
+    set_sprite_data(LOW_FIXED + (POOL_SLOTS - 1) * 4, 4, buf);
+    VBK_REG = 0;
+    return LOW_FIXED + (POOL_SLOTS - 1) * 4;
+}
+
 /* A speech bubble over the NPC who calls out (index in this room, or
    NO_BARK): it bobs until the player walks away; A opens the talk. */
 #define BUBBLE_OAM 35

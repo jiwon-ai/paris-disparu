@@ -138,7 +138,7 @@ Make a call?
 ? Call | No
 
 [call_clock]
-"At the third stroke, it will be..." The speaking clock. Even tonight, it doesn't sleep.
+"...it will be exactly..." The speaking clock. Even tonight, it doesn't sleep.
 
 [call_none]
 Nobody answers. Just a long, sad tone.
@@ -167,7 +167,7 @@ You take one azalea. Nobody minds. Tonight everything is being given away.
 Crates stacked into pyramids. People dance round them as if they were Christmas trees.
 
 [eustache_lit]
-The church is lit up tonight. It's watched the market for four hundred years.
+The church is lit up tonight. It has watched the market for more than three hundred years.
 
 [metro_window]
 TICKET WINDOW: A ticket? One coin. The trains are running. Where to, young man?

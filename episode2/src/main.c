@@ -18,7 +18,7 @@
 
 enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_METRO, ST_DIAL, ST_END, ST_GAME, ST_HOWTO, ST_DAWN, ST_EPILOGUE };
 
-static uint8_t state;
+uint8_t state;   /* not static: the PyBoy tests read it */
 static uint8_t cur_dialogue;
 static uint8_t caption_note;    /* the caption is a quest/clue/secret note */
 #define CAPTION_FRAMES 900      /* the opening caption stays 15 s unless A/B closes it */
