@@ -6,9 +6,19 @@
 #include "game.h"
 #include "input.h"
 #include "sound.h"
+#include "ko.h"
 
 #define BOX_ATTR (0x80u | 5u)   /* BG-over-sprite priority, text palette */
-#define DLG_ROWS 5
+#define DLG_ROWS (lang ? 6 : 5)   /* Korean: two 16-pixel lines */
+
+uint8_t lang;
+
+void far_read(uint8_t bank, const uint8_t *src, uint8_t *dst, uint8_t n) {
+    uint8_t save = _current_bank;
+    SWITCH_ROM(bank);
+    memcpy(dst, src, n);
+    SWITCH_ROM(save);
+}
 
 static uint8_t row_buf[MAP_W];
 static uint8_t page_buf[PAGE_SIZE];
@@ -24,6 +34,7 @@ uint8_t dialogue_choice;    /* result: 0 = first option, 1 = second */
 void box_open(uint8_t rows) {
     uint8_t y, x;
 
+    if (lang) ko_ui_reset(rows > 6);
     /* Attributes first (VRAM bank 1), then tiles (bank 0). */
     for (x = 0; x < MAP_W; x++) row_buf[x] = BOX_ATTR;
     VBK_REG = VBK_ATTRIBUTES;
@@ -74,14 +85,19 @@ void box_close(void) {
 
 void box_print(uint8_t x, uint8_t y, const uint8_t *text) {
     uint8_t n = 0;
+    if (lang && ko_print(x, y, (uint16_t)(text - ui_text))) return;
     while (text[n] && x + n < MAP_W) n++;
     set_win_tiles(x, y, n, 1, text);
 }
 
 static void clear_text(void) {
     uint8_t x, y;
-    for (x = 0; x < TEXT_COLS; x++) row_buf[x] = GLYPH_SPACE;
-    for (y = 0; y < TEXT_ROWS; y++) set_win_tiles(1, 1 + 2 * y, TEXT_COLS, 1, row_buf);
+    if (lang) {
+        ko_clear();
+    } else {
+        for (x = 0; x < TEXT_COLS; x++) row_buf[x] = GLYPH_SPACE;
+        for (y = 0; y < TEXT_ROWS; y++) set_win_tiles(1, 1 + 2 * y, TEXT_COLS, 1, row_buf);
+    }
     set_win_tile_xy(MAP_W - 2, DLG_ROWS - 1, GLYPH_BOX_B);
     pos = 0;
     blink = 0;
@@ -93,7 +109,8 @@ void dialogue_start(uint8_t id) {
     dialogue_choice = 1;
     page = dlg_first_page[id];
     pages_left = dlg_page_count[id] - 1;
-    load_page();
+    if (lang) ko_start(id);
+    else load_page();
     box_open(DLG_ROWS);
     clear_text();
     portrait_hide();
@@ -114,7 +131,12 @@ static void load_page(void) {
 }
 
 static void draw_choice(void) {
-    const uint8_t *t = choice_text + (uint16_t)(choice - 1) * 14;
+    const uint8_t *t;
+    if (lang) {
+        ko_draw_choice(dialogue_choice);
+        return;
+    }
+    t = choice_text + (uint16_t)(choice - 1) * 14;
     set_win_tile_xy(3, 2, dialogue_choice == 0 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
     set_win_tiles(4, 2, 7, 1, t);
     set_win_tile_xy(11, 2, dialogue_choice == 1 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
@@ -143,7 +165,13 @@ uint8_t dialogue_update(void) {
         return 1;
     }
 
-    if (pos < PAGE_SIZE) {
+    if (lang) {
+        if (!ko_done()) {
+            if (joy_pressed & (J_A | J_START)) ko_reveal_all();
+            else if (ko_reveal() && (++pos & 3) == 0) sound_blip();
+            return 1;
+        }
+    } else if (pos < PAGE_SIZE) {
         if (joy_pressed & (J_A | J_START)) {
             /* Reveal the rest of the page at once. */
             uint8_t y;
@@ -167,7 +195,7 @@ uint8_t dialogue_update(void) {
     set_win_tile_xy(MAP_W - 2, DLG_ROWS - 1,
                     (blink & 0x10) ? GLYPH_BOX_B : GLYPH_ARROW_DOWN);
     if (joy_pressed & (J_A | J_START)) {
-        if (pages_left == 0) {
+        if (lang ? ko_last() : pages_left == 0) {
             if (choice) {
                 clear_text();
                 in_choice = 1;
@@ -178,9 +206,13 @@ uint8_t dialogue_update(void) {
             box_close();
             return 0;
         }
-        page++;
-        pages_left--;
-        load_page();
+        if (lang) {
+            ko_next();
+        } else {
+            page++;
+            pages_left--;
+            load_page();
+        }
         clear_text();
     }
     return 1;
@@ -190,11 +222,17 @@ uint8_t dialogue_update(void) {
    The caller closes it with box_close() after a while. */
 void bark_show(uint8_t id) {
     uint8_t y;
-    page = dlg_first_page[id];
-    load_page();
-    box_open(DLG_ROWS);
-    for (y = 0; y < TEXT_ROWS; y++)
-        set_win_tiles(1, 1 + 2 * y, TEXT_COLS, 1, page_buf + y * TEXT_COLS);
+    if (lang) {
+        ko_start(id);
+        box_open(DLG_ROWS);
+        ko_reveal_all();
+    } else {
+        page = dlg_first_page[id];
+        load_page();
+        box_open(DLG_ROWS);
+        for (y = 0; y < TEXT_ROWS; y++)
+            set_win_tiles(1, 1 + 2 * y, TEXT_COLS, 1, page_buf + y * TEXT_COLS);
+    }
     box_print(10, DLG_ROWS - 1, txt_bark_hint);   /* "A: talk" on the frame */
     portrait_hide();
     portrait_show(dlg_portrait[id]);

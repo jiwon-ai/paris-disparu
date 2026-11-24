@@ -1,5 +1,8 @@
 # One-line UI strings: key = text (max 20 characters; boxed text max 18)
 title_5 = Press START
+lang_title = LANGUAGE
+lang_en = English
+lang_go = A: choose
 intro_a0 = PARIS, 1967
 intro_a1 = Les Halles, the
 intro_a2 = great food market

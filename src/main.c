@@ -11,6 +11,7 @@
 #include "minigame.h"
 #include "notebook.h"
 #include "sound.h"
+#include "ko.h"
 #include "world.h"
 
 enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_LIFT, ST_DIAL, ST_END, ST_GAME, ST_HOWTO };
@@ -178,6 +179,29 @@ static void title_fade(uint8_t level) {
     SWITCH_ROM(ASSET_BANK);
     fade_buf[5 * 4 + 1] = fade_buf[5 * 4];   /* font text paper = night */
     set_bkg_palette(0, 8, fade_buf);
+}
+
+/* English or Korean, chosen once after the title. */
+static void lang_menu(void) {
+    uint8_t sel = 0;
+    box_open(SCREEN_H / 8);
+    box_print(6, 5, txt_lang_title);
+    box_print(7, 8, txt_lang_en);
+    ko_draw_name(7, 10);
+    box_print(6, 14, txt_lang_go);
+    while (1) {
+        set_win_tile_xy(5, 8, sel ? GLYPH_SPACE : GLYPH_ARROW_RIGHT);
+        set_win_tile_xy(5, 10, sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        wait_vbl_done();
+        input_update();
+        if (joy_pressed & (J_UP | J_DOWN | J_SELECT)) {
+            sel ^= 1;
+            sound_blip();
+        }
+        if (joy_pressed & (J_A | J_START)) break;
+    }
+    sound_confirm();
+    lang = sel;
 }
 
 /* Setting, goal and controls on three short pages. A: next, B/START: skip. */
@@ -491,6 +515,7 @@ void main(void) {
     DISPLAY_ON;
 
     title_screen();
+    lang_menu();
     intro();
 
     player_place(84, 92, DIR_LEFT);

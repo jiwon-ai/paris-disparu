@@ -387,8 +387,13 @@ check(mem[0xFF40] & 0x80, "LCD is on after boot")
 check(pb.cartridge_title.strip().startswith("PARISDISPAR"), "cartridge title read by emulator")
 shot("01_title")
 
-print("intro")
+print("language menu")
 tap("start", 20)
+check(window_on() and "LANGUAGE" in window_row(5) and "English" in window_row(8), "language menu after the title: %r" % window_row(8))
+shot("01_language")
+tap("a", 20)                       # English is preselected
+
+print("intro")
 check(window_on() and "PARIS, 1967" in window_row(3), "intro page 1, the setting: %r" % window_row(3))
 shot("00_intro")
 tap("a", 10)

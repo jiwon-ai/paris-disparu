@@ -392,8 +392,13 @@ H.append("extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 
 H.append("extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */")
 H.append("extern const uint8_t portrait_pal[];          /* sprite palette per portrait */")
 H.append("extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */")
-for key, _ in ui:
-    H.append("extern const uint8_t txt_%s[];" % key)
+# All UI strings in one array, so src/ko.c can find a string by its offset.
+H.append("extern const uint8_t ui_text[];")
+ui_offsets, _off = {}, 0
+for key, data in ui:
+    ui_offsets[key] = _off
+    H.append("#define txt_%s (ui_text + %d)" % (key, _off))
+    _off += len(data) + 1
 H.append("\n#endif")
 
 # All asset data lives in ROM bank 1, which is mapped at 0x4000 and never
@@ -431,8 +436,10 @@ C.append("const uint8_t dlg_choice[DLG_COUNT] = { %s };" % ", ".join(str(c) for 
 C.append("const uint8_t portrait_pal[] = { %s };" % ", ".join(str(p) for _, _, p in portraits.PORTRAITS))
 C.append("const uint8_t dlg_portrait[DLG_COUNT] = { %s };" % ", ".join(str(p) for p in dlg_portrait))
 C.append("const uint8_t choice_text[] = {\n%s\n};\n" % c_bytes([b for t in choice_text for b in t] or [0], 14))
+C.append("const uint8_t ui_text[] = {")
 for key, data in ui:
-    C.append("const uint8_t txt_%s[] = { %s, 0x00 };" % (key, ",".join("0x%02X" % b for b in data)))
+    C.append("    %s0x00,   /* %s */" % ("".join("0x%02X," % b for b in data), key))
+C.append("};")
 C.append("")
 
 # Title key art (tools/title_art.py): tiles go to VRAM bank 1 during the title.
@@ -469,6 +476,16 @@ outputs = {
         "#pragma bank 4", '#include "assets.h"', "",
         "const uint8_t portrait_tiles[] = {\n%s\n};" % c_bytes(portrait_data), ""]) + "\n",
 }
+import ko_gen  # noqa: E402
+ko_out, ko_report = ko_gen.build([(d, p) for d, p, _ in entries], {k: v for k, v in choices.items() if v},
+                                 ui, ui_offsets, encode_char, fail)
+outputs.update(ko_out)
+if errors:
+    for e in errors:
+        print("gen_assets: error: " + e, file=sys.stderr)
+    sys.exit(1)
+_stale_blobs = [os.path.join(ROOT, "src", f) for f in os.listdir(os.path.join(ROOT, "src"))
+                if f.startswith("ko_blob_") and os.path.join(ROOT, "src", f) not in outputs]
 if "--check" in sys.argv:
     stale = [p for p, text in outputs.items()
              if not os.path.exists(p) or open(p, encoding="utf-8").read() != text]
@@ -481,5 +498,8 @@ else:
     for p, text in outputs.items():
         with open(p, "w", encoding="utf-8") as f:
             f.write(text)
+    for p in _stale_blobs:
+        os.remove(p)
 print("gen_assets: %d font tiles, %d bg tiles, %d sprite tiles, %d rooms, %d dialogue pages"
       % (font_count, len(env_names), len(spr_data) // 16, len(rooms), len(pages)))
+print(ko_report)

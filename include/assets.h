@@ -329,176 +329,180 @@ extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
 extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */
 extern const uint8_t portrait_pal[];          /* sprite palette per portrait */
 extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */
-extern const uint8_t txt_title_5[];
-extern const uint8_t txt_intro_a0[];
-extern const uint8_t txt_intro_a1[];
-extern const uint8_t txt_intro_a2[];
-extern const uint8_t txt_intro_a3[];
-extern const uint8_t txt_intro_a4[];
-extern const uint8_t txt_intro_a5[];
-extern const uint8_t txt_intro_a6[];
-extern const uint8_t txt_intro_a7[];
-extern const uint8_t txt_intro_b0[];
-extern const uint8_t txt_intro_b1[];
-extern const uint8_t txt_intro_b2[];
-extern const uint8_t txt_intro_b3[];
-extern const uint8_t txt_intro_b4[];
-extern const uint8_t txt_intro_b5[];
-extern const uint8_t txt_intro_b6[];
-extern const uint8_t txt_intro_b7[];
-extern const uint8_t txt_intro_b8[];
-extern const uint8_t txt_intro_c0[];
-extern const uint8_t txt_intro_c1[];
-extern const uint8_t txt_intro_c2[];
-extern const uint8_t txt_intro_c3[];
-extern const uint8_t txt_intro_c4[];
-extern const uint8_t txt_intro_c5[];
-extern const uint8_t txt_intro_c6[];
-extern const uint8_t txt_intro_more[];
-extern const uint8_t txt_caption[];
-extern const uint8_t txt_caption_2[];
-extern const uint8_t txt_cat_gone[];
-extern const uint8_t txt_cat_gone_2[];
-extern const uint8_t txt_new_clue[];
-extern const uint8_t txt_nb_title[];
-extern const uint8_t txt_nb_clues[];
-extern const uint8_t txt_nb_phone[];
-extern const uint8_t txt_nb_close[];
-extern const uint8_t txt_nb_of[];
-extern const uint8_t txt_goal_0a[];
-extern const uint8_t txt_goal_0b[];
-extern const uint8_t txt_goal_1a[];
-extern const uint8_t txt_goal_1b[];
-extern const uint8_t txt_goal_2a[];
-extern const uint8_t txt_goal_2b[];
-extern const uint8_t txt_goal_4a[];
-extern const uint8_t txt_goal_4b[];
-extern const uint8_t txt_goal_5a[];
-extern const uint8_t txt_goal_5b[];
-extern const uint8_t txt_goal_6a[];
-extern const uint8_t txt_goal_6b[];
-extern const uint8_t txt_goal_7a[];
-extern const uint8_t txt_goal_7b[];
-extern const uint8_t txt_goal_8a[];
-extern const uint8_t txt_goal_8b[];
-extern const uint8_t txt_goal_3a[];
-extern const uint8_t txt_goal_3b[];
-extern const uint8_t txt_goal_9a[];
-extern const uint8_t txt_goal_9b[];
-extern const uint8_t txt_clue_0[];
-extern const uint8_t txt_clue_1[];
-extern const uint8_t txt_clue_2[];
-extern const uint8_t txt_clue_3[];
-extern const uint8_t txt_clue_4[];
-extern const uint8_t txt_clue_5[];
-extern const uint8_t txt_num_0[];
-extern const uint8_t txt_num_1[];
-extern const uint8_t txt_num_2[];
-extern const uint8_t txt_num_3[];
-extern const uint8_t txt_end_1[];
-extern const uint8_t txt_end_2[];
-extern const uint8_t txt_end_3[];
-extern const uint8_t txt_end_4[];
-extern const uint8_t txt_end_5[];
-extern const uint8_t txt_end_6[];
-extern const uint8_t txt_end_7[];
-extern const uint8_t txt_end_8[];
-extern const uint8_t txt_end_9[];
-extern const uint8_t txt_end_10[];
-extern const uint8_t txt_end_11[];
-extern const uint8_t txt_dmg_1[];
-extern const uint8_t txt_dmg_2[];
-extern const uint8_t txt_lift_1[];
-extern const uint8_t txt_lift_2[];
-extern const uint8_t txt_dial_1[];
-extern const uint8_t txt_dial_2[];
-extern const uint8_t txt_dial_3[];
-extern const uint8_t txt_digits[];
-extern const uint8_t txt_bark_hint[];
-extern const uint8_t txt_punch_1[];
-extern const uint8_t txt_punch_2[];
-extern const uint8_t txt_nb_next[];
-extern const uint8_t txt_nb_prev[];
-extern const uint8_t txt_extra_done[];
-extern const uint8_t txt_extra_of[];
-extern const uint8_t txt_extra_more[];
-extern const uint8_t txt_secret_done[];
-extern const uint8_t txt_secret_of[];
-extern const uint8_t txt_secrets[];
-extern const uint8_t txt_x_title[];
-extern const uint8_t txt_x_todo[];
-extern const uint8_t txt_x_done[];
-extern const uint8_t txt_x_0[];
-extern const uint8_t txt_x_0h[];
-extern const uint8_t txt_x_1[];
-extern const uint8_t txt_x_1h[];
-extern const uint8_t txt_x_2[];
-extern const uint8_t txt_x_2h[];
-extern const uint8_t txt_x_note_1[];
-extern const uint8_t txt_x_note_2[];
-extern const uint8_t txt_end_x[];
-extern const uint8_t txt_next_0[];
-extern const uint8_t txt_next_1[];
-extern const uint8_t txt_next_2[];
-extern const uint8_t txt_next_3[];
-extern const uint8_t txt_next_4[];
-extern const uint8_t txt_next_5[];
-extern const uint8_t txt_next_6[];
-extern const uint8_t txt_next_7[];
-extern const uint8_t txt_next_8[];
-extern const uint8_t txt_title_6[];
-extern const uint8_t txt_srv_title[];
-extern const uint8_t txt_srv_of[];
-extern const uint8_t txt_srv_0[];
-extern const uint8_t txt_srv_1[];
-extern const uint8_t txt_srv_2[];
-extern const uint8_t txt_srv_table[];
-extern const uint8_t txt_srv_ok[];
-extern const uint8_t txt_srv_bad[];
-extern const uint8_t txt_cup[];
-extern const uint8_t txt_coin[];
-extern const uint8_t txt_cup_watch[];
-extern const uint8_t txt_cup_pick[];
-extern const uint8_t txt_catch_hud[];
-extern const uint8_t txt_quest_done[];
-extern const uint8_t txt_q_0[];
-extern const uint8_t txt_q_0r[];
-extern const uint8_t txt_q_1[];
-extern const uint8_t txt_q_1r[];
-extern const uint8_t txt_q_2[];
-extern const uint8_t txt_q_2r[];
-extern const uint8_t txt_q_3[];
-extern const uint8_t txt_q_3r[];
-extern const uint8_t txt_q_4[];
-extern const uint8_t txt_nb_quests[];
-extern const uint8_t txt_howto[];
-extern const uint8_t txt_howto_go[];
-extern const uint8_t txt_how_l0[];
-extern const uint8_t txt_how_l1[];
-extern const uint8_t txt_how_l2[];
-extern const uint8_t txt_how_l3[];
-extern const uint8_t txt_how_l4[];
-extern const uint8_t txt_how_p0[];
-extern const uint8_t txt_how_d0[];
-extern const uint8_t txt_how_d1[];
-extern const uint8_t txt_how_d2[];
-extern const uint8_t txt_how_d3[];
-extern const uint8_t txt_how_d4[];
-extern const uint8_t txt_how_s0[];
-extern const uint8_t txt_how_s1[];
-extern const uint8_t txt_how_s2[];
-extern const uint8_t txt_how_s3[];
-extern const uint8_t txt_how_s4[];
-extern const uint8_t txt_how_c0[];
-extern const uint8_t txt_how_c1[];
-extern const uint8_t txt_how_c2[];
-extern const uint8_t txt_how_c3[];
-extern const uint8_t txt_how_c4[];
-extern const uint8_t txt_how_k0[];
-extern const uint8_t txt_how_k1[];
-extern const uint8_t txt_how_k2[];
-extern const uint8_t txt_how_k3[];
-extern const uint8_t txt_how_k4[];
+extern const uint8_t ui_text[];
+#define txt_title_5 (ui_text + 0)
+#define txt_lang_title (ui_text + 12)
+#define txt_lang_en (ui_text + 21)
+#define txt_lang_go (ui_text + 29)
+#define txt_intro_a0 (ui_text + 39)
+#define txt_intro_a1 (ui_text + 51)
+#define txt_intro_a2 (ui_text + 67)
+#define txt_intro_a3 (ui_text + 85)
+#define txt_intro_a4 (ui_text + 95)
+#define txt_intro_a5 (ui_text + 113)
+#define txt_intro_a6 (ui_text + 129)
+#define txt_intro_a7 (ui_text + 146)
+#define txt_intro_b0 (ui_text + 158)
+#define txt_intro_b1 (ui_text + 166)
+#define txt_intro_b2 (ui_text + 184)
+#define txt_intro_b3 (ui_text + 202)
+#define txt_intro_b4 (ui_text + 215)
+#define txt_intro_b5 (ui_text + 224)
+#define txt_intro_b6 (ui_text + 240)
+#define txt_intro_b7 (ui_text + 256)
+#define txt_intro_b8 (ui_text + 271)
+#define txt_intro_c0 (ui_text + 285)
+#define txt_intro_c1 (ui_text + 294)
+#define txt_intro_c2 (ui_text + 307)
+#define txt_intro_c3 (ui_text + 326)
+#define txt_intro_c4 (ui_text + 340)
+#define txt_intro_c5 (ui_text + 357)
+#define txt_intro_c6 (ui_text + 369)
+#define txt_intro_more (ui_text + 378)
+#define txt_caption (ui_text + 395)
+#define txt_caption_2 (ui_text + 413)
+#define txt_cat_gone (ui_text + 429)
+#define txt_cat_gone_2 (ui_text + 448)
+#define txt_new_clue (ui_text + 466)
+#define txt_nb_title (ui_text + 482)
+#define txt_nb_clues (ui_text + 491)
+#define txt_nb_phone (ui_text + 497)
+#define txt_nb_close (ui_text + 511)
+#define txt_nb_of (ui_text + 517)
+#define txt_goal_0a (ui_text + 520)
+#define txt_goal_0b (ui_text + 539)
+#define txt_goal_1a (ui_text + 552)
+#define txt_goal_1b (ui_text + 571)
+#define txt_goal_2a (ui_text + 588)
+#define txt_goal_2b (ui_text + 606)
+#define txt_goal_4a (ui_text + 624)
+#define txt_goal_4b (ui_text + 642)
+#define txt_goal_5a (ui_text + 655)
+#define txt_goal_5b (ui_text + 671)
+#define txt_goal_6a (ui_text + 685)
+#define txt_goal_6b (ui_text + 702)
+#define txt_goal_7a (ui_text + 716)
+#define txt_goal_7b (ui_text + 733)
+#define txt_goal_8a (ui_text + 750)
+#define txt_goal_8b (ui_text + 767)
+#define txt_goal_3a (ui_text + 783)
+#define txt_goal_3b (ui_text + 802)
+#define txt_goal_9a (ui_text + 818)
+#define txt_goal_9b (ui_text + 836)
+#define txt_clue_0 (ui_text + 854)
+#define txt_clue_1 (ui_text + 873)
+#define txt_clue_2 (ui_text + 892)
+#define txt_clue_3 (ui_text + 910)
+#define txt_clue_4 (ui_text + 929)
+#define txt_clue_5 (ui_text + 948)
+#define txt_num_0 (ui_text + 964)
+#define txt_num_1 (ui_text + 977)
+#define txt_num_2 (ui_text + 992)
+#define txt_num_3 (ui_text + 1006)
+#define txt_end_1 (ui_text + 1025)
+#define txt_end_2 (ui_text + 1033)
+#define txt_end_3 (ui_text + 1050)
+#define txt_end_4 (ui_text + 1068)
+#define txt_end_5 (ui_text + 1085)
+#define txt_end_6 (ui_text + 1100)
+#define txt_end_7 (ui_text + 1115)
+#define txt_end_8 (ui_text + 1129)
+#define txt_end_9 (ui_text + 1145)
+#define txt_end_10 (ui_text + 1161)
+#define txt_end_11 (ui_text + 1176)
+#define txt_dmg_1 (ui_text + 1192)
+#define txt_dmg_2 (ui_text + 1210)
+#define txt_lift_1 (ui_text + 1226)
+#define txt_lift_2 (ui_text + 1243)
+#define txt_dial_1 (ui_text + 1260)
+#define txt_dial_2 (ui_text + 1276)
+#define txt_dial_3 (ui_text + 1294)
+#define txt_digits (ui_text + 1313)
+#define txt_bark_hint (ui_text + 1324)
+#define txt_punch_1 (ui_text + 1332)
+#define txt_punch_2 (ui_text + 1350)
+#define txt_nb_next (ui_text + 1367)
+#define txt_nb_prev (ui_text + 1376)
+#define txt_extra_done (ui_text + 1384)
+#define txt_extra_of (ui_text + 1396)
+#define txt_extra_more (ui_text + 1399)
+#define txt_secret_done (ui_text + 1415)
+#define txt_secret_of (ui_text + 1429)
+#define txt_secrets (ui_text + 1432)
+#define txt_x_title (ui_text + 1450)
+#define txt_x_todo (ui_text + 1457)
+#define txt_x_done (ui_text + 1460)
+#define txt_x_0 (ui_text + 1463)
+#define txt_x_0h (ui_text + 1477)
+#define txt_x_1 (ui_text + 1491)
+#define txt_x_1h (ui_text + 1501)
+#define txt_x_2 (ui_text + 1516)
+#define txt_x_2h (ui_text + 1530)
+#define txt_x_note_1 (ui_text + 1543)
+#define txt_x_note_2 (ui_text + 1556)
+#define txt_end_x (ui_text + 1574)
+#define txt_next_0 (ui_text + 1591)
+#define txt_next_1 (ui_text + 1607)
+#define txt_next_2 (ui_text + 1621)
+#define txt_next_3 (ui_text + 1639)
+#define txt_next_4 (ui_text + 1657)
+#define txt_next_5 (ui_text + 1669)
+#define txt_next_6 (ui_text + 1683)
+#define txt_next_7 (ui_text + 1701)
+#define txt_next_8 (ui_text + 1718)
+#define txt_title_6 (ui_text + 1731)
+#define txt_srv_title (ui_text + 1739)
+#define txt_srv_of (ui_text + 1752)
+#define txt_srv_0 (ui_text + 1755)
+#define txt_srv_1 (ui_text + 1762)
+#define txt_srv_2 (ui_text + 1767)
+#define txt_srv_table (ui_text + 1773)
+#define txt_srv_ok (ui_text + 1779)
+#define txt_srv_bad (ui_text + 1786)
+#define txt_cup (ui_text + 1792)
+#define txt_coin (ui_text + 1794)
+#define txt_cup_watch (ui_text + 1796)
+#define txt_cup_pick (ui_text + 1813)
+#define txt_catch_hud (ui_text + 1827)
+#define txt_quest_done (ui_text + 1846)
+#define txt_q_0 (ui_text + 1862)
+#define txt_q_0r (ui_text + 1874)
+#define txt_q_1 (ui_text + 1891)
+#define txt_q_1r (ui_text + 1906)
+#define txt_q_2 (ui_text + 1921)
+#define txt_q_2r (ui_text + 1935)
+#define txt_q_3 (ui_text + 1951)
+#define txt_q_3r (ui_text + 1967)
+#define txt_q_4 (ui_text + 1983)
+#define txt_nb_quests (ui_text + 1996)
+#define txt_howto (ui_text + 2003)
+#define txt_howto_go (ui_text + 2015)
+#define txt_how_l0 (ui_text + 2033)
+#define txt_how_l1 (ui_text + 2048)
+#define txt_how_l2 (ui_text + 2067)
+#define txt_how_l3 (ui_text + 2083)
+#define txt_how_l4 (ui_text + 2100)
+#define txt_how_p0 (ui_text + 2119)
+#define txt_how_d0 (ui_text + 2136)
+#define txt_how_d1 (ui_text + 2150)
+#define txt_how_d2 (ui_text + 2166)
+#define txt_how_d3 (ui_text + 2184)
+#define txt_how_d4 (ui_text + 2200)
+#define txt_how_s0 (ui_text + 2218)
+#define txt_how_s1 (ui_text + 2230)
+#define txt_how_s2 (ui_text + 2246)
+#define txt_how_s3 (ui_text + 2262)
+#define txt_how_s4 (ui_text + 2281)
+#define txt_how_c0 (ui_text + 2300)
+#define txt_how_c1 (ui_text + 2313)
+#define txt_how_c2 (ui_text + 2329)
+#define txt_how_c3 (ui_text + 2345)
+#define txt_how_c4 (ui_text + 2361)
+#define txt_how_k0 (ui_text + 2379)
+#define txt_how_k1 (ui_text + 2398)
+#define txt_how_k2 (ui_text + 2415)
+#define txt_how_k3 (ui_text + 2434)
+#define txt_how_k4 (ui_text + 2450)
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];

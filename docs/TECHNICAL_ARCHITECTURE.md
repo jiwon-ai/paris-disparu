@@ -5,7 +5,7 @@
 - GBDK-2020 4.3.0, C (SDCC), `make`.
 - Cartridge header set by `makebin` flags in the `Makefile`: CGB only (`-Wm-yC`,
   0x143 = 0xC0), MBC5 (`-Wm-yt0x19`) so that ROM banking can be added without
-  changing the cartridge type. Current ROM: 64 KiB (4 banks). Code is in bank 0, `src/assets.c` in bank 1 (always mapped), `src/dialogue_text.c` in bank 2; `dialogue.c` maps bank 2 with `SWITCH_ROM` only to copy one page into RAM.
+  changing the cartridge type. Current ROM: 256 KiB (16 banks). Code is in bank 0, `src/assets.c` in bank 1 (always mapped), `src/dialogue_text.c` in bank 2; `dialogue.c` maps bank 2 with `SWITCH_ROM` only to copy one page into RAM.
 - On a monochrome Game Boy the game shows a "Game Boy Color required" message
   (`_cpu != CGB_TYPE` check in `main.c`).
 
@@ -43,6 +43,24 @@ LCDC mode. Measured in PyBoy: the scenery is in VRAM bank 1 at 0x9000.
 - Window map: dialogue box at the bottom of the screen. Box tiles have the
   BG-priority attribute and use colour 1 as paper (never colour 0), so the box
   covers sprites on CGB.
+
+## Korean option
+
+- `lang` (0 English, 1 Korean) is set by the language menu after the title.
+- `tools/ko_gen.py` (run by `gen_assets.py`) reads `assets/dialogue/ko.txt` and
+  `assets/text/ui_ko.txt` (same ids and keys as the English files; a missing
+  one falls back to English) and the Galmuri BDF fonts in `tools/fonts/galmuri/`.
+- Dialogue: Galmuri11, word-wrapped to 144 px, 2 lines a page. `src/ko.c`
+  (ROM bank 6) renders a page into a RAM bitmap and reveals it a tile column
+  at a time into BG tiles 0-71 (VRAM bank 0, 0x9000); the box has 6 rows.
+- Menus: every UI string goes through `box_print`; in Korean it looks the
+  string up by its offset in `ui_text` and draws the Korean one. Hangul are
+  Galmuri7 8x8 tiles loaded on demand into a cache (tiles 72-127 in small
+  boxes, 0-127 in full-screen boxes); Latin letters and digits stay the
+  English font. The generator checks cache sizes per screen.
+- Banks: 6 = ko.c + tables + UI strings + Galmuri7 tiles; 8.. = Galmuri11
+  glyphs and dialogue pages, read with `far_read()` (bank 0).
+- Test: `tests/ko_test.py`.
 
 ## Data pipeline
 

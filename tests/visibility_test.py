@@ -83,6 +83,8 @@ def cross(start_room_name, x, y, button, expect_room):
 pb.tick(150, False)
 hold("start", 2)
 pb.tick(20, False)
+hold("a", 2)                     # language menu: English
+pb.tick(20, False)
 hold("b", 2)                     # skip the intro
 pb.tick(40, False)
 hold("b", 2)                     # close the opening caption
