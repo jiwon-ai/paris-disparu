@@ -16,7 +16,7 @@
 #include "ko.h"
 #include "world.h"
 
-enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_LIFT, ST_DIAL, ST_END, ST_GAME, ST_HOWTO };
+enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_LIFT, ST_DIAL, ST_END, ST_GAME, ST_HOWTO, ST_DAWN };
 
 static uint8_t state;
 static uint8_t cur_dialogue;
@@ -468,12 +468,14 @@ static void open_dialogue(uint8_t d) {
         else if (d == EV_CHASE) { chase_start(); shake = 16; }   /* the bump */
         else catch_start();
         state = ST_GAME;
-    } else if (d == EV_END) {
-        end_show();
+    } else if (d == EV_END) {    /* daybreak on the quai, then the end screen */
         save_erase();
-        sound_confirm();
+        box_close();
         music_play(SONG_TITLE);
-        state = ST_END;
+        player_place(72, 60, DIR_DOWN);
+        enter_room(ROOM_QUAI);
+        day_start();
+        state = ST_DAWN;
     } else if (d == NO_DIALOGUE) {
         state = ST_WALK;
         save_write();
@@ -803,6 +805,14 @@ void main(void) {
             break;
         }
 
+        case ST_DAWN:         /* daybreak; A/START after the caption: the end screen */
+            if (day_update(joy_pressed)) {
+                end_show();
+                sound_confirm();
+                state = ST_END;
+            }
+            break;
+
         case ST_END:          /* START: the next episode's teaser, then the title */
             if (joy_pressed & (J_A | J_UP | J_DOWN)) {    /* Korean: long page, other half */
                 if (box_more()) sound_blip();
@@ -822,6 +832,6 @@ void main(void) {
         }
         update_markers();
         update_juice();
-        if (state != ST_END) flicker_lamps();
+        if (state != ST_END && state != ST_DAWN) flicker_lamps();
     }
 }

@@ -302,9 +302,10 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
          "#define KO_GLYPH_ROWS %d" % GLYPH_ROWS,
          "#define KO_MAX_PAGE %d   /* bytes of the largest page record */" % (2 + 2 * MAX_PAGE_GLYPHS),
          "#define KO_UI_COUNT %d" % len(ui),
-         "extern const uint8_t ko_glyph_bank[];      /* per glyph */",
+         "#define KO_BLOB_BANK %d" % KO_BLOB_BANK,
+         "extern const uint16_t ko_glyph_end[];      /* per blob bank: first glyph past it */",
          "extern const uint8_t * const ko_glyph_ptr[];",
-         "extern const uint8_t ko_page_bank[];",
+         "extern const uint16_t ko_page_end[];       /* per blob bank: first page past it */",
          "extern const uint8_t * const ko_page_ptr[];",
          "extern const uint16_t ko_first_page[];     /* per DLG_* id */",
          "extern const uint8_t ko_page_count[];",
@@ -320,10 +321,16 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
         C.append("extern const uint8_t ko_blob_%d[];" % (KO_BLOB_BANK + b))
     C.append("")
     # Glyph and page pointers are split as bank + address (3 bytes an item).
-    C.append("const uint8_t ko_glyph_bank[] = {\n%s\n};" % c_bytes([KO_BLOB_BANK + b for b, _ in glyph_pos]))
+    # Items are laid out bank after bank, so a bank is found from where each
+    # bank's items end (saves a byte per item in the full bank 6).
+    def ends(pos):
+        banks = [b for b, _ in pos]
+        assert banks == sorted(banks), "ko_gen: items out of bank order"
+        return ", ".join(str(sum(1 for x in banks if x <= b)) for b in range(len(blobs)))
+    C.append("const uint16_t ko_glyph_end[] = { %s };" % ends(glyph_pos))
     C.append("const uint8_t * const ko_glyph_ptr[] = {\n%s\n};" % "\n".join(
         "    ko_blob_%d + %d," % (KO_BLOB_BANK + b, o) for b, o in glyph_pos))
-    C.append("const uint8_t ko_page_bank[] = {\n%s\n};" % c_bytes([KO_BLOB_BANK + b for b, _ in page_pos]))
+    C.append("const uint16_t ko_page_end[] = { %s };" % ends(page_pos))
     C.append("const uint8_t * const ko_page_ptr[] = {\n%s\n};" % "\n".join(
         "    ko_blob_%d + %d," % (KO_BLOB_BANK + b, o) for b, o in page_pos))
     C.append("const uint16_t ko_first_page[] = { %s };" % ", ".join(map(str, first)))

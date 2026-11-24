@@ -22,6 +22,13 @@ static uint8_t gbuf[KO_GLYPH_SIZE];
 static uint8_t tbuf[16];
 static uint8_t rowbuf[MAP_W];
 static uint16_t k_page;
+
+/* Blob bank of item i, from where each bank's items end. */
+static uint8_t ko_bank(const uint16_t *end, uint16_t i) {
+    uint8_t b = KO_BLOB_BANK;
+    while (i >= *end++) b++;
+    return b;
+}
 static uint8_t k_left;          /* pages after the current one */
 static uint8_t k_id;            /* dialogue id, for its choice */
 static uint8_t k_cols[2];       /* tile columns used by each line */
@@ -47,7 +54,7 @@ static void render_line(uint8_t L, const uint8_t *g, uint8_t n) {
     while (n--) {
         gi = ((uint16_t)g[0] << 8) | g[1];
         g += 2;
-        far_read(ko_glyph_bank[gi], ko_glyph_ptr[gi], gbuf, KO_GLYPH_SIZE);
+        far_read(ko_bank(ko_glyph_end, gi), ko_glyph_ptr[gi], gbuf, KO_GLYPH_SIZE);
         b = x >> 3;
         s = x & 7;
         if (b < TEXT_COLS) {
@@ -78,8 +85,8 @@ static void render_line(uint8_t L, const uint8_t *g, uint8_t n) {
 }
 
 static void load(void) {
-    far_read(ko_page_bank[k_page], ko_page_ptr[k_page], kpage, 2);
-    far_read(ko_page_bank[k_page], ko_page_ptr[k_page] + 2, kpage + 2,
+    far_read(ko_bank(ko_page_end, k_page), ko_page_ptr[k_page], kpage, 2);
+    far_read(ko_bank(ko_page_end, k_page), ko_page_ptr[k_page] + 2, kpage + 2,
              (uint8_t)((kpage[0] + kpage[1]) * 2));
     memset(lbuf, 0, sizeof(lbuf));
     render_line(0, kpage + 2, kpage[0]);
@@ -359,7 +366,7 @@ static uint8_t line_cost(uint8_t y) {
         while (n--) {
             gi = ((uint16_t)g[0] << 8) | g[1];
             g += 2;
-            far_read(ko_glyph_bank[gi], ko_glyph_ptr[gi], gbuf, 1);
+            far_read(ko_bank(ko_glyph_end, gi), ko_glyph_ptr[gi], gbuf, 1);
             x += gbuf[0];
         }
         x = (x + 7) >> 3;

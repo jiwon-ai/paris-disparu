@@ -464,6 +464,7 @@ enum {
 };
 
 extern const palette_color_t bg_palettes[32];
+extern const palette_color_t bg_day[32];          /* daybreak after the ending */
 extern const palette_color_t spr_palettes[32];
 extern const uint8_t font_tiles[];
 extern const uint8_t env_tiles[];             /* bank PORTRAIT_BANK */
@@ -735,6 +736,10 @@ extern const uint8_t ui_text[];
 #define txt_ex_6 (ui_text + 3427)
 #define txt_ex_7 (ui_text + 3431)
 #define txt_ex_8 (ui_text + 3435)
+#define txt_day_0 (ui_text + 3439)
+#define txt_day_1 (ui_text + 3455)
+#define txt_day_2 (ui_text + 3469)
+#define txt_day_3 (ui_text + 3481)
 /* French (src/fr_data.c, bank FR_BANK; pages in FR_PAGE_BANK..) */
 #define FR_BANK 11
 #define FR_PAGE_BANK 12

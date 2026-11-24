@@ -9,6 +9,8 @@
 #include "events.h"
 #include "world.h"
 #include "music.h"
+#include "ko.h"
+#include "sound.h"
 
 static const uint8_t * const quest_txt[QUEST_COUNT] = {
     txt_q_0, txt_q_1, txt_q_2, txt_q_3, txt_q_4
@@ -242,6 +244,43 @@ void teaser_show(void) BANKED {
         if (teaser_txt[i]) box_print(1, 2 + i, teaser_txt[i]);
     box_print(1, 16, txt_end_11);
     box_flush();
+}
+
+/* The ending: the sky pales over 2 s (16 steps from tonight's colours to
+   bg_day), then a caption. Returns 1 on A/START after the caption. */
+static uint8_t day_t;
+static palette_color_t day_mix[32];
+
+void day_start(void) BANKED { day_t = 0; }
+
+uint8_t day_update(uint8_t pressed) BANKED {
+    uint8_t i, k;
+    if (day_t >= 160) return (pressed & (J_A | J_START)) != 0;
+    day_t++;
+    if (!(day_t & 7) && day_t <= 128) {
+        k = day_t >> 3;
+        far_read(ASSET_BANK, (const uint8_t *)bg_day, (uint8_t *)day_mix, 64);
+        for (i = 0; i < 32; i++) {
+            uint16_t a = bg_live[i], b = day_mix[i];
+            int16_t r = a & 31, g = (a >> 5) & 31, bl = (a >> 10) & 31;
+            r += (((int16_t)(b & 31) - r) * k) >> 4;
+            g += (((int16_t)((b >> 5) & 31) - g) * k) >> 4;
+            bl += (((int16_t)((b >> 10) & 31) - bl) * k) >> 4;
+            day_mix[i] = (uint16_t)r | ((uint16_t)g << 5) | ((uint16_t)bl << 10);
+        }
+        wait_vbl_done();
+        set_bkg_palette(0, 8, day_mix);
+    }
+    if (day_t == 160) {
+        box_open(6);
+        box_print(1, 1, txt_day_0);
+        box_print(1, 2, txt_day_1);
+        box_print(1, 3, txt_day_2);
+        box_print(1, 4, txt_day_3);
+        box_flush();
+        sound_confirm();
+    }
+    return 0;
 }
 
 void end_show(void) BANKED {

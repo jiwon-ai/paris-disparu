@@ -13,6 +13,17 @@ const palette_color_t bg_palettes[32] = {
     RGB(4, 5, 11), RGB(6, 8, 15), RGB(11, 13, 18), RGB(24, 25, 28),
 };
 
+const palette_color_t bg_day[32] = {
+    RGB(25, 22, 22), RGB(13, 12, 12), RGB(24, 22, 17), RGB(30, 28, 23),
+    RGB(24, 22, 17), RGB(6, 6, 8), RGB(13, 14, 17), RGB(21, 23, 26),
+    RGB(10, 10, 12), RGB(15, 15, 17), RGB(20, 19, 19), RGB(25, 24, 23),
+    RGB(20, 19, 19), RGB(3, 3, 6), RGB(17, 17, 15), RGB(23, 23, 21),
+    RGB(25, 22, 22), RGB(14, 4, 5), RGB(25, 8, 7), RGB(30, 27, 22),
+    RGB(29, 28, 24), RGB(29, 28, 24), RGB(17, 15, 13), RGB(3, 3, 6),
+    RGB(14, 13, 14), RGB(17, 10, 5), RGB(11, 21, 8), RGB(28, 19, 9),
+    RGB(25, 22, 23), RGB(9, 12, 19), RGB(15, 18, 23), RGB(27, 28, 30),
+};
+
 const palette_color_t spr_palettes[32] = {
     RGB(0, 0, 0), RGB(3, 3, 6), RGB(20, 16, 9), RGB(28, 21, 16),
     RGB(0, 0, 0), RGB(3, 3, 6), RGB(8, 11, 17), RGB(27, 21, 9),
@@ -541,5 +552,9 @@ const uint8_t ui_text[] = {
     0x8F,0x90,0x9B,0x00,   /* ex_6 */
     0x90,0x81,0x93,0x00,   /* ex_7 */
     0x92,0x8F,0x91,0x00,   /* ex_8 */
+    0x94,0x95,0x85,0x80,0xC8,0xC7,0x80,0x8E,0x8F,0x96,0x80,0xC7,0xCF,0xCC,0xCD,0x00,   /* day_0 */
+    0x81,0xA0,0xAD,0xB3,0xB2,0x80,0xCE,0x80,0x9F,0xD2,0xAB,0xD2,0xD3,0x00,   /* day_1 */
+    0xA2,0x9F,0xB7,0x80,0xA0,0xB0,0xA3,0x9F,0xA9,0xB1,0xD2,0x00,   /* day_2 */
+    0x85,0x8E,0x84,0x80,0x8F,0x86,0x80,0x85,0x90,0x89,0x93,0x8F,0x84,0x85,0x80,0xC7,0x00,   /* day_3 */
 };
 

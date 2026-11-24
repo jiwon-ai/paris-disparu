@@ -1056,6 +1056,16 @@ lines = dialogue(choice=0, max_pages=60)
 check(any("My coltin" in l for l in lines), "Fernand opens up: %d pages" % len(lines))
 check(any("two winters" in l for l in lines), "ending: he stays for the last winters")
 check(any("ticket full" in l for l in lines), "every extra done: the photographer's bonus scene")
+# Daybreak on the quai before the end screen.
+check(not window_on() and mem[sym["_cur_room"]] == 4, "ending: back on the quai at dawn (room %d)" % mem[sym["_cur_room"]])
+night = pb.screen.ndarray[:96, :, :3].mean()
+tick(200)
+day = pb.screen.ndarray[:96, :, :3].mean()
+check(day > night + 15, "ending: the sky gets light (%.0f -> %.0f)" % (night, day))
+check(window_on() and "8 a.m." in window_row(2) and "EPISODE 1" in window_row(4),
+      "ending: daybreak caption %r / %r" % (window_row(2), window_row(4)))
+shot("13_daybreak")
+tap("a", 30)
 check(window_on() and window_row(2) == "THE END" and "6/6" in window_row(4) and "3/3" in window_row(5) and "9/9" in window_row(13),
       "end screen: %r %r %r" % (window_row(2), window_row(4), window_row(5)))
 check(window_row(15).startswith("Rank:") and window_row(15)[5:].strip() in ("Night owl", "True fort"),

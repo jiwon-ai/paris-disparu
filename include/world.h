@@ -55,7 +55,8 @@ extern uint8_t cur_room;
 
 void world_load(uint8_t room);
 extern uint8_t dawn_stage;                       /* quests done, 0-4: the clock and the sky */
-void world_dawn(uint8_t stage);                  /* set it and recolour the night now */
+void world_dawn(uint8_t stage);
+extern palette_color_t bg_live[32];             /* tonight's background palettes */                  /* set it and recolour the night now */
 uint8_t world_solid(int16_t px, int16_t py);     /* pixel coordinates */
 uint8_t world_hotspot(int16_t px, int16_t py);   /* hotspot id or NO_DIALOGUE */
 uint8_t world_door(int16_t px, int16_t py);      /* door index or NO_EXIT */

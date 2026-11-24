@@ -222,3 +222,7 @@ it_6 = un ticket de métro
 it_7 = un ticket vert
 it_8 = un galet strié
 it_9 = un billet déchiré
+day_0 = MARDI 21 NOV. 1967
+day_1 = Vers 8 heures,
+day_2 = le jour se lève.
+day_3 = FIN DE L'ÉPISODE 1

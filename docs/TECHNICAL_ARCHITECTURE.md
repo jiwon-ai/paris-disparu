@@ -188,7 +188,7 @@ pages each; `dlg_hi_base[]` in bank 1). `dialogue.c` maps the right bank per pag
 | 3 | title art + `dlg_first_page`, `dlg_page_count`, `dlg_choice` (read with far_read) |
 | 4 | portrait tiles and low sprites (copied to VRAM bank 1 by load_bank1); music data (`music_data.c`, MUSIC_BANK); `env_tiles`; item pictures (`items.c`) |
 | 5 | story logic (`events.c`) |
-| 6 | Korean code, tables, UI strings |
+| 6 | Korean code, tables, UI strings (a glyph/page's blob bank comes from `ko_glyph_end`/`ko_page_end`, per-bank end indexes; about 1.2 KB free) |
 | 7 | mini-games (`games.c`, `minigame.c`: BANKED functions), notebook |
 | 8-10 | English dialogue overflow (`dlg_pages_N.c`) |
 | 11 | French tables, UI strings and lookups (`fr_data.c`, `fr.c`) |

@@ -252,3 +252,7 @@ ex_5 = ODÉ
 ex_6 = OPÉ
 ex_7 = PAS
 ex_8 = ROQ
+day_0 = TUE 21 NOV 1967
+day_1 = About 8 a.m.,
+day_2 = day breaks.
+day_3 = END OF EPISODE 1

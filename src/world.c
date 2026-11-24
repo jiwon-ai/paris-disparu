@@ -14,7 +14,7 @@ static palette_color_t fade[64];
    deep pre-dawn blue. Sunrise in Paris in late November is after 08:00,
    so it never gets light: only the first hint of blue at the end. */
 uint8_t dawn_stage;
-static palette_color_t bg_live[32];
+palette_color_t bg_live[32];     /* tonight's background palettes */
 static const uint8_t dawn_mix[5] = { 0, 0, 2, 4, 6 };   /* eighths towards the blue */
 static const uint8_t dawn_pals[5] = { 0, 2, 4, 6, 7 };   /* palettes whose colour 0 is the night */
 

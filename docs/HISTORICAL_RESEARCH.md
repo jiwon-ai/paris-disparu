@@ -200,6 +200,15 @@ sunrise on 23 Nov is about 08:11 CET (time.now sunrise page, read
 2026-11-24; the same page gives an inconsistent civil-twilight time, so only
 "after 8 a.m." is relied on).
 
+Ending (added 2026-11-24): after Fernand's scene the game returns to the quai
+and the night palettes fade to a pale morning, captioned "Tue 21 Nov 1967,
+about 8 a.m., day breaks". The weekday is **computed** (21 Nov 1967 was a
+Tuesday); "about 8 a.m." rests on the sunrise above (about 08:11 on 23 Nov, so
+a few minutes earlier on 21 Nov: **inference**). France kept CET all year in
+1967 (summer time came back in 1976: **inference from general knowledge, not
+read for this project**). The jump from 07:00 to daybreak and the morning
+colours are **game fiction / reconstruction**.
+
 ## Era culture (references in the scenery)
 
 Read on 2026-11-23. Policy: works still under copyright are referred to by
