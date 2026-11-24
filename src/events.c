@@ -5,6 +5,7 @@
 #include "assets.h"
 #include "events.h"
 #include "game.h"
+#include "items.h"
 #include "world.h"
 
 uint16_t game_flags;
@@ -23,6 +24,7 @@ static uint16_t cameo_met;                /* bit k: cameo NPC_ACTOR + k already 
 
 /* The clue that completes each quest (the last one is the ending). */
 static const uint8_t quest_clue[QUEST_COUNT - 1] = { CLUE_COLTIN, CLUE_BLEU, CLUE_RUNGIS, CLUE_PLATE };
+static const uint8_t quest_item[QUEST_COUNT - 1] = { ITEM_COLTIN, ITEM_BLEU, NO_ITEM, ITEM_PLATE };
 
 uint8_t quest_done(uint8_t q) BANKED {
     if (q == QUEST_COUNT - 1) return (game_flags & FLAG_SOLVED) != 0;
@@ -68,7 +70,7 @@ static void found(uint8_t c) {
     if (!CLUE(c)) {
         clue_flags |= c;
         for (q = 0; q < QUEST_COUNT - 1; q++)
-            if (quest_clue[q] == c) { new_quest = q + 1; return; }
+            if (quest_clue[q] == c) { new_quest = q + 1; new_item = quest_item[q]; return; }
         new_clue = 1;
     }
 }
@@ -119,6 +121,7 @@ static uint8_t curio_find(uint8_t id) {
         if (curio_spot[i] == id && !(curio_flags & (1 << i))) {
             curio_flags |= 1 << i;
             new_curio = 1;
+            new_item = ITEM_GREEN + i;
             return DLG_CURIO_0_FIND + i;
         }
     return id;
@@ -131,6 +134,7 @@ static uint8_t curio_ask(uint8_t npc) {
         if (curio_who[i] == npc && (curio_flags & (0x11 << i)) == (1 << i)) {
             curio_flags |= 0x10 << i;
             new_curio = 2;
+            new_item = ITEM_GREEN + i;
             return DLG_CURIO_0_SOLVE + i;
         }
     return NO_DIALOGUE;
@@ -173,6 +177,7 @@ uint8_t event_game_result(uint8_t ev, uint8_t success) BANKED {
     case EV_CUPS:
         if (!success) return DLG_CUPS_LOSE;
         SET(FLAG_HAS_JETON);
+        new_item = ITEM_JETON;
         return DLG_CUPS_WIN;
     case EV_CATCH:
         if (!success) return DLG_CATCH_LOSE;
@@ -242,6 +247,7 @@ uint8_t event_talk(uint8_t npc) BANKED {
         }
         if ((quest_flags & QF_ROUX) && !(quest_flags & QF_SOUP) && !CLUE(CLUE_PLATE)) {
             quest_flags |= QF_SOUP;     /* a gratinee to take away, for Mme Roux */
+            new_item = ITEM_GRATINEE;
             return DLG_CAFE_SOUP;
         }
         if (HAS(FLAG_SAW_PHONE) && !HAS(FLAG_HAS_JETON))
@@ -380,6 +386,7 @@ uint8_t event_examine(uint8_t id) BANKED {
     case DLG_METRO_WINDOW:
         if (HAS(FLAG_TICKET)) return DLG_METRO_WINDOW_AGAIN;
         SET(FLAG_TICKET);
+        new_item = ITEM_TICKET;
         return DLG_METRO_WINDOW;
 
     case DLG_PHONE_LOOK:

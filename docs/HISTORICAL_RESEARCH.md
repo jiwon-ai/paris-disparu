@@ -140,6 +140,34 @@ shows to the one person who knows. Where they lie and who knows them is
 | Ridged roller (onion baskets, market → the young man) | "off a VéloSolex": the roller sits on the front tyre and the motor turns it; students ride them | **Read**: "a roller turns the front wheel", ridden by students and factory workers, mass-produced 1946-1988 (see Getting around). A loose roller in the market is fiction |
 | Ticket stub with a gold mask, PETIT PALAIS (café chair → the painter) | Tutankhamun at the Petit Palais "this year", "over a million people" | **Read**: Tutankhamun exhibition, Petit Palais, 1967, 1.24 million visitors (see News of the week). The stub's design is fiction |
 
+## Item pictures (2026-11-24)
+
+Ten 24x32 pictures (`tools/items.py`) appear above the caption when an object
+is obtained, and a cup in the coffee game. What each drawing rests on:
+
+| Picture | Basis |
+|---|---|
+| Coltin: yellow leather hat, very wide brim | **Read** (Paris ZigZag, forts des Halles; see Clothing). Band colour is a drawing choice |
+| Petit bleu: folded blue card | Pneumatic post and "petits bleus" **read** (Story elements); the fold, lines and stamp are a drawing choice |
+| Fort's plate: metal plate with the arms of Paris (a ship) and a name | **Read**: blouse plate with the arms of Paris and the name (Paris ZigZag). Its shape (oval) and the "brass" are **not stated**: reconstruction |
+| Gratinée in its bowl | Dish **read** (Era culture); bowl shape is a drawing choice |
+| Jeton: plain disc with a groove | Jetons in cafés **read** (claim 6); their look is **not stated** in the source read: reconstruction |
+| Brown métro ticket | See claim on ticket colours (1958 tariff: *havane* second class; 1967 colour assumed) |
+| Green first-class ticket with a "1" | Same source; 1967 colour not confirmed |
+| VéloSolex roller: ridged cylinder | Roller turning the front wheel **read**; ridges and proportions are a drawing choice |
+| Tutankhamun stub | Exhibition **read**; stub design is fiction |
+| Café cup on a saucer | Generic, no claim |
+
+## Street life: vanishing details (read 2026-11-24, not yet in the game)
+
+| Detail | Status | Source |
+|---|---|---|
+| Street urinals (vespasiennes): cast iron, bottle green, often two stalls with a screen in front, some with a lamp; built because men urinated in the streets (royal edicts against it from 1770); over 1,000 under the Occupation; decline from about 1960 (a 1959 vote to phase them out was repealed in 1961); 1981 vote to remove all. So they were still on Paris streets in 1967 | **Read** (no 1960s count found) | [Smithsonian](https://www.smithsonianmag.com/smart-news/how-paris-open-air-urinals-changed-cityand-helped-dismantle-nazi-regime-180973704/); [PIN-UP essay](https://archive.pinupmagazine.org/articles/the-last-vespasienne-street-urinal-essay); [Paris ZigZag](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/vespasienne-derniere/) |
+| Les Halles: moving the market discussed from the early 1950s, partly for hygiene ("a daunting rat population") and traffic; busiest around 3 a.m. | **Read** (secondary, 2009) | [Saveur, The Belly of Paris](https://www.saveur.com/article/Travels/The-Belly-of-Paris/) |
+| Refuse, crates, vegetable leaves on the streets in 1967 | **To research** (only a 1947 strike photo found) | — |
+| Public phones: in cafés and post offices since 1885; coin payment invented 1923; télécarte 1983 | **Read** (secondary) | [Paris ZigZag, cabines](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/la-vieille-histoire-des-cabines-telephoniques-a-paris/); [Le Tribunal du Net](https://www.letribunaldunet.fr/insolite/telephone-public-pieces-france-evolution.html) |
+| Street phone booths in Paris in 1967: existence, number, look | **To research** | — |
+
 ## Game clock and dawn (2026-11-24)
 
 The notebook shows 03:00 at the start and one hour later per quest done, up

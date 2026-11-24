@@ -176,7 +176,7 @@ def dialogue(choice=None, max_pages=24):
             continue
         if not window_on() or window_row(1).startswith(("Up/Down", "Lift!", "Punch!", "New clue", "Extra done", "Secret found", "QUEST COMPLETE",
                                                         "Pour coffee", "Watch the", "Which cup", "Got ", "Catch him",
-                                                        "Curiosity", "Mystery solved")) \
+                                                        "Curiosity", "Mystery solved", "You got")) \
                 or window_row(2) == "THE END":
             break
         if "▶" in window_row(2):
@@ -253,23 +253,55 @@ def dial(number, notes=False):
     tap("a", 0)
 
 
-def talk(expect, choice=None, clue=None):
-    """Talk/examine; clue = the clue bit this should add (its note is checked and closed)."""
+def talk(expect, choice=None, clue=None, got=None):
+    """Talk/examine; clue = the clue bit this should add (its note is checked and closed);
+    got = (name, ITEM_*) of an object received ("You got" caption)."""
     before = clues()
     tap("a", 0)
     lines = dialogue(choice)
     if clue is not None:
         note = window_on() and ("New clue" in window_row(1) or "QUEST COMPLETE" in window_row(1))
         check(note and clues() == before | clue, "new clue 0x%02x noted (clues 0x%02x)" % (clue, clues()))
+        if clue == 0x08:
+            check(item_shown(HDR["ITEM_BLEU"]), "quest note shows the petit bleu")
+            shot("40_quest_item_bleu")
         tap("b", 4)
+    if got:
+        got_note(*got)
     ok = any(expect in l for l in lines)
     check(ok and not window_on(), "dialogue %r (%d pages, first: %r)" % (expect, len(lines), lines if not ok else lines[0]))
     return lines
 
 
-def quest_note(name, clue):
+def item_shown(item):
+    """The item picture: OAM 24 uses ITEM_TILE, with that item's tiles in VRAM bank 1."""
+    o = 0xFE00 + 24 * 4
+    if not (mem[o] and mem[o + 2] == HDR["ITEM_TILE"]):
+        return False
+    want = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src", "portrait_art.c")).read()
+    data = re.search(r"item_tiles\[\] = \{(.*?)\};", want, re.S).group(1)
+    data = [int(v, 0) for v in data.replace("\n", "").split(",") if v.strip()]
+    start = (item - 1) * 192
+    vram = [mem[1, 0x8000 + HDR["ITEM_TILE"] * 16 + i] for i in range(192)]
+    return vram == data[start:start + 192]
+
+
+def got_note(name, item):
+    """A "You got" caption with the object's picture; closed with B."""
+    tick(4)
+    ok = window_on() and window_row(1).startswith("You got") and name in window_row(2) and item_shown(HDR[item])
+    check(ok, "you got %r, picture %s: %r %r" % (name, item, window_row(1), window_row(2)))
+    shot("40_got_" + item.lower())
+    tap("b", 4)
+    check(mem[0xFE00 + 24 * 4] == 0, "the picture goes with the caption")
+
+
+def quest_note(name, clue, item=None):
     check(window_on() and "QUEST COMPLETE" in window_row(1) and name in window_row(2) and clues() & clue,
           "quest complete: %r %r (clues 0x%02x)" % (window_row(1), window_row(2), clues()))
+    if item:
+        check(item_shown(HDR[item]), "quest note shows the %s picture" % item)
+        shot("40_quest_" + item.lower())
     tap("b", 4)
 
 
@@ -367,6 +399,7 @@ def get_jeton():
     play_cups()
     lines = dialogue()
     check(any("jeton" in l for l in lines) and flags() & 0x0100, "won a jeton at the cups: %s" % lines[:1])
+    got_note("jeton", "ITEM_JETON")
 
 
 # ----------------------------------------------------------------------------
@@ -728,13 +761,14 @@ tap("a", 0)
 lines = dialogue(choice=0)
 check(any("Give me a" in l for l in lines) and window_row(1).startswith("Pour coffee"), "Simone asks for help: pour the coffee")
 shot("23_serve")
+check(item_shown(HDR["ITEM_CUP"]), "the coffee game shows a café cup")
 play_serve(win=False)
 lines = dialogue(choice=0)
 check(any("coffee everywhere" in l for l in lines), "a bad rush: Simone asks again")
 play_serve()
 lines = dialogue()
 check(any("Fernand's" in l for l in lines), "a good rush: Simone gives the coltin")
-quest_note("Coffee rush", 0x02)
+quest_note("Coffee rush", 0x02, "ITEM_COLTIN")
 goto(128, 60, "yx")
 push("up")
 talk("telephone")
@@ -819,7 +853,7 @@ check(window_on() and "Tickets" in window_row(1) + window_row(3), "the puncher c
 talk("No ticket")
 goto(28, 72, "yx")
 push("up")
-talk("second-class ticket")
+talk("second-class ticket", got=("métro ticket", "ITEM_TICKET"))
 check(flags() & 0x0400, "bought a ticket (FLAG_TICKET)")
 talk("POUND DEVALUED")
 goto(60, 72, "yx")
@@ -891,6 +925,8 @@ lines = dialogue()
 check("green ticket" in " ".join(lines) and window_on() and "Curiosity: ???" in window_row(1)
       and mem[sym["_curio_flags"]] == 0x01, "found a curiosity: %s %r flags 0x%02x"
       % (lines[:1], window_row(1), mem[sym["_curio_flags"]]))
+check(item_shown(HDR["ITEM_GREEN"]), "the curiosity note shows the green ticket")
+shot("40_curio_green")
 tap("b", 4)
 tap("a", 0)
 lines = dialogue()
@@ -937,7 +973,7 @@ push("up")
 talk("onion soup")              # vanished Paris: the gratinee of Les Halles
 goto(72, 60, "yx")
 push("up")
-talk("Carry it")         # Simone's gratinee for Mme Roux
+talk("Carry it", got=("gratinée", "ITEM_GRATINEE"))   # Simone's gratinee for Mme Roux
 check(mem[sym["_quest_flags"]] & 2, "carrying the gratinee")
 get_jeton()
 phone("7302", "her box", notes=True)
@@ -965,8 +1001,7 @@ frames = play_chase()
 check(frames > 0, "caught the thief after %d frames" % frames)
 lines = dialogue()
 check(any("Only brass" in l for l in lines), "the thief drops the plate: %s" % lines[:2])
-check(window_on() and "QUEST COMPLETE" in window_row(1) and clues() & 0x10, "plate quest complete: %r" % window_row(1))
-tap("b", 4)
+quest_note("brass plate", 0x10, "ITEM_PLATE")
 goto(72, 60, "yx")
 push("down")
 check(room() == ROOM_PONT, "onto the bridge (room %d)" % room())

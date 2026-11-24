@@ -169,7 +169,7 @@ pages); the overflow is stored in bank 3 after the title art
 | 1 | assets, always mapped (tiles, maps, palettes, UI text, dialogue index); nearly full |
 | 2 | dialogue pages (first DLG_PAGES_LO) |
 | 3 | title art + dialogue overflow + `dlg_first_page` (read with far_read) |
-| 4 | portrait tiles and low sprites (copied to VRAM bank 1 by load_bank1); music data (`music_data.c`, MUSIC_BANK) |
+| 4 | portrait tiles and low sprites (copied to VRAM bank 1 by load_bank1); music data (`music_data.c`, MUSIC_BANK); `env_tiles`; item pictures (`items.c`) |
 | 5 | story logic (`events.c`) |
 | 6 | Korean code, tables, UI strings |
 | 7 | mini-games (`games.c`, BANKED functions) |
@@ -179,6 +179,12 @@ pages); the overflow is stored in bank 3 after the title art
 Code outside bank 0/1 cannot read bank-1 data directly: `box_print` and
 `world_solid` save the current bank, map ASSET_BANK and restore it, so they
 are callable from any bank; `far_read()` copies from another bank.
+Item pictures (`src/items.c`, bank 4, art from `tools/items.py`): `new_item`
+is set by events.c; `item_note()` (called by main after a closed dialogue)
+loads the 12 tiles to VRAM bank 1 sprite tiles 48-59 (`ITEM_TILE`) and shows
+six 8x16 sprites on the portrait OAM slots 24-29, standing on the caption box
+(x 136, y from WY_REG). With no caption open it opens a "You got:" one.
+`box_close()` hides them with the portrait.
 VRAM bank 1 sprite tiles 0-63 hold "low" sprites (`BANK1_LOW_SPRITES` in
 tools/art.py, e.g. the pickpocket, `SPR1_THIEF_*`).
 

@@ -161,6 +161,19 @@
 #define SPR1_SLEEPER 40   /* VRAM bank 1, low tiles */
 #define SPR1_WORKER_CAFE 44   /* VRAM bank 1, low tiles */
 #define LOW_TILE_COUNT 48
+/* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */
+#define ITEM_TILE 48
+#define NO_ITEM 0
+#define ITEM_CUP 1
+#define ITEM_COLTIN 2
+#define ITEM_BLEU 3
+#define ITEM_PLATE 4
+#define ITEM_GRATINEE 5
+#define ITEM_JETON 6
+#define ITEM_TICKET 7
+#define ITEM_GREEN 8
+#define ITEM_ROLLER 9
+#define ITEM_STUB 10
 #define GLYPH_DIGIT0 198
 #define GLYPH_CUP 227
 #define GLYPH_COIN 228
@@ -412,6 +425,8 @@ extern const uint8_t dlg_page_count[DLG_COUNT];   /* bank TITLE_BANK */
 extern const uint8_t dlg_choice[DLG_COUNT];   /* bank TITLE_BANK; 0 = none, else pair index + 1 */
 extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
 extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */
+extern const uint8_t item_tiles[];            /* bank PORTRAIT_BANK, 192 bytes per item */
+extern const uint8_t item_pal[];              /* bank PORTRAIT_BANK */
 extern const uint8_t low_tiles[];             /* bank PORTRAIT_BANK, VRAM bank 1 tile 0.. */
 extern const uint8_t portrait_pal[];          /* sprite palette per portrait */
 extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */
@@ -644,6 +659,17 @@ extern const uint8_t ui_text[];
 #define txt_of_6 (ui_text + 3168)
 #define txt_srv_hold (ui_text + 3171)
 #define txt_srv_hint (ui_text + 3187)
+#define txt_got (ui_text + 3206)
+#define txt_it_0 (ui_text + 3215)
+#define txt_it_1 (ui_text + 3229)
+#define txt_it_2 (ui_text + 3240)
+#define txt_it_3 (ui_text + 3255)
+#define txt_it_4 (ui_text + 3271)
+#define txt_it_5 (ui_text + 3286)
+#define txt_it_6 (ui_text + 3294)
+#define txt_it_7 (ui_text + 3309)
+#define txt_it_8 (ui_text + 3324)
+#define txt_it_9 (ui_text + 3340)
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];

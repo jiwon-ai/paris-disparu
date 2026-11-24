@@ -9,6 +9,7 @@
 #include "dialogue.h"
 #include "game.h"
 #include "input.h"
+#include "items.h"
 #include "minigame.h"
 #include "sound.h"
 #include "world.h"
@@ -62,6 +63,7 @@ void serve_start(void) BANKED {
     box_print(17, 1, txt_srv_of);
     box_print(1, 2, txt_srv_hold);
     box_tile(1, 3, GLYPH_CUP);          /* the cup, filling to the right */
+    item_show(ITEM_CUP, 136, (uint8_t)(WY_REG - 16));   /* a café cup over the box */
     serve_order();
 }
 

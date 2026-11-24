@@ -8,6 +8,7 @@
 #include "events.h"
 #include "game.h"
 #include "input.h"
+#include "items.h"
 #include "minigame.h"
 #include "notebook.h"
 #include "sound.h"
@@ -527,6 +528,11 @@ static void open_dialogue(uint8_t d) {
             if (sec) fanfare = 16;         /* a little two-note "ding" */
             else sound_confirm();
             sparkle = SPARKLE_FRAMES;
+        }
+        if (item_note()) {       /* the object itself, over the note or alone */
+            caption_timer = 240;
+            caption_note = 1;
+            sound_confirm();
         }
     } else {
         cur_dialogue = d;

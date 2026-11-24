@@ -20,6 +20,7 @@ import art   # noqa: E402
 import font  # noqa: E402
 import title_art  # noqa: E402
 import portraits  # noqa: E402
+import items  # noqa: E402
 
 MAP_W, MAP_H = 20, 18
 FONT_BASE = 128          # font tiles live at 128.. in VRAM bank 0
@@ -158,6 +159,17 @@ for name, rows in art.BANK1_LOW_SPRITES:
         low_data += encode_tile([r[x0:x0 + 8] for r in rows[y0:y0 + 8]])
 if len(low_data) // 16 > PORTRAIT_BASE:
     fail("low bank-1 sprites overlap the portraits")
+# Item pictures: same 24x32 layout, loaded one at a time to bank-1 tile ITEM_TILE.
+ITEM_TILE = 48
+if len(low_data) // 16 > ITEM_TILE:
+    fail("low bank-1 sprites overlap the item picture tiles")
+item_data = []
+for name, grid, _ in items.ITEMS:
+    rows = ["".join(SPR_MAP[c] for c in r) for r in portraits.rows(grid)]
+    for col in range(3):
+        for half in range(2):
+            for y0 in (half * 16, half * 16 + 8):
+                item_data += encode_tile([r[col * 8:col * 8 + 8] for r in rows[y0:y0 + 8]])
 portrait_names = [n for n, _, _ in portraits.PORTRAITS]
 if PORTRAIT_BASE + len(portrait_data) // 16 > 256:
     fail("portrait tiles do not fit in VRAM bank 1")
@@ -378,6 +390,11 @@ for name, t in bank1_spr_defs:
 for name, t in low_defs:
     H.append("#define SPR1_%s %d   /* VRAM bank 1, low tiles */" % (name, t))
 H.append("#define LOW_TILE_COUNT %d" % (len(low_data) // 16))
+H.append("/* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */")
+H.append("#define ITEM_TILE %d" % ITEM_TILE)
+H.append("#define NO_ITEM 0")
+for k, (name, _, _) in enumerate(items.ITEMS):
+    H.append("#define ITEM_%s %d" % (name, k + 1))
 H.append("#define GLYPH_DIGIT0 %d\n#define GLYPH_CUP %d\n#define GLYPH_COIN %d"
          % (font_index["0"], encode_char("∩", "glyph"), encode_char("●", "glyph")))
 H.append("#define PORTRAIT_BASE %d\n#define PORTRAIT_TILE_COUNT %d\n#define NO_PORTRAIT 0xFF"
@@ -407,6 +424,8 @@ H.append("extern const uint8_t dlg_page_count[DLG_COUNT];   /* bank TITLE_BANK *
 H.append("extern const uint8_t dlg_choice[DLG_COUNT];   /* bank TITLE_BANK; 0 = none, else pair index + 1 */")
 H.append("extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */")
 H.append("extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */")
+H.append("extern const uint8_t item_tiles[];            /* bank PORTRAIT_BANK, 192 bytes per item */")
+H.append("extern const uint8_t item_pal[];              /* bank PORTRAIT_BANK */")
 H.append("extern const uint8_t low_tiles[];             /* bank PORTRAIT_BANK, VRAM bank 1 tile 0.. */")
 H.append("extern const uint8_t portrait_pal[];          /* sprite palette per portrait */")
 H.append("extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */")
@@ -496,7 +515,9 @@ outputs = {
         "#pragma bank 4", '#include "assets.h"', "",
         "const uint8_t portrait_tiles[] = {\n%s\n};" % c_bytes(portrait_data),
         "const uint8_t low_tiles[] = {\n%s\n};" % c_bytes(low_data or [0]),
-        "const uint8_t env_tiles[] = {\n%s\n};" % c_bytes(env_data), ""]) + "\n",
+        "const uint8_t env_tiles[] = {\n%s\n};" % c_bytes(env_data),
+        "const uint8_t item_tiles[] = {\n%s\n};" % c_bytes(item_data),
+        "const uint8_t item_pal[] = { %s };" % ", ".join(str(p) for _, _, p in items.ITEMS), ""]) + "\n",
 }
 import ko_gen  # noqa: E402
 ko_out, ko_report = ko_gen.build([(d, p) for d, p, _ in entries], {k: v for k, v in choices.items() if v},
