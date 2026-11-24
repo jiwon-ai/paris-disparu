@@ -7,6 +7,7 @@
 #include "game.h"
 #include "notebook.h"
 #include "events.h"
+#include "world.h"
 
 static const uint8_t * const quest_txt[QUEST_COUNT] = {
     txt_q_0, txt_q_1, txt_q_2, txt_q_3, txt_q_4
@@ -95,6 +96,10 @@ void goal_print(uint8_t y) BANKED {
     box_print(1, y + 1, goal_txt[g + 1]);
 }
 
+static const uint8_t * const clock_txt[5] = {
+    txt_clock_0, txt_clock_1, txt_clock_2, txt_clock_3, txt_clock_4
+};
+
 void notebook_show(void) BANKED {
     uint8_t i, y, g = goal() * 2;
     box_open(SCREEN_H / 8);
@@ -104,6 +109,7 @@ void notebook_show(void) BANKED {
     box_print(1, 2, goal_txt[g]);
     box_print(1, 3, goal_txt[g + 1]);
     box_print(1, 5, txt_nb_quests);
+    box_print(14, 5, clock_txt[dawn_stage]);   /* the hour: dawn comes with each quest */
     for (i = 0; i < QUEST_COUNT; i++) {
         box_print(1, 6 + i, quest_done(i) ? txt_x_done : txt_x_todo);
         box_print(4, 6 + i, quest_txt[i]);
@@ -174,6 +180,42 @@ void album_show(void) BANKED {
     }
     set_win_tile_xy(16, 1, digit_glyph(n));
     box_print(17, 1, txt_nb_of);       /* "/5" */
+    box_print(1, 17, txt_nb_myst);
+    box_print(14, 17, txt_nb_close);
+}
+
+static uint8_t album_total(void) {
+    uint8_t i, n = 0;
+    for (i = 0; i < ALBUM_COUNT; i++) n += album_has(i);
+    return n;
+}
+
+/* Fourth page: curiosities. Unknown: ???. Found: what it looks like and who
+   might know. Identified: what it was (facts: docs/HISTORICAL_RESEARCH.md). */
+static const uint8_t * const curio_txt[CURIO_COUNT * 4] = {
+    txt_cu_0q, txt_cu_0h, txt_cu_0, txt_cu_0f,
+    txt_cu_1q, txt_cu_1h, txt_cu_1, txt_cu_1f,
+    txt_cu_2q, txt_cu_2h, txt_cu_2, txt_cu_2f
+};
+
+void curio_show(void) BANKED {
+    uint8_t i, y;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_cu_title);
+    set_win_tile_xy(16, 1, digit_glyph(curio_total()));
+    box_print(17, 1, txt_cu_of);
+    for (i = 0; i < CURIO_COUNT; i++) {
+        y = 3 + i * 4;
+        if (curio_flags & (0x10 << i)) {
+            box_print(1, y, curio_txt[i * 4 + 2]);
+            box_print(1, y + 1, curio_txt[i * 4 + 3]);
+        } else if (curio_flags & (1 << i)) {
+            box_print(1, y, curio_txt[i * 4]);
+            box_print(1, y + 1, curio_txt[i * 4 + 1]);
+        } else {
+            box_print(1, y, txt_al_none);
+        }
+    }
     box_print(1, 17, txt_nb_prev);
     box_print(14, 17, txt_nb_close);
 }
@@ -210,6 +252,14 @@ void end_show(void) BANKED {
     box_print(1, 13, txt_secrets);
     set_win_tile_xy(15, 13, digit_glyph(secret_total()));
     box_print(1, 14, txt_end_10);
+    {   /* everything found, out of 26 */
+        static const uint8_t * const rank_txt[5] = {
+            txt_rank_0, txt_rank_1, txt_rank_2, txt_rank_3, txt_rank_4
+        };
+        uint8_t s = clue_total() + extra_total() + secret_total() + album_total() + curio_total();
+        box_print(1, 15, txt_rank);
+        box_print(7, 15, rank_txt[s < 9 ? 0 : s < 15 ? 1 : s < 21 ? 2 : s < 26 ? 3 : 4]);
+    }
     box_print(1, 16, txt_end_11);
 }
 

@@ -16,6 +16,8 @@ uint8_t quest_flags;
 uint8_t new_quest;
 uint16_t secret_flags;
 uint8_t new_secret;
+uint8_t curio_flags;
+uint8_t new_curio;
 static uint8_t last_look, look_count;
 static uint16_t cameo_met;                /* bit k: cameo NPC_ACTOR + k already met */   /* the same thing examined n times in a row */
 
@@ -38,6 +40,7 @@ void event_pack(uint8_t *b) BANKED {
     b[5] = (uint8_t)secret_flags; b[6] = (uint8_t)(secret_flags >> 8);
     b[7] = (uint8_t)cameo_met;    b[8] = (uint8_t)(cameo_met >> 8);
     b[9] = carrying;  b[10] = crates_taken;  b[11] = crates_delivered;  b[12] = punched;
+    b[13] = curio_flags;
 }
 
 void event_unpack(const uint8_t *b) BANKED {
@@ -46,7 +49,8 @@ void event_unpack(const uint8_t *b) BANKED {
     secret_flags = b[5] | ((uint16_t)b[6] << 8);
     cameo_met = b[7] | ((uint16_t)b[8] << 8);
     carrying = b[9];  crates_taken = b[10];  crates_delivered = b[11];  punched = b[12];
-    new_clue = new_extra = new_quest = new_secret = 0;
+    curio_flags = b[13];
+    new_clue = new_extra = new_quest = new_secret = new_curio = 0;
     last_look = look_count = 0;
 }
 
@@ -96,6 +100,40 @@ uint8_t secret_total(void) BANKED {
     uint16_t x;
     for (x = secret_flags; x; x >>= 1) n += x & 1;
     return n;
+}
+
+/* Where each curiosity is found, and who can say what it is. */
+static const uint8_t curio_spot[CURIO_COUNT] = { DLG_BENCH, DLG_BASKETS, DLG_CHAIRS };
+static const uint8_t curio_who[CURIO_COUNT] = { NPC_PUNCHER, NPC_YOUNG_MAN, NPC_PAINTER };
+
+uint8_t curio_total(void) BANKED {
+    uint8_t n = 0, c;
+    for (c = curio_flags >> 4; c; c >>= 1) n += c & 1;
+    return n;
+}
+
+/* Examining a curiosity's spot: the first time, the object turns up. */
+static uint8_t curio_find(uint8_t id) {
+    uint8_t i;
+    for (i = 0; i < CURIO_COUNT; i++)
+        if (curio_spot[i] == id && !(curio_flags & (1 << i))) {
+            curio_flags |= 1 << i;
+            new_curio = 1;
+            return DLG_CURIO_0_FIND + i;
+        }
+    return id;
+}
+
+/* Talking to someone while carrying the object they know: the answer. */
+static uint8_t curio_ask(uint8_t npc) {
+    uint8_t i;
+    for (i = 0; i < CURIO_COUNT; i++)
+        if (curio_who[i] == npc && (curio_flags & (0x11 << i)) == (1 << i)) {
+            curio_flags |= 0x10 << i;
+            new_curio = 2;
+            return DLG_CURIO_0_SOLVE + i;
+        }
+    return NO_DIALOGUE;
 }
 
 uint8_t clue_total(void) BANKED {
@@ -160,6 +198,8 @@ uint8_t event_dial_result(uint16_t number) BANKED {
 }
 
 uint8_t event_talk(uint8_t npc) BANKED {
+    uint8_t d = curio_ask(npc);
+    if (d != NO_DIALOGUE) return d;
     switch (npc) {
     case NPC_STRANGER:
         /* He noticed the missing hat and knows where the notebooks are. */
@@ -348,7 +388,7 @@ uint8_t event_examine(uint8_t id) BANKED {
         return DLG_PHONE_LOOK;
     }
     if (id & 0x80) return event_talk(id & 0x7F);
-    return id;
+    return curio_find(id);
 }
 
 uint8_t event_after(uint8_t dlg, uint8_t choice) BANKED {

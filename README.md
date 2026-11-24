@@ -53,6 +53,9 @@ Everything below is in the ROM and exercised by the automated play-through
 | Quiet scene-based sound: a soft knock every 1-3 s in the market, water on the quai, a faint cup tick in the café; one soft chime when a dialogue opens | done. Captured from the emulator (PyBoy) and checked for pitch, level and rate, **not yet heard by a person** |
 | Original music: 7 loops composed for the game (title, street, market, café, river, métro, mini-games), musette waltzes and polkas, melody on the wave channel over a plucked accompaniment; effects borrow channel 1 | done. Pitches checked from an emulator (PyBoy) recording, **not yet heard by a person** |
 | "Vanished Paris" album: notebook page 3 collects five period objects with a sourced one-line fact each | done, tested (English; the Korean page is not screen-checked) |
+| Curiosities: three vanished objects found as "???" (a green first-class métro ticket, a VéloSolex roller, a Tutankhamun exhibition stub), each identified by the one person who knows; notebook page 4 "Mysteries" | done; ticket tested in a full playthrough, roller and stub identification tested from saves (`tests/save_test.py`); the roller and stub pick-ups are not covered by a test |
+| Night clock 03:00 → 07:00 (one hour per quest, notebook) with the sky turning slightly bluer | done, tested (clock); palette change checked by screenshot |
+| End-screen rank (Tourist → Paris legend) | done, tested (one rank seen in the playthrough) |
 | Save / continue: automatic save to battery RAM (room changes, closed dialogues), Continue / New game menu, cleared at the ending | done, tested (`tests/save_test.py`) |
 | Fuller rooms: baskets, chairs, a bench, posters and three more people (a fort, a cook, a night worker) | done, tested |
 | Juice: room fades, a star over the player on every find, a shake when the pickpocket bumps you | done, tested (the star is checked in OAM) |

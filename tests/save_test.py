@@ -119,7 +119,7 @@ pos = g.player()
 ram = io.BytesIO()
 g.pb.stop(ram_file=ram)
 data = ram.getvalue()
-check(data[:4] == b"PDS1", "cartridge RAM holds the save: %r" % data[:4])
+check(data[:4] == b"PDS2", "cartridge RAM holds the save: %r" % data[:4])
 
 print("2. continue")
 g = Game(io.BytesIO(data))
@@ -144,6 +144,34 @@ g.tap("a", 30)            # New game
 check("PARIS, 21 NOV 1967" in g.screen_text(), "the intro plays")
 check(g.mem[sym["_clue_flags"]] == 0, "no progress carried over (clues 0x%02x)" % g.mem[sym["_clue_flags"]])
 g.pb.stop(save=False)
+
+print("4. curiosities: a saved game carrying one, shown to the one who knows")
+
+
+def crafted(room, x, y, d, curio):
+    b = list(b"PDS2") + [room, x & 255, x >> 8, y & 255, y >> 8, d, 1] + [0] * 13 + [curio]
+    return bytes(b + [(0xA5 + sum(b)) & 255]) + bytes(8192 - len(b) - 1)
+
+
+def ask(room, x, y, d, push, curio, expect, flags_after):
+    g = Game(io.BytesIO(crafted(room, x, y, d, curio)))
+    g.tick(240)
+    g.tap("a", 60)
+    g.tap("a", 30)
+    g.tap("a", 80)        # Continue
+    g.tap("b", 10)        # close "Welcome back"
+    g.push(push, 30)
+    g.tap("a", 70)
+    first = g.row(1) + " " + g.row(3)
+    for _ in range(6):
+        g.tap("a", 70)
+    check(expect in first and g.mem[sym["_curio_flags"]] == flags_after and "Mystery solved" in g.row(1)
+          and "/3" in g.row(1), "%r -> flags 0x%02x, note %r" % (first, g.mem[sym["_curio_flags"]], g.row(1)))
+    g.pb.stop(save=False)
+
+
+ask(6, 120, 104, 3, "right", 0x02, "YOUNG MAN", 0x22)    # the roller -> the young man (metro)
+ask(5, 80, 30, 0, "down", 0x05, "Tutankhamun", 0x45)     # the stub -> the painter (bridge)
 
 print("\n%d failure(s)" % len(failures))
 sys.exit(1 if failures else 0)

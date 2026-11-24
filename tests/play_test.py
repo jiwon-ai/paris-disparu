@@ -175,7 +175,8 @@ def dialogue(choice=None, max_pages=24):
             tap("a", 6)
             continue
         if not window_on() or window_row(1).startswith(("Up/Down", "Lift!", "Punch!", "New clue", "Extra done", "Secret found", "QUEST COMPLETE",
-                                                        "Coffee rush", "Watch the", "Which cup", "Got ", "Catch him")) \
+                                                        "Coffee rush", "Watch the", "Which cup", "Got ", "Catch him",
+                                                        "Curiosity", "Mystery solved")) \
                 or window_row(2) == "THE END":
             break
         if "▶" in window_row(2):
@@ -883,6 +884,42 @@ goto(120, 104, "xy")
 push("right")
 cameo("twenty-two", "young_man")
 talk("addresses")
+
+print("a curiosity: the green ticket under the bench, then the one who knows")
+goto(28, 104, "yx")
+push("down")
+tap("a", 0)
+lines = dialogue()
+check("green ticket" in " ".join(lines) and window_on() and "Curiosity: ???" in window_row(1)
+      and mem[sym["_curio_flags"]] == 0x01, "found a curiosity: %s %r flags 0x%02x"
+      % (lines[:1], window_row(1), mem[sym["_curio_flags"]]))
+tap("b", 4)
+tap("a", 0)
+lines = dialogue()
+check(any("bench" in l for l in lines) and not window_on(), "the bench again: just a bench: %s" % lines[:1])
+tap("start", 10)
+stage = mem[sym["_dawn_stage"]]
+check(window_row(5).endswith("0%d:00" % (3 + stage)), "the notebook shows the hour, %d quests in: %r" % (stage, window_row(5)))
+tap("left", 10)
+page = [window_row(r) for r in range(18)]
+check("MYSTERIES" in page[1] and "0/3" in page[1] and "green ticket" in page[3] and page[7] == "???",
+      "notebook page 4, mysteries: the ticket found, not yet explained: %r" % page[1:8])
+shot("38_mysteries")
+tap("start", 10)
+goto(84, 72, "yx")
+push("up")
+tap("a", 0)
+lines = dialogue()
+check(any("first class" in l for l in lines) and window_on() and "Mystery solved" in window_row(1)
+      and "1/3" in window_row(1) and mem[sym["_curio_flags"]] == 0x11,
+      "the puncher knows: %s %r" % (lines[:1], window_row(1)))
+shot("39_mystery_solved")
+tap("b", 4)
+talk("Porte des Lilas")
+tap("start", 10)
+tap("left", 10)
+check("1st-class ticket" in window_row(3) and "1991" in window_row(4), "solved: %r %r" % (window_row(3), window_row(4)))
+tap("start", 10)
 goto(104, 56, "xy")
 goto(136, 56, "xy")
 push("up")
@@ -966,6 +1003,8 @@ check(any("two winters" in l for l in lines), "ending: he stays for the last win
 check(any("ticket full" in l for l in lines), "every extra done: the photographer's bonus scene")
 check(window_on() and window_row(2) == "THE END" and "6/6" in window_row(4) and "3/3" in window_row(5) and "9/9" in window_row(13),
       "end screen: %r %r %r" % (window_row(2), window_row(4), window_row(5)))
+check(window_row(15).startswith("Rank:") and window_row(15)[5:].strip() in ("Night owl", "True fort"),
+      "end screen rank (one of three curiosities): %r" % window_row(15))
 check(flags() & FLAG_SOLVED, "mystery solved (FLAG_SOLVED)")
 shot("14_end")
 tap("start", 20)

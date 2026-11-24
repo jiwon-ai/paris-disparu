@@ -10,6 +10,7 @@ void end_show(void) BANKED;        /* the mystery is solved */
 void goal_print(uint8_t y) BANKED; /* current goal, two rows, in the open box */
 void intro_show(uint8_t page) BANKED;
 void extras_show(void) BANKED;
+void curio_show(void) BANKED;   /* the curiosities, found and identified */
 void album_show(void) BANKED;   /* the vanished-Paris objects found */
 uint16_t notebook_number(void) BANKED;  /* the next phone number known, cycling (0 if none) */
 uint8_t goal_npc(void) BANKED;          /* NPC_* to talk to next, or 0xFF */

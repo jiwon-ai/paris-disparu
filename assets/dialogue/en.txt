@@ -769,3 +769,31 @@ A NIGHT WORKER: Mm? Just waiting for the first train. Then home, then bed.
 
 [sleeper_again]
 A NIGHT WORKER: Zzz… They say the whole market's going out to Rungis… Zzz…
+
+# ---------------------------------------------------------------- curiosities
+# Vanished objects found as "???" (curio_flags), then shown to the one person
+# who knows what they are. Keep the three _find entries, then the three
+# _solve entries, together and in this order. Sources: HISTORICAL_RESEARCH.md.
+[curio_0_find]
+Under the bench, a little green ticket. Yours is brown. What would a green one be for?
+
+[curio_1_find]
+Among the onion skins, a small ridged roller, black with grime. Off some machine… but which?
+
+[curio_2_find]
+On the chair, a ticket stub: a gold mask, and the words PETIT PALAIS. Whose face is that?
+
+[curio_0_solve]
+TICKET PUNCHER: Green? That's first class, kid. Brown is second class, like yours.
+
+First class costs more and rides in its own carriages, the ones with the yellow marks. I'll keep it. Clac!
+
+[curio_1_solve]
+THE YOUNG MAN: That's off a VéloSolex! The roller sits on the front tyre and the little motor turns it.
+
+Students ride them everywhere. Someone's walking home tonight.
+
+[curio_2_solve]
+THE PAINTER: Tutankhamun! The boy king's gold, at the Petit Palais this year.
+
+All Paris queued. Over a million people. Keep it: one day nobody will believe you.

@@ -388,13 +388,19 @@ enum {
     DLG_COOK_AGAIN,
     DLG_SLEEPER_HELLO,
     DLG_SLEEPER_AGAIN,
+    DLG_CURIO_0_FIND,
+    DLG_CURIO_1_FIND,
+    DLG_CURIO_2_FIND,
+    DLG_CURIO_0_SOLVE,
+    DLG_CURIO_1_SOLVE,
+    DLG_CURIO_2_SOLVE,
     DLG_COUNT
 };
 
 extern const palette_color_t bg_palettes[32];
 extern const palette_color_t spr_palettes[32];
 extern const uint8_t font_tiles[];
-extern const uint8_t env_tiles[];
+extern const uint8_t env_tiles[];             /* bank PORTRAIT_BANK */
 extern const uint8_t water_frames[];   /* 2 tiles, swapped into TILE_WATER */
 extern const uint8_t sprite_tiles[];
 extern const uint8_t * const room_tiles[ROOM_COUNT];
@@ -606,6 +612,36 @@ extern const uint8_t ui_text[];
 #define txt_how_t3 (ui_text + 2737)
 #define txt_how_t4 (ui_text + 2755)
 #define txt_chase_hud (ui_text + 2770)
+#define txt_clock_0 (ui_text + 2781)
+#define txt_clock_1 (ui_text + 2787)
+#define txt_clock_2 (ui_text + 2793)
+#define txt_clock_3 (ui_text + 2799)
+#define txt_clock_4 (ui_text + 2805)
+#define txt_rank (ui_text + 2811)
+#define txt_rank_0 (ui_text + 2817)
+#define txt_rank_1 (ui_text + 2825)
+#define txt_rank_2 (ui_text + 2835)
+#define txt_rank_3 (ui_text + 2845)
+#define txt_rank_4 (ui_text + 2855)
+#define txt_nb_myst (ui_text + 2868)
+#define txt_cu_title (ui_text + 2880)
+#define txt_cu_found (ui_text + 2890)
+#define txt_cu_found2 (ui_text + 2905)
+#define txt_cu_solved (ui_text + 2920)
+#define txt_cu_solved2 (ui_text + 2935)
+#define txt_cu_of (ui_text + 2952)
+#define txt_cu_0q (ui_text + 2955)
+#define txt_cu_0h (ui_text + 2972)
+#define txt_cu_0 (ui_text + 2990)
+#define txt_cu_0f (ui_text + 3007)
+#define txt_cu_1q (ui_text + 3024)
+#define txt_cu_1h (ui_text + 3042)
+#define txt_cu_1 (ui_text + 3060)
+#define txt_cu_1f (ui_text + 3073)
+#define txt_cu_2q (ui_text + 3090)
+#define txt_cu_2h (ui_text + 3104)
+#define txt_cu_2 (ui_text + 3119)
+#define txt_cu_2f (ui_text + 3136)
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];

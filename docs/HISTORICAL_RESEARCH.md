@@ -21,7 +21,7 @@ not yet been consulted.
 | 3 | The market's busiest hours were at night and before dawn. | 3 h 10 setting, noise | To research | INA archives on night at Les Halles |
 | 4 | "Forts des Halles" were porters with an official status at the market. | Fernand | To research (status, numbers, dates) | Archives de Paris; secondary sources |
 | 5 | Paris street-name plaques are blue enamel. | plaque text | To research for 1967 specifically | |
-| 6 | Café wall telephones in 1960s Paris were operated with tokens (jetons) bought at the counter. | Experience C | To research (search results only, not read) | [Wikipedia, Telephone token](https://en.wikipedia.org/wiki/Telephone_token); [Numista catalogue entry](https://en.numista.com/16650) |
+| 6 | Café wall telephones in 1960s Paris were operated with tokens (jetons) bought at the counter. | Experience C | **Read** 2026-11-24 in one secondary source (fusac.fr, "Reflections from an old timer in Paris: Les PTT"): "To call someone you went to your local café to buy a *jeton* … to be used on the café's phone"; home phones "a rarity here up until the mid-1970s". The jeton's look and the 1967 price are not stated there | [Wikipedia, Telephone token](https://en.wikipedia.org/wiki/Telephone_token); [Numista catalogue entry](https://en.numista.com/16650) |
 | 7 | The central market sold wholesale; produce was displayed by type at stalls inside the pavilions. | Experience A | To research | Archives de Paris; INA |
 | 8 | Porters ("forts") carried loads on their backs for merchants. | Fernand, Experience A | To research | |
 | 10 | Some Paris street lamps were still gas-lit in 1967 (the game shows gas lamps on the quai and the bridge, electric-looking lanterns elsewhere). | quai, bridge | Plausible, weakly sourced. One blog says the last fixtures of the public gaslight network were converted to electricity in 1975; another article only says gas and electricity competed "until the middle of the 20th century". No primary source read. | [French Moments, "Last gas streetlamp in Paris"](https://frenchmoments.eu/last-gas-streetlamp-in-paris/); [Light ZOOM Lumière, histoire électrique et lumineuse de Paris](https://www.lightzoomlumiere.fr/article/histoire-electrique-et-lumineuse-de-la-ville-de-paris/) |
@@ -127,6 +127,27 @@ Each line shown is taken from a claim already read above; nothing new.
 | Gratinée (carrying it, or after the trade) | midnight to 8 a.m. | **Read**: eaten at Les Halles between midnight and 8 a.m. (Era culture) |
 
 The jeton is left out: café jeton telephones in 1967 are still "to research".
+
+### Curiosities (notebook page 4, "Mysteries", 2026-11-24)
+
+Three objects the player finds without knowing what they are ("???"), then
+shows to the one person who knows. Where they lie and who knows them is
+**fiction**; what each person says about the object is limited to what was read.
+
+| Object (found at → who knows) | What the game says | Basis |
+|---|---|---|
+| Green métro ticket (bench, métro → ticket puncher) | Green is first class, brown second; first class costs more and has its own carriages with yellow marks; page 4: "green; gone 1991" | **Read**: 1958 tariff, *havane* for second class and green for first; carnets 30 F (2nd) and 45 F (1st) (Paris ZigZag, ticket history). First-class cars "reconnaissables grâce à leurs marquages jaunes"; first class ended in 1991 (Paris ZigZag, première classe: 1 Aug 1991; Slate: 30 July 1991, so the game gives the year only). Whether the 1958 colours were still used in Nov 1967 is **not confirmed** (no 1967 colour found) |
+| Ridged roller (onion baskets, market → the young man) | "off a VéloSolex": the roller sits on the front tyre and the motor turns it; students ride them | **Read**: "a roller turns the front wheel", ridden by students and factory workers, mass-produced 1946-1988 (see Getting around). A loose roller in the market is fiction |
+| Ticket stub with a gold mask, PETIT PALAIS (café chair → the painter) | Tutankhamun at the Petit Palais "this year", "over a million people" | **Read**: Tutankhamun exhibition, Petit Palais, 1967, 1.24 million visitors (see News of the week). The stub's design is fiction |
+
+## Game clock and dawn (2026-11-24)
+
+The notebook shows 03:00 at the start and one hour later per quest done, up
+to 07:00; the night palette turns slightly bluer each hour. The hours are
+**game fiction** (pacing). They stay before daylight on purpose: Paris
+sunrise on 23 Nov is about 08:11 CET (time.now sunrise page, read
+2026-11-24; the same page gives an inconsistent civil-twilight time, so only
+"after 8 a.m." is relied on).
 
 ## Era culture (references in the scenery)
 

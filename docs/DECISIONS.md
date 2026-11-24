@@ -32,6 +32,10 @@ Newest first. Dates are 2026.
 | 11-23 | More goals and a hook to the next episode | Side goals (notebook page 2), bonus scene, Episode 2 teaser |
 | 11-23 | A short explanation at the start; a fun, clear opening | 3-page skippable intro, goal caption, the cat |
 | 11-23 | Player invisible on the quai (bug) | Fixed in player_unstick; visibility test in CI |
+| 11-24 | "Find things that no longer exist and bring them to someone" (Jiwon) | Three curiosities found as "???" and identified by the one person who knows (green 1st-class ticket → puncher, Solex roller → young man, Tutankhamun stub → painter); notebook page 4 "Mysteries" |
+| 11-24 | Make it feel like the night passes | Clock 03:00 → 07:00, one hour per quest, palette slightly bluer each hour; never daylight (sunrise after 08:00) |
+| 11-24 | Replay hook | End-screen rank from everything found (26): Tourist, Passer-by, Night owl, True fort, Paris legend |
+| 11-24 | Bank 1 full | Scenery tiles moved to bank 4 (`env_tiles` in portrait_art.c) |
 | 11-23 | Fernand found but nothing happens | He and the notebook say what is missing |
 | 11-23 | START should advance dialogue | A or START |
 | 11-23 | All game text in English | Overrides the French-first brief |

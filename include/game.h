@@ -97,6 +97,12 @@ uint8_t extra_total(void) BANKED;
 extern uint16_t secret_flags;
 extern uint8_t new_secret;     /* a secret was just found: show a note */
 uint8_t secret_total(void) BANKED;
+/* Curiosities: vanished objects found as "???", then shown to someone who
+   knows what they are. Bit i = found, bit 4+i = identified. */
+#define CURIO_COUNT 3
+extern uint8_t curio_flags;
+extern uint8_t new_curio;      /* 1: a curiosity found, 2: one identified */
+uint8_t curio_total(void) BANKED;   /* identified */
 
 /* Main quests: each is completed by the clue it rewards. */
 #define QUEST_COUNT 5               /* rush, who wrote, crates, plate, Fernand */

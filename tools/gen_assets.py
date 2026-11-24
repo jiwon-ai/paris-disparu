@@ -395,7 +395,7 @@ H.append("    DLG_COUNT\n};\n")
 H.append("extern const palette_color_t bg_palettes[32];")
 H.append("extern const palette_color_t spr_palettes[32];")
 H.append("extern const uint8_t font_tiles[];")
-H.append("extern const uint8_t env_tiles[];")
+H.append("extern const uint8_t env_tiles[];             /* bank PORTRAIT_BANK */")
 H.append("extern const uint8_t water_frames[];   /* 2 tiles, swapped into TILE_WATER */")
 H.append("extern const uint8_t sprite_tiles[];")
 H.append("extern const uint8_t * const room_tiles[ROOM_COUNT];")
@@ -431,7 +431,6 @@ for p in art.SPR_PALETTES:
     C.append("    " + ", ".join(rgb(c) for c in p) + ",")
 C.append("};\n")
 C.append("const uint8_t font_tiles[] = {\n%s\n};\n" % c_bytes(font_data))
-C.append("const uint8_t env_tiles[] = {\n%s\n};\n" % c_bytes(env_data))
 C.append("const uint8_t water_frames[] = {\n%s\n};\n" % c_bytes([b for f in art.WATER_FRAMES for b in encode_tile(f)]))
 C.append("const uint8_t sprite_tiles[] = {\n%s\n};\n" % c_bytes(spr_data))
 for room, tiles, attrs, solid in rooms:
@@ -496,7 +495,8 @@ outputs = {
         "/* Lives in ROM bank PORTRAIT_BANK: map it with SWITCH_ROM before reading. */",
         "#pragma bank 4", '#include "assets.h"', "",
         "const uint8_t portrait_tiles[] = {\n%s\n};" % c_bytes(portrait_data),
-        "const uint8_t low_tiles[] = {\n%s\n};" % c_bytes(low_data or [0]), ""]) + "\n",
+        "const uint8_t low_tiles[] = {\n%s\n};" % c_bytes(low_data or [0]),
+        "const uint8_t env_tiles[] = {\n%s\n};" % c_bytes(env_data), ""]) + "\n",
 }
 import ko_gen  # noqa: E402
 ko_out, ko_report = ko_gen.build([(d, p) for d, p, _ in entries], {k: v for k, v in choices.items() if v},

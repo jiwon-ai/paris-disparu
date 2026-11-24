@@ -152,8 +152,8 @@ static void bkg_text_centered(uint8_t y, const uint8_t *t) {
 /* VRAM bank 1: scenery tiles and dialogue portraits (the title art borrows it). */
 static void load_bank1(void) {
     VBK_REG = VBK_ATTRIBUTES;
-    set_bkg_data(0, ENV_TILE_COUNT, env_tiles);
     SWITCH_ROM(PORTRAIT_BANK);
+    set_bkg_data(0, ENV_TILE_COUNT, env_tiles);
     set_sprite_data(PORTRAIT_BASE, PORTRAIT_TILE_COUNT, portrait_tiles);
     set_sprite_data(0, LOW_TILE_COUNT, low_tiles);   /* thief: bank 1, 0x8000 */
     SWITCH_ROM(ASSET_BANK);
@@ -256,7 +256,7 @@ static void intro(void) {
    magic word and a checksum, so blank or random RAM reads as "no save". */
 #define SAVE_SIZE (11 + EVENT_SAVE_SIZE + 1)
 static uint8_t save_buf[SAVE_SIZE];
-static const uint8_t save_magic[4] = { 'P', 'D', 'S', '1' };
+static const uint8_t save_magic[4] = { 'P', 'D', 'S', '2' };
 
 static uint8_t save_sum(void) {
     uint8_t i, s = 0xA5;
@@ -364,6 +364,13 @@ static void close_caption(void) {
     if (caption_timer || bark_from != NO_BARK) box_close();
     caption_timer = 0;
     bark_from = NO_BARK;
+}
+
+/* Dawn creeps in with each quest done (the clock runs 3 a.m. to 7 a.m.). */
+static uint8_t dawn_now(void) {
+    uint8_t i, n = 0;
+    for (i = 0; i < 4; i++) n += quest_done(i);
+    return n;
 }
 
 static void enter_room(uint8_t room) {
@@ -476,6 +483,7 @@ static void open_dialogue(uint8_t d) {
             box_print(1, 2, quest_name[q]);
             box_print(1, 3, quest_got[q]);
             box_print(1, 4, txt_extra_more);
+            world_dawn(dawn_now());        /* an hour later: the sky pales */
             caption_timer = 300;
             caption_note = 1;
             fanfare = 32;
@@ -488,6 +496,20 @@ static void open_dialogue(uint8_t d) {
             caption_timer = 240;
             caption_note = 1;
             sound_confirm();
+            sparkle = SPARKLE_FRAMES;
+        } else if (new_curio) {  /* a vanished object found, or explained */
+            uint8_t solved = new_curio == 2;
+            new_curio = 0;
+            box_open(4);
+            box_print(1, 1, solved ? txt_cu_solved : txt_cu_found);
+            if (solved) {
+                set_win_tile_xy(16, 1, txt_digits[curio_total()]);
+                box_print(17, 1, txt_cu_of);
+            }
+            box_print(1, 2, solved ? txt_cu_solved2 : txt_cu_found2);
+            caption_timer = 240;
+            caption_note = 1;
+            fanfare = 16;
             sparkle = SPARKLE_FRAMES;
         } else if (new_extra | new_secret) {   /* a side goal done, or a secret */
             uint8_t sec = new_secret;
@@ -642,6 +664,7 @@ void main(void) {
         howto_seen = save_buf[10];
         player_place((int16_t)(save_buf[5] | ((uint16_t)save_buf[6] << 8)),
                      (int16_t)(save_buf[7] | ((uint16_t)save_buf[8] << 8)), save_buf[9]);
+        dawn_stage = dawn_now();
         enter_room(save_buf[4]);
         box_open(5);
         box_print(1, 1, txt_save_back);
@@ -649,6 +672,7 @@ void main(void) {
     } else {
         intro();
         player_place(84, 92, DIR_LEFT);
+        dawn_stage = 0;
         enter_room(ROOM_STREET);
         box_open(4);
         box_print(1, 1, txt_caption);
@@ -734,9 +758,10 @@ void main(void) {
                 box_close();
                 state = ST_WALK;
             } else if (joy_pressed & (J_LEFT | J_RIGHT)) {   /* clues <-> extras */
-                nb_page = (joy_pressed & J_RIGHT) ? (nb_page + 1) % 3 : (nb_page + 2) % 3;
+                nb_page = (joy_pressed & J_RIGHT) ? (nb_page + 1) & 3 : (nb_page + 3) & 3;
                 if (nb_page == 1) extras_show();
                 else if (nb_page == 2) album_show();
+                else if (nb_page == 3) curio_show();
                 else notebook_show();
                 sound_blip();
             }
