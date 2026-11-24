@@ -168,6 +168,8 @@ SIMONE: Poor Marcel. Poor Fernand. Thirty years under that glass roof, both of t
 [cafe_again]
 SIMONE: Any sign of Fernand? His coffee's gone cold.
 
+The second channel's been in colour since October. Colour! As if I had time for television.
+
 [worker_hello]
 A PORTER: Shh. I'm sleeping on my feet. That's a skill too.
 
@@ -178,6 +180,8 @@ His fort's plate, the one with his name. Like he was saying goodbye to it.
 
 [worker_phone]
 A PORTER: Who did you call? The butcher? Ha! They never pick up before six.
+
+And taxis went up yesterday. One franc ninety before the wheels even turn! I'll walk.
 
 [phone_look]
 A telephone on the wall. There's a slot… too small for a coin.
@@ -303,6 +307,10 @@ THE PAINTER: A poet wrote it long ago: "Le vieux Paris n'est plus (la forme d'un
 
 change plus vite, hélas ! que le cœur d'un mortel)." Baudelaire. So I paint fast.
 
+All Paris queued at the Petit Palais this year for Tutankhamun's gold. Me, I paint onions and water.
+
+My wife went to the new Orchestre de Paris last week. Very grand. I stayed here with the river.
+
 [barrier]
 Barriers: ROADWORKS. The rest of the bridge will wait for daylight.
 
@@ -413,6 +421,8 @@ A fort was missing tonight? The big one, Fernand. I photographed him last week, 
 [photo_again]
 THE PHOTOGRAPHER: The light's changing. In an hour the market will look like any other place.
 
+Last month they opened the lorry station out at Rungis. I went. Concrete, and not one face worth a photo.
+
 [photo_knows]
 THE PHOTOGRAPHER: You found Fernand? Bring him back under the glass. I'd like one more picture of him.
 
@@ -434,7 +444,11 @@ No ticket? The window's just there. Knock, the clerk's only dozing.
 You tap on the glass. A sleepy clerk slides a small brown second-class ticket under it.
 
 [metro_window_again]
-The clerk has gone back to his newspaper.
+The clerk has gone back to his evening paper.
+
+Headline: THE POUND DEVALUED.
+
+Lower down: GONCOURT PRIZE FOR "LA MARGE".
 
 [puncher_ticket]
 TICKET PUNCHER: Let's see it. Clac! A neat little hole. Good for one trip.
@@ -597,6 +611,10 @@ He's tired too. Go on, once more!
 
 [roux_after]
 MME ROUX: Zola, Hugo, Balzac… Old books for an old Paris. Mind how you go.
+
+The new ones? Everyone asks for Tournier's "Vendredi". The Académie gave it its prize last week.
+
+Fifty million French now, the papers say. And still nobody buys books at four in the morning.
 
 [bark_roux]
 MME ROUX: Brr! Who's up so early?

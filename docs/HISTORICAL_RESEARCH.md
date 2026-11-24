@@ -109,13 +109,40 @@ original). Only public-domain text is quoted.
 | Onion soup gratinée on a café table (café) | Eaten at Les Halles between midnight and 8 a.m., by market workers as breakfast and by night owls | **Read**. Not a work: no rights issue | [Paris ZigZag, Gratinée des Halles](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/histoire-dun-plat-parisien-mythique-la-gratinee-des-halles/) |
 | "Salut les copains" left on a table (café) | Magazine 1962-2006, from the Europe 1 radio show (first aired Dec 1959) at the root of yé-yé | **Read**. Title only (trademark/press title): legal check before release | [Wikipedia, magazine](https://en.wikipedia.org/wiki/Salut_les_copains_(magazine)); [Wikipedia, Yé-yé](https://en.wikipedia.org/wiki/Y%C3%A9-y%C3%A9) |
 | A radio playing "a yé-yé song" (café shelf) | Yé-yé pop from the early 1960s | **Read** (genre). No song named or played | Wikipedia, Yé-yé |
-| Poster for Jacques Tati's "Playtime", "Soon." (quai) | Released in France 16 Dec 1967; set in a modern glass-and-steel Paris | **Read**. "Soon" assumes the episode is before mid-December 1967 (the episode's month is not fixed). Title and director named, no poster art reproduced: legal check | [Wikipedia, Playtime](https://en.wikipedia.org/wiki/Playtime) |
+| Poster for Jacques Tati's "Playtime", "Soon." (quai) | Released in France 16 Dec 1967; set in a modern glass-and-steel Paris | **Read**. "Soon" fits the game date, 21 Nov 1967 (fiction, see "News of the week"). Title and director named, no poster art reproduced: legal check | [Wikipedia, Playtime](https://en.wikipedia.org/wiki/Playtime) |
 | Playbill for Ionesco's "The Bald Soprano" at the Huchette (hotel) | In permanent showing at the Théâtre de la Huchette since 1957 | **Read**. Title only: legal check | [Wikipedia, The Bald Soprano](https://en.wikipedia.org/wiki/The_Bald_Soprano) |
 | Zola, "Le Ventre de Paris" in a bouquiniste's box (quai) | Novel of 1873 set in and around Les Halles | **Read**. Public domain | [Wikipedia, Le Ventre de Paris](https://en.wikipedia.org/wiki/Le_Ventre_de_Paris) |
 | The painter quotes Baudelaire, "Le Cygne": "Le vieux Paris n'est plus (la forme d'une ville / Change plus vite, hélas ! que le cœur d'un mortel)" | Verse checked word for word; section "Tableaux parisiens" of Les Fleurs du mal | **Read**. Public domain (Baudelaire d. 1867) | [La langue française, Le Cygne](https://www.lalanguefrancaise.com/litterature/baudelaire/le-cygne) |
 | Allusion to Gainsbourg's "Le Poinçonneur des Lilas" (métro) | See "Vanished Paris" above | Under copyright: allusion only | Paris ZigZag |
 | Photography: the Doisneau-inspired photographer | See "Cameos" | — | — |
 
+
+## News of the week: Paris, 21 November 1967 (added 2026-11-24)
+
+The game date is **fiction**: the night of Monday 20 to Tuesday 21 November
+1967 (shown on the first intro page). It was chosen so that real news of that
+week can be mentioned. Every fact below was read in Larousse, *Journal de
+l'année* 1968 (chronology Sept-Dec 1967) or Wikipedia; the wording, who says
+it and their opinions are fiction. No private person is named (the
+50-millionth French citizen's name, given by the source, is left out).
+
+| In the game (who) | Fact | Status | Source |
+|---|---|---|---|
+| Métro clerk's evening paper: "THE POUND DEVALUED" | 18 Nov 1967: pound devalued by 14.3%, bank rate 8% (UK) | **Read**; headline wording is a reconstruction | [Larousse, Nov 1967](https://www.larousse.fr/archives/journaux_annee/1968/chrono/1967-11) |
+| Same paper: "GONCOURT PRIZE FOR 'LA MARGE'" | 20 Nov 1967: Prix Goncourt to André Pieyre de Mandiargues for *La Marge* | **Read**. That an evening paper of the 20th carried it is a reconstruction. Title only (book under copyright) | [Larousse, Nov 1967](https://www.larousse.fr/archives/journaux_annee/1968/chrono/1967-11) |
+| Café porter: taxis up "yesterday", "one franc ninety before the wheels even turn" | 20 Nov 1967: Paris taxi pick-up charge from 1.50 F to 1.90 F | **Read** | [Larousse, Nov 1967](https://www.larousse.fr/archives/journaux_annee/1968/chrono/1967-11) |
+| Pickpocket: "the whole city's mad for gold this week" | Week ending 24 Nov 1967: gold rush on Western exchanges, "10 t d'or négociées à Paris en une journée" | **Read** | [Larousse, Nov 1967](https://www.larousse.fr/archives/journaux_annee/1968/chrono/1967-11) |
+| Simone: "the second channel's been in colour since October" | Colour on the ORTF second channel from 1 Oct 1967 | **Read** (Larousse chronology and Wikipedia, Deuxième chaîne de l'ORTF) | [Larousse, Oct 1967](https://www.larousse.fr/archives/journaux_annee/1968/chrono/1967-10) |
+| Photographer: "last month they opened the lorry station out at Rungis" | 26 Oct 1967: Rungis road transport station (gare routière) inaugurated | **Read**; his visit and opinion are fiction | [Larousse, Oct 1967](https://www.larousse.fr/archives/journaux_annee/1968/chrono/1967-10) |
+| Mme Roux: everyone asks for Tournier's *Vendredi*, "the Académie gave it its prize last week" | 16 Nov 1967: Grand prix du roman de l'Académie française to Michel Tournier, *Vendredi ou les Limbes du Pacifique* (Gallimard, 1967) | **Read**. Title only (under copyright) | [Larousse, Nov 1967](https://www.larousse.fr/archives/journaux_annee/1968/chrono/1967-11); Wikipedia, *Vendredi ou les Limbes du Pacifique* |
+| Mme Roux: "fifty million French now, the papers say" | Early Nov 1967 (the page dates it 3 Nov): the 50-millionth French citizen | **Read**; name deliberately not used | [Larousse, Nov 1967](https://www.larousse.fr/archives/journaux_annee/1968/chrono/1967-11) |
+| Painter: "all Paris queued at the Petit Palais this year for Tutankhamun's gold" | Tutankhamun exhibition at the Petit Palais in 1967, 1.24 million visitors | **Read** (year and attendance); the exhibition's dates were **not found** on the page read, so the line says only "this year" | [Petit Palais](https://www.petitpalais.paris.fr/en/node/3096) |
+| Painter: his wife went to "the new Orchestre de Paris last week" | 14 Nov 1967: première of the Orchestre de Paris under Charles Münch, Théâtre des Champs-Élysées | **Read**; the wife is fiction | [Larousse, Nov 1967](https://www.larousse.fr/archives/journaux_annee/1968/chrono/1967-11) |
+
+Not used, on purpose: the foot-and-mouth figures on the same page (it was
+not clear whether they were French or British); crimes and trials naming
+individuals; events after 21 November (Concorde 001 on 11 Dec, the Neuwirth
+law on 19 Dec) except *Playtime*, which the game already calls "soon".
 
 ## Cameos (real people)
 

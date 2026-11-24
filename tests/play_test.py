@@ -103,6 +103,10 @@ def window_row(row):
     return text.strip("|").strip()
 
 
+NEWS_SHOTS = (("Headline", "29_news_paper"), ("One franc ninety", "29_news_taxi"),
+              ("Tutankhamun", "29_news_painter"), ("Tournier", "29_news_roux"))
+
+
 def shot(name):
     if SHOTS:
         os.makedirs(SHOTS, exist_ok=True)
@@ -178,6 +182,9 @@ def dialogue(choice=None, max_pages=24):
             tick(60)
             continue
         lines.append(page_text())
+        for key, name in NEWS_SHOTS:          # 1967 news lines (screenshots for docs)
+            if key in lines[-1]:
+                shot(name)
         tap("a", 70)
     return lines
 
@@ -425,7 +432,7 @@ shot("01_language")
 tap("a", 20)                       # English is preselected
 
 print("intro")
-check(window_on() and "PARIS, 1967" in window_row(3), "intro page 1, the setting: %r" % window_row(3))
+check(window_on() and "PARIS, 21 NOV 1967" in window_row(3), "intro page 1, the setting: %r" % window_row(3))
 shot("00_intro")
 tap("a", 10)
 check("TONIGHT" in window_row(3) and "Find Fernand" in window_row(13), "intro page 2, the goal: %r" % window_row(13))
@@ -768,7 +775,7 @@ goto(28, 72, "yx")
 push("up")
 talk("second-class ticket")
 check(flags() & 0x0400, "bought a ticket (FLAG_TICKET)")
-talk("newspaper")
+talk("POUND DEVALUED")
 goto(84, 72, "yx")
 push("up")
 tap("a", 0)
