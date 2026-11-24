@@ -43,10 +43,10 @@ uint8_t item_note(void) BANKED {
 
 /* What the player carries, as small icons in the top-left corner while
    walking or talking (Jiwon, 2026-11-24). Up to HUD_MAX icons, in VRAM bank 0
-   sprite tiles 246-255 (free above the font), on OAM 22-23 and 32-34. */
-#define HUD_MAX 5
+   sprite tiles 246-253 (free above the font), on OAM 22-23 and 32-33. */
+#define HUD_MAX 4
 #define HUD_TILE 246
-static const uint8_t hud_oam[HUD_MAX] = { 22, 23, 32, 33, 34 };
+static const uint8_t hud_oam[HUD_MAX] = { 22, 23, 32, 33 };
 static const uint8_t hud_order[] = {        /* most useful first */
     ITEM_JETON, ITEM_GRATINEE, ITEM_PLATE, ITEM_COLTIN, ITEM_BLEU, ITEM_TICKET,
     ITEM_GREEN, ITEM_ROLLER, ITEM_STUB

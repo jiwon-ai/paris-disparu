@@ -111,6 +111,11 @@ NEWS_SHOTS = (("Headline", "29_news_paper"), ("One franc ninety", "29_news_taxi"
               ("Tutankhamun", "29_news_painter"), ("Tournier", "29_news_roux"))
 
 
+def bubble():
+    """The speech bubble over an NPC who calls out (OAM 35)."""
+    return mem[0xFE00 + 35 * 4] != 0
+
+
 def shot(name):
     if SHOTS:
         os.makedirs(SHOTS, exist_ok=True)
@@ -510,17 +515,15 @@ goto(106, 90, "yx")
 push("up")
 check(player() == (106, 62), "next to the man with the notebook: %s" % (player(),))
 bark = page_text()
-check(window_on() and "Psst" in bark, "he calls out by himself when approached: %r" % bark)
+check(bubble() and not window_on(), "he calls out with a speech bubble, no box covering the street")
 shot("13_bark")
 tick(600)
-check(window_on() and "Psst" in page_text(),
-      "his line stays while the player stands near (10 s)")
+check(bubble(), "his bubble stays while the player stands near (10 s)")
 hold("down", 60)
-check(not window_on(), "walking away closes his line (y=%d)" % player()[1])
+check(not bubble(), "walking away removes the bubble (y=%d)" % player()[1])
 goto(106, 90, "yx")
 push("up")
-check(window_on() and "Psst" in page_text(),
-      "coming back, he calls out again")
+check(bubble(), "coming back, he calls out again")
 tap("right", 2)
 tap("a", 0)
 tick(70)
@@ -623,7 +626,7 @@ check(any("Rungis" in l for l in lines) and any("Fernand" in l for l in lines),
 to_dede()
 check(player() == (64, 46), "below Dede: %s" % (player(),))
 bark = page_text()
-check("Seen Fernand" in bark, "Dede calls out by himself: %r" % bark)
+check(bubble(), "Dede calls out by himself (bubble)")
 talk("DÉDÉ", choice=0)
 
 
@@ -810,7 +813,7 @@ secret("pigeon", 7)
 shot("10_quai")
 goto(100, 60, "yx")
 push("right")
-check(window_on() and "SINGER" in window_row(1), "the singer hums by himself: %r" % window_row(1))
+check(bubble() and not window_on(), "the singer calls out by himself (bubble)")
 tap("a", 0)
 lines = dialogue()
 check(any("minor key" in l for l in lines) and any("punches holes" in l for l in lines) and not window_on(),
@@ -867,7 +870,7 @@ check(room() == ROOM_METRO and player() == (72, 108), "down the metro steps into
 shot("17_metro")
 goto(84, 72, "xy")
 push("up")
-check(window_on() and "Tickets" in window_row(1) + window_row(3), "the puncher calls out: %r" % window_row(3))
+check(bubble(), "the puncher calls out (bubble)")
 talk("No ticket")
 goto(28, 72, "yx")
 push("up")
@@ -1034,7 +1037,7 @@ check(any("Cold soup" in l for l in lines), "the painter gets his wife's message
 check(window_on() and "3/3" in window_row(1), "all three extras done: %r" % window_row(1))
 tap("b", 4)
 to_fernand()
-check("FERNAND" in window_row(1), "Fernand's silent call-out: %r" % window_row(1))
+check(bubble(), "Fernand's silent call-out (bubble)")
 # Before all three clues he must say what is missing (and the notebook too).
 full = clues()
 for have, says, goal in ((0x01, "Simone's café", "Help Simone"),

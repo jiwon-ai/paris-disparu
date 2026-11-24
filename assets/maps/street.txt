@@ -5,7 +5,7 @@ RRMRRRRMRRRRMRCNCCNC
 ==============CuCCuC
 #W#K#W##W#K#W#CNCCNC
 #w#k#w##w#k#w#CuCCuC
-pq$&*/:?`'"###CCCCCC
+##$&*/:?`'"###CCCCCC
 AAAAAA##AAAAAACNCCNC
 GGGGDG##GGDGGGCuCCuC
 GGGGEG##GGEGGGCCCCCC
@@ -19,5 +19,6 @@ ____________________
 ЖЗИЙ,,,,,,,,,,,,jrsx
 КЛМН................
 ; signs: x y text
+!plaque 0 2 RUE RAMBUTEAU
 !sign 1 6 CAFÉ
 !sign 9 6 HOTEL

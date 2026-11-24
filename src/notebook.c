@@ -304,6 +304,21 @@ void rat_update(uint8_t walking) BANKED {
              RAT_TILE, 4 | S_BANK1 | (rat_left ? S_FLIPX : 0));
 }
 
+/* A speech bubble over the NPC who calls out (index in this room, or
+   NO_BARK): it bobs until the player walks away; A opens the talk. */
+#define BUBBLE_OAM 35
+void bubble_update(uint8_t npc) BANKED {
+    const npc_def_t *n;
+    if (npc >= rooms[cur_room].npc_count) {
+        move_sprite(BUBBLE_OAM, 0, 0);
+        return;
+    }
+    n = &rooms[cur_room].npcs[npc];
+    set_sprite_tile(BUBBLE_OAM, 254);
+    set_sprite_prop(BUBBLE_OAM, 3);
+    move_sprite(BUBBLE_OAM, (uint8_t)(n->x + 18), (uint8_t)(n->y + 7 - ((sys_time >> 4) & 1)));
+}
+
 /* The caption when a coin is picked up. */
 void coin_note(void) BANKED {
     box_open(5);

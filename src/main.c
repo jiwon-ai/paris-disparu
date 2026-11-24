@@ -175,6 +175,7 @@ static void load_graphics(void) {
     VBK_REG = VBK_TILES;
     set_sprite_data(0, SPRITE_TILE_COUNT, sprite_tiles);
     set_bkg_data(FONT_BASE, FONT_TILE_COUNT, font_tiles);
+    set_sprite_data(254, 2, bubble_tiles);
     load_bank1();
 }
 
@@ -612,8 +613,7 @@ static void update_barks(void) {
                 bark_armed &= ~bit;
                 if (d == NO_DIALOGUE) continue;   /* cameos do not call out */
                 caption_timer = 0;      /* a call replaces the opening caption */
-                bark_show(d);
-                sound_blip();
+                sound_blip();           /* a speech bubble, not a box (bubble_update) */
                 bark_from = i;
                 return;
             }
@@ -628,7 +628,8 @@ static void update_barks(void) {
    (one every 1-4 s), never a continuous noise. */
 /* Music for each room, in ROOM_* order (tools/music.py). */
 static const uint8_t room_song[ROOM_COUNT] = {
-    SONG_STREET, SONG_MARKET, SONG_MARKET, SONG_CAFE, SONG_RIVER, SONG_RIVER, SONG_METRO
+    SONG_STREET, SONG_MARKET, SONG_MARKET, SONG_CAFE, SONG_RIVER, SONG_RIVER, SONG_METRO,
+    SONG_STREET, SONG_CAFE, SONG_CAFE    /* Bourse, hotel, brasserie */
 };
 
 static void update_ambience(void) {
@@ -826,6 +827,7 @@ void main(void) {
         update_juice();
         hud_update(state == ST_WALK || state == ST_DIALOGUE);   /* carried items, top-left */
         rat_update(state == ST_WALK);
+        bubble_update(state == ST_WALK ? bark_from : NO_BARK);
         if (state != ST_END && state != ST_DAWN) flicker_lamps();
     }
 }

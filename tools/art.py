@@ -212,11 +212,6 @@ TILES = {
                   "00100100", "01011010", "01011010", "01011010"],
     "wallace_b": ["01011010", "00111100", "01111110", "00011000",
                   "00011000", "00111100", "01111110", "00000000"],
-    # Street-name plaque, 16x8: blue enamel, white capitals (palette 7).
-    "plaque_l": ["00000000", "01111111", "01331313", "01313131",
-                 "01331313", "01111111", "00000000", "00000000"],
-    "plaque_r": ["00000000", "11111110", "33131310", "13131310",
-                 "31331310", "11111110", "00000000", "00000000"],
     # Transport (2026-11-24): a market lorry (32x16, side view, cab left),
     # a VeloSolex (16x8, roller on the front wheel) and a bus-stop post.
     # Generic original shapes, no make or livery copied.
@@ -329,8 +324,6 @@ LEGEND = {
     "6": ("morris_br", 6, True),
     "7": ("wallace_t", 3, True),        # Wallace fountain (reconstruction)
     "8": ("wallace_b", 3, True),
-    "p": ("plaque_l", 7, True),         # blue enamel street plaque
-    "q": ("plaque_r", 7, True),
     "c": ("lorry_0", 6, True),
     "e": ("lorry_1", 6, True),
     "h": ("lorry_2", 6, True),
@@ -843,6 +836,14 @@ ICON_PRESS = [
     "........", "........", "........", "........",
 ]
 BANK1_ICONS = [("MARK", ICON_MARK), ("PRESS", ICON_PRESS)]
+
+# Speech bubble over an NPC who calls out (VRAM bank 0 sprite tiles 254-255,
+# palette 3): the line itself opens only when the player presses A.
+BUBBLE = [
+    ".######.", "#oooooo#", "#o#o#oo#", "#oooooo#", ".##o###.", "..#o#...",
+    "..##....", "........", "........", "........", "........", "........",
+    "........", "........", "........", "........",
+]
 
 # Sprites loaded at tile 0.. of VRAM bank 1 (0x8000-0x83FF is free: the
 # scenery is at 0x9000). Two-frame run, facing right; mirrored in code.
