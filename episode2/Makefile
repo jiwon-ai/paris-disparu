@@ -18,7 +18,7 @@ ROM       = build/paris-disparu.gbc
 # -Wm-yn        : header title
 # -Wm-yk / -yl  : new licensee code "00" and old code 0x33 (no publisher)
 LCCFLAGS  = -Iinclude -Wa-l -Wl-m -Wl-j
-ROMFLAGS  = -Wm-yC -Wl-yt0x1B -Wl-yo32 -Wl-ya1 -Wm-yn"PARISDISPARU" -Wm-yk00 -Wm-yl0x33
+ROMFLAGS  = -Wm-yC -Wl-yt0x1B -Wl-yo32 -Wl-ya1 -Wm-yn"PARISDISPAR2" -Wm-yk00 -Wm-yl0x33
 
 SRC       = $(wildcard src/*.c)
 OBJ       = $(patsubst src/%.c,build/obj/%.o,$(SRC))

@@ -158,7 +158,7 @@ def draw_scene():
     tx = (W - tw) // 2
     text(d, tx, 10, title, AMBER, 2, 5.5)
     text(d, tx, 8, title, CREAM, 2, 5.5)
-    sub = "LES HALLES  1967"
+    sub = "2 · THE LAST NIGHT · 1969"
     text(d, (W - len(sub) * 6) // 2, 28, sub, AMBER)
     d.ellipse([132, 40, 144, 52], fill=rgb8(CREAM))       # a crescent moon
     d.ellipse([128, 38, 140, 50], fill=rgb8(SKY1))
