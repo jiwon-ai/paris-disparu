@@ -122,10 +122,13 @@ plus a chord list, and writes `src/music_data.c` (bank 4) and
 `include/music_songs.h`. The accompaniment is generated from the chords
 (waltz: bass, chord, chord; polka: bass, chord, fifth, chord). The driver
 (`src/music.c`, bank 0) runs from the VBL interrupt: one step per `tempo`
-frames, melody on channel 3 (a one-cycle reedy wave at 50%), accompaniment
-on channel 1 (25% duty, volume 3, short decay). It saves and restores the
-ROM bank itself. Effects keep channels 2 and 4; `sound_confirm` and
-`sound_note` borrow channel 1 by setting `music_ch1_hold`. Songs: title and
+frames, melody on channel 3 (a one-cycle reedy wave at 50%) doubled on
+channel 2 one frequency step sharp (50% duty, volume 2: the musette "second
+reed"), accompaniment on channel 1 (bass below C4: 50% duty, volume 5, slow
+decay; chord notes: 12.5% duty, volume 2, short decay). It saves and
+restores the ROM bank itself. Effects keep channel 4; `sound_confirm` and
+`sound_note` borrow channel 1 by setting `music_ch1_hold`, `sound_blip` and
+`sound_clink` borrow channel 2 by setting `music_ch2_hold`. Songs: title and
 end (TITLE), street, market (rue Baltard and the pavilion), café, river
 (quai and bridge), métro, mini-games (GAME). `music_play` is a no-op while
 the same song plays, so the walk loop calls it every frame with the room's

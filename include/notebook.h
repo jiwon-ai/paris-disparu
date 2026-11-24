@@ -6,6 +6,8 @@
 
 /* Full-screen pages on the window layer. */
 void notebook_show(void) BANKED;   /* START: goal, clues found, phone numbers known */
+uint16_t ambience_play(uint8_t r) BANKED;   /* a room sound; frames to the next */
+void coin_note(void) BANKED;            /* caption: a coin picked up */
 void day_start(void) BANKED;        /* ending: daybreak on the quai */
 uint8_t day_update(uint8_t pressed) BANKED;   /* 1 when the player goes on */
 void end_show(void) BANKED;        /* the mystery is solved */

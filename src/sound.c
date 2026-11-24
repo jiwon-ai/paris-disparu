@@ -15,6 +15,7 @@ void sound_init(void) {
 
 /* Channel 2: soft text tick, A5 (x=1899, 880 Hz), 16 ms. */
 void sound_blip(void) {
+    music_ch2_hold = 4;
     NR21_REG = 0x80;   /* 50% duty */
     NR22_REG = 0x11;   /* volume 1, decay 1/64 s */
     NR23_REG = 0x6B;
@@ -50,6 +51,7 @@ void sound_water(void) {
 
 /* Channel 2: a faint high tick, C7 (x=1985, 2080 Hz), a cup on a saucer. */
 void sound_clink(void) {
+    music_ch2_hold = 6;
     NR21_REG = 0x40;   /* 25% duty */
     NR22_REG = 0x11;
     NR23_REG = 0xC1;

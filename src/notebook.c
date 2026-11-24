@@ -10,6 +10,7 @@
 #include "world.h"
 #include "music.h"
 #include "ko.h"
+#include "actor.h"
 #include "sound.h"
 
 static const uint8_t * const quest_txt[QUEST_COUNT] = {
@@ -244,6 +245,38 @@ void teaser_show(void) BANKED {
         if (teaser_txt[i]) box_print(1, 2 + i, teaser_txt[i]);
     box_print(1, 16, txt_end_11);
     box_flush();
+}
+
+/* A random background sound for this room; returns frames to the next. */
+uint16_t ambience_play(uint8_t r) BANKED {
+    switch (rooms[cur_room].ambience) {
+    case AMBIENCE_STREET:   /* only near the south side, where the market is */
+        if (player.y > 100) sound_market(1);
+        break;
+    case AMBIENCE_MARKET:
+        sound_market(2 + (r & 1));
+        return 60 + (r & 127);
+    case AMBIENCE_HALL:
+        sound_market(2);
+        break;
+    case AMBIENCE_RIVER:
+        sound_water();
+        return 70 + (r & 63);
+    case AMBIENCE_CAFE:
+        sound_clink();
+        return 180 + r;
+    default:
+        return 255;
+    }
+    return 90 + (r & 127);
+}
+
+/* The caption when a coin is picked up. */
+void coin_note(void) BANKED {
+    box_open(5);
+    box_print(1, 1, txt_coin_0);
+    box_print(1, 2, txt_coin_1);
+    box_print(1, 3, txt_coin_2);
 }
 
 /* The ending: the sky pales over 2 s (16 steps from tonight's colours to

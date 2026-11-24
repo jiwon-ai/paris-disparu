@@ -632,35 +632,8 @@ static const uint8_t room_song[ROOM_COUNT] = {
 };
 
 static void update_ambience(void) {
-    uint8_t r;
-    if (ambience_timer) {
-        ambience_timer--;
-        return;
-    }
-    r = next_random();
-    ambience_timer = 90 + (r & 127);
-    switch (rooms[cur_room].ambience) {
-    case AMBIENCE_STREET:   /* only near the south side, where the market is */
-        if (player.y > 100) sound_market(1);
-        break;
-    case AMBIENCE_MARKET:
-        sound_market(2 + (r & 1));
-        ambience_timer = 60 + (r & 127);
-        break;
-    case AMBIENCE_HALL:
-        sound_market(2);
-        break;
-    case AMBIENCE_RIVER:
-        sound_water();
-        ambience_timer = 70 + (r & 63);
-        break;
-    case AMBIENCE_CAFE:
-        sound_clink();
-        ambience_timer = 180 + r;
-        break;
-    default:
-        ambience_timer = 255;
-    }
+    if (ambience_timer) ambience_timer--;
+    else ambience_timer = ambience_play(next_random());
 }
 
 void main(void) {
@@ -745,10 +718,7 @@ void main(void) {
                 if (exit_dir != 0xFF) change_room(exit_dir);
                 else if ((exit_dir = coin_take(player.x + 8, player.y + 13)) != 0) {
                     close_caption();           /* a coin underfoot */
-                    box_open(5);
-                    box_print(1, 1, txt_coin_0);
-                    box_print(1, 2, txt_coin_1);
-                    box_print(1, 3, txt_coin_2);
+                    coin_note();
                     caption_timer = 180;
                     caption_note = 1;
                     sound_confirm();
