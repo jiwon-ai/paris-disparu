@@ -15,11 +15,14 @@ static const hotspot_t street_hotspots[] = {
     { 10, 7, 1, 2, DLG_HOTEL },
     { 14, 5, 6, 4, DLG_EUSTACHE },  /* east end of the church */
     {  2, 9, 1, 2, DLG_LAMP },
-    { 10, 9, 1, 2, DLG_LAMP },
+    {  8, 9, 1, 2, DLG_LAMP },       /* not in front of the hotel door (x10) */
     { 18, 9, 1, 2, DLG_LAMP },
     {  7, 11, 1, 1, DLG_SECRET_COIN },  /* a coin in the gutter */
     {  0, 7, 6, 2, DLG_CAFE_WINDOW },
     {  8, 7, 6, 2, DLG_SHOP },
+    {  6, 10, 2, 1, DLG_SOLEX },      /* VeloSolex against the wall */
+    { 12, 9, 1, 2, DLG_BUSSTOP },     /* bus stop */
+    { 16, 15, 4, 2, DLG_LORRY },      /* market lorry at the kerb */
 };
 static const door_t street_doors[] = {
     { 4, 7, 1, 2, ROOM_CAFE, 72, 118, DIR_UP },
@@ -134,7 +137,7 @@ static const door_t metro_doors[] = {
 };
 
 const room_def_t rooms[ROOM_COUNT] = {
-    { street_npcs, 3, street_hotspots, 9, street_doors, 1,
+    { street_npcs, 3, street_hotspots, 12, street_doors, 1,
       { ROOM_ENTRANCE, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_STREET },
     { entrance_npcs, 3, entrance_hotspots, 7, entrance_doors, 2,
       { ROOM_QUAI, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_MARKET },

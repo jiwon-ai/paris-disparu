@@ -89,7 +89,7 @@ hold("b", 2)                     # skip the intro
 pb.tick(40, False)
 hold("b", 2)                     # close the opening caption
 STREET, ENTRANCE, QUAI, PONT = 0, 1, 4, 5
-for x in (4, 20, 40, 60, 80, 100, 130):         # rue Rambuteau <-> rue Baltard
+for x in (4, 20, 40, 60, 80, 100, 112):         # rue Rambuteau <-> rue Baltard (a lorry is parked at x>=128)
     cross("street", x, 126, "down", ENTRANCE)   # rue Baltard is open at x=32-127
     cross("entrance", x if 32 <= x <= 112 else 88, 0, "up", STREET)
 cross("street", 60, 126, "down", ENTRANCE)

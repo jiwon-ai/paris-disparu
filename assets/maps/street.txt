@@ -1,5 +1,5 @@
 ; Rue Rambuteau, north edge of Les Halles (20x18 tiles). Legend: tools/art.py
-; Cafe door at x=4. East end of Saint-Eustache at x=14-19. South: rue Baltard.
+; Cafe door at x=4. Lorry parked x16-19 rows 15-16; VeloSolex x6-7 row 10; bus stop x12. East end of Saint-Eustache at x=14-19. South: rue Baltard.
 ^^^^^^^^^^^^^^+ ++ +
 RRMRRRRMRRRRMRCNCCNC
 ==============CuCCuC
@@ -9,14 +9,14 @@ pq############CCCCCC
 AAAAAA##AAAAAACNCCNC
 GGGGDG##GGDGGGCuCCuC
 GGGGEG##GGdGGGCCCCCC
-..L.......L.......L.
-..|.......|.......|.
+..L.....L...9.....L.
+..|...y0|...@.....|.
 ____________________
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,cehi
+,,,,,,,,,,,,,,,,jrsx
 ....................
 ; signs: x y text
 !sign 1 6 CAFÉ

@@ -47,8 +47,10 @@ static uint8_t blocked(int16_t x, int16_t y) {
     uint8_t i;
     int16_t x0 = x + HIT_X0, x1 = x + HIT_X1, y0 = y + HIT_Y0, y1 = y + HIT_Y1;
 
+    /* the hitbox is 10 px wide, so it can straddle a 1-tile post: test its middle too */
     if (world_solid(x0, y0) || world_solid(x1, y0) ||
-        world_solid(x0, y1) || world_solid(x1, y1))
+        world_solid(x0, y1) || world_solid(x1, y1) ||
+        world_solid(x + 8, y0) || world_solid(x + 8, y1))
         return 1;
     for (i = 0; i < npc_count; i++) {
         const npc_def_t *n = &rooms[cur_room].npcs[i];

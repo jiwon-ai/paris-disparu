@@ -268,6 +268,21 @@ A Morris column, painted the green of Paris street furniture. Posters for tonigh
 [wallace]
 A Wallace fountain: four stone-still ladies hold up a little iron dome. The water is free, and cold.
 
+[lorry]
+A lorry from the country, parked at the kerb. Crates go off it by hand, towards the pavilions.
+
+Every night the streets round the market fill with lorries like this one. The driver snores in his cab.
+
+[solex]
+A black VéloSolex leans on the wall: a bicycle with a little motor. A roller turns the front wheel.
+
+Light and cheap to run. Half the students and factory workers in France ride one.
+
+[busstop]
+A bus stop. Nobody is waiting at this hour.
+
+By day some Paris buses still have an open platform at the back, out in the air.
+
 [column]
 A cast-iron column. Cold, and a little sticky.
 

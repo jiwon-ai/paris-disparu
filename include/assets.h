@@ -33,7 +33,7 @@
 #define GLYPH_BAR_ZONE 241
 #define GLYPH_BAR_CURSOR 242
 
-#define ENV_TILE_COUNT 69
+#define ENV_TILE_COUNT 81
 #define TILE_SKY 0
 #define TILE_ROOFTOP 1
 #define TILE_ROOF 2
@@ -103,6 +103,18 @@
 #define TILE_WALLACE_B 66
 #define TILE_PLAQUE_L 67
 #define TILE_PLAQUE_R 68
+#define TILE_LORRY_0 69
+#define TILE_LORRY_1 70
+#define TILE_LORRY_2 71
+#define TILE_LORRY_3 72
+#define TILE_LORRY_4 73
+#define TILE_LORRY_5 74
+#define TILE_LORRY_6 75
+#define TILE_LORRY_7 76
+#define TILE_SOLEX_0 77
+#define TILE_SOLEX_1 78
+#define TILE_BUSSTOP_T 79
+#define TILE_BUSSTOP_B 80
 #define SPRITE_TILE_COUNT 128
 #define SPR1_ACTOR 232   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_CHANTEUSE 236   /* VRAM bank 1: use palette | S_BANK1 */
@@ -230,6 +242,9 @@ enum {
     DLG_CRATES,
     DLG_MORRIS,
     DLG_WALLACE,
+    DLG_LORRY,
+    DLG_SOLEX,
+    DLG_BUSSTOP,
     DLG_COLUMN,
     DLG_QUAI_BOX,
     DLG_QUAI_BOX2,

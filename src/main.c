@@ -18,6 +18,7 @@ enum { ST_WALK, ST_DIALOGUE, ST_NOTEBOOK, ST_LIFT, ST_DIAL, ST_END, ST_GAME, ST_
 
 static uint8_t state;
 static uint8_t cur_dialogue;
+static uint8_t caption_note;    /* the caption is a quest/clue/secret note */
 #define CAPTION_FRAMES 900      /* the opening caption stays 15 s unless A/B closes it */
 #define NO_BARK 0xFF
 static uint16_t caption_timer;  /* opening caption: closes when it reaches 0 */
@@ -78,6 +79,7 @@ static void update_cat(void) {
                 box_print(1, 1, txt_cat_gone);
                 box_print(1, 2, txt_cat_gone_2);
                 caption_timer = 240;
+                caption_note = 1;
                 sound_clink();
                 return;
             }
@@ -373,6 +375,7 @@ static void open_dialogue(uint8_t d) {
             box_print(1, 3, quest_got[q]);
             box_print(1, 4, txt_extra_more);
             caption_timer = 300;
+            caption_note = 1;
             fanfare = 32;
         } else if (new_clue) {   /* tell the player the notebook changed */
             new_clue = 0;
@@ -380,6 +383,7 @@ static void open_dialogue(uint8_t d) {
             box_print(1, 1, txt_new_clue);
             goal_print(2);                 /* what to do next, at a glance */
             caption_timer = 240;
+            caption_note = 1;
             sound_confirm();
         } else if (new_extra | new_secret) {   /* a side goal done, or a secret */
             uint8_t sec = new_secret;
@@ -390,6 +394,7 @@ static void open_dialogue(uint8_t d) {
             box_print(16, 1, sec ? txt_secret_of : txt_extra_of);
             box_print(1, 2, txt_extra_more);
             caption_timer = 240;
+            caption_note = 1;
             if (sec) fanfare = 16;         /* a little two-note "ding" */
             else sound_confirm();
         }
@@ -449,16 +454,18 @@ static uint8_t absdiff(int16_t a, int16_t b) {
 static void update_barks(void) {
     const room_def_t *r = &rooms[cur_room];
     uint8_t i;
-    if (caption_timer && caption_timer <= 300) return;   /* a quest/clue note stays up */
+    if (caption_timer && caption_note) return;   /* a quest/clue note stays up */
     for (i = 0; i < r->npc_count; i++) {
         const npc_def_t *n = &r->npcs[i];
         uint8_t dx = absdiff(player.x, n->x), dy = absdiff(player.y, n->y);
         uint8_t bit = 1 << i;
         if (dx < 28 && dy < 28) {
             if ((bark_armed & bit) && bark_from != i) {   /* the nearest call wins */
+                uint8_t d = event_bark(n->npc);
                 bark_armed &= ~bit;
+                if (d == NO_DIALOGUE) continue;   /* cameos do not call out */
                 caption_timer = 0;      /* a call replaces the opening caption */
-                bark_show(event_bark(n->npc));
+                bark_show(d);
                 sound_blip();
                 bark_from = i;
                 return;
@@ -527,6 +534,7 @@ void main(void) {
     box_print(1, 1, txt_caption);
     box_print(1, 2, txt_caption_2);
     caption_timer = CAPTION_FRAMES;
+    caption_note = 0;
     bark_from = NO_BARK;
     state = ST_WALK;
 
@@ -566,6 +574,7 @@ void main(void) {
                 box_open(4);                   /* standing still: what to do next */
                 goal_print(1);
                 caption_timer = 240;
+                caption_note = 0;   /* a reminder: a call may replace it */
             }
             update_barks();
             update_cat();

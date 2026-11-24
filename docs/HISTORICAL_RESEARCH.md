@@ -144,6 +144,20 @@ not clear whether they were French or British); crimes and trials naming
 individuals; events after 21 November (Concorde 001 on 11 Dec, the Neuwirth
 law on 19 Dec) except *Playtime*, which the game already calls "soon".
 
+## Getting around: transport at Les Halles, 1967 (added 2026-11-24)
+
+Asked by Jiwon: "did people only take the métro?" No. What was read, and
+what the game shows (rue Rambuteau):
+
+| In the game | Fact | Status | Source |
+|---|---|---|---|
+| A lorry parked at the kerb, crates carried off by hand; "every night the streets round the market fill with lorries" | Les Halles had "nightly arrivals of food supplies" and "a constant flurry of trucks"; the district was "de plus en plus encombré" from 1959; the move to Rungis in March 1969 took 1,500 lorries | **Read**. The lorry's shape is an original generic drawing (no make); the snoring driver is fiction | [Sortiraparis, belly of Paris](https://www.sortiraparis.com/en/what-to-visit-in-paris/history-heritage/articles/338865-in-the-past-the-underground-market-halls-were-known-as-the-belly-of-paris-do-you-know-why); [evous.fr](https://www.evous.fr/Du-ventre-de-Paris-a-Rungis-toute,1132285.html) |
+| A black VéloSolex: "a bicycle with a little motor; a roller turns the front wheel"; ridden by students and factory workers | Mass-produced 1946-1988; "a motor with a roller resting on the front wheel"; "extremely popular with school children, students, or plant workers"; frame "always black (including the motor)" until the 1966 S3800 | **Read**. "Half the students and workers in France" is the speaker's exaggeration (fiction), not a statistic | [Wikipedia, VéloSoleX](https://en.wikipedia.org/wiki/V%C3%A9loSoleX) |
+| A bus stop; "by day some Paris buses still have an open platform at the back" | Open-platform buses ran until "22 janvier 1971 avec le retrait des dernières voitures de la ligne 21" (Paris.fr); Wikipedia gives TN6 withdrawn 1969, TN4F 1970, TN4H 1971; transbus.org says the last TN went in 1969 (sources differ on the end, all agree they ran in 1967) | **Read**. The stop's look is a reconstruction (1967 design not found) | [Paris.fr, bus history](https://www.paris.fr/pages/les-bus-parisiens-cinq-siecles-d-histoire-16339); [Wikipedia, Renault TN](https://en.wikipedia.org/wiki/Renault_TN); [transbus.org](https://www.transbus.org/construc/renault_tn.html) |
+| "Nobody is waiting at this hour" | Whether any bus ran at 3-5 a.m. in 1967 (night buses) | **Not found** on the pages read; the line avoids saying when the first bus comes | — |
+| Taxis (already in the porter's lines: the fare rise of 20 Nov 1967) | See "News of the week" | **Read** | Larousse |
+| Métro opening hours in 1967 | Wikipedia gives today's hours only (first train about 5:30); no 1960s hours were found in the English or French Wikipedia articles | **Not found**. The ticket-hall scene still gives no time ("here come the first passengers"), so it does not contradict either | [Wikipedia, Paris Métro](https://en.wikipedia.org/wiki/Paris_M%C3%A9tro); [Wikipédia, Métro de Paris](https://fr.wikipedia.org/wiki/M%C3%A9tro_de_Paris) |
+
 ## Cameos (real people)
 
 Policy: a real person appears only with a documented tie to Les Halles at
