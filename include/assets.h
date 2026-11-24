@@ -37,131 +37,9 @@
 #define GLYPH_COFFEE 244
 #define GLYPH_COFFEE_ZONE 245
 
-#define ENV_TILE_COUNT 124
-#define TILE_SKY 0
-#define TILE_ROOFTOP 1
-#define TILE_ROOF 2
-#define TILE_DORMER 3
-#define TILE_CORNICE 4
-#define TILE_WALL 5
-#define TILE_WIN_T 6
-#define TILE_WIN_B 7
-#define TILE_DWIN_T 8
-#define TILE_DWIN_B 9
-#define TILE_DOOR_T 10
-#define TILE_DOOR_B 11
-#define TILE_AWNING 12
-#define TILE_SHOPGLASS 13
-#define TILE_PAVE 14
-#define TILE_CURB 15
-#define TILE_COBBLE 16
-#define TILE_LAMP_HEAD 17
-#define TILE_LAMP_POST 18
-#define TILE_CRATE 19
-#define TILE_PLAQUE 20
-#define TILE_GLASS 21
-#define TILE_COLUMN 22
-#define TILE_ARCH 23
-#define TILE_OPENING 24
-#define TILE_CART 25
-#define TILE_FLOOR 26
-#define TILE_CABBAGE 27
-#define TILE_APPLES 28
-#define TILE_CARROTS 29
-#define TILE_COUNTER 30
-#define TILE_PANEL 31
-#define TILE_SHELF 32
-#define TILE_MIRROR 33
-#define TILE_PHONE 34
-#define TILE_ZINC_TOP 35
-#define TILE_ZINC_FRONT 36
-#define TILE_CHECKER 37
-#define TILE_TABLE 38
-#define TILE_WATER 39
-#define TILE_PARAPET 40
-#define TILE_BOX_L 41
-#define TILE_BOX_R 42
-#define TILE_BPAR_L 43
-#define TILE_BPAR_R 44
-#define TILE_GASLAMP 45
-#define TILE_TREE_TL 46
-#define TILE_TREE_TR 47
-#define TILE_TREE_BL 48
-#define TILE_TREE_BR 49
-#define TILE_MTILE 50
-#define TILE_GATE 51
-#define TILE_STAIRS 52
-#define TILE_RAIL 53
-#define TILE_BARRIER 54
-#define TILE_PINNACLE 55
-#define TILE_BUTTRESS 56
-#define TILE_LANCET_T 57
-#define TILE_LANCET_B 58
-#define TILE_MORRIS_TL 59
-#define TILE_MORRIS_TR 60
-#define TILE_MORRIS_ML 61
-#define TILE_MORRIS_MR 62
-#define TILE_MORRIS_BL 63
-#define TILE_MORRIS_BR 64
-#define TILE_WALLACE_T 65
-#define TILE_WALLACE_B 66
-#define TILE_LORRY_0 67
-#define TILE_LORRY_1 68
-#define TILE_LORRY_2 69
-#define TILE_LORRY_3 70
-#define TILE_LORRY_4 71
-#define TILE_LORRY_5 72
-#define TILE_LORRY_6 73
-#define TILE_LORRY_7 74
-#define TILE_SOLEX_0 75
-#define TILE_SOLEX_1 76
-#define TILE_BUSSTOP_T 77
-#define TILE_BUSSTOP_B 78
-#define TILE_DOME_UL 79
-#define TILE_DOME_U 80
-#define TILE_DOME_UR 81
-#define TILE_DOME_L 82
-#define TILE_DOME_M 83
-#define TILE_DOME_R 84
-#define TILE_MEDICI_T 85
-#define TILE_MEDICI_S 86
-#define TILE_VESP_TL 87
-#define TILE_VESP_TR 88
-#define TILE_VESP_BL 89
-#define TILE_VESP_BR 90
-#define TILE_CAR_0 91
-#define TILE_CAR_1 92
-#define TILE_CAR_2 93
-#define TILE_CAR_3 94
-#define TILE_CAR_4 95
-#define TILE_CAR_5 96
-#define TILE_CAR_6 97
-#define TILE_CAR_7 98
-#define TILE_INSCR_0 99
-#define TILE_INSCR_1 100
-#define TILE_INSCR_2 101
-#define TILE_INSCR_3 102
-#define TILE_INSCR_4 103
-#define TILE_INSCR_5 104
-#define TILE_INSCR_6 105
-#define TILE_INSCR_7 106
-#define TILE_INSCR_8 107
-#define TILE_MAP4_0 108
-#define TILE_MAP4_1 109
-#define TILE_MAP4_2 110
-#define TILE_MAP4_3 111
-#define TILE_MAP4_4 112
-#define TILE_MAP4_5 113
-#define TILE_MAP4_6 114
-#define TILE_MAP4_7 115
-#define TILE_BASKET 116
-#define TILE_CHAIR 117
-#define TILE_BENCH_L 118
-#define TILE_BENCH_R 119
-#define TILE_POSTER_0 120
-#define TILE_POSTER_1 121
-#define TILE_POSTER_2 122
-#define TILE_POSTER_3 123
+#define ENV_TILE_COUNT 124   /* all scenery tiles, in ROM */
+#define ENV_SLOTS 128   /* per room: count byte + tile ids (room_env) */
+#define TILE_WATER 0   /* pinned slots, the same in every room */
 #define SPRITE_TILE_COUNT 128
 #define SPR1_MARK 232   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_PRESS 234   /* VRAM bank 1: use palette | S_BANK1 */
@@ -185,8 +63,8 @@
 #define SPR1_WRITER 68   /* VRAM bank 1, low tiles */
 #define SPR1_ARCHIVIST 72   /* VRAM bank 1, low tiles */
 #define LOW_TILE_COUNT 76   /* all pool sprites, in ROM */
-#define TILE_CHAIR 117
-#define TILE_TABLE 38
+#define TILE_CHAIR 1
+#define TILE_TABLE 2
 #define PAL_CHAIR 5
 #define PAL_TABLE 6   /* the ending's café table */
 #define LOW_FIXED 12        /* tiles always loaded (thief, sparkle) */
@@ -485,6 +363,7 @@ extern const palette_color_t bg_day[32];          /* daybreak after the ending *
 extern const palette_color_t spr_palettes[32];
 extern const uint8_t font_tiles[];
 extern const uint8_t env_tiles[];             /* bank PORTRAIT_BANK */
+extern const uint8_t room_env[];              /* bank PORTRAIT_BANK, (ENV_SLOTS+1) per room */
 extern const uint8_t water_frames[];   /* 2 tiles, swapped into TILE_WATER */
 extern const uint8_t sprite_tiles[];
 extern const uint8_t * const room_tiles[ROOM_COUNT];   /* bank ROOM_BANK */
@@ -635,154 +514,154 @@ extern const uint8_t ui_text[];
 #define txt_end_x (ui_text + 1790)
 #define txt_next_0 (ui_text + 1803)
 #define txt_next_1 (ui_text + 1819)
-#define txt_next_2 (ui_text + 1833)
-#define txt_next_3 (ui_text + 1851)
-#define txt_next_4 (ui_text + 1869)
-#define txt_next_5 (ui_text + 1881)
-#define txt_next_6 (ui_text + 1895)
-#define txt_next_7 (ui_text + 1913)
-#define txt_next_8 (ui_text + 1930)
-#define txt_next_9 (ui_text + 1943)
-#define txt_title_6 (ui_text + 1961)
-#define txt_srv_title (ui_text + 1969)
-#define txt_srv_of (ui_text + 1982)
-#define txt_srv_ok (ui_text + 1985)
-#define txt_srv_bad (ui_text + 2001)
-#define txt_cup (ui_text + 2017)
-#define txt_coin (ui_text + 2019)
-#define txt_cup_watch (ui_text + 2021)
-#define txt_cup_pick (ui_text + 2038)
-#define txt_catch_hud (ui_text + 2052)
-#define txt_quest_done (ui_text + 2071)
-#define txt_q_0 (ui_text + 2087)
-#define txt_q_0r (ui_text + 2099)
-#define txt_q_1 (ui_text + 2116)
-#define txt_q_1r (ui_text + 2131)
-#define txt_q_2 (ui_text + 2146)
-#define txt_q_2r (ui_text + 2160)
-#define txt_q_3 (ui_text + 2176)
-#define txt_q_3r (ui_text + 2192)
-#define txt_q_4 (ui_text + 2208)
-#define txt_nb_quests (ui_text + 2221)
-#define txt_howto (ui_text + 2228)
-#define txt_howto_go (ui_text + 2240)
-#define txt_how_l0 (ui_text + 2258)
-#define txt_how_l1 (ui_text + 2273)
-#define txt_how_l2 (ui_text + 2292)
-#define txt_how_l3 (ui_text + 2308)
-#define txt_how_l4 (ui_text + 2325)
-#define txt_how_p0 (ui_text + 2344)
-#define txt_how_d0 (ui_text + 2361)
-#define txt_how_d1 (ui_text + 2375)
-#define txt_how_d2 (ui_text + 2394)
-#define txt_how_d3 (ui_text + 2412)
-#define txt_how_d4 (ui_text + 2428)
-#define txt_how_s0 (ui_text + 2446)
-#define txt_how_s1 (ui_text + 2458)
-#define txt_how_s2 (ui_text + 2474)
-#define txt_how_s3 (ui_text + 2491)
-#define txt_how_s4 (ui_text + 2506)
-#define txt_how_c0 (ui_text + 2524)
-#define txt_how_c1 (ui_text + 2537)
-#define txt_how_c2 (ui_text + 2553)
-#define txt_how_c3 (ui_text + 2569)
-#define txt_how_c4 (ui_text + 2585)
-#define txt_how_k0 (ui_text + 2603)
-#define txt_how_k1 (ui_text + 2622)
-#define txt_how_k2 (ui_text + 2639)
-#define txt_how_k3 (ui_text + 2658)
-#define txt_how_k4 (ui_text + 2674)
-#define txt_how_t0 (ui_text + 2689)
-#define txt_how_t1 (ui_text + 2702)
-#define txt_how_t2 (ui_text + 2719)
-#define txt_how_t3 (ui_text + 2738)
-#define txt_how_t4 (ui_text + 2756)
-#define txt_chase_hud (ui_text + 2771)
-#define txt_clock_0 (ui_text + 2782)
-#define txt_clock_1 (ui_text + 2788)
-#define txt_clock_2 (ui_text + 2794)
-#define txt_clock_3 (ui_text + 2800)
-#define txt_clock_4 (ui_text + 2806)
-#define txt_rank (ui_text + 2812)
-#define txt_rank_0 (ui_text + 2818)
-#define txt_rank_1 (ui_text + 2826)
-#define txt_rank_2 (ui_text + 2836)
-#define txt_rank_3 (ui_text + 2846)
-#define txt_rank_4 (ui_text + 2856)
-#define txt_nb_myst (ui_text + 2869)
-#define txt_cu_title (ui_text + 2881)
-#define txt_cu_found (ui_text + 2891)
-#define txt_cu_found2 (ui_text + 2906)
-#define txt_cu_solved (ui_text + 2921)
-#define txt_cu_solved2 (ui_text + 2936)
-#define txt_cu_of (ui_text + 2953)
-#define txt_cu_0q (ui_text + 2956)
-#define txt_cu_0h (ui_text + 2973)
-#define txt_cu_0 (ui_text + 2991)
-#define txt_cu_0f (ui_text + 3008)
-#define txt_cu_1q (ui_text + 3025)
-#define txt_cu_1h (ui_text + 3043)
-#define txt_cu_1 (ui_text + 3061)
-#define txt_cu_1f (ui_text + 3074)
-#define txt_cu_2q (ui_text + 3091)
-#define txt_cu_2h (ui_text + 3105)
-#define txt_cu_2 (ui_text + 3120)
-#define txt_cu_2f (ui_text + 3137)
-#define txt_intro_c7 (ui_text + 3155)
-#define txt_music_off (ui_text + 3169)
-#define txt_music_on (ui_text + 3180)
-#define txt_nb_snd_on (ui_text + 3190)
-#define txt_nb_snd_off (ui_text + 3207)
-#define txt_of_6 (ui_text + 3225)
-#define txt_srv_hold (ui_text + 3228)
-#define txt_srv_hint (ui_text + 3244)
-#define txt_got (ui_text + 3263)
-#define txt_it_0 (ui_text + 3272)
-#define txt_it_1 (ui_text + 3286)
-#define txt_it_2 (ui_text + 3297)
-#define txt_it_3 (ui_text + 3312)
-#define txt_it_4 (ui_text + 3328)
-#define txt_it_5 (ui_text + 3343)
-#define txt_it_6 (ui_text + 3351)
-#define txt_it_7 (ui_text + 3366)
-#define txt_it_8 (ui_text + 3381)
-#define txt_it_9 (ui_text + 3397)
-#define txt_ex_0 (ui_text + 3411)
-#define txt_ex_1 (ui_text + 3415)
-#define txt_ex_2 (ui_text + 3419)
-#define txt_ex_3 (ui_text + 3423)
-#define txt_ex_4 (ui_text + 3427)
-#define txt_ex_5 (ui_text + 3431)
-#define txt_ex_6 (ui_text + 3435)
-#define txt_ex_7 (ui_text + 3439)
-#define txt_ex_8 (ui_text + 3443)
-#define txt_day_0 (ui_text + 3447)
-#define txt_day_1 (ui_text + 3463)
-#define txt_day_2 (ui_text + 3480)
-#define txt_day_3 (ui_text + 3498)
-#define txt_coin_0 (ui_text + 3515)
-#define txt_coin_1 (ui_text + 3533)
-#define txt_coin_2 (ui_text + 3552)
-#define txt_nb_extras (ui_text + 3570)
-#define txt_poem_title (ui_text + 3579)
-#define txt_poem_none (ui_text + 3587)
-#define txt_poem_new (ui_text + 3593)
-#define txt_poem_end_title (ui_text + 3611)
-#define txt_poem_end (ui_text + 3628)
-#define txt_pl_0 (ui_text + 3645)
-#define txt_pl_1 (ui_text + 3664)
-#define txt_pl_2 (ui_text + 3683)
-#define txt_pl_3 (ui_text + 3702)
-#define txt_pl_4 (ui_text + 3717)
-#define txt_pl_5 (ui_text + 3736)
-#define txt_pl_6 (ui_text + 3753)
-#define txt_pl_7 (ui_text + 3771)
-#define txt_pl_8 (ui_text + 3788)
-#define txt_pl_9 (ui_text + 3807)
-#define txt_pc_sa (ui_text + 3822)
-#define txt_pc_sb (ui_text + 3841)
-#define txt_pc_ga (ui_text + 3857)
-#define txt_pc_gb (ui_text + 3875)
+#define txt_next_2 (ui_text + 1832)
+#define txt_next_3 (ui_text + 1850)
+#define txt_next_4 (ui_text + 1864)
+#define txt_next_5 (ui_text + 1876)
+#define txt_next_6 (ui_text + 1890)
+#define txt_next_7 (ui_text + 1908)
+#define txt_next_8 (ui_text + 1925)
+#define txt_next_9 (ui_text + 1938)
+#define txt_title_6 (ui_text + 1956)
+#define txt_srv_title (ui_text + 1964)
+#define txt_srv_of (ui_text + 1977)
+#define txt_srv_ok (ui_text + 1980)
+#define txt_srv_bad (ui_text + 1996)
+#define txt_cup (ui_text + 2012)
+#define txt_coin (ui_text + 2014)
+#define txt_cup_watch (ui_text + 2016)
+#define txt_cup_pick (ui_text + 2033)
+#define txt_catch_hud (ui_text + 2047)
+#define txt_quest_done (ui_text + 2066)
+#define txt_q_0 (ui_text + 2082)
+#define txt_q_0r (ui_text + 2094)
+#define txt_q_1 (ui_text + 2111)
+#define txt_q_1r (ui_text + 2126)
+#define txt_q_2 (ui_text + 2141)
+#define txt_q_2r (ui_text + 2155)
+#define txt_q_3 (ui_text + 2171)
+#define txt_q_3r (ui_text + 2187)
+#define txt_q_4 (ui_text + 2203)
+#define txt_nb_quests (ui_text + 2216)
+#define txt_howto (ui_text + 2223)
+#define txt_howto_go (ui_text + 2235)
+#define txt_how_l0 (ui_text + 2253)
+#define txt_how_l1 (ui_text + 2268)
+#define txt_how_l2 (ui_text + 2287)
+#define txt_how_l3 (ui_text + 2303)
+#define txt_how_l4 (ui_text + 2320)
+#define txt_how_p0 (ui_text + 2339)
+#define txt_how_d0 (ui_text + 2356)
+#define txt_how_d1 (ui_text + 2370)
+#define txt_how_d2 (ui_text + 2389)
+#define txt_how_d3 (ui_text + 2407)
+#define txt_how_d4 (ui_text + 2423)
+#define txt_how_s0 (ui_text + 2441)
+#define txt_how_s1 (ui_text + 2453)
+#define txt_how_s2 (ui_text + 2469)
+#define txt_how_s3 (ui_text + 2486)
+#define txt_how_s4 (ui_text + 2501)
+#define txt_how_c0 (ui_text + 2519)
+#define txt_how_c1 (ui_text + 2532)
+#define txt_how_c2 (ui_text + 2548)
+#define txt_how_c3 (ui_text + 2564)
+#define txt_how_c4 (ui_text + 2580)
+#define txt_how_k0 (ui_text + 2598)
+#define txt_how_k1 (ui_text + 2617)
+#define txt_how_k2 (ui_text + 2634)
+#define txt_how_k3 (ui_text + 2653)
+#define txt_how_k4 (ui_text + 2669)
+#define txt_how_t0 (ui_text + 2684)
+#define txt_how_t1 (ui_text + 2697)
+#define txt_how_t2 (ui_text + 2714)
+#define txt_how_t3 (ui_text + 2733)
+#define txt_how_t4 (ui_text + 2751)
+#define txt_chase_hud (ui_text + 2766)
+#define txt_clock_0 (ui_text + 2777)
+#define txt_clock_1 (ui_text + 2783)
+#define txt_clock_2 (ui_text + 2789)
+#define txt_clock_3 (ui_text + 2795)
+#define txt_clock_4 (ui_text + 2801)
+#define txt_rank (ui_text + 2807)
+#define txt_rank_0 (ui_text + 2813)
+#define txt_rank_1 (ui_text + 2821)
+#define txt_rank_2 (ui_text + 2831)
+#define txt_rank_3 (ui_text + 2841)
+#define txt_rank_4 (ui_text + 2851)
+#define txt_nb_myst (ui_text + 2864)
+#define txt_cu_title (ui_text + 2876)
+#define txt_cu_found (ui_text + 2886)
+#define txt_cu_found2 (ui_text + 2901)
+#define txt_cu_solved (ui_text + 2916)
+#define txt_cu_solved2 (ui_text + 2931)
+#define txt_cu_of (ui_text + 2948)
+#define txt_cu_0q (ui_text + 2951)
+#define txt_cu_0h (ui_text + 2968)
+#define txt_cu_0 (ui_text + 2986)
+#define txt_cu_0f (ui_text + 3003)
+#define txt_cu_1q (ui_text + 3020)
+#define txt_cu_1h (ui_text + 3038)
+#define txt_cu_1 (ui_text + 3056)
+#define txt_cu_1f (ui_text + 3069)
+#define txt_cu_2q (ui_text + 3086)
+#define txt_cu_2h (ui_text + 3100)
+#define txt_cu_2 (ui_text + 3115)
+#define txt_cu_2f (ui_text + 3132)
+#define txt_intro_c7 (ui_text + 3150)
+#define txt_music_off (ui_text + 3164)
+#define txt_music_on (ui_text + 3175)
+#define txt_nb_snd_on (ui_text + 3185)
+#define txt_nb_snd_off (ui_text + 3202)
+#define txt_of_6 (ui_text + 3220)
+#define txt_srv_hold (ui_text + 3223)
+#define txt_srv_hint (ui_text + 3239)
+#define txt_got (ui_text + 3258)
+#define txt_it_0 (ui_text + 3267)
+#define txt_it_1 (ui_text + 3281)
+#define txt_it_2 (ui_text + 3292)
+#define txt_it_3 (ui_text + 3307)
+#define txt_it_4 (ui_text + 3323)
+#define txt_it_5 (ui_text + 3338)
+#define txt_it_6 (ui_text + 3346)
+#define txt_it_7 (ui_text + 3361)
+#define txt_it_8 (ui_text + 3376)
+#define txt_it_9 (ui_text + 3392)
+#define txt_ex_0 (ui_text + 3406)
+#define txt_ex_1 (ui_text + 3410)
+#define txt_ex_2 (ui_text + 3414)
+#define txt_ex_3 (ui_text + 3418)
+#define txt_ex_4 (ui_text + 3422)
+#define txt_ex_5 (ui_text + 3426)
+#define txt_ex_6 (ui_text + 3430)
+#define txt_ex_7 (ui_text + 3434)
+#define txt_ex_8 (ui_text + 3438)
+#define txt_day_0 (ui_text + 3442)
+#define txt_day_1 (ui_text + 3458)
+#define txt_day_2 (ui_text + 3475)
+#define txt_day_3 (ui_text + 3493)
+#define txt_coin_0 (ui_text + 3510)
+#define txt_coin_1 (ui_text + 3528)
+#define txt_coin_2 (ui_text + 3547)
+#define txt_nb_extras (ui_text + 3565)
+#define txt_poem_title (ui_text + 3574)
+#define txt_poem_none (ui_text + 3582)
+#define txt_poem_new (ui_text + 3588)
+#define txt_poem_end_title (ui_text + 3606)
+#define txt_poem_end (ui_text + 3623)
+#define txt_pl_0 (ui_text + 3640)
+#define txt_pl_1 (ui_text + 3659)
+#define txt_pl_2 (ui_text + 3678)
+#define txt_pl_3 (ui_text + 3697)
+#define txt_pl_4 (ui_text + 3712)
+#define txt_pl_5 (ui_text + 3731)
+#define txt_pl_6 (ui_text + 3748)
+#define txt_pl_7 (ui_text + 3766)
+#define txt_pl_8 (ui_text + 3783)
+#define txt_pl_9 (ui_text + 3802)
+#define txt_pc_sa (ui_text + 3817)
+#define txt_pc_sb (ui_text + 3836)
+#define txt_pc_ga (ui_text + 3852)
+#define txt_pc_gb (ui_text + 3870)
 /* French (src/fr_data.c, bank FR_BANK; pages in FR_PAGE_BANK..) */
 #define FR_BANK 11
 #define FR_PAGE_BANK 12

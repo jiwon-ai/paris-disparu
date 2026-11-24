@@ -162,9 +162,9 @@ static void bkg_text_centered(uint8_t y, const uint8_t *t) {
 
 /* VRAM bank 1: scenery tiles and dialogue portraits (the title art borrows it). */
 static void load_bank1(void) {
+    env_load(cur_room);
     VBK_REG = VBK_ATTRIBUTES;
     SWITCH_ROM(PORTRAIT_BANK);
-    set_bkg_data(0, ENV_TILE_COUNT, env_tiles);
     set_sprite_data(PORTRAIT_BASE, PORTRAIT_TILE_COUNT, portrait_tiles);
     set_sprite_data(0, LOW_FIXED, low_tiles);   /* thief, sparkle: bank 1, 0x8000 */
     SWITCH_ROM(ASSET_BANK);

@@ -1,6 +1,7 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
 #include "assets.h"
+#include "notebook.h"
 #include "game.h"
 #include "world.h"
 
@@ -63,6 +64,7 @@ void world_load(uint8_t room) {
     wait_vbl_done();
     set_bkg_palette(0, 8, black);
     set_sprite_palette(0, 8, black);
+    env_load(room);                  /* this room's scenery tiles */
     l = _current_bank;
     SWITCH_ROM(ROOM_BANK);
     VBK_REG = VBK_ATTRIBUTES;

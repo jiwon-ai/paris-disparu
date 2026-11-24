@@ -18,6 +18,7 @@ void end_show(void) BANKED;        /* the mystery is solved */
 void goal_print(uint8_t y) BANKED; /* current goal, two rows, in the open box */
 void intro_show(uint8_t page) BANKED;
 void extras_show(void) BANKED;
+void env_load(uint8_t room) BANKED;   /* a room's scenery tiles into VRAM bank 1 */
 void nb_open(void) BANKED;             /* START: the notebook's first page */
 void nb_turn(uint8_t right) BANKED;    /* left/right: notebook, poem, extras, album, mysteries */
 void curio_show(void) BANKED;   /* the curiosities, found and identified */

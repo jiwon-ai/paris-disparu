@@ -430,6 +430,20 @@ void coin_note(void) BANKED {
 static uint8_t day_t;
 static palette_color_t day_mix[32];
 
+/* Per-room tilesets: room_env holds, for each room, a count and the ids of
+   the scenery tiles it uses; they go to VRAM bank 1 BG tiles 0.. in order. */
+void env_load(uint8_t room) BANKED {
+    static uint8_t ids[ENV_SLOTS + 1];
+    uint8_t i, j;
+    far_read(PORTRAIT_BANK, room_env + (uint16_t)room * (ENV_SLOTS + 1), ids, (uint8_t)(ENV_SLOTS + 1));
+    VBK_REG = 1;
+    for (i = 0; i < ids[0]; i = j) {        /* runs of consecutive tiles in one copy */
+        for (j = i + 1; j < ids[0] && ids[j + 1] == ids[j] + 1; j++) ;
+        far_bkg_data(PORTRAIT_BANK, i, j - i, env_tiles + (uint16_t)ids[i + 1] * 16);
+    }
+    VBK_REG = 0;
+}
+
 /* A café table on the pavement of rue Rambuteau, drawn over the poet's
    legs (BG priority) so he seems to sit at it. */
 void day_start(void) BANKED {

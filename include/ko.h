@@ -10,6 +10,7 @@ extern uint8_t lang;
 /* Bank 0 helper: copy n bytes from another ROM bank, then map the caller's
    bank back. */
 void far_read(uint8_t bank, const uint8_t *src, uint8_t *dst, uint8_t n);
+void far_bkg_data(uint8_t bank, uint8_t first, uint8_t n, const uint8_t *src);
 
 /* src/ko.c, ROM bank 6. */
 void ko_start(uint8_t id) BANKED;       /* first page of a dialogue, in RAM */

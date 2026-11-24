@@ -111,8 +111,13 @@ env_index = {n: i for i, n in enumerate(env_names)}
 env_data = []
 for n in env_names:
     env_data += encode_tile(art.TILES[n])
-if len(env_names) > 128:   # VRAM bank 1 BG tiles 0-127 (0x9000-0x97FF)
-    fail("too many background tiles (%d > 128)" % len(env_names))
+if len(env_names) > 255:   # tile ids are bytes
+    fail("too many background tiles (%d > 255)" % len(env_names))
+# Per-room tilesets: each room loads only the tiles it uses into VRAM bank 1
+# BG tiles 0-127 (env_load). Tiles the code writes to are pinned to the same
+# slot in every room.
+ENV_PINNED = ["water", art.LEGEND["π"][0], art.LEGEND["t"][0]]
+ENV_SLOTS = 128
 
 # ---------------------------------------------------------------------------
 # Sprites
@@ -195,6 +200,7 @@ if PORTRAIT_BASE + len(portrait_data) // 16 > 256:
 ATTR_BANK1 = 0x08
 ATTR_PRIORITY = 0x80
 rooms = []
+room_env = []
 for room in ROOMS:
     path = os.path.join(ROOT, "assets", "maps", room + ".txt")
     grid, signs = [], []
@@ -224,6 +230,12 @@ for room in ROOMS:
             tiles.append(env_index[tname])
             attrs.append(pal | ATTR_BANK1 | (ATTR_PRIORITY if prio else 0))
             solid.append(1 if sol else 0)
+    used = ENV_PINNED + sorted({env_names[t] for t in tiles} - set(ENV_PINNED), key=lambda n: env_index[n])
+    if len(used) > ENV_SLOTS:
+        fail("%s: room uses %d background tiles (> %d)" % (room, len(used), ENV_SLOTS))
+    slot = {env_index[n]: i for i, n in enumerate(used)}
+    tiles = [slot[t] for t in tiles]
+    room_env.append([len(used)] + [env_index[n] for n in used] + [0] * (ENV_SLOTS - len(used)))
     for x, y, text, where, pal in signs:
         for i, code in enumerate(encode_text(text, where)):
             if x + i >= MAP_W:
@@ -419,17 +431,17 @@ H.append("#define GLYPH_ARROW_DOWN %d" % font_index["▼"])
 H.append("#define GLYPH_ARROW_RIGHT %d" % font_index["▶"])
 for name, idx in box_index.items():
     H.append("#define GLYPH_%s %d" % (name, idx))
-H.append("\n#define ENV_TILE_COUNT %d" % len(env_names))
-for name, idx in env_index.items():
-    H.append("#define TILE_%s %d" % (c_name(name), idx))
+H.append("\n#define ENV_TILE_COUNT %d   /* all scenery tiles, in ROM */" % len(env_names))
+H.append("#define ENV_SLOTS %d   /* per room: count byte + tile ids (room_env) */" % ENV_SLOTS)
+H.append("#define TILE_WATER 0   /* pinned slots, the same in every room */")
 H.append("#define SPRITE_TILE_COUNT %d" % (len(spr_data) // 16))
 for name, t in bank1_spr_defs:
     H.append("#define SPR1_%s %d   /* VRAM bank 1: use palette | S_BANK1 */" % (name, t))
 for name, t in low_defs:
     H.append("#define SPR1_%s %d   /* VRAM bank 1, low tiles */" % (name, t))
 H.append("#define LOW_TILE_COUNT %d   /* all pool sprites, in ROM */" % (len(low_data) // 16))
-H.append("#define TILE_CHAIR %d\n#define TILE_TABLE %d\n#define PAL_CHAIR %d\n#define PAL_TABLE %d   /* the ending's café table */"
-         % (env_index[art.LEGEND["π"][0]], env_index[art.LEGEND["t"][0]], art.LEGEND["π"][1], art.LEGEND["t"][1]))
+H.append("#define TILE_CHAIR 1\n#define TILE_TABLE 2\n#define PAL_CHAIR %d\n#define PAL_TABLE %d   /* the ending's café table */"
+         % (art.LEGEND["π"][1], art.LEGEND["t"][1]))
 H.append("#define LOW_FIXED %d        /* tiles always loaded (thief, sparkle) */" % LOW_FIXED)
 H.append("#define POOL_SLOTS %d       /* bank-1 sprites one room can hold */" % POOL_SLOTS)
 H.append("/* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */")
@@ -466,6 +478,7 @@ H.append("extern const palette_color_t bg_day[32];          /* daybreak after th
 H.append("extern const palette_color_t spr_palettes[32];")
 H.append("extern const uint8_t font_tiles[];")
 H.append("extern const uint8_t env_tiles[];             /* bank PORTRAIT_BANK */")
+H.append("extern const uint8_t room_env[];              /* bank PORTRAIT_BANK, (ENV_SLOTS+1) per room */")
 H.append("extern const uint8_t water_frames[];   /* 2 tiles, swapped into TILE_WATER */")
 H.append("extern const uint8_t sprite_tiles[];")
 H.append("extern const uint8_t * const room_tiles[ROOM_COUNT];   /* bank ROOM_BANK */")
@@ -598,6 +611,7 @@ outputs = {
         "const uint8_t portrait_tiles[] = {\n%s\n};" % c_bytes(portrait_data),
         "const uint8_t low_tiles[] = {\n%s\n};" % c_bytes(low_data or [0]),
         "const uint8_t env_tiles[] = {\n%s\n};" % c_bytes(env_data),
+        "const uint8_t room_env[] = {\n%s\n};" % c_bytes([b for r in room_env for b in r]),
         "const uint8_t item_tiles[] = {\n%s\n};" % c_bytes(item_data),
         "const uint8_t item_pal[] = { %s };" % ", ".join(str(p) for _, _, p in items.ITEMS),
         "const uint8_t item_icon[] = {\n%s\n};" % c_bytes(icon_data),

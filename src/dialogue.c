@@ -2,6 +2,8 @@
 #include <gb/cgb.h>
 #include <string.h>
 #include "assets.h"
+#include "notebook.h"
+#include "world.h"
 #include "dialogue.h"
 #include "game.h"
 #include "input.h"
@@ -22,6 +24,14 @@ void far_read(uint8_t bank, const uint8_t *src, uint8_t *dst, uint8_t n) {
     SWITCH_ROM(save);
 }
 
+/* set_bkg_data from another ROM bank (for banked code). */
+void far_bkg_data(uint8_t bank, uint8_t first, uint8_t n, const uint8_t *src) {
+    uint8_t save = _current_bank;
+    SWITCH_ROM(bank);
+    set_bkg_data(first, n, src);
+    SWITCH_ROM(save);
+}
+
 static uint8_t row_buf[MAP_W];
 static uint8_t page_buf[PAGE_SIZE];
 static void load_page(void);
@@ -34,13 +44,8 @@ static uint8_t in_choice;   /* 1 while the options are shown */
 uint8_t dialogue_choice;    /* result: 0 = first option, 1 = second */
 
 static void env_reload(void) {        /* scenery tiles back into VRAM bank 1 */
-    uint8_t save = _current_bank;
     ko_borrowed = 0;
-    VBK_REG = VBK_ATTRIBUTES;
-    SWITCH_ROM(PORTRAIT_BANK);
-    set_bkg_data(0, ENV_TILE_COUNT, env_tiles);
-    SWITCH_ROM(save);
-    VBK_REG = VBK_TILES;
+    env_load(cur_room);
 }
 
 static void box_frame(uint8_t rows);

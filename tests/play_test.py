@@ -166,7 +166,7 @@ def push(button, frames=90):
         if still > 4:
             break
     pb.button_release(button)
-    tick(30)   # room fade / settle
+    tick(40)   # room fade / settle (the fade and tile load take ~35 frames)
 
 
 def dialogue(choice=None, max_pages=24):
