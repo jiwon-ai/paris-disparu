@@ -123,6 +123,7 @@ static const npc_def_t huchette_npcs[] = {
 };
 static const hotspot_t huchette_hotspots[] = {
     { 15, 13, 3, 2, DLG_SECRET_SLEEPCAT },
+    {  0, 17, 15, 1, DLG_HUCHETTE_GUTTER },
     {  0, 0, 20, 11, DLG_HUCHETTE_STREET },
 };
 static const door_t huchette_doors[] = {
@@ -166,6 +167,7 @@ static const npc_def_t stgermain_npcs[] = {
 static const hotspot_t stgermain_hotspots[] = {
     {  2, 9, 3, 3, DLG_METRO_SG },
     { 14, 8, 6, 4, DLG_BOOKSHOP },
+    {  6, 15, 1, 1, DLG_SG_DOG },
     {  0, 0, 14, 12, DLG_SG_CHURCH },
 };
 
@@ -177,6 +179,7 @@ static const npc_def_t terrasse_npcs[] = {
 static const hotspot_t terrasse_hotspots[] = {
     {  9, 13, 2, 1, DLG_SECRET_INITIALS },
     {  1, 9, 1, 2, DLG_PHONE_LOOK },
+    { 17, 0, 3, 11, DLG_SG_TABAC },
     {  0, 0, 20, 11, DLG_SG_TERRACE },
     {  0, 11, 20, 4, DLG_SG_POEM },
 };

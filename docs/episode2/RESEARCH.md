@@ -48,6 +48,20 @@ The exchange names (ODÉ, ARC, ROQ, MED...) and the "3 letters + 4 digits"
 format come from Episode 1's verified list (docs/HISTORICAL_RESEARCH.md).
 All the numbers are fiction.
 
+## Street life (Jiwon's request, from Episode 1 research)
+
+Sources are in Episode 1's docs/HISTORICAL_RESEARCH.md, "Street life 2". They
+still apply in February 1969.
+
+| In the game | Status |
+|---|---|
+| Cabbage leaves and straw piled on the pavement around the crates (rue Rambuteau) | INA 1965: crates and waste piled on pavements in the Halles district |
+| A sweeper's tap running in the gutter (rue de la Huchette) | INA 1965; gutter water network since the Second Empire |
+| Two policemen on bicycles, capes like wings (told by an old man, place Dauphine) | the "hirondelles", ended 1984 (Paris ZigZag, Time 1963) |
+| Dog mess on the pavement; a lady with a white poodle (Saint-Germain) | dog mess: INA 1964, no motocrotte before 1982. Poodles visible in the 1960s (The Local). The lady is **fiction** |
+| A man smoking under a tabac's red "carotte" (seen from the terrace) | street smoking unrestricted before the 1976 Veil law; the carotte has been mandatory since 1906. Its exact 1960s look is **not found**: a reconstruction. No brand shown |
+| Mounted patrols, horse carts, cats or pigeons at Les Halles | **not found**, so not added there. (The pigeons of the old woman at Notre-Dame and the cat in rue de la Huchette are fiction.) |
+
 ## Removed because they could not be verified
 
 - That the dragons of the fountain spout water.

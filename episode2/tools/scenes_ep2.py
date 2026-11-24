@@ -414,6 +414,9 @@ def huchette():
     p.rect(120, 104, 143, 112, STONE)
     p.ellipse(126, 100, 138, 107, (8, 7, 10))              # the cat
     p.ellipse(134, 98, 139, 103, (8, 7, 10))
+    p.rect(0, 138, 119, 140, SETT0)                        # the gutter, water running
+    for x in range(4, 118, 9):
+        p.rect(x, 139, x + 3, 139, SETT3)
     lamp(p, 52, 62, 96)
     mask = mask_rows(0, 12, {13: "...............###..", 14: "...............###.."})
     return pals, p.img, mask
@@ -617,6 +620,7 @@ def stgermain():
     tree(p, 96, 54, 96)
     ground(p, 96)
     guimard(p, 18, 74)
+    p.ellipse(50, 124, 54, 127, SETT0)                     # watch your step
     lamp(p, 104, 66, 98)
     mask = mask_rows(0, 12)
     return pals, p.img, mask
@@ -653,6 +657,9 @@ def terrasse():
     for x in range(0, 160, 20):
         p.rect(x, 66, x + 1, 96, (14, 10, 6))
     p.rect(0, 80, 159, 81, (14, 10, 6))
+    # across the street: a tabac's red "carotte" (shape reconstructed)
+    p.poly([(150, 4), (154, 10), (150, 22), (146, 10)], RED1)
+    p.line([(150, 6), (150, 20)], RED0)
     # a wall telephone on the left (col 1, rows 9-10)
     p.rect(6, 72, 14, 86, INK)
     p.rect(8, 74, 12, 78, SH)

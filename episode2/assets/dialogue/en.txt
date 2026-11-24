@@ -166,6 +166,8 @@ You take one azalea. Nobody minds. Tonight everything is being given away.
 [crates_pyramid]
 Crates stacked into pyramids. People dance round them as if they were Christmas trees.
 
+Cabbage leaves and straw are piled on the pavement. The sweepers will need all night.
+
 [eustache_lit]
 The church is lit up tonight. It has watched the market for more than three hundred years.
 
@@ -239,6 +241,8 @@ OLD MAN: Lulu, the Sparrow. Didn't hear it from me.
 
 [petanque_other]
 OTHER OLD MAN: Eight centimetres. He always says ten. Forty years he's been wrong.
+
+Look, two cops on bicycles. Capes flapping like wings. They never stop for a game.
 
 [bark_petanque]
 OLD MAN: Shh! We're measuring!
@@ -337,6 +341,9 @@ Smoke, brick, and a hundred people in a room for fifty. Everybody's nodding the 
 [cellar_poem]
 The music goes up the stairs and out into the night. Nobody can stop it at the door.
 
+[huchette_gutter]
+Water runs along the gutter. A sweeper has opened the tap at the corner. The street washes its face before dawn.
+
 [huchette_street]
 A street so narrow the houses almost touch. Music comes up through the cobbles.
 
@@ -386,6 +393,14 @@ WAITER: Closing soon. Well, closing is a big word. We never really close.
 
 [philosopher2_hello]
 PHILOSOPHER: Last year, they said the beach was under the cobbles. Tonight it's just mud. Still, we looked.
+
+[sg_tabac]
+Across the street, the red carrot of a tabac still glows. A man lights a cigarette under it. The smoke goes up to join the night.
+
+[sg_dog]
+You step round something a dog left behind. A poet looks at the stars. A wise poet also looks down.
+
+Further on, a lady walks a white poodle. Its coat is better than yours.
 
 [sg_terrace]
 The terrace is half empty. Chairs face the street, like an audience waiting for the play.

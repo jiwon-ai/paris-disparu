@@ -161,6 +161,8 @@ Tu prends une azalée. Personne ne dit rien. Cette nuit, on donne tout.
 [crates_pyramid]
 Des cageots empilés en pyramides. Les gens dansent autour comme autour d'un sapin de Noël.
 
+Feuilles de chou et paille s'entassent sur le trottoir. Les balayeurs en ont pour la nuit.
+
 [eustache_lit]
 L'église est illuminée ce soir. Elle veille sur le marché depuis plus de trois cents ans.
 
@@ -234,6 +236,8 @@ VIEIL HOMME : Lulu, le Moineau. Tu ne le tiens pas de moi.
 
 [petanque_other]
 L'AUTRE VIEIL HOMME : Huit centimètres. Il dit toujours dix. Quarante ans qu'il se trompe.
+
+Tiens, deux agents à vélo. La cape qui vole comme des ailes. Ils ne s'arrêtent jamais pour une partie.
 
 [bark_petanque]
 VIEIL HOMME : Chut ! On mesure !
@@ -332,6 +336,9 @@ Fumée, briques, et cent personnes dans une salle pour cinquante. Tout le monde 
 [cellar_poem]
 La musique monte l'escalier et sort dans la nuit. Personne ne peut l'arrêter à la porte.
 
+[huchette_gutter]
+L'eau court dans le caniveau. Un balayeur a ouvert la bouche au coin de la rue. La rue se lave la figure avant l'aube.
+
 [huchette_street]
 Une rue si étroite que les maisons se touchent presque. La musique monte entre les pavés.
 
@@ -381,6 +388,14 @@ GARÇON : On ferme bientôt. Enfin, fermer, c'est un grand mot. On ne ferme jama
 
 [philosopher2_hello]
 PHILOSOPHE : L'an dernier, on disait que la plage était sous les pavés. Ce soir, ce n'est que de la boue. On a cherché, quand même.
+
+[sg_tabac]
+En face, la carotte rouge d'un tabac brille encore. Un homme allume une cigarette dessous. La fumée monte rejoindre la nuit.
+
+[sg_dog]
+Tu évites ce qu'un chien a laissé là. Un poète regarde les étoiles. Un poète sage regarde aussi par terre.
+
+Plus loin, une dame promène un caniche blanc. Son manteau est plus beau que le tien.
 
 [sg_terrace]
 La terrasse est à moitié vide. Les chaises regardent la rue, comme un public qui attend la pièce.

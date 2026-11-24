@@ -372,6 +372,7 @@ enum {
     DLG_TRUMPET_AFTER,
     DLG_CELLAR_CROWD,
     DLG_CELLAR_POEM,
+    DLG_HUCHETTE_GUTTER,
     DLG_HUCHETTE_STREET,
     DLG_SM_PAVE,
     DLG_SM_PAVE_TAKE,
@@ -385,6 +386,8 @@ enum {
     DLG_BARK_OLD_POET,
     DLG_WAITER2_HELLO,
     DLG_PHILOSOPHER2_HELLO,
+    DLG_SG_TABAC,
+    DLG_SG_DOG,
     DLG_SG_TERRACE,
     DLG_SG_POEM,
     DLG_BOOKSHOP,
@@ -743,6 +746,7 @@ extern const uint16_t fr_ui_at[];        /* by offset in ui_text */
 extern const uint8_t fr_ui_text[];
 extern const uint8_t * const fr_page_base[];
 extern const uint8_t fr_pages_0[];
+extern const uint8_t fr_pages_1[];
 #define TITLE_TILE_COUNT 189
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];
