@@ -544,7 +544,7 @@ static void open_dialogue(uint8_t d) {
 static void animate_river(void) {
     uint8_t has_water = cur_room == ROOM_QUAI || cur_room == ROOM_PONT;
     anim_frame++;
-    if (has_water && (anim_frame & 31) == 0) {
+    if (has_water && !ko_borrowed && (anim_frame & 31) == 0) {   /* not while Korean text holds the tiles */
         VBK_REG = VBK_ATTRIBUTES;     /* scenery tiles are in VRAM bank 1 */
         set_bkg_data(TILE_WATER, 1, water_frames + ((anim_frame >> 5) & 1) * 16);
         VBK_REG = VBK_TILES;

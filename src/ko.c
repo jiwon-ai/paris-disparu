@@ -146,7 +146,7 @@ void ko_clear(void) BANKED {
    and single tiles sit on the lower row of their line. Small boxes (captions,
    mini-games) are drawn at once with logical row y on rows 2y-1 and 2y.
    Full-screen boxes are collected, then laid out by ko_flush(): one line per
-   used row, gaps kept if there is room, and pages of 8 lines if not. Tiles
+   used row, gaps kept if there is room, and pages of up to 8 lines (and 256 tiles) if not. Tiles
    come from BG tiles 0-127 (bank 0), then 0-127 of VRAM bank 1 (the scenery
    tiles, reloaded by box_close() when they were borrowed). */
 #define KI_TILE 0     /* one 8x8 tile */
@@ -343,10 +343,34 @@ static void clear_inside(void) {
     for (y = 1; y < 17; y++) set_win_tiles(1, y, TEXT_COLS, 1, rowbuf);
 }
 
+/* Tiles a line needs: 2 rows x the columns of its Hangul strings (glyph
+   advances summed, as render_line() does). The pool has 256 tiles (VRAM banks
+   0 and 1), so a page ends at 8 lines or before the pool would run out. */
+static uint8_t page_first[19];
+static uint8_t line_cost(uint8_t y) {
+    uint8_t i, n, cost = 0;
+    uint16_t x, gi;
+    const uint8_t *g;
+    for (i = 0; i < n_items; i++) {
+        if (items[i].y != y || items[i].kind != KI_KO || items[i].s[0] != 1) continue;
+        n = items[i].s[1];
+        g = items[i].s + 2;
+        x = 0;
+        while (n--) {
+            gi = ((uint16_t)g[0] << 8) | g[1];
+            g += 2;
+            far_read(ko_glyph_bank[gi], ko_glyph_ptr[gi], gbuf, 1);
+            x += gbuf[0];
+        }
+        x = (x + 7) >> 3;
+        cost += (uint8_t)(2 * (x > TEXT_COLS ? TEXT_COLS : x));
+    }
+    return cost;
+}
+
 static void show_page(void) {
-    uint8_t i, k, first = page_k * 8, last, top, start, need, gaps, l;
+    uint8_t i, k, first = page_first[page_k], last = page_first[page_k + 1], top, start, need, gaps, l;
     memset(rowmap, 0, sizeof(rowmap));
-    last = first + 8 < n_lines ? first + 8 : n_lines;
     gaps = 0;
     for (k = first + 1; k < last; k++) if (lines[k] > lines[k - 1] + 1) gaps++;
     need = (last - first) * 2;
@@ -375,16 +399,26 @@ static void show_page(void) {
 }
 
 void ko_flush(void) BANKED {
-    uint8_t i, y, used;
+    uint8_t i, y, used, c, k;
+    uint16_t budget = 0;
     if (ko_mode != 2) return;
     n_lines = 0;
+    n_pages = 0;
     for (y = 1; y < 18; y++) {
         used = 0;
         for (i = 0; i < n_items; i++)
             if (items[i].y == y && (y < 17 || (items[i].kind == KI_KO && items[i].s[0] == 1))) used = 1;
-        if (used) lines[n_lines++] = y;
+        if (!used) continue;
+        c = line_cost(y);
+        k = n_pages ? page_first[n_pages - 1] : 0;
+        if (!n_lines || n_lines - k >= 8 || budget + c > 256) {
+            page_first[n_pages++] = n_lines;
+            budget = 0;
+        }
+        budget += c;
+        lines[n_lines++] = y;
     }
-    n_pages = (uint8_t)((n_lines + 7) >> 3);
+    page_first[n_pages] = n_lines;
     page_k = 0;
     show_page();
     ko_mode = 3;

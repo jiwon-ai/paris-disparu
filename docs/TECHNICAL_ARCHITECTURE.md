@@ -61,7 +61,7 @@ LCDC mode. Measured in PyBoy: the scenery is in VRAM bank 1 at 0x9000.
   `box_tile`. Small boxes (captions, rules, mini-games) are drawn at once
   with logical row y on rows 2y-1 and 2y (the box is twice as tall). Full-
   screen boxes are collected and laid out by `box_flush()`: one line per used
-  row, gaps kept when there is room, pages of 8 lines when not (A/Up/Down
+  row, gaps kept when there is room, a new page after 8 lines or before the 256-tile pool would run out (each line costs 2 x its columns) (A/Up/Down
   turns the page; a down arrow on the bottom border says there is more).
   Line tiles come from BG tiles 0-127 of VRAM bank 0, then 0-127 of bank 1
   (the scenery tiles, reloaded by `box_close()`). The generator rejects a
