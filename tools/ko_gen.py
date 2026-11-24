@@ -19,6 +19,7 @@ An id or key missing from the Korean files falls back to the English text
 (drawn with Galmuri11 / the English font) and is counted as untranslated.
 """
 import os
+import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONT_DIR = os.path.join(ROOT, "tools", "fonts", "galmuri")
@@ -193,22 +194,39 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
         if did not in ko:
             missing.append(did)
         f = len(pages)
+        page_lines = []
         for p in [p for p in paras if p]:
-            lines = wrap(p, did)
-            n_pages = -(-len(lines) // 2)
-            i = 0
-            for k in range(n_pages):
-                take = -(-(len(lines) - i) // (n_pages - k))
-                ls = lines[i:i + take] + [""] * (2 - take)
-                rec = [len(ls[0]), len(ls[1])]
-                for s in ls:
-                    for ch in s:
-                        g = gid(ch)
-                        rec += [g >> 8, g & 0xFF]
-                if rec[0] + rec[1] > MAX_PAGE_GLYPHS:
-                    fail("ko [%s]: page too long" % did)
-                pages.append(rec)
-                i += take
+            # Pages break between sentences where possible: sentences are
+            # packed while they fit in 2 lines; a longer one is spread evenly.
+            cur = ""
+            for sent in re.split(r"(?<=[.!?…\"])\s+", p):
+                if cur and len(wrap(cur + " " + sent, did)) <= 2:
+                    cur += " " + sent
+                    continue
+                if cur:
+                    page_lines.append(wrap(cur, did))
+                cur = sent
+                lines = wrap(cur, did)
+                if len(lines) > 2:
+                    n_pages = -(-len(lines) // 2)
+                    i = 0
+                    for k in range(n_pages - 1):
+                        take = -(-(len(lines) - i) // (n_pages - k))
+                        page_lines.append(lines[i:i + take])
+                        i += take
+                    cur = " ".join(lines[i:])
+            if cur:
+                page_lines.append(wrap(cur, did))
+        for ls in page_lines:
+            ls = ls + [""] * (2 - len(ls))
+            rec = [len(ls[0]), len(ls[1])]
+            for s in ls:
+                for ch in s:
+                    g = gid(ch)
+                    rec += [g >> 8, g & 0xFF]
+            if rec[0] + rec[1] > MAX_PAGE_GLYPHS:
+                fail("ko [%s]: page too long" % did)
+            pages.append(rec)
         if len(pages) == f:
             fail("ko [%s] has no text" % did)
         if did.startswith("bark_") and len(pages) - f != 1:

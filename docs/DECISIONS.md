@@ -5,6 +5,7 @@ Newest first. Dates are 2026.
 
 | Date | Feedback / decision | What changed |
 |---|---|---|
+| 11-24 | Full Korean localization | assets/dialogue/ko.txt: all 152 dialogue entries translated (417 pages); Korean pages break between sentences. Screenshots: docs/screenshots/ko/ |
 | 11-24 | Korean font: public pixel font (Galmuri, OFL 1.1) | Galmuri 2.40.3 from npm, unchanged BDFs in tools/fonts/galmuri with licence and source. Language menu after the title (English / 한국어). Dialogue in Galmuri11 (variable width, 2 lines of 144 px, 6-row box); menus and notebook in Galmuri7 (one tile per syllable). Code in ROM bank 6, glyphs and pages in banks 8+; ROM now 256 KiB. Missing translations fall back to English. Note for legal review: the package says Galmuri is based on the Nintendo DS font design |
 | 11-24 | Paris details (metro, plaques, Morris column, Wallace fountain) | Drawn from the sourced facts in HISTORICAL_RESEARCH "Paris design details": blue LES HALLES plaque, blue street plaque, Morris column (replaces the crates in rue Baltard), Wallace fountain on the quai; both examinable. Palette 7 dark colour made bluer for enamel |
 | 11-23 | Korean option needs VRAM room (engine groundwork) | Measured: background tiles already use 0x8800 mode (LCDC 0xE7), so scenery sits at 0x9000 in VRAM bank 1. Real limit is 128 scenery tiles, not 64 (docs corrected, generator check raised). VRAM bank 0 0x9000-0x97FF (128 tiles) is free for Korean text. Mode now set explicitly in `main()` |
