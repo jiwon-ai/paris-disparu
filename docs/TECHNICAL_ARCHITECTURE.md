@@ -106,6 +106,18 @@ end (TITLE), street, market (rue Baltard and the pavilion), café, river
 the same song plays, so the walk loop calls it every frame with the room's
 song.
 
+## Save
+
+Cartridge type 0x1B (MBC5+RAM+BATTERY), RAM size code 0x02 (8 KiB,
+`-Wl-ya1`). One slot at 0xA000, 25 bytes: magic "PDS1", room, player x/y
+(int16), direction, `howto_seen`, 13 bytes of story state from
+`event_pack` (events.c: game/clue/extra/quest/secret flags, cameos met,
+carrying, crates taken/delivered, tickets punched) and a checksum. Written
+by `save_write` (main.c) after each room change and each dialogue that
+ends back in walking; read once after the language menu; erased (magic
+byte cleared) when the end screen opens. Blank or random RAM fails the
+magic/checksum test and reads as no save.
+
 ## Tests
 
 - `tests/check_rom.py`: header logo, CGB flag, cartridge type, size code, header and global checksums.

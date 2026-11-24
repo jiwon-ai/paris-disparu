@@ -7,7 +7,7 @@
 #define KO_GLYPH_SIZE 29
 #define KO_GLYPH_ROWS 14
 #define KO_MAX_PAGE 130   /* bytes of the largest page record */
-#define KO_UI_COUNT 180
+#define KO_UI_COUNT 183
 extern const uint8_t ko_glyph_bank[];      /* per glyph */
 extern const uint8_t * const ko_glyph_ptr[];
 extern const uint8_t ko_page_bank[];

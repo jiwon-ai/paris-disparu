@@ -31,6 +31,26 @@ static uint8_t crates_taken;     /* 0-3, taken from Fernand's cart */
 static uint8_t crates_delivered; /* 0-3 */
 uint8_t punched;                 /* passengers' tickets punched for the poinconneur */
 
+/* Save/continue: everything that is progress (not what is on screen). */
+void event_pack(uint8_t *b) BANKED {
+    b[0] = (uint8_t)game_flags;   b[1] = (uint8_t)(game_flags >> 8);
+    b[2] = clue_flags;  b[3] = extra_flags;  b[4] = quest_flags;
+    b[5] = (uint8_t)secret_flags; b[6] = (uint8_t)(secret_flags >> 8);
+    b[7] = (uint8_t)cameo_met;    b[8] = (uint8_t)(cameo_met >> 8);
+    b[9] = carrying;  b[10] = crates_taken;  b[11] = crates_delivered;  b[12] = punched;
+}
+
+void event_unpack(const uint8_t *b) BANKED {
+    game_flags = b[0] | ((uint16_t)b[1] << 8);
+    clue_flags = b[2];  extra_flags = b[3];  quest_flags = b[4];
+    secret_flags = b[5] | ((uint16_t)b[6] << 8);
+    cameo_met = b[7] | ((uint16_t)b[8] << 8);
+    carrying = b[9];  crates_taken = b[10];  crates_delivered = b[11];  punched = b[12];
+    new_clue = new_extra = new_quest = new_secret = 0;
+    last_look = look_count = 0;
+}
+
+
 /* The cart hands out crates in this order; the player must read the stall signs. */
 static const uint8_t crate_order[3] = { CRATE_CHOUX, CRATE_POMMES, CRATE_CAROTTES };
 static const uint8_t crate_take_dlg[3] = { DLG_CART_CHOUX, DLG_CART_POMMES, DLG_CART_CAROTTES };

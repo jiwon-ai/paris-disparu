@@ -5,6 +5,7 @@ or the bridge beside the opening pushed the player off the top: invisible).
 
 Usage: python3 tests/visibility_test.py ROM
 """
+import io
 import os
 import re
 import sys
@@ -25,7 +26,8 @@ for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", 
 PLAYER_TILES = range(hdr["SPR_PLAYER_DOWN_0"], hdr["SPR_PORTER_0"])
 ROOMS = ["street", "entrance", "market", "cafe", "quai", "pont"]
 
-pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False)
+pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False,
+           ram_file=io.BytesIO(bytes(8192)))   # blank battery RAM: no save
 mem = pb.memory
 failures = []
 

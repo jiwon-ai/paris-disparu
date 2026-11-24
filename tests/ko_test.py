@@ -2,6 +2,7 @@
 """Korean option smoke test (PyBoy): language menu, Korean intro and
 notebook (Galmuri7 syllable tiles), a Korean dialogue page (Galmuri11 tiles
 in VRAM bank 0 at 0x9000). Run: python3 tests/ko_test.py [rom]"""
+import io
 import re
 import sys
 from pyboy import PyBoy
@@ -12,7 +13,8 @@ for line in open(ROM[:-4] + ".noi"):
     m = re.match(r"DEF (\S+) 0x([0-9A-Fa-f]+)", line)
     if m:
         sym[m.group(1)] = int(m.group(2), 16)
-pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False)
+pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False,
+           ram_file=io.BytesIO(bytes(8192)))   # blank battery RAM: no save
 mem = pb.memory
 failures = []
 

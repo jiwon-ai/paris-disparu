@@ -39,6 +39,7 @@ static uint8_t lift_punch;
 static uint8_t nb_page, teaser_seen;
 static uint8_t game_ev;          /* EV_SERVE / EV_CUPS / EV_CATCH while in ST_GAME */
 static uint8_t fanfare;          /* frames left of the quest-complete jingle */
+static uint8_t howto_seen;       /* bit (EV_* - EV_FIRST): rules already shown */
 static uint8_t sparkle;          /* frames left of the "got it!" star over the player */
 static uint8_t shake;            /* frames left of a small screen shake */
 #define SPARKLE_OAM 20           /* free: games use 16-17, portraits 24+ */
@@ -250,6 +251,75 @@ static void intro(void) {
     box_close();
 }
 
+/* Save/continue: one slot in battery-backed cartridge RAM (MBC5+RAM+BATTERY).
+   Written after every room change and every closed dialogue; checked with a
+   magic word and a checksum, so blank or random RAM reads as "no save". */
+#define SAVE_SIZE (11 + EVENT_SAVE_SIZE + 1)
+static uint8_t save_buf[SAVE_SIZE];
+static const uint8_t save_magic[4] = { 'P', 'D', 'S', '1' };
+
+static uint8_t save_sum(void) {
+    uint8_t i, s = 0xA5;
+    for (i = 0; i < SAVE_SIZE - 1; i++) s += save_buf[i];
+    return s;
+}
+
+static void save_write(void) {
+    uint8_t i;
+    for (i = 0; i < 4; i++) save_buf[i] = save_magic[i];
+    save_buf[4] = cur_room;
+    save_buf[5] = (uint8_t)player.x;  save_buf[6] = (uint8_t)((uint16_t)player.x >> 8);
+    save_buf[7] = (uint8_t)player.y;  save_buf[8] = (uint8_t)((uint16_t)player.y >> 8);
+    save_buf[9] = player.dir;
+    save_buf[10] = howto_seen;
+    event_pack(save_buf + 11);
+    save_buf[SAVE_SIZE - 1] = save_sum();
+    ENABLE_RAM;
+    SWITCH_RAM(0);
+    for (i = 0; i < SAVE_SIZE; i++) ((volatile uint8_t *)0xA000)[i] = save_buf[i];
+    DISABLE_RAM;
+}
+
+static uint8_t save_read(void) {    /* 1 when a valid save is in save_buf */
+    uint8_t i;
+    ENABLE_RAM;
+    SWITCH_RAM(0);
+    for (i = 0; i < SAVE_SIZE; i++) save_buf[i] = ((volatile uint8_t *)0xA000)[i];
+    DISABLE_RAM;
+    for (i = 0; i < 4; i++) if (save_buf[i] != save_magic[i]) return 0;
+    return save_buf[SAVE_SIZE - 1] == save_sum();
+}
+
+static void save_erase(void) {      /* the story is over: next start is a new game */
+    ENABLE_RAM;
+    SWITCH_RAM(0);
+    *(volatile uint8_t *)0xA000 = 0;
+    DISABLE_RAM;
+}
+
+/* Continue or new game, shown only when a save exists. 1 = continue. */
+static uint8_t continue_menu(void) {
+    uint8_t sel = 0;
+    box_open(SCREEN_H / 8);
+    box_print(7, 7, txt_save_cont);
+    box_print(7, 9, txt_save_new);
+    box_print(6, 14, txt_lang_go);
+    while (1) {
+        set_win_tile_xy(5, 7, sel ? GLYPH_SPACE : GLYPH_ARROW_RIGHT);
+        set_win_tile_xy(5, 9, sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        wait_vbl_done();
+        input_update();
+        if (joy_pressed & (J_UP | J_DOWN | J_SELECT)) {
+            sel ^= 1;
+            sound_blip();
+        }
+        if (joy_pressed & (J_A | J_START)) break;
+    }
+    sound_confirm();
+    box_close();
+    return sel == 0;
+}
+
 /* Key art: a night view of Les Halles (tools/title_art.py). Its tiles use
    VRAM bank 1, so the scenery tiles are reloaded afterwards. */
 static void title_screen(void) {
@@ -325,11 +395,11 @@ static void change_room(uint8_t exit_code) {
         }
     }
     enter_room(dest);
+    save_write();
 }
 
 /* Start whatever an interaction returned: text, or an interactive sequence. */
 static uint8_t howto_ev;         /* mini-game waiting behind its rules card */
-static uint8_t howto_seen;       /* bit (EV_* - EV_FIRST): rules already shown */
 static uint16_t idle;            /* frames without input, for the goal reminder */
 
 static void open_dialogue(uint8_t d);
@@ -390,11 +460,13 @@ static void open_dialogue(uint8_t d) {
         state = ST_GAME;
     } else if (d == EV_END) {
         end_show();
+        save_erase();
         sound_confirm();
         music_play(SONG_TITLE);
         state = ST_END;
     } else if (d == NO_DIALOGUE) {
         state = ST_WALK;
+        save_write();
         if (new_quest) {         /* the big moment: a quest is done */
             uint8_t q = new_quest - 1;
             new_quest = 0;
@@ -565,13 +637,23 @@ void main(void) {
 
     title_screen();
     lang_menu();
-    intro();
-
-    player_place(84, 92, DIR_LEFT);
-    enter_room(ROOM_STREET);
-    box_open(4);
-    box_print(1, 1, txt_caption);
-    box_print(1, 2, txt_caption_2);
+    if (save_read() && continue_menu()) {   /* back where the player left off */
+        event_unpack(save_buf + 11);
+        howto_seen = save_buf[10];
+        player_place((int16_t)(save_buf[5] | ((uint16_t)save_buf[6] << 8)),
+                     (int16_t)(save_buf[7] | ((uint16_t)save_buf[8] << 8)), save_buf[9]);
+        enter_room(save_buf[4]);
+        box_open(5);
+        box_print(1, 1, txt_save_back);
+        goal_print(2);
+    } else {
+        intro();
+        player_place(84, 92, DIR_LEFT);
+        enter_room(ROOM_STREET);
+        box_open(4);
+        box_print(1, 1, txt_caption);
+        box_print(1, 2, txt_caption_2);
+    }
     caption_timer = CAPTION_FRAMES;
     caption_note = 0;
     bark_from = NO_BARK;

@@ -6,6 +6,7 @@ collision, room changes, every NPC, choices, the porter's crates, the cafe
 telephone and the pause box.
 Usage: python3 tests/play_test.py ROM [SCREENSHOT_DIR]
 """
+import io
 import os
 import re
 import sys
@@ -47,7 +48,8 @@ for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", 
         HDR[m.group(1)] = int(m.group(2))
 sym_spr1_sparkle = int(re.search(r"#define SPR1_SPARKLE (\d+)", open(os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "..", "include", "assets.h")).read()).group(1))
-pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False)
+pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False,
+           ram_file=io.BytesIO(bytes(8192)))   # blank battery RAM: no save
 mem = pb.memory
 
 

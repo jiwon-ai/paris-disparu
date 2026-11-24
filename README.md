@@ -52,6 +52,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | NPCs call out short lines by themselves when you come near, hinting at what to do ("A: talk" shown). The line stays until you walk away or press A/B; the opening caption stays 15 s or until A/B | done, tested |
 | Quiet scene-based sound: a soft knock every 1-3 s in the market, water on the quai, a faint cup tick in the café; one soft chime when a dialogue opens | done. Captured from the emulator (PyBoy) and checked for pitch, level and rate, **not yet heard by a person** |
 | Original music: 7 loops composed for the game (title, street, market, café, river, métro, mini-games), musette waltzes and polkas, melody on the wave channel over a plucked accompaniment; effects borrow channel 1 | done. Pitches checked from an emulator (PyBoy) recording, **not yet heard by a person** |
+| Save / continue: automatic save to battery RAM (room changes, closed dialogues), Continue / New game menu, cleared at the ending | done, tested (`tests/save_test.py`) |
 | Fuller rooms: baskets, chairs, a bench, posters and three more people (a fort, a cook, a night worker) | done, tested |
 | Juice: room fades, a star over the player on every find, a shake when the pickpocket bumps you | done, tested (the star is checked in OAM) |
 | Message on a monochrome Game Boy | written, **not tested** |

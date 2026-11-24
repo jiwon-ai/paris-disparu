@@ -23,6 +23,9 @@ extern uint8_t carrying;   /* crate type held by the player, or NO_CRATE */
 #define EV_FIRST EV_CHASE   /* lowest EV_*: dialogue ids stay below it */
 
 /* Each returns the dialogue to show, EV_*, or NO_DIALOGUE. */
+#define EVENT_SAVE_SIZE 13
+void event_pack(uint8_t *b) BANKED;          /* story state -> EVENT_SAVE_SIZE bytes */
+void event_unpack(const uint8_t *b) BANKED;
 uint8_t event_talk(uint8_t npc) BANKED;
 uint8_t event_bark(uint8_t npc) BANKED;   /* line called out when the player is near */
 uint8_t event_examine(uint8_t id) BANKED;
