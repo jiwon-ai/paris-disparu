@@ -40,6 +40,12 @@ jobs:
       - name: Save and continue (PyBoy, battery RAM)
         run: python3 tests/save_test.py build/paris-disparu.gbc
 
+      - name: Korean option (PyBoy)
+        run: python3 tests/ko_test.py build/paris-disparu.gbc
+
+      - name: French option (PyBoy)
+        run: python3 tests/fr_test.py build/paris-disparu.gbc
+
       - uses: actions/upload-artifact@v4
         with:
           name: paris-disparu-rom

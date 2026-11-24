@@ -70,6 +70,23 @@ LCDC mode. Measured in PyBoy: the scenery is in VRAM bank 1 at 0x9000.
   glyphs and dialogue pages, read with `far_read()` (bank 0).
 - Test: `tests/ko_test.py`.
 
+## French option
+
+- `lang_fr` (dialogue.c) is set by the language menu (English / Français /
+  한국어; `lang` = 1 only for Korean, whose engine is separate). French uses
+  the English engine: 8x8 font, 18 columns, 2 lines a page.
+- `tools/fr_gen.py` (run by `gen_assets.py`) reads `assets/dialogue/fr.txt`
+  and `assets/text/ui_fr.txt` (same ids and keys; a missing one falls back to
+  English). It makes the space before ! ? : ; » and after « unbreakable, checks
+  barks fit one page, each choice pair is translated one way, and that labels
+  followed by a number or another item fit the room left on their row (`ROOM`).
+- Output: `src/fr_data.c` (bank 11: page tables, choices, UI strings and
+  `fr_ui_at[]`, the French string's offset for each English `ui_text` offset)
+  and `src/fr_pages_N.c` (banks 12..: dialogue pages). `src/fr.c` (bank 11)
+  holds the lookups that `box_print`, `dialogue_start`, `load_page`,
+  `draw_choice` and `bark_show` call when `lang_fr` is set.
+- Test: `tests/fr_test.py`.
+
 ## Data pipeline
 
 All art and text are plain text so changes are reviewable:
@@ -77,7 +94,7 @@ All art and text are plain text so changes are reviewable:
 - `tools/font.py` — original 8x8 font including French accents (é è ê ë à â ç î ï ô û ù œ É È À Ç « »).
 - `tools/art.py` — palettes, background tiles, map legend, sprites.
 - `assets/maps/*.txt` — 20x18 room maps, plus painted signs.
-- `assets/dialogue/en.txt` — dialogue (English); word-wrapped to 18 columns, 3 lines per page. `fr.txt` is an unused French draft kept for a later localisation.
+- `assets/dialogue/en.txt` — dialogue (English); word-wrapped to 18 columns, 3 lines per page. `fr.txt` is the French dialogue (same ids), see "French option".
 - `tools/gen_assets.py` — validates everything (map size, unknown characters,
   glyphs missing from the font, words longer than a line) and writes
   `src/assets.c` / `include/assets.h`. `--check` fails if the committed files
@@ -174,7 +191,9 @@ pages); the overflow is stored in bank 3 after the title art
 | 6 | Korean code, tables, UI strings |
 | 7 | mini-games (`games.c`, BANKED functions) |
 | 8-10 | Galmuri11 glyphs and Korean dialogue pages |
-| 11-15 | free |
+| 11 | French tables, UI strings and lookups (`fr_data.c`, `fr.c`) |
+| 12-13 | French dialogue pages (`fr_pages_N.c`) |
+| 14-15 | free |
 
 Code outside bank 0/1 cannot read bank-1 data directly: `box_print` and
 `world_solid` save the current bank, map ASSET_BANK and restore it, so they

@@ -245,7 +245,7 @@ if len(EXCHANGES) < 2:
 # ---------------------------------------------------------------------------
 def wrap(paragraph, where):
     lines, cur = [], ""
-    for word in paragraph.split():
+    for word in [w for w in paragraph.split(" ") if w]:   # a no-break space joins
         if len(word) > TEXT_COLS:
             fail("%s: word %r is longer than %d columns" % (where, word, TEXT_COLS))
             word = word[:TEXT_COLS]
@@ -556,9 +556,8 @@ ko_out, ko_report = ko_gen.build([(d, p) for d, p, _ in entries], {k: v for k, v
                                  ui, ui_offsets, encode_char, fail)
 outputs.update(ko_out)
 outputs.update(fr_out)
-print("fr_gen: %d pages in %d banks; untranslated: %d dialogue, %d ui; longer than English: %s"
-      % (fr_report["pages"], fr_report["banks"], len(fr_report["missing_dlg"]), len(fr_report["missing_ui"]),
-         " ".join(fr_report["longer_ui"]) or "none"))
+print("fr_gen: %d pages in %d banks; untranslated: %d dialogue, %d ui"
+      % (fr_report["pages"], fr_report["banks"], len(fr_report["missing_dlg"]), len(fr_report["missing_ui"])))
 if errors:
     for e in errors:
         print("gen_assets: error: " + e, file=sys.stderr)

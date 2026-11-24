@@ -1,7 +1,7 @@
 # PARIS DISPARU — La vie qui n'existe plus
 
 An original exploration game for the **Game Boy Color**, set in Paris around
-1967. The game is in **English**; signs and place names stay in French. You wander the streets around the old Les Halles market before dawn,
+1967. The game is in **English**, **French** or **Korean** (chosen after the title); signs and place names stay in French. You wander the streets around the old Les Halles market before dawn,
 meet the people who work there, and solve a small mystery that could only
 happen there and then: **Fernand, a fort des Halles for thirty years, has
 not come to work tonight.** Everyone knows the market will leave for Rungis.
@@ -58,6 +58,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Item pictures: the object itself (coltin, petit bleu, plate, gratinée, jeton, tickets, roller, stub) above the note when you get it, and a cup in the coffee game | done, tested (tiles checked in VRAM; English and Korean screenshot-checked) |
 | Night clock 03:00 → 07:00 (one hour per quest, notebook) with the sky turning slightly bluer | done, tested (clock); palette change checked by screenshot |
 | End-screen rank (Tourist → Paris legend) | done, tested (one rank seen in the playthrough) |
+| French option: every dialogue and menu in French (same 8x8 font and layout as English; no-break spaces before ! ? : ;), chosen on the language menu (English / Français / 한국어) | done, tested (`tests/fr_test.py`: menu, intro, caption, notebook, a bark, a dialogue and its choice; notebook pages, dial, end screen and teaser screenshot-checked). **Written by Claude: a review by a native French speaker is advised** |
 | Korean option: dialogue, menus, notebook and captions in Galmuri11 (12-px glyphs, 16-px lines) | done; every Korean screen type screenshot-checked in PyBoy (intro, notebook 4 pages, captions, rules card, cup game, dial, choice, ending, teaser, continue menu) |
 | Music on/off with SELECT (sound effects stay), remembered in the save; the web page also has a "Sound" button that mutes everything | done, tested (`tests/save_test.py`) |
 | Save / continue: automatic save to battery RAM (room changes, closed dialogues), Continue / New game menu, cleared at the ending | done, tested (`tests/save_test.py`) |
