@@ -859,3 +859,8 @@ UN FORT : Fernand ? Il s'assoit toujours là, près du miroir. Pas ce soir. Drô
 
 [waiter_jeton]
 LE GARÇON : Un jeton pour le téléphone ? Vos vingt centimes sur le zinc... voilà. Votre jeton.
+
+[car]
+Une petite deux-chevaux grise garée le long du trottoir. « Un parapluie sur roues », dit-on. Un béret traîne sur le siège.
+
+On en fabrique depuis 1948. Tout le monde a un oncle qui en a une.

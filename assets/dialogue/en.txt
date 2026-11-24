@@ -280,6 +280,11 @@ A lorry from the country, parked at the kerb. Crates go off it by hand, towards 
 
 Every night the streets round the market fill with lorries like this one. The driver snores in his cab.
 
+[car]
+A little grey deux-chevaux parked by the kerb. "An umbrella on wheels", people call it. A beret lies on the seat.
+
+They have been making them since 1948. Everybody's uncle has one.
+
 [solex]
 A black VéloSolex leans on the wall: a bicycle with a little motor. A roller turns the front wheel.
 

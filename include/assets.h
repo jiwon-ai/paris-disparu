@@ -37,7 +37,7 @@
 #define GLYPH_COFFEE 244
 #define GLYPH_COFFEE_ZONE 245
 
-#define ENV_TILE_COUNT 119
+#define ENV_TILE_COUNT 127
 #define TILE_SKY 0
 #define TILE_ROOFTOP 1
 #define TILE_ROOF 2
@@ -131,32 +131,40 @@
 #define TILE_VESP_TR 90
 #define TILE_VESP_BL 91
 #define TILE_VESP_BR 92
-#define TILE_RAT 93
-#define TILE_INSCR_0 94
-#define TILE_INSCR_1 95
-#define TILE_INSCR_2 96
-#define TILE_INSCR_3 97
-#define TILE_INSCR_4 98
-#define TILE_INSCR_5 99
-#define TILE_INSCR_6 100
-#define TILE_INSCR_7 101
-#define TILE_INSCR_8 102
-#define TILE_MAP4_0 103
-#define TILE_MAP4_1 104
-#define TILE_MAP4_2 105
-#define TILE_MAP4_3 106
-#define TILE_MAP4_4 107
-#define TILE_MAP4_5 108
-#define TILE_MAP4_6 109
-#define TILE_MAP4_7 110
-#define TILE_BASKET 111
-#define TILE_CHAIR 112
-#define TILE_BENCH_L 113
-#define TILE_BENCH_R 114
-#define TILE_POSTER_0 115
-#define TILE_POSTER_1 116
-#define TILE_POSTER_2 117
-#define TILE_POSTER_3 118
+#define TILE_CAR_0 93
+#define TILE_CAR_1 94
+#define TILE_CAR_2 95
+#define TILE_CAR_3 96
+#define TILE_CAR_4 97
+#define TILE_CAR_5 98
+#define TILE_CAR_6 99
+#define TILE_CAR_7 100
+#define TILE_RAT 101
+#define TILE_INSCR_0 102
+#define TILE_INSCR_1 103
+#define TILE_INSCR_2 104
+#define TILE_INSCR_3 105
+#define TILE_INSCR_4 106
+#define TILE_INSCR_5 107
+#define TILE_INSCR_6 108
+#define TILE_INSCR_7 109
+#define TILE_INSCR_8 110
+#define TILE_MAP4_0 111
+#define TILE_MAP4_1 112
+#define TILE_MAP4_2 113
+#define TILE_MAP4_3 114
+#define TILE_MAP4_4 115
+#define TILE_MAP4_5 116
+#define TILE_MAP4_6 117
+#define TILE_MAP4_7 118
+#define TILE_BASKET 119
+#define TILE_CHAIR 120
+#define TILE_BENCH_L 121
+#define TILE_BENCH_R 122
+#define TILE_POSTER_0 123
+#define TILE_POSTER_1 124
+#define TILE_POSTER_2 125
+#define TILE_POSTER_3 126
 #define SPRITE_TILE_COUNT 128
 #define SPR1_ACTOR 232   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_CHANTEUSE 236   /* VRAM bank 1: use palette | S_BANK1 */
@@ -323,6 +331,7 @@ enum {
     DLG_MORRIS,
     DLG_WALLACE,
     DLG_LORRY,
+    DLG_CAR,
     DLG_SOLEX,
     DLG_BUSSTOP,
     DLG_DEFENSE,

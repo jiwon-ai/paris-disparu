@@ -486,6 +486,14 @@ for _ in range(3):
 tap("a", 50)
 tap("b", 4)
 check(room() == ROOM_STREET, "in rue Rambuteau")
+# A little grey car at the kerb, bottom left (the 1960s on the street).
+goto(10, 90, "yx")
+goto(10, 112, "xy")
+face("down")
+tick(4)
+shot("40_car")
+t = read_text()
+check(any("deux-chevaux" in p for p in t), "the little grey car: %s" % t[:1])
 
 # The hotel door (x10) opens now.
 goto(76, 72, "yx")
