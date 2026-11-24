@@ -17,7 +17,7 @@
 #define TITLE_BANK 3   /* bank of src/title_art.c */
 #define PORTRAIT_BANK 4 /* bank of src/portrait_art.c */
 #define FONT_BASE 128
-#define FONT_TILE_COUNT 115
+#define FONT_TILE_COUNT 118
 #define GLYPH_SPACE 128
 #define GLYPH_ARROW_DOWN 230
 #define GLYPH_ARROW_RIGHT 231
@@ -32,6 +32,9 @@
 #define GLYPH_BAR 240
 #define GLYPH_BAR_ZONE 241
 #define GLYPH_BAR_CURSOR 242
+#define GLYPH_POUR_ZONE 243
+#define GLYPH_COFFEE 244
+#define GLYPH_COFFEE_ZONE 245
 
 #define ENV_TILE_COUNT 106
 #define TILE_SKY 0

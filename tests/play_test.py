@@ -326,7 +326,7 @@ def play_serve(win=True):
         pb.button_press("a")
         for _ in range(200):
             tick(1)
-            full = sum(1 for x in range(2, 18) if win_tile(x, 3) == HDR["GLYPH_BAR_CURSOR"])
+            full = sum(1 for x in range(2, 18) if win_tile(x, 3) in (HDR["GLYPH_COFFEE"], HDR["GLYPH_COFFEE_ZONE"]))
             if (win and full == 12) or "Oops" in window_row(4):
                 break
         pb.button_release("a")
@@ -770,6 +770,9 @@ tap("a", 0)
 lines = dialogue(choice=0)
 check(any("Give me a" in l for l in lines) and window_row(1).startswith("Pour coffee"), "Simone asks for help: pour the coffee")
 shot("23_serve")
+tick(30)
+check("Oops" not in window_row(4) and "Let go" in window_row(4),
+      "the A that starts the coffee game does not pour a cup: %r" % window_row(4))
 check(item_shown(HDR["ITEM_CUP"]), "the coffee game shows a café cup")
 play_serve(win=False)
 lines = dialogue(choice=0)

@@ -38,9 +38,8 @@ static uint8_t s_round, s_hits, s_fill, s_tick, s_pause, s_pouring;
 static void serve_draw_bar(void) {
     uint8_t i, t;
     for (i = 0; i < CUP_LEN; i++) {
-        if (i < s_fill) t = GLYPH_BAR_CURSOR;                  /* coffee */
-        else if (i >= ZONE_LO && i <= ZONE_HI) t = GLYPH_BAR_ZONE;
-        else t = GLYPH_BAR;
+        if (i >= ZONE_LO && i <= ZONE_HI) t = i < s_fill ? GLYPH_COFFEE_ZONE : GLYPH_POUR_ZONE;
+        else t = i < s_fill ? GLYPH_COFFEE : GLYPH_BAR;
         box_tile(2 + i, 3, t);
     }
 }
@@ -87,8 +86,9 @@ uint8_t serve_update(void) BANKED {
         serve_order();
         return MG_RUNNING;
     }
-    if (joy_held & J_A) {
-        s_pouring = 1;
+    if (joy_pressed & J_A) s_pouring = 1;   /* a new press: the A that opened the game does not pour */
+    if (!(joy_held & J_A) && s_pouring && !s_fill) { s_pouring = 0; s_tick = 0; }   /* a tap: nothing poured yet */
+    if (s_pouring && (joy_held & J_A)) {
         if (++s_tick >= 8) {            /* one cell every 8 frames: slow and steady */
             s_tick = 0;
             if (++s_fill > CUP_LEN - 1) return serve_next(0);   /* spilt over */
@@ -104,22 +104,28 @@ uint8_t serve_update(void) BANKED {
 uint8_t serve_hits(void) { return s_hits; }
 
 /* ------------------------------------------------------------ cup game
-   A jeton goes under one of three cups; the cups swap places; pick the
-   right one. The two cups about to swap are shown raised. */
+   A jeton goes under one of three cups; two cups at a time slide past each
+   other (one above, one below), so the eye can follow the jeton's cup; then
+   pick the right one. */
 #define CUP_Y 3
 static const uint8_t cup_x[3] = { 4, 9, 14 };
 uint8_t cup_where;
-static uint8_t c_swaps, c_phase, c_timer, c_a, c_b, c_sel;
+static uint8_t c_swaps, c_phase, c_timer, c_a, c_b, c_sel, c_k;
 
-static void cups_draw(uint8_t raise_a, uint8_t raise_b, uint8_t show) {
-    uint8_t i, up;
+static void cups_draw(uint8_t show) {
+    uint8_t i;
     for (i = 0; i < 3; i++) {
-        up = (i == raise_a || i == raise_b);
-        box_tile(cup_x[i], CUP_Y - 1, up ? GLYPH_CUP : GLYPH_SPACE);
-        box_tile(cup_x[i], CUP_Y, up ? GLYPH_SPACE : GLYPH_CUP);
+        box_tile(cup_x[i], CUP_Y - 1, GLYPH_SPACE);
+        box_tile(cup_x[i], CUP_Y, GLYPH_CUP);
         box_tile(cup_x[i], CUP_Y + 1, (show && i == cup_where) ? GLYPH_COIN : GLYPH_SPACE);
         box_tile(cup_x[i] - 1, CUP_Y + 2, (c_phase == 2 && i == c_sel) ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
     }
+}
+
+/* The two sliding cups, c_k columns from their start: cup c_a above, c_b below. */
+static void cups_slide(uint8_t t) {
+    box_tile(cup_x[c_a] + c_k, CUP_Y - 1, t);
+    box_tile(cup_x[c_b] - c_k, CUP_Y + 1, t);
 }
 
 void cups_start(void) BANKED {
@@ -127,43 +133,54 @@ void cups_start(void) BANKED {
     cup_where = rnd() % 3;
     c_swaps = 0;
     c_phase = 0;                        /* 0 show, 1 shuffle, 2 pick */
-    c_timer = 60;
+    c_timer = 90;
     c_sel = 1;
+    c_a = 0xFF;
     box_open(7);
     box_print(1, 1, txt_cup_watch);
-    cups_draw(0xFF, 0xFF, 1);
+    cups_draw(1);
 }
 
 uint8_t cups_update(void) BANKED {
     if (c_phase == 0) {
-        if (--c_timer == 0) { c_phase = 1; c_timer = 1; }
+        if (--c_timer == 0) { cups_draw(0); c_phase = 1; c_timer = 20; }
         return MG_RUNNING;
     }
     if (c_phase == 1) {
         if (--c_timer) return MG_RUNNING;
-        if (c_a != 0xFF) {              /* finish the shown swap */
+        if (c_a == 0xFF) {              /* start a swap: lift two cups off the row */
+            c_a = rnd() % 3;
+            c_b = (c_a + 1 + (rnd() & 1)) % 3;
+            if (c_a > c_b) { c_k = c_a; c_a = c_b; c_b = c_k; }
+            c_k = 0;
+            box_tile(cup_x[c_a], CUP_Y, GLYPH_SPACE);
+            box_tile(cup_x[c_b], CUP_Y, GLYPH_SPACE);
+            cups_slide(GLYPH_CUP);
+        } else if (cup_x[c_a] + c_k < cup_x[c_b]) {   /* one column further */
+            cups_slide(GLYPH_SPACE);
+            c_k++;
+            cups_slide(GLYPH_CUP);
+        } else {                        /* arrived: back on the row, swapped */
             if (cup_where == c_a) cup_where = c_b;
             else if (cup_where == c_b) cup_where = c_a;
             c_a = 0xFF;
-            cups_draw(0xFF, 0xFF, 0);
+            cups_draw(0);
             sound_clink();
-            c_timer = 8;
             if (++c_swaps == 7) {
                 c_phase = 2;
                 box_clear(1);
                 box_print(1, 1, txt_cup_pick);
-                cups_draw(0xFF, 0xFF, 0);
+                cups_draw(0);
+                return MG_RUNNING;
             }
+            c_timer = 12;
             return MG_RUNNING;
         }
-        c_a = rnd() % 3;
-        c_b = (c_a + 1 + (rnd() & 1)) % 3;
-        cups_draw(c_a, c_b, 0);
-        c_timer = 22 - c_swaps * 2;     /* faster and faster */
+        c_timer = 4 - c_swaps / 3;      /* frames per column: faster and faster */
         return MG_RUNNING;
     }
-    if (joy_pressed & J_LEFT)  { c_sel = c_sel ? c_sel - 1 : 2; cups_draw(0xFF, 0xFF, 0); sound_blip(); }
-    if (joy_pressed & J_RIGHT) { c_sel = c_sel == 2 ? 0 : c_sel + 1; cups_draw(0xFF, 0xFF, 0); sound_blip(); }
+    if (joy_pressed & J_LEFT)  { c_sel = c_sel ? c_sel - 1 : 2; cups_draw(0); sound_blip(); }
+    if (joy_pressed & J_RIGHT) { c_sel = c_sel == 2 ? 0 : c_sel + 1; cups_draw(0); sound_blip(); }
     if (joy_pressed & J_A) {
         box_close();
         return c_sel == cup_where ? MG_SUCCESS : MG_FAIL;
