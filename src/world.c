@@ -63,10 +63,13 @@ void world_load(uint8_t room) {
     wait_vbl_done();
     set_bkg_palette(0, 8, black);
     set_sprite_palette(0, 8, black);
+    l = _current_bank;
+    SWITCH_ROM(ROOM_BANK);
     VBK_REG = VBK_ATTRIBUTES;
     set_bkg_tiles(0, 0, MAP_W, MAP_H, room_attrs[room]);
     VBK_REG = VBK_TILES;
     set_bkg_tiles(0, 0, MAP_W, MAP_H, room_tiles[room]);
+    SWITCH_ROM(l);
     for (l = 1; l < 4; l++) fade_to(l);
     wait_vbl_done();
     set_bkg_palette(0, 8, bg_live);
@@ -76,7 +79,7 @@ void world_load(uint8_t room) {
 uint8_t world_solid(int16_t px, int16_t py) {
     uint8_t s, save = _current_bank;     /* callable from banked code too */
     if (px < 0 || py < 0 || px >= SCREEN_W || py >= SCREEN_H) return 1;
-    SWITCH_ROM(ASSET_BANK);
+    SWITCH_ROM(ROOM_BANK);
     s = room_solid[cur_room][(uint16_t)(py >> 3) * MAP_W + (uint8_t)(px >> 3)];
     SWITCH_ROM(save);
     return s;

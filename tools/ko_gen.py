@@ -26,8 +26,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONT_DIR = os.path.join(ROOT, "tools", "fonts", "galmuri")
 
 KO_BANK = 6            # src/ko.c and src/ko_data.c
-KO_BLOB_BANK = 8       # first bank of glyph and page blobs
-KO_LAST_BANK = 15      # ROM is 16 banks (256 KiB)
+KO_BLOB_BANK = 20      # first bank of glyph and page blobs
+KO_LAST_BANK = 31      # ROM is 32 banks (512 KiB)
 LINE_PX = 144          # 18 tiles
 GLYPH_ROWS = 14
 GLYPH_SIZE = 1 + 2 * GLYPH_ROWS

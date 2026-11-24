@@ -5,7 +5,7 @@
 - GBDK-2020 4.3.0, C (SDCC), `make`.
 - Cartridge header set by `makebin` flags in the `Makefile`: CGB only (`-Wm-yC`,
   0x143 = 0xC0), MBC5 (`-Wm-yt0x19`) so that ROM banking can be added without
-  changing the cartridge type. Current ROM: 256 KiB (16 banks). Code is in bank 0, `src/assets.c` in bank 1 (always mapped), `src/dialogue_text.c` in bank 2; `dialogue.c` maps bank 2 with `SWITCH_ROM` only to copy one page into RAM.
+  changing the cartridge type. Current ROM: 512 KiB (32 banks). Code is in bank 0, `src/assets.c` in bank 1 (always mapped), `src/dialogue_text.c` in bank 2; `dialogue.c` maps bank 2 with `SWITCH_ROM` only to copy one page into RAM.
 - On a monochrome Game Boy the game shows a "Game Boy Color required" message
   (`_cpu != CGB_TYPE` check in `main.c`).
 
@@ -169,31 +169,33 @@ magic/checksum test and reads as no save.
   (`dlg_portrait[]`, generated).
 - Street-lamp glow (BG palette 3, colours 2-3) moves between three close
   levels at random every 8 frames.
-- ROM banks: 0 code, 1 assets, 2 dialogue, 3 title art.
+- ROM banks: see "ROM layout" below.
 
 
 ## Dialogue banks
 
 Dialogue pages (54 bytes each) fill ROM bank 2 (`dlg_pages`, DLG_PAGES_LO
-pages); the overflow is stored in bank 3 after the title art
-(`dlg_pages_hi`). `dialogue.c` maps the right bank per page.
+pages); the overflow goes to banks DLG_HI_BANK.. (`dlg_pages_N.c`, DLG_HI_PER_BANK
+pages each; `dlg_hi_base[]` in bank 1). `dialogue.c` maps the right bank per page.
 
-## ROM layout (256 KiB, MBC5, 16 banks)
+## ROM layout (512 KiB, MBC5, 32 banks; 256 KiB until 2026-11-24)
 
 | Bank | Content |
 |---|---|
 | 0 | code |
 | 1 | assets, always mapped (tiles, maps, palettes, UI text, dialogue index); nearly full |
 | 2 | dialogue pages (first DLG_PAGES_LO) |
-| 3 | title art + dialogue overflow + `dlg_first_page` (read with far_read) |
+| 3 | title art + `dlg_first_page`, `dlg_page_count`, `dlg_choice` (read with far_read) |
 | 4 | portrait tiles and low sprites (copied to VRAM bank 1 by load_bank1); music data (`music_data.c`, MUSIC_BANK); `env_tiles`; item pictures (`items.c`) |
 | 5 | story logic (`events.c`) |
 | 6 | Korean code, tables, UI strings |
-| 7 | mini-games (`games.c`, BANKED functions) |
-| 8-10 | Galmuri11 glyphs and Korean dialogue pages |
+| 7 | mini-games (`games.c`, `minigame.c`: BANKED functions), notebook |
+| 8-10 | English dialogue overflow (`dlg_pages_N.c`) |
 | 11 | French tables, UI strings and lookups (`fr_data.c`, `fr.c`) |
-| 12-13 | French dialogue pages (`fr_pages_N.c`) |
-| 14-15 | free |
+| 12-15 | French dialogue pages (`fr_pages_N.c`) |
+| 16 | room maps: tiles, attributes, solidity (`room_data.c`, ROOM_BANK; `world.c` maps it) |
+| 17-19 | free |
+| 20-31 | Galmuri11 glyphs and Korean dialogue pages (`ko_blob_N.c`) |
 
 Code outside bank 0/1 cannot read bank-1 data directly: `box_print` and
 `world_solid` save the current bank, map ASSET_BANK and restore it, so they
@@ -209,4 +211,4 @@ tools/art.py, e.g. the pickpocket, `SPR1_THIEF_*`).
 
 Dialogue ids: up to 0xF6 (0xF7-0xFE are EV_* events, EV_FIRST = EV_CHASE; 0xFF none). Hotspot
 dialogues must stay below 0x80 (TALK flag); gen_assets.py checks rooms.c.
-Bank 0 is full (about 60 bytes free after the cameos): new code must go to banked functions (`#pragma bank`) first.
+Bank 0 is tight (about 1 KiB free after `minigame.c` moved to bank 7, 2026-11-24): new code goes to banked functions (`#pragma bank`) first. Banked code must read bank-1 data (ui_text, `txt_*`) through `far_read` or `box_print`.

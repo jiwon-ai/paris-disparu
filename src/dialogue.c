@@ -205,9 +205,14 @@ static void load_page(void) {
     if (page < DLG_PAGES_LO) {
         SWITCH_ROM(DLG_BANK);
         memcpy(page_buf, dlg_pages + page * PAGE_SIZE, PAGE_SIZE);
-    } else {                    /* the overflow lives after the title art */
-        SWITCH_ROM(TITLE_BANK);
-        memcpy(page_buf, dlg_pages_hi + (page - DLG_PAGES_LO) * PAGE_SIZE, PAGE_SIZE);
+    } else {                    /* the overflow: banks DLG_HI_BANK.. */
+        uint16_t k = page - DLG_PAGES_LO;
+        uint8_t b = (uint8_t)(k / DLG_HI_PER_BANK);
+        const uint8_t *base;
+        SWITCH_ROM(ASSET_BANK);
+        base = dlg_hi_base[b];
+        SWITCH_ROM(DLG_HI_BANK + b);
+        memcpy(page_buf, base + (k - (uint16_t)b * DLG_HI_PER_BANK) * PAGE_SIZE, PAGE_SIZE);
     }
     SWITCH_ROM(ASSET_BANK);
 }

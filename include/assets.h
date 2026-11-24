@@ -14,6 +14,7 @@
 
 #define ASSET_BANK 1   /* bank of src/assets.c, normally mapped */
 #define DLG_BANK 2     /* bank of src/dialogue_text.c */
+#define ROOM_BANK 16   /* bank of src/room_data.c: room maps */
 #define TITLE_BANK 3   /* bank of src/title_art.c */
 #define PORTRAIT_BANK 4 /* bank of src/portrait_art.c */
 #define FONT_BASE 128
@@ -430,7 +431,7 @@ extern const uint8_t font_tiles[];
 extern const uint8_t env_tiles[];             /* bank PORTRAIT_BANK */
 extern const uint8_t water_frames[];   /* 2 tiles, swapped into TILE_WATER */
 extern const uint8_t sprite_tiles[];
-extern const uint8_t * const room_tiles[ROOM_COUNT];
+extern const uint8_t * const room_tiles[ROOM_COUNT];   /* bank ROOM_BANK */
 extern const uint8_t * const room_attrs[ROOM_COUNT];
 extern const uint8_t * const room_solid[ROOM_COUNT];
 extern const uint8_t dlg_pages[];
@@ -711,7 +712,10 @@ extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];
 extern const uint8_t title_attr[];
 extern const palette_color_t title_pal[];
-#define DLG_PAGES_LO 455   /* pages in bank DLG_BANK; the rest in TITLE_BANK */
-extern const uint8_t dlg_pages_hi[];  /* bank TITLE_BANK */
+#define DLG_PAGES_LO 455   /* pages in bank DLG_BANK; the rest in banks DLG_HI_BANK.. */
+#define DLG_HI_BANK 8
+#define DLG_HI_PER_BANK 455
+extern const uint8_t * const dlg_hi_base[];   /* bank ASSET_BANK */
+extern const uint8_t dlg_pages_0[];
 
 #endif

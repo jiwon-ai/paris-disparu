@@ -18,7 +18,7 @@ def french_spaces(text):
 
 FR_BANK = 11
 FR_PAGE_BANK = 12
-LAST_BANK = 15
+LAST_BANK = 15          # banks 16-31: rooms, Korean blobs (see TECHNICAL_ARCHITECTURE)
 
 
 # Room left on screen where a key is followed by something else on its row

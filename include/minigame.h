@@ -10,14 +10,14 @@
 
 /* Lifting a crate: a cursor sweeps a bar, press A inside the zone.
    level 0-2 makes the zone smaller and the cursor faster. */
-void lift_start(uint8_t level);
-void timing_start(uint8_t level, const uint8_t *line1, const uint8_t *line2);
-uint8_t lift_update(void);
+void lift_start(uint8_t level) BANKED;
+void timing_start(uint8_t level, const uint8_t *line1, const uint8_t *line2) BANKED;
+uint8_t lift_update(void) BANKED;
 
 /* Rotary-style dialling: Up/Down changes a digit, Left/Right moves, A calls. */
-void dial_start(void);
-uint8_t dial_update(void);
-uint16_t dial_number(void);   /* the 4 digits as a decimal number */
+void dial_start(void) BANKED;
+uint8_t dial_update(void) BANKED;
+uint16_t dial_number(void) BANKED;   /* the 4 digits as a decimal number */
 extern uint8_t dial_exch;     /* the exchange dialled (EX_*, assets.h) */
 
 /* Quest mini-games (games.c). */

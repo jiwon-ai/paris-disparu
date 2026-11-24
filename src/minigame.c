@@ -1,9 +1,11 @@
+#pragma bank 7   /* with games.c: banked to keep bank 0 free */
 #include <gb/gb.h>
 #include "assets.h"
 #include "dialogue.h"
 #include "notebook.h"
 #include "input.h"
 #include "minigame.h"
+#include "ko.h"        /* far_read */
 #include "sound.h"
 
 #define BAR_X 2
@@ -25,12 +27,12 @@ static void draw_bar(void) {
     }
 }
 
-void lift_start(uint8_t level) {
+void lift_start(uint8_t level) BANKED {
     timing_start(level, txt_lift_1, txt_lift_2);
 }
 
 /* The same timing bar, with its own two lines of instructions. */
-void timing_start(uint8_t level, const uint8_t *line1, const uint8_t *line2) {
+void timing_start(uint8_t level, const uint8_t *line1, const uint8_t *line2) BANKED {
     box_open(5);
     box_print(1, 1, line1);
     box_print(1, 2, line2);
@@ -44,7 +46,7 @@ void timing_start(uint8_t level, const uint8_t *line1, const uint8_t *line2) {
     draw_bar();
 }
 
-uint8_t lift_update(void) {
+uint8_t lift_update(void) BANKED {
     if (joy_pressed & J_A) {
         box_close();
         return (cur >= zone_lo && cur <= zone_hi) ? MG_SUCCESS : MG_FAIL;
@@ -82,9 +84,9 @@ static void draw_dial(void) {
     }
 }
 
-void dial_start(void) {
+void dial_start(void) BANKED {
     uint8_t i;
-    digit_tile0 = txt_digits[0];   /* "0123456789" from ui.txt */
+    far_read(ASSET_BANK, txt_digits, &digit_tile0, 1);   /* "0123456789" from ui.txt (bank 1) */
     for (i = 0; i < 4; i++) digits[i] = 0;
     sel = dial_exch = 0;
     box_open(6);
@@ -94,7 +96,7 @@ void dial_start(void) {
     draw_dial();
 }
 
-uint8_t dial_update(void) {
+uint8_t dial_update(void) BANKED {
     if (joy_pressed & J_B) {
         box_close();
         return MG_FAIL;
@@ -127,6 +129,6 @@ uint8_t dial_update(void) {
     return MG_RUNNING;
 }
 
-uint16_t dial_number(void) {
+uint16_t dial_number(void) BANKED {
     return digits[0] * 1000u + digits[1] * 100u + digits[2] * 10u + digits[3];
 }
