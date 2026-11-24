@@ -23,6 +23,7 @@ static const hotspot_t street_hotspots[] = {
     {  6, 10, 2, 1, DLG_SOLEX },      /* VeloSolex against the wall */
     { 12, 9, 1, 2, DLG_BUSSTOP },     /* bus stop */
     { 16, 15, 4, 2, DLG_LORRY },      /* market lorry at the kerb */
+    {  6, 7, 2, 2, DLG_DEFENSE },     /* stone pier under the painted DEFENSE D'AFFICHER */
 };
 static const door_t street_doors[] = {
     { 4, 7, 1, 2, ROOM_CAFE, 72, 118, DIR_UP },
@@ -137,7 +138,7 @@ static const door_t metro_doors[] = {
 };
 
 const room_def_t rooms[ROOM_COUNT] = {
-    { street_npcs, 3, street_hotspots, 12, street_doors, 1,
+    { street_npcs, 3, street_hotspots, 13, street_doors, 1,
       { ROOM_ENTRANCE, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_STREET },
     { entrance_npcs, 3, entrance_hotspots, 7, entrance_doors, 2,
       { ROOM_QUAI, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_MARKET },

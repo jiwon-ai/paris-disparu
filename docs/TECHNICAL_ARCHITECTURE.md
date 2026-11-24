@@ -132,7 +132,7 @@ pages); the overflow is stored in bank 3 after the title art
 | 0 | code |
 | 1 | assets, always mapped (tiles, maps, palettes, UI text, dialogue index); nearly full |
 | 2 | dialogue pages (first DLG_PAGES_LO) |
-| 3 | title art + dialogue overflow |
+| 3 | title art + dialogue overflow + `dlg_first_page` (read with far_read) |
 | 4 | portrait tiles and low sprites (copied to VRAM bank 1 by load_bank1) |
 | 5 | story logic (`events.c`) |
 | 6 | Korean code, tables, UI strings, Galmuri7 tiles |

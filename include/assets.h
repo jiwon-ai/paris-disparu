@@ -33,7 +33,7 @@
 #define GLYPH_BAR_ZONE 241
 #define GLYPH_BAR_CURSOR 242
 
-#define ENV_TILE_COUNT 81
+#define ENV_TILE_COUNT 90
 #define TILE_SKY 0
 #define TILE_ROOFTOP 1
 #define TILE_ROOF 2
@@ -115,6 +115,15 @@
 #define TILE_SOLEX_1 78
 #define TILE_BUSSTOP_T 79
 #define TILE_BUSSTOP_B 80
+#define TILE_INSCR_0 81
+#define TILE_INSCR_1 82
+#define TILE_INSCR_2 83
+#define TILE_INSCR_3 84
+#define TILE_INSCR_4 85
+#define TILE_INSCR_5 86
+#define TILE_INSCR_6 87
+#define TILE_INSCR_7 88
+#define TILE_INSCR_8 89
 #define SPRITE_TILE_COUNT 128
 #define SPR1_ACTOR 232   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_CHANTEUSE 236   /* VRAM bank 1: use palette | S_BANK1 */
@@ -245,6 +254,7 @@ enum {
     DLG_LORRY,
     DLG_SOLEX,
     DLG_BUSSTOP,
+    DLG_DEFENSE,
     DLG_COLUMN,
     DLG_QUAI_BOX,
     DLG_QUAI_BOX2,
@@ -346,7 +356,7 @@ extern const uint8_t * const room_tiles[ROOM_COUNT];
 extern const uint8_t * const room_attrs[ROOM_COUNT];
 extern const uint8_t * const room_solid[ROOM_COUNT];
 extern const uint8_t dlg_pages[];
-extern const uint16_t dlg_first_page[DLG_COUNT];
+extern const uint16_t dlg_first_page[DLG_COUNT];   /* bank TITLE_BANK */
 extern const uint8_t dlg_page_count[DLG_COUNT];
 extern const uint8_t dlg_choice[DLG_COUNT];   /* 0 = none, else pair index + 1 */
 extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */

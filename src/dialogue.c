@@ -109,7 +109,7 @@ void dialogue_start(uint8_t id) {
     choice = dlg_choice[id];
     in_choice = 0;
     dialogue_choice = 1;
-    page = dlg_first_page[id];
+    far_read(TITLE_BANK, (const uint8_t *)&dlg_first_page[id], (uint8_t *)&page, 2);
     pages_left = dlg_page_count[id] - 1;
     if (lang) ko_start(id);
     else load_page();
@@ -229,7 +229,7 @@ void bark_show(uint8_t id) {
         box_open(DLG_ROWS);
         ko_reveal_all();
     } else {
-        page = dlg_first_page[id];
+        far_read(TITLE_BANK, (const uint8_t *)&dlg_first_page[id], (uint8_t *)&page, 2);
         load_page();
         box_open(DLG_ROWS);
         for (y = 0; y < TEXT_ROWS; y++)

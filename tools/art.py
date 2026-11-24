@@ -798,3 +798,39 @@ BANK1_LOW_SPRITES = [
     ("THIEF_0", THIEF_0),
     ("THIEF_1", THIEF_1),
 ]
+
+
+# ---------------------------------------------------------------------------
+# "DEFENSE D'AFFICHER" painted on a facade (2026-11-24): 3x5 capitals on a
+# 4 px pitch, dark ink (colour 0) on stone (2), wall palette 0. 9 tiles.
+# ---------------------------------------------------------------------------
+_MICRO = {
+    "D": ["110", "101", "101", "101", "110"], "E": ["111", "100", "110", "100", "111"],
+    "F": ["111", "100", "110", "100", "100"], "N": ["110", "101", "101", "101", "101"],
+    "S": ["011", "100", "010", "001", "110"], "A": ["010", "101", "111", "101", "101"],
+    "I": ["111", "010", "010", "010", "111"], "C": ["011", "100", "100", "100", "011"],
+    "H": ["101", "101", "111", "101", "101"], "R": ["110", "101", "110", "101", "101"],
+    "'": ["010", "010", "000", "000", "000"], " ": ["000"] * 5,
+}
+
+
+def _inscription(text, accents=(1,)):
+    w = 4 * len(text)
+    w += -w % 8
+    rows = [["2"] * w for _ in range(8)]
+    for i, ch in enumerate(text):
+        for r, bits in enumerate(_MICRO[ch]):
+            for c, b in enumerate(bits):
+                if b == "1":
+                    rows[2 + r][4 * i + c] = "0"
+    for i in accents:                       # the accent of DÉFENSE
+        rows[1][4 * i + 1] = "0"
+    rows[7] = ["1"] * w                     # mortar line, as on the wall tile
+    return ["".join(r) for r in rows]
+
+
+_INSCR = _inscription("DEFENSE D'AFFICHER")
+INSCRIPTION_CHARS = "$&*/:?`'\""
+for _k in range(len(_INSCR[0]) // 8):
+    TILES["inscr_%d" % _k] = [r[8 * _k:8 * _k + 8] for r in _INSCR]
+    LEGEND[INSCRIPTION_CHARS[_k]] = ("inscr_%d" % _k, 0, True)

@@ -158,6 +158,19 @@ what the game shows (rue Rambuteau):
 | Taxis (already in the porter's lines: the fare rise of 20 Nov 1967) | See "News of the week" | **Read** | Larousse |
 | Métro opening hours in 1967 | Wikipedia gives today's hours only (first train about 5:30); no 1960s hours were found in the English or French Wikipedia articles | **Not found**. The ticket-hall scene still gives no time ("here come the first passengers"), so it does not contradict either | [Wikipedia, Paris Métro](https://en.wikipedia.org/wiki/Paris_M%C3%A9tro); [Wikipédia, Métro de Paris](https://fr.wikipedia.org/wiki/M%C3%A9tro_de_Paris) |
 
+## "Défense d'afficher - loi du 29 juillet 1881" (added 2026-11-24)
+
+Jiwon sent a photo of a Paris facade with the painted line DÉFENSE
+D'AFFICHER LOI DU 29 JUILLET 1881 and asked whether it was there in 1967.
+
+| Point | Status | Source |
+|---|---|---|
+| The press law of 29 July 1881 deals with posters in articles 15 and 17 (art. 15: each mayor designates places reserved for official notices) and lets owners forbid posting on their property | **Read** | [Club des juristes](https://www.leclubdesjuristes.com/archives-cdj/defense-dafficher-la-ville-de-paris-contre-laffichage-sauvage-3675/); [Wikipedia](https://en.wikipedia.org/wiki/Law_on_the_Freedom_of_the_Press_of_29_July_1881) |
+| From August 1881 "most public and many private buildings" were given the inscription; the signs are found mostly on civic buildings, institutions and schools | **Read** (Paris Update; Parisian Fields) | [Paris Update](https://www.parisupdate.com/?p=1684); [Parisian Fields](https://parisianfields.com/2015/12/06/paris-is-a-billboard/) |
+| So the inscriptions were on Paris walls in 1967 | **Inference**: they date from 1881 and are still visible today (photos of 2013-2014 in the sources). No source read speaks of the 1960s specifically | — |
+| Morris columns: concession for poster space from 1868 (Gabriel Morris); they "did not stem the flood" of fly-posting | **Read** | Parisian Fields; [Paris ZigZag](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/histoire-affichage-paris/) |
+| In the game: painted above the shops in rue Rambuteau (examine the stone pier between the café and the hotel). Its place on that building and the small capitals are a **reconstruction** | — | — |
+
 ## Cameos (real people)
 
 Policy: a real person appears only with a documented tie to Les Halles at
