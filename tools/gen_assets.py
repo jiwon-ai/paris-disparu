@@ -163,9 +163,10 @@ for room in ROOMS:
         line = line.rstrip("\n")
         if line.startswith(";") or line == "":
             continue
-        if line.startswith("!sign "):
-            _, x, y, text = line.split(" ", 3)
-            signs.append((int(x), int(y), text, "%s:%d" % (path, ln)))
+        if line.startswith("!sign ") or line.startswith("!plaque "):
+            kind, x, y, text = line.split(" ", 3)
+            pal = 7 if kind == "!plaque" else 5   # 7: white on blue enamel
+            signs.append((int(x), int(y), text, "%s:%d" % (path, ln), pal))
             continue
         grid.append(line)
     if len(grid) != MAP_H or any(len(r) != MAP_W for r in grid):
@@ -184,13 +185,13 @@ for room in ROOMS:
             tiles.append(env_index[tname])
             attrs.append(pal | ATTR_BANK1 | (ATTR_PRIORITY if prio else 0))
             solid.append(1 if sol else 0)
-    for x, y, text, where in signs:
+    for x, y, text, where, pal in signs:
         for i, code in enumerate(encode_text(text, where)):
             if x + i >= MAP_W:
                 fail("%s: sign runs off the map" % where)
                 break
             tiles[y * MAP_W + x + i] = code
-            attrs[y * MAP_W + x + i] = 5           # text palette, bank 0
+            attrs[y * MAP_W + x + i] = pal         # text palette, bank 0
     rooms.append((room, tiles, attrs, solid))
 
 # ---------------------------------------------------------------------------

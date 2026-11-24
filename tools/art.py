@@ -25,8 +25,9 @@ BG_PALETTES = [
     [(29, 28, 24), (29, 28, 24), (17, 15, 13), (3, 3, 6)],
     # 6 produce and wood: dark, brown, green, orange wood
     [(4, 4, 8), (14, 8, 4), (8, 18, 6), (26, 17, 7)],
-    # 7 zinc roofs: sky, dark zinc, zinc, light zinc
-    [(4, 5, 11), (7, 8, 13), (11, 13, 18), (17, 19, 23)],
+    # 7 zinc roofs and enamel plaques: sky, dark zinc / plaque blue, zinc,
+    #   light zinc / plaque white
+    [(4, 5, 11), (6, 8, 15), (11, 13, 18), (24, 25, 28)],
 ]
 
 SPR_PALETTES = [
@@ -185,6 +186,24 @@ TILES = {
                  "21000012", "21010012", "21010012", "21010012"],
     "lancet_b": ["21010012", "21010012", "21010012", "21010012",
                  "21111112", "22222222", "11111111", "22222222"],
+    # Morris column (16x24): green dome, frieze, theatre posters. Wallace
+    # fountain (8x16): dome on four caryatids over a basin, drawn in the lamp
+    # palette's iron colour (real ones are dark green; 8-palette limit).
+    "morris_tl": ['00000001', '00000012', '00001222', '00012222', '00122222', '01111111', '01222222', '01111111'],
+    "morris_tr": ['10000000', '21000000', '22210000', '22221000', '22222100', '11111110', '22222210', '11111110'],
+    "morris_ml": ['01333331', '01311131', '01333331', '01311331', '01333331', '01111111', '01333311', '01311311'],
+    "morris_mr": ['13333310', '13111310', '13333310', '13311310', '13333310', '11111110', '33333310', '31111310'],
+    "morris_bl": ['01333311', '01333311', '01333311', '01111111', '01222222', '01222222', '11111111', '00000000'],
+    "morris_br": ['33333310', '31131310', '33333310', '11111110', '22222210', '22222210', '11111111', '00000000'],
+    "wallace_t": ["00011000", "00111100", "01121110", "01111110",
+                  "00100100", "01011010", "01011010", "01011010"],
+    "wallace_b": ["01011010", "00111100", "01111110", "00011000",
+                  "00011000", "00111100", "01111110", "00000000"],
+    # Street-name plaque, 16x8: blue enamel, white capitals (palette 7).
+    "plaque_l": ["00000000", "01111111", "01331313", "01313131",
+                 "01331313", "01111111", "00000000", "00000000"],
+    "plaque_r": ["00000000", "11111110", "33131310", "13131310",
+                 "31331310", "11111110", "00000000", "00000000"],
 }
 
 # Map legend: character -> (tile name, bg palette, solid[, priority over sprites])
@@ -250,6 +269,16 @@ LEGEND = {
     "C": ("buttress", 0, True),
     "N": ("lancet_t", 0, True),
     "u": ("lancet_b", 0, True),
+    "1": ("morris_tl", 6, True),        # Morris column (reconstruction)
+    "2": ("morris_tr", 6, True),
+    "3": ("morris_ml", 6, True),
+    "4": ("morris_mr", 6, True),
+    "5": ("morris_bl", 6, True),
+    "6": ("morris_br", 6, True),
+    "7": ("wallace_t", 3, True),        # Wallace fountain (reconstruction)
+    "8": ("wallace_b", 3, True),
+    "p": ("plaque_l", 7, True),         # blue enamel street plaque
+    "q": ("plaque_r", 7, True),
 }
 
 # ---------------------------------------------------------------------------

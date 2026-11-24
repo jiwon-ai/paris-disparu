@@ -33,7 +33,7 @@ static const npc_def_t entrance_npcs[] = {
 };
 static const hotspot_t entrance_hotspots[] = {
     {  5, 6, 3, 1, DLG_CART_LOOK },   /* the cart: handled by events */
-    { 13, 9, 2, 2, DLG_CRATES },
+    { 13, 8, 2, 3, DLG_MORRIS },      /* Morris column */
     { 10, 12, 5, 1, DLG_METRO_SIGN },
     {  0, 7, 4, 2, DLG_SECRET_EYES },  /* covered street, west group: a cat's eyes */
     { 16, 12, 4, 2, DLG_COVERED },    /* covered street, east group */
@@ -97,6 +97,7 @@ static const hotspot_t quai_hotspots[] = {
     {  1, 10, 2, 2, DLG_SECRET_PIGEON },
     {  5, 10, 2, 2, DLG_TREE },
     { 13, 10, 2, 2, DLG_TREE },
+    { 16, 10, 1, 2, DLG_WALLACE },    /* Wallace fountain */
     { 17, 10, 2, 2, DLG_TREE },
     {  0, 5, 7, 2, DLG_QUAI_SHOP },
     { 13, 5, 7, 2, DLG_QUAI_SHOP },
@@ -141,7 +142,7 @@ const room_def_t rooms[ROOM_COUNT] = {
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
     { cafe_npcs, 3, cafe_hotspots, 6, cafe_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
-    { quai_npcs, 2, quai_hotspots, 15, 0, 0,
+    { quai_npcs, 2, quai_hotspots, 16, 0, 0,
       { ROOM_PONT, ROOM_ENTRANCE, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { pont_npcs, 2, pont_hotspots, 6, 0, 0,
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },

@@ -19,4 +19,4 @@ ffffffffffffffffffff
 BBBBBBBBUUUUBBBBBBBB
 BBBBBBBBUUUUBBBBBBBB
 ; signs: x y text
-!sign 5 1 LES HALLES
+!plaque 5 1 LES HALLES

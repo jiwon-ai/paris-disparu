@@ -175,3 +175,10 @@ Larousse and Wikisource. The Pont Neuf line: [Britannica](https://www.britannica
 | Morris columns: 451 put up between 1868 and the mid-1870s, for theatre and show posters, painted the green of Paris street furniture | **Read** (presence on these streets in 1967: reconstruction) | [Paris ZigZag](https://www.pariszigzag.fr/histoire-insolite-paris/petite-histoire-des-colonnes-morris) |
 | Wallace fountains from 1872: dark green, large model with four caryatids under a dome | **Read** (presence on these streets in 1967: reconstruction) | [Wikipedia](https://en.wikipedia.org/wiki/Wallace_fountain) |
 | Street name plaques: enamelled, blue background, green frame, white capitals; most with a rounded top showing the arrondissement | **Read** (date of this design not stated) | [French Moments](https://frenchmoments.eu/street-name-plaques-of-paris/) |
+
+In the game (2026-11-24): blue "LES HALLES" plaque in the metro hall (`!plaque`,
+white on blue; ceramic vs enamel at this station unknown: reconstruction);
+blue street plaque on rue Rambuteau (no green frame or arrondissement at
+16x8 px: simplification); Morris column in rue Baltard and Wallace fountain
+on the quai (presence at these spots: reconstruction; fountain drawn in the
+lamp iron colour, real ones are dark green, palette limit).

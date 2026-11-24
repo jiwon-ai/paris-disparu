@@ -5,6 +5,7 @@ Newest first. Dates are 2026.
 
 | Date | Feedback / decision | What changed |
 |---|---|---|
+| 11-24 | Paris details (metro, plaques, Morris column, Wallace fountain) | Drawn from the sourced facts in HISTORICAL_RESEARCH "Paris design details": blue LES HALLES plaque, blue street plaque, Morris column (replaces the crates in rue Baltard), Wallace fountain on the quai; both examinable. Palette 7 dark colour made bluer for enamel |
 | 11-23 | Korean option needs VRAM room (engine groundwork) | Measured: background tiles already use 0x8800 mode (LCDC 0xE7), so scenery sits at 0x9000 in VRAM bank 1. Real limit is 128 scenery tiles, not 64 (docs corrected, generator check raised). VRAM bank 0 0x9000-0x97FF (128 tiles) is free for Korean text. Mode now set explicitly in `main()` |
 | 11-23 | I don't know how to dial or how to play: build it from the player's side | docs/UX_PLAYTHROUGH.md: rules cards before each mini-game, dial prompts + START picks notebook numbers, jeton goal, "!" over who to talk to, "A" bubble, idle goal reminder. Story logic moved to ROM bank 5 to free bank 0 |
 | 11-23 | Two famous people is too few; fix the engine to raise sprite capacity | Cameo sprites and portraits now also live in VRAM bank 1. 5 more cameos (7 in all): actor (Belmondo), chanteuse (Gréco), philosopher (Sartre), filmmaker (Tati), writer (Queneau); each a first talk + a hint (secrets or quest); sources and legal flags in HISTORICAL_RESEARCH Cameos |

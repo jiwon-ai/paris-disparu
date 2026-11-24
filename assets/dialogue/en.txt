@@ -258,6 +258,12 @@ The church of Saint-Eustache. Its east end looks down the central street of the 
 [crates]
 Empty crates, stacked up. They'll go back out tonight.
 
+[morris]
+A Morris column, painted the green of Paris street furniture. Posters for tonight's plays and shows.
+
+[wallace]
+A Wallace fountain: four stone-still ladies hold up a little iron dome. The water is free, and cold.
+
 [column]
 A cast-iron column. Cold, and a little sticky.
 
