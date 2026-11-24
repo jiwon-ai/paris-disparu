@@ -272,7 +272,7 @@ LEGEND = {
     ".": ("pave", 2, False),
     "_": ("curb", 2, False),
     ",": ("cobble", 2, False),
-    "L": ("lamp_head", 3, True),
+    "L": ("lamp_head", 3, False, True),   # walk behind the lamp head (depth)
     "|": ("lamp_post", 2, True),
     "X": ("crate", 6, True),
     "P": ("plaque", 0, True),
@@ -303,8 +303,8 @@ LEGEND = {
     "<": ("bpar_l", 0, True),
     ">": ("bpar_r", 0, True),
     "l": ("gaslamp", 3, True),
-    "{": ("tree_tl", 6, True),
-    "}": ("tree_tr", 6, True),
+    "{": ("tree_tl", 6, False, True),   # crown drawn over sprites: walk behind it
+    "}": ("tree_tr", 6, False, True),
     "(": ("tree_bl", 6, True),
     ")": ("tree_br", 6, True),
     "%": ("barrier", 4, True),
@@ -316,13 +316,13 @@ LEGEND = {
     "C": ("buttress", 0, True),
     "N": ("lancet_t", 0, True),
     "u": ("lancet_b", 0, True),
-    "1": ("morris_tl", 6, True),        # Morris column (reconstruction)
-    "2": ("morris_tr", 6, True),
+    "1": ("morris_tl", 6, False, True),        # Morris column (reconstruction)
+    "2": ("morris_tr", 6, False, True),
     "3": ("morris_ml", 6, True),
     "4": ("morris_mr", 6, True),
     "5": ("morris_bl", 6, True),
     "6": ("morris_br", 6, True),
-    "7": ("wallace_t", 3, True),        # Wallace fountain (reconstruction)
+    "7": ("wallace_t", 3, False, True),        # Wallace fountain (reconstruction)
     "8": ("wallace_b", 3, True),
     "c": ("lorry_0", 6, True),
     "e": ("lorry_1", 6, True),
@@ -1314,3 +1314,60 @@ TILES["crate_lid"] = ["00000000", "11111111", "13333331", "13000031",
                       "13333331", "13000031", "13333331", "11111111"]
 LEGEND["ρ"] = ("crate_lid", 6, False, True)
 LEGEND["σ"] = ("crate_e", 6, True)
+
+
+# ---------------------------------------------------------------------------
+# 1967 everyday objects (2026-11-24, Jiwon: "more period objects"). Sources in
+# docs/HISTORICAL_RESEARCH.md:
+#  - van with a corrugated body (Citroën H type, built 1947-1981, mostly sold
+#    in France; Wikipedia). Generic drawing, no badge. 4x3 tiles, palette 2;
+#    the roof row is drawn over sprites (walk behind it).
+#  - pinball machine in the café ("most cafés had one", success 1950s-1990s;
+#    1964: 20 centimes a game; Wikipedia FR "Flipper").
+#  - a jukebox with a small film screen in the brasserie (the Scopitone spread
+#    in French cafés in the early 1960s; Wikipedia FR "Juke-box").
+# ---------------------------------------------------------------------------
+def _van():
+    g = [[0] * 32 for _ in range(24)]
+    def rect(x0, y0, x1, y1, c):
+        for y in range(y0, y1 + 1):
+            for x in range(x0, x1 + 1):
+                g[y][x] = c
+    rect(1, 1, 31, 19, 1)              # outline
+    rect(2, 2, 30, 18, 3)              # light grey body
+    for x in range(11, 30, 2):         # corrugated panels
+        rect(x, 5, x, 16, 2)
+    rect(3, 3, 8, 8, 1)                # windscreen
+    g[4][4] = g[4][5] = g[5][4] = 3
+    rect(9, 3, 9, 18, 1)               # door line
+    g[11][7] = g[11][8] = 1            # handle
+    rect(2, 13, 3, 14, 2)              # headlamp
+    rect(1, 19, 31, 19, 1)             # sill
+    for cx in (7, 25):                 # wheels: dark tyre, light hub
+        for y in range(18, 24):
+            for x in range(cx - 3, cx + 4):
+                d = (x - cx) ** 2 + (y - 21) ** 2
+                if d <= 10:
+                    g[y][x] = 2 if d <= 2 else 1
+    return ["".join(str(c) for c in r) for r in g]
+
+
+_VAN = _van()
+_VAN_CH = "ПРСТУФХЦЧШЩЪ"
+for _ty in range(3):
+    for _tx in range(4):
+        _n = "van_%d" % (_ty * 4 + _tx)
+        TILES[_n] = [r[_tx * 8:_tx * 8 + 8] for r in _VAN[_ty * 8:_ty * 8 + 8]]
+        LEGEND[_VAN_CH[_ty * 4 + _tx]] = (_n, 2, _ty > 0, _ty == 0)
+TILES["pin_t"] = ["11111111", "13232321", "12323231", "13232321",
+                  "11111111", "12222221", "12322321", "12233221"]
+TILES["pin_b"] = ["12222221", "12232221", "12222221", "11111111",
+                  "01000010", "01000010", "01000010", "11000011"]
+TILES["sco_t"] = ["01111110", "13333331", "13111131", "13122131",
+                  "13111131", "13333331", "11111111", "12323231"]
+TILES["sco_b"] = ["12323231", "11111111", "12222221", "12121221",
+                  "12222221", "12222221", "11111111", "01100110"]
+LEGEND["Ы"] = ("pin_t", 6, True)
+LEGEND["Ь"] = ("pin_b", 6, True)
+LEGEND["Э"] = ("sco_t", 3, True)
+LEGEND["Ю"] = ("sco_b", 3, True)

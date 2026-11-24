@@ -894,3 +894,15 @@ LE GARÇON : Un jeton pour le téléphone ? Vos vingt centimes sur le zinc... vo
 Tiens, une deux-chevaux grise. La même que celle de mon oncle ! Lui, il l'appelle « le parapluie sur roues ».
 
 Quelqu'un a oublié un béret sur le siège.
+
+[van]
+Une camionnette toute ondulée, comme une planche à laver. Le boucher de notre rue a la même.
+
+Son pare-brise garde un morceau de ciel.
+
+[pinball]
+Un flipper qui clignote même quand personne ne joue. Mon cousin y laisse tout son argent de poche, vingt centimes la partie.
+
+[scopitone]
+Un juke-box avec un petit écran ! On met une pièce, et une chanteuse danse dans la boîte. Ma sœur resterait là toute la nuit.
+

@@ -89,6 +89,7 @@ static const hotspot_t cafe_hotspots[] = {
     { 17, 15, 3, 1, DLG_CHAIRS },
     {  2, 10, 1, 1, DLG_CHAIRS },
     {  0, 15, 2, 2, DLG_SECRET_CAT },  /* the street cat, once it has run in */
+    { 19, 4, 1, 2, DLG_PINBALL },
 };
 static const door_t cafe_doors[] = {
     { 9, 17, 2, 1, ROOM_STREET, 28, 72, DIR_DOWN },
@@ -146,6 +147,7 @@ static const hotspot_t bourse_hotspots[] = {
     { 10, 9, 1, 2, DLG_LAMP },
     { 16, 0, 4, 7, DLG_WEST_PAVILION },
     { 16, 9, 4, 9, DLG_WEST_PAVILION },
+    {  2, 12, 4, 3, DLG_VAN },          /* a ribbed van (1967 object) */
 };
 static const door_t bourse_doors[] = {
     { 13, 6, 1, 2, ROOM_BRASSERIE, 72, 118, DIR_UP },
@@ -185,6 +187,7 @@ static const hotspot_t brasserie_hotspots[] = {
     {  1, 12, 3, 1, DLG_BRA_TABLE },
     {  8, 12, 3, 1, DLG_BRA_TABLE },
     { 15, 15, 3, 1, DLG_BRA_TABLE },
+    { 19, 6, 1, 2, DLG_SCOPITONE },     /* jukebox with a film screen */
 };
 static const door_t brasserie_doors[] = {
     { 9, 17, 2, 1, ROOM_BOURSE, 100, 64, DIR_DOWN },
@@ -218,7 +221,7 @@ const room_def_t rooms[ROOM_COUNT] = {
       { ROOM_QUAI, ROOM_STREET, ROOM_BOURSE, NO_EXIT }, AMBIENCE_MARKET },
     { market_npcs, 3, market_hotspots, 8, market_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
-    { cafe_npcs, 4, cafe_hotspots, 8, cafe_doors, 1,
+    { cafe_npcs, 4, cafe_hotspots, 9, cafe_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
     { quai_npcs, 3, quai_hotspots, 16, 0, 0,
       { ROOM_PONT, ROOM_ENTRANCE, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
@@ -226,10 +229,10 @@ const room_def_t rooms[ROOM_COUNT] = {
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { metro_npcs, 4, metro_hotspots, 8, metro_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
-    { 0, 0, bourse_hotspots, 10, bourse_doors, 1,
+    { 0, 0, bourse_hotspots, 11, bourse_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, ROOM_ENTRANCE }, AMBIENCE_STREET },
     { hotel_npcs, 1, hotel_hotspots, 7, hotel_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
-    { brasserie_npcs, 3, brasserie_hotspots, 10, brasserie_doors, 1,
+    { brasserie_npcs, 3, brasserie_hotspots, 11, brasserie_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
 };

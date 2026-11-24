@@ -37,7 +37,7 @@
 #define GLYPH_COFFEE 244
 #define GLYPH_COFFEE_ZONE 245
 
-#define ENV_TILE_COUNT 140   /* all scenery tiles, in ROM */
+#define ENV_TILE_COUNT 156   /* all scenery tiles, in ROM */
 #define ENV_SLOTS 128   /* per room: count byte + tile ids (room_env) */
 #define TILE_WATER 0   /* pinned slots, the same in every room */
 #define SPRITE_TILE_COUNT 128
@@ -215,6 +215,9 @@ enum {
     DLG_WALLACE,
     DLG_LORRY,
     DLG_CAR,
+    DLG_VAN,
+    DLG_PINBALL,
+    DLG_SCOPITONE,
     DLG_SOLEX,
     DLG_BUSSTOP,
     DLG_DEFENSE,

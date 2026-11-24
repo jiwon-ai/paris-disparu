@@ -371,3 +371,13 @@ blue street plaque on rue Rambuteau (no green frame or arrondissement at
 16x8 px: simplification); Morris column in rue Baltard and Wallace fountain
 on the quai (presence at these spots: reconstruction; fountain drawn in the
 lamp iron colour, real ones are dark green, palette limit).
+
+## 1967 everyday objects (added 2026-11-24)
+
+| Object in the game | Claim | Status | Source |
+|---|---|---|---|
+| Ribbed delivery van by the Bourse (generic drawing, no badge) | Citroën H van with corrugated body panels, built 1947-1981, "Most H Vans were sold in France" | **Read**. That one stood by the Bourse that night, and the butcher remark, are fiction | [Wikipedia, Citroën H Van](https://en.wikipedia.org/wiki/Citro%C3%ABn_H_Van) |
+| Pinball machine in Simone's café; "twenty centimes a game" | "La plupart des cafés en proposaient"; success "des années 1950 aux années 1990"; "En 1964, le standard était encore à cinq billes pour une partie coûtant 20 centimes" | **Read** | [Wikipedia FR, Flipper](https://fr.wikipedia.org/wiki/Flipper) |
+| Jukebox with a small film screen in the brasserie | "Au début des années 1960 se répand dans les cafés français le Scopitone, un jukebox associant l'image au son" | **Read**. Not named in the game | [Wikipedia FR, Juke-box](https://fr.wikipedia.org/wiki/Juke-box) |
+| Baby-foot (not added) | café game; 20 centimes at the end of the 1960s | Read, not used yet | [Wikipedia FR, Baby-foot](https://fr.wikipedia.org/wiki/Baby-foot) |
+
