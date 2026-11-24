@@ -51,7 +51,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Player sprite visible after every room change (`tests/visibility_test.py`) | done, tested |
 | NPCs call out short lines by themselves when you come near, hinting at what to do ("A: talk" shown). The line stays until you walk away or press A/B; the opening caption stays 15 s or until A/B | done, tested |
 | Quiet scene-based sound: a soft knock every 1-3 s in the market, water on the quai, a faint cup tick in the café; one soft chime when a dialogue opens | done. Captured from the emulator (PyBoy) and checked for pitch, level and rate, **not yet heard by a person** |
-| Music | not started |
+| Original music: 7 loops composed for the game (title, street, market, café, river, métro, mini-games), musette waltzes and polkas, melody on the wave channel over a plucked accompaniment; effects borrow channel 1 | done. Pitches checked from an emulator (PyBoy) recording, **not yet heard by a person** |
 | Message on a monochrome Game Boy | written, **not tested** |
 | SameBoy / BGB / real hardware / ModRetro Chromatic | **not tested yet** |
 

@@ -1,0 +1,96 @@
+/* Music driver: a melody on the wave channel (3) over an accompaniment on
+   pulse channel 1, stepped from the VBL interrupt so the tempo holds
+   whatever the game loop is doing. Songs live in ROM bank MUSIC_BANK
+   (tools/music.py); this file stays in bank 0 because it runs in the
+   interrupt. Effects keep channels 2 and 4, and borrow channel 1 through
+   music_ch1_hold. */
+#include <gb/gb.h>
+#include "music.h"
+
+typedef struct {
+    const uint8_t *start, *p;
+    uint8_t left;
+} voice_t;
+
+static voice_t mel, acc;
+static uint8_t song_now, tempo, frame;
+static volatile uint8_t playing;
+volatile uint8_t music_ch1_hold;
+
+/* Wave: one cycle, a soft reedy shape (accordion-like), peak 14 of 15. */
+static const uint8_t wave[16] = {
+    0x8A, 0xCD, 0xEE, 0xDC, 0xBA, 0x99, 0xAA, 0x98,
+    0x75, 0x32, 0x11, 0x23, 0x45, 0x66, 0x55, 0x67
+};
+
+static uint8_t next_note(voice_t *v, uint8_t *len) {
+    uint8_t n = *v->p++;
+    if (n == 0xFF) { v->p = v->start; n = *v->p++; }
+    *len = *v->p++;
+    return n;
+}
+
+static void music_tick(void) {
+    uint8_t n, len, save;
+    if (music_ch1_hold) music_ch1_hold--;
+    if (!playing || ++frame < tempo) return;
+    frame = 0;
+    save = _current_bank;
+    SWITCH_ROM(MUSIC_BANK);
+    if (--mel.left == 0) {
+        n = next_note(&mel, &len);
+        mel.left = len;
+        if (n) {
+            uint16_t x = music_freq[n + 11];     /* the wave channel sounds an octave low */
+            NR32_REG = 0x40;                     /* 50% */
+            NR33_REG = (uint8_t)x;
+            NR34_REG = 0x80 | (uint8_t)(x >> 8);
+        } else {
+            NR32_REG = 0x00;
+        }
+    }
+    if (--acc.left == 0) {
+        n = next_note(&acc, &len);
+        acc.left = len;
+        if (n && !music_ch1_hold) {
+            uint16_t x = music_freq[n - 1];
+            NR10_REG = 0x00;
+            NR11_REG = 0x40;                     /* 25% duty */
+            NR12_REG = 0x32;                     /* volume 3, short decay: a pluck */
+            NR13_REG = (uint8_t)x;
+            NR14_REG = 0x80 | (uint8_t)(x >> 8);
+        }
+    }
+    SWITCH_ROM(save);
+}
+
+void music_init(void) {
+    uint8_t i;
+    NR30_REG = 0x00;
+    for (i = 0; i < 16; i++) _AUD3WAVERAM[i] = wave[i];
+    NR30_REG = 0x80;
+    NR32_REG = 0x00;
+    CRITICAL { add_VBL(music_tick); }
+}
+
+void music_play(uint8_t song) {
+    uint8_t save;
+    if (song == song_now && playing) return;
+    playing = 0;
+    save = _current_bank;
+    SWITCH_ROM(MUSIC_BANK);
+    tempo = music_songs[song - 1].tempo;
+    mel.start = mel.p = music_songs[song - 1].mel;
+    acc.start = acc.p = music_songs[song - 1].acc;
+    SWITCH_ROM(save);
+    mel.left = acc.left = 1;
+    frame = tempo - 1;
+    song_now = song;
+    playing = 1;
+}
+
+void music_stop(void) {
+    playing = 0;
+    song_now = 0;
+    NR32_REG = 0x00;
+}

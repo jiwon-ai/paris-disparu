@@ -90,6 +90,22 @@ All art and text are plain text so changes are reviewable:
   river and disappears under the bridge. The café counter uses the BG priority
   attribute instead, to hide Simone's legs.
 
+## Music
+
+`tools/music.py` holds the songs (original compositions) as melody tokens
+plus a chord list, and writes `src/music_data.c` (bank 4) and
+`include/music_songs.h`. The accompaniment is generated from the chords
+(waltz: bass, chord, chord; polka: bass, chord, fifth, chord). The driver
+(`src/music.c`, bank 0) runs from the VBL interrupt: one step per `tempo`
+frames, melody on channel 3 (a one-cycle reedy wave at 50%), accompaniment
+on channel 1 (25% duty, volume 3, short decay). It saves and restores the
+ROM bank itself. Effects keep channels 2 and 4; `sound_confirm` and
+`sound_note` borrow channel 1 by setting `music_ch1_hold`. Songs: title and
+end (TITLE), street, market (rue Baltard and the pavilion), café, river
+(quai and bridge), métro, mini-games (GAME). `music_play` is a no-op while
+the same song plays, so the walk loop calls it every frame with the room's
+song.
+
 ## Tests
 
 - `tests/check_rom.py`: header logo, CGB flag, cartridge type, size code, header and global checksums.
@@ -133,7 +149,7 @@ pages); the overflow is stored in bank 3 after the title art
 | 1 | assets, always mapped (tiles, maps, palettes, UI text, dialogue index); nearly full |
 | 2 | dialogue pages (first DLG_PAGES_LO) |
 | 3 | title art + dialogue overflow + `dlg_first_page` (read with far_read) |
-| 4 | portrait tiles and low sprites (copied to VRAM bank 1 by load_bank1) |
+| 4 | portrait tiles and low sprites (copied to VRAM bank 1 by load_bank1); music data (`music_data.c`, MUSIC_BANK) |
 | 5 | story logic (`events.c`) |
 | 6 | Korean code, tables, UI strings, Galmuri7 tiles |
 | 7 | mini-games (`games.c`, BANKED functions) |

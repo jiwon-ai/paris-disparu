@@ -11,6 +11,7 @@
 #include "minigame.h"
 #include "notebook.h"
 #include "sound.h"
+#include "music.h"
 #include "ko.h"
 #include "world.h"
 
@@ -241,6 +242,7 @@ static void title_screen(void) {
         for (f = 0; f < 8; f++) wait_vbl_done();
         title_fade(y);
     }
+    music_play(SONG_TITLE);
     bkg_fill_row(MAP_H - 1, GLYPH_SPACE, 5);      /* creator credit, bottom row */
     bkg_text_centered(MAP_H - 1, txt_title_6);
 
@@ -348,12 +350,14 @@ static void open_dialogue(uint8_t d) {
         lift_punch = d == EV_PUNCH;
         if (lift_punch) timing_start(1, txt_punch_1, txt_punch_2);
         else lift_start(event_lift_level());
+        music_play(SONG_GAME);
         state = ST_LIFT;
     } else if (d == EV_DIAL) {
         dial_start();
         state = ST_DIAL;
     } else if (d == EV_SERVE || d == EV_CUPS || d == EV_CATCH || d == EV_CHASE) {
         game_ev = d;
+        music_play(SONG_GAME);
         if (d == EV_SERVE) serve_start();
         else if (d == EV_CUPS) cups_start();
         else if (d == EV_CHASE) chase_start();
@@ -362,6 +366,7 @@ static void open_dialogue(uint8_t d) {
     } else if (d == EV_END) {
         end_show();
         sound_confirm();
+        music_play(SONG_TITLE);
         state = ST_END;
     } else if (d == NO_DIALOGUE) {
         state = ST_WALK;
@@ -479,6 +484,11 @@ static void update_barks(void) {
 
 /* Scene-based ambience: rare, quiet sounds at irregular intervals
    (one every 1-4 s), never a continuous noise. */
+/* Music for each room, in ROOM_* order (tools/music.py). */
+static const uint8_t room_song[ROOM_COUNT] = {
+    SONG_STREET, SONG_MARKET, SONG_MARKET, SONG_CAFE, SONG_RIVER, SONG_RIVER, SONG_METRO
+};
+
 static void update_ambience(void) {
     uint8_t r;
     if (ambience_timer) {
@@ -517,6 +527,7 @@ void main(void) {
     if (_cpu != CGB_TYPE) dmg_screen();
 
     sound_init();
+    music_init();
     load_graphics();
     SPRITES_8x16;
     SHOW_BKG;
@@ -579,6 +590,7 @@ void main(void) {
             update_barks();
             update_cat();
             update_ambience();
+            music_play(room_song[cur_room]);   /* no-op while it already plays */
             break;
 
         case ST_HOWTO:

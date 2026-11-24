@@ -37,6 +37,7 @@ build/obj:
 
 assets:
 	$(PYTHON) tools/gen_assets.py
+	$(PYTHON) tools/music.py
 
 check: $(ROM)
 	$(PYTHON) tools/gen_assets.py --check

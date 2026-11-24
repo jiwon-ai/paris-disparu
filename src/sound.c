@@ -1,5 +1,6 @@
 #include <gb/gb.h>
 #include "sound.h"
+#include "music.h"
 
 /* All effects are single envelopes: one register write per channel, no
    sweeps and no frequency changes while a note plays. Volumes are kept low
@@ -22,6 +23,7 @@ void sound_blip(void) {
 
 /* Channel 1: one soft chime, G5 (x=1881, 784 Hz), about 0.2 s. */
 void sound_confirm(void) {
+    music_ch1_hold = 16;
     NR10_REG = 0x00;   /* no sweep */
     NR11_REG = 0x80;   /* 50% duty */
     NR12_REG = 0x43;   /* volume 4, decay 3/64 s per step */
@@ -56,6 +58,7 @@ void sound_clink(void) {
 
 /* Channel 1: one square note, x = 2048 - 131072 / Hz; env = NR12 value. */
 void sound_note(uint16_t x, uint8_t env) {
+    music_ch1_hold = 24;
     NR10_REG = 0x00;
     NR11_REG = 0x80;
     NR12_REG = env;
