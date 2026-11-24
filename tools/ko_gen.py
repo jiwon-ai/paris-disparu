@@ -11,9 +11,10 @@ Page record: n1, n2, then n1 + n2 glyph indices (2 bytes each, high first).
 Glyph record (GLYPH_SIZE bytes): advance width, then 14 rows of 16 bits
 (high byte = left 8 pixels); row 10 sits on the baseline.
 
-Menus and notebook (Galmuri7, one 8x8 tile per syllable): a UI string is a
-0-terminated byte string; bytes 0x80.. are tiles of the English font, a byte
-1..15 starts a syllable: index = (byte - 1) * 256 + next byte.
+Menus and notebook: a UI string with Hangul is one Galmuri11 line, 16 pixels
+high (record 0x01, glyph count, glyph indices); src/ko.c lays such boxes out
+with two tile rows per line. A string without Hangul keeps the 8x8 English
+font (tile bytes 0x80.., 0-terminated).
 
 An id or key missing from the Korean files falls back to the English text
 (drawn with Galmuri11 / the English font) and is counted as untranslated.
@@ -139,7 +140,6 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
     ui: [(key, en_bytes)]; ui_offsets: {key: offset in ui_text}.
     Returns (outputs {path: text}, report string)."""
     g11 = load_bdf(os.path.join(FONT_DIR, "Galmuri11.bdf"))
-    g7 = load_bdf(os.path.join(FONT_DIR, "Galmuri7.bdf"))
     ko = parse_dialogue(os.path.join(ROOT, "assets", "dialogue", "ko.txt"), fail)
     ko_ui = parse_ui(os.path.join(ROOT, "assets", "text", "ui_ko.txt"), fail)
     ids = [e[0] for e in entries]
@@ -244,66 +244,32 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
         kc = ko[did][1] if did in ko and ko[did][1] else en
         ko_choice.append(kc)
 
-    # ---- UI: Galmuri7 syllables + English font tiles
-    syl_index, syl_list = {}, []
-
-    def ui_encode(text, where):
-        out = []
+    # ---- UI: a string with Hangul is one Galmuri11 line, 16 pixels high
+    # (record: 0x01, glyph count, then 2 bytes per glyph); a string without
+    # Hangul stays in the 8x8 English font (its tile bytes, 0-terminated).
+    def ui_encode(text, where, max_px=LINE_PX):
+        if not any(is_hangul(c) for c in text):
+            return [encode_char(ch, where) for ch in text]
+        if width(text) > max_px:
+            fail("%s: %r is %d px wide (max %d)" % (where, text, width(text), max_px))
+        out = [1, len(text)]
         for ch in text:
-            if is_hangul(ch):
-                if ord(ch) not in g7:
-                    fail("%s: Galmuri7 has no glyph for %r" % (where, ch))
-                    continue
-                if ch not in syl_index:
-                    syl_index[ch] = len(syl_list)
-                    syl_list.append(ch)
-                i = syl_index[ch]
-                out += [1 + (i >> 8), i & 0xFF]
-            else:
-                out.append(encode_char(ch, where))
+            g = gid(ch)
+            out += [g >> 8, g & 0xFF]
         return out
 
     ui_ko_data, ui_missing = [], []
     for key, en_bytes in ui:
         if key in ko_ui:
             text, ln = ko_ui[key]
-            data = ui_encode(text, "ui_ko.txt:%d" % ln)
-            cells = len(text)
-            limit = 20 if key.startswith(("title", "dmg")) else 18
-            if cells > limit:
-                fail("ui_ko.txt:%d: %s is longer than %d cells" % (ln, key, limit))
-            ui_ko_data.append(data)
+            ui_ko_data.append(ui_encode(text, "ui_ko.txt:%d %s" % (ln, key)))
         else:
             ui_missing.append(key)
             ui_ko_data.append(list(en_bytes))
     choice_ui = []
     for kc in ko_choice:
-        if kc is None:
-            continue
-        for o in kc:
-            if len(o) > 7:
-                fail("ko choice option %r is longer than 7 cells" % o)
-    for kc in ko_choice:
-        choice_ui.append(None if kc is None else (ui_encode(kc[0], "choice"), ui_encode(kc[1], "choice")))
+        choice_ui.append(None if kc is None else (ui_encode(kc[0], "choice", 56), ui_encode(kc[1], "choice", 56)))
     lang_menu = ui_encode("한국어", "language menu")
-    # Syllables that can be on screen together must fit the tile cache.
-    # Groups are upper bounds (every goal line counted on the notebook page).
-    ko_text = {k: ko_ui[k][0] for k in ko_ui}
-    groups = {
-        "notebook": ("nb_", "goal_", "q_", "num_", "x_todo", "x_done"),
-        "extras": ("x_", "secrets", "nb_prev", "nb_close"),
-        "end": ("end_",), "next": ("next_",), "intro": ("intro_",),
-        "howto": ("howto", "how_"),
-    }
-    for name, prefixes in groups.items():
-        syl = {c for k, t in ko_text.items() if k.startswith(prefixes) for c in t if is_hangul(c)}
-        if len(syl) > UI_CACHE_FULL:
-            fail("ui_ko.txt: screen '%s' uses %d syllables (max %d)" % (name, len(syl), UI_CACHE_FULL))
-    for k, t in ko_text.items():
-        if sum(is_hangul(c) for c in t) > UI_CACHE_SMALL:
-            fail("ui_ko.txt: %s has too many syllables" % k)
-    if len(syl_list) > 15 * 256:
-        fail("too many Galmuri7 syllables")
 
     # ---- blobs: glyphs then pages, packed into banks KO_BLOB_BANK..
     blobs = [[]]          # one list of bytes per bank
@@ -345,7 +311,6 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
          "extern const uint8_t * const ko_choice_ptr[];  /* 2 per DLG_* id, 0 = none */",
          "extern const uint16_t ko_ui_off[];         /* English offsets in ui_text, ascending */",
          "extern const uint8_t * const ko_ui_ptr[];",
-         "extern const uint8_t ko_syl_tiles[];       /* 8 bytes (1bpp) per syllable */",
          "extern const uint8_t ko_lang_name[];       /* the word for Korean */",
          "#endif"]
 
@@ -376,10 +341,6 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
         C.append("static const uint8_t ko_ui_%d[] = { %s0 };"
                  % (i, "".join("%d," % b for b in ui_ko_data[i])))
     C.append("const uint8_t * const ko_ui_ptr[] = { %s };" % ", ".join("ko_ui_%d" % i for i in order))
-    syl = []
-    for ch in syl_list:
-        syl += glyph_rows(g7[ord(ch)], 8, 6, 8)
-    C.append("const uint8_t ko_syl_tiles[] = {\n%s\n};" % c_bytes(syl or [0], 8))
     C.append("const uint8_t ko_lang_name[] = { %s, 0 };" % ",".join(map(str, lang_menu)))
 
     outputs = {
@@ -392,6 +353,6 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
             "/* Generated by tools/ko_gen.py - do not edit by hand. */",
             "#pragma bank %d" % n, "#include <stdint.h>", "",
             "const uint8_t ko_blob_%d[] = {\n%s\n};" % (n, c_bytes(data or [0])), ""]) + "\n"
-    report = ("ko_gen: %d glyphs, %d pages in %d banks, %d syllable tiles; untranslated: %d dialogue, %d ui"
-              % (len(glyph_list), len(pages), len(blobs), len(syl_list), len(missing), len(ui_missing)))
+    report = ("ko_gen: %d glyphs, %d pages in %d banks; untranslated: %d dialogue, %d ui"
+              % (len(glyph_list), len(pages), len(blobs), len(missing), len(ui_missing)))
     return outputs, report

@@ -7,7 +7,7 @@
 #define KO_GLYPH_SIZE 29
 #define KO_GLYPH_ROWS 14
 #define KO_MAX_PAGE 130   /* bytes of the largest page record */
-#define KO_UI_COUNT 229
+#define KO_UI_COUNT 230
 extern const uint8_t ko_glyph_bank[];      /* per glyph */
 extern const uint8_t * const ko_glyph_ptr[];
 extern const uint8_t ko_page_bank[];
@@ -17,6 +17,5 @@ extern const uint8_t ko_page_count[];
 extern const uint8_t * const ko_choice_ptr[];  /* 2 per DLG_* id, 0 = none */
 extern const uint16_t ko_ui_off[];         /* English offsets in ui_text, ascending */
 extern const uint8_t * const ko_ui_ptr[];
-extern const uint8_t ko_syl_tiles[];       /* 8 bytes (1bpp) per syllable */
 extern const uint8_t ko_lang_name[];       /* the word for Korean */
 #endif

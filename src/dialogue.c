@@ -31,10 +31,43 @@ static uint8_t choice;      /* 0 = no choice pending, else pair index + 1 */
 static uint8_t in_choice;   /* 1 while the options are shown */
 uint8_t dialogue_choice;    /* result: 0 = first option, 1 = second */
 
-void box_open(uint8_t rows) {
-    uint8_t y, x;
+static void env_reload(void) {        /* scenery tiles back into VRAM bank 1 */
+    uint8_t save = _current_bank;
+    ko_borrowed = 0;
+    VBK_REG = VBK_ATTRIBUTES;
+    SWITCH_ROM(PORTRAIT_BANK);
+    set_bkg_data(0, ENV_TILE_COUNT, env_tiles);
+    SWITCH_ROM(save);
+    VBK_REG = VBK_TILES;
+}
 
-    if (lang) ko_ui_reset(rows > 6);
+static void box_frame(uint8_t rows);
+
+/* Korean: a full-screen box (18 rows) is laid out by box_flush(); a smaller
+   one gets two tile rows per line (src/ko.c). */
+void box_open(uint8_t rows) {
+    if (lang) {
+        if (rows == SCREEN_H / 8) {
+            ko_ui_reset(2);
+        } else {
+            if (ko_borrowed) env_reload();
+            ko_ui_reset(1);
+            rows = ko_small_rows(rows);
+        }
+    }
+    box_frame(rows);
+}
+
+static void box_dialogue(void) {
+    if (lang) {
+        if (ko_borrowed) env_reload();
+        ko_ui_reset(4);
+    }
+    box_frame(DLG_ROWS);
+}
+
+static void box_frame(uint8_t rows) {
+    uint8_t y, x;
     /* Attributes first (VRAM bank 1), then tiles (bank 0). */
     for (x = 0; x < MAP_W; x++) row_buf[x] = BOX_ATTR;
     VBK_REG = VBK_ATTRIBUTES;
@@ -81,11 +114,36 @@ static void portrait_hide(void) {
 void box_close(void) {
     HIDE_WIN;
     portrait_hide();
+    if (ko_borrowed) env_reload();
+    if (lang) ko_mode = 0;
+}
+
+void box_tile(uint8_t x, uint8_t y, uint8_t t) {
+    if (lang && ko_mode) ko_tile(x, y, t);
+    else set_win_tile_xy(x, y, t);
+}
+
+void box_clear(uint8_t y) {            /* blank the inside of one text row */
+    uint8_t x;
+    if (lang && ko_mode) { ko_clear_row(y); return; }
+    for (x = 1; x < MAP_W - 1; x++) set_win_tile_xy(x, y, GLYPH_SPACE);
+}
+
+void box_flush(void) {
+    if (lang) ko_flush();
+}
+
+uint8_t box_more(void) {
+    return lang ? ko_more() : 0;
+}
+
+uint8_t box_has_next(void) {
+    return lang ? ko_has_next() : 0;
 }
 
 void box_print(uint8_t x, uint8_t y, const uint8_t *text) {
     uint8_t n = 0, save = _current_bank;
-    if (lang && ko_print(x, y, (uint16_t)(text - ui_text))) return;
+    if (lang && ko_print(x, y, (uint16_t)(text - ui_text), text)) return;
     SWITCH_ROM(ASSET_BANK);          /* callable from banked code too */
     while (text[n] && x + n < MAP_W) n++;
     set_win_tiles(x, y, n, 1, text);
@@ -122,7 +180,7 @@ void dialogue_start(uint8_t id) {
     pages_left--;
     if (lang) ko_start(id);
     else load_page();
-    box_open(DLG_ROWS);
+    box_dialogue();
     clear_text();
     portrait_hide();
     portrait_show(dlg_portrait[id]);
@@ -235,12 +293,12 @@ void bark_show(uint8_t id) {
     uint8_t y;
     if (lang) {
         ko_start(id);
-        box_open(DLG_ROWS);
+        box_dialogue();
         ko_reveal_all();
     } else {
         far_read(TITLE_BANK, (const uint8_t *)&dlg_first_page[id], (uint8_t *)&page, 2);
         load_page();
-        box_open(DLG_ROWS);
+        box_dialogue();
         for (y = 0; y < TEXT_ROWS; y++)
             set_win_tiles(1, 1 + 2 * y, TEXT_COLS, 1, page_buf + y * TEXT_COLS);
     }

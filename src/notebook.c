@@ -104,7 +104,7 @@ void notebook_show(void) BANKED {
     uint8_t i, y, g = goal() * 2;
     box_open(SCREEN_H / 8);
     box_print(1, 1, txt_nb_title);
-    set_win_tile_xy(15, 1, digit_glyph(quests_total()));
+    box_tile(15, 1, digit_glyph(quests_total()));
     box_print(16, 1, txt_nb_of);
     box_print(1, 2, goal_txt[g]);
     box_print(1, 3, goal_txt[g + 1]);
@@ -121,6 +121,7 @@ void notebook_show(void) BANKED {
         if (game_flags & num_flag[i]) box_print(1, y++, num_txt[i]);
     box_print(1, 17, txt_nb_next);
     box_print(14, 17, txt_nb_close);
+    box_flush();
 }
 
 /* Second page: optional side goals, each with where to look. */
@@ -132,7 +133,7 @@ void extras_show(void) BANKED {
     uint8_t i;
     box_open(SCREEN_H / 8);
     box_print(1, 1, txt_x_title);
-    set_win_tile_xy(15, 1, digit_glyph(extra_total()));
+    box_tile(15, 1, digit_glyph(extra_total()));
     box_print(16, 1, txt_extra_of);
     for (i = 0; i < X_COUNT; i++) {
         box_print(1, 3 + i * 3, (extra_flags & (1 << i)) ? txt_x_done : txt_x_todo);
@@ -142,9 +143,11 @@ void extras_show(void) BANKED {
     box_print(1, 13, txt_x_note_1);
     box_print(1, 14, txt_x_note_2);
     box_print(1, 15, txt_secrets);
-    set_win_tile_xy(15, 15, digit_glyph(secret_total()));
+    box_tile(15, 15, digit_glyph(secret_total()));
+    box_print(16, 15, txt_secret_of);
     box_print(1, 17, txt_nb_album);
     box_print(14, 17, txt_nb_close);
+    box_flush();
 }
 
 /* Third page: the vanished-Paris album. Each object found shows a one-line
@@ -178,10 +181,11 @@ void album_show(void) BANKED {
             box_print(1, 3 + i * 3, txt_al_none);
         }
     }
-    set_win_tile_xy(16, 1, digit_glyph(n));
+    box_tile(16, 1, digit_glyph(n));
     box_print(17, 1, txt_nb_of);       /* "/5" */
     box_print(1, 17, txt_nb_myst);
     box_print(14, 17, txt_nb_close);
+    box_flush();
 }
 
 static uint8_t album_total(void) {
@@ -202,7 +206,7 @@ void curio_show(void) BANKED {
     uint8_t i, y;
     box_open(SCREEN_H / 8);
     box_print(1, 1, txt_cu_title);
-    set_win_tile_xy(16, 1, digit_glyph(curio_total()));
+    box_tile(16, 1, digit_glyph(curio_total()));
     box_print(17, 1, txt_cu_of);
     for (i = 0; i < CURIO_COUNT; i++) {
         y = 3 + i * 4;
@@ -218,6 +222,7 @@ void curio_show(void) BANKED {
     }
     box_print(1, 17, txt_nb_prev);
     box_print(14, 17, txt_nb_close);
+    box_flush();
 }
 
 /* After the end screen: a look at the next episode. */
@@ -232,6 +237,7 @@ void teaser_show(void) BANKED {
     for (i = 0; i < 13; i++)
         if (teaser_txt[i]) box_print(1, 2 + i, teaser_txt[i]);
     box_print(1, 16, txt_end_11);
+    box_flush();
 }
 
 void end_show(void) BANKED {
@@ -239,9 +245,11 @@ void end_show(void) BANKED {
     box_open(SCREEN_H / 8);
     box_print(6, 2, txt_end_1);
     box_print(1, 4, txt_end_2);
-    set_win_tile_xy(14, 4, digit_glyph(clue_total()));
+    box_tile(14, 4, digit_glyph(clue_total()));
+    box_print(15, 4, txt_of_6);
     box_print(1, 5, txt_end_x);
-    set_win_tile_xy(14, 5, digit_glyph(extra_total()));
+    box_tile(14, 5, digit_glyph(extra_total()));
+    box_print(15, 5, txt_extra_of);
     box_print(1, 6, txt_end_3);
     box_print(1, 7, txt_end_4);
     box_print(1, 8, txt_end_5);
@@ -250,7 +258,8 @@ void end_show(void) BANKED {
     box_print(1, 11, txt_end_8);
     box_print(1, 12, txt_end_9);
     box_print(1, 13, txt_secrets);
-    set_win_tile_xy(15, 13, digit_glyph(secret_total()));
+    box_tile(15, 13, digit_glyph(secret_total()));
+    box_print(16, 13, txt_secret_of);
     box_print(1, 14, txt_end_10);
     {   /* everything found, out of 26 */
         static const uint8_t * const rank_txt[5] = {
@@ -261,6 +270,7 @@ void end_show(void) BANKED {
         box_print(7, 15, rank_txt[s < 9 ? 0 : s < 15 ? 1 : s < 21 ? 2 : s < 26 ? 3 : 4]);
     }
     box_print(1, 16, txt_end_11);
+    box_flush();
 }
 
 /* The short explanation after the title: three pages, A = next, B = skip.
@@ -280,4 +290,5 @@ void intro_show(uint8_t page) BANKED {
     for (i = 0; i < 11; i++)
         if (intro_pages[page][i]) box_print(2, 3 + i, intro_pages[page][i]);
     box_print(2, 16, txt_intro_more);
+    box_flush();
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Korean option smoke test (PyBoy): language menu, Korean intro and
-notebook (Galmuri7 syllable tiles), a Korean dialogue page (Galmuri11 tiles
+notebook (Galmuri11 lines, two tile rows each), a Korean dialogue page (Galmuri11 tiles
 in VRAM bank 0 at 0x9000). Run: python3 tests/ko_test.py [rom]"""
 import io
 import re

@@ -53,12 +53,20 @@ LCDC mode. Measured in PyBoy: the scenery is in VRAM bank 1 at 0x9000.
 - Dialogue: Galmuri11, word-wrapped to 144 px, 2 lines a page. `src/ko.c`
   (ROM bank 6) renders a page into a RAM bitmap and reveals it a tile column
   at a time into BG tiles 0-71 (VRAM bank 0, 0x9000); the box has 6 rows.
-- Menus: every UI string goes through `box_print`; in Korean it looks the
-  string up by its offset in `ui_text` and draws the Korean one. Hangul are
-  Galmuri7 8x8 tiles loaded on demand into a cache (tiles 72-127 in small
-  boxes, 0-127 in full-screen boxes); Latin letters and digits stay the
-  English font. The generator checks cache sizes per screen.
-- Banks: 6 = ko.c + tables + UI strings + Galmuri7 tiles; 8.. = Galmuri11
+- Menus (2026-11-24, replacing 7-px Galmuri7, which was hard to read): every
+  UI string goes through `box_print`; in Korean it looks the string up by its
+  offset in `ui_text`. A string with Hangul is one Galmuri11 line, 16 px high
+  (two tile rows); a string without Hangul stays in the 8x8 English font, on
+  the lower row of its line. Single tiles (digits, arrows) go through
+  `box_tile`. Small boxes (captions, rules, mini-games) are drawn at once
+  with logical row y on rows 2y-1 and 2y (the box is twice as tall). Full-
+  screen boxes are collected and laid out by `box_flush()`: one line per used
+  row, gaps kept when there is room, pages of 8 lines when not (A/Up/Down
+  turns the page; a down arrow on the bottom border says there is more).
+  Line tiles come from BG tiles 0-127 of VRAM bank 0, then 0-127 of bank 1
+  (the scenery tiles, reloaded by `box_close()`). The generator rejects a
+  line wider than 144 px. Korean notebook footers are page numbers (2/4).
+- Banks: 6 = ko.c + tables + UI strings; 8.. = Galmuri11
   glyphs and dialogue pages, read with `far_read()` (bank 0).
 - Test: `tests/ko_test.py`.
 
@@ -163,7 +171,7 @@ pages); the overflow is stored in bank 3 after the title art
 | 3 | title art + dialogue overflow + `dlg_first_page` (read with far_read) |
 | 4 | portrait tiles and low sprites (copied to VRAM bank 1 by load_bank1); music data (`music_data.c`, MUSIC_BANK) |
 | 5 | story logic (`events.c`) |
-| 6 | Korean code, tables, UI strings, Galmuri7 tiles |
+| 6 | Korean code, tables, UI strings |
 | 7 | mini-games (`games.c`, BANKED functions) |
 | 8-10 | Galmuri11 glyphs and Korean dialogue pages |
 | 11-15 | free |

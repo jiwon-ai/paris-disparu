@@ -220,8 +220,8 @@ static void lang_menu(void) {
     ko_draw_name(7, 10);
     box_print(6, 14, txt_lang_go);
     while (1) {
-        set_win_tile_xy(5, 8, sel ? GLYPH_SPACE : GLYPH_ARROW_RIGHT);
-        set_win_tile_xy(5, 10, sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        box_tile(5, 8, sel ? GLYPH_SPACE : GLYPH_ARROW_RIGHT);
+        box_tile(5, 10, sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
         wait_vbl_done();
         input_update();
         if (joy_pressed & (J_UP | J_DOWN | J_SELECT)) {
@@ -244,6 +244,7 @@ static void intro(void) {
         if (joy_pressed & (J_B | J_START)) break;
         if (joy_pressed & J_A) {
             sound_blip();
+            if (box_has_next()) { box_more(); continue; }   /* Korean: rest of the page */
             if (++page == 3) break;
             intro_show(page);
         }
@@ -305,9 +306,10 @@ static uint8_t continue_menu(void) {
     box_print(7, 7, txt_save_cont);
     box_print(7, 9, txt_save_new);
     box_print(6, 14, txt_lang_go);
+    box_flush();
     while (1) {
-        set_win_tile_xy(5, 7, sel ? GLYPH_SPACE : GLYPH_ARROW_RIGHT);
-        set_win_tile_xy(5, 9, sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        box_tile(5, 7, sel ? GLYPH_SPACE : GLYPH_ARROW_RIGHT);
+        box_tile(5, 9, sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
         wait_vbl_done();
         input_update();
         if (joy_pressed & (J_UP | J_DOWN | J_SELECT)) {
@@ -504,7 +506,7 @@ static void open_dialogue(uint8_t d) {
             box_open(4);
             box_print(1, 1, solved ? txt_cu_solved : txt_cu_found);
             if (solved) {
-                set_win_tile_xy(16, 1, txt_digits[curio_total()]);
+                box_tile(16, 1, txt_digits[curio_total()]);
                 box_print(17, 1, txt_cu_of);
             }
             box_print(1, 2, solved ? txt_cu_solved2 : txt_cu_found2);
@@ -517,7 +519,7 @@ static void open_dialogue(uint8_t d) {
             new_extra = new_secret = 0;
             box_open(4);
             box_print(1, 1, sec ? txt_secret_done : txt_extra_done);
-            set_win_tile_xy(15, 1, txt_digits[sec ? secret_total() : extra_total()]);
+            box_tile(15, 1, txt_digits[sec ? secret_total() : extra_total()]);
             box_print(16, 1, sec ? txt_secret_of : txt_extra_of);
             box_print(1, 2, txt_extra_more);
             caption_timer = 240;
@@ -769,6 +771,8 @@ void main(void) {
             if (joy_pressed & (J_START | J_B)) {
                 box_close();
                 state = ST_WALK;
+            } else if (joy_pressed & (J_UP | J_DOWN)) {      /* Korean: long page, other half */
+                if (box_more()) sound_blip();
             } else if (joy_pressed & (J_LEFT | J_RIGHT)) {   /* clues <-> extras */
                 nb_page = (joy_pressed & J_RIGHT) ? (nb_page + 1) & 3 : (nb_page + 3) & 3;
                 if (nb_page == 1) extras_show();
@@ -790,7 +794,9 @@ void main(void) {
         }
 
         case ST_END:          /* START: the next episode's teaser, then the title */
-            if (joy_pressed & J_START) {
+            if (joy_pressed & (J_A | J_UP | J_DOWN)) {    /* Korean: long page, other half */
+                if (box_more()) sound_blip();
+            } else if (joy_pressed & J_START) {
                 if (teaser_seen) reset();
                 teaser_seen = 1;
                 teaser_show();

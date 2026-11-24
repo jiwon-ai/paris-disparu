@@ -27,14 +27,23 @@ static uint8_t k_id;            /* dialogue id, for its choice */
 static uint8_t k_cols[2];       /* tile columns used by each line */
 static uint8_t k_col;           /* next column to reveal, 0..35 */
 
-static uint16_t cache_code[128];
-static uint8_t cache_n, cache_base, cache_max;
 
 /* ---- dialogue ------------------------------------------------------------ */
+/* OR one glyph (14 rows of hi, lo bytes at src) into the line at row, shifted
+   right by S pixels; r = how many columns to the right exist (0-2). */
+#define SHIFTS(S) do { uint8_t k_; \
+    for (k_ = 0; k_ < KO_GLYPH_ROWS; k_++, row += TEXT_COLS) { \
+        hi = *src++; lo = *src++; \
+        if (!(hi | lo)) continue; \
+        row[0] |= (uint8_t)(hi >> (S)); \
+        if (r) row[1] |= (uint8_t)(hi << (8 - (S))) | (uint8_t)(lo >> (S)); \
+        if (r == 2) row[2] |= (uint8_t)(lo << (8 - (S))); \
+    } } while (0)
+
 static void render_line(uint8_t L, const uint8_t *g, uint8_t n) {
-    uint8_t x = 0, r, b, s;
-    uint16_t gi, bits;
-    uint8_t *row;
+    uint8_t x = 0, r, b, s, hi, lo, k, *row;
+    const uint8_t *src;
+    uint16_t gi;
     while (n--) {
         gi = ((uint16_t)g[0] << 8) | g[1];
         g += 2;
@@ -42,13 +51,24 @@ static void render_line(uint8_t L, const uint8_t *g, uint8_t n) {
         b = x >> 3;
         s = x & 7;
         if (b < TEXT_COLS) {
-            for (r = 0; r < KO_GLYPH_ROWS; r++) {
-                bits = ((uint16_t)gbuf[1 + 2 * r] << 8) | gbuf[2 + 2 * r];
-                if (!bits) continue;
-                row = lbuf[L][r + 2] + b;            /* 2 blank rows on top */
-                row[0] |= (uint8_t)(bits >> (8 + s));
-                if (b + 1 < TEXT_COLS) row[1] |= (uint8_t)(bits >> s);
-                if (s && b + 2 < TEXT_COLS) row[2] |= (uint8_t)(bits << (8 - s));
+            row = &lbuf[L][2][b];                    /* 2 blank rows on top */
+            src = gbuf + 1;
+            r = b + 2 < TEXT_COLS ? 2 : (b + 1 < TEXT_COLS ? 1 : 0);   /* spill columns */
+            switch (s) {                    /* constant shifts: no shift loops */
+            case 0:
+                for (k = 0; k < KO_GLYPH_ROWS; k++, row += TEXT_COLS) {
+                    hi = *src++; lo = *src++;
+                    row[0] |= hi;
+                    if (r) row[1] |= lo;
+                }
+                break;
+            case 1: SHIFTS(1); break;
+            case 2: SHIFTS(2); break;
+            case 3: SHIFTS(3); break;
+            case 4: SHIFTS(4); break;
+            case 5: SHIFTS(5); break;
+            case 6: SHIFTS(6); break;
+            default: SHIFTS(7); break;
             }
         }
         x += gbuf[0];
@@ -121,66 +141,279 @@ void ko_clear(void) BANKED {
     for (y = 1; y <= 4; y++) set_win_tiles(1, y, TEXT_COLS, 1, rowbuf);
 }
 
-/* ---- menus ----------------------------------------------------------------- */
-void ko_ui_reset(uint8_t full) BANKED {
-    cache_n = 0;
-    cache_base = full ? 0 : 72;
-    cache_max = full ? 128 : 56;
+/* ---- boxes ---------------------------------------------------------------
+   A UI string with Hangul is one 16-pixel line (two tile rows); 8x8 strings
+   and single tiles sit on the lower row of their line. Small boxes (captions,
+   mini-games) are drawn at once with logical row y on rows 2y-1 and 2y.
+   Full-screen boxes are collected, then laid out by ko_flush(): one line per
+   used row, gaps kept if there is room, and pages of 8 lines if not. Tiles
+   come from BG tiles 0-127 (bank 0), then 0-127 of VRAM bank 1 (the scenery
+   tiles, reloaded by box_close() when they were borrowed). */
+#define KI_TILE 0     /* one 8x8 tile */
+#define KI_EN   1     /* English string in ui_text (ROM bank 1) */
+#define KI_KO   2     /* record in this bank: tall line or 8x8 bytes */
+#define MAX_ITEMS 32
+typedef struct { uint8_t kind, x, y, tile; const uint8_t *s; } kitem_t;
+static kitem_t items[MAX_ITEMS];
+static uint8_t n_items;
+uint8_t ko_mode;               /* 0 English, 1 small box, 2 full box (collect), 3 full box laid out */
+uint8_t ko_borrowed;           /* VRAM bank 1 scenery tiles overwritten */
+static uint8_t pool_next, pool_end, pool_bank1;
+static uint8_t in_dlg, cur_row, seq_pool;
+static uint8_t row_next[5];    /* small boxes: logical row y uses tiles 32(y-1).. */
+static uint8_t rowmap[18];     /* logical row -> top physical row, 0 = none */
+static uint8_t lines[18], n_lines, page_k, n_pages;
+#define KO_BOX_ATTR (0x80u | 5u)
+
+void ko_ui_reset(uint8_t mode) BANKED {   /* 1 small, 2 full, 4 inside a dialogue */
+    n_items = 0;
+    pool_bank1 = 0;
+    in_dlg = mode == 4;
+    seq_pool = 0;
+    for (cur_row = 1; cur_row < 5; cur_row++) row_next[cur_row] = (uint8_t)((cur_row - 1) * 32);
+    pool_next = mode == 4 ? 72 : 0;
+    pool_end = 128;
+    ko_mode = mode == 4 ? 1 : mode;
+    page_k = n_pages = 0;
+    memset(rowmap, 0, sizeof(rowmap));
 }
 
-static uint8_t syl_tile(uint16_t i) {
-    uint8_t k, r;
-    const uint8_t *src;
-    for (k = 0; k < cache_n; k++)
-        if (cache_code[k] == i) return cache_base + k;
-    if (cache_n >= cache_max) return GLYPH_SPACE;   /* checked by tools/ko_gen.py */
-    src = ko_syl_tiles + i * 8;
-    for (r = 0; r < 8; r++) {
-        tbuf[2 * r] = 0xFF;
-        tbuf[2 * r + 1] = src[r];
+static uint8_t alloc_tile(void) {          /* 0xFF: out of tiles */
+    if (ko_mode == 1 && !in_dlg && !seq_pool) {
+        uint8_t r = cur_row > 4 ? 4 : (cur_row ? cur_row : 1);
+        if (row_next[r] >= r * 32) return 0xFF;
+        return row_next[r]++;
     }
-    k = cache_base + cache_n;
-    set_bkg_data(k, 1, tbuf);
-    cache_code[cache_n++] = i;
-    return k;
+    if (pool_next >= pool_end) {
+        if (ko_mode < 2 || pool_bank1) return 0xFF;
+        pool_bank1 = 1;
+        ko_borrowed = 1;
+        pool_next = 0;
+    }
+    return pool_next++;
 }
 
-static void draw(uint8_t x, uint8_t y, const uint8_t *s) {
+/* Tile data for one line, uploaded in runs of consecutive tiles. */
+static uint8_t tdata[2 * TEXT_COLS * 16];
+static uint8_t t_first, t_count, t_bank;
+static uint8_t m_tile[2][TEXT_COLS], m_attr[2][TEXT_COLS];
+
+static void t_flush(void) {
+    if (!t_count) return;
+    if (t_bank) VBK_REG = 1;
+    set_bkg_data(t_first, t_count, tdata);
+    VBK_REG = 0;
+    t_count = 0;
+}
+
+/* One 8x8 cell of the line bitmap (rows8 = 8 rows, TEXT_COLS apart). */
+static void cell(uint8_t h, uint8_t c, const uint8_t *rows8) {
+    uint8_t r, t, *d, any = 0;
+    const uint8_t *q = rows8;
+    for (r = 0; r < 8; r++, q += TEXT_COLS) any |= *q;
+    m_tile[h][c] = GLYPH_SPACE;
+    m_attr[h][c] = KO_BOX_ATTR;
+    if (!any) return;
+    t = alloc_tile();
+    if (t == 0xFF) return;
+    if (t_count && (t != (uint8_t)(t_first + t_count) || t_bank != pool_bank1)) t_flush();
+    if (!t_count) { t_first = t; t_bank = pool_bank1; }
+    d = tdata + ((uint16_t)t_count << 4);
+    for (r = 0, q = rows8; r < 8; r++, q += TEXT_COLS) {
+        *d++ = 0xFF;                             /* paper = colour 1, ink = 3 */
+        *d++ = *q;
+    }
+    t_count++;
+    m_tile[h][c] = t;
+    if (pool_bank1) m_attr[h][c] = KO_BOX_ATTR | 0x08;
+}
+
+/* A glyph record line (count, then 2-byte indices) at column x, rows y, y+1. */
+static void tall(uint8_t x, uint8_t y, const uint8_t *rec) {
+    uint8_t n = rec[0], c, cols;
+    memset(lbuf[0], 0, sizeof(lbuf[0]));
+    render_line(0, rec + 1, n);
+    cols = k_cols[0];
+    if (x + cols > MAP_W - 1) cols = MAP_W - 1 - x;
+    t_count = 0;
+    for (c = 0; c < cols; c++) {
+        cell(0, c, &lbuf[0][0][c]);
+        cell(1, c, &lbuf[0][8][c]);
+    }
+    t_flush();
+    if (ko_borrowed) {
+        VBK_REG = 1;
+        set_win_tiles(x, y, cols, 1, m_attr[0]);
+        set_win_tiles(x, y + 1, cols, 1, m_attr[1]);
+        VBK_REG = 0;
+    }
+    set_win_tiles(x, y, cols, 1, m_tile[0]);
+    set_win_tiles(x, y + 1, cols, 1, m_tile[1]);
+}
+
+static void flat(uint8_t x, uint8_t y, const uint8_t *s) {
     uint8_t n = 0;
-    while (*s && x + n < MAP_W) {
-        if (*s < 16) {
-            rowbuf[n++] = syl_tile(((uint16_t)(s[0] - 1) << 8) | s[1]);
-            s += 2;
-        } else {
-            rowbuf[n++] = *s++;
-        }
-    }
+    while (s[n] && x + n < MAP_W) { rowbuf[n] = s[n]; n++; }
     if (n) set_win_tiles(x, y, n, 1, rowbuf);
 }
 
-uint8_t ko_print(uint8_t x, uint8_t y, uint16_t off) BANKED {
+static void draw_item(const kitem_t *it, uint8_t top) {
+    if (it->kind == KI_TILE) {
+        set_win_tile_xy(it->x, top + 1, it->tile);
+    } else if (it->kind == KI_EN) {      /* bank 1 data: copied through bank 0 */
+        uint8_t n = 0;
+        far_read(ASSET_BANK, it->s, tbuf, 16);
+        while (n < 16 && tbuf[n] && it->x + n < MAP_W) n++;
+        if (n) set_win_tiles(it->x, top + 1, n, 1, tbuf);
+    } else if (it->s[0] == 1) {
+        tall(it->x, top, it->s + 1);
+    } else {
+        flat(it->x, top + 1, it->s);
+    }
+}
+
+/* Small box: physical top row of logical row y. */
+#define SMALL_TOP(y) ((uint8_t)((y) * 2 - 1))
+
+static void add(uint8_t kind, uint8_t x, uint8_t y, uint8_t tile, const uint8_t *s) {
+    kitem_t *it;
+    if (ko_mode == 1 || ko_mode == 3) {
+        kitem_t t;
+        t.kind = kind; t.x = x; t.y = y; t.tile = tile; t.s = s;
+        cur_row = y;
+        draw_item(&t, ko_mode == 1 ? SMALL_TOP(y) : (rowmap[y] ? rowmap[y] : y));
+        return;
+    }
+    if (n_items >= MAX_ITEMS) return;
+    it = &items[n_items++];
+    it->kind = kind; it->x = x; it->y = y; it->tile = tile; it->s = s;
+}
+
+static const uint8_t *find_ui(uint16_t off) {
     uint8_t lo = 0, hi = KO_UI_COUNT, mid;
     while (lo < hi) {
         mid = (lo + hi) >> 1;
-        if (ko_ui_off[mid] == off) {
-            draw(x, y, ko_ui_ptr[mid]);
-            return 1;
-        }
+        if (ko_ui_off[mid] == off) return ko_ui_ptr[mid];
         if (ko_ui_off[mid] < off) lo = mid + 1;
         else hi = mid;
     }
     return 0;
 }
 
+uint8_t ko_print(uint8_t x, uint8_t y, uint16_t off, const uint8_t *en) BANKED {
+    const uint8_t *s = find_ui(off);
+    if (s && !s[0]) return 1;            /* left empty in Korean: the line above says it */
+    if (s) add(KI_KO, x, y, 0, s);
+    else add(KI_EN, x, y, 0, en);
+    return 1;
+}
+
+void ko_tile(uint8_t x, uint8_t y, uint8_t t) BANKED {
+    add(KI_TILE, x, y, t, 0);
+}
+
+/* Blank logical row y of a small box (its two rows), freeing its tiles. */
+void ko_clear_row(uint8_t y) BANKED {
+    memset(rowbuf, GLYPH_SPACE, TEXT_COLS);
+    if (ko_mode == 1) {
+        set_win_tiles(1, SMALL_TOP(y), TEXT_COLS, 1, rowbuf);
+        set_win_tiles(1, SMALL_TOP(y) + 1, TEXT_COLS, 1, rowbuf);
+        if (y && y < 5) row_next[y] = (uint8_t)((y - 1) * 32);
+    } else {
+        set_win_tiles(1, rowmap[y] ? rowmap[y] : y, TEXT_COLS, 1, rowbuf);
+        if (rowmap[y]) set_win_tiles(1, rowmap[y] + 1, TEXT_COLS, 1, rowbuf);
+    }
+}
+
+/* Small box height for a box of `rows` (English) rows. */
+uint8_t ko_small_rows(uint8_t rows) BANKED {
+    seq_pool = rows > 6;      /* more than 4 lines (rules card): one shared pool */
+    return (uint8_t)((rows - 2) * 2 + 2);
+}
+
+static void clear_inside(void) {
+    uint8_t y;
+    memset(rowbuf, KO_BOX_ATTR, TEXT_COLS);
+    VBK_REG = 1;
+    for (y = 1; y < 17; y++) set_win_tiles(1, y, TEXT_COLS, 1, rowbuf);
+    VBK_REG = 0;
+    memset(rowbuf, GLYPH_SPACE, TEXT_COLS);
+    for (y = 1; y < 17; y++) set_win_tiles(1, y, TEXT_COLS, 1, rowbuf);
+}
+
+static void show_page(void) {
+    uint8_t i, k, first = page_k * 8, last, top, start, need, gaps, l;
+    memset(rowmap, 0, sizeof(rowmap));
+    last = first + 8 < n_lines ? first + 8 : n_lines;
+    gaps = 0;
+    for (k = first + 1; k < last; k++) if (lines[k] > lines[k - 1] + 1) gaps++;
+    need = (last - first) * 2;
+    if (need + gaps > 16) gaps = 0;
+    need += gaps;
+    start = lines[first];                      /* stay near the English position */
+    if (start + need > 17) start = 17 - need;
+    if (start < 1) start = 1;
+    top = start;
+    for (k = first; k < last; k++) {
+        if (k > first && gaps && lines[k] > lines[k - 1] + 1) top++;
+        rowmap[lines[k]] = top;
+        top += 2;
+    }
+    pool_next = 0; pool_bank1 = 0;
+    for (i = 0; i < n_items; i++) {
+        l = items[i].y;
+        if (l == 17 && !(items[i].kind == KI_KO && items[i].s[0] == 1)) {
+            draw_item(&items[i], 16);          /* footer on the bottom border */
+        } else if (rowmap[l]) {
+            draw_item(&items[i], rowmap[l]);
+        }
+    }
+    if (n_pages > 1)                            /* more on the next page */
+        set_win_tile_xy(10, 17, page_k + 1 < n_pages ? GLYPH_ARROW_DOWN : GLYPH_BOX_B);
+}
+
+void ko_flush(void) BANKED {
+    uint8_t i, y, used;
+    if (ko_mode != 2) return;
+    n_lines = 0;
+    for (y = 1; y < 18; y++) {
+        used = 0;
+        for (i = 0; i < n_items; i++)
+            if (items[i].y == y && (y < 17 || (items[i].kind == KI_KO && items[i].s[0] == 1))) used = 1;
+        if (used) lines[n_lines++] = y;
+    }
+    n_pages = (uint8_t)((n_lines + 7) >> 3);
+    page_k = 0;
+    show_page();
+    ko_mode = 3;
+}
+
+/* Next page of a long full-screen box; 0 when it has only one page left. */
+uint8_t ko_more(void) BANKED {
+    if (n_pages < 2) return 0;
+    page_k = page_k + 1 < n_pages ? page_k + 1 : 0;
+    clear_inside();
+    show_page();
+    return 1;
+}
+
+uint8_t ko_has_next(void) BANKED { return page_k + 1 < n_pages; }
+
+static void draw_choice(uint8_t x, uint8_t y, const uint8_t *s) {
+    if (s[0] == 1) tall(x, y, s + 1);
+    else flat(x, y + 1, s);
+}
+
 void ko_draw_choice(uint8_t sel) BANKED {
     ko_clear();
-    set_win_tile_xy(3, 2, sel == 0 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
-    draw(4, 2, ko_choice_ptr[2 * k_id]);
-    set_win_tile_xy(11, 2, sel == 1 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
-    draw(12, 2, ko_choice_ptr[2 * k_id + 1]);
+    pool_next = 72; pool_end = 128; pool_bank1 = 0;
+    set_win_tile_xy(3, 3, sel == 0 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+    draw_choice(4, 2, ko_choice_ptr[2 * k_id]);
+    set_win_tile_xy(11, 3, sel == 1 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+    draw_choice(12, 2, ko_choice_ptr[2 * k_id + 1]);
 }
 
 void ko_draw_name(uint8_t x, uint8_t y) BANKED {
-    ko_ui_reset(1);
-    draw(x, y, ko_lang_name);
+    pool_next = 64; pool_end = 128; pool_bank1 = 0;
+    tall(x, y - 1, ko_lang_name + 1);
 }

@@ -21,7 +21,7 @@ static void draw_bar(void) {
         if (i == cur) t = GLYPH_BAR_CURSOR;
         else if (i >= zone_lo && i <= zone_hi) t = GLYPH_BAR_ZONE;
         else t = GLYPH_BAR;
-        set_win_tile_xy(BAR_X + i, 3, t);
+        box_tile(BAR_X + i, 3, t);
     }
 }
 
@@ -69,8 +69,8 @@ static uint8_t digit_tile0;     /* tile of '0' */
 static void draw_dial(void) {
     uint8_t i;
     for (i = 0; i < 4; i++) {
-        set_win_tile_xy(6 + i * 2, 3, i == sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
-        set_win_tile_xy(7 + i * 2, 3, digit_tile0 + digits[i]);
+        box_tile(6 + i * 2, 3, i == sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        box_tile(7 + i * 2, 3, digit_tile0 + digits[i]);
     }
 }
 
@@ -79,10 +79,10 @@ void dial_start(void) {
     digit_tile0 = txt_digits[0];   /* "0123456789" from ui.txt */
     for (i = 0; i < 4; i++) digits[i] = 0;
     sel = 0;
-    box_open(5);
+    box_open(6);
     box_print(1, 1, txt_dial_1);
     box_print(1, 2, txt_dial_2);
-    box_print(1, 4, txt_dial_3);        /* on the frame */
+    box_print(1, 4, txt_dial_3);
     draw_dial();
 }
 

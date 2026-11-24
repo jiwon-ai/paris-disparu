@@ -7,6 +7,11 @@
 void box_open(uint8_t rows);
 void box_close(void);
 void box_print(uint8_t x, uint8_t y, const uint8_t *text); /* 0-terminated */
+void box_tile(uint8_t x, uint8_t y, uint8_t t);   /* one tile in the box (Korean: laid out) */
+void box_clear(uint8_t y);   /* blank one row of the box (Korean: both of its rows) */
+void box_flush(void);    /* end of a full-screen box: Korean lays it out */
+uint8_t box_has_next(void);   /* Korean long box: not on its last page */
+uint8_t box_more(void);  /* Korean long box: next page (1), else 0 */
 uint8_t digit_glyph(uint8_t n);   /* font tile of digit n, callable from any bank */
 
 /* Paged dialogue with typewriter effect.

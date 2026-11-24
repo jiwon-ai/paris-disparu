@@ -20,7 +20,7 @@ static uint8_t rnd(void) {          /* small LFSR, mixed with the divider */
 }
 
 static void put_digit(uint8_t x, uint8_t y, uint8_t n) {
-    set_win_tile_xy(x, y, GLYPH_DIGIT0 + n);
+    box_tile(x, y, GLYPH_DIGIT0 + n);
 }
 
 /* ------------------------------------------------------------ coffee rush
@@ -35,21 +35,20 @@ static uint8_t s_round, s_want, s_sel, s_hits, s_cells, s_tick, s_speed, s_pause
 static void serve_draw_sel(void) {
     uint8_t i;
     for (i = 0; i < 3; i++)
-        set_win_tile_xy(srv_x[i] - 1, 4, i == s_sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        box_tile(srv_x[i] - 1, 4, i == s_sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
 }
 
 static void serve_draw_bar(void) {
     uint8_t i;
-    for (i = 0; i < 16; i++) set_win_tile_xy(2 + i, 3, i < s_cells ? GLYPH_BAR_ZONE : GLYPH_BAR);
+    for (i = 0; i < 16; i++) box_tile(2 + i, 3, i < s_cells ? GLYPH_BAR_ZONE : GLYPH_BAR);
 }
 
 static void serve_order(void) {
-    uint8_t i;
     s_want = rnd() % 3;
     s_cells = 16;
     s_tick = 0;
     s_speed = 7 - s_round;            /* frames per cell: faster each order */
-    for (i = 1; i < 19; i++) set_win_tile_xy(i, 2, GLYPH_SPACE);
+    box_clear(2);
     box_print(1, 2, txt_srv_table);          /* "Order:" - the one thing to match */
     box_print(8, 2, srv_item[s_want]);
     serve_draw_bar();
@@ -69,9 +68,8 @@ void serve_start(void) BANKED {
 }
 
 static uint8_t serve_next(uint8_t hit) {
-    uint8_t i;
     if (hit) { s_hits++; sound_confirm(); } else sound_clink();
-    for (i = 1; i < 19; i++) set_win_tile_xy(i, 2, GLYPH_SPACE);
+    box_clear(2);
     put_digit(16, 1, s_hits);
     box_print(1, 2, hit ? txt_srv_ok : txt_srv_bad);
     s_pause = 30;                       /* show the result a moment */
@@ -113,10 +111,10 @@ static void cups_draw(uint8_t raise_a, uint8_t raise_b, uint8_t show) {
     uint8_t i, up;
     for (i = 0; i < 3; i++) {
         up = (i == raise_a || i == raise_b);
-        set_win_tile_xy(cup_x[i], CUP_Y - 1, up ? GLYPH_CUP : GLYPH_SPACE);
-        set_win_tile_xy(cup_x[i], CUP_Y, up ? GLYPH_SPACE : GLYPH_CUP);
-        set_win_tile_xy(cup_x[i], CUP_Y + 1, (show && i == cup_where) ? GLYPH_COIN : GLYPH_SPACE);
-        set_win_tile_xy(cup_x[i] - 1, CUP_Y + 2, (c_phase == 2 && i == c_sel) ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        box_tile(cup_x[i], CUP_Y - 1, up ? GLYPH_CUP : GLYPH_SPACE);
+        box_tile(cup_x[i], CUP_Y, up ? GLYPH_SPACE : GLYPH_CUP);
+        box_tile(cup_x[i], CUP_Y + 1, (show && i == cup_where) ? GLYPH_COIN : GLYPH_SPACE);
+        box_tile(cup_x[i] - 1, CUP_Y + 2, (c_phase == 2 && i == c_sel) ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
     }
 }
 
@@ -148,7 +146,7 @@ uint8_t cups_update(void) BANKED {
             c_timer = 8;
             if (++c_swaps == 7) {
                 c_phase = 2;
-                for (c_timer = 1; c_timer < 19; c_timer++) set_win_tile_xy(c_timer, 1, GLYPH_SPACE);
+                box_clear(1);
                 box_print(1, 1, txt_cup_pick);
                 cups_draw(0xFF, 0xFF, 0);
             }

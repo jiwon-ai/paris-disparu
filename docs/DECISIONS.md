@@ -32,6 +32,7 @@ Newest first. Dates are 2026.
 | 11-23 | More goals and a hook to the next episode | Side goals (notebook page 2), bonus scene, Episode 2 teaser |
 | 11-23 | A short explanation at the start; a fun, clear opening | 3-page skippable intro, goal caption, the cat |
 | 11-23 | Player invisible on the quai (bug) | Fixed in player_unstick; visibility test in CI |
+| 11-24 | "Korean text is hard to read" (Jiwon) | Menus, notebook, captions and mini-game boxes now use Galmuri11 (the dialogue font) at 16 px per line instead of 7-px Galmuri7; Korean boxes are twice as tall, long full screens split into pages; some Korean UI lines merged to fit |
 | 11-24 | "Add a mute" (Jiwon) | SELECT toggles music (effects stay), saved; web build already had a Sound button |
 | 11-24 | "Coffee game: where is 1 and 8?" (Jiwon) | The random table number was decoration and confused players: removed; the box now says "Order: COFFEE" |
 | 11-24 | "Find things that no longer exist and bring them to someone" (Jiwon) | Three curiosities found as "???" and identified by the one person who knows (green 1st-class ticket → puncher, Solex roller → young man, Tutankhamun stub → painter); notebook page 4 "Mysteries" |

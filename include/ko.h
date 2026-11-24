@@ -19,8 +19,16 @@ uint8_t ko_reveal(void) BANKED;         /* one more column; 0 when done */
 uint8_t ko_done(void) BANKED;
 void ko_reveal_all(void) BANKED;
 void ko_clear(void) BANKED;             /* blank the 4 text rows */
-void ko_ui_reset(uint8_t full) BANKED;  /* new box: empty syllable cache */
-uint8_t ko_print(uint8_t x, uint8_t y, uint16_t off) BANKED; /* UI string at ui_text+off */
+/* Boxes: see src/ko.c. mode 1 small box, 2 full screen, 4 inside a dialogue. */
+extern uint8_t ko_mode, ko_borrowed;
+void ko_ui_reset(uint8_t mode) BANKED;
+uint8_t ko_print(uint8_t x, uint8_t y, uint16_t off, const uint8_t *en) BANKED;
+void ko_tile(uint8_t x, uint8_t y, uint8_t t) BANKED;
+uint8_t ko_small_rows(uint8_t rows) BANKED;
+void ko_clear_row(uint8_t y) BANKED;
+void ko_flush(void) BANKED;             /* lay out a full-screen box */
+uint8_t ko_more(void) BANKED;           /* next page of a long full box; 0 = single page */
+uint8_t ko_has_next(void) BANKED;       /* not on its last page yet */
 void ko_draw_choice(uint8_t sel) BANKED;
 void ko_draw_name(uint8_t x, uint8_t y) BANKED;
 
