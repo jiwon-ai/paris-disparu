@@ -405,7 +405,7 @@ The Pont Neuf: despite its name, the oldest bridge in Paris. Below, the water ra
 # ---------------------------------------------------------------- barks
 # One-page lines that NPCs call out by themselves when the player comes close.
 [puncher_hello]
-TICKET PUNCHER: Ticket, kid! Nobody goes down to the trains without a hole in his ticket.
+TICKET PUNCHER: Ticket, artist! Nobody goes down to the trains without a hole in his ticket.
 
 No ticket? The window's just there. Knock, the clerk's only dozing.
 
@@ -434,11 +434,11 @@ TICKET PUNCHER: Not bad! Another one?
 [punch_miss]
 Clac! You punched the air. The passenger sighs.
 
-TICKET PUNCHER: Again, kid. Wrist, not shoulder.
+TICKET PUNCHER: Again, artist. Wrist, not shoulder.
 ? Yes | No
 
 [punch_done]
-Clac! Three clean holes. TICKET PUNCHER: You've got the wrist, kid!
+Clac! Three clean holes. TICKET PUNCHER: You've got the wrist, artist!
 
 They say one day machines will check the tickets by themselves. Then what will I do?
 
@@ -449,7 +449,7 @@ He just stood here, then went back up and off towards the river.
 [puncher_after]
 TICKET PUNCHER: A singer once made a song about a man like me, out at Porte des Lilas.
 
-Now everybody hums it at me. Clac! Your fort went towards the river, kid.
+Now everybody hums it at me. Clac! Your fort went towards the river, artist.
 
 [bark_puncher]
 TICKET PUNCHER: Tickets, please!
@@ -497,7 +497,7 @@ THE PAINTER: You called her? What did she say?
 
 Cold soup… and she loves me. But mostly the soup. Ha! That's her.
 
-I'll finish this sky and go home. Thank you, kid. Go easy with the big fellow.
+I'll finish this sky and go home. Thank you, my friend. Go easy with the big fellow.
 
 [end_bonus]
 At the café door the photographer lowers his camera. THE PHOTOGRAPHER: You were everywhere tonight.
@@ -525,7 +525,7 @@ THE SINGER: Somebody wrote to your fort. In Paris, little blue letters fly throu
 THE SINGER: A fort sells his brass plate only when he's had enough. Ask the books along the quai.
 
 [singer_ready]
-THE SINGER: You know everything now. Your fort is on the bridge, kid. Go, before the light comes.
+THE SINGER: You know everything now. Your fort is on the bridge, artist. Go, before the light comes.
 
 [bark_singer]
 THE SINGER: La la… No. Not that.
@@ -698,7 +698,7 @@ My old geometry teacher writes novels. He's down here somewhere. He says I shoul
 THE YOUNG MAN: People never vanish completely. They leave addresses, phone numbers, notes. Someone always remembers.
 
 [fort2_hello]
-A PORTER: Five minutes' rest, then back to the carts. Mind your feet, kid!
+A PORTER: Five minutes' rest, then back to the carts. Mind your feet, artist!
 
 [fort2_again]
 A PORTER: Fernand? Strongest back in the pavilion. He'd never leave a cart full. Something's wrong.
@@ -757,7 +757,7 @@ Among the onion skins, a small ridged roller, black with grime. Off some machine
 On the chair, a ticket stub: a gold mask, and the words PETIT PALAIS. Whose face is that?
 
 [curio_0_solve]
-TICKET PUNCHER: Green? That's first class, kid. Brown is second class, like yours.
+TICKET PUNCHER: Green? That's first class, artist. Brown is second class, like yours.
 
 First class costs more and rides in its own carriages, the ones with the yellow marks. I'll keep it. Clac!
 
@@ -791,7 +791,7 @@ DÉDÉ: Inside! Read the signs!
 DÉDÉ: Well? All delivered?
 
 [bark_porter_done]
-DÉDÉ: Thanks, kid! See Germaine.
+DÉDÉ: Thanks, pal! See Germaine.
 
 [bark_merchant]
 GERMAINE: Fine cabbages! Cheap!
@@ -812,7 +812,7 @@ SIMONE: Phone? You need a jeton!
 A PORTER: Zzz… zzz…
 
 [fernand_hello]
-FERNAND: Leave me be, kid. I'm watching the water.
+FERNAND: Leave me be, artist. I'm watching the water.
 
 He rubs his bare head. FERNAND: Cold, without my coltin. I left it at Simone's café.
 
@@ -827,7 +827,7 @@ FERNAND: Marcel's bleu… So you read it.
 My brass plate? Gone. I sold it to someone on the quai, by the books. Go and ask.
 
 [fernand_talk]
-FERNAND: Leave me be, kid… What's that? My coltin?
+FERNAND: Leave me be, artist… What's that? My coltin?
 
 You hand him his hat, his brass plate, and you tell him about Marcel's petit bleu.
 
@@ -837,7 +837,7 @@ And now they're taking the market out to Rungis. Concrete, lorries. Marcel's rig
 
 Who'll want an old fort out there? Better to stop now, before they stop me.
 
-He turns the coltin in his big hands. FERNAND: What would you do, kid?
+He turns the coltin in his big hands. FERNAND: What would you do, artist?
 ? Stay | Go with
 
 [end_stay]

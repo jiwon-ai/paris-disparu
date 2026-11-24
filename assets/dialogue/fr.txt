@@ -380,7 +380,7 @@ SIMONE : Il faut un jeton !
 UN FORT : Zzz… zzz…
 
 [fernand_hello]
-FERNAND : Laisse-moi, petit. Je regarde l'eau.
+FERNAND : Laisse-moi, l'artiste. Je regarde l'eau.
 
 Il frotte son crâne nu. FERNAND : Il fait froid, sans mon coltin. Je l'ai laissé au café de Simone.
 
@@ -395,7 +395,7 @@ FERNAND : Le bleu de Marcel… Alors tu l'as lu.
 Ma plaque en laiton ? Partie. Je l'ai vendue à quelqu'un sur le quai, du côté des livres. Va demander.
 
 [fernand_talk]
-FERNAND : Laisse-moi, petit… Qu'est-ce que c'est ? Mon coltin ?
+FERNAND : Laisse-moi, l'artiste… Qu'est-ce que c'est ? Mon coltin ?
 
 Tu lui tends son chapeau, sa plaque en laiton, et tu lui parles du petit bleu de Marcel.
 
@@ -405,7 +405,7 @@ Et maintenant, ils emmènent le marché à Rungis. Du béton, des camions. Marce
 
 Qui voudra d'un vieux fort là-bas ? Autant arrêter maintenant, avant qu'on m'arrête.
 
-Il tourne le coltin dans ses grosses mains. FERNAND : Tu ferais quoi, toi, petit ?
+Il tourne le coltin dans ses grosses mains. FERNAND : Tu ferais quoi, toi, l'artiste ?
 ? Rester | Partir
 
 [end_stay]
@@ -457,7 +457,7 @@ FERNAND : …
 LE PEINTRE : Chut… je peins.
 
 [puncher_hello]
-LE POINÇONNEUR : Ton ticket, petit ! Personne ne descend aux quais sans un trou dans son ticket.
+LE POINÇONNEUR : Ton ticket, l'artiste ! Personne ne descend aux quais sans un trou dans son ticket.
 
 Pas de ticket ? Le guichet est juste là. Frappe, l'employé ne fait que somnoler.
 
@@ -486,11 +486,11 @@ LE POINÇONNEUR : Pas mal ! Un autre ?
 [punch_miss]
 Clac ! Tu as poinçonné le vide. Le voyageur soupire.
 
-LE POINÇONNEUR : Encore, petit. Le poignet, pas l'épaule.
+LE POINÇONNEUR : Encore, l'artiste. Le poignet, pas l'épaule.
 ? Oui | Non
 
 [punch_done]
-Clac ! Trois trous nets. LE POINÇONNEUR : Tu as le coup de poignet, petit !
+Clac ! Trois trous nets. LE POINÇONNEUR : Tu as le coup de poignet, l'artiste !
 
 On dit qu'un jour, des machines contrôleront les tickets toutes seules. Et moi, je ferai quoi ?
 
@@ -501,7 +501,7 @@ Il est resté planté là, puis il est remonté, direction la Seine.
 [puncher_after]
 LE POINÇONNEUR : Un chanteur a fait une chanson sur un gars comme moi, là-bas, à la porte des Lilas.
 
-Maintenant, tout le monde me la fredonne. Clac ! Ton fort est parti vers la Seine, petit.
+Maintenant, tout le monde me la fredonne. Clac ! Ton fort est parti vers la Seine, l'artiste.
 
 [bark_puncher]
 LE POINÇONNEUR : Vos tickets !
@@ -549,7 +549,7 @@ LE PEINTRE : Tu l'as appelée ? Qu'est-ce qu'elle a dit ?
 
 La soupe froide… et qu'elle m'aime. Mais surtout la soupe. Ha ! C'est bien elle.
 
-Je finis ce ciel et je rentre. Merci, petit. Vas-y doucement avec le grand gaillard.
+Je finis ce ciel et je rentre. Merci, mon ami. Vas-y doucement avec le grand gaillard.
 
 [end_bonus]
 À la porte du café, le photographe baisse son appareil. LE PHOTOGRAPHE : Tu étais partout, cette nuit.
@@ -577,7 +577,7 @@ LE CHANTEUR : Quelqu'un a écrit à ton fort. À Paris, les petites lettres bleu
 LE CHANTEUR : Un fort ne vend sa plaque que quand il en a assez. Demande aux livres, le long du quai.
 
 [singer_ready]
-LE CHANTEUR : Tu sais tout, maintenant. Ton fort est sur le pont, petit. Vas-y, avant le jour.
+LE CHANTEUR : Tu sais tout, maintenant. Ton fort est sur le pont, l'artiste. Vas-y, avant le jour.
 
 [bark_singer]
 LE CHANTEUR : La la… Non. Pas ça.
@@ -748,7 +748,7 @@ Mon ancien prof de géométrie écrit des romans. Il est par ici, quelque part. 
 LE JEUNE HOMME : Les gens ne disparaissent jamais tout à fait. Ils laissent des adresses, des numéros, des mots. Quelqu'un se souvient toujours.
 
 [fort2_hello]
-UN FORT : Cinq minutes de pause, et je retourne aux charrettes. Attention à tes pieds, petit !
+UN FORT : Cinq minutes de pause, et je retourne aux charrettes. Attention à tes pieds, l'artiste !
 
 [fort2_again]
 UN FORT : Fernand ? Le dos le plus solide du pavillon. Il ne laisserait jamais une charrette pleine. Quelque chose ne va pas.
@@ -776,7 +776,7 @@ Parmi les pelures d'oignon, un petit rouleau strié, noir de crasse. Il vient d'
 Sur la chaise, un billet déchiré : un masque d'or, et les mots PETIT PALAIS. À qui est ce visage ?
 
 [curio_0_solve]
-LE POINÇONNEUR : Vert ? C'est la première classe, petit. Le marron, c'est la deuxième, comme le tien.
+LE POINÇONNEUR : Vert ? C'est la première classe, l'artiste. Le marron, c'est la deuxième, comme le tien.
 
 La première coûte plus cher et a ses propres voitures, celles avec les marques jaunes. Je le garde. Clac !
 
