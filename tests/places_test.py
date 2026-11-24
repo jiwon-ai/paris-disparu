@@ -565,6 +565,7 @@ push("down")
 check(room() == ROOM_BOURSE, "back out to the Bourse (room %d)" % room())
 # A 20-centime coin lies on the setts by the old grain hall: walk over it.
 check(mem[sym["_coin_flags"]] == 0, "no coin picked up yet")
+check(mem[0xFE00 + 22 * 4] == 0, "nothing carried yet: no icon top-left")
 glint = False
 for _ in range(70):
     tick(1)
@@ -591,6 +592,11 @@ check(any("your jeton" in p for p in t) and gf & 0x0100 and mem[sym["_coin_flags
       "the waiter sells a jeton for the coin: %s (flags 0x%04x)" % (t[:1], gf))
 tick(10)
 tap("b", 10)
+tick(4)
+oam = [mem[0xFE00 + 22 * 4 + i] for i in range(4)]
+check(oam[0] == 18 and oam[1] == 10 and oam[2] == 246,
+      "the jeton shows as a small icon top-left: OAM 22 = %s" % oam)
+shot("44_hud_jeton")
 goto(44, 38, "xy")
 goto(44, 110, "yx")
 goto(76, 110, "xy")

@@ -158,6 +158,32 @@ def stub():
     return outline(g)
 
 
+def icon(g):
+    """8x16 HUD icon from a 24x32 picture: each 3x3 block becomes its most
+    common colour (empty when under 4 pixels are drawn), outlined in colour 1,
+    centred in the 16-pixel height."""
+    from collections import Counter
+    h0, w0 = len(g), len(g[0])
+    out = []
+    for by in range(0, h0 - 1, 3):
+        row = []
+        for bx in range(0, w0, 3):
+            cells = [g[y][x] for y in range(by, min(by + 3, h0)) for x in range(bx, bx + 3)]
+            solid = [c for c in cells if c != "."]
+            row.append("." if len(solid) < 4 else Counter(solid).most_common(1)[0][0])
+        out.append(row)
+    h, w = len(out), len(out[0])
+    res = [r[:] for r in out]
+    for y in range(h):
+        for x in range(w):
+            if out[y][x] == "." and any(0 <= y + dy < h and 0 <= x + dx < w and out[y + dy][x + dx] not in ".#"
+                                        for dy, dx in ((0, 1), (1, 0), (0, -1), (-1, 0))):
+                res[y][x] = "#"
+    top = (16 - h) // 2
+    blank_row = "." * w
+    return [blank_row] * top + ["".join(r) for r in res] + [blank_row] * (16 - h - top)
+
+
 # (enum name, grid, sprite palette)
 ITEMS = [
     ("CUP", cup(), 3),

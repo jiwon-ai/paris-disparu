@@ -491,6 +491,7 @@ extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
 extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */
 extern const uint8_t item_tiles[];            /* bank PORTRAIT_BANK, 192 bytes per item */
 extern const uint8_t item_pal[];              /* bank PORTRAIT_BANK */
+extern const uint8_t item_icon[];             /* bank PORTRAIT_BANK: 8x16 HUD icons, 32 bytes each */
 extern const uint8_t low_tiles[];             /* bank PORTRAIT_BANK, VRAM bank 1 tile 0.. */
 extern const uint8_t portrait_pal[];          /* sprite palette per portrait */
 extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */

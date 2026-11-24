@@ -34,6 +34,7 @@ LCDC mode. Measured in PyBoy: the scenery is in VRAM bank 1 at 0x9000.
 
 - Bank 0, 0x8000-0x87FF (sprite tiles 0-127): character sprites (8x16 mode, 4 tiles per frame).
 - Bank 0, 0x8800-0x8FFF (BG/sprite tiles 128-242): font and text box frame.
+- Bank 0, sprite tiles 246-255: carried-item HUD icons (8x16, up to 5, OAM 22-23 and 32-34; `hud_update` in `src/items.c`, icons made by `items.icon()` from the 24x32 pictures). OAM 30-31: the coin glint.
 - Bank 0, 0x9000-0x97FF (BG tiles 0-127): free (reserved for streamed Korean text).
 - Bank 1, 0x9000-0x97FF (BG tiles 0-127): scenery tiles (BG attribute bit 3);
   up to 128 tiles, checked by `tools/gen_assets.py`.

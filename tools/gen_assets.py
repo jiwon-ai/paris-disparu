@@ -174,6 +174,11 @@ for name, grid, _ in items.ITEMS:
         for half in range(2):
             for y0 in (half * 16, half * 16 + 8):
                 item_data += encode_tile([r[col * 8:col * 8 + 8] for r in rows[y0:y0 + 8]])
+# HUD icons (8x16, two tiles each): what the player carries, top-left.
+icon_data = []
+for name, grid, _ in items.ITEMS:
+    rows16 = ["".join(SPR_MAP[c] for c in r) for r in items.icon(grid)]
+    icon_data += encode_tile(rows16[:8]) + encode_tile(rows16[8:])
 portrait_names = [n for n, _, _ in portraits.PORTRAITS]
 if PORTRAIT_BASE + len(portrait_data) // 16 > 256:
     fail("portrait tiles do not fit in VRAM bank 1")
@@ -463,6 +468,7 @@ H.append("extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 
 H.append("extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */")
 H.append("extern const uint8_t item_tiles[];            /* bank PORTRAIT_BANK, 192 bytes per item */")
 H.append("extern const uint8_t item_pal[];              /* bank PORTRAIT_BANK */")
+H.append("extern const uint8_t item_icon[];             /* bank PORTRAIT_BANK: 8x16 HUD icons, 32 bytes each */")
 H.append("extern const uint8_t low_tiles[];             /* bank PORTRAIT_BANK, VRAM bank 1 tile 0.. */")
 H.append("extern const uint8_t portrait_pal[];          /* sprite palette per portrait */")
 H.append("extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */")
@@ -578,7 +584,8 @@ outputs = {
         "const uint8_t low_tiles[] = {\n%s\n};" % c_bytes(low_data or [0]),
         "const uint8_t env_tiles[] = {\n%s\n};" % c_bytes(env_data),
         "const uint8_t item_tiles[] = {\n%s\n};" % c_bytes(item_data),
-        "const uint8_t item_pal[] = { %s };" % ", ".join(str(p) for _, _, p in items.ITEMS), ""]) + "\n",
+        "const uint8_t item_pal[] = { %s };" % ", ".join(str(p) for _, _, p in items.ITEMS),
+        "const uint8_t item_icon[] = {\n%s\n};" % c_bytes(icon_data), ""]) + "\n",
 }
 import ko_gen  # noqa: E402
 ko_out, ko_report = ko_gen.build([(d, p) for d, p, _ in entries], {k: v for k, v in choices.items() if v},

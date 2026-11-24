@@ -12,4 +12,6 @@ void item_show(uint8_t it, uint8_t x, uint8_t y) BANKED;   /* OAM x, y of the to
 uint8_t item_note(void) BANKED;   /* picture over the open caption, or a "You got"
                                      caption of its own (returns 1 then) */
 
+void hud_update(uint8_t on) BANKED; /* carried-item icons top-left; 0 hides them */
+
 #endif
