@@ -185,6 +185,10 @@
 #define SPR1_WRITER 68   /* VRAM bank 1, low tiles */
 #define SPR1_ARCHIVIST 72   /* VRAM bank 1, low tiles */
 #define LOW_TILE_COUNT 76   /* all pool sprites, in ROM */
+#define TILE_CHAIR 117
+#define TILE_TABLE 38
+#define PAL_CHAIR 5
+#define PAL_TABLE 6   /* the ending's café table */
 #define LOW_FIXED 12        /* tiles always loaded (thief, sparkle) */
 #define POOL_SLOTS 10       /* bank-1 sprites one room can hold */
 /* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */
@@ -754,25 +758,31 @@ extern const uint8_t ui_text[];
 #define txt_ex_8 (ui_text + 3443)
 #define txt_day_0 (ui_text + 3447)
 #define txt_day_1 (ui_text + 3463)
-#define txt_day_2 (ui_text + 3477)
-#define txt_day_3 (ui_text + 3489)
-#define txt_coin_0 (ui_text + 3506)
-#define txt_coin_1 (ui_text + 3524)
-#define txt_coin_2 (ui_text + 3543)
-#define txt_nb_extras (ui_text + 3561)
-#define txt_poem_title (ui_text + 3570)
-#define txt_poem_none (ui_text + 3578)
-#define txt_poem_new (ui_text + 3584)
-#define txt_poem_0a (ui_text + 3602)
-#define txt_poem_0b (ui_text + 3619)
-#define txt_poem_1a (ui_text + 3636)
-#define txt_poem_1b (ui_text + 3650)
-#define txt_poem_2a (ui_text + 3669)
-#define txt_poem_2b (ui_text + 3688)
-#define txt_poem_3a (ui_text + 3705)
-#define txt_poem_3b (ui_text + 3724)
-#define txt_poem_4a (ui_text + 3742)
-#define txt_poem_4b (ui_text + 3761)
+#define txt_day_2 (ui_text + 3480)
+#define txt_day_3 (ui_text + 3498)
+#define txt_coin_0 (ui_text + 3515)
+#define txt_coin_1 (ui_text + 3533)
+#define txt_coin_2 (ui_text + 3552)
+#define txt_nb_extras (ui_text + 3570)
+#define txt_poem_title (ui_text + 3579)
+#define txt_poem_none (ui_text + 3587)
+#define txt_poem_new (ui_text + 3593)
+#define txt_poem_end_title (ui_text + 3611)
+#define txt_poem_end (ui_text + 3628)
+#define txt_pl_0 (ui_text + 3645)
+#define txt_pl_1 (ui_text + 3664)
+#define txt_pl_2 (ui_text + 3683)
+#define txt_pl_3 (ui_text + 3702)
+#define txt_pl_4 (ui_text + 3717)
+#define txt_pl_5 (ui_text + 3736)
+#define txt_pl_6 (ui_text + 3753)
+#define txt_pl_7 (ui_text + 3771)
+#define txt_pl_8 (ui_text + 3788)
+#define txt_pl_9 (ui_text + 3807)
+#define txt_pc_sa (ui_text + 3822)
+#define txt_pc_sb (ui_text + 3841)
+#define txt_pc_ga (ui_text + 3857)
+#define txt_pc_gb (ui_text + 3875)
 /* French (src/fr_data.c, bank FR_BANK; pages in FR_PAGE_BANK..) */
 #define FR_BANK 11
 #define FR_PAGE_BANK 12

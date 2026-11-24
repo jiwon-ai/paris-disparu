@@ -132,26 +132,57 @@ void notebook_show(void) BANKED {
 }
 
 /* Second page: the poem. The hero is a young poet who came down to the
-   market for words; each quest done gives two lines (original text). */
-static const uint8_t * const poem_txt[QUEST_COUNT * 2] = {
-    txt_poem_0a, txt_poem_0b, txt_poem_1a, txt_poem_1b, txt_poem_2a, txt_poem_2b,
-    txt_poem_3a, txt_poem_3b, txt_poem_4a, txt_poem_4b
+   market for words. Lines are earned by what each player did (quests,
+   side goals, mysteries, secrets, people met), so every poem differs; at
+   daybreak the poet finishes it on a café terrace (original text). */
+#define POEM_LINES 10
+static const uint8_t * const poem_txt[POEM_LINES] = {
+    txt_pl_0, txt_pl_1, txt_pl_2, txt_pl_3, txt_pl_4,
+    txt_pl_5, txt_pl_6, txt_pl_7, txt_pl_8, txt_pl_9
 };
 
-static void poem_show(void) {
+static uint8_t poem_has(uint8_t i) {
+    uint8_t n = 0;
+    uint16_t m = cameo_met;
+    switch (i) {
+    case 4: return extra_flags & X_TICKETS;
+    case 5: return extra_flags & X_BUTCHER;
+    case 6: return extra_flags & X_PAINTER;
+    case 7: return curio_flags & 0x70;          /* a mystery solved */
+    case 8: return secret_total() >= 5;
+    case 9:                                     /* six people of the night met */
+        for (; m; m >>= 1) n += m & 1;
+        return n >= 6;
+    default: return quest_done(i);
+    }
+}
+
+/* The lines earned so far, one under the other from row y; returns the next row. */
+static uint8_t poem_print(uint8_t y) {
     uint8_t i;
+    for (i = 0; i < POEM_LINES; i++)
+        if (poem_has(i)) box_print(1, y++, poem_txt[i]);
+    return y;
+}
+
+static void poem_show(void) {
     box_open(SCREEN_H / 8);
     box_print(1, 1, txt_poem_title);
-    for (i = 0; i < QUEST_COUNT; i++) {
-        if (quest_done(i)) {
-            box_print(1, 3 + i * 3, poem_txt[i * 2]);
-            box_print(1, 4 + i * 3, poem_txt[i * 2 + 1]);
-        } else {
-            box_print(1, 3 + i * 3, txt_poem_none);
-        }
-    }
+    if (poem_print(3) == 3) box_print(1, 3, txt_poem_none);
     box_print(1, 17, txt_nb_extras);
     box_print(14, 17, txt_nb_close);
+    box_flush();
+}
+
+/* The ending: the whole poem, closed by Fernand's choice. */
+static void poem_final(void) {
+    uint8_t y;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_poem_end_title);
+    y = poem_print(3) + 1;
+    box_print(1, y, (extra_flags & X_STAYED) ? txt_pc_sa : txt_pc_ga);
+    box_print(1, y + 1, (extra_flags & X_STAYED) ? txt_pc_sb : txt_pc_gb);
+    box_print(1, 17, txt_poem_end);
     box_flush();
 }
 
@@ -399,11 +430,34 @@ void coin_note(void) BANKED {
 static uint8_t day_t;
 static palette_color_t day_mix[32];
 
-void day_start(void) BANKED { day_t = 0; }
+/* A café table on the pavement of rue Rambuteau, drawn over the poet's
+   legs (BG priority) so he seems to sit at it. */
+void day_start(void) BANKED {
+    static const uint8_t t[3] = { TILE_CHAIR, TILE_TABLE, TILE_TABLE };
+    static const uint8_t a[3] = { PAL_CHAIR | 0x88, PAL_TABLE | 0x88, PAL_TABLE | 0x88 };
+    day_t = 0;
+    if (cur_room != ROOM_STREET) return;
+    wait_vbl_done();
+    VBK_REG = 1;
+    set_bkg_tiles(3, 10, 3, 1, a);
+    VBK_REG = 0;
+    set_bkg_tiles(3, 10, 3, 1, t);
+}
 
 uint8_t day_update(uint8_t pressed) BANKED {
     uint8_t i, k;
-    if (day_t >= 160) return (pressed & (J_A | J_START)) != 0;
+    if (day_t >= 160) {             /* A: the finished poem, then A: the end screen */
+        if (day_t == 161 && (pressed & (J_UP | J_DOWN))) {   /* Korean: the other half */
+            if (box_more()) sound_blip();
+            return 0;
+        }
+        if (!(pressed & (J_A | J_START))) return 0;
+        if (day_t == 161) return 1;
+        day_t = 161;
+        poem_final();
+        sound_confirm();
+        return 0;
+    }
     day_t++;
     if (!(day_t & 7) && day_t <= 128) {
         k = day_t >> 3;

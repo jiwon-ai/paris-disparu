@@ -165,7 +165,7 @@ g.tap("a", 60)
 g.tap("a", 30)
 g.tap("down", 8)
 g.tap("a", 30)            # New game
-check("PARIS, 21 NOV 1967" in g.screen_text(), "the intro plays")
+check("PARIS 21 NOV 1967" in g.screen_text(), "the intro plays")
 check(g.mem[sym["_clue_flags"]] == 0, "no progress carried over (clues 0x%02x)" % g.mem[sym["_clue_flags"]])
 g.pb.stop(save=False)
 

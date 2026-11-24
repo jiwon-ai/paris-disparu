@@ -86,9 +86,11 @@ extern uint8_t clue_flags;
 #define X_PAINTER   0x04   /* phoned the painter's wife, then told him */
 #define X_WIFE      0x08   /* (step) phoned the painter's wife */
 #define X_MET_SINGER 0x10  /* (not a goal) heard the singer's first lines */
+#define X_STAYED    0x20   /* (not a goal) Fernand stays: the poem ends with it */
 #define X_COUNT     3
 #define X_ALL       (X_TICKETS | X_BUTCHER | X_PAINTER)
 extern uint8_t extra_flags;
+extern uint16_t cameo_met;   /* bit k: cameo/night person NPC_ACTOR + k met */
 extern uint8_t new_extra;      /* an extra was just completed: show a note */
 uint8_t extra_total(void) BANKED;
 

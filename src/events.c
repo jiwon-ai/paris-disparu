@@ -22,7 +22,7 @@ uint8_t curio_flags;
 uint8_t new_curio;
 uint8_t coin_flags;               /* bit i: coin i picked up */
 static uint8_t last_look, look_count;
-static uint16_t cameo_met;                /* bit k: cameo NPC_ACTOR + k already met */   /* the same thing examined n times in a row */
+uint16_t cameo_met;                /* bit k: cameo NPC_ACTOR + k already met */   /* the same thing examined n times in a row */
 
 /* The clue that completes each quest (the last one is the ending). */
 static const uint8_t quest_clue[QUEST_COUNT - 1] = { CLUE_COLTIN, CLUE_BLEU, CLUE_RUNGIS, CLUE_PLATE };
@@ -455,6 +455,7 @@ uint8_t event_after(uint8_t dlg, uint8_t choice) BANKED {
     case DLG_FERNAND_TALK:         /* both answers bring him back */
         if (choice == 2) break;    /* closed early: he can be asked again */
         SET(FLAG_SOLVED);
+        if (choice == 0) extra_flags |= X_STAYED;   /* the poem's last lines */
         return choice == 0 ? DLG_END_STAY : DLG_END_GO;
     case DLG_END_STAY:
     case DLG_END_GO:               /* every extra done: one more scene */

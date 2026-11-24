@@ -428,6 +428,8 @@ for name, t in bank1_spr_defs:
 for name, t in low_defs:
     H.append("#define SPR1_%s %d   /* VRAM bank 1, low tiles */" % (name, t))
 H.append("#define LOW_TILE_COUNT %d   /* all pool sprites, in ROM */" % (len(low_data) // 16))
+H.append("#define TILE_CHAIR %d\n#define TILE_TABLE %d\n#define PAL_CHAIR %d\n#define PAL_TABLE %d   /* the ending's café table */"
+         % (env_index[art.LEGEND["π"][0]], env_index[art.LEGEND["t"][0]], art.LEGEND["π"][1], art.LEGEND["t"][1]))
 H.append("#define LOW_FIXED %d        /* tiles always loaded (thief, sparkle) */" % LOW_FIXED)
 H.append("#define POOL_SLOTS %d       /* bank-1 sprites one room can hold */" % POOL_SLOTS)
 H.append("/* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */")

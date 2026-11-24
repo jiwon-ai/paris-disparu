@@ -482,7 +482,7 @@ shot("01_language")
 tap("a", 20)                       # English is preselected
 
 print("intro")
-check(window_on() and "PARIS, 21 NOV 1967" in window_row(3), "intro page 1, the setting: %r" % window_row(3))
+check(window_on() and "PARIS 21 NOV 1967" in window_row(3) and "poems" in window_row(5), "intro page 1, the poet and the setting: %r %r" % (window_row(3), window_row(5)))
 shot("00_intro")
 tap("a", 10)
 check("TONIGHT" in window_row(3) and "Find Fernand" in window_row(13), "intro page 2, the goal: %r" % window_row(13))
@@ -912,8 +912,8 @@ tap("b", 4)
 tap("start", 10)
 tap("right", 10)
 poem = [window_row(r) for r in range(18)]
-check("MY POEM" in poem[1] and poem[3] == "Hot black coffee" and poem[4] == "zinc bar, 3 a.m."
-      and poem[15] == ". . .", "notebook page 2, the poem: two lines per quest done: %r" % poem[1:17])
+check("MY POEM" in poem[1] and poem[3] == "Coffee at the bar," and "clac! three holes," in poem
+      and "the big man stays," not in poem, "notebook page 2, the poem: lines earned so far: %r" % poem[1:17])
 shot("45_poem")
 tap("right", 10)
 check("EXTRAS" in window_row(1) and window_row(3).startswith("OK") and window_row(6).startswith("--"),
@@ -1065,15 +1065,22 @@ lines = dialogue(choice=0, max_pages=60)
 check(any("My coltin" in l for l in lines), "Fernand opens up: %d pages" % len(lines))
 check(any("two winters" in l for l in lines), "ending: he stays for the last winters")
 check(any("ticket full" in l for l in lines), "every extra done: the photographer's bonus scene")
-# Daybreak on the quai before the end screen.
-check(not window_on() and mem[sym["_cur_room"]] == 4, "ending: back on the quai at dawn (room %d)" % mem[sym["_cur_room"]])
+# Daybreak on a café terrace in rue Rambuteau before the end screen.
+check(not window_on() and mem[sym["_cur_room"]] == ROOM_STREET and player() == (32, 68),
+      "ending: the poet at a café table, rue Rambuteau (room %d, %s)" % (mem[sym["_cur_room"]], player()))
 night = pb.screen.ndarray[:96, :, :3].mean()
 tick(200)
 day = pb.screen.ndarray[:96, :, :3].mean()
 check(day > night + 15, "ending: the sky gets light (%.0f -> %.0f)" % (night, day))
-check(window_on() and "8 a.m." in window_row(2) and "EPISODE 1" in window_row(4),
+check(window_on() and "Day breaks" in window_row(2) and "poem" in window_row(4),
       "ending: daybreak caption %r / %r" % (window_row(2), window_row(4)))
 shot("13_daybreak")
+tap("a", 30)
+poem = [window_row(r) for r in range(18)]
+check(window_on() and poem[1] == "LES HALLES, DAWN" and poem[3] == "Coffee at the bar,"
+      and "clac! three holes," in poem and "the big man stays," in poem and "the day begins." in poem
+      and "EPISODE 1" in poem[17], "ending: the poem, finished on the terrace: %r" % poem[1:18])
+shot("46_poem_final")
 tap("a", 30)
 check(window_on() and window_row(2) == "THE END" and "6/6" in window_row(4) and "3/3" in window_row(5) and "9/9" in window_row(13),
       "end screen: %r %r %r" % (window_row(2), window_row(4), window_row(5)))

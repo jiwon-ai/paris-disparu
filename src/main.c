@@ -483,8 +483,8 @@ static void open_dialogue(uint8_t d) {
         save_erase();
         box_close();
         music_play(SONG_TITLE);
-        player_place(72, 60, DIR_DOWN);
-        enter_room(ROOM_QUAI);
+        player_place(32, 68, DIR_DOWN);   /* at a café table, rue Rambuteau */
+        enter_room(ROOM_STREET);
         day_start();
         state = ST_DAWN;
     } else if (d == NO_DIALOGUE) {
