@@ -15,6 +15,7 @@ typedef struct {
 static voice_t mel, acc;
 static uint8_t song_now, tempo, frame;
 static volatile uint8_t playing;
+uint8_t music_muted;
 volatile uint8_t music_ch1_hold;
 
 /* Wave: one cycle, a soft reedy shape (accordion-like), peak 14 of 15. */
@@ -75,8 +76,9 @@ void music_init(void) {
 
 void music_play(uint8_t song) {
     uint8_t save;
-    if (song == song_now && playing) return;
+    if (song == song_now && (playing || music_muted)) return;
     playing = 0;
+    if (music_muted) { song_now = song; return; }   /* remembered for later */
     save = _current_bank;
     SWITCH_ROM(MUSIC_BANK);
     tempo = music_songs[song - 1].tempo;
@@ -87,6 +89,20 @@ void music_play(uint8_t song) {
     frame = tempo - 1;
     song_now = song;
     playing = 1;
+}
+
+/* SELECT: music off (effects stay) or back on, from the start of the song. */
+void music_set_muted(uint8_t m) {
+    uint8_t s = song_now;
+    music_muted = m;
+    if (m) {
+        playing = 0;
+        NR32_REG = 0x00;                /* wave channel silent */
+        if (!music_ch1_hold) NR12_REG = 0x00;   /* accompaniment off */
+    } else if (s) {
+        song_now = 0;
+        music_play(s);
+    }
 }
 
 void music_stop(void) {

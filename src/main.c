@@ -254,9 +254,9 @@ static void intro(void) {
 /* Save/continue: one slot in battery-backed cartridge RAM (MBC5+RAM+BATTERY).
    Written after every room change and every closed dialogue; checked with a
    magic word and a checksum, so blank or random RAM reads as "no save". */
-#define SAVE_SIZE (11 + EVENT_SAVE_SIZE + 1)
+#define SAVE_SIZE (12 + EVENT_SAVE_SIZE + 1)
 static uint8_t save_buf[SAVE_SIZE];
-static const uint8_t save_magic[4] = { 'P', 'D', 'S', '2' };
+static const uint8_t save_magic[4] = { 'P', 'D', 'S', '3' };
 
 static uint8_t save_sum(void) {
     uint8_t i, s = 0xA5;
@@ -272,7 +272,8 @@ static void save_write(void) {
     save_buf[7] = (uint8_t)player.y;  save_buf[8] = (uint8_t)((uint16_t)player.y >> 8);
     save_buf[9] = player.dir;
     save_buf[10] = howto_seen;
-    event_pack(save_buf + 11);
+    save_buf[11] = music_muted;
+    event_pack(save_buf + 12);
     save_buf[SAVE_SIZE - 1] = save_sum();
     ENABLE_RAM;
     SWITCH_RAM(0);
@@ -660,8 +661,9 @@ void main(void) {
     title_screen();
     lang_menu();
     if (save_read() && continue_menu()) {   /* back where the player left off */
-        event_unpack(save_buf + 11);
+        event_unpack(save_buf + 12);
         howto_seen = save_buf[10];
+        music_set_muted(save_buf[11]);
         player_place((int16_t)(save_buf[5] | ((uint16_t)save_buf[6] << 8)),
                      (int16_t)(save_buf[7] | ((uint16_t)save_buf[8] << 8)), save_buf[9]);
         dawn_stage = dawn_now();
@@ -696,6 +698,16 @@ void main(void) {
                 notebook_show();
                 sound_confirm();
                 state = ST_NOTEBOOK;
+                break;
+            }
+            if (joy_pressed & J_SELECT) {     /* music on / off */
+                music_set_muted(!music_muted);
+                close_caption();
+                box_open(3);
+                box_print(1, 1, music_muted ? txt_music_off : txt_music_on);
+                caption_timer = 120;
+                caption_note = 0;
+                save_write();
                 break;
             }
             if (joy_pressed & J_A) {

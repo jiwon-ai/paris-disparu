@@ -109,8 +109,8 @@ song.
 ## Save
 
 Cartridge type 0x1B (MBC5+RAM+BATTERY), RAM size code 0x02 (8 KiB,
-`-Wl-ya1`). One slot at 0xA000, 26 bytes: magic "PDS2", room, player x/y
-(int16), direction, `howto_seen`, 14 bytes of story state from
+`-Wl-ya1`). One slot at 0xA000, 27 bytes: magic "PDS3", room, player x/y
+(int16), direction, `howto_seen`, music off (SELECT), 14 bytes of story state from
 `event_pack` (events.c: game/clue/extra/quest/secret flags, cameos met,
 carrying, crates taken/delivered, tickets punched, curiosities) and a checksum. Written
 by `save_write` (main.c) after each room change and each dialogue that

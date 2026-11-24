@@ -22,4 +22,6 @@ extern volatile uint8_t music_ch1_hold;
 void music_init(void);              /* once, after sound_init: VBL handler */
 void music_play(uint8_t song);      /* 1..SONG_COUNT; same song: keeps playing */
 void music_stop(void);
+extern uint8_t music_muted;
+void music_set_muted(uint8_t m);    /* 1 = music off (sound effects stay) */
 #endif

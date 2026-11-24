@@ -270,7 +270,7 @@ static const uint8_t * const intro_pages[3][11] = {
       txt_intro_a5, txt_intro_a6, txt_intro_a7 },
     { txt_intro_b0, 0, txt_intro_b1, txt_intro_b2, txt_intro_b3, txt_intro_b4, 0,
       txt_intro_b5, txt_intro_b6, txt_intro_b7, txt_intro_b8 },
-    { txt_intro_c0, 0, txt_intro_c1, txt_intro_c2, txt_intro_c3, txt_intro_c4, 0,
+    { txt_intro_c0, 0, txt_intro_c1, txt_intro_c2, txt_intro_c3, txt_intro_c4, txt_intro_c7,
       0, txt_intro_c5, txt_intro_c6, 0 },
 };
 

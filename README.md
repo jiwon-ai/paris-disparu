@@ -56,6 +56,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Curiosities: three vanished objects found as "???" (a green first-class métro ticket, a VéloSolex roller, a Tutankhamun exhibition stub), each identified by the one person who knows; notebook page 4 "Mysteries" | done; ticket tested in a full playthrough, roller and stub identification tested from saves (`tests/save_test.py`); the roller and stub pick-ups are not covered by a test |
 | Night clock 03:00 → 07:00 (one hour per quest, notebook) with the sky turning slightly bluer | done, tested (clock); palette change checked by screenshot |
 | End-screen rank (Tourist → Paris legend) | done, tested (one rank seen in the playthrough) |
+| Music on/off with SELECT (sound effects stay), remembered in the save; the web page also has a "Sound" button that mutes everything | done, tested (`tests/save_test.py`) |
 | Save / continue: automatic save to battery RAM (room changes, closed dialogues), Continue / New game menu, cleared at the ending | done, tested (`tests/save_test.py`) |
 | Fuller rooms: baskets, chairs, a bench, posters and three more people (a fort, a cook, a night worker) | done, tested |
 | Juice: room fades, a star over the player on every find, a shake when the pickpocket bumps you | done, tested (the star is checked in OAM) |

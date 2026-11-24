@@ -119,7 +119,7 @@ pos = g.player()
 ram = io.BytesIO()
 g.pb.stop(ram_file=ram)
 data = ram.getvalue()
-check(data[:4] == b"PDS2", "cartridge RAM holds the save: %r" % data[:4])
+check(data[:4] == b"PDS3", "cartridge RAM holds the save: %r" % data[:4])
 
 print("2. continue")
 g = Game(io.BytesIO(data))
@@ -132,6 +132,21 @@ check(g.room() == ROOM_CAFE and g.player() == pos, "back in the café at %s (roo
 check(g.mem[sym["_clue_flags"]] == 0x05 and g.mem[sym["_secret_flags"]] == 0x22,
       "progress restored: clues 0x%02x secrets 0x%02x" % (g.mem[sym["_clue_flags"]], g.mem[sym["_secret_flags"]]))
 check("Welcome back" in g.row(1), "caption: %r" % g.row(1))
+g.tap("select", 30)
+check(g.mem[sym["_music_muted"]] == 1 and "Music: off" in g.row(1) and g.mem[0xFF1C] & 0x60 == 0,
+      "SELECT: music off (caption %r, wave volume 0x%02x)" % (g.row(1), g.mem[0xFF1C]))
+ram2 = io.BytesIO()
+g.pb.stop(ram_file=ram2)
+check(ram2.getvalue()[11] == 1, "music off is saved (byte 11 = %d)" % ram2.getvalue()[11])
+g = Game(io.BytesIO(ram2.getvalue()))
+g.tick(240)
+g.tap("a", 60)
+g.tap("a", 30)
+g.tap("a", 80)
+check(g.mem[sym["_music_muted"]] == 1, "continue: music still off")
+g.tap("b", 10)
+g.tap("select", 30)
+check(g.mem[sym["_music_muted"]] == 0 and "Music: on" in g.row(1), "SELECT again: music on (%r)" % g.row(1))
 g.pb.stop(save=False)
 
 print("3. new game over a save")
@@ -149,7 +164,7 @@ print("4. curiosities: a saved game carrying one, shown to the one who knows")
 
 
 def crafted(room, x, y, d, curio):
-    b = list(b"PDS2") + [room, x & 255, x >> 8, y & 255, y >> 8, d, 1] + [0] * 13 + [curio]
+    b = list(b"PDS3") + [room, x & 255, x >> 8, y & 255, y >> 8, d, 1, 0] + [0] * 13 + [curio]
     return bytes(b + [(0xA5 + sum(b)) & 255]) + bytes(8192 - len(b) - 1)
 
 

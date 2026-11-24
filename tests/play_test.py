@@ -281,7 +281,7 @@ def play_serve(win=True):
         if not (window_on() and window_row(1).startswith("Coffee rush")):
             return
         r2 = window_row(2)
-        want = next((i for i, w in enumerate(items) if "Table" in r2 and w in r2), None)
+        want = next((i for i, w in enumerate(items) if "Order:" in r2 and w in r2), None)
         sel = [i for i, x in enumerate(xs) if win_tile(x, 4) == HDR["GLYPH_ARROW_RIGHT"]]
         if want is None or not sel:
             tick(1)

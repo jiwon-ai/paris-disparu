@@ -24,7 +24,7 @@ static void put_digit(uint8_t x, uint8_t y, uint8_t n) {
 }
 
 /* ------------------------------------------------------------ coffee rush
-   Table n wants one of three things before the bar runs out. 5 orders,
+   A customer orders one of three things before the bar runs out. 5 orders,
    4 right to win. */
 #define SERVE_ROUNDS 5
 #define SERVE_NEED   4
@@ -50,9 +50,8 @@ static void serve_order(void) {
     s_tick = 0;
     s_speed = 7 - s_round;            /* frames per cell: faster each order */
     for (i = 1; i < 19; i++) set_win_tile_xy(i, 2, GLYPH_SPACE);
-    box_print(1, 2, txt_srv_table);
-    put_digit(7, 2, 1 + rnd() % 8);
-    box_print(9, 2, srv_item[s_want]);
+    box_print(1, 2, txt_srv_table);          /* "Order:" - the one thing to match */
+    box_print(8, 2, srv_item[s_want]);
     serve_draw_bar();
 }
 
