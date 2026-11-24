@@ -1214,3 +1214,83 @@ LEGEND["κ"] = ("bench_l", 6, True)
 LEGEND["λ"] = ("bench_r", 6, True)
 for _k, _ch in enumerate("μνξο"):
     LEGEND[_ch] = ("poster_%d" % _k, 4, True)
+
+
+# ---------------------------------------------------------------------------
+# Less repetition (2026-11-24, Jiwon's art review: "too many repeated tiles"):
+# common surfaces get variants (cracks, wet patches, soot, chipped stone),
+# picked per map cell by a fixed hash, so every room looks hand-placed while
+# the maps stay simple. Pavement right under a facade gets a shade strip
+# (depth). Lit windows vary: plain, curtains, a half-closed shutter.
+# Texture only: no historical claim.
+# ---------------------------------------------------------------------------
+TILES["pave_crack"] = ["22222221", "12222221", "21222221", "22122221",
+                       "22212221", "22221121", "22222211", "11111111"]
+TILES["pave_wet"] = ["22222221", "22222221", "22212221", "22222221",
+                     "21222221", "22222121", "22222221", "11111111"]
+TILES["pave_shade"] = ["11111111", "11111111", "21212121", "12121212",
+                       "22222221", "22222221", "22222221", "11111111"]
+TILES["cobble_b"] = ["32033203", "21032103", "11021102", "00000000",
+                     "03320332", "03210321", "02110211", "00000000"]
+TILES["cobble_wet"] = ["03330332", "03320321", "02210211", "00000000",
+                       "32033203", "21032103", "11021102", "00000000"]
+TILES["floor_crack"] = ["33333332", "23333332", "32333332", "33233332",
+                        "33323332", "33332232", "33333322", "22222222"]
+TILES["floor_wet"] = ["33333332", "33333332", "33323332", "33333332",
+                      "32333332", "33333232", "33333332", "22222222"]
+TILES["wall_chip"] = ["22222221", "22122221", "22222221", "11111111",
+                      "22212222", "22212222", "21212222", "11111111"]
+TILES["wall_soot"] = ["22222221", "22122221", "22122221", "11111111",
+                      "22212122", "22212122", "22212122", "11111111"]
+TILES["checker_worn"] = ["22111122", "21111112", "11111111", "11121111",
+                         "11111111", "11111111", "21111112", "22111122"]
+TILES["win_t_c"] = ["00000000", "01111110", "01322310", "01322310",
+                    "01322310", "01322310", "01111110", "01322310"]
+TILES["win_b_c"] = ["01322310", "01322310", "01322310", "01322310",
+                    "01111110", "11111111", "00000000", "00000000"]
+TILES["win_t_s"] = ["00000000", "11111110", "11132210", "11122210",
+                    "11122210", "11122210", "11111110", "11122210"]
+TILES["win_b_s"] = ["11122210", "11122210", "11122210", "11122210",
+                    "11111110", "11111111", "00000000", "00000000"]
+
+VARIANTS = {   # tile: [(variant, weight), ...]
+    "pave": [("pave", 7), ("pave_crack", 1), ("pave_wet", 1)],
+    "cobble": [("cobble", 6), ("cobble_b", 3), ("cobble_wet", 1)],
+    "floor": [("floor", 7), ("floor_crack", 1), ("floor_wet", 1)],
+    "wall": [("wall", 6), ("wall_chip", 2), ("wall_soot", 1)],
+    "checker": [("checker", 9), ("checker_worn", 1)],
+}
+SHADE_ABOVE = set("#GEdDAKkWwgoOIB")   # facades: the pavement below is in shade
+
+
+def _hash(x, y, r):
+    h = (x * 73856093) ^ (y * 19349663) ^ (r * 83492791)
+    h ^= h >> 13
+    return (h * 1274126177) & 0xFFFF
+
+
+def variant(tname, x, y, r, grid):
+    """The tile actually drawn for map cell (x, y) of room index r."""
+    if tname == "pave" and y > 0 and grid[y - 1][x] in SHADE_ABOVE:
+        return "pave_shade"
+    if tname in ("win_t", "win_b"):          # a window keeps its look top to bottom
+        k = _hash(x, y if tname == "win_t" else y - 1, r) % 7
+        return tname + ("" if k < 4 else "_c" if k < 6 else "_s")
+    if tname in VARIANTS:
+        opts = VARIANTS[tname]
+        k = _hash(x, y, r) % sum(w for _, w in opts)
+        for name, w in opts:
+            if k < w:
+                return name
+            k -= w
+    return tname
+
+# Crate towers (Jiwon's reference photo: towers of wooden crates beside
+# Saint-Eustache; Lhermitte 1895 for the clutter). The top crate is drawn over
+# sprites and can be walked behind: someone behind a tower is half hidden.
+TILES["crate_e"] = ["11111111", "13333331", "13000031", "13333331",
+                    "13000031", "13333331", "11111111", "10000001"]
+TILES["crate_lid"] = ["00000000", "11111111", "13333331", "13000031",
+                      "13333331", "13000031", "13333331", "11111111"]
+LEGEND["ρ"] = ("crate_lid", 6, False, True)
+LEGEND["σ"] = ("crate_e", 6, True)

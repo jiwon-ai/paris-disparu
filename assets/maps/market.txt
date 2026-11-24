@@ -8,10 +8,10 @@ gggggggggggggggggggg
 ffffffffffffffffffff
 ffffffffffffffffffff
 ffffffffffffffffffff
-ffffIfffffffffffIfff
-ffffIfffffffffffIfff
-ffffffffffffffffffXX
-ffffffffffffffffffXX
+ffffIfffffffffffIfρρ
+ffffIfffffffffffIfσσ
+fρρfffffffffffffffXX
+fσσfffffffffffffffXX
 fXXfffffffffffffffff
 fXXfffffffffffffffff
 ffffffffffffffffιιιι

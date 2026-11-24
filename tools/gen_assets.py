@@ -227,7 +227,7 @@ for room in ROOMS:
             entry = art.LEGEND[ch]
             tname, pal, sol = entry[:3]
             prio = len(entry) > 3 and entry[3]
-            tiles.append(env_index[tname])
+            tiles.append(env_index[art.variant(tname, x, y, ROOMS.index(room), grid)])
             attrs.append(pal | ATTR_BANK1 | (ATTR_PRIORITY if prio else 0))
             solid.append(1 if sol else 0)
     used = ENV_PINNED + sorted({env_names[t] for t in tiles} - set(ENV_PINNED), key=lambda n: env_index[n])

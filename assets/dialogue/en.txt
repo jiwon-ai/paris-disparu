@@ -247,6 +247,8 @@ Shut. Someone's snoring behind it. Lucky them.
 [lamp]
 The street lamp flickers. A bit spooky.
 
+Each lamp keeps a small circle of day for itself.
+
 [shop]
 A dark shop window. Empty bottles waiting for the delivery man. Not one sweet.
 
@@ -266,8 +268,12 @@ A covered street to the next pavilion. Dry in there, at least.
 [eustache]
 Saint-Eustache, enormous, staring down the main street of the market. Its bells must wake everybody.
 
+Old stone watching the market. It never blinks.
+
 [crates]
 Empty crates, stacked higher than me. They'll be full again tonight.
+
+Wood that smells of apples and rain. Even empty, they remember.
 
 [morris]
 A green Morris column, plastered with posters for tonight's shows. I'd go to all of them.
@@ -320,6 +326,8 @@ A plane tree. The leaves rattle like paper.
 
 [river]
 The Seine down below. Black, but full of lights.
+
+Something white on the black water. It lifts off and flies away. A swan? At night you have to look closely.
 
 [quai_shop]
 Shutters down. A poster for Jacques Tati's new film, "Playtime": a Paris all glass and steel. "Soon." Funny, round here it's all old stone.
@@ -402,6 +410,8 @@ ROADWORKS. The rest of the bridge will have to wait for daylight.
 [watch_water]
 The Pont Neuf: despite its name, the oldest bridge in Paris. Below, the water races by without a sound.
 
+The water doesn't stop for anyone. Not even for a poem.
+
 # ---------------------------------------------------------------- barks
 # One-page lines that NPCs call out by themselves when the player comes close.
 [puncher_hello]
@@ -465,6 +475,8 @@ LES HALLES. Dad says line 4 has stopped under the market since 1908. That's olde
 
 [metro_tiles]
 Little white tiles, the same in every station. They shine even in the dark.
+
+A wall of little moons.
 
 [metro_gate]
 The gate to the platform. Down there it smells of hot iron and dust.

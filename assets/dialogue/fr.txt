@@ -242,6 +242,8 @@ Fermée. Quelqu'un ronfle derrière. Il a de la chance.
 [lamp]
 Le réverbère clignote. Un peu inquiétant.
 
+Chaque réverbère garde pour lui un petit rond de jour.
+
 [shop]
 Une vitrine éteinte. Des bouteilles vides attendent le livreur. Pas un seul bonbon.
 
@@ -261,8 +263,12 @@ Une rue couverte vers le pavillon suivant. Au moins, on y est au sec.
 [eustache]
 Saint-Eustache, immense, qui regarde la grande rue du marché. Ses cloches doivent réveiller tout le monde.
 
+Une vieille pierre qui surveille le marché. Elle ne cligne jamais des yeux.
+
 [crates]
 Des cageots vides, empilés plus haut que moi. Ils seront pleins ce soir.
+
+Du bois qui sent la pomme et la pluie. Même vides, ils se souviennent.
 
 [morris]
 Une colonne Morris verte, couverte d'affiches pour les spectacles de ce soir. J'irais à tous.
@@ -311,6 +317,8 @@ Un platane. Les feuilles crissent comme du papier.
 [river]
 La Seine, en bas. Noire, mais pleine de lumières.
 
+Quelque chose de blanc sur l'eau noire. Ça s'envole. Un cygne ? La nuit, il faut regarder de près.
+
 [quai_shop]
 Rideau baissé. Une affiche du nouveau film de Jacques Tati, « Playtime » : un Paris tout en verre et en acier. « Prochainement. » Drôle, ici tout est en vieille pierre.
 
@@ -338,6 +346,8 @@ TRAVAUX. Le reste du pont attendra le jour.
 
 [watch_water]
 Le Pont-Neuf : malgré son nom, le plus vieux pont de Paris. En dessous, l'eau file sans un bruit.
+
+L'eau ne s'arrête pour personne. Même pas pour un poème.
 
 # ---------------------------------------------------------------- barks
 [bark_stranger]
@@ -517,6 +527,8 @@ LES HALLES. Papa dit que la ligne 4 s'arrête sous le marché depuis 1908. C'est
 
 [metro_tiles]
 Des petits carreaux blancs, les mêmes dans toutes les stations. Ils brillent même dans le noir.
+
+Un mur de petites lunes.
 
 [metro_gate]
 La grille du quai. En bas, ça sent le fer chaud et la poussière.
