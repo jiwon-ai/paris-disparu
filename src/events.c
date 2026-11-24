@@ -6,6 +6,7 @@
 #include "events.h"
 #include "game.h"
 #include "items.h"
+#include "minigame.h"
 #include "world.h"
 
 uint16_t game_flags;
@@ -193,11 +194,12 @@ uint8_t event_game_result(uint8_t ev, uint8_t success) BANKED {
 
 uint8_t event_dial_result(uint16_t number) BANKED {
     game_flags = (game_flags & ~FLAG_HAS_JETON) | FLAG_PHONE_DONE;
-    switch (number) {
-    case 614:  extra(X_BUTCHER); return DLG_CALL_0614;
-    case 4127: found(CLUE_COURIER); return DLG_CALL_4127;
-    case 7302: return DLG_CALL_7302;
-    case 2508: extra(X_WIFE); return DLG_CALL_2508;
+    switch (number) {           /* each number with its exchange (ROQ 0614...) */
+    case 614:  if (dial_exch != EX_ROQ) break; extra(X_BUTCHER); return DLG_CALL_0614;
+    case 4127: if (dial_exch != EX_ARC) break; found(CLUE_COURIER); return DLG_CALL_4127;
+    case 7302: if (dial_exch != EX_MED) break; return DLG_CALL_7302;
+    case 2508: if (dial_exch != EX_PAS) break; extra(X_WIFE); return DLG_CALL_2508;
+    case 8400: if (dial_exch != EX_ODE) break; return DLG_CALL_CLOCK;   /* the speaking clock */
     }
     return DLG_CALL_NONE;
 }

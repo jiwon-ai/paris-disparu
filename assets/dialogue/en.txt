@@ -39,7 +39,7 @@ You stare at the lamp for a long time. A moth stares back. Neither of you blinks
 [stranger_hello]
 MAN WITH NOTEBOOK: Every night at three, Fernand's yellow hat goes by. Tonight: nothing. Noted.
 
-My old notebooks are at home. My wife reads them out. Call 4127, from the café.
+My old notebooks are at home. My wife reads them out. Call ARC 4127, from the café.
 
 [stranger_knows]
 MAN WITH NOTEBOOK: You found out where he went. I can see it on your face. Noted.
@@ -49,7 +49,7 @@ A young writer won the Renaudot two years ago with a novel called Things. This y
 Me, I only write down what I see. The ordinary. Nobody looks at it.
 
 [stranger_again]
-MAN WITH NOTEBOOK: Still no yellow hat. Call my notebooks, 4127. Yesterday may explain tonight.
+MAN WITH NOTEBOOK: Still no yellow hat. Call my notebooks, ARC 4127. Yesterday may explain tonight.
 
 # ---------------------------------------------------------------- the porter
 [porter_hello]
@@ -190,7 +190,7 @@ And taxis went up yesterday. One franc ninety before the wheels even turn! I'll 
 [phone_look]
 A telephone on the wall. There's a slot… too small for a coin.
 
-Scribbled in pencil on the wall: BUTCHER 0614.
+Scribbled in pencil on the wall: BUTCHER ROQ 0614. And under it, in ink: THE TIME? ODÉ 8400.
 
 [phone_use]
 You have a jeton. Drop it in the slot?
@@ -216,6 +216,9 @@ A man yawns: "My wife? Books, books… She's already gone to her box on the quai
 "He's painting? At four in the morning? Tell him the soup is cold."
 
 "And that I love him. But mostly, the soup."
+
+[call_clock]
+A calm voice, all alone on the line, reads out the time, second after second. The speaking clock: ODÉon 8400.
 
 [call_none]
 It rings into nothing. Nobody. The jeton doesn't come back.
@@ -299,7 +302,7 @@ A cast-iron column. Cold, and a little sticky.
 [quai_box]
 A bookseller's green box, padlocked. On the lid, a card:
 
-"Old books. Mme Roux. 7302."
+"Old books. Mme Roux. MED 7302."
 
 [quai_box2]
 Another green box, shut. Through a crack: an old Zola, "Le Ventre de Paris". A novel set in these very Halles, in 1873.
@@ -324,7 +327,7 @@ There's a big fellow at the end of the bridge. No hat. Been there an hour.
 
 Staring at the glow of the market, like a man looking at a house that's for sale.
 
-If you meet my wife… No. Call her instead: 2508. Tell her I'm painting.
+If you meet my wife… No. Call her instead: PAS 2508. Tell her I'm painting.
 
 [painter_again]
 THE PAINTER: A poet wrote it long ago: "Le vieux Paris n'est plus (la forme d'une ville

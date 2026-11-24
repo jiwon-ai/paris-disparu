@@ -57,13 +57,15 @@ uint8_t goal_npc(void) BANKED {
 }
 
 static const uint16_t num_value[4] = { 614, 4127, 7302, 2508 };
+static const uint8_t num_exch[4] = { EX_ROQ, EX_ARC, EX_MED, EX_PAS };
 static uint8_t num_next;
+uint8_t notebook_exch;
 
 uint16_t notebook_number(void) BANKED {
     uint8_t i;
     for (i = 0; i < 4; i++) {
         uint8_t k = num_next++ & 3;
-        if (game_flags & num_flag[k]) return num_value[k];
+        if (game_flags & num_flag[k]) { notebook_exch = num_exch[k]; return num_value[k]; }
     }
     return 0;
 }

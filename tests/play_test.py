@@ -230,25 +230,34 @@ def lift(hit=True):
         tick(1)
 
 
+EXCH = ["ALÉ", "ARC", "BRE", "CAR", "MED", "ODÉ", "OPÉ", "PAS", "ROQ"]   # ex_0.. in ui.txt
+
+
 def dial_shown():
-    return "".join(c for c in window_row(3) if c.isdigit())
+    """What the dial shows, e.g. 'ARC4127'."""
+    return "".join(c for c in window_row(3) if c.isdigit() or c.isalpha())
 
 
 def dial(number, notes=False):
-    """Phone: set the 4 digits with Up and Right (or START: notebook numbers), then A."""
+    """Phone: number = 'ARC 4127'. Set the exchange (Up), then the 4 digits
+    (Right, Up), or START: notebook numbers; then A."""
+    want = number.replace(" ", "")
     if notes:
         for _ in range(4):
             tap("start", 4)
-            if dial_shown() == number:
+            if dial_shown() == want:
                 break
-        check(dial_shown() == number, "START picks %s from the notebook (%s)" % (number, dial_shown()))
+        check(dial_shown() == want, "START picks %s from the notebook (%s)" % (number, dial_shown()))
         tap("a", 0)
         return
-    for i, d in enumerate(number):
+    ex, digits = number.split()
+    for _ in range(EXCH.index(ex)):
+        tap("up", 2)
+    for d in digits:
+        tap("right", 2)
         for _ in range(int(d)):
             tap("up", 2)
-        if i < 3:
-            tap("right", 2)
+    check(dial_shown() == want, "dialled %s (%s)" % (number, dial_shown()))
     shot("09_dial")
     tap("a", 0)
 
@@ -546,7 +555,7 @@ tap("start", 10)
 check(window_on() and "NOTEBOOK" in window_row(1) and "0/5" in window_row(1), "START opens the notebook: %r" % window_row(1))
 check("Quests" in window_row(5) and "Coffee rush" in window_row(6), "the notebook lists the quests: %r" % window_row(6))
 check("café" in window_row(3), "goal: ask at the cafe: %r" % window_row(3))
-check("4127" in window_row(13), "the notebooks' number is written down: %r" % window_row(13))
+check("ARC 4127" in window_row(13), "the notebooks' number is written down: %r" % window_row(13))
 tap("start", 10)
 check(not window_on(), "START closes the notebook")
 
@@ -662,7 +671,7 @@ def phone(number, expect, clue=None, notes=False):
     push("up")
     tap("a", 0)
     lines = dialogue(choice=0)  # "You have a jeton..." -> Yes -> (rules, first time) -> dial box
-    if number == "4127":
+    if number == "ARC 4127":
         check(any("telephone" in l for l in lines), "the first call shows the phone's rules: %s" % lines[-2:])
     check(window_on() and "Up/Down" in window_row(1), "dial box opened: %r" % window_row(1))
     before = clues()
@@ -776,7 +785,7 @@ goto(72, 60, "yx")
 push("up")
 talk("porter at the bar")       # Simone is out of jetons
 get_jeton()
-phone("4127", "courier", clue=0x04)
+phone("ARC 4127", "courier", clue=0x04)
 check(flags() & FLAG_PHONE_DONE, "telephone call made (FLAG_PHONE_DONE)")
 shot("06_phone")
 goto(72, 60, "yx")
@@ -976,16 +985,20 @@ push("up")
 talk("Carry it", got=("gratinée", "ITEM_GRATINEE"))   # Simone's gratinee for Mme Roux
 check(mem[sym["_quest_flags"]] & 2, "carrying the gratinee")
 get_jeton()
-phone("7302", "her box", notes=True)
-for number, expect, n in (("0614", "Butcher", 2), ("2508", "soup", None)):
+phone("MED 7302", "her box", notes=True)
+for number, expect, n in (("ROQ 0614", "Butcher", 2), ("PAS 2508", "soup", None)):
     get_jeton()
     phone(number, expect)
     if n:
         check(window_on() and "Extra done" in window_row(1) and "%d/3" % n in window_row(1), "extra: %r" % window_row(1))
         tap("b", 4)
+get_jeton()
+phone("ODÉ 8400", "speaking clock")       # ODÉon 8400 (read): pencilled under the butcher
+get_jeton()
+phone("CAR 4127", "rings into nothing")   # right digits, wrong exchange
 tap("start", 10)
 check("3/5" in window_row(1) and "Take the soup" in window_row(2), "notebook: 3/5 quests, goal: %r %r" % (window_row(1), window_row(2)))
-check(any("7302" in window_row(r) for r in range(13, 17)), "Mme Roux's number noted")
+check(any("MED 7302" in window_row(r) for r in range(13, 17)), "Mme Roux's number noted")
 shot("04_notebook")
 tap("start", 10)
 cafe_to_street()

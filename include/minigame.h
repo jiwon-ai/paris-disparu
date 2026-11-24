@@ -18,6 +18,7 @@ uint8_t lift_update(void);
 void dial_start(void);
 uint8_t dial_update(void);
 uint16_t dial_number(void);   /* the 4 digits as a decimal number */
+extern uint8_t dial_exch;     /* the exchange dialled (EX_*, assets.h) */
 
 /* Quest mini-games (games.c). */
 void serve_start(void) BANKED;

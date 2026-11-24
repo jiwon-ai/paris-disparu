@@ -27,7 +27,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Feature | State |
 |---|---|
 | CGB-only ROM with valid header (MBC5, CGB flag 0xC0) | done, checked by `tests/check_rom.py` |
-| The Fernand mystery: 6 clues (the man with the notebook, Simone and the coltin, call 4127, the petit bleu, call 7302 and the plate, Germaine after the crates), Fernand found on the bridge, two endings (Stay / Go with), an end screen with clues found and real dates (Rungis 1969, pneumatique closed 1984) | done, tested (both endings) |
+| The Fernand mystery: 6 clues (the man with the notebook, Simone and the coltin, call ARC 4127, the petit bleu, call MED 7302 and the plate, Germaine after the crates), Fernand found on the bridge, two endings (Stay / Go with), an end screen with clues found and real dates (Rungis 1969, pneumatique closed 1984) | done, tested (both endings) |
 | Notebook on START: current goal, clues found (n/6), phone numbers learned; a "New clue!" note when one is found | done, tested |
 | Title key art (night view: church with lantern tower behind a lit iron-and-glass pavilion, gas lamps, a fort carrying a crate), fade-in; speaker portraits on the dialogue box; flickering lamp light | done, tested in PyBoy; composition is original and not a measured drawing of Saint-Eustache |
 | One cameo: an unnamed photographer at dawn, inspired by a real photographer's documented weekly visits to Les Halles (see docs/HISTORICAL_RESEARCH.md, Cameos; needs legal review before release) | done, tested |
@@ -54,6 +54,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Original music: 7 loops composed for the game (title, street, market, café, river, métro, mini-games), musette waltzes and polkas, melody on the wave channel over a plucked accompaniment; effects borrow channel 1 | done. Pitches checked from an emulator (PyBoy) recording, **not yet heard by a person** |
 | "Vanished Paris" album: notebook page 3 collects five period objects with a sourced one-line fact each | done, tested (English; the Korean page is not screen-checked) |
 | Curiosities: three vanished objects found as "???" (a green first-class métro ticket, a VéloSolex roller, a Tutankhamun exhibition stub), each identified by the one person who knows; notebook page 4 "Mysteries" | done; ticket tested in a full playthrough, roller and stub identification tested from saves (`tests/save_test.py`); the roller and stub pick-ups are not covered by a test |
+| 1967 phone numbers: exchange + 4 digits ("ARC 4127"), the dial sets the exchange and the digits; ODÉ 8400 is the speaking clock | done, tested (English; Korean dial and rules card screenshot-checked) |
 | Item pictures: the object itself (coltin, petit bleu, plate, gratinée, jeton, tickets, roller, stub) above the note when you get it, and a cup in the coffee game | done, tested (tiles checked in VRAM; English and Korean screenshot-checked) |
 | Night clock 03:00 → 07:00 (one hour per quest, notebook) with the sky turning slightly bluer | done, tested (clock); palette change checked by screenshot |
 | End-screen rank (Tourist → Paris legend) | done, tested (one rank seen in the playthrough) |

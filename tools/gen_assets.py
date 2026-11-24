@@ -231,6 +231,14 @@ for ln, line in enumerate(open(os.path.join(ROOT, "assets", "text", "ui.txt"), e
     if len(text) > limit:
         fail("ui.txt:%d: %r is longer than %d characters" % (ln, key, limit))
     ui.append((key, encode_text(text, "ui.txt:%d" % ln)))
+# Paris telephone exchanges (ex_0.. in ui.txt): only names read in the source
+# (britishtelephones.com, Paris exchange codes; HISTORICAL_RESEARCH claim 13).
+ui_keys = [k for k, _ in ui]
+EXCHANGES = []
+while "ex_%d" % len(EXCHANGES) in ui_keys:
+    EXCHANGES.append(len(EXCHANGES))
+if len(EXCHANGES) < 2:
+    fail("ui.txt: the telephone exchanges ex_0.. are missing")
 
 # ---------------------------------------------------------------------------
 # Dialogue
@@ -393,6 +401,15 @@ H.append("#define LOW_TILE_COUNT %d" % (len(low_data) // 16))
 H.append("/* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */")
 H.append("#define ITEM_TILE %d" % ITEM_TILE)
 H.append("#define NO_ITEM 0")
+H.append("#define EXCH_COUNT %d" % len(EXCHANGES))
+_ui_text = {}
+for _ln in open(os.path.join(ROOT, "assets", "text", "ui.txt"), encoding="utf-8"):
+    if "=" in _ln and not _ln.startswith("#"):
+        _k, _v = [p.strip() for p in _ln.split("=", 1)]
+        _ui_text[_k] = _v
+for _i in EXCHANGES:
+    _name = _ui_text["ex_%d" % _i].upper().replace("É", "E")
+    H.append("#define EX_%s %d" % (_name, _i))
 for k, (name, _, _) in enumerate(items.ITEMS):
     H.append("#define ITEM_%s %d" % (name, k + 1))
 H.append("#define GLYPH_DIGIT0 %d\n#define GLYPH_CUP %d\n#define GLYPH_COIN %d"

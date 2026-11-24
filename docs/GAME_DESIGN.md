@@ -36,7 +36,7 @@ shows a "QUEST COMPLETE!" box with a four-note fanfare.
 | Quest | Giver / where | How it is done | Reward (clue) |
 |---|---|---|---|
 | 1 Coffee rush | Simone, café | **Serve**: 5 orders, pick COFFEE/SOUP/BREAD before the bar empties, 4 right to win | Fernand's coltin |
-| 2 Who wrote him? | phone in the café | win a jeton at the porter's **cup game**, **dial** 4127 (courier), then Simone shows the petit bleu | the petit bleu (Marcel quits) |
+| 2 Who wrote him? | phone in the café | win a jeton at the porter's **cup game**, **dial** ARC 4127 (courier), then Simone shows the petit bleu | the petit bleu (Marcel quits) |
 | 3 Dédé's crates | Dédé, entrance; Germaine, pavilion | **lift** 3 crates (timing), carry each to the right stall, then **catch** 6 of Germaine's cabbages (3 misses allowed) | Germaine tells about Rungis |
 | 4 The brass plate | Mme Roux, quai | trade: she wants a hot gratinée; Simone gives one; bring it to her; a pickpocket snatches the plate, catch him on the quai ("Stop, thief!", 30 s) | his brass plate |
 | 5 Find Fernand | the bridge | give back coltin, plate and the bleu, choose Stay / Go with | the ending |
@@ -49,7 +49,7 @@ Fernand stands bareheaded on the bridge (no coltin, no plate on his
 blouse). Until the player has the coltin, the petit bleu and the plate he
 says what is still missing (his hat at Simone's; who wrote to him; the plate
 sold "on the quai, by the books"), and the notebook goal names the next step
-(help Simone / phone 4127 / tell Simone / look by the river / bring Mme Roux
+(help Simone / phone ARC 4127 / tell Simone / look by the river / bring Mme Roux
 a gratinée). Then he asks what the player would do:
 **Stay** (spend the last winters under the glass) or **Go with** (follow
 the market to Rungis). Both bring him back to the café. End screen: clues
@@ -90,8 +90,8 @@ closed in 1984. B before the question cancels the scene.
 | Extra | How | Payoff |
 |---|---|---|
 | Punch tickets | métro: buy a ticket, punch 3 passengers' tickets | the puncher saw Fernand head for the river |
-| Phone the early butcher | café phone, 0614 (pencilled on the wall) | a gag; counts for the bonus |
-| A message for the painter | phone 2508 (his wife), then tell him | he packs up and goes home |
+| Phone the early butcher | café phone, ROQ 0614 (pencilled on the wall, with ODÉ 8400, the speaking clock, under it) | a gag; counts for the bonus |
+| A message for the painter | phone PAS 2508 (his wife), then tell him | he packs up and goes home |
 
 A note "Extra done! n/3" appears each time. All three: a bonus scene with
 the photographer before the end screen. The end screen shows clues n/6 and

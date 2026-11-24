@@ -62,15 +62,23 @@ uint8_t lift_update(void) {
 }
 
 /* ---------------------------------------------------------------- dial */
+/* A 1967 Paris number: a three-letter exchange (ODÉon 8400) and 4 digits.
+   Slot 0 is the exchange, slots 1-4 the digits. */
+static const uint8_t * const exch_txt[EXCH_COUNT] = {
+    txt_ex_0, txt_ex_1, txt_ex_2, txt_ex_3, txt_ex_4, txt_ex_5, txt_ex_6, txt_ex_7, txt_ex_8,
+};
 static uint8_t digits[4];
 static uint8_t sel;
+uint8_t dial_exch;
 static uint8_t digit_tile0;     /* tile of '0' */
 
 static void draw_dial(void) {
     uint8_t i;
+    box_tile(3, 3, sel == 0 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+    box_print(4, 3, exch_txt[dial_exch]);
     for (i = 0; i < 4; i++) {
-        box_tile(6 + i * 2, 3, i == sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
-        box_tile(7 + i * 2, 3, digit_tile0 + digits[i]);
+        box_tile(8 + i * 2, 3, i + 1 == sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        box_tile(9 + i * 2, 3, digit_tile0 + digits[i]);
     }
 }
 
@@ -78,7 +86,7 @@ void dial_start(void) {
     uint8_t i;
     digit_tile0 = txt_digits[0];   /* "0123456789" from ui.txt */
     for (i = 0; i < 4; i++) digits[i] = 0;
-    sel = 0;
+    sel = dial_exch = 0;
     box_open(6);
     box_print(1, 1, txt_dial_1);
     box_print(1, 2, txt_dial_2);
@@ -97,14 +105,21 @@ uint8_t dial_update(void) {
     }
     if (joy_pressed & J_START) {       /* the next number written in the notebook */
         uint16_t n = notebook_number();
+        dial_exch = notebook_exch;
         digits[0] = n / 1000; digits[1] = n / 100 % 10; digits[2] = n / 10 % 10; digits[3] = n % 10;
         sound_blip();
         draw_dial();
     }
-    if (joy_pressed & J_UP)    digits[sel] = digits[sel] == 9 ? 0 : digits[sel] + 1;
-    if (joy_pressed & J_DOWN)  digits[sel] = digits[sel] == 0 ? 9 : digits[sel] - 1;
+    if (sel == 0) {
+        if (joy_pressed & J_UP)   dial_exch = dial_exch == EXCH_COUNT - 1 ? 0 : dial_exch + 1;
+        if (joy_pressed & J_DOWN) dial_exch = dial_exch == 0 ? EXCH_COUNT - 1 : dial_exch - 1;
+    } else {
+        uint8_t *d = &digits[sel - 1];
+        if (joy_pressed & J_UP)   *d = *d == 9 ? 0 : *d + 1;
+        if (joy_pressed & J_DOWN) *d = *d == 0 ? 9 : *d - 1;
+    }
     if ((joy_pressed & J_LEFT) && sel) sel--;
-    if ((joy_pressed & J_RIGHT) && sel < 3) sel++;
+    if ((joy_pressed & J_RIGHT) && sel < 4) sel++;
     if (joy_pressed & (J_UP | J_DOWN | J_LEFT | J_RIGHT)) {
         sound_blip();
         draw_dial();

@@ -185,7 +185,9 @@ static uint8_t alloc_tile(void) {          /* 0xFF: out of tiles */
         return row_next[r]++;
     }
     if (pool_next >= pool_end) {
-        if (ko_mode < 2 || pool_bank1) return 0xFF;
+        /* full screen and the rules card (it covers the screen) may borrow
+           the scenery tiles of VRAM bank 1; box_close() reloads them */
+        if ((ko_mode < 2 && !seq_pool) || pool_bank1) return 0xFF;
         pool_bank1 = 1;
         ko_borrowed = 1;
         pool_next = 0;
