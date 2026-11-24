@@ -131,7 +131,49 @@ void notebook_show(void) BANKED {
     box_flush();
 }
 
-/* Second page: optional side goals, each with where to look. */
+/* Second page: the poem. The hero is a young poet who came down to the
+   market for words; each quest done gives two lines (original text). */
+static const uint8_t * const poem_txt[QUEST_COUNT * 2] = {
+    txt_poem_0a, txt_poem_0b, txt_poem_1a, txt_poem_1b, txt_poem_2a, txt_poem_2b,
+    txt_poem_3a, txt_poem_3b, txt_poem_4a, txt_poem_4b
+};
+
+static void poem_show(void) {
+    uint8_t i;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_poem_title);
+    for (i = 0; i < QUEST_COUNT; i++) {
+        if (quest_done(i)) {
+            box_print(1, 3 + i * 3, poem_txt[i * 2]);
+            box_print(1, 4 + i * 3, poem_txt[i * 2 + 1]);
+        } else {
+            box_print(1, 3 + i * 3, txt_poem_none);
+        }
+    }
+    box_print(1, 17, txt_nb_extras);
+    box_print(14, 17, txt_nb_close);
+    box_flush();
+}
+
+static uint8_t nb_page;
+
+void nb_open(void) BANKED {
+    nb_page = 0;
+    notebook_show();
+}
+
+void nb_turn(uint8_t right) BANKED {
+    nb_page = right ? (nb_page == 4 ? 0 : nb_page + 1) : (nb_page ? nb_page - 1 : 4);
+    switch (nb_page) {
+    case 1:  poem_show(); break;
+    case 2:  extras_show(); break;
+    case 3:  album_show(); break;
+    case 4:  curio_show(); break;
+    default: notebook_show();
+    }
+}
+
+/* Third page: optional side goals, each with where to look. */
 static const uint8_t * const extra_txt[X_COUNT * 2] = {
     txt_x_0, txt_x_0h, txt_x_1, txt_x_1h, txt_x_2, txt_x_2h
 };
@@ -157,7 +199,7 @@ void extras_show(void) BANKED {
     box_flush();
 }
 
-/* Third page: the vanished-Paris album. Each object found shows a one-line
+/* Fourth page: the vanished-Paris album. Each object found shows a one-line
    fact read in a source (docs/HISTORICAL_RESEARCH.md); the rest show ???. */
 #define ALBUM_COUNT 5
 static const uint8_t * const album_txt[ALBUM_COUNT * 2] = {
@@ -201,7 +243,7 @@ static uint8_t album_total(void) {
     return n;
 }
 
-/* Fourth page: curiosities. Unknown: ???. Found: what it looks like and who
+/* Fifth page: curiosities. Unknown: ???. Found: what it looks like and who
    might know. Identified: what it was (facts: docs/HISTORICAL_RESEARCH.md). */
 static const uint8_t * const curio_txt[CURIO_COUNT * 4] = {
     txt_cu_0q, txt_cu_0h, txt_cu_0, txt_cu_0f,

@@ -600,6 +600,7 @@ talk("DÉFENSE D'AFFICHER")
 goto(32, 96, "xy")                 # back down past the lamp
 tap("start", 10)
 tap("right", 10)
+tap("right", 10)
 check("Secrets found 3/9" in window_row(15), "the notebook counts the secrets: %r" % window_row(15))
 tap("start", 10)
 
@@ -909,6 +910,11 @@ check(any("river" in l for l in lines), "his hint: Fernand went towards the rive
 check(window_on() and "Extra done" in window_row(1) and "1/3" in window_row(1), "side goal noted: %r" % window_row(1))
 tap("b", 4)
 tap("start", 10)
+tap("right", 10)
+poem = [window_row(r) for r in range(18)]
+check("MY POEM" in poem[1] and poem[3] == "Hot black coffee" and poem[4] == "zinc bar, 3 a.m."
+      and poem[15] == ". . .", "notebook page 2, the poem: two lines per quest done: %r" % poem[1:17])
+shot("45_poem")
 tap("right", 10)
 check("EXTRAS" in window_row(1) and window_row(3).startswith("OK") and window_row(6).startswith("--"),
       "notebook page 2 lists the extras: %r %r" % (window_row(3), window_row(6)))

@@ -37,7 +37,7 @@ static const int16_t cat_path[][2] = { { 56, 92 }, { 44, 92 }, { 36, 84 }, { 30,
 int16_t cat_x = 56, cat_y = 92;
 static void close_caption(void);
 static uint8_t lift_punch;
-static uint8_t nb_page, teaser_seen;
+static uint8_t teaser_seen;
 static uint8_t game_ev;          /* EV_SERVE / EV_CUPS / EV_CATCH while in ST_GAME */
 static uint8_t fanfare;          /* frames left of the quest-complete jingle */
 static uint8_t howto_seen;       /* bit (EV_* - EV_FIRST): rules already shown */
@@ -498,7 +498,7 @@ static void open_dialogue(uint8_t d) {
             box_print(1, 1, txt_quest_done);
             box_print(1, 2, quest_name[q]);
             box_print(1, 3, quest_got[q]);
-            box_print(1, 4, txt_extra_more);
+            box_print(1, 4, txt_poem_new);     /* each quest: a line of the poem */
             world_dawn(dawn_now());        /* an hour later: the sky pales */
             caption_timer = 300;
             caption_note = 1;
@@ -687,8 +687,7 @@ void main(void) {
             if (joy_pressed & J_START) {
                 caption_timer = 0;
                 bark_from = NO_BARK;
-                nb_page = 0;
-                notebook_show();
+                nb_open();
                 sound_confirm();
                 state = ST_NOTEBOOK;
                 break;
@@ -774,16 +773,11 @@ void main(void) {
             } else if (joy_pressed & J_SELECT) {          /* sound on / off, shown on page 1 */
                 music_set_muted(!music_muted);
                 save_write();
-                nb_page = 0;
-                notebook_show();
+                nb_open();
             } else if (joy_pressed & (J_UP | J_DOWN)) {      /* Korean: long page, other half */
                 if (box_more()) sound_blip();
             } else if (joy_pressed & (J_LEFT | J_RIGHT)) {   /* clues <-> extras */
-                nb_page = (joy_pressed & J_RIGHT) ? (nb_page + 1) & 3 : (nb_page + 3) & 3;
-                if (nb_page == 1) extras_show();
-                else if (nb_page == 2) album_show();
-                else if (nb_page == 3) curio_show();
-                else notebook_show();
+                nb_turn(joy_pressed & J_RIGHT);
                 sound_blip();
             }
             break;
