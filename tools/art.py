@@ -868,6 +868,26 @@ YOUNG_MAN = [        # lanky student, longish hair, books under the arm
     ".....#o..o#.....",
     "....##....##....",
 ]
+def _sparkle():
+    """16x16 four-point star with short diagonals: the "got it!" burst.
+    Sprite palette 7 (orange 'o', gold 's')."""
+    rows = []
+    for y in range(16):
+        r = ""
+        for x in range(16):
+            dx, dy = abs(x - 7.5), abs(y - 7.5)
+            axis = (dx < 1 and dy < 7) or (dy < 1 and dx < 7)
+            diag = abs(dx - dy) < 0.6 and 1.5 < dx < 4.5
+            if axis or diag:
+                r += "s" if max(dx, dy) < 3 else "o"
+            else:
+                r += "."
+        rows.append(r)
+    return rows
+
+
+SPARKLE = _sparkle()
+
 BANK1_LOW_SPRITES = [
     ("THIEF_0", THIEF_0),
     ("THIEF_1", THIEF_1),
@@ -875,6 +895,7 @@ BANK1_LOW_SPRITES = [
     ("PLAYWRIGHT", PLAYWRIGHT),
     ("CRITIC", CRITIC),
     ("YOUNG_MAN", YOUNG_MAN),
+    ("SPARKLE", SPARKLE),
 ]
 
 

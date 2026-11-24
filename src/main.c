@@ -39,6 +39,31 @@ static uint8_t lift_punch;
 static uint8_t nb_page, teaser_seen;
 static uint8_t game_ev;          /* EV_SERVE / EV_CUPS / EV_CATCH while in ST_GAME */
 static uint8_t fanfare;          /* frames left of the quest-complete jingle */
+static uint8_t sparkle;          /* frames left of the "got it!" star over the player */
+static uint8_t shake;            /* frames left of a small screen shake */
+#define SPARKLE_OAM 20           /* free: games use 16-17, portraits 24+ */
+#define SPARKLE_FRAMES 96
+
+/* Juice: the star rises and blinks over the player's head; the screen
+   shakes by a pixel or two. Both are cosmetic and stop by themselves. */
+static void update_juice(void) {
+    if (sparkle) {
+        sparkle--;
+        if (state != ST_WALK || !sparkle || (sparkle & 4)) {
+            move_sprite(SPARKLE_OAM, 0, 0);
+            move_sprite(SPARKLE_OAM + 1, 0, 0);
+            if (state != ST_WALK) sparkle = 0;
+        } else {
+            sprite16(SPARKLE_OAM, player.x, player.y - 16 - ((SPARKLE_FRAMES - sparkle) >> 4),
+                     SPR1_SPARKLE, 7 | S_BANK1);
+        }
+    }
+    if (shake) {
+        shake--;
+        SCX_REG = (shake & 2) ? 2 : 0;
+        SCY_REG = (shake & 4) ? 1 : 0;
+    }
+}
 static const uint16_t fanfare_x[4] = { 1985, 1964, 1949, 1923 };   /* C7 G6 E6 C6, played backwards */
 
 static const uint8_t * const quest_name[QUEST_COUNT - 1] = {
@@ -330,7 +355,7 @@ static void update_markers(void) {
             move_sprite(MARK_OAM, n->x + 12, n->y + 2 + bob);
         }
     }
-    if (player_interact() != NO_DIALOGUE) {
+    if (!sparkle && player_interact() != NO_DIALOGUE) {   /* the star has the spot */
         set_sprite_tile(MARK_OAM + 1, SPR1_PRESS);
         set_sprite_prop(MARK_OAM + 1, 3 | S_BANK1);
         move_sprite(MARK_OAM + 1, player.x + 12, player.y + 2);
@@ -360,7 +385,7 @@ static void open_dialogue(uint8_t d) {
         music_play(SONG_GAME);
         if (d == EV_SERVE) serve_start();
         else if (d == EV_CUPS) cups_start();
-        else if (d == EV_CHASE) chase_start();
+        else if (d == EV_CHASE) { chase_start(); shake = 16; }   /* the bump */
         else catch_start();
         state = ST_GAME;
     } else if (d == EV_END) {
@@ -382,6 +407,7 @@ static void open_dialogue(uint8_t d) {
             caption_timer = 300;
             caption_note = 1;
             fanfare = 32;
+            sparkle = SPARKLE_FRAMES;
         } else if (new_clue) {   /* tell the player the notebook changed */
             new_clue = 0;
             box_open(5);
@@ -390,6 +416,7 @@ static void open_dialogue(uint8_t d) {
             caption_timer = 240;
             caption_note = 1;
             sound_confirm();
+            sparkle = SPARKLE_FRAMES;
         } else if (new_extra | new_secret) {   /* a side goal done, or a secret */
             uint8_t sec = new_secret;
             new_extra = new_secret = 0;
@@ -402,6 +429,7 @@ static void open_dialogue(uint8_t d) {
             caption_note = 1;
             if (sec) fanfare = 16;         /* a little two-note "ding" */
             else sound_confirm();
+            sparkle = SPARKLE_FRAMES;
         }
     } else {
         cur_dialogue = d;
@@ -656,6 +684,7 @@ void main(void) {
             if ((fanfare & 7) == 7) sound_note(fanfare_x[fanfare >> 3], fanfare >= 8 ? 0x62 : 0x65);
         }
         update_markers();
+        update_juice();
         if (state != ST_END) flicker_lamps();
     }
 }

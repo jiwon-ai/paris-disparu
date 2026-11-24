@@ -7,10 +7,28 @@
 uint8_t cur_room;
 
 static const palette_color_t black[32] = { 0 };
+static palette_color_t fade[64];
+
+/* All palettes at level/4 of their brightness (bank ASSET_BANK mapped). */
+static void fade_to(uint8_t level) {
+    uint8_t i;
+    for (i = 0; i < 64; i++) {
+        uint16_t c = i < 32 ? bg_palettes[i] : spr_palettes[i - 32];
+        uint8_t r = c & 31, g = (c >> 5) & 31, b = (c >> 10) & 31;
+        fade[i] = (uint16_t)((r * level) >> 2) | ((uint16_t)((g * level) >> 2) << 5)
+                  | ((uint16_t)((b * level) >> 2) << 10);
+    }
+    wait_vbl_done();
+    set_bkg_palette(0, 8, fade);
+    set_sprite_palette(0, 8, fade + 32);
+    wait_vbl_done();
+}
 
 void world_load(uint8_t room) {
+    uint8_t l;
     cur_room = room;
-    /* Black out, rewrite the map while invisible, then restore colours. */
+    /* Fade out, rewrite the map while invisible, then fade back in. */
+    for (l = 3; l; l--) fade_to(l);
     wait_vbl_done();
     set_bkg_palette(0, 8, black);
     set_sprite_palette(0, 8, black);
@@ -18,6 +36,7 @@ void world_load(uint8_t room) {
     set_bkg_tiles(0, 0, MAP_W, MAP_H, room_attrs[room]);
     VBK_REG = VBK_TILES;
     set_bkg_tiles(0, 0, MAP_W, MAP_H, room_tiles[room]);
+    for (l = 1; l < 4; l++) fade_to(l);
     wait_vbl_done();
     set_bkg_palette(0, 8, bg_palettes);
     set_sprite_palette(0, 8, spr_palettes);

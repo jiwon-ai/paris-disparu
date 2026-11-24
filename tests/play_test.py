@@ -45,6 +45,8 @@ for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", 
     m = re.match(r"#define (\w+) (\d+)$", line.strip())
     if m:
         HDR[m.group(1)] = int(m.group(2))
+sym_spr1_sparkle = int(re.search(r"#define SPR1_SPARKLE (\d+)", open(os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "include", "assets.h")).read()).group(1))
 pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False)
 mem = pb.memory
 
@@ -439,7 +441,7 @@ check("TONIGHT" in window_row(3) and "Find Fernand" in window_row(13), "intro pa
 tap("a", 10)
 check("CONTROLS" in window_row(3) and "notebook" in window_row(8), "intro page 3, controls: %r" % window_row(8))
 shot("00_controls")
-tap("a", 30)
+tap("a", 50)   # the street fades in
 
 print("street: the goal and the cat")
 check(player() == (84, 92) and room() == ROOM_STREET, "spawned in the street at (84,92): %s" % (player(),))
@@ -483,6 +485,14 @@ check(window_row(1).startswith("MAN WITH NOTEBOOK"), "speaker shown: %r" % windo
 shot("03_dialogue")
 lines = dialogue()
 check(window_on() and "New clue" in window_row(1) and clues() == 0x01, "the missing hat is the first clue (0x%02x)" % clues())
+seen = 0
+for _ in range(12):                          # the "got it!" star blinks over the player
+    tick(1)
+    if mem[0xFE00 + 20 * 4] and mem[0xFE00 + 20 * 4 + 2] == sym_spr1_sparkle:
+        seen += 1
+        if seen == 1:
+            shot("34_sparkle")
+check(seen > 0, "a star sparkles over the player for the new clue (%d frames)" % seen)
 tap("b", 4)
 check(not window_on(), "A pages through and closes (%d pages)" % (len(lines) + 1))
 tap("a", 50)
