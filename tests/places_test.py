@@ -526,6 +526,10 @@ goto(40, 50, "yx")
 push("left", 200)
 check(room() == ROOM_BOURSE, "the covered street leads west to the Bourse de commerce (room %d, %s)" % (room(), player()))
 tick(30)
+rx = mem[0xFE00 + 18 * 4 + 1]
+tick(120)
+check(mem[0xFE00 + 18 * 4] != 0 and mem[0xFE00 + 18 * 4 + 1] != rx,
+      "a rat scurries along the setts (OAM 18 x %d -> %d)" % (rx, mem[0xFE00 + 18 * 4 + 1]))
 shot("41_bourse")
 goto(130, 56, "yx")
 goto(24, 56, "xy")

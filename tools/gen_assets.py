@@ -179,6 +179,12 @@ icon_data = []
 for name, grid, _ in items.ITEMS:
     rows16 = ["".join(SPR_MAP[c] for c in r) for r in items.icon(name)]
     icon_data += encode_tile(rows16[:8]) + encode_tile(rows16[8:])
+# The rat (16x16), loaded into the last 4 item-picture tiles while in its room.
+RAT_TILE = ITEM_TILE + 8
+rat_data = []
+_rows = ["".join(SPR_MAP[c] for c in r) for r in art.RAT]
+for (y0, x0) in ((0, 0), (8, 0), (0, 8), (8, 8)):
+    rat_data += encode_tile([r[x0:x0 + 8] for r in _rows[y0:y0 + 8]])
 portrait_names = [n for n, _, _ in portraits.PORTRAITS]
 if PORTRAIT_BASE + len(portrait_data) // 16 > 256:
     fail("portrait tiles do not fit in VRAM bank 1")
@@ -468,6 +474,8 @@ H.append("extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 
 H.append("extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */")
 H.append("extern const uint8_t item_tiles[];            /* bank PORTRAIT_BANK, 192 bytes per item */")
 H.append("extern const uint8_t item_pal[];              /* bank PORTRAIT_BANK */")
+H.append("#define RAT_TILE %d   /* VRAM bank 1: the rat, over the item picture's last tiles */" % RAT_TILE)
+H.append("extern const uint8_t rat_tiles[];             /* bank PORTRAIT_BANK, 64 bytes */")
 H.append("extern const uint8_t item_icon[];             /* bank PORTRAIT_BANK: 8x16 HUD icons, 32 bytes each */")
 H.append("extern const uint8_t low_tiles[];             /* bank PORTRAIT_BANK, VRAM bank 1 tile 0.. */")
 H.append("extern const uint8_t portrait_pal[];          /* sprite palette per portrait */")
@@ -585,7 +593,8 @@ outputs = {
         "const uint8_t env_tiles[] = {\n%s\n};" % c_bytes(env_data),
         "const uint8_t item_tiles[] = {\n%s\n};" % c_bytes(item_data),
         "const uint8_t item_pal[] = { %s };" % ", ".join(str(p) for _, _, p in items.ITEMS),
-        "const uint8_t item_icon[] = {\n%s\n};" % c_bytes(icon_data), ""]) + "\n",
+        "const uint8_t item_icon[] = {\n%s\n};" % c_bytes(icon_data),
+        "const uint8_t rat_tiles[] = {\n%s\n};" % c_bytes(rat_data), ""]) + "\n",
 }
 import ko_gen  # noqa: E402
 ko_out, ko_report = ko_gen.build([(d, p) for d, p, _ in entries], {k: v for k, v in choices.items() if v},

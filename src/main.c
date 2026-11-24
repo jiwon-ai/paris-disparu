@@ -825,6 +825,7 @@ void main(void) {
         update_markers();
         update_juice();
         hud_update(state == ST_WALK || state == ST_DIALOGUE);   /* carried items, top-left */
+        rat_update(state == ST_WALK);
         if (state != ST_END && state != ST_DAWN) flicker_lamps();
     }
 }

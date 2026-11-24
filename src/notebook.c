@@ -271,6 +271,39 @@ uint16_t ambience_play(uint8_t r) BANKED {
     return 90 + (r & 127);
 }
 
+/* A rat scurries along the setts by the Bourse, stops, turns, runs back. */
+#define RAT_OAM 18
+static uint8_t rat_x = 24, rat_wait = 40, rat_left, rat_on;
+
+void rat_update(uint8_t walking) BANKED {
+    if (!walking || cur_room != ROOM_BOURSE) {
+        if (rat_on) {
+            move_sprite(RAT_OAM, 0, 0);
+            move_sprite(RAT_OAM + 1, 0, 0);
+            rat_on = 0;
+        }
+        return;
+    }
+    if (!rat_on) {                      /* its tiles share the item picture's */
+        static uint8_t buf[64];
+        far_read(PORTRAIT_BANK, rat_tiles, buf, 64);
+        VBK_REG = 1;
+        set_sprite_data(RAT_TILE, 4, buf);
+        VBK_REG = 0;
+        rat_on = 1;
+    }
+    if (rat_wait) rat_wait--;
+    else {
+        rat_x += rat_left ? -2 : 2;
+        if (rat_x >= 64 || rat_x <= 8) {
+            rat_left ^= 1;
+            rat_wait = 50 + (DIV_REG & 127);
+        }
+    }
+    sprite16(RAT_OAM, rat_x, rat_wait ? 112 : 112 - ((rat_x >> 1) & 1),
+             RAT_TILE, 4 | S_BANK1 | (rat_left ? S_FLIPX : 0));
+}
+
 /* The caption when a coin is picked up. */
 void coin_note(void) BANKED {
     box_open(5);

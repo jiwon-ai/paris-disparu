@@ -37,7 +37,7 @@
 #define GLYPH_COFFEE 244
 #define GLYPH_COFFEE_ZONE 245
 
-#define ENV_TILE_COUNT 127
+#define ENV_TILE_COUNT 126
 #define TILE_SKY 0
 #define TILE_ROOFTOP 1
 #define TILE_ROOF 2
@@ -139,32 +139,31 @@
 #define TILE_CAR_5 98
 #define TILE_CAR_6 99
 #define TILE_CAR_7 100
-#define TILE_RAT 101
-#define TILE_INSCR_0 102
-#define TILE_INSCR_1 103
-#define TILE_INSCR_2 104
-#define TILE_INSCR_3 105
-#define TILE_INSCR_4 106
-#define TILE_INSCR_5 107
-#define TILE_INSCR_6 108
-#define TILE_INSCR_7 109
-#define TILE_INSCR_8 110
-#define TILE_MAP4_0 111
-#define TILE_MAP4_1 112
-#define TILE_MAP4_2 113
-#define TILE_MAP4_3 114
-#define TILE_MAP4_4 115
-#define TILE_MAP4_5 116
-#define TILE_MAP4_6 117
-#define TILE_MAP4_7 118
-#define TILE_BASKET 119
-#define TILE_CHAIR 120
-#define TILE_BENCH_L 121
-#define TILE_BENCH_R 122
-#define TILE_POSTER_0 123
-#define TILE_POSTER_1 124
-#define TILE_POSTER_2 125
-#define TILE_POSTER_3 126
+#define TILE_INSCR_0 101
+#define TILE_INSCR_1 102
+#define TILE_INSCR_2 103
+#define TILE_INSCR_3 104
+#define TILE_INSCR_4 105
+#define TILE_INSCR_5 106
+#define TILE_INSCR_6 107
+#define TILE_INSCR_7 108
+#define TILE_INSCR_8 109
+#define TILE_MAP4_0 110
+#define TILE_MAP4_1 111
+#define TILE_MAP4_2 112
+#define TILE_MAP4_3 113
+#define TILE_MAP4_4 114
+#define TILE_MAP4_5 115
+#define TILE_MAP4_6 116
+#define TILE_MAP4_7 117
+#define TILE_BASKET 118
+#define TILE_CHAIR 119
+#define TILE_BENCH_L 120
+#define TILE_BENCH_R 121
+#define TILE_POSTER_0 122
+#define TILE_POSTER_1 123
+#define TILE_POSTER_2 124
+#define TILE_POSTER_3 125
 #define SPRITE_TILE_COUNT 128
 #define SPR1_ACTOR 232   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_CHANTEUSE 236   /* VRAM bank 1: use palette | S_BANK1 */
@@ -491,6 +490,8 @@ extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
 extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */
 extern const uint8_t item_tiles[];            /* bank PORTRAIT_BANK, 192 bytes per item */
 extern const uint8_t item_pal[];              /* bank PORTRAIT_BANK */
+#define RAT_TILE 60   /* VRAM bank 1: the rat, over the item picture's last tiles */
+extern const uint8_t rat_tiles[];             /* bank PORTRAIT_BANK, 64 bytes */
 extern const uint8_t item_icon[];             /* bank PORTRAIT_BANK: 8x16 HUD icons, 32 bytes each */
 extern const uint8_t low_tiles[];             /* bank PORTRAIT_BANK, VRAM bank 1 tile 0.. */
 extern const uint8_t portrait_pal[];          /* sprite palette per portrait */

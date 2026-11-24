@@ -140,7 +140,7 @@ static const hotspot_t bourse_hotspots[] = {
     { 11, 0, 1, 8, DLG_MEDICI },
     { 12, 0, 4, 8, DLG_BRASSERIE_FRONT },
     {  8, 13, 2, 2, DLG_VESPASIENNE },
-    {  4, 15, 1, 1, DLG_RAT },
+    {  1, 15, 8, 1, DLG_RAT },        /* where the rat runs */
     {  2, 9, 1, 2, DLG_LAMP },
     { 10, 9, 1, 2, DLG_LAMP },
     { 16, 0, 4, 7, DLG_WEST_PAVILION },
