@@ -294,7 +294,8 @@ uint8_t event_talk(uint8_t npc) BANKED {
 
     case NPC_ACTOR: case NPC_CHANTEUSE: case NPC_PHILOSOPHER: case NPC_FILMMAKER: case NPC_WRITER:
     case NPC_NOVELIST: case NPC_PLAYWRIGHT: case NPC_CRITIC: case NPC_YOUNG_MAN:
-    case NPC_FORT2: case NPC_COOK: case NPC_SLEEPER: {   /* first line, then a second */
+    case NPC_FORT2: case NPC_COOK: case NPC_SLEEPER:
+    case NPC_WAITER: case NPC_NIGHTPORTER: case NPC_SOUPER: {   /* first line, then a second */
         uint8_t k = npc - NPC_ACTOR;
         uint16_t bit = 1u << k;
         if (cameo_met & bit) return DLG_ACTOR_HELLO + 2 * k + 1;   /* his or her hint */

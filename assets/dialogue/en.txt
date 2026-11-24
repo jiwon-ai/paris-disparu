@@ -319,6 +319,49 @@ Below, the Seine. Black, and yet full of lights.
 [quai_shop]
 Shutters closed. A poster: Jacques Tati's new film, "Playtime". A Paris all glass and steel. "Soon."
 
+# ---------------------------------------------------------------- west end (2026-11-24)
+# Sources: HISTORICAL_RESEARCH.md "West end of Les Halles" and "Street life".
+[bourse]
+THE BOURSE DE COMMERCE: a round building under an iron dome sheathed in copper. Built in 1763-69 as the grain hall, it has housed the commodities exchange since 1885.
+
+[bourse_door]
+The great door is shut for the night. Behind it, prices of wheat and sugar wait for morning.
+
+[medici]
+THE MEDICI COLUMN: a lone stone column against the rotunda, with an iron cage at the very top. It was built for watching the stars, for astrology.
+
+[vespasienne]
+A VESPASIENNE: a street urinal in green cast iron, a screen in front, a lamp on top. Two boots show under the screen. Someone inside is whistling.
+
+Paris put these up because men relieved themselves against any wall. Royal edicts forbade it from 1770. The wall next door says plenty still do.
+
+[rat]
+A rat crosses the cobbles, in no hurry at all. There are so many round the market that hygiene is one reason it has to leave Paris.
+
+[brasserie_front]
+A BRASSERIE, lit from top to bottom. It never closes: forts at one table, night owls in evening clothes at the next.
+
+[west_pavilion]
+The west pavilions, glass and iron. A covered street runs through them back to rue Baltard.
+
+[hotel_keys]
+The key board. Most hooks are empty: the guests are asleep, or out at Les Halles.
+
+[hotel_mirror]
+A spotted mirror. You look like someone who hasn't slept. You haven't.
+
+[hotel_stairs]
+The stairs creak just from looking at them. Upstairs, someone is snoring.
+
+[bra_mirror]
+Mirrors all along the walls. The room looks twice as full, and twice as loud.
+
+[bra_table]
+Marble tables, paper napkins, a pot of mustard. Someone's onion soup is going cold.
+
+[hotel_chair]
+A worn armchair. The porter's newspaper is folded on it, open at the racing page.
+
 # ---------------------------------------------------------------- the bridge
 [painter_hello]
 THE PAINTER: Don't move! … No, move. I'm painting the Seine, not you.
@@ -346,122 +389,6 @@ The Pont Neuf: despite its name, the oldest bridge in Paris. Below, the water ra
 
 # ---------------------------------------------------------------- barks
 # One-page lines that NPCs call out by themselves when the player comes close.
-[bark_stranger]
-MAN WITH NOTEBOOK: Psst! Fernand…
-
-[bark_stranger_met]
-MAN WITH NOTEBOOK: Noting, noting…
-
-[bark_porter]
-DÉDÉ: Hey, you! Seen Fernand?
-
-[bark_porter_cart]
-DÉDÉ: The cart! Grab a crate!
-
-[bark_porter_carry]
-DÉDÉ: Inside! Read the signs!
-
-[bark_porter_back]
-DÉDÉ: Well? All delivered?
-
-[bark_porter_done]
-DÉDÉ: Thanks, kid! See Germaine.
-
-[bark_merchant]
-GERMAINE: Fine cabbages! Cheap!
-
-[bark_merchant_choux]
-GERMAINE: Oh! Is that for me?
-
-[bark_cafe]
-SIMONE: Come in! After Fernand?
-
-[bark_cafe_met]
-SIMONE: Any sign of Fernand?
-
-[bark_cafe_jeton]
-SIMONE: Phone? You need a jeton!
-
-[bark_worker]
-A PORTER: Zzz… zzz…
-
-[fernand_hello]
-FERNAND: Leave me be, kid. I'm watching the water.
-
-He rubs his bare head. FERNAND: Cold, without my coltin. I left it at Simone's café.
-
-[fernand_why]
-FERNAND: My coltin… Simone kept it, eh? Doesn't matter.
-
-Why I left? Ask whoever wrote to me. A courier came to the café yesterday.
-
-[fernand_plate]
-FERNAND: Marcel's bleu… So you read it.
-
-My brass plate? Gone. I sold it to someone on the quai, by the books. Go and ask.
-
-[fernand_talk]
-FERNAND: Leave me be, kid… What's that? My coltin?
-
-You hand him his hat, his brass plate, and you tell him about Marcel's petit bleu.
-
-FERNAND: So you know. Thirty years I've carried for Les Halles. My father before me.
-
-And now they're taking the market out to Rungis. Concrete, lorries. Marcel's right.
-
-Who'll want an old fort out there? Better to stop now, before they stop me.
-
-He turns the coltin in his big hands. FERNAND: What would you do, kid?
-? Stay | Go with
-
-[end_stay]
-You tell him: there are still two winters left under the glass. Spend them here.
-
-FERNAND: Two winters… Germaine's cabbages won't carry themselves, eh?
-
-He puts on his coltin. Together you walk back towards the light of the pavilions.
-
-At the café, Simone heats up his coffee. Dédé laughs. Fernand is back.
-
-At the door, the photographer raises his camera. Click. One more face of Les Halles, before it all goes.
-
-[end_go]
-You tell him: if the market goes, go with it. Carry for Germaine out there too.
-
-FERNAND: Out there… The cabbages will be the same cabbages, eh? And my back the same back.
-
-He puts on his coltin. FERNAND: Then we'll all go together. Marcel too. I'll drag him.
-
-At the café, Simone heats up his coffee. Dédé laughs. Fernand is back.
-
-At the door, the photographer raises his camera. Click. One more face of Les Halles, before it all goes.
-
-[photo_hello]
-THE PHOTOGRAPHER: Don't mind me. Once a week I come up from Montrouge at three in the morning.
-
-For this. The lorries, the crates, the steam off the porters' backs. Nobody looks at it.
-
-They'll take all this out to Rungis soon. So I photograph it. Every week, while it's here.
-
-A fort was missing tonight? The big one, Fernand. I photographed him last week, laughing under his hat.
-
-[photo_again]
-THE PHOTOGRAPHER: The light's changing. In an hour the market will look like any other place.
-
-Last month they opened the lorry station out at Rungis. I went. Concrete, and not one face worth a photo.
-
-[photo_knows]
-THE PHOTOGRAPHER: You found Fernand? Bring him back under the glass. I'd like one more picture of him.
-
-[bark_photo]
-THE PHOTOGRAPHER: Shh. Don't move!
-
-[bark_fernand]
-FERNAND: …
-
-[bark_painter]
-THE PAINTER: Shh… I'm painting.
-
 [puncher_hello]
 TICKET PUNCHER: Ticket, kid! Nobody goes down to the trains without a hole in his ticket.
 
@@ -711,7 +638,7 @@ This year I sat on a tribunal judging the war in Vietnam. Words can still act.
 THE FILMMAKER: My new film opens in December. A city of glass and steel. I came to look at the old one before it goes.
 
 [filmmaker_again]
-THE FILMMAKER: Watch people, not things. That hotel door in rue Rambuteau: knock, wait, knock again. Comedy is patience.
+THE FILMMAKER: Watch people, not things. That hotel window in rue Rambuteau: knock, wait, knock again. Comedy is patience.
 
 [writer_hello]
 THE WRITER: I once wrote about a girl who came to Paris only to ride the métro. It was on strike, of course.
@@ -773,6 +700,24 @@ A NIGHT WORKER: Mm? Just waiting for the first train. Then home, then bed.
 [sleeper_again]
 A NIGHT WORKER: Zzz… They say the whole market's going out to Rungis… Zzz…
 
+[waiter_hello]
+THE WAITER: Open all night, every night, since forty-seven. Forts at one table, night owls at the next. What'll it be?
+
+[waiter_again]
+THE WAITER: The telephone? On the back wall, by the mirrors. Jetons only, like everywhere.
+
+[nightporter_hello]
+THE NIGHT PORTER: Shh! The guests are asleep. And no, we're full. Market men knock at all hours for a bed for three hours.
+
+[nightporter_again]
+THE NIGHT PORTER: Looking for someone at this hour? Ask in the cafés. Everybody at Les Halles passes through a café.
+
+[souper_hello]
+A FORT, over his soup: First hot thing since midnight. Thirty years of this. When the market goes to Rungis, where will we eat at four in the morning?
+
+[souper_again]
+A FORT: Fernand? He always sits there, by the mirror. Not tonight. Funny, that.
+
 # ---------------------------------------------------------------- curiosities
 # Vanished objects found as "???" (curio_flags), then shown to the one person
 # who knows what they are. Keep the three _find entries, then the three
@@ -800,3 +745,121 @@ Students ride them everywhere. Someone's walking home tonight.
 THE PAINTER: Tutankhamun! The boy king's gold, at the Petit Palais this year.
 
 All Paris queued. Over a million people. Keep it: one day nobody will believe you.
+
+# --- moved here 2026-11-24 to keep hotspot dialogues below id 0x80 ---
+[bark_stranger]
+MAN WITH NOTEBOOK: Psst! Fernand…
+
+[bark_stranger_met]
+MAN WITH NOTEBOOK: Noting, noting…
+
+[bark_porter]
+DÉDÉ: Hey, you! Seen Fernand?
+
+[bark_porter_cart]
+DÉDÉ: The cart! Grab a crate!
+
+[bark_porter_carry]
+DÉDÉ: Inside! Read the signs!
+
+[bark_porter_back]
+DÉDÉ: Well? All delivered?
+
+[bark_porter_done]
+DÉDÉ: Thanks, kid! See Germaine.
+
+[bark_merchant]
+GERMAINE: Fine cabbages! Cheap!
+
+[bark_merchant_choux]
+GERMAINE: Oh! Is that for me?
+
+[bark_cafe]
+SIMONE: Come in! After Fernand?
+
+[bark_cafe_met]
+SIMONE: Any sign of Fernand?
+
+[bark_cafe_jeton]
+SIMONE: Phone? You need a jeton!
+
+[bark_worker]
+A PORTER: Zzz… zzz…
+
+[fernand_hello]
+FERNAND: Leave me be, kid. I'm watching the water.
+
+He rubs his bare head. FERNAND: Cold, without my coltin. I left it at Simone's café.
+
+[fernand_why]
+FERNAND: My coltin… Simone kept it, eh? Doesn't matter.
+
+Why I left? Ask whoever wrote to me. A courier came to the café yesterday.
+
+[fernand_plate]
+FERNAND: Marcel's bleu… So you read it.
+
+My brass plate? Gone. I sold it to someone on the quai, by the books. Go and ask.
+
+[fernand_talk]
+FERNAND: Leave me be, kid… What's that? My coltin?
+
+You hand him his hat, his brass plate, and you tell him about Marcel's petit bleu.
+
+FERNAND: So you know. Thirty years I've carried for Les Halles. My father before me.
+
+And now they're taking the market out to Rungis. Concrete, lorries. Marcel's right.
+
+Who'll want an old fort out there? Better to stop now, before they stop me.
+
+He turns the coltin in his big hands. FERNAND: What would you do, kid?
+? Stay | Go with
+
+[end_stay]
+You tell him: there are still two winters left under the glass. Spend them here.
+
+FERNAND: Two winters… Germaine's cabbages won't carry themselves, eh?
+
+He puts on his coltin. Together you walk back towards the light of the pavilions.
+
+At the café, Simone heats up his coffee. Dédé laughs. Fernand is back.
+
+At the door, the photographer raises his camera. Click. One more face of Les Halles, before it all goes.
+
+[end_go]
+You tell him: if the market goes, go with it. Carry for Germaine out there too.
+
+FERNAND: Out there… The cabbages will be the same cabbages, eh? And my back the same back.
+
+He puts on his coltin. FERNAND: Then we'll all go together. Marcel too. I'll drag him.
+
+At the café, Simone heats up his coffee. Dédé laughs. Fernand is back.
+
+At the door, the photographer raises his camera. Click. One more face of Les Halles, before it all goes.
+
+[photo_hello]
+THE PHOTOGRAPHER: Don't mind me. Once a week I come up from Montrouge at three in the morning.
+
+For this. The lorries, the crates, the steam off the porters' backs. Nobody looks at it.
+
+They'll take all this out to Rungis soon. So I photograph it. Every week, while it's here.
+
+A fort was missing tonight? The big one, Fernand. I photographed him last week, laughing under his hat.
+
+[photo_again]
+THE PHOTOGRAPHER: The light's changing. In an hour the market will look like any other place.
+
+Last month they opened the lorry station out at Rungis. I went. Concrete, and not one face worth a photo.
+
+[photo_knows]
+THE PHOTOGRAPHER: You found Fernand? Bring him back under the glass. I'd like one more picture of him.
+
+[bark_photo]
+THE PHOTOGRAPHER: Shh. Don't move!
+
+[bark_fernand]
+FERNAND: …
+
+[bark_painter]
+THE PAINTER: Shh… I'm painting.
+

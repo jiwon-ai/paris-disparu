@@ -46,6 +46,9 @@ jobs:
       - name: French option (PyBoy)
         run: python3 tests/fr_test.py build/paris-disparu.gbc
 
+      - name: New places (PyBoy)
+        run: python3 tests/places_test.py build/paris-disparu.gbc
+
       - uses: actions/upload-artifact@v4
         with:
           name: paris-disparu-rom

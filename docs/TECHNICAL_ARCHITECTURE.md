@@ -202,11 +202,11 @@ Code outside bank 0/1 cannot read bank-1 data directly: `box_print` and
 are callable from any bank; `far_read()` copies from another bank.
 Item pictures (`src/items.c`, bank 4, art from `tools/items.py`): `new_item`
 is set by events.c; `item_note()` (called by main after a closed dialogue)
-loads the 12 tiles to VRAM bank 1 sprite tiles 48-59 (`ITEM_TILE`) and shows
+loads the 12 tiles to VRAM bank 1 sprite tiles 52-63 (`ITEM_TILE`) and shows
 six 8x16 sprites on the portrait OAM slots 24-29, standing on the caption box
 (x 136, y from WY_REG). With no caption open it opens a "You got:" one.
 `box_close()` hides them with the portrait.
-VRAM bank 1 sprite tiles 0-63 hold "low" sprites (`BANK1_LOW_SPRITES` in
+VRAM bank 1 sprite tiles 0-51 hold "low" sprites (`BANK1_LOW_SPRITES` in
 tools/art.py, e.g. the pickpocket, `SPR1_THIEF_*`).
 
 Dialogue ids: up to 0xF6 (0xF7-0xFE are EV_* events, EV_FIRST = EV_CHASE; 0xFF none). Hotspot

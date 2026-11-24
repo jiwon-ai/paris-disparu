@@ -42,6 +42,9 @@
 #define NPC_FORT2       20  /* people of the night, 2026-11-24: a porter, */
 #define NPC_COOK        21  /* a bistro cook buying, */
 #define NPC_SLEEPER     22  /* a night worker waiting in the métro */
+#define NPC_WAITER      23  /* west end, 2026-11-24: the brasserie waiter, */
+#define NPC_NIGHTPORTER 24  /* the hotel's night porter, */
+#define NPC_SOUPER      25  /* a fort over his soup */
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001

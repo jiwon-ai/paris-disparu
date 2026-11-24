@@ -63,6 +63,8 @@ Everything below is in the ROM and exercised by the automated play-through
 | Music on/off with SELECT (sound effects stay), remembered in the save; the web page also has a "Sound" button that mutes everything | done, tested (`tests/save_test.py`) |
 | Save / continue: automatic save to battery RAM (room changes, closed dialogues), Continue / New game menu, cleared at the ending | done, tested (`tests/save_test.py`) |
 | Fuller rooms: baskets, chairs, a bench, posters and three more people (a fort, a cook, a night worker) | done, tested |
+| New places: the hotel lobby on rue Rambuteau (night porter), and west through the covered street of rue Baltard the Bourse de commerce (iron dome, Medici column, a vespasienne, a rat) with an all-night brasserie (waiter, a fort over his soup, the second public telephone) | done, tested (`tests/places_test.py`, English; French and Korean text written, not screen-checked) |
+| Mini-game fixes: the cups visibly slide past each other; the coffee gauge frames the dark zone and fills in a coffee colour; the A that opens the game does not pour | done, tested |
 | Juice: room fades, a star over the player on every find, a shake when the pickpocket bumps you | done, tested (the star is checked in OAM) |
 | Message on a monochrome Game Boy | written, **not tested** |
 | SameBoy / BGB / real hardware / ModRetro Chromatic | **not tested yet** |

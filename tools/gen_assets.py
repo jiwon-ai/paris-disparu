@@ -26,7 +26,7 @@ MAP_W, MAP_H = 20, 18
 FONT_BASE = 128          # font tiles live at 128.. in VRAM bank 0
 TEXT_COLS, TEXT_ROWS = 18, 2   # dialogue: 2 lines a page, a blank row between
 PAGE_SIZE = TEXT_COLS * TEXT_ROWS
-ROOMS = ["street", "entrance", "market", "cafe", "quai", "pont", "metro"]   # order defines ROOM_* ids
+ROOMS = ["street", "entrance", "market", "cafe", "quai", "pont", "metro", "bourse", "hotel", "brasserie"]   # order defines ROOM_* ids
 
 errors = []
 
@@ -164,7 +164,7 @@ for name, rows in art.BANK1_LOW_SPRITES:
 if len(low_data) // 16 > PORTRAIT_BASE:
     fail("low bank-1 sprites overlap the portraits")
 # Item pictures: same 24x32 layout, loaded one at a time to bank-1 tile ITEM_TILE.
-ITEM_TILE = 48
+ITEM_TILE = 52            # after the low sprites; 12 tiles, up to PORTRAIT_BASE 64
 if len(low_data) // 16 > ITEM_TILE:
     fail("low bank-1 sprites overlap the item picture tiles")
 item_data = []

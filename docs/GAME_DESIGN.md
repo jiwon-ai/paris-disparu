@@ -128,7 +128,7 @@ the Pont Neuf mascarons (carved stone faces on the cornice: Musée Carnavalet,
 |---|---|---|
 | 1 | rue Rambuteau | the gutter (curb, x7): a coin |
 | 2 | rue Rambuteau | examine a street lamp 5 times in a row: a moth |
-| 3 | rue Rambuteau | examine the hotel door 3 times in a row: someone shouts |
+| 3 | rue Rambuteau | examine the hotel window (beside its door) 3 times in a row: someone shouts |
 | 4 | rue Baltard | the dark covered street (west): a cat's eyes |
 | 5 | pavilion | the right-hand column: a carved heart "J + M" |
 | 6 | café | the street cat, asleep in the corner (after it ran in) |

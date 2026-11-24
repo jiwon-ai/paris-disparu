@@ -703,7 +703,7 @@ Cette année, j'ai siégé dans un tribunal qui jugeait la guerre du Vietnam. Le
 LE CINÉASTE : Mon nouveau film sort en décembre. Une ville de verre et d'acier. Je suis venu voir l'ancienne avant qu'elle parte.
 
 [filmmaker_again]
-LE CINÉASTE : Regarde les gens, pas les choses. Cette porte d'hôtel, rue Rambuteau : frappe, attends, frappe encore. Le comique, c'est la patience.
+LE CINÉASTE : Regarde les gens, pas les choses. Cette vitre d'hôtel, rue Rambuteau : frappe, attends, frappe encore. Le comique, c'est la patience.
 
 [writer_hello]
 L'ÉCRIVAIN : J'ai écrit un jour sur une petite fille venue à Paris rien que pour prendre le métro. Il était en grève, bien sûr.
@@ -789,3 +789,63 @@ Les étudiants en ont partout. Quelqu'un rentre à pied, cette nuit.
 LE PEINTRE : Toutânkhamon ! L'or du roi enfant, au Petit Palais cette année.
 
 Tout Paris a fait la queue. Plus d'un million de personnes. Garde-le : un jour, personne ne te croira.
+
+# ---------------------------------------------------------------- l'ouest des Halles (2026-11-24)
+[bourse]
+LA BOURSE DE COMMERCE : une rotonde sous une coupole de fer couverte de cuivre. Halle aux blés bâtie en 1763-1769, elle abrite la Bourse de commerce depuis 1885.
+
+[bourse_door]
+La grande porte est fermée pour la nuit. Derrière, les cours du blé et du sucre attendent le matin.
+
+[medici]
+LA COLONNE MÉDICIS : une colonne de pierre seule contre la rotonde, avec une cage de fer tout en haut. On l'a bâtie pour observer les astres, pour l'astrologie.
+
+[vespasienne]
+UNE VESPASIENNE : un urinoir de rue en fonte verte, un écran devant, une lanterne dessus. Deux godillots dépassent sous l'écran. Quelqu'un siffle dedans.
+
+Paris les a installées parce que les hommes se soulageaient contre n'importe quel mur. Des édits royaux l'interdisaient dès 1770. Le mur d'à côté dit que beaucoup le font encore.
+
+[rat]
+Un rat traverse les pavés sans se presser. Il y en a tant autour du marché que l'hygiène est une des raisons de son départ.
+
+[brasserie_front]
+UNE BRASSERIE, éclairée du haut en bas. Elle ne ferme jamais : des forts à une table, des noctambules en tenue de soirée à la suivante.
+
+[west_pavilion]
+Les pavillons de l'ouest, de verre et de fer. Une rue couverte les traverse jusqu'à la rue Baltard.
+
+[hotel_keys]
+Le tableau des clés. Presque tous les crochets sont vides : les clients dorment, ou sont aux Halles.
+
+[hotel_mirror]
+Un miroir piqué. Tu as la tête de quelqu'un qui n'a pas dormi. C'est le cas.
+
+[hotel_stairs]
+L'escalier grince rien qu'à le regarder. En haut, quelqu'un ronfle.
+
+[bra_mirror]
+Des miroirs sur tous les murs. La salle a l'air deux fois plus pleine, et deux fois plus bruyante.
+
+[bra_table]
+Tables de marbre, serviettes en papier, un pot de moutarde. La soupe à l'oignon de quelqu'un refroidit.
+
+[hotel_chair]
+Un fauteuil usé. Le journal du veilleur est plié dessus, ouvert à la page des courses.
+
+[waiter_hello]
+LE GARÇON : Ouvert toute la nuit, toutes les nuits, depuis 47. Des forts à une table, des noctambules à la suivante. Qu'est-ce que je vous sers ?
+
+[waiter_again]
+LE GARÇON : Le téléphone ? Au fond, près des miroirs. Avec un jeton, comme partout.
+
+[nightporter_hello]
+LE VEILLEUR DE NUIT : Chut ! Les clients dorment. Et non, c'est complet. Les gars du marché frappent à toute heure pour un lit de trois heures.
+
+[nightporter_again]
+LE VEILLEUR DE NUIT : Vous cherchez quelqu'un à cette heure ? Demandez dans les cafés. Aux Halles, tout le monde passe par un café.
+
+[souper_hello]
+UN FORT, devant sa soupe : Premier truc chaud depuis minuit. Trente ans de ça. Quand le marché partira à Rungis, où on mangera à quatre heures du matin ?
+
+[souper_again]
+UN FORT : Fernand ? Il s'assoit toujours là, près du miroir. Pas ce soir. Drôle, ça.

@@ -12,7 +12,8 @@ static const npc_def_t street_npcs[] = {
 };
 static const hotspot_t street_hotspots[] = {
     {  0, 5, 1, 4, DLG_PLAQUE },     /* plaque above reach: whole wall column */
-    { 10, 7, 1, 2, DLG_HOTEL },
+    {  9, 7, 1, 2, DLG_HOTEL },      /* the hotel's windows either side of its door (x10) */
+    { 11, 7, 1, 2, DLG_HOTEL },
     { 14, 5, 6, 4, DLG_EUSTACHE },  /* east end of the church */
     {  2, 9, 1, 2, DLG_LAMP },
     {  8, 9, 1, 2, DLG_LAMP },       /* not in front of the hotel door (x10) */
@@ -27,6 +28,7 @@ static const hotspot_t street_hotspots[] = {
 };
 static const door_t street_doors[] = {
     { 4, 7, 1, 2, ROOM_CAFE, 72, 118, DIR_UP },
+    { 10, 7, 1, 2, ROOM_HOTEL, 72, 118, DIR_UP },
 };
 
 /* --- ROOM_ENTRANCE: rue Baltard, the open street between the pavilions --- */
@@ -130,6 +132,60 @@ static const hotspot_t pont_hotspots[] = {
     { 12, 0, 2, 18, DLG_WATCH_WATER },    /* east parapet */
 };
 
+/* --- ROOM_BOURSE: west end of Les Halles, the Bourse de commerce -------- */
+static const hotspot_t bourse_hotspots[] = {
+    {  5, 6, 1, 2, DLG_BOURSE_DOOR },  /* before the rotunda: first match wins */
+    {  0, 0, 11, 8, DLG_BOURSE },
+    { 11, 0, 1, 8, DLG_MEDICI },
+    { 12, 0, 4, 8, DLG_BRASSERIE_FRONT },
+    {  8, 13, 2, 2, DLG_VESPASIENNE },
+    {  4, 15, 1, 1, DLG_RAT },
+    {  2, 9, 1, 2, DLG_LAMP },
+    { 10, 9, 1, 2, DLG_LAMP },
+    { 16, 0, 4, 7, DLG_WEST_PAVILION },
+    { 16, 9, 4, 9, DLG_WEST_PAVILION },
+};
+static const door_t bourse_doors[] = {
+    { 13, 6, 1, 2, ROOM_BRASSERIE, 72, 118, DIR_UP },
+};
+
+/* --- ROOM_HOTEL: a small hotel on rue Rambuteau (fiction) ------------------ */
+static const npc_def_t hotel_npcs[] = {
+    { 32, 22, SPR_PUNCHER_0, 2, NPC_NIGHTPORTER },   /* uniform and cap, behind the desk */
+};
+static const hotspot_t hotel_hotspots[] = {
+    {  0, 5, 8, 1, TALK(NPC_NIGHTPORTER) },   /* across the desk */
+    {  1, 1, 5, 2, DLG_HOTEL_KEYS },
+    {  7, 1, 4, 2, DLG_HOTEL_MIRROR },
+    { 14, 1, 4, 4, DLG_HOTEL_STAIRS },
+    { 12, 8, 2, 1, DLG_HOTEL_CHAIR },
+    {  2, 11, 2, 1, DLG_HOTEL_CHAIR },
+};
+static const door_t hotel_doors[] = {
+    { 9, 17, 2, 1, ROOM_STREET, 76, 72, DIR_DOWN },
+};
+
+/* --- ROOM_BRASSERIE: open all night, by the Bourse ------------------------- */
+static const npc_def_t brasserie_npcs[] = {
+    { 112, 18, SPR1_WAITER, 3 | S_BANK1, NPC_WAITER },
+    { 88, 64, SPR1_FORT2, 1 | S_BANK1, NPC_SOUPER },  /* at the middle table */
+};
+static const hotspot_t brasserie_hotspots[] = {
+    {  1, 3, 1, 1, DLG_PHONE_LOOK },      /* the second public telephone */
+    {  7, 4, 13, 2, TALK(NPC_WAITER) },
+    {  1, 1, 13, 2, DLG_BRA_MIRROR },
+    { 15, 1, 4, 2, DLG_SHELF },
+    {  1, 9, 3, 1, DLG_SOUP },
+    {  8, 9, 3, 1, DLG_SOUP },
+    { 15, 9, 3, 1, DLG_BRA_TABLE },
+    {  1, 12, 3, 1, DLG_BRA_TABLE },
+    {  8, 12, 3, 1, DLG_BRA_TABLE },
+    { 15, 15, 3, 1, DLG_BRA_TABLE },
+};
+static const door_t brasserie_doors[] = {
+    { 9, 17, 2, 1, ROOM_BOURSE, 100, 64, DIR_DOWN },
+};
+
 /* --- ROOM_METRO: the ticket hall of Les Halles station -------------------- */
 static const npc_def_t metro_npcs[] = {
     { 84, 52, SPR_PUNCHER_0, 4, NPC_PUNCHER },    /* at the platform gate */
@@ -152,10 +208,10 @@ static const door_t metro_doors[] = {
 };
 
 const room_def_t rooms[ROOM_COUNT] = {
-    { street_npcs, 3, street_hotspots, 13, street_doors, 1,
+    { street_npcs, 3, street_hotspots, 14, street_doors, 2,
       { ROOM_ENTRANCE, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_STREET },
     { entrance_npcs, 3, entrance_hotspots, 7, entrance_doors, 2,
-      { ROOM_QUAI, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_MARKET },
+      { ROOM_QUAI, ROOM_STREET, ROOM_BOURSE, NO_EXIT }, AMBIENCE_MARKET },
     { market_npcs, 3, market_hotspots, 8, market_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
     { cafe_npcs, 4, cafe_hotspots, 8, cafe_doors, 1,
@@ -166,4 +222,10 @@ const room_def_t rooms[ROOM_COUNT] = {
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { metro_npcs, 4, metro_hotspots, 8, metro_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
+    { 0, 0, bourse_hotspots, 10, bourse_doors, 1,
+      { NO_EXIT, NO_EXIT, NO_EXIT, ROOM_ENTRANCE }, AMBIENCE_STREET },
+    { hotel_npcs, 1, hotel_hotspots, 6, hotel_doors, 1,
+      { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
+    { brasserie_npcs, 2, brasserie_hotspots, 10, brasserie_doors, 1,
+      { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
 };

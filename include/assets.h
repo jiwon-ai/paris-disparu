@@ -37,7 +37,7 @@
 #define GLYPH_COFFEE 244
 #define GLYPH_COFFEE_ZONE 245
 
-#define ENV_TILE_COUNT 106
+#define ENV_TILE_COUNT 119
 #define TILE_SKY 0
 #define TILE_ROOFTOP 1
 #define TILE_ROOF 2
@@ -119,31 +119,44 @@
 #define TILE_SOLEX_1 78
 #define TILE_BUSSTOP_T 79
 #define TILE_BUSSTOP_B 80
-#define TILE_INSCR_0 81
-#define TILE_INSCR_1 82
-#define TILE_INSCR_2 83
-#define TILE_INSCR_3 84
-#define TILE_INSCR_4 85
-#define TILE_INSCR_5 86
-#define TILE_INSCR_6 87
-#define TILE_INSCR_7 88
-#define TILE_INSCR_8 89
-#define TILE_MAP4_0 90
-#define TILE_MAP4_1 91
-#define TILE_MAP4_2 92
-#define TILE_MAP4_3 93
-#define TILE_MAP4_4 94
-#define TILE_MAP4_5 95
-#define TILE_MAP4_6 96
-#define TILE_MAP4_7 97
-#define TILE_BASKET 98
-#define TILE_CHAIR 99
-#define TILE_BENCH_L 100
-#define TILE_BENCH_R 101
-#define TILE_POSTER_0 102
-#define TILE_POSTER_1 103
-#define TILE_POSTER_2 104
-#define TILE_POSTER_3 105
+#define TILE_DOME_UL 81
+#define TILE_DOME_U 82
+#define TILE_DOME_UR 83
+#define TILE_DOME_L 84
+#define TILE_DOME_M 85
+#define TILE_DOME_R 86
+#define TILE_MEDICI_T 87
+#define TILE_MEDICI_S 88
+#define TILE_VESP_TL 89
+#define TILE_VESP_TR 90
+#define TILE_VESP_BL 91
+#define TILE_VESP_BR 92
+#define TILE_RAT 93
+#define TILE_INSCR_0 94
+#define TILE_INSCR_1 95
+#define TILE_INSCR_2 96
+#define TILE_INSCR_3 97
+#define TILE_INSCR_4 98
+#define TILE_INSCR_5 99
+#define TILE_INSCR_6 100
+#define TILE_INSCR_7 101
+#define TILE_INSCR_8 102
+#define TILE_MAP4_0 103
+#define TILE_MAP4_1 104
+#define TILE_MAP4_2 105
+#define TILE_MAP4_3 106
+#define TILE_MAP4_4 107
+#define TILE_MAP4_5 108
+#define TILE_MAP4_6 109
+#define TILE_MAP4_7 110
+#define TILE_BASKET 111
+#define TILE_CHAIR 112
+#define TILE_BENCH_L 113
+#define TILE_BENCH_R 114
+#define TILE_POSTER_0 115
+#define TILE_POSTER_1 116
+#define TILE_POSTER_2 117
+#define TILE_POSTER_3 118
 #define SPRITE_TILE_COUNT 128
 #define SPR1_ACTOR 232   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_CHANTEUSE 236   /* VRAM bank 1: use palette | S_BANK1 */
@@ -164,9 +177,10 @@
 #define SPR1_FORT2 36   /* VRAM bank 1, low tiles */
 #define SPR1_SLEEPER 40   /* VRAM bank 1, low tiles */
 #define SPR1_WORKER_CAFE 44   /* VRAM bank 1, low tiles */
-#define LOW_TILE_COUNT 48
+#define SPR1_WAITER 48   /* VRAM bank 1, low tiles */
+#define LOW_TILE_COUNT 52
 /* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */
-#define ITEM_TILE 48
+#define ITEM_TILE 52
 #define NO_ITEM 0
 #define EXCH_COUNT 9
 #define EX_ALE 0
@@ -234,7 +248,10 @@
 #define ROOM_QUAI 4
 #define ROOM_PONT 5
 #define ROOM_METRO 6
-#define ROOM_COUNT 7
+#define ROOM_BOURSE 7
+#define ROOM_HOTEL 8
+#define ROOM_BRASSERIE 9
+#define ROOM_COUNT 10
 
 enum {
     DLG_SECRET_COIN,
@@ -316,35 +333,23 @@ enum {
     DLG_TREE,
     DLG_RIVER,
     DLG_QUAI_SHOP,
+    DLG_BOURSE,
+    DLG_BOURSE_DOOR,
+    DLG_MEDICI,
+    DLG_VESPASIENNE,
+    DLG_RAT,
+    DLG_BRASSERIE_FRONT,
+    DLG_WEST_PAVILION,
+    DLG_HOTEL_KEYS,
+    DLG_HOTEL_MIRROR,
+    DLG_HOTEL_STAIRS,
+    DLG_BRA_MIRROR,
+    DLG_BRA_TABLE,
+    DLG_HOTEL_CHAIR,
     DLG_PAINTER_HELLO,
     DLG_PAINTER_AGAIN,
     DLG_BARRIER,
     DLG_WATCH_WATER,
-    DLG_BARK_STRANGER,
-    DLG_BARK_STRANGER_MET,
-    DLG_BARK_PORTER,
-    DLG_BARK_PORTER_CART,
-    DLG_BARK_PORTER_CARRY,
-    DLG_BARK_PORTER_BACK,
-    DLG_BARK_PORTER_DONE,
-    DLG_BARK_MERCHANT,
-    DLG_BARK_MERCHANT_CHOUX,
-    DLG_BARK_CAFE,
-    DLG_BARK_CAFE_MET,
-    DLG_BARK_CAFE_JETON,
-    DLG_BARK_WORKER,
-    DLG_FERNAND_HELLO,
-    DLG_FERNAND_WHY,
-    DLG_FERNAND_PLATE,
-    DLG_FERNAND_TALK,
-    DLG_END_STAY,
-    DLG_END_GO,
-    DLG_PHOTO_HELLO,
-    DLG_PHOTO_AGAIN,
-    DLG_PHOTO_KNOWS,
-    DLG_BARK_PHOTO,
-    DLG_BARK_FERNAND,
-    DLG_BARK_PAINTER,
     DLG_PUNCHER_HELLO,
     DLG_METRO_WINDOW,
     DLG_METRO_WINDOW_AGAIN,
@@ -416,12 +421,43 @@ enum {
     DLG_COOK_AGAIN,
     DLG_SLEEPER_HELLO,
     DLG_SLEEPER_AGAIN,
+    DLG_WAITER_HELLO,
+    DLG_WAITER_AGAIN,
+    DLG_NIGHTPORTER_HELLO,
+    DLG_NIGHTPORTER_AGAIN,
+    DLG_SOUPER_HELLO,
+    DLG_SOUPER_AGAIN,
     DLG_CURIO_0_FIND,
     DLG_CURIO_1_FIND,
     DLG_CURIO_2_FIND,
     DLG_CURIO_0_SOLVE,
     DLG_CURIO_1_SOLVE,
     DLG_CURIO_2_SOLVE,
+    DLG_BARK_STRANGER,
+    DLG_BARK_STRANGER_MET,
+    DLG_BARK_PORTER,
+    DLG_BARK_PORTER_CART,
+    DLG_BARK_PORTER_CARRY,
+    DLG_BARK_PORTER_BACK,
+    DLG_BARK_PORTER_DONE,
+    DLG_BARK_MERCHANT,
+    DLG_BARK_MERCHANT_CHOUX,
+    DLG_BARK_CAFE,
+    DLG_BARK_CAFE_MET,
+    DLG_BARK_CAFE_JETON,
+    DLG_BARK_WORKER,
+    DLG_FERNAND_HELLO,
+    DLG_FERNAND_WHY,
+    DLG_FERNAND_PLATE,
+    DLG_FERNAND_TALK,
+    DLG_END_STAY,
+    DLG_END_GO,
+    DLG_PHOTO_HELLO,
+    DLG_PHOTO_AGAIN,
+    DLG_PHOTO_KNOWS,
+    DLG_BARK_PHOTO,
+    DLG_BARK_FERNAND,
+    DLG_BARK_PAINTER,
     DLG_COUNT
 };
 
@@ -707,6 +743,7 @@ extern const uint8_t fr_ui_text[];
 extern const uint8_t * const fr_page_base[];
 extern const uint8_t fr_pages_0[];
 extern const uint8_t fr_pages_1[];
+extern const uint8_t fr_pages_2[];
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];
