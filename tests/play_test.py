@@ -773,6 +773,12 @@ shot("23_serve")
 tick(30)
 check("Oops" not in window_row(4) and "Let go" in window_row(4),
       "the A that starts the coffee game does not pour a cup: %r" % window_row(4))
+pb.button_press("a")                # held from a released state: the coffee rises
+tick(40)
+poured = sum(1 for x in range(2, 18) if win_tile(x, 3) in (HDR["GLYPH_COFFEE"], HDR["GLYPH_COFFEE_ZONE"]))
+check(poured >= 4, "holding A pours: %d cells after 40 frames" % poured)
+pb.button_release("a")
+tick(60)
 check(item_shown(HDR["ITEM_CUP"]), "the coffee game shows a café cup")
 play_serve(win=False)
 lines = dialogue(choice=0)

@@ -776,6 +776,11 @@ void main(void) {
             if (joy_pressed & (J_START | J_B)) {
                 box_close();
                 state = ST_WALK;
+            } else if (joy_pressed & J_SELECT) {          /* sound on / off, shown on page 1 */
+                music_set_muted(!music_muted);
+                save_write();
+                nb_page = 0;
+                notebook_show();
             } else if (joy_pressed & (J_UP | J_DOWN)) {      /* Korean: long page, other half */
                 if (box_more()) sound_blip();
             } else if (joy_pressed & (J_LEFT | J_RIGHT)) {   /* clues <-> extras */

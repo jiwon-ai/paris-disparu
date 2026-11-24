@@ -8,6 +8,7 @@
 #include "notebook.h"
 #include "events.h"
 #include "world.h"
+#include "music.h"
 
 static const uint8_t * const quest_txt[QUEST_COUNT] = {
     txt_q_0, txt_q_1, txt_q_2, txt_q_3, txt_q_4
@@ -117,6 +118,7 @@ void notebook_show(void) BANKED {
         box_print(4, 6 + i, quest_txt[i]);
     }
     (void)y;
+    box_print(1, 11, music_muted ? txt_nb_snd_off : txt_nb_snd_on);   /* how to mute */
     box_print(1, 12, txt_nb_phone);
     y = 13;
     for (i = 0; i < 4; i++)

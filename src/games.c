@@ -86,9 +86,11 @@ uint8_t serve_update(void) BANKED {
         serve_order();
         return MG_RUNNING;
     }
-    if (joy_pressed & J_A) s_pouring = 1;   /* a new press: the A that opened the game does not pour */
-    if (!(joy_held & J_A) && s_pouring && !s_fill) { s_pouring = 0; s_tick = 0; }   /* a tap: nothing poured yet */
-    if (s_pouring && (joy_held & J_A)) {
+    if (!(joy_held & J_A) && !s_fill) {   /* not pouring yet, or a tap too short to pour */
+        s_pouring = 0;
+        s_tick = 0;
+    } else if (joy_held & J_A) {        /* held, even since the rules card: it pours */
+        s_pouring = 1;
         if (++s_tick >= 8) {            /* one cell every 8 frames: slow and steady */
             s_tick = 0;
             if (++s_fill > CUP_LEN - 1) return serve_next(0);   /* spilt over */

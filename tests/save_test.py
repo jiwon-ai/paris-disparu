@@ -38,7 +38,7 @@ def check(cond, msg):
 
 class Game:
     def __init__(self, ram):
-        self.pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False, ram_file=ram)
+        self.pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=True, ram_file=ram)
         self.mem = self.pb.memory
 
     def tick(self, n=1):
@@ -133,8 +133,9 @@ check(g.mem[sym["_clue_flags"]] == 0x05 and g.mem[sym["_secret_flags"]] == 0x22,
       "progress restored: clues 0x%02x secrets 0x%02x" % (g.mem[sym["_clue_flags"]], g.mem[sym["_secret_flags"]]))
 check("Welcome back" in g.row(1), "caption: %r" % g.row(1))
 g.tap("select", 30)
-check(g.mem[sym["_music_muted"]] == 1 and "Music: off" in g.row(1) and g.mem[0xFF1C] & 0x60 == 0,
-      "SELECT: music off (caption %r, wave volume 0x%02x)" % (g.row(1), g.mem[0xFF1C]))
+check(g.mem[sym["_music_muted"]] == 1 and "Sound: off" in g.row(1) and g.mem[0xFF1C] & 0x60 == 0
+      and g.mem[0xFF25] == 0,
+      "SELECT: all sound off (caption %r, wave volume 0x%02x, NR51 0x%02x)" % (g.row(1), g.mem[0xFF1C], g.mem[0xFF25]))
 ram2 = io.BytesIO()
 g.pb.stop(ram_file=ram2)
 check(ram2.getvalue()[11] == 1, "music off is saved (byte 11 = %d)" % ram2.getvalue()[11])
@@ -143,10 +144,18 @@ g.tick(240)
 g.tap("a", 60)
 g.tap("a", 30)
 g.tap("a", 80)
-check(g.mem[sym["_music_muted"]] == 1, "continue: music still off")
+check(g.mem[sym["_music_muted"]] == 1 and g.mem[0xFF25] == 0, "continue: sound still off")
+g.tap("b", 10)
+g.tap("start", 20)
+check("SELECT: sound off" in g.screen_text(), "the notebook says how to turn the sound on: %r" % g.screen_text()[:200])
+g.tap("select", 20)
+check(g.mem[sym["_music_muted"]] == 0 and "SELECT: sound on" in g.screen_text(), "SELECT in the notebook: sound on")
+g.tap("select", 20)
+g.tap("start", 20)
 g.tap("b", 10)
 g.tap("select", 30)
-check(g.mem[sym["_music_muted"]] == 0 and "Music: on" in g.row(1), "SELECT again: music on (%r)" % g.row(1))
+check(g.mem[sym["_music_muted"]] == 0 and "Sound: on" in g.row(1) and g.mem[0xFF25] == 0xFF,
+      "SELECT again: sound on (%r, NR51 0x%02x)" % (g.row(1), g.mem[0xFF25]))
 g.pb.stop(save=False)
 
 print("3. new game over a save")

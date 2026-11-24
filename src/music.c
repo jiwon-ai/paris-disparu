@@ -91,10 +91,12 @@ void music_play(uint8_t song) {
     playing = 1;
 }
 
-/* SELECT: music off (effects stay) or back on, from the start of the song. */
+/* SELECT: all sound off (music, effects, ambience) or back on; the music
+   restarts from the start of the song. */
 void music_set_muted(uint8_t m) {
     uint8_t s = song_now;
     music_muted = m;
+    NR51_REG = m ? 0x00 : 0xFF;        /* no channel reaches the speakers */
     if (m) {
         playing = 0;
         NR32_REG = 0x00;                /* wave channel silent */
