@@ -299,6 +299,11 @@ Its windscreen holds a piece of the sky.
 [pinball]
 A pinball machine, blinking even with nobody playing. My cousin leaves all his pocket money in there, twenty centimes a game.
 
+[tabac]
+The tobacco shelf behind the counter: packets lined up like little bricks. A man buys two and lights one before the door.
+
+Smoke goes up. Ideas go up. Neither one comes back down.
+
 [scopitone]
 A jukebox with a little screen on top! Drop in a coin and a singer dances inside the box. My sister would stay here all night.
 
@@ -918,4 +923,34 @@ FERNAND: …
 
 [bark_painter]
 THE PAINTER: Shh… I'm painting.
+
+[dog]
+A LITTLE DOG: Woof!
+
+He sniffs every lamp post on the street, very seriously. Watch your step: he's not the only dog who's been this way.
+
+[police]
+A POLICEMAN: Out late, young artist? Stay clear of the market carts, and mind the forts' elbows.
+
+He leans on his bicycle, cape over his shoulders, like a big blue swallow.
+
+[sweeper]
+A STREET SWEEPER: Mind your feet! Water's coming.
+
+He opens a little iron tap at the kerb and the gutter starts to run, carrying cabbage leaves and cigarette ends away.
+
+[smoker]
+A SMOKER: Got a light? No? Never mind, I've got matches.
+
+He cups the flame in his hands against the wind. The smoke hangs under the lamp a long time.
+
+[walker]
+A LADY WITH A POODLE: Up already? Pompon wakes me at five, every day, rain or shine.
+
+The poodle walks like a dancer, on the tips of its toes. Its breath makes little clouds.
+
+[poodle]
+POMPON: Yap! Yap!
+
+Freshly clipped, a pompom on its tail. It looks at you as if you were the one on a leash.
 

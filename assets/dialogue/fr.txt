@@ -906,3 +906,38 @@ Un flipper qui clignote même quand personne ne joue. Mon cousin y laisse tout s
 [scopitone]
 Un juke-box avec un petit écran ! On met une pièce, et une chanteuse danse dans la boîte. Ma sœur resterait là toute la nuit.
 
+[dog]
+UN PETIT CHIEN : Ouaf !
+
+Il renifle chaque réverbère, très sérieux. Attention où tu marches : il n'est pas le seul chien passé par ici.
+
+[police]
+UN AGENT : Tu traînes tard, l'artiste ? Évite les charrettes du marché, et gare aux coudes des forts.
+
+Il s'appuie sur son vélo, la cape sur les épaules, comme une grande hirondelle bleue.
+
+[sweeper]
+UN BALAYEUR : Attention aux pieds ! L'eau arrive.
+
+Il ouvre un petit robinet de fer au bord du trottoir, et le caniveau se met à couler, emportant feuilles de chou et mégots.
+
+[smoker]
+UN FUMEUR : T'as du feu ? Non ? Tant pis, j'ai des allumettes.
+
+Il protège la flamme dans ses mains. La fumée reste longtemps sous le réverbère.
+
+[walker]
+UNE DAME ET SON CANICHE : Déjà debout ? Pompon me réveille à cinq heures, tous les jours, qu'il pleuve ou qu'il vente.
+
+Le caniche marche comme un danseur, sur la pointe des pattes. Son souffle fait de petits nuages.
+
+[poodle]
+POMPON : Wouf ! Wouf !
+
+Tout juste toiletté, un pompon au bout de la queue. Il te regarde comme si c'était toi, en laisse.
+
+[tabac]
+L'étagère du tabac derrière le comptoir : des paquets alignés comme des petites briques. Un homme en achète deux, en allume un avant la porte.
+
+La fumée monte. Les idées montent. Rien ne redescend.
+

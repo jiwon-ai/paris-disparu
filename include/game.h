@@ -46,6 +46,12 @@
 #define NPC_NIGHTPORTER 24  /* the hotel's night porter, */
 #define NPC_SOUPER      25  /* a fort over his soup */
 #define NPC_MEATPORTER  27  /* rue Baltard: white smock, half a beef (Jiwon's reference photo) */
+#define NPC_DOG         28  /* street life 1967 (sources: HISTORICAL_RESEARCH "Street life") */
+#define NPC_POLICE      29  /* a bicycle policeman in a cape ("hirondelle") */
+#define NPC_SWEEPER     30  /* a street sweeper opening the gutter tap */
+#define NPC_SMOKER      31  /* a man smoking under a lamp (Jiwon 2026-11-24) */
+#define NPC_WALKER      32  /* a lady out early with her poodle, */
+#define NPC_POODLE      33  /* and the poodle */
 #define NPC_ARCHIVIST   26  /* cameo, brasserie: big hair and a beard (Perec, unnamed) */
 
 /* Persistent story flags (game_flags bits) */

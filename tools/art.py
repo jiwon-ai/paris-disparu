@@ -1109,6 +1109,114 @@ MEATPORTER = [       # meat porter: white cap, long white smock, half a beef on 
     ".....##....##...",
     "....###....###..",
 ]
+DOG = [              # a little street dog (palette 4: grey coat, tan)
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "...........##...",
+    "..........#oo#..",
+    "..#.......#o#o#.",
+    "..#o#####.#oooo#",
+    "...#ooooo##ooo#.",
+    "...#oooooooo#...",
+    "...#oooooooo#...",
+    "....#o#..#o#....",
+    "....#o#..#o#....",
+    "....##...##.....",
+]
+POLICE = [           # "hirondelle": kepi and a blue cape (bicycle police, until 1984)
+    "................",
+    ".....######.....",
+    ".....#oooo#.....",
+    "....########....",
+    "....#ssssss#....",
+    "....s#ss#ss.....",
+    ".....#ssss#.....",
+    "......#ss#......",
+    "....##oooo##....",
+    "...#oooooooo#...",
+    "..#oooooooooo#..",
+    "..#oooooooooo#..",
+    ".#oooooooooooo#.",
+    ".##############.",
+    ".....#o..o#.....",
+    "....##....##....",
+]
+SWEEPER = [          # street sweeper with a broom
+    "................",
+    ".....#####......",
+    "....#######.....",
+    "....#ssssss#....",
+    "....s#ss#ss.....",
+    ".....ssssss.....",
+    "......#ss#.....#",
+    "....#oooooo#..#.",
+    "...#oooooooo##..",
+    "...#ooooooo##...",
+    "...so#ooo#os#...",
+    "....#oooooo##...",
+    "....#oooooo#.#..",
+    ".....##..##.##..",
+    ".....##..##.###.",
+    "....###..###....",
+]
+SMOKER = [           # a man in a cap, cigarette, smoke rising (palette 4)
+    "..........o.....",
+    ".....#####..o...",
+    "....#######.o...",
+    "...#########o...",
+    "....#ssss#.o....",
+    "....s#ss#s......",
+    ".....ssssssoo...",
+    "......#ss#......",
+    "....#oooooo#....",
+    "...#oo#oo#oo#...",
+    "...#oo#oo#oo#...",
+    "...s#oooooo#s...",
+    "....#oooooo#....",
+    ".....##..##.....",
+    ".....##..##.....",
+    "....###..###....",
+]
+WALKER = [           # a lady in a headscarf and coat, leash to the right (palette 2)
+    "................",
+    ".....#####......",
+    "....#ooooo#.....",
+    "....#osssso#....",
+    "....os#s#so.....",
+    ".....ssssss.....",
+    "......#ss#......",
+    "....#oooooo#....",
+    "...#oooooooo#...",
+    "...#ooo#oooo#...",
+    "...#oooooooos###",
+    "...#oooooooo#...",
+    "....#oooooo#....",
+    ".....#s..s#.....",
+    ".....#s..s#.....",
+    "....##...##.....",
+]
+POODLE = [           # a clipped white poodle, leash from the left (palette 3)
+    "................",
+    "................",
+    "................",
+    "................",
+    "....###.........",
+    "...#ooo#........",
+    "..#ooooo#...##..",
+    ".#oo#ooo#..#oo#.",
+    "#oooooo#....#...",
+    ".###ooo######...",
+    "####oooooooo#...",
+    ".....#ooooo#....",
+    ".....#o#.#o#....",
+    ".....#o#.#o#....",
+    "....#oo#.#oo#...",
+    "....###..###....",
+]
 BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
     ("THIEF_0", THIEF_0),  # copied per room into a pool (pool_load, notebook.c)
     ("THIEF_1", THIEF_1),
@@ -1130,6 +1238,12 @@ BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
     ("WRITER", WRITER),
     ("ARCHIVIST", ARCHIVIST),
     ("MEATPORTER", MEATPORTER),
+    ("DOG", DOG),
+    ("POLICE", POLICE),
+    ("SWEEPER", SWEEPER),
+    ("SMOKER", SMOKER),
+    ("WALKER", WALKER),
+    ("POODLE", POODLE),
 ]
 
 
@@ -1371,3 +1485,14 @@ LEGEND["Ы"] = ("pin_t", 6, True)
 LEGEND["Ь"] = ("pin_b", 6, True)
 LEGEND["Э"] = ("sco_t", 3, True)
 LEGEND["Ю"] = ("sco_b", 3, True)
+
+# Café-tabac (Jiwon 2026-11-24). Carotte: the tabac sign, obligatory since 1906,
+# "originally brown or red" (Connexion); this red spindle with a cream highlight
+# is a reconstruction of its 1960s look (palette 4, on the café awning row).
+TILES["carotte"] = ["00011000", "00122100", "01232210", "01232210",
+                    "01232210", "01222210", "00122100", "00011000"]
+# The tobacco shelf behind the café counter: generic packets, no brands (palette 6).
+TILES["tabac_rack"] = ["11111111", "12330233", "12330233", "11111111",
+                       "13220322", "13220322", "11111111", "10000001"]
+LEGEND["Я"] = ("carotte", 4, True)
+LEGEND["я"] = ("tabac_rack", 6, True)

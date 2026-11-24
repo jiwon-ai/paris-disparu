@@ -341,6 +341,13 @@ uint8_t event_talk(uint8_t npc) BANKED {
         return DLG_ACTOR_HELLO + 2 * k;
     }
 
+    case NPC_DOG:     return DLG_DOG;
+    case NPC_POLICE:  return DLG_POLICE;
+    case NPC_SWEEPER: return DLG_SWEEPER;
+    case NPC_SMOKER:  return DLG_SMOKER;
+    case NPC_WALKER:  return DLG_WALKER;
+    case NPC_POODLE:  return DLG_POODLE;
+
     case NPC_MEATPORTER:
         if (extra_flags & X_MET_MEAT) return DLG_MEAT_AGAIN;
         extra_flags |= X_MET_MEAT;

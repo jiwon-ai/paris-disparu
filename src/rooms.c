@@ -9,6 +9,7 @@ static const npc_def_t street_npcs[] = {
     { 120, 64, SPR_STRANGER_0, 4, NPC_STRANGER },
     { 136, 100, SPR1_CHANTEUSE, 3 | S_BANK1, NPC_CHANTEUSE },   /* cameo */
     { 24, 108, SPR1_ACTOR, 6 | S_BANK1, NPC_ACTOR },            /* cameo */
+    { 140, 72, SPR1_SMOKER, 4 | S_BANK1, NPC_SMOKER },    /* smoking under the lamp */
 };
 static const hotspot_t street_hotspots[] = {
     {  0, 5, 1, 4, DLG_PLAQUE },     /* plaque above reach: whole wall column */
@@ -90,6 +91,7 @@ static const hotspot_t cafe_hotspots[] = {
     {  2, 10, 1, 1, DLG_CHAIRS },
     {  0, 15, 2, 2, DLG_SECRET_CAT },  /* the street cat, once it has run in */
     { 19, 4, 1, 2, DLG_PINBALL },
+    { 14, 1, 2, 3, DLG_TABAC },        /* the tobacco shelf: a café-tabac */
 };
 static const door_t cafe_doors[] = {
     { 9, 17, 2, 1, ROOM_STREET, 28, 72, DIR_DOWN },
@@ -100,6 +102,7 @@ static const npc_def_t quai_npcs[] = {
     { 120, 60, SPR_SINGER_0, 4, NPC_SINGER },     /* listening to the river */
     { 40, 46, SPR1_ROUX, 5 | S_BANK1, NPC_ROUX },      /* Mme Roux, near her box */
     { 136, 44, SPR1_NOVELIST, 6 | S_BANK1, NPC_NOVELIST },      /* cameo */
+    { 88, 44, SPR1_POLICE, 1 | S_BANK1, NPC_POLICE },     /* bicycle policeman, cape and kepi */
 };
 static const hotspot_t quai_hotspots[] = {
     {  3, 12, 2, 1, DLG_QUAI_BOX },    /* Mme Roux's box: reachable between the trees */
@@ -136,6 +139,12 @@ static const hotspot_t pont_hotspots[] = {
 };
 
 /* --- ROOM_BOURSE: west end of Les Halles, the Bourse de commerce -------- */
+static const npc_def_t bourse_npcs[] = {
+    { 40, 64, SPR1_SWEEPER, 4 | S_BANK1, NPC_SWEEPER },   /* opening the gutter tap */
+    { 88, 76, SPR1_DOG, 4 | S_BANK1, NPC_DOG },           /* a little dog doing the lamp posts */
+    { 104, 124, SPR1_WALKER, 2 | S_BANK1, NPC_WALKER },   /* out early with her poodle, */
+    { 120, 124, SPR1_POODLE, 3 | S_BANK1, NPC_POODLE },   /* on the leash (sprites meet at x 120) */
+};
 static const hotspot_t bourse_hotspots[] = {
     {  5, 6, 1, 2, DLG_BOURSE_DOOR },  /* before the rotunda: first match wins */
     {  0, 0, 11, 8, DLG_BOURSE },
@@ -215,21 +224,21 @@ static const door_t metro_doors[] = {
 };
 
 const room_def_t rooms[ROOM_COUNT] = {
-    { street_npcs, 3, street_hotspots, 15, street_doors, 2,
+    { street_npcs, 4, street_hotspots, 15, street_doors, 2,
       { ROOM_ENTRANCE, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_STREET },
     { entrance_npcs, 4, entrance_hotspots, 7, entrance_doors, 2,
       { ROOM_QUAI, ROOM_STREET, ROOM_BOURSE, NO_EXIT }, AMBIENCE_MARKET },
     { market_npcs, 3, market_hotspots, 8, market_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
-    { cafe_npcs, 4, cafe_hotspots, 9, cafe_doors, 1,
+    { cafe_npcs, 4, cafe_hotspots, 10, cafe_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
-    { quai_npcs, 3, quai_hotspots, 16, 0, 0,
+    { quai_npcs, 4, quai_hotspots, 16, 0, 0,
       { ROOM_PONT, ROOM_ENTRANCE, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { pont_npcs, 3, pont_hotspots, 6, 0, 0,
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { metro_npcs, 4, metro_hotspots, 8, metro_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
-    { 0, 0, bourse_hotspots, 11, bourse_doors, 1,
+    { bourse_npcs, 4, bourse_hotspots, 11, bourse_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, ROOM_ENTRANCE }, AMBIENCE_STREET },
     { hotel_npcs, 1, hotel_hotspots, 7, hotel_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },

@@ -381,3 +381,25 @@ lamp iron colour, real ones are dark green, palette limit).
 | Jukebox with a small film screen in the brasserie | "Au début des années 1960 se répand dans les cafés français le Scopitone, un jukebox associant l'image au son" | **Read**. Not named in the game | [Wikipedia FR, Juke-box](https://fr.wikipedia.org/wiki/Juke-box) |
 | Baby-foot (not added) | café game; 20 centimes at the end of the 1960s | Read, not used yet | [Wikipedia FR, Baby-foot](https://fr.wikipedia.org/wiki/Baby-foot) |
 
+
+## Street life 2: dogs, police, sweepers, smokers, the tabac (added 2026-11-24)
+
+Jiwon asked: "were there dogs on the street, did horses patrol?", then for people walking dogs at dawn (other breeds), people smoking in the street, and a tabac "if it existed then".
+
+| In the game | Claim | Status | Source |
+|---|---|---|---|
+| A little street dog by a lamp (Bourse) | "The streets are dotted with papers, cigarettes and dog poop" (INA clip, 16 Mar 1964) | **Read**. The dog itself is fiction | [INA](https://mediaclip.ina.fr/en/i21284426-why-paris-is-not-as-clean-as-it-should-be.html) |
+| No motocrotte | The pooper-scooter motorbikes ran "from 1982 to 2002" | **Read**: so none in 1967 | [Wikipedia, Motocrotte](https://en.wikipedia.org/wiki/Motocrotte) |
+| A lady out early with a white poodle (Bourse) | Poodles were visible in 1960s Paris: AFP photo caption "Opera star Maria Callas with her pet poodles in a Paris airport in 1966"; "a city once awash with prancing poodles" | **Read** for presence only. No 1960s breed ranking or registration figure was found. Dawn dog-walking, the lady and "Pompon" are **fiction** | [The Local, 7 Dec 2017](https://www.thelocal.fr/20171207/where-have-all-the-paris-poodles-gone) |
+| Bicycle policeman with kepi and blue cape (quai) | "Hirondelles" named for "leur cape flottante"; 2819 police on wheels in 1950; ended in 1984. Kepi retired from about 1982. "his natty blue cape" (1963) | **Read** | [Paris ZigZag](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/hirondelles-police-paris/); [CSMonitor 1982](https://www.csmonitor.com/1982/0105/010502.html); [Time 1963](https://content.time.com/time/subscriber/article/0,33009,874752,00.html) |
+| Mounted police street patrols, horse carts at Les Halles | — | **Not found** for the 1960s, so **not added** | — |
+| Cats, pigeons at Les Halles in the 1960s | — | **Not found**; the existing café cat stays fiction | — |
+| A street sweeper opening a kerb tap; cabbage leaves in the gutter (Bourse) | INA 26 Sep 1965: cleaning the Halles district (water jets, crates piled on pavements, people picking vegetables from the waste); gutter water network since the Second Empire | **Read** | [INA](https://mediaclip.ina.fr/en/i08022948-cleaning-of-the-halles-district.html); [Paris ZigZag](https://www.pariszigzag.fr/paris-au-quotidien/pourquoi-des-litres-deau-coulent-dans-les-caniveaux-de-paris/) |
+| A man smoking under a lamp on rue Rambuteau | Cigarettes litter the streets (INA 1964, above). France's first smoking restrictions came only with the 1976 Veil law (public transport); traditional Gauloises were "short, wide, unfiltered" | **Read** for context; no 1960s smoking-rate figure found. The man is fiction; no brand shown | [Wikipedia, Tobacco in France](https://en.wikipedia.org/wiki/Tobacco_in_France); [Wikipedia, Gauloises](https://en.wikipedia.org/wiki/Gauloises) |
+| Café-tabac: red "carotte" on the café awning, a tobacco shelf behind the counter | The carotte "has been the obligatory sign ... since 1906"; "originally brown or red, but now they are always red"; first bureaux de tabac 1716; nearly 49,000 in France in 1970; state monopoly (SEITA until 1999) | **Read** that tabacs and the carotte existed. Its exact 1960s colour and shape were **not** found: the red spindle is a **reconstruction**. Simone's café being a tabac is fiction | [Connexion](https://www.connexionfrance.com/Mag/French-Facts/Why-is-French-tabac-sign-carrot-shaped); [Days on the Claise](https://daysontheclaise.blogspot.com/2025/07/the-origin-of-la-carotte-de-tabac.html) |
+
+## Homage: *La Chinoise* (added 2026-11-24)
+
+| In the game | Claim | Status | Source |
+|---|---|---|---|
+| Intro: "Tonight only vague ideas. 3 in the morning. Go, face them with clear images at Les Halles." (FR "rien que des idées vagues… Il te faut des images claires"; KO "흐릿한 생각뿐… 선명한 이미지와 마주하러") | Godard's *La Chinoise*, released 30 August 1967 (before our 21 November), has on a wall the line "Il faut confronter les idées vagues avec des images claires" (Jiwon's frame); a Portuguese article describes it as written on the walls of one room | **Read** (frame from Jiwon; release date from Wikipedia). The game paraphrases the idea in the poet's voice and does not copy the film's look, characters or the full line | [Wikipedia](https://en.wikipedia.org/wiki/La_Chinoise); [À pala de Walsh](https://apaladewalsh.com/2019/01/ideias-vagas-e-imagens-claras/) |
