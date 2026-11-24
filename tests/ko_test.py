@@ -88,9 +88,9 @@ def win_tiles(row):
 
 pb.tick(150, False)
 tap("start", 30)
-tap("down", 8)
+tap("up", 8)                       # English, Français, 한국어: Up wraps to Korean
 tap("a", 30)
-check(mem[sym["_lang"]] == 1, "Korean chosen on the language menu")
+check(mem[sym["_lang"]] == 1 and mem[sym["_lang_fr"]] == 0, "Korean chosen on the language menu")
 # Intro page 1, row 3: "파리, 1967년" = syllable tiles (ids < 128) + font tiles.
 row = win_tiles(3)
 check(any(t < 128 for t in row) and any(t >= 128 for t in row), "Korean intro mixes syllable and font tiles: %s" % row)

@@ -1,0 +1,1 @@
+# French UI strings: same keys as ui.txt; a missing key falls back to English.

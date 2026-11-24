@@ -261,45 +261,43 @@ def wrap(paragraph, where):
     return lines
 
 
-dlg_path = os.path.join(ROOT, "assets", "dialogue", "en.txt")
-entries = []           # (id, [paragraph, ...])
-choices = {}           # id -> (option 1, option 2) or None
-para = []
-for ln, line in enumerate(open(dlg_path, encoding="utf-8"), 1):
-    line = line.rstrip("\n")
-    if line.startswith("#"):
-        continue
-    if line.startswith("[") and line.endswith("]"):
-        entries.append((line[1:-1], [], ln))
-        choices[line[1:-1]] = None
-        continue
-    if line.startswith("? ") and entries:
-        opts = tuple(o.strip() for o in line[2:].split("|"))
-        if len(opts) != 2 or any(not o or len(o) > 7 for o in opts):
-            fail("en.txt:%d: a choice needs exactly two options of 1-7 characters" % ln)
-        choices[entries[-1][0]] = opts
-        continue
-    if not entries:
-        if line.strip():
-            fail("en.txt:%d: text before first [id]" % ln)
-        continue
-    paras = entries[-1][1]
-    if not line.strip():
-        if paras and paras[-1]:
+def parse_dialogue(path, name):
+    """[id] entries of paragraphs, and "? a | b" choices, from a dialogue file."""
+    entries, choices, para = [], {}, []
+    for ln, line in enumerate(open(path, encoding="utf-8"), 1):
+        line = line.rstrip("\n")
+        if line.startswith("#"):
+            continue
+        if line.startswith("[") and line.endswith("]"):
+            entries.append((line[1:-1], [], ln))
+            choices[line[1:-1]] = None
+            continue
+        if line.startswith("? ") and entries:
+            opts = tuple(o.strip() for o in line[2:].split("|"))
+            if len(opts) != 2 or any(not o or len(o) > 7 for o in opts):
+                fail("%s:%d: a choice needs exactly two options of 1-7 characters" % (name, ln))
+            choices[entries[-1][0]] = opts
+            continue
+        if not entries:
+            if line.strip():
+                fail("%s:%d: text before first [id]" % (name, ln))
+            continue
+        paras = entries[-1][1]
+        if not line.strip():
+            if paras and paras[-1]:
+                paras.append("")
+            continue
+        if not paras:
             paras.append("")
-        continue
-    if not paras:
-        paras.append("")
-    paras[-1] = (paras[-1] + " " + line.strip()).strip()
+        paras[-1] = (paras[-1] + " " + line.strip()).strip()
+    return entries, choices
 
-pages, dlg_index, seen = [], [], set()
-for did, paras, ln in entries:
-    if did in seen:
-        fail("en.txt:%d: duplicate id %s" % (ln, did))
-    seen.add(did)
-    first = len(pages)
+
+def paginate(did, paras, name):
+    """The pages (TEXT_ROWS x TEXT_COLS glyphs each) of one entry."""
+    out = []
     for p in [p for p in paras if p]:
-        lines = wrap(p, "en.txt:[%s]" % did)
+        lines = wrap(p, "%s:[%s]" % (name, did))
         # Spread a long paragraph evenly over its pages (5 lines: 3 + 2, not
         # 3 + 3; 4 lines: 2 + 2), so no page holds a lone orphan line.
         n_pages = -(-len(lines) // TEXT_ROWS)
@@ -309,13 +307,25 @@ for did, paras, ln in entries:
             page = []
             for row in range(TEXT_ROWS):
                 text = lines[i + row] if row < take else ""
-                page += encode_text(text.ljust(TEXT_COLS), "en.txt:[%s]" % did)
-            pages.append(page)
+                page += encode_text(text.ljust(TEXT_COLS), "%s:[%s]" % (name, did))
+            out.append(page)
             i += take
-    if len(pages) == first:
-        fail("en.txt:[%s] has no text" % did)
-    if did.startswith("bark_") and len(pages) - first != 1:
-        fail("en.txt:[%s]: a bark must fit on one page (2 lines of 18)" % did)
+    if not out:
+        fail("%s:[%s] has no text" % (name, did))
+    if did.startswith("bark_") and len(out) != 1:
+        fail("%s:[%s]: a bark must fit on one page (2 lines of 18)" % (name, did))
+    return out
+
+
+entries, choices = parse_dialogue(os.path.join(ROOT, "assets", "dialogue", "en.txt"), "en.txt")
+
+pages, dlg_index, seen = [], [], set()
+for did, paras, ln in entries:
+    if did in seen:
+        fail("en.txt:%d: duplicate id %s" % (ln, did))
+    seen.add(did)
+    first = len(pages)
+    pages += paginate(did, paras, "en.txt")
     dlg_index.append((did, first, len(pages) - first))
 # Portrait = the speaker named before ':' at the start of the entry.
 dlg_portrait = []
@@ -453,6 +463,11 @@ for key, data in ui:
     ui_offsets[key] = _off
     H.append("#define txt_%s (ui_text + %d)" % (key, _off))
     _off += len(data) + 1
+import fr_gen  # noqa: E402
+fr_out, fr_header, fr_report = fr_gen.build(
+    ROOT, entries, choices, choice_pairs, ui, ui_offsets, PAGE_SIZE, parse_dialogue, paginate,
+    encode_text, lambda k: MAP_W if k.startswith(("title", "dmg")) else TEXT_COLS, fail)
+H += fr_header
 H.append("\n#endif")
 
 # All asset data lives in ROM bank 1, which is mapped at 0x4000 and never
@@ -540,12 +555,16 @@ import ko_gen  # noqa: E402
 ko_out, ko_report = ko_gen.build([(d, p) for d, p, _ in entries], {k: v for k, v in choices.items() if v},
                                  ui, ui_offsets, encode_char, fail)
 outputs.update(ko_out)
+outputs.update(fr_out)
+print("fr_gen: %d pages in %d banks; untranslated: %d dialogue, %d ui; longer than English: %s"
+      % (fr_report["pages"], fr_report["banks"], len(fr_report["missing_dlg"]), len(fr_report["missing_ui"]),
+         " ".join(fr_report["longer_ui"]) or "none"))
 if errors:
     for e in errors:
         print("gen_assets: error: " + e, file=sys.stderr)
     sys.exit(1)
 _stale_blobs = [os.path.join(ROOT, "src", f) for f in os.listdir(os.path.join(ROOT, "src"))
-                if f.startswith("ko_blob_") and os.path.join(ROOT, "src", f) not in outputs]
+                if f.startswith(("ko_blob_", "fr_pages_")) and os.path.join(ROOT, "src", f) not in outputs]
 if "--check" in sys.argv:
     stale = [p for p, text in outputs.items()
              if not os.path.exists(p) or open(p, encoding="utf-8").read() != text]

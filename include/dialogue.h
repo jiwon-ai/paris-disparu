@@ -19,6 +19,7 @@ uint8_t digit_glyph(uint8_t n);   /* font tile of digit n, callable from any ban
 void dialogue_start(uint8_t id);
 uint8_t dialogue_update(void);  /* returns 1 while the dialogue is open */
 void bark_show(uint8_t id);      /* non-blocking one-page line */
+extern uint8_t lang_fr;         /* 1: French text (the English engine) */
 extern uint8_t dialogue_choice; /* 0 = first option, 1 = second or B on the options,
                                    2 = closed with B before the options */
 

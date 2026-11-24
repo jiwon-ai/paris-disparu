@@ -7,11 +7,13 @@
 #include "input.h"
 #include "sound.h"
 #include "ko.h"
+#include "fr.h"
 
 #define BOX_ATTR (0x80u | 5u)   /* BG-over-sprite priority, text palette */
 #define DLG_ROWS (lang ? 6 : 5)   /* Korean: two 16-pixel lines */
 
 uint8_t lang;
+uint8_t lang_fr;            /* French: the English engine with fr_* text (fr_gen.py) */
 
 void far_read(uint8_t bank, const uint8_t *src, uint8_t *dst, uint8_t n) {
     uint8_t save = _current_bank;
@@ -144,6 +146,7 @@ uint8_t box_has_next(void) {
 void box_print(uint8_t x, uint8_t y, const uint8_t *text) {
     uint8_t n = 0, save = _current_bank;
     if (lang && ko_print(x, y, (uint16_t)(text - ui_text), text)) return;
+    if (lang_fr) { fr_print(x, y, (uint16_t)(text - ui_text)); return; }
     SWITCH_ROM(ASSET_BANK);          /* callable from banked code too */
     while (text[n] && x + n < MAP_W) n++;
     set_win_tiles(x, y, n, 1, text);
@@ -171,13 +174,22 @@ static void clear_text(void) {
     blink = 0;
 }
 
+/* First page and page count of a dialogue, English or French. */
+static void dlg_pages_of(uint8_t id) {
+    if (lang_fr) {
+        fr_pages_of(id, &page, &pages_left);
+    } else {
+        far_read(TITLE_BANK, (const uint8_t *)&dlg_first_page[id], (uint8_t *)&page, 2);
+        far_read(TITLE_BANK, &dlg_page_count[id], &pages_left, 1);
+    }
+    pages_left--;
+}
+
 void dialogue_start(uint8_t id) {
     far_read(TITLE_BANK, &dlg_choice[id], &choice, 1);
     in_choice = 0;
     dialogue_choice = 1;
-    far_read(TITLE_BANK, (const uint8_t *)&dlg_first_page[id], (uint8_t *)&page, 2);
-    far_read(TITLE_BANK, &dlg_page_count[id], &pages_left, 1);
-    pages_left--;
+    dlg_pages_of(id);
     if (lang) ko_start(id);
     else load_page();
     box_dialogue();
@@ -189,6 +201,7 @@ void dialogue_start(uint8_t id) {
 
 /* Copy the current page from the dialogue ROM bank into RAM. */
 static void load_page(void) {
+    if (lang_fr) { fr_load_page(page, page_buf); return; }
     if (page < DLG_PAGES_LO) {
         SWITCH_ROM(DLG_BANK);
         memcpy(page_buf, dlg_pages + page * PAGE_SIZE, PAGE_SIZE);
@@ -206,6 +219,7 @@ static void draw_choice(void) {
         return;
     }
     t = choice_text + (uint16_t)(choice - 1) * 14;
+    if (lang_fr) { fr_choice(choice, row_buf); t = row_buf; }
     set_win_tile_xy(3, 2, dialogue_choice == 0 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
     set_win_tiles(4, 2, 7, 1, t);
     set_win_tile_xy(11, 2, dialogue_choice == 1 ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
@@ -296,7 +310,7 @@ void bark_show(uint8_t id) {
         box_dialogue();
         ko_reveal_all();
     } else {
-        far_read(TITLE_BANK, (const uint8_t *)&dlg_first_page[id], (uint8_t *)&page, 2);
+        dlg_pages_of(id);
         load_page();
         box_dialogue();
         for (y = 0; y < TEXT_ROWS; y++)

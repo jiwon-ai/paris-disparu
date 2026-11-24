@@ -2,6 +2,7 @@
 title_5 = Press START
 lang_title = LANGUAGE
 lang_en = English
+lang_fr = Français
 lang_go = A: choose
 save_cont = Continue
 save_new = New game

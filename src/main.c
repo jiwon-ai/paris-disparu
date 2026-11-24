@@ -212,27 +212,26 @@ static void title_fade(uint8_t level) {
     set_bkg_palette(0, 8, fade_buf);
 }
 
-/* English or Korean, chosen once after the title. */
+/* English, French or Korean, chosen once after the title. */
 static void lang_menu(void) {
-    uint8_t sel = 0;
+    uint8_t sel = 0, i;
     box_open(SCREEN_H / 8);
     box_print(6, 5, txt_lang_title);
     box_print(7, 8, txt_lang_en);
-    ko_draw_name(7, 10);
-    box_print(6, 14, txt_lang_go);
+    box_print(7, 10, txt_lang_fr);
+    ko_draw_name(7, 12);
+    box_print(6, 15, txt_lang_go);
     while (1) {
-        box_tile(5, 8, sel ? GLYPH_SPACE : GLYPH_ARROW_RIGHT);
-        box_tile(5, 10, sel ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        for (i = 0; i < 3; i++) box_tile(5, 8 + i * 2, sel == i ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
         wait_vbl_done();
         input_update();
-        if (joy_pressed & (J_UP | J_DOWN | J_SELECT)) {
-            sel ^= 1;
-            sound_blip();
-        }
+        if (joy_pressed & (J_DOWN | J_SELECT)) { sel = sel == 2 ? 0 : sel + 1; sound_blip(); }
+        if (joy_pressed & J_UP) { sel = sel ? sel - 1 : 2; sound_blip(); }
         if (joy_pressed & (J_A | J_START)) break;
     }
     sound_confirm();
-    lang = sel;
+    lang = sel == 2;        /* Korean: its own text engine (src/ko.c) */
+    lang_fr = sel == 1;
 }
 
 /* Setting, goal and controls on three short pages. A: next, B/START: skip. */
