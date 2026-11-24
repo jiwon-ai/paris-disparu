@@ -35,6 +35,10 @@
 #define NPC_PHILOSOPHER 13
 #define NPC_FILMMAKER   14
 #define NPC_WRITER      15
+#define NPC_NOVELIST    16  /* writer cameos added 2026-11-24 */
+#define NPC_PLAYWRIGHT  17
+#define NPC_CRITIC      18
+#define NPC_YOUNG_MAN   19
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001

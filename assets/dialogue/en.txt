@@ -44,6 +44,10 @@ My old notebooks are at home. My wife reads them out. Call 4127, from the café.
 [stranger_knows]
 MAN WITH NOTEBOOK: You found out where he went. I can see it on your face. Noted.
 
+A young writer won the Renaudot two years ago with a novel called Things. This year he joined a club of writers who write by rules.
+
+Me, I only write down what I see. The ordinary. Nobody looks at it.
+
 [stranger_again]
 MAN WITH NOTEBOOK: Still no yellow hat. Call my notebooks, 4127. Yesterday may explain tonight.
 
@@ -673,6 +677,10 @@ THE PHILOSOPHER: Usually I write in a café in Saint-Germain, with my companion.
 [philosopher_again]
 THE PHILOSOPHER: Your porter is free to leave. Free to stay, too. Bring him reasons, not orders.
 
+Three years ago they gave me the biggest prize there is. I tried to refuse it. A writer shouldn't turn into an institution.
+
+This year I sat on a tribunal judging the war in Vietnam. Words can still act.
+
 [filmmaker_hello]
 THE FILMMAKER: My new film opens in December. A city of glass and steel. I came to look at the old one before it goes.
 
@@ -684,3 +692,39 @@ THE WRITER: I once wrote about a girl who came to Paris only to ride the métro.
 
 [writer_again]
 THE WRITER: Look at the tiles, low down by the wall. Even mice take the métro. Some without a ticket.
+
+[novelist_hello]
+THE NOVELIST: I can't sleep, so I walk. At this hour Paris belongs to the people who work and the people who write.
+
+A new book of mine came out this year. Don't ask me what it's about.
+
+Once I wrote a film with a title like a sigh: such a long absence.
+
+[novelist_again]
+THE NOVELIST: A man who disappears always leaves something behind. A hat, a letter, a name. Gather them, and he comes back to you.
+
+[playwright_hello]
+THE PLAYWRIGHT: An Irishman. I came to Paris before the war, and stayed through it.
+
+A play of mine opened here in '53. Two men waiting by the road. People are still waiting with them.
+
+I used to play chess in the cafés with painters. Long silences. Good practice.
+
+[playwright_again]
+THE PLAYWRIGHT: The big man down the bridge has been waiting a long time. Waiting for nothing is hard. Go and give him something.
+
+[critic_hello]
+THE CRITIC: Red wine, steak and chips, a new car… I once wrote little essays on things like these. The myths of everyday France.
+
+This year I published a whole book on fashion. Everything is a sign, if you look closely.
+
+[critic_again]
+THE CRITIC: Think of Mme Roux by the river, with her blue fingers. A hot gratinée would say more to her than any word.
+
+[young_man_hello]
+THE YOUNG MAN: I'm twenty-two and I'm writing my first novel. Paris under the Occupation, and people who vanished.
+
+My old geometry teacher writes novels. He's down here somewhere. He says I should keep going.
+
+[young_man_again]
+THE YOUNG MAN: People never vanish completely. They leave addresses, phone numbers, notes. Someone always remembers.

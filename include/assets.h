@@ -134,7 +134,11 @@
 #define SPR1_PRESS 254   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_THIEF_0 0   /* VRAM bank 1, low tiles */
 #define SPR1_THIEF_1 4   /* VRAM bank 1, low tiles */
-#define LOW_TILE_COUNT 8
+#define SPR1_NOVELIST 8   /* VRAM bank 1, low tiles */
+#define SPR1_PLAYWRIGHT 12   /* VRAM bank 1, low tiles */
+#define SPR1_CRITIC 16   /* VRAM bank 1, low tiles */
+#define SPR1_YOUNG_MAN 20   /* VRAM bank 1, low tiles */
+#define LOW_TILE_COUNT 24
 #define GLYPH_DIGIT0 198
 #define GLYPH_CUP 227
 #define GLYPH_COIN 228
@@ -343,6 +347,14 @@ enum {
     DLG_FILMMAKER_AGAIN,
     DLG_WRITER_HELLO,
     DLG_WRITER_AGAIN,
+    DLG_NOVELIST_HELLO,
+    DLG_NOVELIST_AGAIN,
+    DLG_PLAYWRIGHT_HELLO,
+    DLG_PLAYWRIGHT_AGAIN,
+    DLG_CRITIC_HELLO,
+    DLG_CRITIC_AGAIN,
+    DLG_YOUNG_MAN_HELLO,
+    DLG_YOUNG_MAN_AGAIN,
     DLG_COUNT
 };
 

@@ -17,7 +17,7 @@ uint8_t new_quest;
 uint16_t secret_flags;
 uint8_t new_secret;
 static uint8_t last_look, look_count;
-static uint8_t cameo_met;                /* bit k: cameo NPC_ACTOR + k already met */   /* the same thing examined n times in a row */
+static uint16_t cameo_met;                /* bit k: cameo NPC_ACTOR + k already met */   /* the same thing examined n times in a row */
 
 /* The clue that completes each quest (the last one is the ending). */
 static const uint8_t quest_clue[QUEST_COUNT - 1] = { CLUE_COLTIN, CLUE_BLEU, CLUE_RUNGIS, CLUE_PLATE };
@@ -224,8 +224,10 @@ uint8_t event_talk(uint8_t npc) BANKED {
         if (!CLUE(CLUE_BLEU)) return DLG_SINGER_BLEU;
         return DLG_SINGER_PLATE;
 
-    case NPC_ACTOR: case NPC_CHANTEUSE: case NPC_PHILOSOPHER: case NPC_FILMMAKER: case NPC_WRITER: {
-        uint8_t k = npc - NPC_ACTOR, bit = 1 << k;
+    case NPC_ACTOR: case NPC_CHANTEUSE: case NPC_PHILOSOPHER: case NPC_FILMMAKER: case NPC_WRITER:
+    case NPC_NOVELIST: case NPC_PLAYWRIGHT: case NPC_CRITIC: case NPC_YOUNG_MAN: {
+        uint8_t k = npc - NPC_ACTOR;
+        uint16_t bit = 1u << k;
         if (cameo_met & bit) return DLG_ACTOR_HELLO + 2 * k + 1;   /* his or her hint */
         cameo_met |= bit;
         return DLG_ACTOR_HELLO + 2 * k;

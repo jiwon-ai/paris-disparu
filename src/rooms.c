@@ -70,6 +70,7 @@ static const npc_def_t cafe_npcs[] = {
     { 40, 18, SPR_CAFE_0, 3, NPC_CAFE },
     { 88, 40, SPR_PORTER_0, 1, NPC_WORKER },
     { 24, 64, SPR1_PHILOSOPHER, 4 | S_BANK1, NPC_PHILOSOPHER }, /* cameo */
+    { 44, 80, SPR1_CRITIC, 0 | S_BANK1, NPC_CRITIC },          /* cameo */
 };
 static const hotspot_t cafe_hotspots[] = {
     { 17, 3, 1, 1, DLG_PHONE_LOOK },
@@ -87,6 +88,7 @@ static const door_t cafe_doors[] = {
 static const npc_def_t quai_npcs[] = {
     { 120, 60, SPR_SINGER_0, 4, NPC_SINGER },     /* listening to the river */
     { 40, 46, SPR_MERCHANT_0, 4, NPC_ROUX },      /* Mme Roux, near her box */
+    { 136, 44, SPR1_NOVELIST, 3 | S_BANK1, NPC_NOVELIST },      /* cameo */
 };
 static const hotspot_t quai_hotspots[] = {
     {  3, 12, 2, 1, DLG_QUAI_BOX },    /* Mme Roux's box: reachable between the trees */
@@ -111,6 +113,7 @@ static const hotspot_t quai_hotspots[] = {
 static const npc_def_t pont_npcs[] = {
     { 80, 60, SPR_PAINTER_0, 2, NPC_PAINTER },
     { 92, 100, SPR_FERNAND_0, 1, NPC_FERNAND },   /* bareheaded, looking at the water */
+    { 52, 56, SPR1_PLAYWRIGHT, 4 | S_BANK1, NPC_PLAYWRIGHT },   /* cameo */
 };
 static const hotspot_t pont_hotspots[] = {
     {  7, 7, 1, 1, DLG_GASLAMP },
@@ -125,6 +128,7 @@ static const hotspot_t pont_hotspots[] = {
 static const npc_def_t metro_npcs[] = {
     { 84, 52, SPR_PUNCHER_0, 4, NPC_PUNCHER },    /* at the platform gate */
     { 136, 80, SPR1_WRITER, 4 | S_BANK1, NPC_WRITER },          /* cameo */
+    { 140, 104, SPR1_YOUNG_MAN, 4 | S_BANK1, NPC_YOUNG_MAN },   /* cameo */
 };
 static const hotspot_t metro_hotspots[] = {
     {  2, 4, 3, 3, DLG_METRO_WINDOW },
@@ -144,12 +148,12 @@ const room_def_t rooms[ROOM_COUNT] = {
       { ROOM_QUAI, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_MARKET },
     { market_npcs, 1, market_hotspots, 6, market_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
-    { cafe_npcs, 3, cafe_hotspots, 6, cafe_doors, 1,
+    { cafe_npcs, 4, cafe_hotspots, 6, cafe_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
-    { quai_npcs, 2, quai_hotspots, 16, 0, 0,
+    { quai_npcs, 3, quai_hotspots, 16, 0, 0,
       { ROOM_PONT, ROOM_ENTRANCE, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
-    { pont_npcs, 2, pont_hotspots, 6, 0, 0,
+    { pont_npcs, 3, pont_hotspots, 6, 0, 0,
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
-    { metro_npcs, 2, metro_hotspots, 5, metro_doors, 1,
+    { metro_npcs, 3, metro_hotspots, 5, metro_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
 };
