@@ -24,8 +24,12 @@ void world_load(uint8_t room) {
 }
 
 uint8_t world_solid(int16_t px, int16_t py) {
+    uint8_t s, save = _current_bank;     /* callable from banked code too */
     if (px < 0 || py < 0 || px >= SCREEN_W || py >= SCREEN_H) return 1;
-    return room_solid[cur_room][(uint16_t)(py >> 3) * MAP_W + (uint8_t)(px >> 3)];
+    SWITCH_ROM(ASSET_BANK);
+    s = room_solid[cur_room][(uint16_t)(py >> 3) * MAP_W + (uint8_t)(px >> 3)];
+    SWITCH_ROM(save);
+    return s;
 }
 
 uint8_t world_hotspot(int16_t px, int16_t py) {

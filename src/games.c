@@ -1,6 +1,8 @@
-/* Three quest mini-games: the café coffee rush, the porter's cup game and
-   catching Germaine's cabbages. Each returns MG_RUNNING until it ends with
-   MG_SUCCESS or MG_FAIL (see minigame.h). */
+/* Quest mini-games: the café coffee rush, the porter's cup game, catching
+   Germaine's cabbages and chasing the thief on the quai. Each returns
+   MG_RUNNING until it ends with MG_SUCCESS or MG_FAIL (see minigame.h).
+   ROM bank 7: UI strings go through box_print, which maps bank 1 itself. */
+#pragma bank 7
 #include <gb/gb.h>
 #include "actor.h"
 #include "assets.h"
@@ -9,6 +11,7 @@
 #include "input.h"
 #include "minigame.h"
 #include "sound.h"
+#include "world.h"
 
 static uint8_t seed;
 static uint8_t rnd(void) {          /* small LFSR, mixed with the divider */
@@ -17,7 +20,7 @@ static uint8_t rnd(void) {          /* small LFSR, mixed with the divider */
 }
 
 static void put_digit(uint8_t x, uint8_t y, uint8_t n) {
-    set_win_tile_xy(x, y, txt_digits[n]);
+    set_win_tile_xy(x, y, GLYPH_DIGIT0 + n);
 }
 
 /* ------------------------------------------------------------ coffee rush
@@ -53,7 +56,7 @@ static void serve_order(void) {
     serve_draw_bar();
 }
 
-void serve_start(void) {
+void serve_start(void) BANKED {
     uint8_t i;
     seed = DIV_REG | 1;
     s_round = s_hits = s_sel = s_pause = 0;
@@ -76,7 +79,7 @@ static uint8_t serve_next(uint8_t hit) {
     return MG_RUNNING;
 }
 
-uint8_t serve_update(void) {
+uint8_t serve_update(void) BANKED {
     if (s_pause) {
         if (--s_pause) return MG_RUNNING;
         if (++s_round == SERVE_ROUNDS) {
@@ -111,14 +114,14 @@ static void cups_draw(uint8_t raise_a, uint8_t raise_b, uint8_t show) {
     uint8_t i, up;
     for (i = 0; i < 3; i++) {
         up = (i == raise_a || i == raise_b);
-        set_win_tile_xy(cup_x[i], CUP_Y - 1, up ? txt_cup[0] : GLYPH_SPACE);
-        set_win_tile_xy(cup_x[i], CUP_Y, up ? GLYPH_SPACE : txt_cup[0]);
-        set_win_tile_xy(cup_x[i], CUP_Y + 1, (show && i == cup_where) ? txt_coin[0] : GLYPH_SPACE);
+        set_win_tile_xy(cup_x[i], CUP_Y - 1, up ? GLYPH_CUP : GLYPH_SPACE);
+        set_win_tile_xy(cup_x[i], CUP_Y, up ? GLYPH_SPACE : GLYPH_CUP);
+        set_win_tile_xy(cup_x[i], CUP_Y + 1, (show && i == cup_where) ? GLYPH_COIN : GLYPH_SPACE);
         set_win_tile_xy(cup_x[i] - 1, CUP_Y + 2, (c_phase == 2 && i == c_sel) ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
     }
 }
 
-void cups_start(void) {
+void cups_start(void) BANKED {
     seed = DIV_REG | 1;
     cup_where = rnd() % 3;
     c_swaps = 0;
@@ -130,7 +133,7 @@ void cups_start(void) {
     cups_draw(0xFF, 0xFF, 1);
 }
 
-uint8_t cups_update(void) {
+uint8_t cups_update(void) BANKED {
     if (c_phase == 0) {
         if (--c_timer == 0) { c_phase = 1; c_timer = 1; }
         return MG_RUNNING;
@@ -167,7 +170,7 @@ uint8_t cups_update(void) {
     return MG_RUNNING;
 }
 
-uint8_t cups_answer(void) { return cup_where; }   /* for the tests */
+uint8_t cups_answer(void) BANKED { return cup_where; }   /* for the tests */
 
 /* ------------------------------------------------------------ cabbages
    Germaine's cabbages roll off the top of the stall: move left/right under
@@ -189,7 +192,7 @@ static void cabbage_new(void) {
     cab_y = 20;
 }
 
-void catch_start(void) {
+void catch_start(void) BANKED {
     seed = DIV_REG | 1;
     k_caught = k_missed = 0;
     k_speed = 1;
@@ -200,7 +203,7 @@ void catch_start(void) {
     cabbage_new();
 }
 
-uint8_t catch_update(void) {
+uint8_t catch_update(void) BANKED {
     uint8_t i;
     if ((joy_held & J_LEFT) && player.x > 24) player.x -= 2;
     if ((joy_held & J_RIGHT) && player.x < 136) player.x += 2;
@@ -226,5 +229,126 @@ uint8_t catch_update(void) {
         return k_caught >= CATCH_NEED ? MG_SUCCESS : MG_FAIL;
     }
     sprite16(CATCH_OAM, cab_x, cab_y, SPR_CRATE, 5);
+    return MG_RUNNING;
+}
+
+/* ------------------------------------------------------------ the thief
+   Dawn on the quai: a pickpocket snatches Fernand's brass plate and runs.
+   Catch him (touch him) within CHASE_SECONDS. He is a little slower than
+   the player and always runs away from you, so corner him. No fighting:
+   you catch his sleeve and he drops the plate. Both stay on the quai's
+   pavement and road (CH_* bounds), so nobody leaves the room. */
+#define CHASE_OAM 16
+#define CHASE_SECONDS 30
+#define CH_X1 144      /* the whole quai, below Mme Roux */
+#define CH_Y0 48
+#define CH_Y1 92
+int16_t thief_x, thief_y;            /* read by tests/play_test.py */
+static uint8_t t_dir, t_hold, t_left, t_tick;
+static uint16_t t_time;
+static const int8_t t_dx[4] = { 0, 0, -1, 1 };   /* DIR_DOWN, UP, LEFT, RIGHT */
+static const int8_t t_dy[4] = { 1, -1, 0, 0 };
+
+static uint8_t thief_free(int16_t x, int16_t y) {
+    const room_def_t *r = &rooms[cur_room];
+    const npc_def_t *n;
+    uint8_t i;
+    if (x < 0 || x > CH_X1 || y < CH_Y0 || y > CH_Y1) return 0;
+    for (i = 0; i < r->npc_count; i++) {        /* people block him too */
+        n = &r->npcs[i];
+        if (x + 12 >= n->x + 2 && x + 3 <= n->x + 13 && y + 15 >= n->y + 8 && y + 10 <= n->y + 15)
+            return 0;
+    }
+    return !world_solid(x + 3, y + 10) && !world_solid(x + 12, y + 10) &&
+           !world_solid(x + 3, y + 15) && !world_solid(x + 12, y + 15);
+}
+
+static uint16_t away(int16_t x, int16_t y) {     /* distance to the player */
+    int16_t dx = x - player.x, dy = y - player.y;
+    return (uint16_t)(dx < 0 ? -dx : dx) + (uint16_t)(dy < 0 ? -dy : dy);
+}
+
+static void chase_hud(void) {
+    put_digit(16, 1, t_left / 10);
+    put_digit(17, 1, t_left % 10);
+}
+
+void chase_start(void) BANKED {
+    seed = DIV_REG | 1;
+    player_place(40, 64, DIR_RIGHT);
+    thief_x = 80;
+    thief_y = 64;
+    t_dir = DIR_RIGHT;
+    t_hold = 0;
+    t_time = 0;
+    t_tick = 0;
+    t_left = CHASE_SECONDS;
+    box_open(3);
+    box_print(1, 1, txt_chase_hud);
+    chase_hud();
+}
+
+uint8_t chase_update(void) BANKED {
+    uint8_t i, n, best;
+    uint16_t v, bv;
+    int16_t dx, dy, nx, ny;
+
+    player_update();                   /* exits ignored: the bounds keep him in */
+    if (player.y < CH_Y0) player.y = CH_Y0;
+    if (player.y > CH_Y1) player.y = CH_Y1;
+    if (player.x > CH_X1) player.x = CH_X1;
+
+    /* Pick a new direction now and then, or when blocked: follow each free
+       direction up to 24 px (until something blocks it) and take the one
+       that ends furthest from the player, so he avoids dead ends. */
+    if (t_hold) t_hold--;
+    if (!t_hold || !thief_free(thief_x + t_dx[t_dir], thief_y + t_dy[t_dir])) {
+        best = t_dir;
+        bv = 0;
+        for (i = 0; i < 4; i++) {
+            nx = thief_x;
+            ny = thief_y;
+            for (n = 0; n < 24 && thief_free(nx + t_dx[i], ny + t_dy[i]); n++) {
+                nx += t_dx[i];
+                ny += t_dy[i];
+            }
+            if (!n) continue;
+            v = away(nx, ny) + n + (rnd() & 7);
+            if (v > bv) {
+                bv = v;
+                best = i;
+            }
+        }
+        t_dir = best;
+        t_hold = 12;
+    }
+    if ((t_time & 7) && thief_free(thief_x + t_dx[t_dir], thief_y + t_dy[t_dir])) {
+        thief_x += t_dx[t_dir];        /* 7 steps in 8 frames: a bit slower */
+        thief_y += t_dy[t_dir];
+    }
+
+    dx = thief_x - player.x;
+    dy = thief_y - player.y;
+    if (dx > -12 && dx < 12 && dy > -10 && dy < 10) {
+        move_sprite(CHASE_OAM, 0, 0);
+        move_sprite(CHASE_OAM + 1, 0, 0);
+        box_close();
+        return MG_SUCCESS;
+    }
+    if (++t_tick == 60) {
+        t_tick = 0;
+        t_left--;
+        chase_hud();
+        if (t_left == 0) {
+            move_sprite(CHASE_OAM, 0, 0);
+            move_sprite(CHASE_OAM + 1, 0, 0);
+            box_close();
+            return MG_FAIL;
+        }
+        if (t_left <= 5) sound_blip();
+    }
+    t_time++;
+    sprite16(CHASE_OAM, thief_x, thief_y, (t_time & 8) ? SPR1_THIEF_1 : SPR1_THIEF_0,
+             4 | S_BANK1 | (t_dir == DIR_LEFT ? S_FLIPX : 0));
     return MG_RUNNING;
 }

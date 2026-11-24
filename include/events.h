@@ -19,6 +19,8 @@ extern uint8_t carrying;   /* crate type held by the player, or NO_CRATE */
 #define EV_SERVE 0xFA  /* the cafe coffee rush */
 #define EV_CUPS  0xF9  /* the porter's cup game, for a jeton */
 #define EV_CATCH 0xF8  /* catch Germaine's cabbages */
+#define EV_CHASE 0xF7  /* chase the thief on the quai */
+#define EV_FIRST EV_CHASE   /* lowest EV_*: dialogue ids stay below it */
 
 /* Each returns the dialogue to show, EV_*, or NO_DIALOGUE. */
 uint8_t event_talk(uint8_t npc) BANKED;

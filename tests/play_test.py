@@ -167,7 +167,7 @@ def dialogue(choice=None, max_pages=24):
             tap("a", 6)
             continue
         if not window_on() or window_row(1).startswith(("Up/Down", "Lift!", "Punch!", "New clue", "Extra done", "Secret found", "QUEST COMPLETE",
-                                                        "Coffee rush", "Watch the", "Which cup", "Got ")) \
+                                                        "Coffee rush", "Watch the", "Which cup", "Got ", "Catch him")) \
                 or window_row(2) == "THE END":
             break
         if "▶" in window_row(2):
@@ -314,6 +314,37 @@ def play_catch():
             pb.button_release(btn)
         else:
             tick(1)
+
+
+def play_chase():
+    """The thief on the quai: walk straight at him (the larger gap first)."""
+    stuck = 0
+    for f in range(30 * 60 + 60):
+        if not (window_on() and window_row(1).startswith("Catch him")):
+            return f
+        if f == 120:
+            shot("28_chase")
+        tx, ty = s16(sym["_thief_x"]), s16(sym["_thief_y"])
+        px, py = player()
+        if os.environ.get("CHASE_LOG") and f % 8 == 0:
+            print("    chase f=%d thief=(%d,%d) player=(%d,%d)" % (f, tx, ty, px, py))
+        dx, dy = tx - px, ty - py
+        horiz = abs(dx) >= abs(dy)
+        if stuck > 3:                   # blocked (a tree, the singer): other axis
+            horiz = not horiz
+            if (dy if not horiz else dx) == 0:
+                dy = 1 if py < 76 else -1
+        if horiz:
+            btn = "right" if dx > 0 else "left"
+        else:
+            btn = "down" if dy > 0 else "up"
+        pb.button_press(btn)
+        tick(1)
+        pb.button_release(btn)
+        stuck = stuck + 1 if player() == (px, py) else 0
+        if stuck > 30:
+            stuck = 0
+    return -1
 
 
 def get_jeton():
@@ -811,7 +842,17 @@ cafe_to_street()
 street_to_quai()
 goto(40, 64, "yx")
 push("up")
-talk("an angel", clue=0x10)     # the trade: soup for the brass plate
+tap("a", 0)                     # the trade: soup for the brass plate...
+lines = dialogue()
+check(any("an angel" in l for l in lines) and any("lighter" in l for l in lines),
+      "Mme Roux gives the plate, then a pickpocket grabs it: %s" % lines[-2:])
+check(window_on() and window_row(1).startswith("Catch him"), "the chase is on: %r" % window_row(1))
+frames = play_chase()
+check(frames > 0, "caught the thief after %d frames" % frames)
+lines = dialogue()
+check(any("Only brass" in l for l in lines), "the thief drops the plate: %s" % lines[:2])
+check(window_on() and "QUEST COMPLETE" in window_row(1) and clues() & 0x10, "plate quest complete: %r" % window_row(1))
+tap("b", 4)
 goto(72, 60, "yx")
 push("down")
 check(room() == ROOM_PONT, "onto the bridge (room %d)" % room())

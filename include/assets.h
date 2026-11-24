@@ -111,6 +111,12 @@
 #define SPR1_WRITER 248   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_MARK 252   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_PRESS 254   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_THIEF_0 0   /* VRAM bank 1, low tiles */
+#define SPR1_THIEF_1 4   /* VRAM bank 1, low tiles */
+#define LOW_TILE_COUNT 8
+#define GLYPH_DIGIT0 198
+#define GLYPH_CUP 227
+#define GLYPH_COIN 228
 #define PORTRAIT_BASE 64
 #define PORTRAIT_TILE_COUNT 192
 #define NO_PORTRAIT 0xFF
@@ -294,6 +300,9 @@ enum {
     DLG_ROUX_HELLO,
     DLG_ROUX_WAIT,
     DLG_ROUX_SOUP,
+    DLG_THIEF,
+    DLG_CHASE_WIN,
+    DLG_CHASE_LOSE,
     DLG_ROUX_AFTER,
     DLG_BARK_ROUX,
     DLG_BARK_ROUX_SOUP,
@@ -327,6 +336,7 @@ extern const uint8_t dlg_page_count[DLG_COUNT];
 extern const uint8_t dlg_choice[DLG_COUNT];   /* 0 = none, else pair index + 1 */
 extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
 extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */
+extern const uint8_t low_tiles[];             /* bank PORTRAIT_BANK, VRAM bank 1 tile 0.. */
 extern const uint8_t portrait_pal[];          /* sprite palette per portrait */
 extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */
 extern const uint8_t ui_text[];
@@ -503,6 +513,12 @@ extern const uint8_t ui_text[];
 #define txt_how_k2 (ui_text + 2415)
 #define txt_how_k3 (ui_text + 2434)
 #define txt_how_k4 (ui_text + 2450)
+#define txt_how_t0 (ui_text + 2465)
+#define txt_how_t1 (ui_text + 2478)
+#define txt_how_t2 (ui_text + 2495)
+#define txt_how_t3 (ui_text + 2514)
+#define txt_how_t4 (ui_text + 2532)
+#define txt_chase_hud (ui_text + 2547)
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];

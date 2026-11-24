@@ -578,6 +578,23 @@ MME ROUX: A gratinée! Still steaming! You're an angel.
 
 Here: his brass plate. A fort without his plate is just a big man with a sore back.
 
+[thief]
+A man in a flat cap bumps into you. "Pardon!" Your pocket feels lighter… Fernand's brass plate!
+
+He's off along the quai. After him!
+
+[chase_win]
+You catch him by the sleeve under a gas lamp. The plate clatters onto the cobbles.
+
+THIEF: Only brass?! The whole city's mad for gold this week, I thought… Bah!
+
+He wriggles free and vanishes into the dark. The plate is yours again.
+
+[chase_lose]
+He stops by the parapet to catch his breath, and grins. THIEF: Too slow!
+
+He's tired too. Go on, once more!
+
 [roux_after]
 MME ROUX: Zola, Hugo, Balzac… Old books for an old Paris. Mind how you go.
 

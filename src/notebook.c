@@ -65,8 +65,9 @@ uint16_t notebook_number(void) {
     return 0;
 }
 
-/* Rules card: EV_* - EV_CATCH indexes the rows (EV_END has none). */
-static const uint8_t * const howto_txt[7][5] = {
+/* Rules card: EV_* - EV_FIRST indexes the rows (EV_END has none). */
+static const uint8_t * const howto_txt[8][5] = {
+    { txt_how_t0, txt_how_t1, txt_how_t2, txt_how_t3, txt_how_t4 },   /* EV_CHASE */
     { txt_how_k0, txt_how_k1, txt_how_k2, txt_how_k3, txt_how_k4 },   /* EV_CATCH */
     { txt_how_c0, txt_how_c1, txt_how_c2, txt_how_c3, txt_how_c4 },   /* EV_CUPS */
     { txt_how_s0, txt_how_s1, txt_how_s2, txt_how_s3, txt_how_s4 },   /* EV_SERVE */
@@ -78,7 +79,7 @@ static const uint8_t * const howto_txt[7][5] = {
 
 void howto_show(uint8_t ev) {
     uint8_t i;
-    const uint8_t * const *t = howto_txt[ev - EV_CATCH];
+    const uint8_t * const *t = howto_txt[ev - EV_FIRST];
     box_open(10);
     box_print(1, 1, txt_howto);
     for (i = 0; i < 5; i++) box_print(1, 3 + i, t[i]);

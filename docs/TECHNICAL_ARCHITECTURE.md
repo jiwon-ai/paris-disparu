@@ -125,17 +125,27 @@ Dialogue pages (54 bytes each) fill ROM bank 2 (`dlg_pages`, DLG_PAGES_LO
 pages); the overflow is stored in bank 3 after the title art
 (`dlg_pages_hi`). `dialogue.c` maps the right bank per page.
 
-## ROM layout (128 KiB, MBC5, 8 banks)
+## ROM layout (256 KiB, MBC5, 16 banks)
 
 | Bank | Content |
 |---|---|
-| 0 | code (~14.7 KiB of 16) |
-| 1 | assets, always mapped (tiles, maps, palettes, UI text, dialogue index) |
+| 0 | code |
+| 1 | assets, always mapped (tiles, maps, palettes, UI text, dialogue index); nearly full |
 | 2 | dialogue pages (first DLG_PAGES_LO) |
 | 3 | title art + dialogue overflow |
-| 4 | portrait tiles (copied to VRAM bank 1 by load_bank1) |
-| 5-7 | free |
+| 4 | portrait tiles and low sprites (copied to VRAM bank 1 by load_bank1) |
+| 5 | story logic (`events.c`) |
+| 6 | Korean code, tables, UI strings, Galmuri7 tiles |
+| 7 | mini-games (`games.c`, BANKED functions) |
+| 8-10 | Galmuri11 glyphs and Korean dialogue pages |
+| 11-15 | free |
 
-Dialogue ids: up to 0xF7 (0xF8-0xFE are EV_* events, 0xFF none). Hotspot
+Code outside bank 0/1 cannot read bank-1 data directly: `box_print` and
+`world_solid` save the current bank, map ASSET_BANK and restore it, so they
+are callable from any bank; `far_read()` copies from another bank.
+VRAM bank 1 sprite tiles 0-63 hold "low" sprites (`BANK1_LOW_SPRITES` in
+tools/art.py, e.g. the pickpocket, `SPR1_THIEF_*`).
+
+Dialogue ids: up to 0xF6 (0xF7-0xFE are EV_* events, EV_FIRST = EV_CHASE; 0xFF none). Hotspot
 dialogues must stay below 0x80 (TALK flag); gen_assets.py checks rooms.c.
 Bank 0 is full (about 60 bytes free after the cameos): new code must go to banked functions (`#pragma bank`) first.

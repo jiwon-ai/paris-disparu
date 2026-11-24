@@ -120,6 +120,10 @@ uint8_t event_game_result(uint8_t ev, uint8_t success) BANKED {
         if (!success) return DLG_CATCH_LOSE;
         found(CLUE_RUNGIS);
         return DLG_MERCHANT_RUNGIS;
+    case EV_CHASE:              /* the plate is only yours once he drops it */
+        if (!success) return DLG_CHASE_LOSE;
+        found(CLUE_PLATE);
+        return DLG_CHASE_WIN;
     }
     return NO_DIALOGUE;
 }
@@ -207,8 +211,7 @@ uint8_t event_talk(uint8_t npc) BANKED {
         if (CLUE(CLUE_PLATE)) return DLG_ROUX_AFTER;
         if (quest_flags & QF_SOUP) {
             quest_flags &= ~QF_SOUP;
-            found(CLUE_PLATE);
-            return DLG_ROUX_SOUP;
+            return DLG_ROUX_SOUP;       /* then the thief (event_after) */
         }
         if (quest_flags & QF_ROUX) return DLG_ROUX_WAIT;
         quest_flags |= QF_ROUX;
@@ -360,6 +363,11 @@ uint8_t event_after(uint8_t dlg, uint8_t choice) BANKED {
     case DLG_CATCH_LOSE:
         if (choice == 0) return EV_CATCH;
         break;
+    case DLG_ROUX_SOUP:            /* dawn: a pickpocket grabs the plate */
+        return DLG_THIEF;
+    case DLG_THIEF:                /* closed early or not, the chase is on */
+    case DLG_CHASE_LOSE:
+        return EV_CHASE;
     case DLG_PUNCHER_TICKET:       /* "Want a go?" */
     case DLG_PUNCH_OK:             /* "Next one?" */
     case DLG_PUNCH_MISS:

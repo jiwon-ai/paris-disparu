@@ -5,6 +5,7 @@ Newest first. Dates are 2026.
 
 | Date | Feedback / decision | What changed |
 |---|---|---|
+| 11-24 | Dawn mugger encounter (non-combat) | After Mme Roux gives the brass plate, a pickpocket in a flat cap bumps into the player ("Pardon!") and runs off with it. New mini-game "Stop, thief!" on the quai: walk into him within 30 s; he runs away from the player and around obstacles. Fail: retry; win: he drops the plate (clue). Rules card like the other games. Code moved to ROM bank 7 (`games.c`) |
 | 11-24 | Full Korean localization | assets/dialogue/ko.txt: all 152 dialogue entries translated (417 pages); Korean pages break between sentences. Screenshots: docs/screenshots/ko/ |
 | 11-24 | Korean font: public pixel font (Galmuri, OFL 1.1) | Galmuri 2.40.3 from npm, unchanged BDFs in tools/fonts/galmuri with licence and source. Language menu after the title (English / 한국어). Dialogue in Galmuri11 (variable width, 2 lines of 144 px, 6-row box); menus and notebook in Galmuri7 (one tile per syllable). Code in ROM bank 6, glyphs and pages in banks 8+; ROM now 256 KiB. Missing translations fall back to English. Note for legal review: the package says Galmuri is based on the Nintendo DS font design |
 | 11-24 | Paris details (metro, plaques, Morris column, Wallace fountain) | Drawn from the sourced facts in HISTORICAL_RESEARCH "Paris design details": blue LES HALLES plaque, blue street plaque, Morris column (replaces the crates in rue Baltard), Wallace fountain on the quai; both examinable. Palette 7 dark colour made bluer for enamel |

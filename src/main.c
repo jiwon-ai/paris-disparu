@@ -126,6 +126,7 @@ static void load_bank1(void) {
     set_bkg_data(0, ENV_TILE_COUNT, env_tiles);
     SWITCH_ROM(PORTRAIT_BANK);
     set_sprite_data(PORTRAIT_BASE, PORTRAIT_TILE_COUNT, portrait_tiles);
+    set_sprite_data(0, LOW_TILE_COUNT, low_tiles);   /* thief: bank 1, 0x8000 */
     SWITCH_ROM(ASSET_BANK);
     VBK_REG = VBK_TILES;
 }
@@ -299,12 +300,12 @@ static void change_room(uint8_t exit_code) {
 
 /* Start whatever an interaction returned: text, or an interactive sequence. */
 static uint8_t howto_ev;         /* mini-game waiting behind its rules card */
-static uint8_t howto_seen;       /* bit (EV_* - EV_CATCH): rules already shown */
+static uint8_t howto_seen;       /* bit (EV_* - EV_FIRST): rules already shown */
 static uint16_t idle;            /* frames without input, for the goal reminder */
 
 static void open_dialogue(uint8_t d);
 static void start_game(uint8_t d) {
-    howto_seen |= 1 << (d - EV_CATCH);
+    howto_seen |= 1 << (d - EV_FIRST);
     open_dialogue(d);
 }
 
@@ -335,7 +336,7 @@ static void update_markers(void) {
 static void open_dialogue(uint8_t d) {
     caption_timer = 0;           /* the dialogue box replaces any caption */
     bark_from = NO_BARK;
-    if (d >= EV_CATCH && d != EV_END && d != NO_DIALOGUE && !(howto_seen & (1 << (d - EV_CATCH)))) {
+    if (d >= EV_FIRST && d != EV_END && d != NO_DIALOGUE && !(howto_seen & (1 << (d - EV_FIRST)))) {
         howto_ev = d;            /* first time: the rules, then A to start */
         howto_show(d);
         state = ST_HOWTO;
@@ -349,10 +350,11 @@ static void open_dialogue(uint8_t d) {
     } else if (d == EV_DIAL) {
         dial_start();
         state = ST_DIAL;
-    } else if (d == EV_SERVE || d == EV_CUPS || d == EV_CATCH) {
+    } else if (d == EV_SERVE || d == EV_CUPS || d == EV_CATCH || d == EV_CHASE) {
         game_ev = d;
         if (d == EV_SERVE) serve_start();
         else if (d == EV_CUPS) cups_start();
+        else if (d == EV_CHASE) chase_start();
         else catch_start();
         state = ST_GAME;
     } else if (d == EV_END) {
@@ -447,6 +449,7 @@ static uint8_t absdiff(int16_t a, int16_t b) {
 static void update_barks(void) {
     const room_def_t *r = &rooms[cur_room];
     uint8_t i;
+    if (caption_timer && caption_timer <= 300) return;   /* a quest/clue note stays up */
     for (i = 0; i < r->npc_count; i++) {
         const npc_def_t *n = &r->npcs[i];
         uint8_t dx = absdiff(player.x, n->x), dy = absdiff(player.y, n->y);
@@ -610,6 +613,7 @@ void main(void) {
             uint8_t r;
             if (game_ev == EV_SERVE) r = serve_update();
             else if (game_ev == EV_CUPS) r = cups_update();
+            else if (game_ev == EV_CHASE) r = chase_update();
             else r = catch_update();
             if (r != MG_RUNNING) open_dialogue(event_game_result(game_ev, r == MG_SUCCESS));
             break;

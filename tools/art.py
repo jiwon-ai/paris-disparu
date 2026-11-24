@@ -740,3 +740,34 @@ ICON_PRESS = [
     "........", "........", "........", "........",
 ]
 BANK1_ICONS = [("MARK", ICON_MARK), ("PRESS", ICON_PRESS)]
+
+# Sprites loaded at tile 0.. of VRAM bank 1 (0x8000-0x83FF is free: the
+# scenery is at 0x9000). Two-frame run, facing right; mirrored in code.
+THIEF_0 = [          # flat cap, turned-up collar, dark jacket, running
+    "................",
+    "....######......",
+    "...########.....",
+    "......#ssss#....",
+    "......#ss#s#....",
+    ".....#sssss.....",
+    "....###sss#.....",
+    "...#ooo###oo#...",
+    "..#oooooooooo#..",
+    "..s#ooooooo#.s..",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    "....##o##o##....",
+    "...##.....##....",
+    "..##.......##...",
+    ".##.........##..",
+]
+THIEF_1 = THIEF_0[:12] + [
+    ".....##oo##.....",
+    ".....##..##.....",
+    ".....##..##.....",
+    "....###..###....",
+]
+BANK1_LOW_SPRITES = [
+    ("THIEF_0", THIEF_0),
+    ("THIEF_1", THIEF_1),
+]

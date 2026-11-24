@@ -84,10 +84,12 @@ void box_close(void) {
 }
 
 void box_print(uint8_t x, uint8_t y, const uint8_t *text) {
-    uint8_t n = 0;
+    uint8_t n = 0, save = _current_bank;
     if (lang && ko_print(x, y, (uint16_t)(text - ui_text))) return;
+    SWITCH_ROM(ASSET_BANK);          /* callable from banked code too */
     while (text[n] && x + n < MAP_W) n++;
     set_win_tiles(x, y, n, 1, text);
+    SWITCH_ROM(save);
 }
 
 static void clear_text(void) {
