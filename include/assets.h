@@ -33,7 +33,7 @@
 #define GLYPH_BAR_ZONE 241
 #define GLYPH_BAR_CURSOR 242
 
-#define ENV_TILE_COUNT 90
+#define ENV_TILE_COUNT 98
 #define TILE_SKY 0
 #define TILE_ROOFTOP 1
 #define TILE_ROOF 2
@@ -124,6 +124,14 @@
 #define TILE_INSCR_6 87
 #define TILE_INSCR_7 88
 #define TILE_INSCR_8 89
+#define TILE_MAP4_0 90
+#define TILE_MAP4_1 91
+#define TILE_MAP4_2 92
+#define TILE_MAP4_3 93
+#define TILE_MAP4_4 94
+#define TILE_MAP4_5 95
+#define TILE_MAP4_6 96
+#define TILE_MAP4_7 97
 #define SPRITE_TILE_COUNT 128
 #define SPR1_ACTOR 232   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_CHANTEUSE 236   /* VRAM bank 1: use palette | S_BANK1 */
@@ -309,6 +317,7 @@ enum {
     DLG_METRO_NAME,
     DLG_METRO_TILES,
     DLG_METRO_GATE,
+    DLG_METRO_MAP,
     DLG_PAINTER_WIFE,
     DLG_END_BONUS,
     DLG_SINGER_HELLO,
@@ -497,65 +506,66 @@ extern const uint8_t ui_text[];
 #define txt_next_6 (ui_text + 1690)
 #define txt_next_7 (ui_text + 1708)
 #define txt_next_8 (ui_text + 1725)
-#define txt_title_6 (ui_text + 1738)
-#define txt_srv_title (ui_text + 1746)
-#define txt_srv_of (ui_text + 1759)
-#define txt_srv_0 (ui_text + 1762)
-#define txt_srv_1 (ui_text + 1769)
-#define txt_srv_2 (ui_text + 1774)
-#define txt_srv_table (ui_text + 1780)
-#define txt_srv_ok (ui_text + 1786)
-#define txt_srv_bad (ui_text + 1793)
-#define txt_cup (ui_text + 1799)
-#define txt_coin (ui_text + 1801)
-#define txt_cup_watch (ui_text + 1803)
-#define txt_cup_pick (ui_text + 1820)
-#define txt_catch_hud (ui_text + 1834)
-#define txt_quest_done (ui_text + 1853)
-#define txt_q_0 (ui_text + 1869)
-#define txt_q_0r (ui_text + 1881)
-#define txt_q_1 (ui_text + 1898)
-#define txt_q_1r (ui_text + 1913)
-#define txt_q_2 (ui_text + 1928)
-#define txt_q_2r (ui_text + 1942)
-#define txt_q_3 (ui_text + 1958)
-#define txt_q_3r (ui_text + 1974)
-#define txt_q_4 (ui_text + 1990)
-#define txt_nb_quests (ui_text + 2003)
-#define txt_howto (ui_text + 2010)
-#define txt_howto_go (ui_text + 2022)
-#define txt_how_l0 (ui_text + 2040)
-#define txt_how_l1 (ui_text + 2055)
-#define txt_how_l2 (ui_text + 2074)
-#define txt_how_l3 (ui_text + 2090)
-#define txt_how_l4 (ui_text + 2107)
-#define txt_how_p0 (ui_text + 2126)
-#define txt_how_d0 (ui_text + 2143)
-#define txt_how_d1 (ui_text + 2157)
-#define txt_how_d2 (ui_text + 2173)
-#define txt_how_d3 (ui_text + 2191)
-#define txt_how_d4 (ui_text + 2207)
-#define txt_how_s0 (ui_text + 2225)
-#define txt_how_s1 (ui_text + 2237)
-#define txt_how_s2 (ui_text + 2253)
-#define txt_how_s3 (ui_text + 2269)
-#define txt_how_s4 (ui_text + 2288)
-#define txt_how_c0 (ui_text + 2307)
-#define txt_how_c1 (ui_text + 2320)
-#define txt_how_c2 (ui_text + 2336)
-#define txt_how_c3 (ui_text + 2352)
-#define txt_how_c4 (ui_text + 2368)
-#define txt_how_k0 (ui_text + 2386)
-#define txt_how_k1 (ui_text + 2405)
-#define txt_how_k2 (ui_text + 2422)
-#define txt_how_k3 (ui_text + 2441)
-#define txt_how_k4 (ui_text + 2457)
-#define txt_how_t0 (ui_text + 2472)
-#define txt_how_t1 (ui_text + 2485)
-#define txt_how_t2 (ui_text + 2502)
-#define txt_how_t3 (ui_text + 2521)
-#define txt_how_t4 (ui_text + 2539)
-#define txt_chase_hud (ui_text + 2554)
+#define txt_next_9 (ui_text + 1738)
+#define txt_title_6 (ui_text + 1756)
+#define txt_srv_title (ui_text + 1764)
+#define txt_srv_of (ui_text + 1777)
+#define txt_srv_0 (ui_text + 1780)
+#define txt_srv_1 (ui_text + 1787)
+#define txt_srv_2 (ui_text + 1792)
+#define txt_srv_table (ui_text + 1798)
+#define txt_srv_ok (ui_text + 1804)
+#define txt_srv_bad (ui_text + 1811)
+#define txt_cup (ui_text + 1817)
+#define txt_coin (ui_text + 1819)
+#define txt_cup_watch (ui_text + 1821)
+#define txt_cup_pick (ui_text + 1838)
+#define txt_catch_hud (ui_text + 1852)
+#define txt_quest_done (ui_text + 1871)
+#define txt_q_0 (ui_text + 1887)
+#define txt_q_0r (ui_text + 1899)
+#define txt_q_1 (ui_text + 1916)
+#define txt_q_1r (ui_text + 1931)
+#define txt_q_2 (ui_text + 1946)
+#define txt_q_2r (ui_text + 1960)
+#define txt_q_3 (ui_text + 1976)
+#define txt_q_3r (ui_text + 1992)
+#define txt_q_4 (ui_text + 2008)
+#define txt_nb_quests (ui_text + 2021)
+#define txt_howto (ui_text + 2028)
+#define txt_howto_go (ui_text + 2040)
+#define txt_how_l0 (ui_text + 2058)
+#define txt_how_l1 (ui_text + 2073)
+#define txt_how_l2 (ui_text + 2092)
+#define txt_how_l3 (ui_text + 2108)
+#define txt_how_l4 (ui_text + 2125)
+#define txt_how_p0 (ui_text + 2144)
+#define txt_how_d0 (ui_text + 2161)
+#define txt_how_d1 (ui_text + 2175)
+#define txt_how_d2 (ui_text + 2191)
+#define txt_how_d3 (ui_text + 2209)
+#define txt_how_d4 (ui_text + 2225)
+#define txt_how_s0 (ui_text + 2243)
+#define txt_how_s1 (ui_text + 2255)
+#define txt_how_s2 (ui_text + 2271)
+#define txt_how_s3 (ui_text + 2287)
+#define txt_how_s4 (ui_text + 2306)
+#define txt_how_c0 (ui_text + 2325)
+#define txt_how_c1 (ui_text + 2338)
+#define txt_how_c2 (ui_text + 2354)
+#define txt_how_c3 (ui_text + 2370)
+#define txt_how_c4 (ui_text + 2386)
+#define txt_how_k0 (ui_text + 2404)
+#define txt_how_k1 (ui_text + 2423)
+#define txt_how_k2 (ui_text + 2440)
+#define txt_how_k3 (ui_text + 2459)
+#define txt_how_k4 (ui_text + 2475)
+#define txt_how_t0 (ui_text + 2490)
+#define txt_how_t1 (ui_text + 2503)
+#define txt_how_t2 (ui_text + 2520)
+#define txt_how_t3 (ui_text + 2539)
+#define txt_how_t4 (ui_text + 2557)
+#define txt_chase_hud (ui_text + 2572)
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];

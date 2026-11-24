@@ -524,6 +524,17 @@ Small white tiles, like in every station since 1900. They catch what little ligh
 [metro_gate]
 The gate to the platform. Beyond it, the tunnel smells of hot iron and dust.
 
+Since this summer, every train on line 4 runs on rubber tyres. Quieter than the old steel wheels.
+
+Not tonight, though. Fernand first. The rest of the line can wait.
+
+[metro_map]
+LINE 4: PORTE DE CLIGNANCOURT to PORTE D'ORLÉANS. A white ring round LES HALLES: you are here.
+
+North: Gare de l'Est, Gare du Nord, Barbès. South, under the Seine: Cité, Saint-Michel, Saint-Germain, Montparnasse.
+
+Each episode opens new stops on the line. Tonight, Paris stops here.
+
 [painter_wife]
 THE PAINTER: You called her? What did she say?
 

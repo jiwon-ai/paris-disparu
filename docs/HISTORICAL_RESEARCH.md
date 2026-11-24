@@ -98,6 +98,17 @@ Read on 2026-11-23 (secondary sources).
 | Allusion: "A singer once made a song about a man like me, out at Porte des Lilas" = Serge Gainsbourg, *Le Poinçonneur des Lilas* (1959) | **Read** (year: Paris ZigZag only). Rights: the song is under copyright; **no lyrics, melody or title are reproduced**, only an allusion to its subject. Legal review advised before release | Paris ZigZag |
 
 
+### Line 4 in 1967 (read 2026-11-24)
+
+| Claim | Status | Source |
+|---|---|---|
+| Line 4 opened 21 Apr 1908 (Porte de Clignancourt - Châtelet); joined to the southern section in Jan 1910 | **Read** | [en.Wikipedia, Line 4](https://en.wikipedia.org/wiki/Paris_M%C3%A9tro_Line_4) |
+| In 1967 the line ran Porte de Clignancourt - Porte d'Orléans (Porte d'Orléans called the former terminus; first extension, Mairie de Montrouge, 2013) | **Inference** from read statements (no page states the 1967 termini in one sentence) | same, and [fr.Wikipedia, Ligne 4](https://fr.wikipedia.org/wiki/Ligne_4_du_m%C3%A9tro_de_Paris) |
+| Stops named on the map (Gare de l'Est, Gare du Nord, Barbès, Cité, Saint-Michel, Saint-Germain[-des-Prés], Montparnasse) were on the line under those names before 1967 (renames: Strasbourg-Saint-Denis 1931, Montparnasse-Bienvenüe 1942, Gare de l'Est "Verdun" 1953) | **Reconstruction** from the fr route description (the page's station list did not load) | fr.Wikipedia, Ligne 4 |
+| The line crosses under the Seine: Châtelet, then Cité on the island, then Saint-Michel | **Read** | fr.Wikipedia, Ligne 4 |
+| Rubber-tyred MP 59 trains replaced steel-wheeled ones from 3 Oct 1966; "On 17 July 1967, the last steel-wheeled train left the line" (game: "Since this summer, every train on line 4 runs on rubber tyres") | **Read** | en.Wikipedia, Line 4 |
+| The look of the ticket-hall line map (blue board, white line, ring for "you are here") | **Fiction / reconstruction**: no photo of a 1967 board was found | — |
+
 ## Era culture (references in the scenery)
 
 Read on 2026-11-23. Policy: works still under copyright are referred to by

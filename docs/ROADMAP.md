@@ -24,6 +24,25 @@ playtesting with real players (item 7).
 5. Verify research items before keeping them as facts in dialogue.
 6. Run the playtest plan; test in SameBoy/BGB and on hardware.
 
+## Series structure: Paris grows along métro line 4 (Jiwon, 2026-11-24)
+
+Each episode cleared opens new stops; the player rides line 4 out of
+Les Halles into new districts. Episode 1 already shows it: a line-4 map in
+the ticket hall (only LES HALLES ringed, the other stops shown as closed),
+the platform gate says "Fernand first", and the Episode 2 teaser ends
+"+ new métro stops". Line 4 is the real line through Les Halles
+(1908; Porte de Clignancourt - Porte d'Orléans, crossing under the Seine
+between Châtelet and Saint-Michel, see HISTORICAL_RESEARCH).
+
+| Episode | Date | Stops open | Status |
+|---|---|---|---|
+| 1 | 21 Nov 1967 (fiction date) | Les Halles | done |
+| 2 | 3 Mar 1969 (Rungis opens) | Les Halles + one new stop | proposal; which stop is Jiwon's choice |
+| later | to research | candidates on line 4: Châtelet / Cité (the Seine, Île de la Cité), Saint-Michel (Latin Quarter), Saint-Germain-des-Prés (the cafés of the writer cameos), Montparnasse, Gare du Nord / Barbès | each needs its own sourced research before any fact is used |
+
+Engine needs: a save (to carry the notebook between episodes), a station
+select screen on the platform, and one ROM bank of rooms per district.
+
 ## Later
 Music driver, more neighbourhoods (Métro, pneumatique), English text,
 hardware testing (GBC, ModRetro Chromatic), cartridge release preparation.

@@ -140,15 +140,15 @@ void extras_show(void) {
 }
 
 /* After the end screen: a look at the next episode. */
-static const uint8_t * const teaser_txt[12] = {
+static const uint8_t * const teaser_txt[13] = {
     txt_next_0, 0, txt_next_1, txt_next_2, txt_next_3, txt_next_4, 0,
-    txt_next_5, txt_next_6, txt_next_7, 0, txt_next_8
+    txt_next_5, txt_next_6, txt_next_7, 0, txt_next_8, txt_next_9
 };
 
 void teaser_show(void) {
     uint8_t i;
     box_open(SCREEN_H / 8);
-    for (i = 0; i < 12; i++)
+    for (i = 0; i < 13; i++)
         if (teaser_txt[i]) box_print(1, 2 + i, teaser_txt[i]);
     box_print(1, 16, txt_end_11);
 }

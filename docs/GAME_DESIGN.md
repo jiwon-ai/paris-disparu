@@ -102,7 +102,10 @@ extras n/3.
 After the end screen, START shows "NEXT: EPISODE 2": 3 March 1969, the last
 night of the fruit and vegetable trade at Les Halles (Rungis opened that day,
 see HISTORICAL_RESEARCH), and an open thread from Episode 1: Fernand's brass
-plate is gone from Mme Roux's box. Who took it? (fiction).
+plate is gone from Mme Roux's box. Who took it? (fiction). The teaser ends
+"+ new métro stops": each episode opens new stops on line 4 (ROADMAP,
+"Series structure"). In the ticket hall, a line-4 map (examinable) rings
+LES HALLES and shows the other stops as closed for now.
 
 ## Opening (first minute)
 Title, then a 3-page skippable intro (setting, tonight's goal, controls; A next,

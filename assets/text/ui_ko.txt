@@ -120,6 +120,7 @@ next_5 = 그런데 페르낭의
 next_6 = 놋쇠 명패가 루
 next_7 = 부인 집에서 사라졌다.
 next_8 = 누가 가져갔을까?
+next_9 = + 새 메트로 역
 title_6 = © Jiwon
 srv_title = 커피 러시!
 srv_of = /5

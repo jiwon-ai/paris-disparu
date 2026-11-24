@@ -912,3 +912,37 @@ INSCRIPTION_CHARS = "$&*/:?`'\""
 for _k in range(len(_INSCR[0]) // 8):
     TILES["inscr_%d" % _k] = [r[8 * _k:8 * _k + 8] for r in _INSCR]
     LEGEND[INSCRIPTION_CHARS[_k]] = ("inscr_%d" % _k, 0, True)
+
+
+def _line_map():
+    """Line 4 map on the ticket-hall wall, 32x16, palette 7 (blue enamel
+    board, white line, stations as dots; LES HALLES as a ring). Drawing
+    is a reconstruction: no photo of the 1967 board was found."""
+    rows = [["1"] * 32 for _ in range(16)]
+    for x in range(32):
+        rows[0][x] = rows[15][x] = "0"
+    for y in range(16):
+        rows[y][0] = rows[y][31] = "0"
+    for x in range(3, 29):                  # the line
+        rows[8][x] = rows[9][x] = "3"
+    for x in (4, 8, 12, 20, 24, 28):        # other stops: closed for now
+        for y in (7, 10):
+            rows[y][x - 1] = rows[y][x] = "2"
+    for y in range(5, 13):                  # LES HALLES: a ring
+        for x in range(13, 19):
+            edge = y in (5, 12) or x in (13, 18)
+            if edge and not ((y in (5, 12)) and (x in (13, 18))):
+                rows[y][x] = "3"
+    for x in (15, 16):                      # arrow: you are here
+        rows[2][x] = rows[3][x] = "3"
+    rows[3][14] = rows[3][17] = "3"
+    return ["".join(r) for r in rows]
+
+
+_MAP4 = _line_map()
+for _k, _ch in enumerate("αβγδ"):
+    TILES["map4_%d" % _k] = [r[8 * _k:8 * _k + 8] for r in _MAP4[:8]]
+for _k, _ch in enumerate("εζηθ"):
+    TILES["map4_%d" % (4 + _k)] = [r[8 * _k:8 * _k + 8] for r in _MAP4[8:]]
+for _k, _ch in enumerate("αβγδεζηθ"):
+    LEGEND[_ch] = ("map4_%d" % _k, 7, True)

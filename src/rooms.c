@@ -133,6 +133,7 @@ static const npc_def_t metro_npcs[] = {
 static const hotspot_t metro_hotspots[] = {
     {  2, 4, 3, 3, DLG_METRO_WINDOW },
     { 12, 5, 4, 2, DLG_METRO_GATE },
+    {  6, 5, 4, 2, DLG_METRO_MAP },
     {  5, 1, 10, 1, DLG_METRO_NAME },
     {  0, 0, 20, 7, DLG_METRO_TILES },
     {  0, 16, 4, 2, DLG_SECRET_MOUSE },
@@ -154,6 +155,6 @@ const room_def_t rooms[ROOM_COUNT] = {
       { ROOM_PONT, ROOM_ENTRANCE, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { pont_npcs, 3, pont_hotspots, 6, 0, 0,
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
-    { metro_npcs, 3, metro_hotspots, 5, metro_doors, 1,
+    { metro_npcs, 3, metro_hotspots, 6, metro_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
 };
