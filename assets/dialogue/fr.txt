@@ -879,6 +879,14 @@ Ce printemps, des écrivains m'ont pris dans leur club. On écrit avec des règl
 [archivist_again]
 L'ARCHIVISTE : Tu as perdu quelqu'un ? Fais une liste. Tout ce qu'il a laissé, un par un. Une liste, ça aide toujours.
 
+[meat_hello]
+UN PORTEUR DE VIANDE : Attention ! J'ai un demi-bœuf sur l'épaule, et il n'attend pas les poètes.
+
+Du camion au pavillon, toute la nuit. Ma blouse était propre à minuit.
+
+[meat_again]
+UN PORTEUR DE VIANDE : Fernand ? Le grand, au chapeau jaune ? Il est descendu vers la Seine. Sans dire bonsoir.
+
 [waiter_jeton]
 LE GARÇON : Un jeton pour le téléphone ? Vos vingt centimes sur le zinc... voilà. Votre jeton.
 

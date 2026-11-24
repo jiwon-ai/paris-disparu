@@ -1090,6 +1090,25 @@ ARCHIVIST = [        # lots of wavy hair, sideburns, a beard but no moustache
     ".....##..##.....",
     "....###..###....",
 ]
+MEATPORTER = [       # meat porter: white cap, long white smock, half a beef on the
+    # shoulder (Jiwon's reference photo, undated). Ribs in outline colour.
+    "......####......",
+    ".##..#oooo#.....",
+    "#ss#.#ssss#.....",
+    "#sss#s#ss#s#....",
+    "#s#s#.#ssss#....",
+    "#sss#..#ss#.....",
+    "#s#s##oooooo#...",
+    "#sss#oooooooo#..",
+    "#s#s#oooooooo#..",
+    "#sss#oooooooo#..",
+    "#s#s#ooooooo#s..",
+    ".#ss#ooooooo#...",
+    "..##oooooooo#...",
+    "....#oooooooo#..",
+    ".....##....##...",
+    "....###....###..",
+]
 BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
     ("THIEF_0", THIEF_0),  # copied per room into a pool (pool_load, notebook.c)
     ("THIEF_1", THIEF_1),
@@ -1110,6 +1129,7 @@ BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
     ("FILMMAKER", FILMMAKER),
     ("WRITER", WRITER),
     ("ARCHIVIST", ARCHIVIST),
+    ("MEATPORTER", MEATPORTER),
 ]
 
 

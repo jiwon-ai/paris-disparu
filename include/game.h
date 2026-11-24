@@ -45,6 +45,7 @@
 #define NPC_WAITER      23  /* west end, 2026-11-24: the brasserie waiter, */
 #define NPC_NIGHTPORTER 24  /* the hotel's night porter, */
 #define NPC_SOUPER      25  /* a fort over his soup */
+#define NPC_MEATPORTER  27  /* rue Baltard: white smock, half a beef (Jiwon's reference photo) */
 #define NPC_ARCHIVIST   26  /* cameo, brasserie: big hair and a beard (Perec, unnamed) */
 
 /* Persistent story flags (game_flags bits) */
@@ -86,6 +87,7 @@ extern uint8_t clue_flags;
 #define X_PAINTER   0x04   /* phoned the painter's wife, then told him */
 #define X_WIFE      0x08   /* (step) phoned the painter's wife */
 #define X_MET_SINGER 0x10  /* (not a goal) heard the singer's first lines */
+#define X_MET_MEAT  0x40   /* (not a goal) the meat porter spoke once */
 #define X_STAYED    0x20   /* (not a goal) Fernand stays: the poem ends with it */
 #define X_COUNT     3
 #define X_ALL       (X_TICKETS | X_BUTCHER | X_PAINTER)

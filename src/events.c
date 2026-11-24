@@ -341,6 +341,11 @@ uint8_t event_talk(uint8_t npc) BANKED {
         return DLG_ACTOR_HELLO + 2 * k;
     }
 
+    case NPC_MEATPORTER:
+        if (extra_flags & X_MET_MEAT) return DLG_MEAT_AGAIN;
+        extra_flags |= X_MET_MEAT;
+        return DLG_MEAT_HELLO;
+
     case NPC_PUNCHER:
         if (punched >= 3) return DLG_PUNCHER_AFTER;
         if (HAS(FLAG_TICKET)) return DLG_PUNCHER_TICKET;

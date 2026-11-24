@@ -755,6 +755,14 @@ This spring some writers let me into their club. We write with rules, like a gam
 [archivist_again]
 THE ARCHIVIST: Lost someone? Make a list. Everything he left behind, one by one. A list always helps.
 
+[meat_hello]
+A MEAT PORTER: Mind out! Half a beef on my shoulder, and it doesn't stop for poets.
+
+From the lorry to the pavilion, all night long. My smock was clean at midnight.
+
+[meat_again]
+A MEAT PORTER: Fernand? Big fellow, yellow hat? He went down towards the river. Didn't even say goodnight.
+
 # ---------------------------------------------------------------- curiosities
 # Vanished objects found as "???" (curio_flags), then shown to the one person
 # who knows what they are. Keep the three _find entries, then the three

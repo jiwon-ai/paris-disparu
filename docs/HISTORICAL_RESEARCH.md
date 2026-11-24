@@ -52,6 +52,7 @@ details vague until they are verified.
 | Germaine (merchant) | Dress, apron, headscarf | Reconstruction, to research | |
 | Player | Beige raincoat | Reconstruction, to research (1960s street fashion) | |
 | Man with the notebook | Grey overcoat and hat | Reconstruction, to research | |
+| Meat porter (rue Baltard), 2026-11-24 | White cap and long white smock, half a beef carcass on the shoulder | **Visual reference only**: a photo Jiwon supplied shows meat porters in white smocks carrying carcasses from a refrigerated lorry into the market (date and place on the photo not stated). No text source read; his lines are fiction |
 | Painter | Smock and beret | Reconstruction (a cliché, kept deliberately light) |
 | Mme Roux (bouquiniste), 2026-11-24 | Hair in a bun, scarf, long green coat, gloved hands | Reconstruction, drawing choice (no source on bouquinistes' dress read) |
 | Market cook, 2026-11-24 | Moustache, white double-breasted jacket, basket | Reconstruction, drawing choice |

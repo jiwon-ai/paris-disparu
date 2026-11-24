@@ -62,7 +62,8 @@
 #define SPR1_FILMMAKER 64   /* VRAM bank 1, low tiles */
 #define SPR1_WRITER 68   /* VRAM bank 1, low tiles */
 #define SPR1_ARCHIVIST 72   /* VRAM bank 1, low tiles */
-#define LOW_TILE_COUNT 76   /* all pool sprites, in ROM */
+#define SPR1_MEATPORTER 76   /* VRAM bank 1, low tiles */
+#define LOW_TILE_COUNT 80   /* all pool sprites, in ROM */
 #define TILE_CHAIR 1
 #define TILE_TABLE 2
 #define PAL_CHAIR 5
@@ -323,6 +324,8 @@ enum {
     DLG_SOUPER_AGAIN,
     DLG_ARCHIVIST_HELLO,
     DLG_ARCHIVIST_AGAIN,
+    DLG_MEAT_HELLO,
+    DLG_MEAT_AGAIN,
     DLG_CURIO_0_FIND,
     DLG_CURIO_1_FIND,
     DLG_CURIO_2_FIND,
