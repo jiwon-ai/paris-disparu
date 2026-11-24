@@ -158,6 +158,7 @@ static const hotspot_t hotel_hotspots[] = {
     {  1, 1, 5, 2, DLG_HOTEL_KEYS },
     {  7, 1, 4, 2, DLG_HOTEL_MIRROR },
     { 14, 1, 4, 4, DLG_HOTEL_STAIRS },
+    { 12, 3, 1, 1, DLG_HOTEL_SWITCH },    /* reception telephone: guests asked to be put through */
     { 12, 8, 2, 1, DLG_HOTEL_CHAIR },
     {  2, 11, 2, 1, DLG_HOTEL_CHAIR },
 };
@@ -224,7 +225,7 @@ const room_def_t rooms[ROOM_COUNT] = {
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
     { 0, 0, bourse_hotspots, 10, bourse_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, ROOM_ENTRANCE }, AMBIENCE_STREET },
-    { hotel_npcs, 1, hotel_hotspots, 6, hotel_doors, 1,
+    { hotel_npcs, 1, hotel_hotspots, 7, hotel_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
     { brasserie_npcs, 2, brasserie_hotspots, 10, brasserie_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },

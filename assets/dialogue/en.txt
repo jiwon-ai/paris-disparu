@@ -353,6 +353,13 @@ A spotted mirror. You look like someone who hasn't slept. You haven't.
 [hotel_stairs]
 The stairs creak just from looking at them. Upstairs, someone is snoring.
 
+[hotel_switch]
+The hotel telephone, behind the desk. THE NIGHT PORTER: A line? Guests come down and I put them through. It's a jeton, same as the café.
+
+[hotel_switch_use]
+THE NIGHT PORTER: A jeton? Right, I'll put you through. Give me the number.
+? Yes | No
+
 [bra_mirror]
 Mirrors all along the walls. The room looks twice as full, and twice as loud.
 

@@ -188,6 +188,8 @@ the all-night brasserie (ROOM_BRASSERIE) and the hotel on rue Rambuteau (ROOM_HO
 | Boots under the screen, whistling, the smell of the wall | **Fiction** (kept tasteful) | — |
 | A rat on the setts; hygiene ("a daunting rat population") among the reasons to move the market; transfer decided by decree in 1962, done in March 1969 | **Read** | Saveur (see Street life); [Larousse](https://www.larousse.fr/encyclopedie/divers/les_Halles_de_Paris/123023) |
 | The hotel on rue Rambuteau, its night porter, key board, stairs, lines | **Fiction** (no hotel source read); furnishings a **reconstruction** | — |
+| A telephone at the hotel reception: in the 1960s a guest went down to reception and asked to be put through to the switchboard; a phone in the room was "un luxe réservé aux palaces" | **Read** (one secondary source, 2026, general, not Paris-specific) | [Le Tribunal du Net, chambre d'hôtel en France il y a 60 ans](https://www.letribunaldunet.fr/insolite/chambre-hotel-france-60-ans-evolution-choc.html), read 2026-11-24 |
+| The porter connecting the call for a jeton | **Fiction** (kept so the jeton puzzle stays the same) | — |
 
 ## Game clock and dawn (2026-11-24)
 

@@ -823,6 +823,13 @@ Un miroir piqué. Tu as la tête de quelqu'un qui n'a pas dormi. C'est le cas.
 [hotel_stairs]
 L'escalier grince rien qu'à le regarder. En haut, quelqu'un ronfle.
 
+[hotel_switch]
+Le téléphone de l'hôtel, derrière le comptoir. LE VEILLEUR DE NUIT : Une ligne ? Les clients descendent et je les passe. C'est un jeton, comme au café.
+
+[hotel_switch_use]
+LE VEILLEUR DE NUIT : Un jeton ? Bon, je vous passe la ligne. Donnez-moi le numéro.
+? Oui | Non
+
 [bra_mirror]
 Des miroirs sur tous les murs. La salle a l'air deux fois plus pleine, et deux fois plus bruyante.
 

@@ -396,6 +396,10 @@ uint8_t event_examine(uint8_t id) BANKED {
         if (HAS(FLAG_HAS_JETON)) return DLG_PHONE_USE;
         SET(FLAG_SAW_PHONE);
         return DLG_PHONE_LOOK;
+    case DLG_HOTEL_SWITCH:      /* the night porter puts you through, for a jeton */
+        if (HAS(FLAG_HAS_JETON)) return DLG_HOTEL_SWITCH_USE;
+        SET(FLAG_SAW_PHONE);
+        return DLG_HOTEL_SWITCH;
     }
     if (id & 0x80) return event_talk(id & 0x7F);
     return curio_find(id);
@@ -421,6 +425,7 @@ uint8_t event_after(uint8_t dlg, uint8_t choice) BANKED {
     case DLG_END_BONUS:
         return EV_END;
     case DLG_PHONE_USE:
+    case DLG_HOTEL_SWITCH_USE:
         if (choice == 0) return EV_DIAL;
         break;
     case DLG_CAFE_HELLO:           /* "Give me a hand?" */
