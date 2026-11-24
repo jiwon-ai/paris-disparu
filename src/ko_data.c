@@ -1292,34 +1292,34 @@ const uint8_t * const ko_page_ptr[] = {
 };
 const uint16_t ko_first_page[] = { 0, 2, 6, 8, 11, 13, 15, 17, 19, 21, 26, 34, 37, 44, 45, 49, 51, 52, 56, 58, 60, 62, 64, 65, 66, 67, 68, 69, 70, 72, 73, 75, 77, 82, 90, 91, 97, 101, 110, 112, 115, 117, 121, 126, 129, 130, 132, 134, 140, 142, 146, 148, 150, 153, 157, 159, 161, 162, 163, 165, 168, 170, 172, 174, 176, 177, 180, 183, 188, 193, 196, 203, 204, 207, 210, 211, 212, 213, 215, 223, 234, 236, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 256, 259, 262, 275, 286, 298, 307, 312, 314, 315, 316, 317, 321, 324, 327, 331, 334, 336, 345, 349, 350, 351, 353, 355, 358, 364, 366, 368, 370, 372, 379, 384, 389, 398, 400, 403, 405, 407, 408, 410, 414, 416, 419, 421, 423, 424, 428, 430, 437, 439, 442, 445, 451, 454, 460, 461, 462, 463, 464, 468, 471, 476, 478, 482, 488, 491, 494, 496, 498, 504, 506, 513, 516, 522, 526, 530, 533, 535, 539, 541, 543, 545 };
 const uint8_t ko_page_count[] = { 2, 4, 2, 3, 2, 2, 2, 2, 2, 5, 8, 3, 7, 1, 4, 2, 1, 4, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1, 2, 2, 5, 8, 1, 6, 4, 9, 2, 3, 2, 4, 5, 3, 1, 2, 2, 6, 2, 4, 2, 2, 3, 4, 2, 2, 1, 1, 2, 3, 2, 2, 2, 2, 1, 3, 3, 5, 5, 3, 7, 1, 3, 3, 1, 1, 1, 2, 8, 11, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 3, 3, 13, 11, 12, 9, 5, 2, 1, 1, 1, 4, 3, 3, 4, 3, 2, 9, 4, 1, 1, 2, 2, 3, 6, 2, 2, 2, 2, 7, 5, 5, 9, 2, 3, 2, 2, 1, 2, 4, 2, 3, 2, 2, 1, 4, 2, 7, 2, 3, 3, 6, 3, 6, 1, 1, 1, 1, 4, 3, 5, 2, 4, 6, 3, 3, 2, 2, 6, 2, 7, 3, 6, 4, 4, 3, 2, 4, 2, 2, 2, 2 };
-static const uint8_t ko_ch_12_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_12_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_13_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_13_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_35_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_35_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_44_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_44_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_98_a[] = { 1,238,1,70,1,14, 0 };
-static const uint8_t ko_ch_98_b[] = { 1,239,1,240,128,1,85,1,14, 0 };
-static const uint8_t ko_ch_110_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_110_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_111_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_111_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_112_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_112_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_134_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_134_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_136_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_136_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_138_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_138_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_140_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_140_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_141_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_141_b[] = { 1,70,1,233,1,41, 0 };
-static const uint8_t ko_ch_142_a[] = { 1,237, 0 };
-static const uint8_t ko_ch_142_b[] = { 1,70,1,233,1,41, 0 };
+static const uint8_t ko_ch_12_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_12_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_13_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_13_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_35_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_35_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_44_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_44_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_98_a[] = { 1,248,1,70,1,14, 0 };
+static const uint8_t ko_ch_98_b[] = { 1,249,1,250,128,1,85,1,14, 0 };
+static const uint8_t ko_ch_110_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_110_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_111_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_111_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_112_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_112_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_134_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_134_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_136_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_136_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_138_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_138_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_140_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_140_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_141_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_141_b[] = { 1,70,1,243,1,41, 0 };
+static const uint8_t ko_ch_142_a[] = { 1,247, 0 };
+static const uint8_t ko_ch_142_b[] = { 1,70,1,243,1,41, 0 };
 const uint8_t * const ko_choice_ptr[] = {
     0, 0,
     0, 0,
@@ -1500,7 +1500,7 @@ const uint8_t * const ko_choice_ptr[] = {
     0, 0,
     0, 0,
 };
-const uint16_t ko_ui_off[] = { 0, 12, 21, 29, 39, 48, 57, 71, 90, 106, 124, 134, 152, 168, 185, 197, 205, 223, 241, 254, 263, 279, 295, 310, 324, 333, 346, 365, 379, 396, 408, 417, 434, 452, 468, 487, 505, 521, 530, 536, 550, 556, 559, 578, 591, 610, 627, 645, 663, 681, 694, 710, 724, 741, 755, 772, 789, 806, 822, 841, 857, 875, 893, 912, 931, 949, 968, 987, 1003, 1016, 1031, 1045, 1064, 1072, 1089, 1107, 1124, 1139, 1154, 1168, 1184, 1200, 1215, 1231, 1249, 1265, 1282, 1299, 1315, 1333, 1352, 1363, 1371, 1389, 1406, 1415, 1423, 1435, 1438, 1454, 1468, 1471, 1489, 1496, 1499, 1502, 1516, 1530, 1540, 1555, 1569, 1582, 1595, 1613, 1630, 1646, 1660, 1678, 1696, 1708, 1722, 1740, 1757, 1770, 1788, 1796, 1809, 1812, 1819, 1824, 1830, 1836, 1843, 1849, 1851, 1853, 1870, 1884, 1903, 1919, 1931, 1948, 1963, 1978, 1992, 2008, 2024, 2040, 2053, 2060, 2072, 2090, 2105, 2124, 2140, 2157, 2176, 2193, 2207, 2223, 2241, 2257, 2275, 2287, 2303, 2319, 2338, 2357, 2370, 2386, 2402, 2418, 2436, 2455, 2472, 2491, 2507, 2522, 2535, 2552, 2571, 2589, 2604 };
+const uint16_t ko_ui_off[] = { 0, 12, 21, 29, 39, 48, 57, 71, 90, 106, 124, 134, 152, 168, 185, 197, 205, 223, 241, 254, 263, 279, 295, 310, 324, 333, 346, 365, 379, 396, 408, 417, 434, 452, 468, 487, 505, 521, 530, 536, 550, 556, 559, 578, 591, 610, 627, 645, 663, 681, 694, 710, 724, 741, 755, 772, 789, 806, 822, 841, 857, 875, 893, 912, 931, 949, 968, 987, 1003, 1016, 1031, 1045, 1064, 1072, 1089, 1107, 1124, 1139, 1154, 1168, 1184, 1200, 1215, 1231, 1249, 1265, 1282, 1299, 1315, 1333, 1352, 1363, 1371, 1389, 1406, 1415, 1423, 1431, 1446, 1453, 1472, 1483, 1498, 1511, 1530, 1543, 1557, 1566, 1585, 1589, 1601, 1604, 1620, 1634, 1637, 1655, 1662, 1665, 1668, 1682, 1696, 1706, 1721, 1735, 1748, 1761, 1779, 1796, 1812, 1826, 1844, 1862, 1874, 1888, 1906, 1923, 1936, 1954, 1962, 1975, 1978, 1985, 1990, 1996, 2002, 2009, 2015, 2017, 2019, 2036, 2050, 2069, 2085, 2097, 2114, 2129, 2144, 2158, 2174, 2190, 2206, 2219, 2226, 2238, 2256, 2271, 2290, 2306, 2323, 2342, 2359, 2373, 2389, 2407, 2423, 2441, 2453, 2469, 2485, 2504, 2523, 2536, 2552, 2568, 2584, 2602, 2621, 2638, 2657, 2673, 2688, 2701, 2718, 2737, 2755, 2770 };
 static const uint8_t ko_ui_0[] = { 144,176,163,177,177,128,147,148,129,146,148,0 };
 static const uint8_t ko_ui_1[] = { 1,0,1,1,128,140,129,142,135,149,129,135,133,0 };
 static const uint8_t ko_ui_2[] = { 133,172,165,170,167,177,166,0 };
@@ -1597,94 +1597,107 @@ static const uint8_t ko_ui_92[] = { 1,175,1,176,208,128,1,167,1,11,128,1,168,1,1
 static const uint8_t ko_ui_93[] = { 129,1,33,128,1,170,1,105,210,0 };
 static const uint8_t ko_ui_94[] = { 231,128,1,177,1,85,128,1,178,1,167,0 };
 static const uint8_t ko_ui_95[] = { 231,128,1,64,1,63,0 };
-static const uint8_t ko_ui_96[] = { 1,177,1,85,128,1,178,1,167,128,1,179,1,27,208,0 };
-static const uint8_t ko_ui_97[] = { 219,201,0 };
-static const uint8_t ko_ui_98[] = { 147,148,129,146,148,214,128,1,80,1,81,0 };
-static const uint8_t ko_ui_99[] = { 1,180,1,181,128,1,182,1,183,208,0 };
-static const uint8_t ko_ui_100[] = { 219,207,0 };
-static const uint8_t ko_ui_101[] = { 1,69,1,32,128,1,180,1,181,128,128,128,128,128,128,128,128,128,128,219,207,0 };
-static const uint8_t ko_ui_102[] = { 1,177,1,85,128,1,178,1,167,0 };
-static const uint8_t ko_ui_103[] = { 213,213,0 };
-static const uint8_t ko_ui_104[] = { 143,139,0 };
-static const uint8_t ko_ui_105[] = { 1,184,1,185,1,39,1,107,1,63,0 };
-static const uint8_t ko_ui_106[] = { 1,167,128,1,186,1,6,210,0 };
-static const uint8_t ko_ui_107[] = { 1,7,1,30,128,1,149,1,150,1,151,1,107,0 };
-static const uint8_t ko_ui_108[] = { 1,95,1,96,1,5,1,6,210,0 };
-static const uint8_t ko_ui_109[] = { 1,96,1,85,1,107,1,8,0 };
-static const uint8_t ko_ui_110[] = { 1,184,1,11,1,37,128,1,95,1,5,1,6,210,0 };
-static const uint8_t ko_ui_111[] = { 1,187,128,1,10,128,1,5,1,188,0 };
-static const uint8_t ko_ui_112[] = { 1,189,1,190,1,107,128,1,78,1,89,1,38,210,0 };
-static const uint8_t ko_ui_113[] = { 1,177,1,85,128,1,178,1,167,128,128,128,128,128,128,128,128,128,219,201,0 };
-static const uint8_t ko_ui_114[] = { 1,10,1,87,214,128,1,107,1,130,1,191,1,192,128,200,0 };
-static const uint8_t ko_ui_115[] = { 199,207,204,207,1,17,128,201,1,18,128,201,1,19,210,0 };
-static const uint8_t ko_ui_116[] = { 1,20,1,21,1,107,1,63,128,1,193,1,191,1,33,0 };
-static const uint8_t ko_ui_117[] = { 1,15,1,120,128,1,144,1,37,1,194,128,1,43,210,0 };
-static const uint8_t ko_ui_118[] = { 0 };
-static const uint8_t ko_ui_119[] = { 1,117,1,195,1,196,128,1,46,1,47,1,48,1,22,0 };
-static const uint8_t ko_ui_120[] = { 1,197,1,198,128,1,118,1,119,1,85,128,1,122,0 };
-static const uint8_t ko_ui_121[] = { 1,115,1,123,128,1,154,1,107,1,63,128,1,53,1,71,1,106,1,10,210,0 };
-static const uint8_t ko_ui_122[] = { 1,109,1,85,128,1,85,1,199,1,94,1,68,1,200,209,0 };
-static const uint8_t ko_ui_123[] = { 224,128,1,7,128,1,184,1,185,1,39,128,1,169,0 };
-static const uint8_t ko_ui_124[] = { 229,128,138,167,181,173,172,0 };
-static const uint8_t ko_ui_125[] = { 1,129,1,130,128,1,105,1,11,208,0 };
-static const uint8_t ko_ui_126[] = { 219,203,0 };
-static const uint8_t ko_ui_127[] = { 1,129,1,130,0 };
-static const uint8_t ko_ui_128[] = { 1,80,1,132,0 };
-static const uint8_t ko_ui_129[] = { 1,201,0 };
-static const uint8_t ko_ui_130[] = { 1,202,1,4,1,203,0 };
-static const uint8_t ko_ui_131[] = { 1,184,1,47,1,11,208,0 };
-static const uint8_t ko_ui_132[] = { 1,204,208,0 };
-static const uint8_t ko_ui_133[] = { 227,0 };
-static const uint8_t ko_ui_134[] = { 228,0 };
-static const uint8_t ko_ui_135[] = { 1,101,1,135,1,68,128,1,205,128,1,86,208,0 };
-static const uint8_t ko_ui_136[] = { 1,1,1,206,128,1,207,209,128,129,208,0 };
-static const uint8_t ko_ui_137[] = { 1,208,1,87,128,128,128,219,204,128,128,128,128,1,209,1,210,128,128,128,219,201,0 };
-static const uint8_t ko_ui_138[] = { 1,211,1,38,1,185,128,1,179,1,27,208,0 };
-static const uint8_t ko_ui_139[] = { 1,129,1,130,128,1,105,1,11,0 };
-static const uint8_t ko_ui_140[] = { 1,212,1,87,214,128,1,133,1,134,128,1,65,1,67,208,0 };
-static const uint8_t ko_ui_141[] = { 1,109,1,85,128,1,110,1,37,1,33,209,0 };
-static const uint8_t ko_ui_142[] = { 1,212,1,87,214,128,1,141,1,114,128,1,110,1,37,208,0 };
-static const uint8_t ko_ui_143[] = { 1,196,1,196,1,22,128,1,213,1,67,0 };
-static const uint8_t ko_ui_144[] = { 1,214,1,47,1,215,1,4,128,1,57,1,25,1,10,208,0 };
-static const uint8_t ko_ui_145[] = { 1,197,1,198,128,1,118,1,119,0 };
-static const uint8_t ko_ui_146[] = { 1,212,1,87,214,128,1,117,1,22,128,1,118,1,119,208,0 };
-static const uint8_t ko_ui_147[] = { 1,46,1,47,1,48,128,1,69,1,6,0 };
-static const uint8_t ko_ui_148[] = { 1,211,1,38,1,185,0 };
-static const uint8_t ko_ui_149[] = { 1,8,1,9,128,1,216,1,74,0 };
-static const uint8_t ko_ui_150[] = { 129,214,128,1,11,1,73,128,128,130,214,128,1,217,1,39,0 };
-static const uint8_t ko_ui_151[] = { 1,213,1,67,128,1,55,1,6,0 };
-static const uint8_t ko_ui_152[] = { 1,194,1,24,1,85,128,1,218,1,147,1,123,1,10,210,0 };
-static const uint8_t ko_ui_153[] = { 1,167,1,11,128,1,168,1,169,1,107,128,1,41,1,188,0 };
-static const uint8_t ko_ui_154[] = { 129,1,33,128,1,170,1,105,210,0 };
-static const uint8_t ko_ui_155[] = { 1,209,1,176,1,188,128,1,10,1,11,208,0 };
-static const uint8_t ko_ui_156[] = { 1,167,128,1,186,1,6,0 };
-static const uint8_t ko_ui_157[] = { 1,95,1,96,0 };
-static const uint8_t ko_ui_158[] = { 1,171,219,1,70,1,172,214,128,1,173,1,67,0 };
-static const uint8_t ko_ui_159[] = { 1,174,219,1,164,214,128,1,67,1,16,0 };
-static const uint8_t ko_ui_160[] = { 147,148,129,146,148,214,128,1,80,1,81,1,22,0 };
-static const uint8_t ko_ui_161[] = { 1,97,1,98,128,1,219,1,105,1,41,1,6,0 };
-static const uint8_t ko_ui_162[] = { 1,129,1,130,128,1,105,1,11,0 };
-static const uint8_t ko_ui_163[] = { 1,202,1,4,1,203,1,144,1,10,128,1,128,1,5,1,120,0 };
-static const uint8_t ko_ui_164[] = { 1,59,1,68,128,1,85,1,199,1,10,1,220,214,0 };
-static const uint8_t ko_ui_165[] = { 1,174,219,1,164,128,1,58,1,47,1,58,128,129,0 };
-static const uint8_t ko_ui_166[] = { 203,1,97,128,1,221,128,202,1,97,1,4,1,188,128,1,222,1,16,210,0 };
-static const uint8_t ko_ui_167[] = { 1,207,128,1,8,1,9,0 };
-static const uint8_t ko_ui_168[] = { 1,207,128,1,70,1,172,128,1,101,1,135,1,68,0 };
-static const uint8_t ko_ui_169[] = { 1,205,128,1,37,1,223,1,86,210,0 };
-static const uint8_t ko_ui_170[] = { 1,117,1,10,1,87,128,1,174,219,1,164,1,39,0 };
-static const uint8_t ko_ui_171[] = { 1,207,1,68,128,1,224,1,71,128,129,210,0 };
-static const uint8_t ko_ui_172[] = { 1,83,1,113,1,177,128,1,225,1,6,0 };
-static const uint8_t ko_ui_173[] = { 1,174,219,1,164,214,128,1,4,1,226,0 };
-static const uint8_t ko_ui_174[] = { 1,83,1,113,1,177,128,1,70,1,172,1,39,210,0 };
-static const uint8_t ko_ui_175[] = { 204,1,227,128,1,225,1,66,1,188,128,1,228,1,152,211,0 };
-static const uint8_t ko_ui_176[] = { 201,1,227,128,1,209,1,176,1,188,128,1,10,1,11,210,0 };
-static const uint8_t ko_ui_177[] = { 1,142,1,229,1,4,1,116,208,0 };
-static const uint8_t ko_ui_178[] = { 1,230,1,1,1,85,128,1,115,1,231,1,176,1,188,0 };
-static const uint8_t ko_ui_179[] = { 1,208,1,120,1,10,210,128,1,142,1,232,1,176,1,233,1,200,0 };
-static const uint8_t ko_ui_180[] = { 1,168,1,234,1,66,1,39,128,1,235,1,70,208,0 };
-static const uint8_t ko_ui_181[] = { 1,214,1,25,128,1,11,1,40,128,201,198,1,236,210,0 };
-static const uint8_t ko_ui_182[] = { 1,208,1,70,1,71,208,0 };
-const uint8_t * const ko_ui_ptr[] = { ko_ui_0, ko_ui_1, ko_ui_2, ko_ui_3, ko_ui_4, ko_ui_5, ko_ui_6, ko_ui_7, ko_ui_8, ko_ui_9, ko_ui_10, ko_ui_11, ko_ui_12, ko_ui_13, ko_ui_14, ko_ui_15, ko_ui_16, ko_ui_17, ko_ui_18, ko_ui_19, ko_ui_20, ko_ui_21, ko_ui_22, ko_ui_23, ko_ui_24, ko_ui_25, ko_ui_26, ko_ui_27, ko_ui_28, ko_ui_29, ko_ui_30, ko_ui_31, ko_ui_32, ko_ui_33, ko_ui_34, ko_ui_35, ko_ui_36, ko_ui_37, ko_ui_38, ko_ui_39, ko_ui_40, ko_ui_41, ko_ui_42, ko_ui_43, ko_ui_44, ko_ui_45, ko_ui_46, ko_ui_47, ko_ui_48, ko_ui_49, ko_ui_50, ko_ui_51, ko_ui_52, ko_ui_53, ko_ui_54, ko_ui_55, ko_ui_56, ko_ui_57, ko_ui_58, ko_ui_59, ko_ui_60, ko_ui_61, ko_ui_62, ko_ui_63, ko_ui_64, ko_ui_65, ko_ui_66, ko_ui_67, ko_ui_68, ko_ui_69, ko_ui_70, ko_ui_71, ko_ui_72, ko_ui_73, ko_ui_74, ko_ui_75, ko_ui_76, ko_ui_77, ko_ui_78, ko_ui_79, ko_ui_80, ko_ui_81, ko_ui_82, ko_ui_83, ko_ui_84, ko_ui_85, ko_ui_86, ko_ui_87, ko_ui_88, ko_ui_89, ko_ui_90, ko_ui_91, ko_ui_92, ko_ui_93, ko_ui_94, ko_ui_95, ko_ui_96, ko_ui_97, ko_ui_98, ko_ui_99, ko_ui_100, ko_ui_101, ko_ui_102, ko_ui_103, ko_ui_104, ko_ui_105, ko_ui_106, ko_ui_107, ko_ui_108, ko_ui_109, ko_ui_110, ko_ui_111, ko_ui_112, ko_ui_113, ko_ui_114, ko_ui_115, ko_ui_116, ko_ui_117, ko_ui_118, ko_ui_119, ko_ui_120, ko_ui_121, ko_ui_122, ko_ui_123, ko_ui_124, ko_ui_125, ko_ui_126, ko_ui_127, ko_ui_128, ko_ui_129, ko_ui_130, ko_ui_131, ko_ui_132, ko_ui_133, ko_ui_134, ko_ui_135, ko_ui_136, ko_ui_137, ko_ui_138, ko_ui_139, ko_ui_140, ko_ui_141, ko_ui_142, ko_ui_143, ko_ui_144, ko_ui_145, ko_ui_146, ko_ui_147, ko_ui_148, ko_ui_149, ko_ui_150, ko_ui_151, ko_ui_152, ko_ui_153, ko_ui_154, ko_ui_155, ko_ui_156, ko_ui_157, ko_ui_158, ko_ui_159, ko_ui_160, ko_ui_161, ko_ui_162, ko_ui_163, ko_ui_164, ko_ui_165, ko_ui_166, ko_ui_167, ko_ui_168, ko_ui_169, ko_ui_170, ko_ui_171, ko_ui_172, ko_ui_173, ko_ui_174, ko_ui_175, ko_ui_176, ko_ui_177, ko_ui_178, ko_ui_179, ko_ui_180, ko_ui_181, ko_ui_182 };
+static const uint8_t ko_ui_96[] = { 231,128,1,179,1,180,0 };
+static const uint8_t ko_ui_97[] = { 1,53,1,71,1,91,128,1,15,1,16,0 };
+static const uint8_t ko_ui_98[] = { 1,133,1,134,0 };
+static const uint8_t ko_ui_99[] = { 1,181,1,182,128,1,85,1,183,128,1,65,1,67,0 };
+static const uint8_t ko_ui_100[] = { 1,132,1,126,128,1,184,1,185,0 };
+static const uint8_t ko_ui_101[] = { 1,6,1,162,1,163,128,1,164,1,110,0 };
+static const uint8_t ko_ui_102[] = { 1,186,1,187,1,39,128,1,167,0 };
+static const uint8_t ko_ui_103[] = { 199,207,205,201,1,17,1,188,1,37,128,1,175,1,189,0 };
+static const uint8_t ko_ui_104[] = { 1,44,1,45,128,1,118,1,119,0 };
+static const uint8_t ko_ui_105[] = { 1,15,1,16,128,1,190,1,29,128,1,7,1,191,0 };
+static const uint8_t ko_ui_106[] = { 1,117,1,71,1,126,1,127,0 };
+static const uint8_t ko_ui_107[] = { 1,67,1,149,1,115,1,192,128,1,70,1,193,128,206,1,11,0 };
+static const uint8_t ko_ui_108[] = { 209,209,209,0 };
+static const uint8_t ko_ui_109[] = { 1,177,1,85,128,1,178,1,167,128,1,194,1,27,208,0 };
+static const uint8_t ko_ui_110[] = { 219,201,0 };
+static const uint8_t ko_ui_111[] = { 147,148,129,146,148,214,128,1,80,1,81,0 };
+static const uint8_t ko_ui_112[] = { 1,195,1,196,128,1,197,1,198,208,0 };
+static const uint8_t ko_ui_113[] = { 219,207,0 };
+static const uint8_t ko_ui_114[] = { 1,69,1,32,128,1,195,1,196,128,128,128,128,128,128,128,128,128,128,219,207,0 };
+static const uint8_t ko_ui_115[] = { 1,177,1,85,128,1,178,1,167,0 };
+static const uint8_t ko_ui_116[] = { 213,213,0 };
+static const uint8_t ko_ui_117[] = { 143,139,0 };
+static const uint8_t ko_ui_118[] = { 1,186,1,187,1,39,1,107,1,63,0 };
+static const uint8_t ko_ui_119[] = { 1,167,128,1,199,1,6,210,0 };
+static const uint8_t ko_ui_120[] = { 1,7,1,30,128,1,149,1,150,1,151,1,107,0 };
+static const uint8_t ko_ui_121[] = { 1,95,1,96,1,5,1,6,210,0 };
+static const uint8_t ko_ui_122[] = { 1,96,1,85,1,107,1,8,0 };
+static const uint8_t ko_ui_123[] = { 1,186,1,11,1,37,128,1,95,1,5,1,6,210,0 };
+static const uint8_t ko_ui_124[] = { 1,200,128,1,10,128,1,5,1,201,0 };
+static const uint8_t ko_ui_125[] = { 1,202,1,203,1,107,128,1,78,1,89,1,38,210,0 };
+static const uint8_t ko_ui_126[] = { 1,177,1,85,128,1,178,1,167,128,128,128,128,128,128,128,128,128,219,201,0 };
+static const uint8_t ko_ui_127[] = { 1,10,1,87,214,128,1,107,1,130,1,204,1,205,128,200,0 };
+static const uint8_t ko_ui_128[] = { 199,207,204,207,1,17,128,201,1,18,128,201,1,19,210,0 };
+static const uint8_t ko_ui_129[] = { 1,20,1,21,1,107,1,63,128,1,206,1,204,1,33,0 };
+static const uint8_t ko_ui_130[] = { 1,15,1,120,128,1,144,1,37,1,207,128,1,43,210,0 };
+static const uint8_t ko_ui_131[] = { 0 };
+static const uint8_t ko_ui_132[] = { 1,117,1,208,1,209,128,1,46,1,47,1,48,1,22,0 };
+static const uint8_t ko_ui_133[] = { 1,210,1,211,128,1,118,1,119,1,85,128,1,122,0 };
+static const uint8_t ko_ui_134[] = { 1,115,1,123,128,1,154,1,107,1,63,128,1,53,1,71,1,106,1,10,210,0 };
+static const uint8_t ko_ui_135[] = { 1,109,1,85,128,1,85,1,212,1,94,1,68,1,188,209,0 };
+static const uint8_t ko_ui_136[] = { 224,128,1,7,128,1,186,1,187,1,39,128,1,169,0 };
+static const uint8_t ko_ui_137[] = { 229,128,138,167,181,173,172,0 };
+static const uint8_t ko_ui_138[] = { 1,129,1,130,128,1,105,1,11,208,0 };
+static const uint8_t ko_ui_139[] = { 219,203,0 };
+static const uint8_t ko_ui_140[] = { 1,129,1,130,0 };
+static const uint8_t ko_ui_141[] = { 1,80,1,132,0 };
+static const uint8_t ko_ui_142[] = { 1,213,0 };
+static const uint8_t ko_ui_143[] = { 1,214,1,4,1,184,0 };
+static const uint8_t ko_ui_144[] = { 1,186,1,47,1,11,208,0 };
+static const uint8_t ko_ui_145[] = { 1,215,208,0 };
+static const uint8_t ko_ui_146[] = { 227,0 };
+static const uint8_t ko_ui_147[] = { 228,0 };
+static const uint8_t ko_ui_148[] = { 1,101,1,135,1,68,128,1,216,128,1,86,208,0 };
+static const uint8_t ko_ui_149[] = { 1,1,1,217,128,1,218,209,128,129,208,0 };
+static const uint8_t ko_ui_150[] = { 1,219,1,87,128,128,128,219,204,128,128,128,128,1,220,1,193,128,128,128,219,201,0 };
+static const uint8_t ko_ui_151[] = { 1,221,1,38,1,187,128,1,194,1,27,208,0 };
+static const uint8_t ko_ui_152[] = { 1,129,1,130,128,1,105,1,11,0 };
+static const uint8_t ko_ui_153[] = { 1,222,1,87,214,128,1,133,1,134,128,1,65,1,67,208,0 };
+static const uint8_t ko_ui_154[] = { 1,109,1,85,128,1,110,1,37,1,33,209,0 };
+static const uint8_t ko_ui_155[] = { 1,222,1,87,214,128,1,141,1,114,128,1,110,1,37,208,0 };
+static const uint8_t ko_ui_156[] = { 1,209,1,209,1,22,128,1,223,1,67,0 };
+static const uint8_t ko_ui_157[] = { 1,224,1,47,1,225,1,4,128,1,57,1,25,1,10,208,0 };
+static const uint8_t ko_ui_158[] = { 1,210,1,211,128,1,118,1,119,0 };
+static const uint8_t ko_ui_159[] = { 1,222,1,87,214,128,1,117,1,22,128,1,118,1,119,208,0 };
+static const uint8_t ko_ui_160[] = { 1,46,1,47,1,48,128,1,69,1,6,0 };
+static const uint8_t ko_ui_161[] = { 1,221,1,38,1,187,0 };
+static const uint8_t ko_ui_162[] = { 1,8,1,9,128,1,226,1,74,0 };
+static const uint8_t ko_ui_163[] = { 129,214,128,1,11,1,73,128,128,130,214,128,1,227,1,39,0 };
+static const uint8_t ko_ui_164[] = { 1,223,1,67,128,1,55,1,6,0 };
+static const uint8_t ko_ui_165[] = { 1,207,1,24,1,85,128,1,228,1,147,1,123,1,10,210,0 };
+static const uint8_t ko_ui_166[] = { 1,167,1,11,128,1,168,1,169,1,107,128,1,41,1,201,0 };
+static const uint8_t ko_ui_167[] = { 129,1,33,128,1,170,1,105,210,0 };
+static const uint8_t ko_ui_168[] = { 1,220,1,176,1,201,128,1,10,1,11,208,0 };
+static const uint8_t ko_ui_169[] = { 1,167,128,1,199,1,6,0 };
+static const uint8_t ko_ui_170[] = { 1,95,1,96,0 };
+static const uint8_t ko_ui_171[] = { 1,171,219,1,70,1,172,214,128,1,173,1,67,0 };
+static const uint8_t ko_ui_172[] = { 1,174,219,1,164,214,128,1,67,1,16,0 };
+static const uint8_t ko_ui_173[] = { 147,148,129,146,148,214,128,1,80,1,81,1,22,0 };
+static const uint8_t ko_ui_174[] = { 1,97,1,98,128,1,229,1,105,1,41,1,6,0 };
+static const uint8_t ko_ui_175[] = { 1,129,1,130,128,1,105,1,11,0 };
+static const uint8_t ko_ui_176[] = { 1,214,1,4,1,184,1,144,1,10,128,1,128,1,5,1,120,0 };
+static const uint8_t ko_ui_177[] = { 1,59,1,68,128,1,85,1,212,1,10,1,230,214,0 };
+static const uint8_t ko_ui_178[] = { 1,174,219,1,164,128,1,58,1,47,1,58,128,129,0 };
+static const uint8_t ko_ui_179[] = { 203,1,97,128,1,231,128,202,1,97,1,4,1,201,128,1,232,1,16,210,0 };
+static const uint8_t ko_ui_180[] = { 1,218,128,1,8,1,9,0 };
+static const uint8_t ko_ui_181[] = { 1,218,128,1,70,1,172,128,1,101,1,135,1,68,0 };
+static const uint8_t ko_ui_182[] = { 1,216,128,1,37,1,233,1,86,210,0 };
+static const uint8_t ko_ui_183[] = { 1,117,1,10,1,87,128,1,174,219,1,164,1,39,0 };
+static const uint8_t ko_ui_184[] = { 1,218,1,68,128,1,234,1,71,128,129,210,0 };
+static const uint8_t ko_ui_185[] = { 1,83,1,113,1,177,128,1,235,1,6,0 };
+static const uint8_t ko_ui_186[] = { 1,174,219,1,164,214,128,1,4,1,236,0 };
+static const uint8_t ko_ui_187[] = { 1,83,1,113,1,177,128,1,70,1,172,1,39,210,0 };
+static const uint8_t ko_ui_188[] = { 204,1,237,128,1,235,1,66,1,201,128,1,238,1,152,211,0 };
+static const uint8_t ko_ui_189[] = { 201,1,237,128,1,220,1,176,1,201,128,1,10,1,11,210,0 };
+static const uint8_t ko_ui_190[] = { 1,142,1,239,1,4,1,116,208,0 };
+static const uint8_t ko_ui_191[] = { 1,240,1,1,1,85,128,1,115,1,241,1,176,1,201,0 };
+static const uint8_t ko_ui_192[] = { 1,219,1,120,1,10,210,128,1,142,1,242,1,176,1,243,1,188,0 };
+static const uint8_t ko_ui_193[] = { 1,168,1,244,1,66,1,39,128,1,245,1,70,208,0 };
+static const uint8_t ko_ui_194[] = { 1,224,1,25,128,1,11,1,40,128,201,198,1,246,210,0 };
+static const uint8_t ko_ui_195[] = { 1,219,1,70,1,71,208,0 };
+const uint8_t * const ko_ui_ptr[] = { ko_ui_0, ko_ui_1, ko_ui_2, ko_ui_3, ko_ui_4, ko_ui_5, ko_ui_6, ko_ui_7, ko_ui_8, ko_ui_9, ko_ui_10, ko_ui_11, ko_ui_12, ko_ui_13, ko_ui_14, ko_ui_15, ko_ui_16, ko_ui_17, ko_ui_18, ko_ui_19, ko_ui_20, ko_ui_21, ko_ui_22, ko_ui_23, ko_ui_24, ko_ui_25, ko_ui_26, ko_ui_27, ko_ui_28, ko_ui_29, ko_ui_30, ko_ui_31, ko_ui_32, ko_ui_33, ko_ui_34, ko_ui_35, ko_ui_36, ko_ui_37, ko_ui_38, ko_ui_39, ko_ui_40, ko_ui_41, ko_ui_42, ko_ui_43, ko_ui_44, ko_ui_45, ko_ui_46, ko_ui_47, ko_ui_48, ko_ui_49, ko_ui_50, ko_ui_51, ko_ui_52, ko_ui_53, ko_ui_54, ko_ui_55, ko_ui_56, ko_ui_57, ko_ui_58, ko_ui_59, ko_ui_60, ko_ui_61, ko_ui_62, ko_ui_63, ko_ui_64, ko_ui_65, ko_ui_66, ko_ui_67, ko_ui_68, ko_ui_69, ko_ui_70, ko_ui_71, ko_ui_72, ko_ui_73, ko_ui_74, ko_ui_75, ko_ui_76, ko_ui_77, ko_ui_78, ko_ui_79, ko_ui_80, ko_ui_81, ko_ui_82, ko_ui_83, ko_ui_84, ko_ui_85, ko_ui_86, ko_ui_87, ko_ui_88, ko_ui_89, ko_ui_90, ko_ui_91, ko_ui_92, ko_ui_93, ko_ui_94, ko_ui_95, ko_ui_96, ko_ui_97, ko_ui_98, ko_ui_99, ko_ui_100, ko_ui_101, ko_ui_102, ko_ui_103, ko_ui_104, ko_ui_105, ko_ui_106, ko_ui_107, ko_ui_108, ko_ui_109, ko_ui_110, ko_ui_111, ko_ui_112, ko_ui_113, ko_ui_114, ko_ui_115, ko_ui_116, ko_ui_117, ko_ui_118, ko_ui_119, ko_ui_120, ko_ui_121, ko_ui_122, ko_ui_123, ko_ui_124, ko_ui_125, ko_ui_126, ko_ui_127, ko_ui_128, ko_ui_129, ko_ui_130, ko_ui_131, ko_ui_132, ko_ui_133, ko_ui_134, ko_ui_135, ko_ui_136, ko_ui_137, ko_ui_138, ko_ui_139, ko_ui_140, ko_ui_141, ko_ui_142, ko_ui_143, ko_ui_144, ko_ui_145, ko_ui_146, ko_ui_147, ko_ui_148, ko_ui_149, ko_ui_150, ko_ui_151, ko_ui_152, ko_ui_153, ko_ui_154, ko_ui_155, ko_ui_156, ko_ui_157, ko_ui_158, ko_ui_159, ko_ui_160, ko_ui_161, ko_ui_162, ko_ui_163, ko_ui_164, ko_ui_165, ko_ui_166, ko_ui_167, ko_ui_168, ko_ui_169, ko_ui_170, ko_ui_171, ko_ui_172, ko_ui_173, ko_ui_174, ko_ui_175, ko_ui_176, ko_ui_177, ko_ui_178, ko_ui_179, ko_ui_180, ko_ui_181, ko_ui_182, ko_ui_183, ko_ui_184, ko_ui_185, ko_ui_186, ko_ui_187, ko_ui_188, ko_ui_189, ko_ui_190, ko_ui_191, ko_ui_192, ko_ui_193, ko_ui_194, ko_ui_195 };
 const uint8_t ko_syl_tiles[] = {
     0x64,0x9C,0x94,0x64,0x04,0x40,0x7C,0x00,
     0x64,0x94,0x9C,0x94,0x94,0x64,0x04,0x00,
@@ -1865,13 +1878,26 @@ const uint8_t ko_syl_tiles[] = {
     0x74,0x04,0xFC,0x24,0x54,0x8C,0x04,0x00,
     0x10,0x7C,0x28,0x44,0x00,0xFE,0x10,0x00,
     0x7C,0x44,0x7C,0x10,0xFE,0x7C,0x04,0x00,
+    0x6A,0x9E,0x6A,0x7E,0x1E,0x60,0x7E,0x00,
+    0x94,0xFC,0x94,0xF4,0x7C,0x44,0x7C,0x00,
+    0x40,0x40,0x40,0x7C,0x10,0xFE,0x00,0x00,
+    0xF4,0x36,0xC4,0xF4,0x00,0x40,0x7C,0x00,
+    0x7C,0x28,0x44,0xFE,0x10,0x7C,0x04,0x00,
+    0x44,0x7C,0x44,0xFE,0x1C,0x60,0x7C,0x00,
+    0xF4,0x34,0xC4,0xF4,0x24,0xFC,0x04,0x00,
+    0xEA,0xAA,0xBA,0xAA,0xAA,0xEA,0x0A,0x00,
+    0x7C,0x78,0x40,0x7C,0x00,0xFE,0x00,0x00,
+    0xF4,0x54,0x54,0x56,0x54,0xA4,0x04,0x00,
+    0x44,0xF4,0x64,0x94,0x38,0x44,0x38,0x00,
+    0x7C,0x44,0x7C,0xFE,0x10,0x40,0x7C,0x00,
+    0xE4,0x24,0x44,0x84,0x7C,0x44,0x7C,0x00,
+    0xF4,0x84,0xEC,0x84,0x84,0xF4,0x04,0x00,
+    0x44,0xF4,0x64,0x94,0x7C,0x44,0x7C,0x00,
     0x64,0x94,0x66,0x24,0xFC,0x40,0x7C,0x00,
     0x94,0x94,0xF4,0x94,0x94,0xF4,0x04,0x00,
     0xF4,0x94,0xF4,0x7C,0x1C,0x60,0x7C,0x00,
     0x94,0xF6,0x94,0xFC,0x1C,0x60,0x7C,0x00,
     0xE4,0x2C,0x44,0x8C,0x44,0x40,0x7C,0x00,
-    0xEA,0xAA,0xBA,0xAA,0xAA,0xEA,0x0A,0x00,
-    0x7C,0x78,0x40,0x7C,0x00,0xFE,0x00,0x00,
     0xFC,0x54,0xAC,0xAC,0x00,0x7C,0x04,0x00,
     0x4A,0x5A,0xAA,0xAA,0x10,0x28,0x44,0x00,
     0xF4,0x9C,0x94,0xFC,0x04,0x40,0x7C,0x00,
@@ -1886,17 +1912,14 @@ const uint8_t ko_syl_tiles[] = {
     0x40,0x7C,0x10,0xFE,0x10,0x28,0x44,0x00,
     0x24,0x24,0x54,0xAC,0x24,0xFC,0x04,0x00,
     0xE4,0x5C,0x44,0xBC,0xA4,0xA4,0x04,0x00,
-    0xF4,0x54,0x54,0x56,0x54,0xA4,0x04,0x00,
     0xAC,0xFE,0xAC,0xFC,0x38,0x44,0x38,0x00,
     0xEA,0x8A,0xEA,0x9A,0x8A,0xEA,0x0A,0x00,
-    0x44,0x7C,0x44,0xFE,0x1C,0x60,0x7C,0x00,
     0x64,0x96,0x94,0x64,0x10,0x28,0x44,0x00,
     0xF4,0x66,0x94,0x7C,0x1C,0x60,0x7C,0x00,
     0x40,0x40,0x40,0x7C,0x00,0xFE,0x00,0x00,
     0xF4,0x7C,0x24,0xC4,0x44,0x7C,0x7C,0x00,
     0xF4,0x66,0x94,0x00,0x44,0x7C,0x7C,0x00,
     0x40,0x7C,0x10,0xFE,0x10,0x6C,0x38,0x00,
-    0x44,0xF4,0x64,0x94,0x7C,0x44,0x7C,0x00,
     0xEA,0x2A,0xEA,0x2A,0xEA,0x5A,0x4A,0x00,
     0x64,0x9C,0x64,0x00,0x7C,0x40,0x7C,0x00,
     0x24,0x24,0x56,0x8C,0x38,0x44,0x38,0x00,
@@ -1929,4 +1952,4 @@ const uint8_t ko_syl_tiles[] = {
     0xF6,0x56,0x5E,0x56,0x56,0xA6,0x06,0x00,
     0x7C,0x04,0x04,0xFE,0x10,0x7C,0x04,0x00,
 };
-const uint8_t ko_lang_name[] = { 1,25,1,241,1,1, 0 };
+const uint8_t ko_lang_name[] = { 1,25,1,251,1,1, 0 };

@@ -1,4 +1,6 @@
-/* The player's notebook (START) and the end screen. */
+/* The player's notebook (START) and the end screen. ROM bank 7: strings go
+   through box_print (it maps bank 1); digits through digit_glyph. */
+#pragma bank 7
 #include <gb/gb.h>
 #include "assets.h"
 #include "dialogue.h"
@@ -49,14 +51,14 @@ static const uint8_t goal_who[10] = {
     NPC_ROUX, NPC_CAFE, NPC_CAFE, NPC_ROUX, NPC_WORKER
 };
 
-uint8_t goal_npc(void) {
+uint8_t goal_npc(void) BANKED {
     return goal_who[goal()];
 }
 
 static const uint16_t num_value[4] = { 614, 4127, 7302, 2508 };
 static uint8_t num_next;
 
-uint16_t notebook_number(void) {
+uint16_t notebook_number(void) BANKED {
     uint8_t i;
     for (i = 0; i < 4; i++) {
         uint8_t k = num_next++ & 3;
@@ -77,7 +79,7 @@ static const uint8_t * const howto_txt[8][5] = {
     { txt_how_l0, txt_how_l1, txt_how_l2, txt_how_l3, txt_how_l4 },   /* EV_LIFT */
 };
 
-void howto_show(uint8_t ev) {
+void howto_show(uint8_t ev) BANKED {
     uint8_t i;
     const uint8_t * const *t = howto_txt[ev - EV_FIRST];
     box_open(10);
@@ -87,17 +89,17 @@ void howto_show(uint8_t ev) {
 }
 
 /* The current goal on two rows of the open box (also under "New clue!"). */
-void goal_print(uint8_t y) {
+void goal_print(uint8_t y) BANKED {
     uint8_t g = goal() * 2;
     box_print(1, y, goal_txt[g]);
     box_print(1, y + 1, goal_txt[g + 1]);
 }
 
-void notebook_show(void) {
+void notebook_show(void) BANKED {
     uint8_t i, y, g = goal() * 2;
     box_open(SCREEN_H / 8);
     box_print(1, 1, txt_nb_title);
-    set_win_tile_xy(15, 1, txt_digits[quests_total()]);
+    set_win_tile_xy(15, 1, digit_glyph(quests_total()));
     box_print(16, 1, txt_nb_of);
     box_print(1, 2, goal_txt[g]);
     box_print(1, 3, goal_txt[g + 1]);
@@ -120,11 +122,11 @@ static const uint8_t * const extra_txt[X_COUNT * 2] = {
     txt_x_0, txt_x_0h, txt_x_1, txt_x_1h, txt_x_2, txt_x_2h
 };
 
-void extras_show(void) {
+void extras_show(void) BANKED {
     uint8_t i;
     box_open(SCREEN_H / 8);
     box_print(1, 1, txt_x_title);
-    set_win_tile_xy(15, 1, txt_digits[extra_total()]);
+    set_win_tile_xy(15, 1, digit_glyph(extra_total()));
     box_print(16, 1, txt_extra_of);
     for (i = 0; i < X_COUNT; i++) {
         box_print(1, 3 + i * 3, (extra_flags & (1 << i)) ? txt_x_done : txt_x_todo);
@@ -134,7 +136,44 @@ void extras_show(void) {
     box_print(1, 13, txt_x_note_1);
     box_print(1, 14, txt_x_note_2);
     box_print(1, 15, txt_secrets);
-    set_win_tile_xy(15, 15, txt_digits[secret_total()]);
+    set_win_tile_xy(15, 15, digit_glyph(secret_total()));
+    box_print(1, 17, txt_nb_album);
+    box_print(14, 17, txt_nb_close);
+}
+
+/* Third page: the vanished-Paris album. Each object found shows a one-line
+   fact read in a source (docs/HISTORICAL_RESEARCH.md); the rest show ???. */
+#define ALBUM_COUNT 5
+static const uint8_t * const album_txt[ALBUM_COUNT * 2] = {
+    txt_al_0, txt_al_0f, txt_al_1, txt_al_1f, txt_al_2, txt_al_2f,
+    txt_al_3, txt_al_3f, txt_al_4, txt_al_4f
+};
+
+static uint8_t album_has(uint8_t i) {
+    switch (i) {
+    case 0:  return (clue_flags & CLUE_COLTIN) != 0;
+    case 1:  return (clue_flags & CLUE_BLEU) != 0;
+    case 2:  return (game_flags & FLAG_TICKET) != 0;
+    case 3:  return (clue_flags & CLUE_PLATE) != 0;
+    default: return (quest_flags & QF_SOUP) || (clue_flags & CLUE_PLATE);
+    }
+}
+
+void album_show(void) BANKED {
+    uint8_t i, n = 0;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_al_title);
+    for (i = 0; i < ALBUM_COUNT; i++) {
+        if (album_has(i)) {
+            n++;
+            box_print(1, 3 + i * 3, album_txt[i * 2]);
+            box_print(1, 4 + i * 3, album_txt[i * 2 + 1]);
+        } else {
+            box_print(1, 3 + i * 3, txt_al_none);
+        }
+    }
+    set_win_tile_xy(16, 1, digit_glyph(n));
+    box_print(17, 1, txt_nb_of);       /* "/5" */
     box_print(1, 17, txt_nb_prev);
     box_print(14, 17, txt_nb_close);
 }
@@ -145,7 +184,7 @@ static const uint8_t * const teaser_txt[13] = {
     txt_next_5, txt_next_6, txt_next_7, 0, txt_next_8, txt_next_9
 };
 
-void teaser_show(void) {
+void teaser_show(void) BANKED {
     uint8_t i;
     box_open(SCREEN_H / 8);
     for (i = 0; i < 13; i++)
@@ -153,14 +192,14 @@ void teaser_show(void) {
     box_print(1, 16, txt_end_11);
 }
 
-void end_show(void) {
+void end_show(void) BANKED {
     HIDE_SPRITES;
     box_open(SCREEN_H / 8);
     box_print(6, 2, txt_end_1);
     box_print(1, 4, txt_end_2);
-    set_win_tile_xy(14, 4, txt_digits[clue_total()]);
+    set_win_tile_xy(14, 4, digit_glyph(clue_total()));
     box_print(1, 5, txt_end_x);
-    set_win_tile_xy(14, 5, txt_digits[extra_total()]);
+    set_win_tile_xy(14, 5, digit_glyph(extra_total()));
     box_print(1, 6, txt_end_3);
     box_print(1, 7, txt_end_4);
     box_print(1, 8, txt_end_5);
@@ -169,7 +208,7 @@ void end_show(void) {
     box_print(1, 11, txt_end_8);
     box_print(1, 12, txt_end_9);
     box_print(1, 13, txt_secrets);
-    set_win_tile_xy(15, 13, txt_digits[secret_total()]);
+    set_win_tile_xy(15, 13, digit_glyph(secret_total()));
     box_print(1, 14, txt_end_10);
     box_print(1, 16, txt_end_11);
 }
@@ -185,7 +224,7 @@ static const uint8_t * const intro_pages[3][11] = {
       0, txt_intro_c5, txt_intro_c6, 0 },
 };
 
-void intro_show(uint8_t page) {
+void intro_show(uint8_t page) BANKED {
     uint8_t i;
     box_open(SCREEN_H / 8);
     for (i = 0; i < 11; i++)

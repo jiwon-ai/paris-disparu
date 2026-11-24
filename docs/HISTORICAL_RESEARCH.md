@@ -109,6 +109,20 @@ Read on 2026-11-23 (secondary sources).
 | Rubber-tyred MP 59 trains replaced steel-wheeled ones from 3 Oct 1966; "On 17 July 1967, the last steel-wheeled train left the line" (game: "Since this summer, every train on line 4 runs on rubber tyres") | **Read** | en.Wikipedia, Line 4 |
 | The look of the ticket-hall line map (blue board, white line, ring for "you are here") | **Fiction / reconstruction**: no photo of a 1967 board was found | — |
 
+### "Vanished Paris" album (notebook page 3, 2026-11-24)
+
+Each line shown is taken from a claim already read above; nothing new.
+
+| Object (shown when) | Line in the game | Basis |
+|---|---|---|
+| Coltin (clue: the coltin) | yellow leather hat | **Read**: Paris ZigZag, forts des Halles (Clothing) |
+| Petit bleu (clue: the petit bleu) | pneumatic post | **Read**: pneumatic post 1866-1984, messages on "petits bleus" (Story elements) |
+| Métro ticket (bought a ticket) | punched until 1973 | **Read**: punchers disappeared in October 1973 (Vanished Paris: métro) |
+| Fort's plate (clue: the plate) | arms of Paris | **Read**: blouse with a metal plate bearing the arms of Paris (Story elements) |
+| Gratinée (carrying it, or after the trade) | midnight to 8 a.m. | **Read**: eaten at Les Halles between midnight and 8 a.m. (Era culture) |
+
+The jeton is left out: café jeton telephones in 1967 are still "to research".
+
 ## Era culture (references in the scenery)
 
 Read on 2026-11-23. Policy: works still under copyright are referred to by

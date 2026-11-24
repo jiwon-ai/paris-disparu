@@ -734,8 +734,10 @@ void main(void) {
                 box_close();
                 state = ST_WALK;
             } else if (joy_pressed & (J_LEFT | J_RIGHT)) {   /* clues <-> extras */
-                nb_page ^= 1;
-                if (nb_page) extras_show(); else notebook_show();
+                nb_page = (joy_pressed & J_RIGHT) ? (nb_page + 1) % 3 : (nb_page + 2) % 3;
+                if (nb_page == 1) extras_show();
+                else if (nb_page == 2) album_show();
+                else notebook_show();
                 sound_blip();
             }
             break;

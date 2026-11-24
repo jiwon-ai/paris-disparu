@@ -859,6 +859,13 @@ tap("right", 10)
 check("EXTRAS" in window_row(1) and window_row(3).startswith("OK") and window_row(6).startswith("--"),
       "notebook page 2 lists the extras: %r %r" % (window_row(3), window_row(6)))
 shot("19_extras")
+tap("right", 10)
+album = [window_row(r) for r in range(18)]
+check("VANISHED PARIS" in album[1] and "Métro ticket" in album[9] and "punched until 1973" in album[10]
+      and album[12] == "???", "notebook page 3, the album: ticket found, plate not yet: %r" % album[1:13])
+shot("37_album")
+tap("left", 10)
+check("EXTRAS" in window_row(1), "left goes back a page: %r" % window_row(1))
 tap("start", 10)
 shot("18_punch")
 talk("Porte des Lilas")

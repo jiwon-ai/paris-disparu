@@ -92,6 +92,14 @@ void box_print(uint8_t x, uint8_t y, const uint8_t *text) {
     SWITCH_ROM(save);
 }
 
+uint8_t digit_glyph(uint8_t n) {
+    uint8_t g, save = _current_bank;
+    SWITCH_ROM(ASSET_BANK);
+    g = txt_digits[n];
+    SWITCH_ROM(save);
+    return g;
+}
+
 static void clear_text(void) {
     uint8_t x, y;
     if (lang) {
@@ -106,7 +114,7 @@ static void clear_text(void) {
 }
 
 void dialogue_start(uint8_t id) {
-    choice = dlg_choice[id];
+    far_read(TITLE_BANK, &dlg_choice[id], &choice, 1);
     in_choice = 0;
     dialogue_choice = 1;
     far_read(TITLE_BANK, (const uint8_t *)&dlg_first_page[id], (uint8_t *)&page, 2);

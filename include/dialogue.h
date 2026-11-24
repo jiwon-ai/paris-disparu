@@ -7,6 +7,7 @@
 void box_open(uint8_t rows);
 void box_close(void);
 void box_print(uint8_t x, uint8_t y, const uint8_t *text); /* 0-terminated */
+uint8_t digit_glyph(uint8_t n);   /* font tile of digit n, callable from any bank */
 
 /* Paged dialogue with typewriter effect.
    A: finish page / next page. B: close at any time. */
