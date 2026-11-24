@@ -33,7 +33,7 @@
 #define GLYPH_BAR_ZONE 241
 #define GLYPH_BAR_CURSOR 242
 
-#define ENV_TILE_COUNT 98
+#define ENV_TILE_COUNT 106
 #define TILE_SKY 0
 #define TILE_ROOFTOP 1
 #define TILE_ROOF 2
@@ -132,6 +132,14 @@
 #define TILE_MAP4_5 95
 #define TILE_MAP4_6 96
 #define TILE_MAP4_7 97
+#define TILE_BASKET 98
+#define TILE_CHAIR 99
+#define TILE_BENCH_L 100
+#define TILE_BENCH_R 101
+#define TILE_POSTER_0 102
+#define TILE_POSTER_1 103
+#define TILE_POSTER_2 104
+#define TILE_POSTER_3 105
 #define SPRITE_TILE_COUNT 128
 #define SPR1_ACTOR 232   /* VRAM bank 1: use palette | S_BANK1 */
 #define SPR1_CHANTEUSE 236   /* VRAM bank 1: use palette | S_BANK1 */
@@ -318,6 +326,10 @@ enum {
     DLG_METRO_NAME,
     DLG_METRO_TILES,
     DLG_METRO_GATE,
+    DLG_BASKETS,
+    DLG_POSTER,
+    DLG_BENCH,
+    DLG_CHAIRS,
     DLG_METRO_MAP,
     DLG_PAINTER_WIFE,
     DLG_END_BONUS,
@@ -365,6 +377,12 @@ enum {
     DLG_CRITIC_AGAIN,
     DLG_YOUNG_MAN_HELLO,
     DLG_YOUNG_MAN_AGAIN,
+    DLG_FORT2_HELLO,
+    DLG_FORT2_AGAIN,
+    DLG_COOK_HELLO,
+    DLG_COOK_AGAIN,
+    DLG_SLEEPER_HELLO,
+    DLG_SLEEPER_AGAIN,
     DLG_COUNT
 };
 
@@ -379,7 +397,7 @@ extern const uint8_t * const room_attrs[ROOM_COUNT];
 extern const uint8_t * const room_solid[ROOM_COUNT];
 extern const uint8_t dlg_pages[];
 extern const uint16_t dlg_first_page[DLG_COUNT];   /* bank TITLE_BANK */
-extern const uint8_t dlg_page_count[DLG_COUNT];
+extern const uint8_t dlg_page_count[DLG_COUNT];   /* bank TITLE_BANK */
 extern const uint8_t dlg_choice[DLG_COUNT];   /* 0 = none, else pair index + 1 */
 extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
 extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */

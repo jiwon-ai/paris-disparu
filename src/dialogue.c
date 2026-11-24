@@ -110,7 +110,8 @@ void dialogue_start(uint8_t id) {
     in_choice = 0;
     dialogue_choice = 1;
     far_read(TITLE_BANK, (const uint8_t *)&dlg_first_page[id], (uint8_t *)&page, 2);
-    pages_left = dlg_page_count[id] - 1;
+    far_read(TITLE_BANK, &dlg_page_count[id], &pages_left, 1);
+    pages_left--;
     if (lang) ko_start(id);
     else load_page();
     box_open(DLG_ROWS);

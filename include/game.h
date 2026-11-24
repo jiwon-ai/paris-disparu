@@ -39,6 +39,9 @@
 #define NPC_PLAYWRIGHT  17
 #define NPC_CRITIC      18
 #define NPC_YOUNG_MAN   19
+#define NPC_FORT2       20  /* people of the night, 2026-11-24: a porter, */
+#define NPC_COOK        21  /* a bistro cook buying, */
+#define NPC_SLEEPER     22  /* a night worker waiting in the métro */
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001

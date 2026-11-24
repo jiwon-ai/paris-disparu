@@ -3,8 +3,8 @@
 BBBBBBBBBBBBBBBBBBBB
 BBBBBBBBBBBBBBBBBBBB
 BBBBBBBBBBBBBBBBBBBB
-BBBBBBBBBBBBBBBBBBBB
-BBGGGBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBμνB
+BBGGGBBBBBBBBBBBBξοB
 BBGGGBαβγδBBJJJJBBBB
 BBTTTBεζηθBBJJJJBBBB
 ffffffffffffffffffff
@@ -15,7 +15,7 @@ ffffffffffffffffffff
 ffffffffffffffffffff
 ffffffffffffffffffff
 ffffffffffffffffffff
-ffffffffffffffffffff
+ffffκλffffffffffffff
 BBBBBBBBUUUUBBBBBBBB
 BBBBBBBBUUUUBBBBBBBB
 ; signs: x y text

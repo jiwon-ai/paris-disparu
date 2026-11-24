@@ -528,6 +528,18 @@ Since this summer, every train on line 4 runs on rubber tyres. Quieter than the 
 
 Not tonight, though. Fernand first. The rest of the line can wait.
 
+[baskets]
+Wicker baskets of leeks and onions, waiting for the morning's buyers.
+
+[poster]
+Posters pasted shoulder to shoulder. Down here, nobody minds the law of 1881.
+
+[bench]
+A wooden bench, polished by a thousand waiting coats.
+
+[chairs]
+Bentwood café chairs. One still warm.
+
 [metro_map]
 LINE 4: PORTE DE CLIGNANCOURT to PORTE D'ORLÉANS. A white ring round LES HALLES: you are here.
 
@@ -739,3 +751,21 @@ My old geometry teacher writes novels. He's down here somewhere. He says I shoul
 
 [young_man_again]
 THE YOUNG MAN: People never vanish completely. They leave addresses, phone numbers, notes. Someone always remembers.
+
+[fort2_hello]
+A PORTER: Five minutes' rest, then back to the carts. Mind your feet, kid!
+
+[fort2_again]
+A PORTER: Fernand? Strongest back in the pavilion. He'd never leave a cart full. Something's wrong.
+
+[cook_hello]
+A COOK: I cook for a bistro round the corner. I buy here before dawn, I serve at noon.
+
+[cook_again]
+A COOK: Germaine's cabbages are the best in the pavilion. Don't tell the others.
+
+[sleeper_hello]
+A NIGHT WORKER: Mm? Just waiting for the first train. Then home, then bed.
+
+[sleeper_again]
+A NIGHT WORKER: Zzz… They say the whole market's going out to Rungis… Zzz…

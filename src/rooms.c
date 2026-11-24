@@ -52,6 +52,8 @@ static const door_t entrance_doors[] = {
 /* --- ROOM_MARKET: inside the pavilion -------------------------------------- */
 static const npc_def_t market_npcs[] = {
     { 16, 40, SPR_MERCHANT_0, 2, NPC_MERCHANT },
+    { 136, 96, SPR_PORTER_0, 1, NPC_FORT2 },      /* another fort, resting */
+    { 48, 120, SPR_CAFE_0, 3, NPC_COOK },         /* a cook in a white apron, eyeing the crates */
 };
 static const hotspot_t market_hotspots[] = {
     {  1, 3, 5, 3, DLG_STALL_CHOUX },
@@ -60,6 +62,8 @@ static const hotspot_t market_hotspots[] = {
     {  4, 9, 1, 2, DLG_COLUMN },
     { 16, 9, 1, 2, DLG_SECRET_HEART },
     {  1, 13, 2, 2, DLG_CRATES },
+    { 16, 15, 4, 2, DLG_BASKETS },
+    { 18, 11, 2, 2, DLG_CRATES },
 };
 static const door_t market_doors[] = {
     { 8, 17, 4, 1, ROOM_ENTRANCE, 112, 26, DIR_LEFT },
@@ -78,6 +82,8 @@ static const hotspot_t cafe_hotspots[] = {
     {  1, 1, 12, 3, DLG_SHELF },
     {  3, 10, 2, 1, DLG_TABLE },
     { 14, 11, 2, 1, DLG_SOUP },
+    { 17, 15, 3, 1, DLG_CHAIRS },
+    {  2, 10, 1, 1, DLG_CHAIRS },
     {  0, 15, 2, 2, DLG_SECRET_CAT },  /* the street cat, once it has run in */
 };
 static const door_t cafe_doors[] = {
@@ -129,11 +135,14 @@ static const npc_def_t metro_npcs[] = {
     { 84, 52, SPR_PUNCHER_0, 4, NPC_PUNCHER },    /* at the platform gate */
     { 136, 80, SPR1_WRITER, 4 | S_BANK1, NPC_WRITER },          /* cameo */
     { 140, 104, SPR1_YOUNG_MAN, 4 | S_BANK1, NPC_YOUNG_MAN },   /* cameo */
+    { 48, 112, SPR_STRANGER_0, 1, NPC_SLEEPER },  /* blue work clothes, by the bench */
 };
 static const hotspot_t metro_hotspots[] = {
     {  2, 4, 3, 3, DLG_METRO_WINDOW },
     { 12, 5, 4, 2, DLG_METRO_GATE },
     {  6, 5, 4, 2, DLG_METRO_MAP },
+    { 17, 3, 2, 4, DLG_POSTER },
+    {  4, 15, 2, 1, DLG_BENCH },
     {  5, 1, 10, 1, DLG_METRO_NAME },
     {  0, 0, 20, 7, DLG_METRO_TILES },
     {  0, 16, 4, 2, DLG_SECRET_MOUSE },
@@ -147,14 +156,14 @@ const room_def_t rooms[ROOM_COUNT] = {
       { ROOM_ENTRANCE, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_STREET },
     { entrance_npcs, 3, entrance_hotspots, 7, entrance_doors, 2,
       { ROOM_QUAI, ROOM_STREET, NO_EXIT, NO_EXIT }, AMBIENCE_MARKET },
-    { market_npcs, 1, market_hotspots, 6, market_doors, 1,
+    { market_npcs, 3, market_hotspots, 8, market_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
-    { cafe_npcs, 4, cafe_hotspots, 6, cafe_doors, 1,
+    { cafe_npcs, 4, cafe_hotspots, 8, cafe_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_CAFE },
     { quai_npcs, 3, quai_hotspots, 16, 0, 0,
       { ROOM_PONT, ROOM_ENTRANCE, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
     { pont_npcs, 3, pont_hotspots, 6, 0, 0,
       { NO_EXIT, ROOM_QUAI, NO_EXIT, NO_EXIT }, AMBIENCE_RIVER },
-    { metro_npcs, 3, metro_hotspots, 6, metro_doors, 1,
+    { metro_npcs, 4, metro_hotspots, 8, metro_doors, 1,
       { NO_EXIT, NO_EXIT, NO_EXIT, NO_EXIT }, AMBIENCE_HALL },
 };
