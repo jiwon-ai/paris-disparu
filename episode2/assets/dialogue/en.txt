@@ -266,6 +266,8 @@ OLD WOMAN: Ssh. The pigeons sleep.
 [nd_facade]
 Notre-Dame. Kings in a row, all with their heads on. The rose window glows like an ember.
 
+Pigeons asleep on the ledges, tucked in like commas.
+
 [nd_poem]
 Stone saints all night with nobody to bless. You bless them instead.
 
@@ -410,6 +412,8 @@ Every chair on this terrace has heard a poem. Some of them, twice.
 
 [bookshop]
 A bookshop, still lit. Books in the window lean on each other like tired friends.
+
+A cat sits among the books, keeping shop. It doesn't look up.
 
 [bookshop_card]
 A card is stuck in the window: "Poems wanted. ODÉ 6120." You note it down.

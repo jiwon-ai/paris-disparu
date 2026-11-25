@@ -261,6 +261,8 @@ VIEILLE FEMME : Chut ! Ça dort.
 [nd_facade]
 Notre-Dame. Des rois en rang, tous avec leur tête. La rosace rougeoie comme une braise.
 
+Des pigeons dorment sur les corniches, blottis comme des virgules.
+
 [nd_poem]
 Des saints de pierre toute la nuit, sans personne à bénir. C'est toi qui les bénis.
 
@@ -405,6 +407,8 @@ Chaque chaise de cette terrasse a entendu un poème. Certaines, deux fois.
 
 [bookshop]
 Une librairie, encore éclairée. Dans la vitrine, les livres s'appuient les uns sur les autres comme des amis fatigués.
+
+Un chat garde la boutique, assis parmi les livres. Il ne lève pas les yeux.
 
 [bookshop_card]
 Une carte collée à la vitrine : « Cherchons poèmes. ODÉ 6120. » Tu le notes.

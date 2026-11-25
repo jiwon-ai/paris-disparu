@@ -102,6 +102,9 @@ def notredame():
         p.rect(kx, 85, kx + 2, 91, SH)
         p.rect(kx + 1, 85, kx + 1, 86, STONEL)       # a king's head
     p.rect(L0, 92, R1, 93, STONEL)
+    # pigeons asleep on the ledges, heads tucked in
+    for px, py in ((26, 79), (31, 79), (104, 79), (52, 33), (122, 33), (127, 33)):
+        pigeon(p, px, py)
     # three portals
     for cx, w in ((40, 26), (80, 30), (120, 26)):
         pointed(p, cx - w // 2, cx + w // 2, 94 - w // 2 + 4, 104, SH)
@@ -185,6 +188,14 @@ def tree(p, cx, top, bottom, trunk=None):
     p.ellipse(cx - 11, top + 2, cx + 9, top + 24, LEAF1)
     p.ellipse(cx - 6, top + 4, cx + 3, top + 14, LEAF2)
     p.rect(cx - 1, top + 26, cx + 1, bottom, trunk or LEAF0)
+
+
+def pigeon(p, x, y):
+    """A roosting pigeon, 6x4 px, top-left at (x, y); stone palette."""
+    p.ellipse(x, y + 1, x + 5, y + 3, SH)
+    p.ellipse(x + 3, y, x + 5, y + 2, SH)
+    p.dot(x + 1, y + 1, STONEL)
+    p.dot(x + 4, y + 1, INK)
 
 
 def guimard(p, x, y):
@@ -616,6 +627,12 @@ def stgermain():
     for x in range(118, 156, 4):                           # books in the window
         p.rect(x, 80, x + 2, 92, (12, 8, 5) if x % 8 else GLOW)
     p.rect(116, 78, 156, 79, WOOD0)
+    # the shop cat, sitting among the books
+    p.ellipse(136, 84, 145, 92, INK)
+    p.ellipse(137, 78, 143, 85, INK)
+    p.poly([(137, 80), (137, 76), (139, 79)], INK)
+    p.poly([(143, 80), (143, 76), (141, 79)], INK)
+    p.line([(145, 91), (149, 91), (150, 88)], INK)
     # trees in the little square
     tree(p, 96, 54, 96)
     ground(p, 96)

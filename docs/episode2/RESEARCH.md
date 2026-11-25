@@ -60,7 +60,9 @@ still apply in February 1969.
 | Two policemen on bicycles, capes like wings (told by an old man, place Dauphine) | the "hirondelles", ended 1984 (Paris ZigZag, Time 1963) |
 | Dog mess on the pavement; a lady with a white poodle (Saint-Germain) | dog mess: INA 1964, no motocrotte before 1982. Poodles visible in the 1960s (The Local). The lady is **fiction** |
 | A man smoking under a tabac's red "carotte" (seen from the terrace) | street smoking unrestricted before the 1976 Veil law; the carotte has been mandatory since 1906. Its exact 1960s look is **not found**: a reconstruction. No brand shown |
-| Mounted patrols, horse carts, cats or pigeons at Les Halles | **not found**, so not added there. (The pigeons of the old woman at Notre-Dame and the cat in rue de la Huchette are fiction.) |
+| Horses, mounted patrols | Left out. Les Halles supplied by lorries since 1937, carts gone by 1950; Paris mounted traffic police abolished 1937 (Ep1 docs/HISTORICAL_RESEARCH.md, commit 5690515). |
+| Pigeons | Included: roosting on Notre-Dame's ledges. Time, 18 Oct 1963: feeding pigeons in Paris prohibited but not enforced. |
+| Cats | Included as reconstruction (no 1960s source names cats at Les Halles; Jiwon accepted): asleep in rue de la Huchette, sitting in the Saint-Germain bookshop window. |
 
 ## Removed because they could not be verified
 
