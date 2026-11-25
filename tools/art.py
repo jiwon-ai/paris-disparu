@@ -795,6 +795,31 @@ WRITER = [           # glasses, bow tie, a notebook open in the hand
     ".....##..##.....",
     "....###..###....",
 ]
+# A Paris pigeon (Time, 18 Oct 1963: "The French have prohibited the feeding of
+# pigeons in Paris, but they don't enforce the law"). Facing left, palette 4.
+PIGEON_A = ["................"] * 6 + [   # head up
+    "...##...........",
+    "..#oo#..........",
+    ".s#o#o#.........",
+    "...#oo#####.....",
+    "...#ooooooo##...",
+    "....#oooooooo#..",
+    ".....#ooooo###..",
+    "......#####.....",
+    ".......s.s......",
+    "......ss.ss.....",
+]
+PIGEON_B = ["................"] * 8 + [   # pecking
+    "......#####.....",
+    "....##ooooo##...",
+    "...#ooooooooo#..",
+    "..#oo#ooooooo##.",
+    ".#o#o#oooooo#...",
+    "s#ooo#oooo##....",
+    ".###..#####.....",
+    "......ss.ss.....",
+]
+
 RAT = [              # a market rat, side view facing right (palette 4: grey, pink)
     "................",
     "................",

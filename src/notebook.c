@@ -348,7 +348,46 @@ uint16_t ambience_play(uint8_t r) BANKED {
 #define RAT_OAM 18
 static uint8_t rat_x = 24, rat_wait = 40, rat_left, rat_on;
 
+/* A pigeon pecks by the parapet on the quai; it flies off if you come near
+   and comes back a while later. Same OAM pair as the rat (another room). */
+static uint8_t pg_on, pg_t, pg_fly;
+#define PG_X 76   /* on the pavement between the two lamps by the bridge */
+#define PG_Y 84
+static int16_t pg_x = PG_X, pg_y = PG_Y;
+
+static void pigeon_update(void) {
+    int16_t dx, dy;
+    if (!pg_on) {
+        static uint8_t buf[128];
+        far_read(PORTRAIT_BANK, rat_tiles + 64, buf, 128);
+        VBK_REG = 1;
+        set_sprite_data(PIGEON_TILE, 8, buf);
+        VBK_REG = 0;
+        pg_on = 1;
+    }
+    pg_t++;
+    if (pg_fly) {
+        if (pg_fly == 1) {                      /* flying up and away */
+            pg_x -= 1; pg_y -= 2;
+            if (pg_y < -16) { pg_fly = 2; pg_t = 0; }
+        } else if (pg_t == 255) {               /* back when you're gone */
+            dx = player.x - PG_X; dy = player.y - PG_Y;
+            if (dx > 48 || dx < -48 || dy > 40 || dy < -40) { pg_fly = 0; pg_x = PG_X; pg_y = PG_Y; }
+        }
+    } else {
+        dx = player.x - pg_x; dy = player.y - pg_y;
+        if (dx < 24 && dx > -24 && dy < 20 && dy > -20) pg_fly = 1;
+    }
+    if (pg_fly == 2) { move_sprite(RAT_OAM, 0, 0); move_sprite(RAT_OAM + 1, 0, 0); return; }
+    sprite16(RAT_OAM, pg_x, pg_y, PIGEON_TILE + ((pg_fly || ((pg_t >> 4) & 3) == 0) ? 0 : 4),
+             4 | S_BANK1);
+}
+
 void rat_update(uint8_t walking) BANKED {
+    if (!walking || cur_room != ROOM_QUAI) {
+        if (pg_on) { move_sprite(RAT_OAM, 0, 0); move_sprite(RAT_OAM + 1, 0, 0); pg_on = 0; }
+    }
+    if (walking && cur_room == ROOM_QUAI) { pigeon_update(); return; }
     if (!walking || cur_room != ROOM_BOURSE) {
         if (rat_on) {
             move_sprite(RAT_OAM, 0, 0);

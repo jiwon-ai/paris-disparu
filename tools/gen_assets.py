@@ -190,6 +190,13 @@ rat_data = []
 _rows = ["".join(SPR_MAP[c] for c in r) for r in art.RAT]
 for (y0, x0) in ((0, 0), (8, 0), (0, 8), (8, 8)):
     rat_data += encode_tile([r[x0:x0 + 8] for r in _rows[y0:y0 + 8]])
+# The quai pigeon: two frames (head up, pecking) after the rat, 8 tiles loaded
+# into the last two pool slots while on the quai (it has only 3 pool sprites).
+for _frame in (art.PIGEON_A, art.PIGEON_B):
+    assert len(_frame) == 16 and all(len(r) == 16 for r in _frame)
+    _rows = ["".join(SPR_MAP[c] for c in r) for r in _frame]
+    for (y0, x0) in ((0, 0), (8, 0), (0, 8), (8, 8)):
+        rat_data += encode_tile([r[x0:x0 + 8] for r in _rows[y0:y0 + 8]])
 portrait_names = [n for n, _, _ in portraits.PORTRAITS]
 if PORTRAIT_BASE + len(portrait_data) // 16 > 256:
     fail("portrait tiles do not fit in VRAM bank 1")
@@ -493,7 +500,8 @@ H.append("extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */
 H.append("extern const uint8_t item_tiles[];            /* bank PORTRAIT_BANK, 192 bytes per item */")
 H.append("extern const uint8_t item_pal[];              /* bank PORTRAIT_BANK */")
 H.append("#define RAT_TILE %d   /* VRAM bank 1: the rat, over the item picture's last tiles */" % RAT_TILE)
-H.append("extern const uint8_t rat_tiles[];             /* bank PORTRAIT_BANK, 64 bytes */")
+H.append("extern const uint8_t rat_tiles[];             /* bank PORTRAIT_BANK: rat 64 bytes, then pigeon 128 */")
+H.append("#define PIGEON_TILE %d   /* VRAM bank 1: the quai pigeon, 2 frames, in the last two pool slots (the quai uses 3) */" % (LOW_FIXED + (POOL_SLOTS - 2) * 4))
 H.append("extern const uint8_t item_icon[];             /* bank PORTRAIT_BANK: 8x16 HUD icons, 32 bytes each */")
 H.append("extern const uint8_t low_tiles[];             /* bank PORTRAIT_BANK, VRAM bank 1 tile 0.. */")
 H.append("extern const uint8_t portrait_pal[];          /* sprite palette per portrait */")

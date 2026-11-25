@@ -397,7 +397,8 @@ extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */
 extern const uint8_t item_tiles[];            /* bank PORTRAIT_BANK, 192 bytes per item */
 extern const uint8_t item_pal[];              /* bank PORTRAIT_BANK */
 #define RAT_TILE 60   /* VRAM bank 1: the rat, over the item picture's last tiles */
-extern const uint8_t rat_tiles[];             /* bank PORTRAIT_BANK, 64 bytes */
+extern const uint8_t rat_tiles[];             /* bank PORTRAIT_BANK: rat 64 bytes, then pigeon 128 */
+#define PIGEON_TILE 44   /* VRAM bank 1: the quai pigeon, 2 frames, in the last two pool slots (the quai uses 3) */
 extern const uint8_t item_icon[];             /* bank PORTRAIT_BANK: 8x16 HUD icons, 32 bytes each */
 extern const uint8_t low_tiles[];             /* bank PORTRAIT_BANK, VRAM bank 1 tile 0.. */
 extern const uint8_t portrait_pal[];          /* sprite palette per portrait */
