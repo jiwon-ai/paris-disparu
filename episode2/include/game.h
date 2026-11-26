@@ -38,6 +38,7 @@
 #define NPC_TICKETS     18  /* the métro ticket window (hotspot) */
 #define NPC_TRAMP       19  /* random encounter */
 #define NPC_POETCAT     20  /* the old poet's small cat, Saint-Germain terrace */
+#define NPC_PREVERT     21  /* the man with the cigarette, flower market (Prévert-inspired) */
 
 /* Story flags (game_flags) */
 #define F_MET_FERNAND  0x0001
@@ -76,6 +77,7 @@ extern uint8_t clue_flags;
 #define X_CALLED    0x10   /* (step) phoned his mother */
 #define X_POET_SING 0x20   /* (not a goal) "the city sings" */
 #define X_POET_YOUNG 0x40  /* (not a goal) "the night is young" */
+#define X_PREVERT   0x80   /* (not a goal) the man with the cigarette spoke once */
 #define X_COUNT     4
 #define X_ALL       (X_MOTHER | X_TRAMP | X_THIEF | X_VIOLET)
 extern uint8_t extra_flags;

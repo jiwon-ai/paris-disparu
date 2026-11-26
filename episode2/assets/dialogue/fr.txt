@@ -235,7 +235,9 @@ VIEIL HOMME : Bah ! Pas mal, pour un grand échalas. On remet ça ?
 VIEIL HOMME : Lulu, le Moineau. Tu ne le tiens pas de moi.
 
 [petanque_other]
-L'AUTRE VIEIL HOMME : Huit centimètres. Il dit toujours dix. Quarante ans qu'il se trompe.
+LE CHANTEUR DE CHARME : Huit centimètres. Il dit toujours dix. J'habite au quinze, je le vois tricher de ma fenêtre.
+
+Ma femme travaille souvent à l'étranger. Cette année, elle dit qu'elle rentre pour de bon. Moi, je chante à l'Olympia et je perds aux boules.
 
 Tiens, deux agents à vélo. La cape qui vole comme des ailes. Ils ne s'arrêtent jamais pour une partie.
 
@@ -285,6 +287,8 @@ Quelque chose dans le bassin. Une sourdine de trompette ! Mouillée, mais intact
 [student_hello]
 ÉTUDIANT : Tu as l'air perdu. Ici, tout le monde est perdu. C'est pour ça qu'on vient.
 
+En mai dernier, on a arraché ces pavés. Du sable dessous, qu'ils disaient. Que de la boue. On a cherché, quand même.
+
 La cave de jazz ? Dans la petite rue, à droite. Ils laissent entrer n'importe qui. Presque.
 
 [student_again]
@@ -297,7 +301,7 @@ La cave de jazz ? Dans la petite rue, à droite. Ils laissent entrer n'importe q
 PORTIER : Complet. Membres seulement. Musiciens seulement. Ce soir, personne.
 
 [doorman_mute]
-PORTIER : C'est la sourdine de Ray ! Il la pleure depuis le début de la soirée. Entre, et rends-la-lui.
+PORTIER : C'est la sourdine de l'Américain ! Il la pleure depuis le début de la soirée. Entre, et rends-la-lui.
 
 [doorman_after]
 PORTIER : Dedans ou dehors. Tu fais entrer le froid.
@@ -317,6 +321,8 @@ TROMPETTE : Tu rejoues un morceau ?
 
 [trumpet_nomute]
 TROMPETTE : J'ai perdu ma sourdine. Impossible de jouer doux sans elle. Qui joue fort à trois heures du matin ?
+
+La première fois que j'ai joué à Paris, c'était en 35. Je suis revenu après la guerre, et je suis resté. Et je perds toujours ma sourdine.
 
 [jazz_win]
 TROMPETTE : Ouais ! Tu l'as ! Reviens quand tu veux.
@@ -395,7 +401,11 @@ VIEUX POÈTE : Toi. Assieds-toi.
 GARÇON : On ferme bientôt. Enfin, fermer, c'est un grand mot. On ne ferme jamais vraiment.
 
 [philosopher2_hello]
-PHILOSOPHE : L'an dernier, on disait que la plage était sous les pavés. Ce soir, ce n'est que de la boue. On a cherché, quand même.
+LE CHANTEUR : T'as du feu ? J'en ai plus. Encore. Cinq paquets par jour, mon médecin est furieux.
+
+J'emménage dans une maison au coin, rue de Verneuil. Mon Anglaise a choisi les rideaux. Moi, les cendriers.
+
+Notre disque sort ce mois-ci. Deux voix et beaucoup de soupirs. Ta mère va pas aimer.
 
 [sg_tabac]
 En face, la carotte rouge d'un tabac brille encore. Un homme allume une cigarette dessous. La fumée monte rejoindre la nuit.
@@ -489,3 +499,15 @@ UN PETIT CHAT : Mrrp.
 Il est assis contre les chaussures du vieil homme, comme un point au bout de sa phrase.
 
 VIEUX POÈTE : C'est elle qui m'a choisi. Les chats choisissent. Les poètes, on les choisit.
+
+[prevert_hello]
+L'HOMME À LA CIGARETTE : Des fleurs à cette heure-ci ? Je les achète pour personne. C'est le plus beau des cadeaux.
+
+Une cigarette pend à sa lèvre. Elle ne semble jamais la quitter.
+
+J'habite là-haut, dans le dix-huitième, au fond d'une petite cité. Un de mes chiens a été nommé dignitaire par une société de farceurs très sérieux.
+
+Maintenant je découpe des images dans les magazines et je les recolle de travers. C'est plus honnête.
+
+[prevert_again]
+L'HOMME À LA CIGARETTE : N'écris pas ce qui est beau. Écris ce qui est là. Le beau arrive tout seul, comme un chat perdu.

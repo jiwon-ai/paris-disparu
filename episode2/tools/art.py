@@ -1237,6 +1237,25 @@ OLDPOET = [          # old poet: white hair, scarf, long coat, a cane
     "....###..###....",
 ]
 
+PREVERT = [          # inspired by Jacques Prévert: cap, a cigarette always at the lip, smoke (palette 4)
+    "..........o.....",
+    ".....#####..o...",
+    "....#######.o...",
+    "...#########o...",
+    "....#ssss#.o....",
+    "....s#ss#s......",
+    ".....ssssssoo...",
+    "......#ss#......",
+    "....#oooooo#....",
+    "...#oo#oo#oo#...",
+    "...#oo#oo#oo#...",
+    "...s#oooooo#s...",
+    "....#oooooo#....",
+    ".....##..##.....",
+    ".....##..##.....",
+    "....###..###....",
+]
+
 POETCAT = [          # a small grey cat beside the old poet (palette 4; Jiwon's request, fiction)
 "................",
 "................",
@@ -1281,6 +1300,7 @@ BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
     ("WRITER", WRITER),
     ("ARCHIVIST", ARCHIVIST),
     ("POETCAT", POETCAT),
+    ("PREVERT", PREVERT),
 ]
 
 

@@ -306,6 +306,10 @@ uint8_t event_talk(uint8_t npc) BANKED {
         return DLG_WAITER2_HELLO;
     case NPC_POETCAT:
         return DLG_POETCAT;
+    case NPC_PREVERT:
+        if (extra_flags & X_PREVERT) return DLG_PREVERT_AGAIN;
+        extra_flags |= X_PREVERT;
+        return DLG_PREVERT_HELLO;
     case NPC_PHILOSOPHER:
         return DLG_PHILOSOPHER2_HELLO;
 

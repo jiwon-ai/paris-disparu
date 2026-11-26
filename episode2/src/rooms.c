@@ -71,6 +71,7 @@ static const door_t metro_doors[] = {
 /* --- Place Louis-Lépine: the flower market, the métro ----------------- */
 static const npc_def_t fleurs_npcs[] = {
     { 104, 100, SPR1_FLOWER, 3 | S_BANK1, NPC_FLOWER },
+    { 56, 104, SPR1_PREVERT, 4 | S_BANK1, NPC_PREVERT },   /* buying flowers for nobody */
 };
 static const hotspot_t fleurs_hotspots[] = {
     {  2, 9, 3, 3, DLG_METRO_CITE },
@@ -93,7 +94,7 @@ static const hotspot_t notredame_hotspots[] = {
 /* --- Place Dauphine: pétanque under the trees ------------------------- */
 static const npc_def_t dauphine_npcs[] = {
     { 56, 96, SPR1_OLDMAN, 2 | S_BANK1, NPC_PETANQUE },
-    { 96, 96, SPR1_OLDMAN, 4 | S_BANK1, NPC_PETANQUE2 },
+    { 96, 96, SPR1_ACTOR, 4 | S_BANK1, NPC_PETANQUE2 },   /* the crooner from no. 15 (Montand-inspired) */
 };
 static const hotspot_t dauphine_hotspots[] = {
     { 15, 12, 4, 1, DLG_SECRET_LOVERS },   /* the bench */
@@ -162,7 +163,7 @@ static const door_t basport_doors[] = {
 
 /* --- the church square -------------------------------------------------- */
 static const npc_def_t stgermain_npcs[] = {
-    { 120, 104, SPR1_PHILOSOPHER, 4 | S_BANK1, NPC_PHILOSOPHER },
+    { 120, 104, SPR_SINGER_0, 4, NPC_PHILOSOPHER },   /* the singer (Gainsbourg-inspired), was the philosopher */
 };
 static const hotspot_t stgermain_hotspots[] = {
     {  2, 9, 3, 3, DLG_METRO_SG },

@@ -240,7 +240,9 @@ OLD MAN: Bah! Not bad for a beanpole. Again?
 OLD MAN: Lulu, the Sparrow. Didn't hear it from me.
 
 [petanque_other]
-OTHER OLD MAN: Eight centimetres. He always says ten. Forty years he's been wrong.
+THE CROONER: Eight centimetres. He always says ten. I live at number fifteen, I watch him cheat from my window.
+
+My wife works abroad a lot. This year, she says, she's coming home for good. Me, I sing at the Olympia and lose at boules.
 
 Look, two cops on bicycles. Capes flapping like wings. They never stop for a game.
 
@@ -290,6 +292,8 @@ Something in the basin. A trumpet mute! Wet, but fine. Someone will miss this.
 [student_hello]
 STUDENT: You look lost. Everybody here is lost. That's why we come.
 
+Last May we dug up these cobbles. Sand underneath, they said. Just mud. Still, we looked.
+
 The jazz cellar? Down the little street, on the right. They'll let anybody in. Almost.
 
 [student_again]
@@ -302,7 +306,7 @@ STUDENT: Hey! Got a light? No?
 DOORMAN: Full. Members only. Musicians only. Tonight, nobody.
 
 [doorman_mute]
-DOORMAN: That's Ray's mute! He's been crying for it all night. In you go, and give it back.
+DOORMAN: That's the American's mute! He's been moaning for it all night. In you go, and give it back.
 
 [doorman_after]
 DOORMAN: In or out. You're letting the cold in.
@@ -322,6 +326,8 @@ TRUMPET: Sit in for one more?
 
 [trumpet_nomute]
 TRUMPET: Lost my mute. Can't play soft without it. Who plays loud at three in the morning?
+
+First time I played Paris was in '35. Came back after the war and never left. And I still lose my mute.
 
 [jazz_win]
 TRUMPET: Yeah! You've got it! You can come back any night.
@@ -400,7 +406,11 @@ OLD POET: You. Yes, you. Sit.
 WAITER: Closing soon. Well, closing is a big word. We never really close.
 
 [philosopher2_hello]
-PHILOSOPHER: Last year, they said the beach was under the cobbles. Tonight it's just mud. Still, we looked.
+THE SINGER: Got a light? I've run out. Again. Five packs a day, my doctor's furious.
+
+I'm moving into a house round the corner, rue de Verneuil. My English girl chose the curtains. I chose the ashtrays.
+
+Our record's out this month. Two voices and a lot of breathing. Your mother won't like it.
 
 [sg_tabac]
 Across the street, the red carrot of a tabac still glows. A man lights a cigarette under it. The smoke goes up to join the night.
@@ -495,3 +505,15 @@ A SMALL CAT: Mrrp.
 It sits by the old man's boots like a full stop at the end of his sentence.
 
 OLD POET: She chose me. Cats choose. Poets only get chosen.
+
+[prevert_hello]
+THE MAN WITH THE CIGARETTE: Flowers at this hour? I'm buying them for nobody. That's the best kind of present.
+
+A cigarette hangs from his lip. It never seems to leave.
+
+I live up in the 18th, in a little lane. A dog of mine was once made a dignitary by a very serious society of jokers.
+
+These days I cut pictures out of magazines and glue them back wrong. It's more honest.
+
+[prevert_again]
+THE MAN WITH THE CIGARETTE: Don't write what's beautiful. Write what's there. Beautiful turns up on its own, like a stray cat.

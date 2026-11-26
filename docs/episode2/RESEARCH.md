@@ -93,3 +93,20 @@ Bug fixed on the way: the coin glint used OAM 30 and was cleared every frame in
 mini-games, so in "find the red scarf" the 4th sleeper (OAM 30-31) was invisible
 and could never be picked when he was Lulu (also the 4th flower dancer). The
 glint now leaves OAM alone during games (src/main.c).
+
+## More artist-inspired NPCs (added 2026-11-26)
+
+Jiwon wants almost every NPC inspired by an artist of the time, with their
+signature traits where sources allow. All unnamed, no portrait likeness, no
+quoted lyrics or poems; presence on this night is **fiction** unless stated.
+**Lawyer review required** for every one.
+
+| In the game | Inspired by | Read in sources | Fiction / not found | Sources |
+|---|---|---|---|---|
+| THE CROONER, Place Dauphine, plays boules with the old man; "I live at number fifteen"; his wife works abroad and "this year she's coming home for good"; "I sing at the Olympia" | Yves Montand (1921-1991) | 15 place Dauphine: "Simone Signoret et Yves Montand y habitèrent" (no years); Montand "one of the best known performers at Bruno Coquatrix's Paris Olympia" (no years); Signoret "returned permanently to France in 1969" | Years at no. 15 not given; boules not found; being on the square that night | [fr.Wikipedia, Place Dauphine](https://fr.wikipedia.org/wiki/Place_Dauphine); [Wikipedia, Montand](https://en.wikipedia.org/wiki/Yves_Montand); [Wikipedia, Signoret](https://en.wikipedia.org/wiki/Simone_Signoret) |
+| THE SINGER, Saint-Germain church square (was a generic philosopher): asks for a light, "five packs a day"; moving into a house "rue de Verneuil"; "my English girl"; "our record's out this month. Two voices and a lot of breathing" | Serge Gainsbourg (1928-1991), also THE SINGER in Episode 1 | "smoked five packs of unfiltered Gitanes cigarettes a day"; lived at 5 bis rue de Verneuil "from 1969 until 1991"; relationship with Jane Birkin from mid-1968; "Je t'aime... moi non plus" "Released in February 1969" (EN page; the FR page read gives no month) | Month of the move not found ("moving" in February is an approximation); curtains/ashtrays joke is fiction; no lyrics, title or melody used | [Wikipedia EN](https://en.wikipedia.org/wiki/Serge_Gainsbourg); [Wikipedia FR](https://fr.wikipedia.org/wiki/Serge_Gainsbourg) |
+| THE MAN WITH THE CIGARETTE, flower market (new NPC, new sprite: cap, cigarette at the lip): buys flowers "for nobody"; lives "up in the 18th, in a little lane"; a dog of his was "made a dignitary by a very serious society of jokers"; cuts pictures out of magazines and glues them back | Jacques Prévert (1900-1977) | Settled in 1956 at 6 bis cité Véron (Grandes-Carrières, 18th); "fumait trois paquets de cigarettes par jour et en avait toujours une à la bouche"; his briard Ergé was elected satrape of the Collège de 'Pataphysique on 11 May 1953; collages since 1948, *Fatras* (1966) with 57 collages | No source places him in Paris in February 1969; his two lines of advice are original, not quotations | [fr.Wikipedia, Prévert](https://fr.wikipedia.org/wiki/Jacques_Pr%C3%A9vert) |
+| TRUMPET, the jazz cellar (rue de la Huchette): "first time I played Paris was in '35. Came back after the war and never left"; the doorman calls him "the American" (was "Ray") | Bill Coleman (1904-1981), American trumpeter | 1935 residency in Paris; "He returned to France in 1948 and spent the rest of his life there"; records in 1968 and 1969; the Caveau de la Huchette page lists Bill Coleman among musicians who played there (no years) | That he played there in February 1969 is not found | [Wikipedia, Bill Coleman](https://en.wikipedia.org/wiki/Bill_Coleman_(trumpeter)); [Wikipedia, Caveau de la Huchette](https://en.wikipedia.org/wiki/Le_Caveau_de_la_Huchette) |
+| STUDENT, Saint-Michel: "Last May we dug up these cobbles. Sand underneath, they said" (moved from the philosopher) | — (generic student) | May 1968 slogan, see top of this file | — | — |
+
+Looked for and not used: Georges Brassens has no Paris address or 1969 event on the pages read (used in Episode 1 instead); Brassaï, no 1960s activity on his page.
