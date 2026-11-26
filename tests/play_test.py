@@ -1092,8 +1092,18 @@ tap("start", 20)
 check(window_on() and "EPISODE 2" in window_row(2) and "Who took it" in window_row(13),
       "START shows the next episode's hook: %r / %r" % (window_row(2), window_row(13)))
 shot("20_next")
-tap("start", 60)
-check(not window_on() and clues() == 0, "START at the end returns to a fresh title screen")
+tap("start", 30)
+check(window_on() and window_row(2).strip() == "What next?" and "Go to Episode 2" in window_row(7)
+      and "Title screen" in window_row(9), "after the hook, a menu: %r %r %r" % (window_row(2), window_row(7), window_row(9)))
+shot("47_end_menu")
+tap("a", 30)                       # Go to Episode 2
+check(window_on() and "Episode 2 is a" in window_row(2) and "PARIS DISPARU 2." in window_row(6),
+      "Episode 2: how to open it: %r %r" % (window_row(2), window_row(6)))
+mark = bytes(pb.memory[0, 0xA080 + i] for i in range(4))   # cartridge RAM bank 0
+check(mark == b"EP2!", "the browser player's mark is in cartridge RAM: %r" % mark)
+shot("48_ep2")
+tap("a", 60)
+check(not window_on() and clues() == 0, "then a fresh title screen")
 
 pb.stop(save=False)
 print("\n%d failure(s)" % len(failures))

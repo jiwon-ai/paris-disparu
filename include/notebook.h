@@ -29,4 +29,15 @@ uint8_t goal_npc(void) BANKED;          /* NPC_* to talk to next, or 0xFF */
 void howto_show(uint8_t ev) BANKED;     /* rules card before a mini-game (EV_*) */
 void teaser_show(void) BANKED;  /* explanation after the title, pages 0-2 */
 
+#define MENU_BACK 0xFF
+uint8_t menu_pick(const uint8_t *title, const uint8_t *sub,
+                  const uint8_t * const *opt, uint8_t n, uint8_t sel) BANKED;
+/* "Continue to Episode 2": 4 bytes "EP2!" in cartridge RAM, after the save.
+   The browser player (web/player.js) loads Episode 2 when it sees them. */
+#define EP2_MARK_AT 0xA080
+void ep2_show(void) BANKED;
+void ep2_mark_clear(void) BANKED;
+uint8_t nb_menu(void) BANKED;   /* SELECT in the notebook; 1 = save and quit */
+void end_menu(void) BANKED;     /* after the teaser: Episode 2 or the title */
+
 #endif

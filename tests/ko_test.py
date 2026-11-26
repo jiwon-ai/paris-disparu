@@ -87,7 +87,7 @@ def win_tiles(row):
 
 
 pb.tick(150, False)
-tap("start", 30)
+tap("start", 60)
 tap("up", 8)                       # English, Français, 한국어: Up wraps to Korean
 tap("a", 30)
 check(mem[sym["_lang"]] == 1 and mem[sym["_lang_fr"]] == 0, "Korean chosen on the language menu")
@@ -112,7 +112,7 @@ ink = sum(1 for i in range(72 * 16) if i % 2 and mem[0, 0x9000 + i])
 check(ink > 20, "Galmuri11 text tiles have ink (%d bytes)" % ink)
 shot("ko_bark")
 tap("b", 10)
-tap("start", 30)
+tap("start", 60)
 check(any(t < 128 for t in win_tiles(1)), "Korean notebook title")
 shot("ko_notebook")
 tap("b", 30)                       # close the notebook

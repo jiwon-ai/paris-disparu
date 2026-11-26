@@ -335,19 +335,25 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
         "    ko_blob_%d + %d," % (KO_BLOB_BANK + b, o) for b, o in page_pos))
     C.append("const uint16_t ko_first_page[] = { %s };" % ", ".join(map(str, first)))
     C.append("const uint8_t ko_page_count[] = { %s };" % ", ".join(map(str, count)))
+    # identical strings (choices like "Yes" / "No") are stored once
+    pooled = {}
+
+    def pool(data, name):
+        key = tuple(data)
+        if key not in pooled:
+            pooled[key] = name
+            C.append("static const uint8_t %s[] = { %s0 };" % (name, "".join("%d," % b for b in data)))
+        return pooled[key]
+    ch_names = []
     for i, cu in enumerate(choice_ui):
-        if cu is not None:
-            C.append("static const uint8_t ko_ch_%d_a[] = { %s, 0 };" % (i, ",".join(map(str, cu[0]))))
-            C.append("static const uint8_t ko_ch_%d_b[] = { %s, 0 };" % (i, ",".join(map(str, cu[1]))))
+        ch_names.append(None if cu is None else
+                        (pool(cu[0], "ko_ch_%d_a" % i), pool(cu[1], "ko_ch_%d_b" % i)))
     C.append("const uint8_t * const ko_choice_ptr[] = {\n%s\n};" % "\n".join(
-        ("    0, 0," if cu is None else "    ko_ch_%d_a, ko_ch_%d_b," % (i, i))
-        for i, cu in enumerate(choice_ui)))
+        ("    0, 0," if n is None else "    %s, %s," % n) for n in ch_names))
     order = sorted(range(len(ui)), key=lambda i: ui_offsets[ui[i][0]])
     C.append("const uint16_t ko_ui_off[] = { %s };" % ", ".join(str(ui_offsets[ui[i][0]]) for i in order))
-    for i in order:
-        C.append("static const uint8_t ko_ui_%d[] = { %s0 };"
-                 % (i, "".join("%d," % b for b in ui_ko_data[i])))
-    C.append("const uint8_t * const ko_ui_ptr[] = { %s };" % ", ".join("ko_ui_%d" % i for i in order))
+    ui_names = [pool(ui_ko_data[i], "ko_ui_%d" % i) for i in order]
+    C.append("const uint8_t * const ko_ui_ptr[] = { %s };" % ", ".join(ui_names))
     C.append("const uint8_t ko_lang_name[] = { %s, 0 };" % ",".join(map(str, lang_menu)))
 
     outputs = {
