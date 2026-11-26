@@ -528,7 +528,7 @@ goto(100, 30, "xy")
 face("up")
 shot("47_meat_porter")
 t = read_text()
-check(any("MEAT PORTER" in p for p in t) and any("Mind out" in p for p in t),
+check(any("MEAT PORTER" in p for p in t) and any("Gare" in p for p in t),
       "a meat porter in a white smock, half a beef on his shoulder: %s" % t[:1])
 goto(40, 50, "yx")
 push("left", 200)
