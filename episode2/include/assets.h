@@ -189,7 +189,8 @@
 #define SPR1_FILMMAKER 96   /* VRAM bank 1, low tiles */
 #define SPR1_WRITER 100   /* VRAM bank 1, low tiles */
 #define SPR1_ARCHIVIST 104   /* VRAM bank 1, low tiles */
-#define LOW_TILE_COUNT 108   /* all pool sprites, in ROM */
+#define SPR1_POETCAT 108   /* VRAM bank 1, low tiles */
+#define LOW_TILE_COUNT 112   /* all pool sprites, in ROM */
 #define TILE_CHAIR 117
 #define TILE_TABLE 38
 #define PAL_CHAIR 5
@@ -409,6 +410,7 @@ enum {
     DLG_CHASE_LOSE,
     DLG_FOUND_COIN,
     DLG_END_DAWN,
+    DLG_POETCAT,
     DLG_COUNT
 };
 

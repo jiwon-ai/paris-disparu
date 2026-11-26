@@ -37,6 +37,7 @@
 #define NPC_SLEEPER     17
 #define NPC_TICKETS     18  /* the métro ticket window (hotspot) */
 #define NPC_TRAMP       19  /* random encounter */
+#define NPC_POETCAT     20  /* the old poet's small cat, Saint-Germain terrace */
 
 /* Story flags (game_flags) */
 #define F_MET_FERNAND  0x0001

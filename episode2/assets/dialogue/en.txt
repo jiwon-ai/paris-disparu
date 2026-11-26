@@ -40,14 +40,14 @@ Carved in the table: two letters and a heart. The varnish has grown over them.
 
 # ---------------------------------------------------------------- the start
 [fernand_hello]
-FERNAND: There you are, artist. Last night under the glass. Tomorrow, Rungis.
+FERNAND: There you are, Notebook. Last night under the glass. Tomorrow, Rungis.
 
 I wanted my plate on my blouse at dawn. One last time. Mme Roux kept it for me.
 
 She just came running. It's gone! Go and see her, on the quai. Please.
 
 [fernand_wait]
-FERNAND: My plate, artist. Before dawn. Mme Roux saw something, on the quai.
+FERNAND: My plate, Notebook. Before dawn. Mme Roux saw something, on the quai.
 
 [fernand_trail]
 FERNAND: A boy in a red scarf? Then he's long gone. Follow him. The métro runs till late.
@@ -81,9 +81,9 @@ MME ROUX: Psst! You! Come here!
 
 # ---------------------------------------------------------------- Les Halles people
 [porter_hello]
-DÉDÉ: Last night, kid. Last night. I'm giving my coins away.
+DÉDÉ: Last night, kid. Last night. Tomorrow I carry crates in a concrete box with a car park.
 
-Want to play? Find the coin under the cup, keep it.
+So I'm giving my coins away. Find the coin under the cup, keep it.
 ? Play | No
 
 [porter_again]
@@ -91,7 +91,7 @@ DÉDÉ: One more? Find the coin, keep it.
 ? Play | No
 
 [porter_no]
-DÉDÉ: Suit yourself. Look at them dance. Thirty years I carried crates here.
+DÉDÉ: Suit yourself. Look at them dance. Thirty years I carried crates here and never once danced.
 
 [cups_win]
 DÉDÉ: Sharp eyes! It's yours. Buy yourself a jeton. Or a métro ticket.
@@ -101,7 +101,7 @@ DÉDÉ: Ha! Under that one. Again?
 ? Play | No
 
 [cups_broke]
-DÉDÉ: I've no more coins, kid. You've cleaned me out. Go on, have fun.
+DÉDÉ: Cleaned out! By a kid! Go on, before I start crying into my red wine.
 
 [musician_hello]
 ACCORDION: They asked for one more waltz. Then one more. I'll play till my fingers drop.
@@ -144,9 +144,9 @@ Make a call?
 Nobody answers. Just a long, sad tone.
 
 [call_notes]
-MAN WITH NOTEBOOK: You again! I've written down everything about tonight. A boy in a red scarf. Noted.
+MAN WITH NOTEBOOK: Hello? ... The young man from that night at the market? I remember voices. Noted.
 
-He asked me the way to the Latin Quarter. I told him. Was that wrong?
+A boy in a red scarf? He asked me the way to the Latin Quarter. I told him. Was that wrong?
 
 [call_mother]
 A tired voice: "Lucien? Is that you? ... Oh. Sorry. If you see my boy, tell him to come home. I'm not angry."
@@ -233,7 +233,7 @@ The red scarf, that's Lucien. Lulu, they call him. The Sparrow. Steals like one,
 His father was a fort at Les Halles. Gone two winters now. The boy's gone wild since.
 
 [petanque_lose]
-OLD MAN: Bah! Not bad for a poet. Again?
+OLD MAN: Bah! Not bad for a beanpole. Again?
 ? Play | No
 
 [petanque_after]
@@ -296,7 +296,7 @@ The jazz cellar? Down the little street, on the right. They'll let anybody in. A
 STUDENT: Down the street, the cellar with the music. Can't miss it.
 
 [bark_student]
-STUDENT: Hey, poet! A smoke? No?
+STUDENT: Hey! Got a light? No?
 
 [doorman_hello]
 DOORMAN: Full. Members only. Musicians only. Tonight, nobody.
@@ -366,9 +366,11 @@ METRO SAINT-MICHEL. Under the fountain, the trains.
 The old church. Its square bell tower has watched a thousand nights. It looks tired. You know how it feels.
 
 [old_poet_hello]
-OLD POET: Sit. A young poet, I can tell. You look at things too long.
+OLD POET: Sit down. Not that chair, that's the cat's.
 
-Lulu? I know him. He brings me cigarettes he's found. I pay him in verses. He hates that.
+You've stared at that lamp for a full minute. Only drunks and poets do that. You don't smell of wine.
+
+Lulu? I know him. He brings me cigarettes he finds. I pay him in verses. He hates that.
 
 Finish my line and I'll tell you about him. "The night is..."
 ? long | young
@@ -378,14 +380,18 @@ OLD POET: Good. Next: "...and the city..."
 ? sings | sleeps
 
 [old_poet_done]
-OLD POET: Not bad. Not bad at all. Write it down, before it flies off.
+OLD POET: Not bad. Not bad at all. Write it down before it flies off.
+
+Back home my town sits on a river. Here I've got the Seine, and this cat. It'll do.
 
 Lulu doesn't steal for money. His father was a fort. Never got his plate before he died.
 
-That plate is what his father wanted. Tell him you know that. Talk to him like a man.
+That plate is what his father wanted. Tell him you know. Talk to him like a man.
 
 [old_poet_again]
 OLD POET: Talk to Lulu like a man. And write, young man. Every night.
+
+In the war they called me Alexandre. These days only the cat calls me anything.
 
 [bark_old_poet]
 OLD POET: You. Yes, you. Sit.
@@ -480,3 +486,12 @@ A coin on the ground! You pick it up.
 # ---------------------------------------------------------------- ending
 [end_dawn]
 The sky goes grey, then pink. Somebody shouts, and the flowers start to fly.
+
+# ---------------------------------------------------------------- added 2026-11-26
+# Keep at the end (dialogue ids >= 0x80 are reached only from events.c).
+[poetcat]
+A SMALL CAT: Mrrp.
+
+It sits by the old man's boots like a full stop at the end of his sentence.
+
+OLD POET: She chose me. Cats choose. Poets only get chosen.

@@ -58,7 +58,7 @@ static void update_juice(void) {
         uint8_t c = state == ST_WALK ? coin_here() : 0xFF;
         if (c != 0xFF && (anim_frame & 63) < 10)
             sprite16(COIN_OAM, coin_x(c) * 8 - 4, coin_y(c) * 8 - 4, SPR1_SPARKLE, 7 | S_BANK1);
-        else {
+        else if (state != ST_GAME) {   /* games draw on OAM 24-35 (4th sleeper/dancer = 30) */
             move_sprite(COIN_OAM, 0, 0);
             move_sprite(COIN_OAM + 1, 0, 0);
         }

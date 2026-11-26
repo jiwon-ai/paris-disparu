@@ -1237,6 +1237,26 @@ OLDPOET = [          # old poet: white hair, scarf, long coat, a cane
     "....###..###....",
 ]
 
+POETCAT = [          # a small grey cat beside the old poet (palette 4; Jiwon's request, fiction)
+"................",
+"................",
+"................",
+"................",
+"................",
+"................",
+"................",
+"...#...#........",
+"..#o#.#o#.......",
+"..#ooooo#.......",
+"..#s#o#s#....#..",
+"..#oo#oo#...#o#.",
+"...#ooo#....#o#.",
+"..#ooooo#..#o#..",
+"..#oo#ooo##o#...",
+"...##.####......",
+]
+
+
 BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
     ("THIEF_0", THIEF_0),  # copied per room into a pool (pool_load, notebook.c)
     ("THIEF_1", THIEF_1),
@@ -1260,6 +1280,7 @@ BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
     ("FILMMAKER", FILMMAKER),
     ("WRITER", WRITER),
     ("ARCHIVIST", ARCHIVIST),
+    ("POETCAT", POETCAT),
 ]
 
 

@@ -35,14 +35,14 @@ Gravées dans la table : deux lettres et un cœur. Le vernis a poussé par-dessu
 
 # ---------------------------------------------------------------- the start
 [fernand_hello]
-FERNAND : Te voilà, l'artiste. Dernière nuit sous les verrières. Demain, Rungis.
+FERNAND : Te voilà, le Carnet. Dernière nuit sous les verrières. Demain, Rungis.
 
 Je voulais ma plaque sur ma blouse à l'aube. Une dernière fois. Mme Roux me la gardait.
 
 Elle vient d'arriver en courant. Volée ! Va la voir, sur le quai. S'il te plaît.
 
 [fernand_wait]
-FERNAND : Ma plaque, l'artiste. Avant l'aube. Mme Roux a vu quelque chose, sur le quai.
+FERNAND : Ma plaque, le Carnet. Avant l'aube. Mme Roux a vu quelque chose, sur le quai.
 
 [fernand_trail]
 FERNAND : Un gamin à l'écharpe rouge ? Alors il est loin. Suis-le. Le métro roule encore.
@@ -76,9 +76,9 @@ MME ROUX : Psst ! Toi ! Viens là !
 
 # ---------------------------------------------------------------- Les Halles people
 [porter_hello]
-DÉDÉ : Dernière nuit, petit. Dernière nuit. Je donne mes pièces.
+DÉDÉ : Dernière nuit, petit. Dernière nuit. Demain je porterai mes cageots dans une boîte en béton avec un parking.
 
-Tu joues ? Trouve la pièce sous le gobelet, elle est à toi.
+Alors je donne mes pièces. Trouve la pièce sous le gobelet, elle est à toi.
 ? Jouer | Non
 
 [porter_again]
@@ -86,7 +86,7 @@ DÉDÉ : Encore une ? Trouve la pièce, garde-la.
 ? Jouer | Non
 
 [porter_no]
-DÉDÉ : Comme tu veux. Regarde-les danser. Trente ans que je porte des cageots ici.
+DÉDÉ : Comme tu veux. Regarde-les danser. Trente ans que je porte des cageots ici, et jamais dansé une fois.
 
 [cups_win]
 DÉDÉ : Bon œil ! Elle est à toi. Achète-toi un jeton. Ou un ticket de métro.
@@ -96,7 +96,7 @@ DÉDÉ : Ha ! Sous celui-là. On remet ça ?
 ? Jouer | Non
 
 [cups_broke]
-DÉDÉ : Je n'ai plus une pièce, petit. Tu m'as plumé. Va, amuse-toi.
+DÉDÉ : Plus une thune ! Plumé par un gamin ! File, avant que je pleure dans mon rouge.
 
 [musician_hello]
 ACCORDÉONISTE : Ils ont demandé une valse de plus. Puis encore une. Je jouerai jusqu'à ce que mes doigts tombent.
@@ -139,9 +139,9 @@ Passer un appel ?
 Personne ne répond. Juste une longue tonalité triste.
 
 [call_notes]
-HOMME AU CARNET : Encore toi ! J'ai tout noté de cette nuit. Un gamin à l'écharpe rouge. Noté.
+HOMME AU CARNET : Allô ? ... Le jeune homme de cette nuit-là, aux Halles ? Je me souviens des voix. Noté.
 
-Il m'a demandé le chemin du Quartier latin. Je le lui ai dit. J'ai eu tort ?
+Un gamin à l'écharpe rouge ? Il m'a demandé le chemin du Quartier latin. Je le lui ai dit. J'ai eu tort ?
 
 [call_mother]
 Une voix fatiguée : « Lucien ? C'est toi ? ... Oh. Pardon. Si vous voyez mon fils, dites-lui de rentrer. Je ne suis pas fâchée. »
@@ -228,7 +228,7 @@ L'écharpe rouge, c'est Lucien. Lulu, on l'appelle. Le Moineau. Il vole comme un
 Son père était fort aux Halles. Parti il y a deux hivers. Depuis, le petit fait les quatre cents coups.
 
 [petanque_lose]
-VIEIL HOMME : Bah ! Pas mal pour un poète. On remet ça ?
+VIEIL HOMME : Bah ! Pas mal, pour un grand échalas. On remet ça ?
 ? Jouer | Non
 
 [petanque_after]
@@ -291,7 +291,7 @@ La cave de jazz ? Dans la petite rue, à droite. Ils laissent entrer n'importe q
 ÉTUDIANT : Au bout de la rue, la cave avec la musique. Tu ne peux pas la rater.
 
 [bark_student]
-ÉTUDIANT : Eh, poète ! Du feu ?
+ÉTUDIANT : Eh ! T'as du feu ?
 
 [doorman_hello]
 PORTIER : Complet. Membres seulement. Musiciens seulement. Ce soir, personne.
@@ -361,7 +361,9 @@ MÉTRO SAINT-MICHEL. Sous la fontaine, les rames.
 La vieille église. Son clocher carré a veillé mille nuits. Il a l'air fatigué. Tu sais ce que c'est.
 
 [old_poet_hello]
-VIEUX POÈTE : Assieds-toi. Un jeune poète, ça se voit. Tu regardes les choses trop longtemps.
+VIEUX POÈTE : Assieds-toi. Pas cette chaise-là, c'est celle du chat.
+
+Ça fait une minute que tu fixes ce réverbère. Il n'y a que les ivrognes et les poètes pour ça. Tu ne sens pas le vin.
 
 Lulu ? Je le connais. Il m'apporte des cigarettes trouvées. Je le paie en vers. Il déteste ça.
 
@@ -375,12 +377,16 @@ VIEUX POÈTE : Bien. La suite : « ...et la ville... »
 [old_poet_done]
 VIEUX POÈTE : Pas mal. Pas mal du tout. Écris-le, avant qu'il s'envole.
 
+Chez moi, ma ville est posée sur une rivière. Ici, j'ai la Seine, et ce chat. Ça ira.
+
 Lulu ne vole pas pour l'argent. Son père était fort. Il n'a jamais eu sa plaque avant de mourir.
 
 Cette plaque, c'est ce que son père voulait. Dis-lui que tu le sais. Parle-lui d'homme à homme.
 
 [old_poet_again]
 VIEUX POÈTE : Parle à Lulu d'homme à homme. Et écris, jeune homme. Chaque nuit.
+
+Pendant la guerre, on m'appelait Alexandre. Aujourd'hui, il n'y a plus que le chat qui m'appelle.
 
 [bark_old_poet]
 VIEUX POÈTE : Toi. Assieds-toi.
@@ -475,3 +481,11 @@ Une pièce par terre ! Tu la ramasses.
 # ---------------------------------------------------------------- ending
 [end_dawn]
 Le ciel devient gris, puis rose. Quelqu'un crie, et les fleurs se mettent à voler.
+
+# ---------------------------------------------------------------- ajouté 2026-11-26
+[poetcat]
+UN PETIT CHAT : Mrrp.
+
+Il est assis contre les chaussures du vieil homme, comme un point au bout de sa phrase.
+
+VIEUX POÈTE : C'est elle qui m'a choisi. Les chats choisissent. Les poètes, on les choisit.

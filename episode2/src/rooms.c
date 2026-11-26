@@ -174,6 +174,7 @@ static const hotspot_t stgermain_hotspots[] = {
 /* --- the café terrace ---------------------------------------------------- */
 static const npc_def_t terrasse_npcs[] = {
     { 48, 96, SPR1_OLDPOET, 6 | S_BANK1, NPC_OLDPOET },
+    { 66, 100, SPR1_POETCAT, 4 | S_BANK1, NPC_POETCAT },   /* his small cat */
     { 128, 88, SPR1_WAITER, 3 | S_BANK1, NPC_WAITER },
 };
 static const hotspot_t terrasse_hotspots[] = {

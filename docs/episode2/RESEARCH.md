@@ -70,3 +70,26 @@ still apply in February 1969.
 - "The oldest bell tower in Paris" (Saint-Germain-des-Prés).
 - Chestnut trees in place Dauphine.
 - The speaking clock's exact words ("At the third stroke"). The game uses only "...it will be exactly...".
+
+## NPC voices and the old poet (added 2026-11-26)
+
+Same rule as Episode 1 (docs/HISTORICAL_RESEARCH.md, "Speech, nicknames and the
+meat porter"): nobody knows the hero is a poet unless they could. Fernand met him
+in 1967 and calls him by a nickname, "Notebook" / "le Carnet" / "수첩 총각"; the old
+poet deduces it ("only drunks and poets stare at a lamp that long"); the pétanque
+player says "beanpole"; the student just asks for a light.
+
+| In the game | Claim | Status | Source |
+|---|---|---|---|
+| Dédé: "before I start crying into my red wine"; tomorrow "a concrete box with a car park" | Barnes (June 1969) saw men in long blue smocks in a Les Halles bar who "smoke yellow cigarettes and drink red wine"; Rungis described as clean, with little smell | **Read** for the red wine; the car park line is Dédé's opinion | [Barnes, Alicia Patterson Foundation, 1969](https://aliciapatterson.org/andrew-e-barnes/les-halles/) |
+| FR: Dédé "Plus une thune !" | "thune" (money), attested since the 15th century | **Read** | [Paris.fr](https://www.paris.fr/pages/guinguette-thune-charabia-ces-mots-sont-nes-a-paris-31356) |
+| THE OLD POET (Saint-Germain terrace) is now inspired by **René Char** (1907-1988), unnamed | Born in L'Isle-sur-la-Sorgue (his home town "sits on a river"); Resistance name "Capitaine Alexandre" ("in the war they called me Alexandre"); in Paris he lodged rue de Chanaleilles, near rue du Bac (7th arr., next to Saint-Germain), **date not given**; *Dans la pluie giboyeuse* published 1968 | **Read**: birthplace, Resistance name, Paris lodging (undated), 1968 book. **Not found**: any source placing Char in Paris in February 1969 (his presence that night is **fiction**, like the Ep1 writer cameos). Called "géant de Provence" / "colosse" in one article (figurative) | [Wikipedia EN](https://en.wikipedia.org/wiki/Ren%C3%A9_Char); [Livres Hebdo (RATP homage, rue du Bac)](https://www.livreshebdo.fr/article/paris-la-ratp-rend-hommage-rene-char); [Aujourd'hui le Maroc, 2025](https://aujourdhui.ma/culture/rene-char-je-veux-parler-dun-colosse); [Britannica](https://www.britannica.com/biography/Rene-Char) |
+| His small grey cat by his boots (NPC_POETCAT, new sprite) | Jiwon asked for a small cat beside Char. **No source read gives Char a cat**: it is fiction | Fiction (Jiwon's request) | — |
+
+Policy as in Episode 1: unnamed, no portrait or likeness, no line of his poems
+quoted (his work is under copyright until 2058). **Lawyer review required.**
+
+Bug fixed on the way: the coin glint used OAM 30 and was cleared every frame in
+mini-games, so in "find the red scarf" the 4th sleeper (OAM 30-31) was invisible
+and could never be picked when he was Lulu (also the 4th flower dancer). The
+glint now leaves OAM alone during games (src/main.c).
