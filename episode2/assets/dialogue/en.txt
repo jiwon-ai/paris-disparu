@@ -18,7 +18,9 @@ High on the tower, something moves. A stone bird? No. It blinks.
 On the bench under the trees, two people share one coat. You tiptoe away.
 
 [secret_shard]
-In the dirt by the dig's fence: a bit of old pot, painted blue. Older than the street lamps. Older than the street.
+By the dig's fence: a bit of old pot, painted blue.
+
+Older than the street.
 
 [secret_dragon]
 A winged dragon guards the fountain, mouth open. You growl at it. It doesn't blink.
@@ -40,11 +42,11 @@ Carved in the table: two letters and a heart. The varnish has grown over them.
 
 # ---------------------------------------------------------------- the start
 [fernand_hello]
-FERNAND: There you are, Notebook. Last night under the glass. Tomorrow, Rungis.
+FERNAND: There you are, Notebook.
 
-I wanted my plate on my blouse at dawn. One last time. Mme Roux kept it for me.
+My plate's gone! Mme Roux kept it for me.
 
-She just came running. It's gone! Go and see her, on the quai. Please.
+Go see her, on the quai. Please.
 
 [fernand_wait]
 FERNAND: My plate, Notebook. Before dawn. Mme Roux saw something, on the quai.
@@ -53,11 +55,11 @@ FERNAND: My plate, Notebook. Before dawn. Mme Roux saw something, on the quai.
 FERNAND: A boy in a red scarf? Then he's long gone. Follow him. The métro runs till late.
 
 [fernand_back]
-FERNAND: You found it? My plate! Thirty years on my chest.
+FERNAND: My plate! Thirty years on my chest.
 
-Look at them. Dancing round the crates. Like a wedding. Or a funeral.
+Look. They dance round the crates.
 
-Come. The sun's coming up and they're throwing flowers. Help me throw mine!
+Sun's up. Help me throw my flowers!
 
 [bark_fernand]
 FERNAND: My plate! Ask Mme Roux!
@@ -67,11 +69,11 @@ FERNAND: Red scarf. Métro. Go!
 
 # ---------------------------------------------------------------- Mme Roux
 [roux_hello]
-MME ROUX: Gone! His plate! I turned round to light my stove. A second!
+MME ROUX: Gone! In one second!
 
-A boy. Skinny, red scarf, fast as a sparrow. He ran up to the métro.
+A boy, red scarf. Ran to the métro.
 
-He dropped this. A métro ticket. Here, take it. You'll catch him. I'm too old for running.
+He dropped this ticket. Run!
 
 [roux_again]
 MME ROUX: Red scarf. Skinny. He went down into the métro, rue Baltard.
@@ -81,9 +83,9 @@ MME ROUX: Psst! You! Come here!
 
 # ---------------------------------------------------------------- Les Halles people
 [porter_hello]
-DÉDÉ: Last night, kid. Last night. Tomorrow I carry crates in a concrete box with a car park.
+DÉDÉ: Last night, kid. So I give my coins away.
 
-So I'm giving my coins away. Find the coin under the cup, keep it.
+Find the coin under the cup, keep it.
 ? Play | No
 
 [porter_again]
@@ -116,9 +118,9 @@ ACCORDION: One, two, three...
 DANCER: Don't stand there, dance! Tomorrow they'll take the crates and the music with them.
 
 [cafe_hello]
-SIMONE: You again! Coffee's on me tonight. Last night of the market, last night of my best customers.
+SIMONE: You again! Coffee's on me tonight.
 
-The phone's there if you need it. A coin for a jeton.
+Phone's there. A coin for a jeton.
 
 [cafe_again]
 SIMONE: Need a jeton for the phone? One coin.
@@ -144,18 +146,24 @@ Make a call?
 Nobody answers. Just a long, sad tone.
 
 [call_notes]
-MAN WITH NOTEBOOK: Hello? ... The young man from that night at the market? I remember voices. Noted.
+MAN WITH NOTEBOOK: Hello? ...Ah, the market boy. Noted.
 
-A boy in a red scarf? He asked me the way to the Latin Quarter. I told him. Was that wrong?
+A red scarf? Asked me the way to the Latin Quarter.
 
 [call_mother]
-A tired voice: "Lucien? Is that you? ... Oh. Sorry. If you see my boy, tell him to come home. I'm not angry."
+A tired voice: "Lucien? ...Oh. Sorry.
+
+If you see my boy, tell him: come home."
 
 [call_drummer]
-A croaky voice: "The drummer? That's me. I've got flu. Tell them to keep the beat without me. Atchoo!"
+A croaky voice: "The drummer? I've got flu.
+
+Keep the beat without me. Atchoo!"
 
 [call_editor]
-"Editions of the Night, good evening. Poems? Leave them on the step. We read everything. Eventually."
+"Editions of the Night. Poems? Leave them on the step.
+
+We read everything. Eventually."
 
 [flowerbed]
 Flowers in front of the church. Azaleas, roses, tulips, all lit up. The flower sellers' goodbye.
@@ -164,9 +172,9 @@ Flowers in front of the church. Azaleas, roses, tulips, all lit up. The flower s
 You take one azalea. Nobody minds. Tonight everything is being given away.
 
 [crates_pyramid]
-Crates stacked into pyramids. People dance round them as if they were Christmas trees.
+Crates in pyramids. People dance round them like Christmas trees.
 
-Cabbage leaves and straw are piled on the pavement. The sweepers will need all night.
+The sweepers will need all night.
 
 [eustache_lit]
 The church is lit up tonight. It has watched the market for more than three hundred years.
@@ -198,9 +206,9 @@ METRO. The steps go down into the warm. It smells of rubber and iron.
 The Cité. The island in the middle of Paris. Everything here is old, even the silence.
 
 [flower_seller_hello]
-FLOWER SELLER: You're up late, young man! Me, I'm up early. Same thing at this hour.
+FLOWER SELLER: Up late, young man? Me, up early. Same thing.
 
-A violet for your sweetheart? One coin.
+A violet? One coin.
 ? Buy | No
 
 [flower_seller_buy]
@@ -216,9 +224,9 @@ FLOWER SELLER: No coins? Then smile. That's free.
 The flower stalls are shut. Green iron, padlocks, a smell of wet earth.
 
 [petanque_hello]
-OLD MAN: Shh! We're measuring. Ten centimetres, I say. Eight, says he.
+OLD MAN: Shh! Ten centimetres, I say. Eight, says he.
 
-A red scarf? Play a game with us and we'll talk. Three boules, closest to the jack wins.
+Red scarf? Play, then we talk. Closest to the jack wins.
 ? Play | No
 
 [petanque_again]
@@ -226,11 +234,11 @@ OLD MAN: Another game? Three boules. Closest wins.
 ? Play | No
 
 [petanque_win]
-OLD MAN: Look at that! Kissing the jack! All right, all right.
+OLD MAN: Kissing the jack! Fine.
 
-The red scarf, that's Lucien. Lulu, they call him. The Sparrow. Steals like one, too.
+Red scarf? Lulu. A sparrow.
 
-His father was a fort at Les Halles. Gone two winters now. The boy's gone wild since.
+His dad was a fort. Gone now.
 
 [petanque_lose]
 OLD MAN: Bah! Not bad for a beanpole. Again?
@@ -240,24 +248,26 @@ OLD MAN: Bah! Not bad for a beanpole. Again?
 OLD MAN: Lulu, the Sparrow. Didn't hear it from me.
 
 [petanque_other]
-THE CROONER: Eight centimetres. He always says ten. I live at number fifteen, I watch him cheat from my window.
+THE CROONER: Eight. He says ten.
 
-My wife works abroad a lot. This year, she says, she's coming home for good. Me, I sing at the Olympia and lose at boules.
+I watch from number fifteen.
 
-Look, two cops on bicycles. Capes flapping like wings. They never stop for a game.
+I sing at the Olympia. I lose here.
 
 [bark_petanque]
 OLD MAN: Shh! We're measuring!
 
 [clocharde_hello]
-OLD WOMAN: The pigeons know me. The bells know me. Do you know me? No.
+OLD WOMAN: The pigeons know me.
 
-A boy ran past here. Red scarf. He dropped his jacket. I'm sitting on it. It's warm.
+Red scarf dropped his jacket. I sit on it.
 
-There's a paper in the pocket. A phone number. Here, I can't call anyone anyway.
+A phone number in the pocket. Here.
 
 [clocharde_violet]
-OLD WOMAN: A violet? For me? Nobody gave me a flower since... since the war. Which war, I forget.
+OLD WOMAN: A flower? For me? Not since the war.
+
+Which war, I forget.
 
 [clocharde_again]
 OLD WOMAN: The pigeons are asleep. So should you be.
@@ -266,15 +276,17 @@ OLD WOMAN: The pigeons are asleep. So should you be.
 OLD WOMAN: Ssh. The pigeons sleep.
 
 [nd_facade]
-Notre-Dame. Kings in a row, all with their heads on. The rose window glows like an ember.
+Notre-Dame. Kings in a row. The rose window glows like an ember.
 
-Pigeons asleep on the ledges, tucked in like commas.
+Pigeons asleep, tucked in like commas.
 
 [nd_poem]
 Stone saints all night with nobody to bless. You bless them instead.
 
 [dig_fence]
-A wooden fence round a big hole. They're digging under the square. Hoping to find old Paris. Or a car park.
+A fence round a big hole. Digging for old Paris.
+
+Or a car park.
 
 [dauphine_trees]
 Trees with no leaves yet. They look like hands holding up the dark.
@@ -290,11 +302,9 @@ The fountain. An angel stepping on a devil. The devil doesn't look too worried.
 Something in the basin. A trumpet mute! Wet, but fine. Someone will miss this.
 
 [student_hello]
-STUDENT: You look lost. Everybody here is lost. That's why we come.
+STUDENT: Lost? Everybody here is. Last May we dug up these cobbles.
 
-Last May we dug up these cobbles. Sand underneath, they said. Just mud. Still, we looked.
-
-The jazz cellar? Down the little street, on the right. They'll let anybody in. Almost.
+The jazz cellar? Little street, on the right.
 
 [student_again]
 STUDENT: Down the street, the cellar with the music. Can't miss it.
@@ -315,9 +325,9 @@ DOORMAN: In or out. You're letting the cold in.
 DOORMAN: Full!
 
 [trumpet_hello]
-TRUMPET: My mute! Man, you saved my night. Our drummer's sick. Can you keep a beat?
+TRUMPET: My mute! Our drummer's sick. Keep a beat?
 
-Just hit A when the note reaches the line. Don't think. Feel it.
+Hit A when the note reaches the line.
 ? Play | No
 
 [trumpet_again]
@@ -325,16 +335,16 @@ TRUMPET: Sit in for one more?
 ? Play | No
 
 [trumpet_nomute]
-TRUMPET: Lost my mute. Can't play soft without it. Who plays loud at three in the morning?
+TRUMPET: Lost my mute. Can't play soft at three a.m.
 
-First time I played Paris was in '35. Came back after the war and never left. And I still lose my mute.
+First played Paris in '35. Never left. Still lose my mute.
 
 [jazz_win]
-TRUMPET: Yeah! You've got it! You can come back any night.
+TRUMPET: Yeah! Come back anytime.
 
-Lulu? Red scarf? He comes to listen sometimes, by the stairs. Never pays.
+Lulu? Listens by the stairs.
 
-He sleeps down by the river. The low quay, under the bridge. With the others who sleep out.
+Sleeps on the low quay. Under the bridge.
 
 [jazz_lose]
 TRUMPET: Close! Lost the beat at the end. Again?
@@ -350,7 +360,7 @@ Smoke, brick, and a hundred people in a room for fifty. Everybody's nodding the 
 The music goes up the stairs and out into the night. Nobody can stop it at the door.
 
 [huchette_gutter]
-Water runs along the gutter. A sweeper has opened the tap at the corner. The street washes its face before dawn.
+A sweeper opens the tap. The street washes its face before dawn.
 
 [huchette_street]
 A street so narrow the houses almost touch. Music comes up through the cobbles.
@@ -369,16 +379,14 @@ METRO SAINT-MICHEL. Under the fountain, the trains.
 
 # ---------------------------------------------------------------- Saint-Germain
 [sg_church]
-The old church. Its square bell tower has watched a thousand nights. It looks tired. You know how it feels.
+The old church. Its square tower looks tired. You know how it feels.
 
 [old_poet_hello]
-OLD POET: Sit down. Not that chair, that's the cat's.
+OLD POET: Not that chair. The cat's.
 
-You've stared at that lamp for a full minute. Only drunks and poets do that. You don't smell of wine.
+Lulu? I pay his cigarettes in verses.
 
-Lulu? I know him. He brings me cigarettes he finds. I pay him in verses. He hates that.
-
-Finish my line and I'll tell you about him. "The night is..."
+Finish it: "The night is..."
 ? long | young
 
 [old_poet_two]
@@ -386,18 +394,16 @@ OLD POET: Good. Next: "...and the city..."
 ? sings | sleeps
 
 [old_poet_done]
-OLD POET: Not bad. Not bad at all. Write it down before it flies off.
+OLD POET: Not bad. Write it down.
 
-Back home my town sits on a river. Here I've got the Seine, and this cat. It'll do.
+Lulu's dad was a fort. Never got his plate.
 
-Lulu doesn't steal for money. His father was a fort. Never got his plate before he died.
-
-That plate is what his father wanted. Tell him you know. Talk to him like a man.
+That's why. Talk to him like a man.
 
 [old_poet_again]
-OLD POET: Talk to Lulu like a man. And write, young man. Every night.
+OLD POET: Write, young man. Every night.
 
-In the war they called me Alexandre. These days only the cat calls me anything.
+In the war they called me Alexandre.
 
 [bark_old_poet]
 OLD POET: You. Yes, you. Sit.
@@ -406,19 +412,19 @@ OLD POET: You. Yes, you. Sit.
 WAITER: Closing soon. Well, closing is a big word. We never really close.
 
 [philosopher2_hello]
-THE SINGER: Got a light? I've run out. Again. Five packs a day, my doctor's furious.
+THE SINGER: Got a light? Out again.
 
-I'm moving into a house round the corner, rue de Verneuil. My English girl chose the curtains. I chose the ashtrays.
+Rue de Verneuil. I chose ashtrays.
 
-Our record's out this month. Two voices and a lot of breathing. Your mother won't like it.
+Our record's out. Mums hate it.
 
 [sg_tabac]
-Across the street, the red carrot of a tabac still glows. A man lights a cigarette under it. The smoke goes up to join the night.
+The red carrot of a tabac still glows. Smoke goes up to join the night.
 
 [sg_dog]
-You step round something a dog left behind. A poet looks at the stars. A wise poet also looks down.
+You step round what a dog left. A wise poet looks down too.
 
-Further on, a lady walks a white poodle. Its coat is better than yours.
+A white poodle walks by. Its coat beats yours.
 
 [sg_terrace]
 The terrace is half empty. Chairs face the street, like an audience waiting for the play.
@@ -427,9 +433,9 @@ The terrace is half empty. Chairs face the street, like an audience waiting for 
 Every chair on this terrace has heard a poem. Some of them, twice.
 
 [bookshop]
-A bookshop, still lit. Books in the window lean on each other like tired friends.
+A bookshop, still lit. Books lean on each other like tired friends.
 
-A cat sits among the books, keeping shop. It doesn't look up.
+A cat keeps shop. It doesn't look up.
 
 [bookshop_card]
 A card is stuck in the window: "Poems wanted. ODÉ 6120." You note it down.
@@ -448,13 +454,13 @@ LULU: What do you want? Cops send you? Get lost.
 LULU: You don't know anything about me. Nobody does. Leave me alone.
 
 [lulu_talk]
-LULU: ... Lucien. Yeah. The old men talk too much.
+LULU: ...Lucien. Yeah.
 
-My dad carried crates for twenty years. They never gave him a plate. Said he wasn't there long enough.
+Dad never got a plate.
 
-I just wanted... to hold one. For him. Tonight, the last night. Stupid, eh?
+I wanted to hold one. For him.
 
-Here. Give it back to the big man. Tell him... tell him my dad knew him.
+Say my dad knew him.
 
 [lulu_mother]
 You tell him his mother called. He looks at the water a long time. "Yeah. Maybe I'll go home."
@@ -471,9 +477,9 @@ TRAMP: Spare a coin, young man? For a hot drink. I'll give you something back. A
 ? Give | No
 
 [tramp_give]
-TRAMP: Bless you. Here's the secret: the stars are still there. Behind all the street lamps.
+TRAMP: Bless you. The stars are still there, behind the lamps.
 
-And one more. Under the bridge at Saint-Michel, the coins in the water are the moon. Look.
+Under Saint-Michel bridge, the coins are the moon.
 
 [tramp_no]
 TRAMP: Fair enough. Nobody has anything tonight.
@@ -485,7 +491,9 @@ TRAMP: You've got less than me! Here, sit a minute. Sitting is free.
 Bump! "Sorry, mister!" A boy in a cap runs off. One coin lighter. Hey!
 
 [chase_win]
-Got him! He empties his pockets: your coin, and one more. "Keep it! Just don't call the cops!"
+Got him! Your coin, and one more.
+
+"Keep it! No cops!"
 
 [chase_lose]
 Gone round the corner. Your coin goes with him. Paris gives, Paris takes.
@@ -502,18 +510,14 @@ The sky goes grey, then pink. Somebody shouts, and the flowers start to fly.
 [poetcat]
 A SMALL CAT: Mrrp.
 
-It sits by the old man's boots like a full stop at the end of his sentence.
-
-OLD POET: She chose me. Cats choose. Poets only get chosen.
+OLD POET: She chose me. Cats choose. Poets get chosen.
 
 [prevert_hello]
-THE MAN WITH THE CIGARETTE: Flowers at this hour? I'm buying them for nobody. That's the best kind of present.
+THE MAN WITH THE CIGARETTE: Flowers?
 
-A cigarette hangs from his lip. It never seems to leave.
+For nobody. Best present.
 
-I live up in the 18th, in a little lane. A dog of mine was once made a dignitary by a very serious society of jokers.
-
-These days I cut pictures out of magazines and glue them back wrong. It's more honest.
+I glue magazines back wrong.
 
 [prevert_again]
-THE MAN WITH THE CIGARETTE: Don't write what's beautiful. Write what's there. Beautiful turns up on its own, like a stray cat.
+THE MAN WITH THE CIGARETTE: Write what's there. Beautiful comes on its own.

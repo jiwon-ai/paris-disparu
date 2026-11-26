@@ -761,7 +761,6 @@ extern const uint16_t fr_ui_at[];        /* by offset in ui_text */
 extern const uint8_t fr_ui_text[];
 extern const uint8_t * const fr_page_base[];
 extern const uint8_t fr_pages_0[];
-extern const uint8_t fr_pages_1[];
 #define TITLE_TILE_COUNT 189
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];

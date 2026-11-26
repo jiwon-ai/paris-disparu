@@ -13,7 +13,9 @@ Tout en haut de la tour, quelque chose bouge. Un oiseau de pierre ? Non. Il clig
 Sur le banc sous les arbres, deux personnes partagent un seul manteau. Tu t'éloignes sur la pointe des pieds.
 
 [secret_shard]
-Dans la terre, près de la palissade du chantier : un bout de vieux pot, peint en bleu. Plus vieux que les réverbères. Plus vieux que la rue.
+Près de la palissade : un bout de vieux pot, peint en bleu.
+
+Plus vieux que la rue.
 
 [secret_dragon]
 Un dragon ailé garde la fontaine, la gueule ouverte. Tu grognes. Il ne cille pas.
@@ -35,11 +37,11 @@ Gravées dans la table : deux lettres et un cœur. Le vernis a poussé par-dessu
 
 # ---------------------------------------------------------------- the start
 [fernand_hello]
-FERNAND : Te voilà, le Carnet. Dernière nuit sous les verrières. Demain, Rungis.
+FERNAND : Te voilà, le Carnet.
 
-Je voulais ma plaque sur ma blouse à l'aube. Une dernière fois. Mme Roux me la gardait.
+Ma plaque a disparu ! Mme Roux l'avait.
 
-Elle vient d'arriver en courant. Volée ! Va la voir, sur le quai. S'il te plaît.
+Va la voir, sur le quai.
 
 [fernand_wait]
 FERNAND : Ma plaque, le Carnet. Avant l'aube. Mme Roux a vu quelque chose, sur le quai.
@@ -48,11 +50,11 @@ FERNAND : Ma plaque, le Carnet. Avant l'aube. Mme Roux a vu quelque chose, sur l
 FERNAND : Un gamin à l'écharpe rouge ? Alors il est loin. Suis-le. Le métro roule encore.
 
 [fernand_back]
-FERNAND : Tu l'as retrouvée ? Ma plaque ! Trente ans sur ma poitrine.
+FERNAND : Ma plaque ! Trente ans sur moi.
 
-Regarde-les. Ils dansent autour des cageots. Comme à un mariage. Ou à un enterrement.
+Ils dansent autour des cageots.
 
-Viens. Le soleil se lève et ils lancent des fleurs. Aide-moi à lancer les miennes !
+Aide-moi à jeter mes fleurs !
 
 [bark_fernand]
 FERNAND : Ma plaque ! Vite !
@@ -62,11 +64,11 @@ FERNAND : Écharpe rouge. Vite !
 
 # ---------------------------------------------------------------- Mme Roux
 [roux_hello]
-MME ROUX : Volée ! Sa plaque ! Je me suis retournée pour allumer mon réchaud. Une seconde !
+MME ROUX : Partie ! En une seconde !
 
-Un gamin. Maigre, écharpe rouge, vif comme un moineau. Il a filé vers le métro.
+Un gamin, écharpe rouge. Au métro.
 
-Il a laissé tomber ça. Un ticket de métro. Tiens, prends-le. Tu le rattraperas. Moi, je suis trop vieille pour courir.
+Il a perdu ce ticket. Cours !
 
 [roux_again]
 MME ROUX : Écharpe rouge. Maigre. Il est descendu dans le métro, rue Baltard.
@@ -76,9 +78,9 @@ MME ROUX : Psst ! Toi ! Viens là !
 
 # ---------------------------------------------------------------- Les Halles people
 [porter_hello]
-DÉDÉ : Dernière nuit, petit. Dernière nuit. Demain je porterai mes cageots dans une boîte en béton avec un parking.
+DÉDÉ : Dernière nuit, petit. Je donne mes pièces.
 
-Alors je donne mes pièces. Trouve la pièce sous le gobelet, elle est à toi.
+Trouve la pièce sous le gobelet, garde-la.
 ? Jouer | Non
 
 [porter_again]
@@ -111,9 +113,9 @@ ACCORDÉONISTE : Un, deux, trois...
 DANSEUSE : Ne reste pas planté là, danse ! Demain ils emportent les cageots, et la musique avec.
 
 [cafe_hello]
-SIMONE : Encore toi ! Le café est pour moi ce soir. Dernière nuit du marché, dernière nuit de mes meilleurs clients.
+SIMONE : Encore toi ! Le café est pour moi ce soir.
 
-Le téléphone est là si tu en as besoin. Une pièce pour un jeton.
+Le téléphone est là. Une pièce pour un jeton.
 
 [cafe_again]
 SIMONE : Un jeton pour le téléphone ? Une pièce.
@@ -139,18 +141,24 @@ Passer un appel ?
 Personne ne répond. Juste une longue tonalité triste.
 
 [call_notes]
-HOMME AU CARNET : Allô ? ... Le jeune homme de cette nuit-là, aux Halles ? Je me souviens des voix. Noté.
+L'HOMME AU CARNET : Allô ? ...Ah, le gamin du marché. Noté.
 
-Un gamin à l'écharpe rouge ? Il m'a demandé le chemin du Quartier latin. Je le lui ai dit. J'ai eu tort ?
+Une écharpe rouge ? Il m'a demandé le Quartier latin.
 
 [call_mother]
-Une voix fatiguée : « Lucien ? C'est toi ? ... Oh. Pardon. Si vous voyez mon fils, dites-lui de rentrer. Je ne suis pas fâchée. »
+Une voix lasse : « Lucien ? ...Oh. Pardon.
+
+Si tu vois mon fils, dis-lui de rentrer. »
 
 [call_drummer]
-Une voix enrouée : « Le batteur ? C'est moi. J'ai la grippe. Dis-leur de garder le rythme sans moi. Atchoum ! »
+Une voix enrouée : « Le batteur ? J'ai la grippe.
+
+Gardez le rythme sans moi. Atchoum ! »
 
 [call_editor]
-« Éditions de la Nuit, bonsoir. Des poèmes ? Laissez-les sur la marche. On lit tout. Un jour. »
+« Éditions de la Nuit. Des poèmes ? Laissez-les sur le palier.
+
+On lit tout. Un jour. »
 
 [flowerbed]
 Des fleurs devant l'église. Azalées, roses, tulipes, toutes illuminées. L'adieu des fleuristes.
@@ -159,9 +167,9 @@ Des fleurs devant l'église. Azalées, roses, tulipes, toutes illuminées. L'adi
 Tu prends une azalée. Personne ne dit rien. Cette nuit, on donne tout.
 
 [crates_pyramid]
-Des cageots empilés en pyramides. Les gens dansent autour comme autour d'un sapin de Noël.
+Des cageots en pyramides. On danse autour comme des sapins de Noël.
 
-Feuilles de chou et paille s'entassent sur le trottoir. Les balayeurs en ont pour la nuit.
+Les balayeurs en ont pour la nuit.
 
 [eustache_lit]
 L'église est illuminée ce soir. Elle veille sur le marché depuis plus de trois cents ans.
@@ -193,9 +201,9 @@ MÉTRO. Les marches descendent vers la chaleur. Ça sent le caoutchouc et le fer
 La Cité. L'île au milieu de Paris. Tout ici est vieux, même le silence.
 
 [flower_seller_hello]
-FLEURISTE : Tu veilles tard, jeune homme ! Moi, je me lève tôt. À cette heure, c'est pareil.
+LA FLEURISTE : Couché tard ? Moi, levée tôt. Pareil.
 
-Une violette pour ta bien-aimée ? Une pièce.
+Une violette ? Une pièce.
 ? Acheter | Non
 
 [flower_seller_buy]
@@ -211,9 +219,9 @@ FLEURISTE : Pas de pièces ? Alors souris. C'est gratuit.
 Les étals de fleurs sont fermés. Fer vert, cadenas, une odeur de terre mouillée.
 
 [petanque_hello]
-VIEIL HOMME : Chut ! On mesure. Dix centimètres, je dis. Huit, dit-il.
+LE VIEUX : Chut ! Dix centimètres, je dis. Huit, qu'il dit.
 
-Une écharpe rouge ? Fais une partie avec nous et on causera. Trois boules, la plus près du cochonnet gagne.
+L'écharpe rouge ? Joue, et on cause. Le plus près gagne.
 ? Jouer | Non
 
 [petanque_again]
@@ -221,11 +229,11 @@ VIEIL HOMME : Une autre partie ? Trois boules. La plus près gagne.
 ? Jouer | Non
 
 [petanque_win]
-VIEIL HOMME : Regarde-moi ça ! Elle embrasse le cochonnet ! Bon, bon.
+LE VIEUX : Au cochonnet ! Bon.
 
-L'écharpe rouge, c'est Lucien. Lulu, on l'appelle. Le Moineau. Il vole comme un moineau, aussi.
+L'écharpe rouge ? Lulu. Un moineau.
 
-Son père était fort aux Halles. Parti il y a deux hivers. Depuis, le petit fait les quatre cents coups.
+Son père était fort. Parti.
 
 [petanque_lose]
 VIEIL HOMME : Bah ! Pas mal, pour un grand échalas. On remet ça ?
@@ -235,24 +243,26 @@ VIEIL HOMME : Bah ! Pas mal, pour un grand échalas. On remet ça ?
 VIEIL HOMME : Lulu, le Moineau. Tu ne le tiens pas de moi.
 
 [petanque_other]
-LE CHANTEUR DE CHARME : Huit centimètres. Il dit toujours dix. J'habite au quinze, je le vois tricher de ma fenêtre.
+LE CROONER : Huit. Il dit dix.
 
-Ma femme travaille souvent à l'étranger. Cette année, elle dit qu'elle rentre pour de bon. Moi, je chante à l'Olympia et je perds aux boules.
+Je vois tout du numéro quinze.
 
-Tiens, deux agents à vélo. La cape qui vole comme des ailes. Ils ne s'arrêtent jamais pour une partie.
+Olympia le soir, perdant ici.
 
 [bark_petanque]
 VIEIL HOMME : Chut ! On mesure !
 
 [clocharde_hello]
-VIEILLE FEMME : Les pigeons me connaissent. Les cloches me connaissent. Toi, tu me connais ? Non.
+LA VIEILLE : Les pigeons me connaissent.
 
-Un gamin est passé en courant. Écharpe rouge. Il a perdu sa veste. Je suis assise dessus. Elle est chaude.
+Une écharpe rouge a perdu sa veste.
 
-Il y a un papier dans la poche. Un numéro de téléphone. Tiens, moi je n'ai personne à appeler.
+Dans la poche, un numéro. Tiens.
 
 [clocharde_violet]
-VIEILLE FEMME : Une violette ? Pour moi ? Personne ne m'a offert une fleur depuis... depuis la guerre. Laquelle, j'ai oublié.
+LA VIEILLE : Une fleur ? Pour moi ? Pas depuis la guerre.
+
+Laquelle, j'ai oublié.
 
 [clocharde_again]
 VIEILLE FEMME : Les pigeons dorment. Tu devrais en faire autant.
@@ -261,15 +271,17 @@ VIEILLE FEMME : Les pigeons dorment. Tu devrais en faire autant.
 VIEILLE FEMME : Chut ! Ça dort.
 
 [nd_facade]
-Notre-Dame. Des rois en rang, tous avec leur tête. La rosace rougeoie comme une braise.
+Notre-Dame. Des rois en rang. La rosace luit comme une braise.
 
-Des pigeons dorment sur les corniches, blottis comme des virgules.
+Des pigeons endormis, blottis comme des virgules.
 
 [nd_poem]
 Des saints de pierre toute la nuit, sans personne à bénir. C'est toi qui les bénis.
 
 [dig_fence]
-Une palissade autour d'un grand trou. On creuse sous le parvis. Pour retrouver le vieux Paris. Ou un parking.
+Une palissade autour d'un grand trou. On cherche le vieux Paris.
+
+Ou un parking.
 
 [dauphine_trees]
 Des arbres encore sans feuilles. On dirait des mains qui tiennent le noir.
@@ -285,11 +297,9 @@ La fontaine. Un ange qui écrase un diable. Le diable n'a pas l'air très inquie
 Quelque chose dans le bassin. Une sourdine de trompette ! Mouillée, mais intacte. Quelqu'un la cherche.
 
 [student_hello]
-ÉTUDIANT : Tu as l'air perdu. Ici, tout le monde est perdu. C'est pour ça qu'on vient.
+L'ÉTUDIANT : En mai, on a déterré ces pavés.
 
-En mai dernier, on a arraché ces pavés. Du sable dessous, qu'ils disaient. Que de la boue. On a cherché, quand même.
-
-La cave de jazz ? Dans la petite rue, à droite. Ils laissent entrer n'importe qui. Presque.
+La cave de jazz ? Petite rue, à droite.
 
 [student_again]
 ÉTUDIANT : Au bout de la rue, la cave avec la musique. Tu ne peux pas la rater.
@@ -310,9 +320,9 @@ PORTIER : Dedans ou dehors. Tu fais entrer le froid.
 PORTIER : Complet !
 
 [trumpet_hello]
-TROMPETTE : Ma sourdine ! Tu sauves ma nuit. Notre batteur est malade. Tu sais tenir un rythme ?
+LA TROMPETTE : Ma sourdine ! Le batteur est malade.
 
-Appuie sur A quand la note arrive sur la ligne. Ne réfléchis pas. Sens-le.
+Appuie sur A quand la note touche la ligne.
 ? Jouer | Non
 
 [trumpet_again]
@@ -320,16 +330,16 @@ TROMPETTE : Tu rejoues un morceau ?
 ? Jouer | Non
 
 [trumpet_nomute]
-TROMPETTE : J'ai perdu ma sourdine. Impossible de jouer doux sans elle. Qui joue fort à trois heures du matin ?
+LA TROMPETTE : Sans sourdine, pas de douceur.
 
-La première fois que j'ai joué à Paris, c'était en 35. Je suis revenu après la guerre, et je suis resté. Et je perds toujours ma sourdine.
+Paris en 35. Jamais reparti. Et je la perds encore.
 
 [jazz_win]
-TROMPETTE : Ouais ! Tu l'as ! Reviens quand tu veux.
+LA TROMPETTE : Ouais ! Reviens !
 
-Lulu ? L'écharpe rouge ? Il vient écouter parfois, près de l'escalier. Il ne paie jamais.
+Lulu ? Il écoute à l'escalier.
 
-Il dort au bord de l'eau. Le bas-port, sous le pont. Avec ceux qui dorment dehors.
+Il dort au bas quai, sous le pont.
 
 [jazz_lose]
 TROMPETTE : Presque ! Tu as perdu le rythme à la fin. On remet ça ?
@@ -345,7 +355,7 @@ Fumée, briques, et cent personnes dans une salle pour cinquante. Tout le monde 
 La musique monte l'escalier et sort dans la nuit. Personne ne peut l'arrêter à la porte.
 
 [huchette_gutter]
-L'eau court dans le caniveau. Un balayeur a ouvert la bouche au coin de la rue. La rue se lave la figure avant l'aube.
+Un balayeur ouvre la bouche d'eau. La rue se débarbouille avant l'aube.
 
 [huchette_street]
 Une rue si étroite que les maisons se touchent presque. La musique monte entre les pavés.
@@ -364,16 +374,14 @@ MÉTRO SAINT-MICHEL. Sous la fontaine, les rames.
 
 # ---------------------------------------------------------------- Saint-Germain
 [sg_church]
-La vieille église. Son clocher carré a veillé mille nuits. Il a l'air fatigué. Tu sais ce que c'est.
+La vieille église. Son clocher carré a l'air las. Tu connais ça.
 
 [old_poet_hello]
-VIEUX POÈTE : Assieds-toi. Pas cette chaise-là, c'est celle du chat.
+LE VIEUX POÈTE : Pas cette chaise.
 
-Ça fait une minute que tu fixes ce réverbère. Il n'y a que les ivrognes et les poètes pour ça. Tu ne sens pas le vin.
+Lulu ? Je le paie en vers.
 
-Lulu ? Je le connais. Il m'apporte des cigarettes trouvées. Je le paie en vers. Il déteste ça.
-
-Finis mon vers et je te parlerai de lui. « La nuit est... »
+Finis : « La nuit est... »
 ? longue | jeune
 
 [old_poet_two]
@@ -381,18 +389,16 @@ VIEUX POÈTE : Bien. La suite : « ...et la ville... »
 ? chante | dort
 
 [old_poet_done]
-VIEUX POÈTE : Pas mal. Pas mal du tout. Écris-le, avant qu'il s'envole.
+LE VIEUX POÈTE : Pas mal. Note-le.
 
-Chez moi, ma ville est posée sur une rivière. Ici, j'ai la Seine, et ce chat. Ça ira.
+Le père de Lulu était fort. Sans plaque.
 
-Lulu ne vole pas pour l'argent. Son père était fort. Il n'a jamais eu sa plaque avant de mourir.
-
-Cette plaque, c'est ce que son père voulait. Dis-lui que tu le sais. Parle-lui d'homme à homme.
+Parle-lui d'homme à homme.
 
 [old_poet_again]
-VIEUX POÈTE : Parle à Lulu d'homme à homme. Et écris, jeune homme. Chaque nuit.
+LE VIEUX POÈTE : Écris, jeune homme. Chaque nuit.
 
-Pendant la guerre, on m'appelait Alexandre. Aujourd'hui, il n'y a plus que le chat qui m'appelle.
+Pendant la guerre, on m'appelait Alexandre.
 
 [bark_old_poet]
 VIEUX POÈTE : Toi. Assieds-toi.
@@ -401,19 +407,19 @@ VIEUX POÈTE : Toi. Assieds-toi.
 GARÇON : On ferme bientôt. Enfin, fermer, c'est un grand mot. On ne ferme jamais vraiment.
 
 [philosopher2_hello]
-LE CHANTEUR : T'as du feu ? J'en ai plus. Encore. Cinq paquets par jour, mon médecin est furieux.
+LE CHANTEUR : T'as du feu ?
 
-J'emménage dans une maison au coin, rue de Verneuil. Mon Anglaise a choisi les rideaux. Moi, les cendriers.
+Rue de Verneuil. Moi, les cendriers.
 
-Notre disque sort ce mois-ci. Deux voix et beaucoup de soupirs. Ta mère va pas aimer.
+Notre disque sort. Les mères détestent.
 
 [sg_tabac]
-En face, la carotte rouge d'un tabac brille encore. Un homme allume une cigarette dessous. La fumée monte rejoindre la nuit.
+La carotte rouge d'un tabac luit encore. La fumée monte rejoindre la nuit.
 
 [sg_dog]
-Tu évites ce qu'un chien a laissé là. Un poète regarde les étoiles. Un poète sage regarde aussi par terre.
+Tu évites ce qu'un chien a laissé. Un poète sage regarde aussi par terre.
 
-Plus loin, une dame promène un caniche blanc. Son manteau est plus beau que le tien.
+Un caniche blanc passe. Son manteau vaut mieux que le tien.
 
 [sg_terrace]
 La terrasse est à moitié vide. Les chaises regardent la rue, comme un public qui attend la pièce.
@@ -422,9 +428,9 @@ La terrasse est à moitié vide. Les chaises regardent la rue, comme un public q
 Chaque chaise de cette terrasse a entendu un poème. Certaines, deux fois.
 
 [bookshop]
-Une librairie, encore éclairée. Dans la vitrine, les livres s'appuient les uns sur les autres comme des amis fatigués.
+Une librairie allumée. Les livres s'appuient, fatigués.
 
-Un chat garde la boutique, assis parmi les livres. Il ne lève pas les yeux.
+Un chat tient la boutique.
 
 [bookshop_card]
 Une carte collée à la vitrine : « Cherchons poèmes. ODÉ 6120. » Tu le notes.
@@ -443,13 +449,13 @@ LULU : Qu'est-ce que tu veux ? C'est les flics qui t'envoient ? Dégage.
 LULU : Tu ne sais rien de moi. Personne ne sait. Laisse-moi tranquille.
 
 [lulu_talk]
-LULU : ... Lucien. Ouais. Les vieux parlent trop.
+LULU : ...Lucien. Ouais.
 
-Mon père a porté des cageots pendant vingt ans. On ne lui a jamais donné de plaque. Pas là depuis assez longtemps, qu'ils disaient.
+Papa n'a jamais eu de plaque.
 
-Je voulais juste... en tenir une. Pour lui. Cette nuit, la dernière. C'est bête, hein ?
+Je voulais en tenir une.
 
-Tiens. Rends-la au grand. Dis-lui... dis-lui que mon père le connaissait.
+Dis-lui : mon père le connaissait.
 
 [lulu_mother]
 Tu lui dis que sa mère a appelé. Il regarde l'eau longtemps. « Ouais. Je vais peut-être rentrer. »
@@ -466,9 +472,9 @@ CLOCHARD : Une pièce, jeune homme ? Pour un café chaud. Je te donnerai quelque
 ? Donner | Non
 
 [tramp_give]
-CLOCHARD : Merci. Voilà le secret : les étoiles sont toujours là. Derrière tous les réverbères.
+LE CLOCHARD : Les étoiles sont là, derrière les réverbères.
 
-Et un autre. Sous le pont Saint-Michel, les pièces dans l'eau, c'est la lune. Regarde.
+Sous le pont Saint-Michel, les pièces sont la lune.
 
 [tramp_no]
 CLOCHARD : D'accord. Personne n'a rien ce soir.
@@ -480,7 +486,9 @@ CLOCHARD : Tu as moins que moi ! Tiens, assieds-toi une minute. S'asseoir, c'est
 Bing ! « Pardon, m'sieur ! » Un gamin en casquette détale. Une pièce en moins. Hé !
 
 [chase_win]
-Attrapé ! Il vide ses poches : ta pièce, et une autre. « Gardez-la ! Mais n'appelez pas les flics ! »
+Attrapé ! Ta pièce, et une autre.
+
+« Garde-la ! Pas les flics ! »
 
 [chase_lose]
 Disparu au coin de la rue. Ta pièce avec lui. Paris donne, Paris reprend.
@@ -496,18 +504,14 @@ Le ciel devient gris, puis rose. Quelqu'un crie, et les fleurs se mettent à vol
 [poetcat]
 UN PETIT CHAT : Mrrp.
 
-Il est assis contre les chaussures du vieil homme, comme un point au bout de sa phrase.
-
-VIEUX POÈTE : C'est elle qui m'a choisi. Les chats choisissent. Les poètes, on les choisit.
+LE VIEUX POÈTE : Elle m'a choisi. Les chats choisissent.
 
 [prevert_hello]
-L'HOMME À LA CIGARETTE : Des fleurs à cette heure-ci ? Je les achète pour personne. C'est le plus beau des cadeaux.
+L'HOMME À LA CIGARETTE : Des fleurs ?
 
-Une cigarette pend à sa lèvre. Elle ne semble jamais la quitter.
+Pour personne. Le plus beau cadeau.
 
-J'habite là-haut, dans le dix-huitième, au fond d'une petite cité. Un de mes chiens a été nommé dignitaire par une société de farceurs très sérieux.
-
-Maintenant je découpe des images dans les magazines et je les recolle de travers. C'est plus honnête.
+Je recolle les magazines de travers.
 
 [prevert_again]
-L'HOMME À LA CIGARETTE : N'écris pas ce qui est beau. Écris ce qui est là. Le beau arrive tout seul, comme un chat perdu.
+L'HOMME À LA CIGARETTE : Écris ce qui est là. Le beau vient tout seul.
