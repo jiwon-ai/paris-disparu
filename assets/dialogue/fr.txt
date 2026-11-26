@@ -894,8 +894,6 @@ UN PORTEUR DE VIANDE : Gare ! Gare ! Attention au dos, petit !
 
 Casquette enfoncée jusqu'aux oreilles, il porte le quartier de bœuf sur l'épaule, calé avec la tête.
 
-UN PORTEUR DE VIANDE : Plus lourd que ma belle-mère. Et ça râle moins.
-
 Du camion au pavillon, toute la nuit. J'ai l'endosse en compote. Ma blouse était blanche à minuit. Regarde-la.
 
 [meat_again]
