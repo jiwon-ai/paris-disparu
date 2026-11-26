@@ -132,50 +132,65 @@ void notebook_show(void) BANKED {
     box_flush();
 }
 
-/* Second page: the poem. The hero is a young poet who came down to the
-   market for words. Lines are earned by what each player did (quests,
-   side goals, mysteries, secrets, people met), so every poem differs; at
-   daybreak the poet finishes it on a café terrace (original text). */
-#define POEM_LINES 10
-static const uint8_t * const poem_txt[POEM_LINES] = {
-    txt_pl_0, txt_pl_1, txt_pl_2, txt_pl_3, txt_pl_4,
-    txt_pl_5, txt_pl_6, txt_pl_7, txt_pl_8, txt_pl_9
+/* Second page: the poet's words (Jiwon 2026-11-26: "collect words and
+   phrases by talking to people and watching the street; the notebook is the
+   inventory; at the ending the words make the poem by themselves").
+   24 words in 8 stanzas of 3 (events.c frag_dlg): each word comes with a
+   line; at daybreak the poem takes, for each stanza, the first word found
+   there, then Fernand's couplet. Every player's poem differs (original). */
+static const uint8_t * const frag_word[FRAG_COUNT] = {
+    txt_fw_0, txt_fw_1, txt_fw_2, txt_fw_3, txt_fw_4, txt_fw_5, txt_fw_6, txt_fw_7,
+    txt_fw_8, txt_fw_9, txt_fw_10, txt_fw_11, txt_fw_12, txt_fw_13, txt_fw_14, txt_fw_15,
+    txt_fw_16, txt_fw_17, txt_fw_18, txt_fw_19, txt_fw_20, txt_fw_21, txt_fw_22, txt_fw_23
+};
+static const uint8_t * const frag_line[FRAG_COUNT] = {
+    txt_fl_0, txt_fl_1, txt_fl_2, txt_fl_3, txt_fl_4, txt_fl_5, txt_fl_6, txt_fl_7,
+    txt_fl_8, txt_fl_9, txt_fl_10, txt_fl_11, txt_fl_12, txt_fl_13, txt_fl_14, txt_fl_15,
+    txt_fl_16, txt_fl_17, txt_fl_18, txt_fl_19, txt_fl_20, txt_fl_21, txt_fl_22, txt_fl_23
 };
 
-static uint8_t poem_has(uint8_t i) {
-    uint8_t n = 0;
-    uint16_t m = cameo_met;
-    switch (i) {
-    case 4: return extra_flags & X_TICKETS;
-    case 5: return extra_flags & X_BUTCHER;
-    case 6: return extra_flags & X_PAINTER;
-    case 7: return curio_flags & 0x70;          /* a mystery solved */
-    case 8: return secret_total() >= 5;
-    case 9:                                     /* six people of the night met */
-        for (; m; m >>= 1) n += m & 1;
-        return n >= 6;
-    default: return quest_done(i);
-    }
+static void count_print(uint8_t x, uint8_t y, uint8_t n) {   /* "nn/24" */
+    if (n > 9) box_tile(x, y, digit_glyph(n / 10));
+    box_tile(x + 1, y, digit_glyph(n % 10));
+    box_print(x + 2, y, txt_fw_of);
 }
 
-/* The lines earned so far, one under the other from row y; returns the next row. */
 static uint8_t poem_print(uint8_t y) {
-    uint8_t i;
-    for (i = 0; i < POEM_LINES; i++)
-        if (poem_has(i)) box_print(1, y++, poem_txt[i]);
+    uint8_t i, k;
+    for (i = 0; i < FRAG_COUNT; i += 3)
+        for (k = i; k < i + 3; k++)
+            if (frag_has(k)) { box_print(1, y++, frag_line[k]); break; }
     return y;
 }
 
+/* The words found so far, in two columns; dots for the ones still out there. */
 static void poem_show(void) {
+    uint8_t i;
     box_open(SCREEN_H / 8);
-    box_print(1, 1, txt_poem_title);
-    if (poem_print(3) == 3) box_print(1, 3, txt_poem_none);
+    box_print(1, 1, txt_fw_title);
+    count_print(14, 1, frag_total());
+    for (i = 0; i < FRAG_COUNT; i++)
+        box_print((i & 1) ? 10 : 1, 3 + (i >> 1), frag_has(i) ? frag_word[i] : txt_fw_none);
+    box_print(1, 15, txt_fw_hint);
     box_print(1, 17, txt_nb_extras);
     box_print(14, 17, txt_nb_close);
     box_flush();
 }
 
-/* The ending: the whole poem, closed by Fernand's choice. */
+/* The caption after a dialogue that gave a word: the word and the count. */
+uint8_t frag_note(void) BANKED {
+    uint8_t i = new_frag;
+    if (!i) return 0;
+    new_frag = 0;
+    box_open(5);
+    box_print(1, 1, txt_fw_new);
+    box_print(2, 2, frag_word[i - 1]);
+    box_print(1, 3, txt_fw_title);
+    count_print(12, 3, frag_total());
+    return 1;
+}
+
+/* The ending: the poem the night wrote, closed by Fernand's choice. */
 static void poem_final(void) {
     uint8_t y;
     box_open(SCREEN_H / 8);
@@ -564,7 +579,8 @@ void end_show(void) BANKED {
         static const uint8_t * const rank_txt[5] = {
             txt_rank_0, txt_rank_1, txt_rank_2, txt_rank_3, txt_rank_4
         };
-        uint8_t s = clue_total() + extra_total() + secret_total() + album_total() + curio_total();
+        uint8_t s = clue_total() + extra_total() + secret_total() + album_total() + curio_total()
+                    + (frag_total() >> 2);    /* words collected: up to 6 more */
         box_print(1, 15, txt_rank);
         box_print(7, 15, rank_txt[s < 9 ? 0 : s < 15 ? 1 : s < 21 ? 2 : s < 26 ? 3 : 4]);
     }

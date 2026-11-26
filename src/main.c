@@ -62,15 +62,7 @@ static void update_juice(void) {
                      SPR1_SPARKLE, 7 | S_BANK1);
         }
     }
-    {   /* a coin on the ground glints now and then */
-        uint8_t c = state == ST_WALK ? coin_here() : 0xFF;
-        if (c != 0xFF && (anim_frame & 63) < 10)
-            sprite16(COIN_OAM, coin_x(c) * 8 - 4, coin_y(c) * 8 - 4, SPR1_SPARKLE, 7 | S_BANK1);
-        else {
-            move_sprite(COIN_OAM, 0, 0);
-            move_sprite(COIN_OAM + 1, 0, 0);
-        }
-    }
+    coin_glint(state == ST_WALK && (anim_frame & 63) < 10);   /* a coin on the ground glints now and then */
     if (shake) {
         shake--;
         SCX_REG = (shake & 2) ? 2 : 0;
@@ -498,7 +490,6 @@ static void open_dialogue(uint8_t d) {
             box_print(1, 1, txt_quest_done);
             box_print(1, 2, quest_name[q]);
             box_print(1, 3, quest_got[q]);
-            box_print(1, 4, txt_poem_new);     /* each quest: a line of the poem */
             world_dawn(dawn_now());        /* an hour later: the sky pales */
             caption_timer = 300;
             caption_note = 1;
@@ -541,6 +532,11 @@ static void open_dialogue(uint8_t d) {
             else sound_confirm();
             sparkle = SPARKLE_FRAMES;
         }
+        else if (frag_note()) {  /* a word for the poem */
+            caption_timer = 240;
+            caption_note = 1;
+            sound_confirm();
+        }
         if (item_note()) {       /* the object itself, over the note or alone */
             caption_timer = 240;
             caption_note = 1;
@@ -548,6 +544,7 @@ static void open_dialogue(uint8_t d) {
         }
     } else {
         cur_dialogue = d;
+        frag_seen(d);            /* some talks and sights give the poet a word */
         dialogue_start(d);
         state = ST_DIALOGUE;
     }
@@ -717,7 +714,7 @@ void main(void) {
             {
                 uint8_t exit_dir = player_update();
                 if (exit_dir != 0xFF) change_room(exit_dir);
-                else if ((exit_dir = coin_take(player.x + 8, player.y + 13)) != 0) {
+                else if (coin_take(player.x + 8, player.y + 13)) {
                     close_caption();           /* a coin underfoot */
                     coin_note();
                     caption_timer = 180;

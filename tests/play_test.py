@@ -425,6 +425,8 @@ def player_dir():
 def secret(expect, n, presses=1):
     """Examine what the player faces (presses times); the last look is secret n/9."""
     for _ in range(presses):
+        if window_on():
+            tap("b", 4)    # a note (e.g. a new word) still up: dismiss it first
         tap("a", 0)
         lines = dialogue()
         if DEBUG: print("   press", player(), player_dir(), lines[:1], window_on() and window_row(1))
@@ -568,7 +570,7 @@ tap("up", 2)
 secret("coin", 1)
 goto(14, 82, "yx")
 push("up")
-secret("moth", 2, presses=5)
+secret("moth", 2, presses=4)   # the first look gives the word "lamp"; reading its note counts one more look
 goto(70, 90, "yx")
 push("up")
 secret("Knock", 3, presses=3)
@@ -912,8 +914,8 @@ tap("b", 4)
 tap("start", 10)
 tap("right", 10)
 poem = [window_row(r) for r in range(18)]
-check("MY POEM" in poem[1] and poem[3] == "Coffee at the bar," and "clac! three holes," in poem
-      and "the big man stays," not in poem, "notebook page 2, the poem: lines earned so far: %r" % poem[1:17])
+check("MY WORDS" in poem[1] and "/24" in poem[1] and any("coffee" in r for r in poem) and any("clac" in r for r in poem)
+      and any("....." in r for r in poem), "notebook page 2, the words collected so far: %r" % poem[1:17])
 shot("45_poem")
 tap("right", 10)
 check("EXTRAS" in window_row(1) and window_row(3).startswith("OK") and window_row(6).startswith("--"),
@@ -1077,14 +1079,14 @@ check(window_on() and "Day breaks" in window_row(2) and "poem" in window_row(4),
 shot("13_daybreak")
 tap("a", 30)
 poem = [window_row(r) for r in range(18)]
-check(window_on() and poem[1] == "LES HALLES, DAWN" and poem[3] == "Coffee at the bar,"
-      and "clac! three holes," in poem and "the big man stays," in poem and "the day begins." in poem
-      and "EPISODE 1" in poem[17], "ending: the poem, finished on the terrace: %r" % poem[1:18])
+check(window_on() and poem[1] == "LES HALLES, DAWN" and poem[3] == "a lamp hums gold,"
+      and "coffee at the bar," in poem and "clac! three holes," in poem and "the big man stays," in poem
+      and "the day begins." in poem and "EPISODE 1" in poem[17], "ending: the poem the words made: %r" % poem[1:18])
 shot("46_poem_final")
 tap("a", 30)
 check(window_on() and window_row(2) == "THE END" and "6/6" in window_row(4) and "3/3" in window_row(5) and "9/9" in window_row(13),
       "end screen: %r %r %r" % (window_row(2), window_row(4), window_row(5)))
-check(window_row(15).startswith("Rank:") and window_row(15)[5:].strip() in ("Night owl", "True fort"),
+check(window_row(15).startswith("Rank:") and window_row(15)[5:].strip() in ("Night owl", "True fort", "Paris legend"),
       "end screen rank (one of three curiosities): %r" % window_row(15))
 check(flags() & FLAG_SOLVED, "mystery solved (FLAG_SOLVED)")
 shot("14_end")

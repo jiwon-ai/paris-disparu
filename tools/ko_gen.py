@@ -304,7 +304,7 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
          "#define KO_UI_COUNT %d" % len(ui),
          "#define KO_BLOB_BANK %d" % KO_BLOB_BANK,
          "extern const uint16_t ko_glyph_end[];      /* per blob bank: first glyph past it */",
-         "extern const uint8_t * const ko_glyph_ptr[];",
+         "extern const uint8_t * const ko_glyph_base[];   /* per blob bank: its first glyph */",
          "extern const uint16_t ko_page_end[];       /* per blob bank: first page past it */",
          "extern const uint8_t * const ko_page_ptr[];",
          "extern const uint16_t ko_first_page[];     /* per DLG_* id */",
@@ -328,8 +328,15 @@ def build(entries, en_choices, ui, ui_offsets, encode_char, fail):
         assert banks == sorted(banks), "ko_gen: items out of bank order"
         return ", ".join(str(sum(1 for x in banks if x <= b)) for b in range(len(blobs)))
     C.append("const uint16_t ko_glyph_end[] = { %s };" % ends(glyph_pos))
-    C.append("const uint8_t * const ko_glyph_ptr[] = {\n%s\n};" % "\n".join(
-        "    ko_blob_%d + %d," % (KO_BLOB_BANK + b, o) for b, o in glyph_pos))
+    # Glyphs are fixed-size records at the start of their banks, so a glyph's
+    # address is computed (ko.c glyph_at) instead of stored: saves 2 bytes a
+    # glyph in the full bank 6.
+    _start = {}
+    for i, (b, o) in enumerate(glyph_pos):
+        _start.setdefault(b, i)
+        assert o == (i - _start[b]) * GLYPH_SIZE, "ko_gen: glyphs not packed"
+    C.append("const uint8_t * const ko_glyph_base[] = { %s };" % ", ".join(
+        "ko_blob_%d" % (KO_BLOB_BANK + b) for b in range(len(blobs))))
     C.append("const uint16_t ko_page_end[] = { %s };" % ends(page_pos))
     C.append("const uint8_t * const ko_page_ptr[] = {\n%s\n};" % "\n".join(
         "    ko_blob_%d + %d," % (KO_BLOB_BANK + b, o) for b, o in page_pos))

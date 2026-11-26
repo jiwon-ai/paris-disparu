@@ -469,6 +469,9 @@ def read_text(max_pages=12):
     for _ in range(max_pages):
         if not window_on():
             break
+        if window_row(1).startswith("A new word!"):   # the note after a talk: dismiss
+            tap("b", 10)
+            break
         pages.append(" ".join(r for r in (window_row(1), window_row(2), window_row(3)) if r))
         tap("a", 70)
     return pages

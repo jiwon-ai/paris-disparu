@@ -115,6 +115,12 @@ tap("b", 10)
 tap("start", 60)
 check(any(t < 128 for t in win_tiles(1)), "Korean notebook title")
 shot("ko_notebook")
+tap("right", 60)
+shot("ko_words")
+tap("right", 60)
+tap("right", 60)
+tap("right", 60)
+tap("right", 60)   # round to page 1 again
 tap("b", 30)                       # close the notebook
 # Dede in rue Baltard: a multi-page dialogue ending on a Korean choice.
 walk("x", 88)

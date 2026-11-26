@@ -200,7 +200,7 @@ print("4. curiosities: a saved game carrying one, shown to the one who knows")
 
 
 def crafted(room, x, y, d, curio):
-    b = list(b"PDS4") + [room, x & 255, x >> 8, y & 255, y >> 8, d, 1, 0] + [0] * 13 + [curio, 0]
+    b = list(b"PDS4") + [room, x & 255, x >> 8, y & 255, y >> 8, d, 1, 0] + [0] * 13 + [curio, 0, 0, 0, 0]   # coin, then the 3 bytes of words found
     return bytes(b + [(0xA5 + sum(b)) & 255]) + bytes(8192 - len(b) - 1)
 
 

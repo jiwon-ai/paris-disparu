@@ -8,6 +8,7 @@
 #include "items.h"
 #include "minigame.h"
 #include "world.h"
+#include "actor.h"
 
 uint16_t game_flags;
 uint8_t clue_flags;
@@ -21,6 +22,8 @@ uint8_t new_secret;
 uint8_t curio_flags;
 uint8_t new_curio;
 uint8_t coin_flags;               /* bit i: coin i picked up */
+uint8_t frag_flags[3];            /* bit i: word i of the poem found (frag_dlg) */
+uint8_t new_frag;                 /* word just found + 1: shown after the dialogue */
 static uint8_t last_look, look_count;
 uint16_t cameo_met;                /* bit k: cameo NPC_ACTOR + k already met */   /* the same thing examined n times in a row */
 
@@ -46,6 +49,7 @@ void event_pack(uint8_t *b) BANKED {
     b[9] = carrying;  b[10] = crates_taken;  b[11] = crates_delivered;  b[12] = punched;
     b[13] = curio_flags;
     b[14] = coin_flags;
+    b[15] = frag_flags[0];  b[16] = frag_flags[1];  b[17] = frag_flags[2];
 }
 
 void event_unpack(const uint8_t *b) BANKED {
@@ -56,6 +60,8 @@ void event_unpack(const uint8_t *b) BANKED {
     carrying = b[9];  crates_taken = b[10];  crates_delivered = b[11];  punched = b[12];
     curio_flags = b[13];
     coin_flags = b[14];
+    frag_flags[0] = b[15];  frag_flags[1] = b[16];  frag_flags[2] = b[17];
+    new_frag = 0;
     new_clue = new_extra = new_quest = new_secret = new_curio = 0;
     last_look = look_count = 0;
 }
@@ -78,6 +84,48 @@ uint8_t coin_here(void) BANKED {
 
 uint8_t coin_x(uint8_t i) BANKED { return coin_spot[i][1]; }
 uint8_t coin_y(uint8_t i) BANKED { return coin_spot[i][2]; }
+
+/* The poet's words: the dialogue that gives each one (8 stanzas of 3,
+   notebook.c poem_print). Talking to people and looking at things. */
+static const uint8_t frag_dlg[FRAG_COUNT] = {
+    DLG_LAMP, DLG_EUSTACHE, DLG_GASLAMP,                 /* the night's lights */
+    DLG_CRATES, DLG_MERCHANT_HELLO, DLG_LORRY,           /* the market */
+    DLG_PORTER_HELLO, DLG_MEAT_HELLO, DLG_POLICE,        /* its people */
+    DLG_SERVE_WIN, DLG_CAFE_WINDOW, DLG_PINBALL,         /* the café */
+    DLG_METRO_TILES, DLG_PUNCH_DONE, DLG_SINGER_HELLO,   /* sounds */
+    DLG_RIVER, DLG_WATCH_WATER, DLG_PAINTER_HELLO,       /* the river */
+    DLG_DOG, DLG_SMOKER, DLG_POODLE,                     /* small lives */
+    DLG_ROUX_SOUP, DLG_SWEEPER, DLG_FERNAND_HELLO,       /* towards morning */
+};
+
+uint8_t frag_has(uint8_t i) BANKED { return frag_flags[i >> 3] & (1 << (i & 7)); }
+
+uint8_t frag_total(void) BANKED {
+    uint8_t i, n = 0;
+    for (i = 0; i < FRAG_COUNT; i++) if (frag_has(i)) n++;
+    return n;
+}
+
+void frag_seen(uint8_t d) BANKED {
+    uint8_t i;
+    for (i = 0; i < FRAG_COUNT; i++)
+        if (frag_dlg[i] == d && !frag_has(i)) {
+            frag_flags[i >> 3] |= 1 << (i & 7);
+            new_frag = i + 1;
+            return;
+        }
+}
+
+/* The coin's glint (OAM 30-31): drawn when on, else hidden. */
+void coin_glint(uint8_t on) BANKED {
+    uint8_t c = on ? coin_here() : 0xFF;
+    if (c != 0xFF)
+        sprite16(30, coin_spot[c][1] * 8 - 4, coin_spot[c][2] * 8 - 4, SPR1_SPARKLE, 7 | S_BANK1);
+    else {
+        move_sprite(30, 0, 0);
+        move_sprite(31, 0, 0);
+    }
+}
 
 /* Feet at pixel (px, py): picks the coin up; returns coins found, or 0. */
 uint8_t coin_take(int16_t px, int16_t py) BANKED {

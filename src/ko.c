@@ -29,6 +29,15 @@ static uint8_t ko_bank(const uint16_t *end, uint16_t i) {
     while (i >= *end++) b++;
     return b;
 }
+/* A glyph's bank (g_bank) and address: fixed-size records from the start of
+   each blob bank (ko_gen.py). */
+static uint8_t g_bank;
+static const uint8_t *glyph_at(uint16_t gi) {
+    uint8_t k = 0;
+    while (gi >= ko_glyph_end[k]) k++;
+    g_bank = KO_BLOB_BANK + k;
+    return ko_glyph_base[k] + (gi - (k ? ko_glyph_end[k - 1] : 0)) * KO_GLYPH_SIZE;
+}
 static uint8_t k_left;          /* pages after the current one */
 static uint8_t k_id;            /* dialogue id, for its choice */
 static uint8_t k_cols[2];       /* tile columns used by each line */
@@ -54,7 +63,7 @@ static void render_line(uint8_t L, const uint8_t *g, uint8_t n) {
     while (n--) {
         gi = ((uint16_t)g[0] << 8) | g[1];
         g += 2;
-        far_read(ko_bank(ko_glyph_end, gi), ko_glyph_ptr[gi], gbuf, KO_GLYPH_SIZE);
+        { const uint8_t *gp = glyph_at(gi); far_read(g_bank, gp, gbuf, KO_GLYPH_SIZE); }
         b = x >> 3;
         s = x & 7;
         if (b < TEXT_COLS) {
@@ -366,7 +375,7 @@ static uint8_t line_cost(uint8_t y) {
         while (n--) {
             gi = ((uint16_t)g[0] << 8) | g[1];
             g += 2;
-            far_read(ko_bank(ko_glyph_end, gi), ko_glyph_ptr[gi], gbuf, 1);
+            { const uint8_t *gp = glyph_at(gi); far_read(g_bank, gp, gbuf, 1); }
             x += gbuf[0];
         }
         x = (x + 7) >> 3;
