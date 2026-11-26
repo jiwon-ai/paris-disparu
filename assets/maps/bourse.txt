@@ -21,3 +21,13 @@ ________________IggI
 ,,,,,,,,,,,,,,,,IggI
 ,,,,,,,,,,,,,,,,IggI
 ................IggI
+; signs: x y text. Vertical enseigne on the corner pier (x11), one letter per row.
+!sign 11 0 B
+!sign 11 1 R
+!sign 11 2 A
+!sign 11 3 S
+!sign 11 4 S
+!sign 11 5 E
+!sign 11 6 R
+!sign 11 7 I
+!sign 11 8 E

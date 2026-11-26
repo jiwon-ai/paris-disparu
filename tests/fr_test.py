@@ -39,7 +39,7 @@ bark = page_text()
 check(mem[0xFE00 + 35 * 4] != 0, "Dédé calls out (speech bubble)")
 tap("a", 70)
 first = page_text()
-check(first.startswith("DÉDÉ : Eh, toi !"), "French dialogue: %r" % first)
+check(first.startswith("DÉDÉ : T'as vu"), "French dialogue: %r" % first)
 for _ in range(12):
     if "▶" in window_row(2):
         break

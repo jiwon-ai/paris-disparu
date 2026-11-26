@@ -712,7 +712,6 @@ extern const uint8_t fr_ui_text[];
 extern const uint8_t * const fr_page_base[];
 extern const uint8_t fr_pages_0[];
 extern const uint8_t fr_pages_1[];
-extern const uint8_t fr_pages_2[];
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];
@@ -723,6 +722,5 @@ extern const palette_color_t title_pal[];
 #define DLG_HI_PER_BANK 455
 extern const uint8_t * const dlg_hi_base[];   /* bank ASSET_BANK */
 extern const uint8_t dlg_pages_0[];
-extern const uint8_t dlg_pages_1[];
 
 #endif
