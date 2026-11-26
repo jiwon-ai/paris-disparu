@@ -23,6 +23,7 @@ typedef struct {
 } door_t;
 
 #define S_BANK1 0x08     /* OAM attribute: tile data from VRAM bank 1 */
+#define S_SPLIT 0x10     /* (DMG palette bit, ignored on CGB) right 8 px of a 16x16 NPC use palette 2 */
 
 /* A non-player character placed in a room, in pixel coordinates. */
 typedef struct {

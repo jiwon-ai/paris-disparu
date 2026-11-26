@@ -48,11 +48,11 @@ HOMME AU CARNET : Toujours pas de chapeau jaune. Appelle mes carnets, ARC 4127. 
 
 # ---------------------------------------------------------------- the porter
 [porter_hello]
-DÉDÉ : Toi ! Tu as vu Fernand ? Trente ans qu'il n'a pas raté une nuit.
+DÉDÉ : Eh, toi ! T'as pas vu Fernand ? Grand comme une armoire, chapeau jaune. Trente ans, jamais raté une nuit.
 
-Sa charrette est encore là, pleine. Et moi, j'ai le dos en compote. Je ne peux rien soulever.
+Sa charrette est encore là, pleine. Et moi, mon dos a lâché. Crac, à minuit.
 
-Germaine attend ses caisses. Chacune va à son étal : lis les panneaux. Tu m'aides ?
+Germaine attend ses caisses. Chacune à son étal : lis les panneaux. Tu me donnes un coup de main ?
 ? Oui | Non
 
 [porter_ask]
@@ -60,23 +60,23 @@ DÉDÉ : Alors ? Tu m'aides avec les caisses de Fernand ?
 ? Oui | Non
 
 [porter_yes]
-DÉDÉ : Bien. Prends-les dans la charrette, une à la fois. Regarde ce qu'il y a dedans.
+DÉDÉ : Brave petit. Une caisse à la fois. Regarde ce qu'il y a dedans.
 
-Et soulève avec les jambes, comme un fort. Un dos, ça doit durer toute une vie.
+Et soulève avec les jambes, comme un fort. Un dos, c'est pour la vie. Demande au mien.
 
 [porter_no]
-DÉDÉ : Comme tu veux. Mais les caisses ne vont pas se porter toutes seules.
+DÉDÉ : Comme tu veux. Mais les caisses marcheront pas toutes seules. Je leur ai demandé.
 
 [porter_working]
 DÉDÉ : La charrette est là, les étals sont dedans. Allez, allez !
 
 [porter_done]
-DÉDÉ : Trois caisses, trois étals. Fernand serait fier.
+DÉDÉ : Trois caisses, trois étals. Pas mal, pour un maigrichon.
 
-Germaine veut te parler, à l'intérieur. Elle le connaît mieux que personne.
+Va voir Germaine, dedans. Si quelqu'un sait ce qui travaille Fernand, c'est elle. Elle sait tout. Même ce que t'as mangé hier soir.
 
 [porter_after]
-DÉDÉ : Retrouve Fernand, d'accord ? Ce n'est pas pareil sans sa grosse voix.
+DÉDÉ : Retrouve Fernand, hein ? C'est trop calme sans sa grande gueule.
 
 # ---------------------------------------------------------------- the cart and stalls
 [cart_look]
@@ -120,31 +120,31 @@ GERMAINE : Mes choux ! Pose-les là, doucement. Merci, mon petit.
 
 # ---------------------------------------------------------------- the merchant
 [merchant_hello]
-GERMAINE : Qu'est-ce que tu cherches à cette heure-ci ? Les acheteurs vont arriver.
+GERMAINE : Attention à mes choux, mon poulet ! Les acheteurs vont arriver, tout doit briller.
 
-Tout doit être beau d'abord. Un chou triste, personne n'en veut.
+Un chou triste, personne en veut. Les gens, pareil. Souris.
 
-Le prix ? Ça dépend de l'heure, de la pluie et de la tête du client.
+Le prix ? Ça dépend de l'heure, de la pluie et de la tête du client. Toi, je te ferais le double.
 
 [merchant_rungis]
-GERMAINE : Tu as porté pour moi ? Merci, mon petit. D'habitude, c'est Fernand qui le fait.
+GERMAINE : Tu as porté pour moi ? Merci, mon poulet. D'habitude, c'est Fernand.
 
-Toute la semaine, il n'a parlé que d'une chose. Rungis. Le nouveau marché qu'ils construisent là-bas.
+Toute la semaine, il a parlé que de Rungis. Le nouveau marché qu'ils construisent là-bas.
 
-« Du béton et des camions, il disait. Pas de verre, pas de fer. Pas de place pour les vieux forts. »
+« Du béton et des camions, qu'il dit. Pas de verre, pas de fer. Pas de place pour un vieux fort. »
 
-Quand ils nous enverront là-bas, ils voudront d'un homme de soixante ans ? Il a peur, mon petit.
+Là-bas, ils voudront d'un homme de soixante ans ? Il a peur, mon poulet. Tout costaud qu'il est.
 
 [merchant_again]
-GERMAINE : Pousse-toi un peu, tu caches mes choux.
+GERMAINE : Pousse-toi, mon poulet, tu caches mes choux. On achète pas ce qu'on voit pas.
 
 # ---------------------------------------------------------------- the cafe
 [cafe_hello]
-SIMONE : Ce chat ! Toujours le premier arrivé. Toi aussi, tu cherches Fernand ?
+SIMONE : Ce chat ! Toujours le premier. Et toi ? Tu cherches Fernand aussi ? Dédé demande à tout le monde.
 
-Il est entré à minuit, il a pendu son coltin à ce crochet et il est reparti tête nue.
+Il est entré à minuit, il a accroché son coltin là, et il est reparti tête nue. Pas un mot.
 
-Mais regarde ce monde ! L'équipe de nuit a faim. Donne-moi un coup de main, et le coltin est à toi.
+Regarde-moi ce monde ! Des forts, des noctambules, des Marie-Chantal en fourrure. Donne-moi un coup de main et le coltin est à toi.
 ? Oui | Non
 
 [cafe_jeton]
@@ -170,7 +170,7 @@ SIMONE : Des nouvelles de Fernand ? Son café a refroidi.
 La deuxième chaîne est en couleur depuis octobre. En couleur ! Comme si j'avais le temps de regarder la télé.
 
 [worker_hello]
-UN FORT : Chut. Je dors debout. C'est un métier aussi.
+UN FORT : Chut. Je dors debout. Vingt ans pour apprendre.
 
 [worker_fernand]
 UN FORT : Fernand ? Il était sur le banc avec moi à onze heures. Il tournait et retournait sa plaque dans ses mains.
@@ -390,9 +390,9 @@ SIMONE : Il faut un jeton !
 UN FORT : Zzz… zzz…
 
 [fernand_hello]
-FERNAND : Laisse-moi, l'artiste. Je regarde l'eau.
+FERNAND : Laisse-moi, petit. Je regarde l'eau.
 
-Il frotte son crâne nu. FERNAND : Il fait froid, sans mon coltin. Je l'ai laissé au café de Simone.
+Il se frotte le crâne nu. FERNAND : Froid, sans mon coltin. Je l'ai laissé chez Simone.
 
 [fernand_why]
 FERNAND : Mon coltin… Simone l'a gardé, hein ? Ça ne fait rien.
@@ -405,7 +405,7 @@ FERNAND : Le bleu de Marcel… Alors tu l'as lu.
 Ma plaque en laiton ? Partie. Je l'ai vendue à quelqu'un sur le quai, du côté des livres. Va demander.
 
 [fernand_talk]
-FERNAND : Laisse-moi, l'artiste… Qu'est-ce que c'est ? Mon coltin ?
+FERNAND : Laisse-moi, petit… Qu'est-ce que c'est ? Mon coltin ?
 
 Tu lui tends son chapeau, sa plaque en laiton, et tu lui parles du petit bleu de Marcel.
 
@@ -415,7 +415,7 @@ Et maintenant, ils emmènent le marché à Rungis. Du béton, des camions. Marce
 
 Qui voudra d'un vieux fort là-bas ? Autant arrêter maintenant, avant qu'on m'arrête.
 
-Il tourne le coltin dans ses grosses mains. FERNAND : Tu ferais quoi, toi, l'artiste ?
+Il tourne le coltin dans ses grosses mains. FERNAND : Tu ferais quoi, toi, petit ?
 ? Rester | Partir
 
 [end_stay]
@@ -467,9 +467,9 @@ FERNAND : …
 LE PEINTRE : Chut… je peins.
 
 [puncher_hello]
-LE POINÇONNEUR : Ton ticket, l'artiste ! Personne ne descend aux quais sans un trou dans son ticket.
+LE POINÇONNEUR : Ticket ! Pas de trou, pas de train. Personne passe sans son petit trou.
 
-Pas de ticket ? Le guichet est juste là. Frappe, l'employé ne fait que somnoler.
+Pas de ticket ? Le guichet est là. Frappe fort, l'employé dort comme une souche.
 
 [metro_window]
 Tu tapes à la vitre. Un employé endormi glisse dessous un petit ticket marron de deuxième classe.
@@ -496,22 +496,24 @@ LE POINÇONNEUR : Pas mal ! Un autre ?
 [punch_miss]
 Clac ! Tu as poinçonné le vide. Le voyageur soupire.
 
-LE POINÇONNEUR : Encore, l'artiste. Le poignet, pas l'épaule.
+LE POINÇONNEUR : Le poignet, petit, pas l'épaule. Tu coupes pas du bois.
 ? Oui | Non
 
 [punch_done]
-Clac ! Trois trous nets. LE POINÇONNEUR : Tu as le coup de poignet, l'artiste !
+Clac ! Trois trous bien nets. LE POINÇONNEUR : Ça, c'est un poignet !
 
-On dit qu'un jour, des machines contrôleront les tickets toutes seules. Et moi, je ferai quoi ?
+Il paraît qu'un jour des machines vérifieront les tickets toutes seules. Et moi ? Je poinçonnerai mon journal.
 
-Tiens, à propos de ton fort. Un grand est descendu cette nuit. Sans chapeau, sans ticket. Il ne voulait pas de train.
+Tu lui parles d'un grand type au chapeau jaune.
 
-Il est resté planté là, puis il est remonté, direction la Seine.
+LE POINÇONNEUR : Un costaud ? Y en a un qui est descendu cette nuit. Pas de chapeau, pas de ticket. Il voulait pas de train.
+
+Il est resté planté à regarder les rails. Puis il est remonté, vers la Seine.
 
 [puncher_after]
-LE POINÇONNEUR : Un chanteur a fait une chanson sur un gars comme moi, là-bas, à la porte des Lilas.
+LE POINÇONNEUR : Un chanteur a fait une chanson sur un gars comme moi, à la porte des Lilas.
 
-Maintenant, tout le monde me la fredonne. Clac ! Ton fort est parti vers la Seine, l'artiste.
+Depuis, tout le monde me la fredonne. Tous les jours. Clac. Ton costaud, il est parti vers la Seine.
 
 [bark_puncher]
 LE POINÇONNEUR : Vos tickets !
@@ -583,13 +585,13 @@ Un fort disparu, tu dis ? Reviens si tu bloques. Je remarque les choses. C'est m
 LE CHANTEUR : Un fort sans son chapeau, c'est une chanson sans paroles. Quelqu'un a gardé son chapeau. Essaie le café.
 
 [singer_bleu]
-LE CHANTEUR : Quelqu'un a écrit à ton fort. À Paris, les petites lettres bleues filent dans des tubes sous les rues. Demande qui l'a apportée.
+LE CHANTEUR : Un fort qui s'en va comme ça ? Quelqu'un lui a écrit. Un petit bleu, je parie. Demande qui l'a apporté.
 
 [singer_plate]
 LE CHANTEUR : Un fort ne vend sa plaque que quand il en a assez. Demande aux livres, le long du quai.
 
 [singer_ready]
-LE CHANTEUR : Tu sais tout, maintenant. Ton fort est sur le pont, l'artiste. Vas-y, avant le jour.
+LE CHANTEUR : Tu sais tout, maintenant. Ton grand bonhomme est sur le pont, petit. Vas-y, avant le jour.
 
 [bark_singer]
 LE CHANTEUR : La la… Non. Pas ça.
@@ -699,12 +701,16 @@ LA CHANTEUSE : Je viens de Saint-Germain. Là-bas, on parle de livres toute la n
 Un jeune auteur m'a écrit une chanson, autrefois. Il traîne au bord de la Seine, paraît-il.
 
 [chanteuse_again]
+Tu lui parles de Fernand.
+
 LA CHANTEUSE : Un homme qui arrête de travailler arrête de chanter. Rapporte à ton fort ce qu'il a laissé. Son chapeau d'abord.
 
 [philosopher_hello]
 LE PHILOSOPHE : D'habitude, j'écris dans un café de Saint-Germain, avec ma compagne. Cette nuit, je voulais voir des gens qui font des choses de leurs mains.
 
 [philosopher_again]
+Tu lui parles de Fernand.
+
 LE PHILOSOPHE : Ton fort est libre de partir. Libre de rester, aussi. Apporte-lui des raisons, pas des ordres.
 
 Il y a trois ans, on m'a donné le plus grand prix qui existe. J'ai essayé de le refuser. Un écrivain ne doit pas devenir une institution.
@@ -760,13 +766,15 @@ Mon ancien prof de géométrie écrit des romans. Il est par ici, quelque part. 
 LE JEUNE HOMME : Les gens ne disparaissent jamais tout à fait. Ils laissent des adresses, des numéros, des mots. Quelqu'un se souvient toujours.
 
 [fort2_hello]
-UN FORT : Cinq minutes de pause, et je retourne aux charrettes. Attention à tes pieds, l'artiste !
+UN FORT : Cinq minutes assis. Gare à tes pieds, petit. Les chariots ont pas de freins.
 
 [fort2_again]
-UN FORT : Fernand ? Le dos le plus solide du pavillon. Il ne laisserait jamais une charrette pleine. Quelque chose ne va pas.
+Tu lui parles de Fernand.
+
+UN FORT : Fernand ? Le meilleur dos du pavillon. Laisser une charrette pleine ? Lui ? Y a quelque chose qui va pas.
 
 [cook_hello]
-UN CUISINIER : Je fais la cuisine d'un bistrot du coin. J'achète ici avant l'aube, je sers à midi.
+UN CUISINIER : J'achète ici avant l'aube, je sers à midi. Mes clients croient que les carottes poussent dans ma cuisine.
 
 [cook_again]
 UN CUISINIER : Les choux de Germaine sont les meilleurs du pavillon. Ne le dis pas aux autres.
@@ -788,7 +796,7 @@ Parmi les pelures d'oignon, un petit rouleau strié, noir de crasse. Il vient d'
 Sur la chaise, un billet déchiré : un masque d'or, et les mots PETIT PALAIS. À qui est ce visage ?
 
 [curio_0_solve]
-LE POINÇONNEUR : Vert ? C'est la première classe, l'artiste. Le marron, c'est la deuxième, comme le tien.
+LE POINÇONNEUR : Vert ? C'est la première classe, petit. Le marron, c'est la deuxième, comme le tien.
 
 La première coûte plus cher et a ses propres voitures, celles avec les marques jaunes. Je le garde. Clac !
 
@@ -864,7 +872,9 @@ LE VEILLEUR DE NUIT : Chut ! Les clients dorment. Et non, c'est complet. Les gar
 LE VEILLEUR DE NUIT : Vous cherchez quelqu'un à cette heure ? Demandez dans les cafés. Aux Halles, tout le monde passe par un café.
 
 [souper_hello]
-UN FORT, devant sa soupe : Premier truc chaud depuis minuit. Trente ans de ça. Quand le marché partira à Rungis, où on mangera à quatre heures du matin ?
+UN FORT, le nez dans sa soupe : Premier truc chaud depuis minuit. Me regarde pas comme ça, y en a plus.
+
+Quand le marché partira à Rungis, on mangera où, à quatre heures du matin ? Dans le béton ?
 
 [souper_again]
 UN FORT : Fernand ? Il s'assoit toujours là, près du miroir. Pas ce soir. Drôle, ça.
@@ -880,12 +890,22 @@ Ce printemps, des écrivains m'ont pris dans leur club. On écrit avec des règl
 L'ARCHIVISTE : Tu as perdu quelqu'un ? Fais une liste. Tout ce qu'il a laissé, un par un. Une liste, ça aide toujours.
 
 [meat_hello]
-UN PORTEUR DE VIANDE : Attention ! J'ai un demi-bœuf sur l'épaule, et il n'attend pas les poètes.
+UN PORTEUR DE VIANDE : Gare ! Gare ! Attention au dos, petit !
 
-Du camion au pavillon, toute la nuit. Ma blouse était propre à minuit.
+Casquette enfoncée jusqu'aux oreilles, il porte le quartier de bœuf sur l'épaule, calé avec la tête.
+
+UN PORTEUR DE VIANDE : Plus lourd que ma belle-mère. Et ça râle moins.
+
+Du camion au pavillon, toute la nuit. J'ai l'endosse en compote. Ma blouse était blanche à minuit. Regarde-la.
 
 [meat_again]
-UN PORTEUR DE VIANDE : Fernand ? Le grand, au chapeau jaune ? Il est descendu vers la Seine. Sans dire bonsoir.
+Tu lui parles d'un grand type au chapeau jaune.
+
+UN PORTEUR DE VIANDE : Fernand ? Il est descendu par la rue du Pont-Neuf, vers la flotte. Même pas un « salut ». Ça lui ressemble pas.
+
+Allez, lercimuche !
+
+« Lercimuche » ? Tu le notes. On dirait un bout de poème.
 
 [waiter_jeton]
 LE GARÇON : Un jeton pour le téléphone ? Vos vingt centimes sur le zinc... voilà. Votre jeton.
@@ -912,9 +932,11 @@ UN PETIT CHIEN : Ouaf !
 Il renifle chaque réverbère, très sérieux. Attention où tu marches : il n'est pas le seul chien passé par ici.
 
 [police]
-UN AGENT : Tu traînes tard, l'artiste ? Évite les charrettes du marché, et gare aux coudes des forts.
+UN AGENT : On traîne, jeune homme ? On écrit des lettres d'amour sous les réverbères ?
 
-Il s'appuie sur son vélo, la cape sur les épaules, comme une grande hirondelle bleue.
+Méfie-toi des charrettes. Et des coudes des forts.
+
+Il s'appuie sur son vélo, la pèlerine sur les épaules, comme une grande hirondelle bleue.
 
 [sweeper]
 UN BALAYEUR : Attention aux pieds ! L'eau arrive.

@@ -734,7 +734,7 @@ push("up")
 talk("You set the crate")
 to_entrance()
 to_dede()
-talk("proud")
+talk("skinny")
 check(flags() & FLAG_TASK_DONE, "porter's task done (FLAG_TASK_DONE)")
 to_market()
 goto(72, 38, "xy")
@@ -1046,7 +1046,7 @@ to_fernand()
 check(bubble(), "Fernand's silent call-out (bubble)")
 # Before all three clues he must say what is missing (and the notebook too).
 full = clues()
-for have, says, goal in ((0x01, "Simone's café", "Help Simone"),
+for have, says, goal in ((0x01, "Simone's", "Help Simone"),
                          (0x07, "courier came", "Tell Simone"),
                          (0x0F, "books", "Mme Roux wants")):
     mem[sym["_clue_flags"]] = have

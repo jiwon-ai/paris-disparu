@@ -405,3 +405,27 @@ Jiwon asked: "were there dogs on the street, did horses patrol?", then for peopl
 | In the game | Claim | Status | Source |
 |---|---|---|---|
 | Intro: "Tonight only vague ideas. 3 in the morning. Go, face them with clear images at Les Halles." (FR "rien que des idées vagues… Il te faut des images claires"; KO "흐릿한 생각뿐… 선명한 이미지와 마주하러") | Godard's *La Chinoise*, released 30 August 1967 (before our 21 November), has on a wall the line "Il faut confronter les idées vagues avec des images claires" (Jiwon's frame); a Portuguese article describes it as written on the walls of one room | **Read** (frame from Jiwon; release date from Wikipedia). The game paraphrases the idea in the poet's voice and does not copy the film's look, characters or the full line | [Wikipedia](https://en.wikipedia.org/wiki/La_Chinoise); [À pala de Walsh](https://apaladewalsh.com/2019/01/ideias-vagas-e-imagens-claras/) |
+
+## Speech, nicknames and the meat porter (added 2026-11-26)
+
+Jiwon: "people's speech still isn't fun; how would the man carrying beef know the
+hero is a poet? Study how they talked; and what he carries doesn't look like beef."
+
+Rule adopted: an NPC only knows what he could know. Strangers no longer call the
+hero "poet" or "artist"; they say "kid" / "petit" / "학생", Germaine says "chick" /
+"mon poulet" / "총각". When an NPC answers about Fernand, a narrator line first
+says the hero asks ("You ask about a big man in a yellow hat."). The policeman
+guesses from the notebook ("Writing love letters by lamplight?").
+
+| In the game | Claim | Status | Source |
+|---|---|---|---|
+| Meat porter: cap pulled down over the ears, a side of beef on the shoulder steadied with the head, white coat that is no longer white | "the men in white coats blotched with blood, caps pulled down over their ears so they can balance the sides of beef on their shoulders with their heads" (dateline 2 June 1969) | **Read** (1969, eyewitness). Applied to 1967: **reconstruction** | [Andrew E. Barnes, "Les Halles", Alicia Patterson Foundation, 1969](https://aliciapatterson.org/andrew-e-barnes/les-halles/) |
+| Sprite: white cap and coat (palette 3), red beef with cream fat and the shank bone up (palette 2, right half, `S_SPLIT`) | Drawing choice from the quote above; bone/fat pattern is generic | Drawing, no likeness | — |
+| "Lercimuche!" (= merci) said by the meat porter | Louchébem, the butchers' slang of the Halles: first consonant moved to the end, L in front, suffix (-em, -uche...). "Merci = lercimuche"; still used today by some apprentices and older butchers | **Read**. One page says it was spoken "until the 1950s" at Les Halles, another that older butchers still use it: a 1967 meat porter using one word is **plausible, not proven** | [Paris ZigZag, louchébem](https://www.pariszigzag.fr/insolite/histoire-insolite-paris/le-louchebem-ou-le-langage-secret-des-bouchers-des-halles-au-xixe-siecle); [Laura Madeleine, 2020](https://lauramadeleine.com/2020/03/10/the-secret-butcher-slang-of-paris/) |
+| FR only: "J'ai l'endosse en compote" (endosse = shoulders) | Parisian slang word "endosse", used by Arletty in *Fric-Frac* (1939) | **Read** (word attested in Paris before 1967) | [Paris.fr, "Guinguette, thune, charabia"](https://www.paris.fr/pages/guinguette-thune-charabia-ces-mots-sont-nes-a-paris-31356) |
+| FR: Simone's "des Marie-Chantal en fourrure" (EN "fur coats", KO "모피 코트 아가씨들") | "Marie-Chantal": Parisian bourgeois women of the 1950s and 1960s | **Read** | Paris.fr, same page |
+| Other wording (Dédé's back going "crac", Germaine's "for your face I'd charge double", the puncher's "I'll punch holes in my newspaper") | Original jokes in ordinary period French; no slang claimed | Fiction | — |
+
+Not found: recorded dialogue of forts or meat porters from the 1960s (the AFP
+2019 retrospective and Barnes 1969 quote no fort). So no line is presented as a
+real saying.

@@ -39,7 +39,7 @@ bark = page_text()
 check(mem[0xFE00 + 35 * 4] != 0, "Dédé calls out (speech bubble)")
 tap("a", 70)
 first = page_text()
-check(first.startswith("DÉDÉ : Toi !"), "French dialogue: %r" % first)
+check(first.startswith("DÉDÉ : Eh, toi !"), "French dialogue: %r" % first)
 for _ in range(12):
     if "▶" in window_row(2):
         break
@@ -47,7 +47,7 @@ for _ in range(12):
 check("Oui" in window_row(2) and "Non" in window_row(2), "French choice: %r" % window_row(2))
 shot("fr_05_choice")
 tap("a", 60)
-check(page_text().startswith("DÉDÉ : Bien."), "the answer is in French: %r" % page_text())
+check(page_text().startswith("DÉDÉ : Brave petit."), "the answer is in French: %r" % page_text())
 
 print("\n%d failure(s)" % len(failures))
 sys.exit(1 if failures else 0)

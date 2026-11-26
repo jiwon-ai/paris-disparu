@@ -38,7 +38,7 @@ static const npc_def_t entrance_npcs[] = {
     { 64, 40, SPR_PORTER_0, 1, NPC_PORTER },    /* Dede, beside the cart */
     { 32, 100, SPR_PHOTO_0, 2, NPC_PHOTO },     /* photographing the unloading */
     { 40, 16, SPR1_FILMMAKER, 4 | S_BANK1, NPC_FILMMAKER },     /* cameo */
-    { 100, 24, SPR1_MEATPORTER, 3 | S_BANK1, NPC_MEATPORTER },  /* white smock, half a beef */
+    { 100, 24, SPR1_MEATPORTER, 3 | S_BANK1 | S_SPLIT, NPC_MEATPORTER },  /* white coat; side of beef in palette 2 */
 };
 static const hotspot_t entrance_hotspots[] = {
     {  5, 6, 3, 1, DLG_CART_LOOK },   /* the cart: handled by events */

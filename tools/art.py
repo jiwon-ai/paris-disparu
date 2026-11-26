@@ -1115,24 +1115,26 @@ ARCHIVIST = [        # lots of wavy hair, sideburns, a beard but no moustache
     ".....##..##.....",
     "....###..###....",
 ]
-MEATPORTER = [       # meat porter: white cap, long white smock, half a beef on the
-    # shoulder (Jiwon's reference photo, undated). Ribs in outline colour.
-    "......####......",
-    ".##..#oooo#.....",
-    "#ss#.#ssss#.....",
-    "#sss#s#ss#s#....",
-    "#s#s#.#ssss#....",
-    "#sss#..#ss#.....",
-    "#s#s##oooooo#...",
-    "#sss#oooooooo#..",
-    "#s#s#oooooooo#..",
-    "#sss#oooooooo#..",
-    "#s#s#ooooooo#s..",
-    ".#ss#ooooooo#...",
-    "..##oooooooo#...",
-    "....#oooooooo#..",
-    ".....##....##...",
-    "....###....###..",
+MEATPORTER = [       # meat porter drawn with S_SPLIT: left half palette 3 (white cap and
+    # coat, skin), right half palette 2 (red meat, cream fat and bone). Cap pulled down
+    # over the ears, a side of beef on the shoulder steadied against his head, shank
+    # bone up (Barnes, June 1969; see HISTORICAL_RESEARCH "Meat porters").
+"............##..",
+"...........#ss#.",
+"...........#ss#.",
+"..........#sss#.",
+"...####...#oos#.",
+"..#oooo#.#ooos#.",
+".#oooooo#soosos#",
+".########ososoo#",
+"..#s#s#s#soosos#",
+"..#ssss##ososoo#",
+"...#ss##sosooos#",
+".##oooo#soosoos#",
+"#oooooo#ssoooss#",
+"#s#oooo#.#ssss#.",
+"#o#ooooo#.####..",
+"..##.##.........",
 ]
 DOG = [              # a little street dog (palette 4: grey coat, tan)
     "................",

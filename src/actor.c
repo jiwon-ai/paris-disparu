@@ -150,7 +150,7 @@ uint8_t player_interact(void) {
 static void draw16(uint8_t oam, int16_t x, int16_t y, uint8_t tile, uint8_t prop) {
     uint8_t sx = (uint8_t)(x + 8), sy = (uint8_t)(y + 16);
     set_sprite_prop(oam, prop);
-    set_sprite_prop(oam + 1, prop);
+    set_sprite_prop(oam + 1, (prop & S_SPLIT) ? (prop & 0xE8) | 2 : prop);
     if (prop & S_FLIPX) {
         set_sprite_tile(oam, tile + 2);
         set_sprite_tile(oam + 1, tile);

@@ -53,11 +53,11 @@ MAN WITH NOTEBOOK: Still no yellow hat. Call my notebooks, ARC 4127. Yesterday m
 
 # ---------------------------------------------------------------- the porter
 [porter_hello]
-DÉDÉ: You! Have you seen Fernand? Thirty years, he never missed a night.
+DÉDÉ: Hey, you! Seen Fernand? Big as a wardrobe, yellow hat. Thirty years, never missed a night.
 
-His cart's still here, full. And my back's done in. Can't lift a thing.
+His cart's still here, full. And my back's gone. Went "crac" at midnight.
 
-Germaine needs her crates. Each one goes to its stall: read the signs. Help me?
+Germaine's waiting for her crates. Each one to its stall: read the signs. Give us a hand?
 ? Yes | No
 
 [porter_ask]
@@ -65,23 +65,23 @@ DÉDÉ: So? Helping with Fernand's crates?
 ? Yes | No
 
 [porter_yes]
-DÉDÉ: Good. Take them from the cart, one at a time. Look at what's inside.
+DÉDÉ: Good lad. One crate at a time. Look what's inside.
 
-And lift with your legs, like a fort. A back has to last a lifetime.
+And lift with your legs, like a fort. A back's for life. Ask mine.
 
 [porter_no]
-DÉDÉ: Suit yourself. The crates won't carry themselves, though.
+DÉDÉ: Suit yourself. The crates won't walk, though. I asked them.
 
 [porter_working]
 DÉDÉ: Cart's here, stalls are inside. Go on, go on!
 
 [porter_done]
-DÉDÉ: Three crates, three stalls. Fernand would be proud.
+DÉDÉ: Three crates, three stalls. Not bad for a skinny one.
 
-Germaine wants a word with you, inside. She knows him better than anyone.
+Go and see Germaine, inside. If anyone knows what's eating Fernand, it's her. She knows everything. Even what you had for dinner.
 
 [porter_after]
-DÉDÉ: Find Fernand, will you? It isn't the same without his big voice.
+DÉDÉ: Find Fernand, eh? It's too quiet without his big mouth.
 
 # ---------------------------------------------------------------- the cart and stalls
 [cart_look]
@@ -125,31 +125,31 @@ GERMAINE: My cabbages! Put them down there, gently. Thank you, dear.
 
 # ---------------------------------------------------------------- the merchant
 [merchant_hello]
-GERMAINE: What are you after at this hour? The buyers will be here soon.
+GERMAINE: Mind my cabbages, chick! The buyers will be here soon and everything has to shine.
 
-Everything has to look good first. A sad cabbage, nobody wants it.
+A sad cabbage, nobody wants it. Same with people. Smile.
 
-The price? Depends on the hour, the rain and the customer's face.
+The price? Depends on the hour, the rain and the customer's face. For yours, I'd charge double.
 
 [merchant_rungis]
-GERMAINE: You carried for me? Thank you, dear. Fernand always does it.
+GERMAINE: You carried for me? Thank you, chick. That's Fernand's job, usually.
 
-All week he talked about one thing. Rungis. The new market they're building out there.
+All week he's talked of nothing but Rungis. The new market they're building out there.
 
-"Concrete and lorries," he said. "No glass, no iron. No place for old forts."
+"Concrete and lorries," he says. "No glass, no iron. No place for an old fort."
 
-When they move us out there, will they want a man of sixty? He's afraid, dear.
+Will they want a man of sixty out there? He's scared, chick. Big as he is.
 
 [merchant_again]
-GERMAINE: Move over a bit, you're hiding my cabbages.
+GERMAINE: Shift over, chick, you're hiding my cabbages. Nobody buys what they can't see.
 
 # ---------------------------------------------------------------- the cafe
 [cafe_hello]
-SIMONE: That cat! Always first in. You're looking for Fernand too?
+SIMONE: That cat! Always first in. And you? After Fernand too? Dédé's asking everybody.
 
-He came in at midnight, hung his coltin on that hook and walked out bareheaded.
+He came in at midnight, hung his coltin on that hook and walked out bareheaded. Not a word.
 
-But look at this crowd! The night shift wants feeding. Give me a hand, and the coltin's yours.
+Look at this crowd! Porters, night owls, fur coats. Give me a hand and the coltin's yours.
 ? Yes | No
 
 [cafe_jeton]
@@ -175,7 +175,7 @@ SIMONE: Any sign of Fernand? His coffee's gone cold.
 The second channel's been in colour since October. Colour! As if I had time for television.
 
 [worker_hello]
-A PORTER: Shh. I'm sleeping on my feet. That's a skill too.
+A PORTER: Shh. I'm sleeping standing up. Took me twenty years to learn.
 
 [worker_fernand]
 A PORTER: Fernand? Sat on the bench with me at eleven. Kept turning his plate in his hands.
@@ -431,9 +431,9 @@ The water doesn't stop for anyone. Not even for a poem.
 # ---------------------------------------------------------------- barks
 # One-page lines that NPCs call out by themselves when the player comes close.
 [puncher_hello]
-TICKET PUNCHER: Ticket, artist! Nobody goes down to the trains without a hole in his ticket.
+TICKET PUNCHER: Ticket! No hole, no train. Nobody gets past me without a hole.
 
-No ticket? The window's just there. Knock, the clerk's only dozing.
+No ticket? Window's right there. Knock hard, the clerk sleeps like a log.
 
 [metro_window]
 You tap on the glass. A sleepy clerk slides a small brown second-class ticket under it.
@@ -460,22 +460,24 @@ TICKET PUNCHER: Not bad! Another one?
 [punch_miss]
 Clac! You punched the air. The passenger sighs.
 
-TICKET PUNCHER: Again, artist. Wrist, not shoulder.
+TICKET PUNCHER: Wrist, kid, not shoulder. You're not chopping wood.
 ? Yes | No
 
 [punch_done]
-Clac! Three clean holes. TICKET PUNCHER: You've got the wrist, artist!
+Clac! Three clean holes. TICKET PUNCHER: Now that's a wrist!
 
-They say one day machines will check the tickets by themselves. Then what will I do?
+They say one day machines will check the tickets by themselves. And me? I'll punch holes in my newspaper.
 
-Here, about your fort. A big one came down tonight. No hat, no ticket. He didn't want a train.
+You ask about a big man in a yellow hat.
 
-He just stood here, then went back up and off towards the river.
+TICKET PUNCHER: A big fellow? One came down tonight. No hat, no ticket. Didn't want a train.
+
+Just stood there staring at the rails. Then back up the stairs, off towards the river.
 
 [puncher_after]
 TICKET PUNCHER: A singer once made a song about a man like me, out at Porte des Lilas.
 
-Now everybody hums it at me. Clac! Your fort went towards the river, artist.
+Now everybody hums it at me. Every day. Clac. Your big fellow went towards the river.
 
 [bark_puncher]
 TICKET PUNCHER: Tickets, please!
@@ -547,13 +549,13 @@ A missing fort, you say? Come back if you're stuck. I notice things. It's my job
 THE SINGER: A fort without his hat is like a song without words. Somebody kept his hat. Try the café.
 
 [singer_bleu]
-THE SINGER: Somebody wrote to your fort. In Paris, little blue letters fly through pipes under the streets. Ask who brought it.
+THE SINGER: A fort who walks off like that? Somebody wrote to him. A little blue letter, I'd bet. Ask who brought it.
 
 [singer_plate]
 THE SINGER: A fort sells his brass plate only when he's had enough. Ask the books along the quai.
 
 [singer_ready]
-THE SINGER: You know everything now. Your fort is on the bridge, artist. Go, before the light comes.
+THE SINGER: You know everything now. Your big man is on the bridge, kid. Go, before the light comes.
 
 [bark_singer]
 THE SINGER: La la… No. Not that.
@@ -665,12 +667,16 @@ THE CHANTEUSE: I came over from Saint-Germain. Over there they talk about books 
 A young songwriter once wrote me a song. Now he wanders by the river, I hear.
 
 [chanteuse_again]
+You tell her about Fernand.
+
 THE CHANTEUSE: A man who stops working stops singing. Bring your porter back what he left behind. His hat first.
 
 [philosopher_hello]
 THE PHILOSOPHER: Usually I write in a café in Saint-Germain, with my companion. Tonight I wanted to see people who make things with their hands.
 
 [philosopher_again]
+You tell him about Fernand.
+
 THE PHILOSOPHER: Your porter is free to leave. Free to stay, too. Bring him reasons, not orders.
 
 Three years ago they gave me the biggest prize there is. I tried to refuse it. A writer shouldn't turn into an institution.
@@ -726,13 +732,15 @@ My old geometry teacher writes novels. He's down here somewhere. He says I shoul
 THE YOUNG MAN: People never vanish completely. They leave addresses, phone numbers, notes. Someone always remembers.
 
 [fort2_hello]
-A PORTER: Five minutes' rest, then back to the carts. Mind your feet, artist!
+A PORTER: Five minutes off my feet. Mind yours, kid. The carts don't brake.
 
 [fort2_again]
-A PORTER: Fernand? Strongest back in the pavilion. He'd never leave a cart full. Something's wrong.
+You ask about Fernand.
+
+A PORTER: Fernand? Best back in the pavilion. Leave a full cart? Him? Something's wrong.
 
 [cook_hello]
-A COOK: I cook for a bistro round the corner. I buy here before dawn, I serve at noon.
+A COOK: I buy here before dawn, I serve at noon. My customers think the carrots grow in my kitchen.
 
 [cook_again]
 A COOK: Germaine's cabbages are the best in the pavilion. Don't tell the others.
@@ -756,7 +764,9 @@ THE NIGHT PORTER: Shh! The guests are asleep. And no, we're full. Market men kno
 THE NIGHT PORTER: Looking for someone at this hour? Ask in the cafés. Everybody at Les Halles passes through a café.
 
 [souper_hello]
-A FORT, over his soup: First hot thing since midnight. Thirty years of this. When the market goes to Rungis, where will we eat at four in the morning?
+A FORT, over his soup: First hot thing since midnight. Don't look at me like that, there's none left.
+
+When the market goes to Rungis, where do we get soup at four in the morning? In the concrete?
 
 [souper_again]
 A FORT: Fernand? He always sits there, by the mirror. Not tonight. Funny, that.
@@ -772,12 +782,22 @@ This spring some writers let me into their club. We write with rules, like a gam
 THE ARCHIVIST: Lost someone? Make a list. Everything he left behind, one by one. A list always helps.
 
 [meat_hello]
-A MEAT PORTER: Mind out! Half a beef on my shoulder, and it doesn't stop for poets.
+A MEAT PORTER: Gare! Gare! Mind your back, kid!
 
-From the lorry to the pavilion, all night long. My smock was clean at midnight.
+His cap is pulled down over his ears. The side of beef rides on his shoulder, steadied with his head.
+
+A MEAT PORTER: Heavier than my mother-in-law. Complains less, too.
+
+Lorry to pavilion, all night long. My coat was white at midnight. Look at it now.
 
 [meat_again]
-A MEAT PORTER: Fernand? Big fellow, yellow hat? He went down towards the river. Didn't even say goodnight.
+You ask about a big man in a yellow hat.
+
+A MEAT PORTER: Fernand? Went down rue du Pont-Neuf, towards the water. Not even a "salut". Not like him.
+
+Allez, lercimuche!
+
+Lercimuche? You write it down. It sounds like half a poem.
 
 # ---------------------------------------------------------------- curiosities
 # Vanished objects found as "???" (curio_flags), then shown to the one person
@@ -793,7 +813,7 @@ Among the onion skins, a small ridged roller, black with grime. Off some machine
 On the chair, a ticket stub: a gold mask, and the words PETIT PALAIS. Whose face is that?
 
 [curio_0_solve]
-TICKET PUNCHER: Green? That's first class, artist. Brown is second class, like yours.
+TICKET PUNCHER: Green? That's first class, kid. Brown is second class, like yours.
 
 First class costs more and rides in its own carriages, the ones with the yellow marks. I'll keep it. Clac!
 
@@ -848,9 +868,9 @@ SIMONE: Phone? You need a jeton!
 A PORTER: Zzz… zzz…
 
 [fernand_hello]
-FERNAND: Leave me be, artist. I'm watching the water.
+FERNAND: Leave me be, kid. I'm watching the water.
 
-He rubs his bare head. FERNAND: Cold, without my coltin. I left it at Simone's café.
+He rubs his bare head. FERNAND: Cold, without my coltin. Left it at Simone's.
 
 [fernand_why]
 FERNAND: My coltin… Simone kept it, eh? Doesn't matter.
@@ -863,7 +883,7 @@ FERNAND: Marcel's bleu… So you read it.
 My brass plate? Gone. I sold it to someone on the quai, by the books. Go and ask.
 
 [fernand_talk]
-FERNAND: Leave me be, artist… What's that? My coltin?
+FERNAND: Leave me be, kid… What's that? My coltin?
 
 You hand him his hat, his brass plate, and you tell him about Marcel's petit bleu.
 
@@ -873,7 +893,7 @@ And now they're taking the market out to Rungis. Concrete, lorries. Marcel's rig
 
 Who'll want an old fort out there? Better to stop now, before they stop me.
 
-He turns the coltin in his big hands. FERNAND: What would you do, artist?
+He turns the coltin in his big hands. FERNAND: What would you do, kid?
 ? Stay | Go with
 
 [end_stay]
@@ -930,7 +950,9 @@ A LITTLE DOG: Woof!
 He sniffs every lamp post on the street, very seriously. Watch your step: he's not the only dog who's been this way.
 
 [police]
-A POLICEMAN: Out late, young artist? Stay clear of the market carts, and mind the forts' elbows.
+A POLICEMAN: Out late, young man? Writing love letters by lamplight?
+
+Keep clear of the carts. And of the porters' elbows.
 
 He leans on his bicycle, cape over his shoulders, like a big blue swallow.
 
