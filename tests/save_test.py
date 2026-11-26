@@ -214,7 +214,9 @@ def ask(room, x, y, d, push, curio, expect, flags_after):
     g.push(push, 30)
     g.tap("a", 70)
     first = g.row(1) + " " + g.row(3)
-    for _ in range(6):
+    for _ in range(6):    # page on to the "Mystery solved" note
+        if "Mystery solved" in g.row(1):
+            break
         g.tap("a", 70)
     check(expect in first and g.mem[sym["_curio_flags"]] == flags_after and "Mystery solved" in g.row(1)
           and "/3" in g.row(1), "%r -> flags 0x%02x, note %r" % (first, g.mem[sym["_curio_flags"]], g.row(1)))
