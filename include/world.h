@@ -23,6 +23,7 @@ typedef struct {
 } door_t;
 
 #define S_BANK1 0x08     /* OAM attribute: tile data from VRAM bank 1 */
+#define S_SPLIT 0x10     /* (DMG palette bit, ignored on CGB) right 8 px of a 16x16 NPC use palette 2 */
 
 /* A non-player character placed in a room, in pixel coordinates. */
 typedef struct {
@@ -54,6 +55,9 @@ extern const room_def_t rooms[];
 extern uint8_t cur_room;
 
 void world_load(uint8_t room);
+extern uint8_t dawn_stage;                       /* quests done, 0-4: the clock and the sky */
+void world_dawn(uint8_t stage);
+extern palette_color_t bg_live[32];             /* tonight's background palettes */                  /* set it and recolour the night now */
 uint8_t world_solid(int16_t px, int16_t py);     /* pixel coordinates */
 uint8_t world_hotspot(int16_t px, int16_t py);   /* hotspot id or NO_DIALOGUE */
 uint8_t world_door(int16_t px, int16_t py);      /* door index or NO_EXIT */

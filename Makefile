@@ -14,11 +14,11 @@ PYTHON   ?= python3
 ROM       = build/paris-disparu.gbc
 
 # -Wm-yC        : CGB-only cartridge (header 0x143 = 0xC0)
-# -Wl-yt0x19 -Wl-yo8 : MBC5 cartridge, 8 ROM banks (128 KiB); assets in bank 1
+# -Wl-yt0x1B -Wl-yo32 -Wl-ya1 : MBC5+RAM+BATTERY, 32 ROM banks (512 KiB), one 8 KiB RAM bank for the save
 # -Wm-yn        : header title
 # -Wm-yk / -yl  : new licensee code "00" and old code 0x33 (no publisher)
 LCCFLAGS  = -Iinclude -Wa-l -Wl-m -Wl-j
-ROMFLAGS  = -Wm-yC -Wl-yt0x19 -Wl-yo8 -Wm-yn"PARISDISPARU" -Wm-yk00 -Wm-yl0x33
+ROMFLAGS  = -Wm-yC -Wl-yt0x1B -Wl-yo32 -Wl-ya1 -Wm-yn"PARISDISPARU" -Wm-yk00 -Wm-yl0x33
 
 SRC       = $(wildcard src/*.c)
 OBJ       = $(patsubst src/%.c,build/obj/%.o,$(SRC))
@@ -37,6 +37,7 @@ build/obj:
 
 assets:
 	$(PYTHON) tools/gen_assets.py
+	$(PYTHON) tools/music.py
 
 check: $(ROM)
 	$(PYTHON) tools/gen_assets.py --check

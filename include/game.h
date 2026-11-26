@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <stdint.h>
+#include <gb/gb.h>
 
 /* Screen and sprite geometry */
 #define SCREEN_W 160
@@ -34,6 +35,24 @@
 #define NPC_PHILOSOPHER 13
 #define NPC_FILMMAKER   14
 #define NPC_WRITER      15
+#define NPC_NOVELIST    16  /* writer cameos added 2026-11-24 */
+#define NPC_PLAYWRIGHT  17
+#define NPC_CRITIC      18
+#define NPC_YOUNG_MAN   19
+#define NPC_FORT2       20  /* people of the night, 2026-11-24: a porter, */
+#define NPC_COOK        21  /* a bistro cook buying, */
+#define NPC_SLEEPER     22  /* a night worker waiting in the métro */
+#define NPC_WAITER      23  /* west end, 2026-11-24: the brasserie waiter, */
+#define NPC_NIGHTPORTER 24  /* the hotel's night porter, */
+#define NPC_SOUPER      25  /* a fort over his soup */
+#define NPC_MEATPORTER  27  /* rue Baltard: white smock, half a beef (Jiwon's reference photo) */
+#define NPC_DOG         28  /* street life 1967 (sources: HISTORICAL_RESEARCH "Street life") */
+#define NPC_POLICE      29  /* a bicycle policeman in a cape ("hirondelle") */
+#define NPC_SWEEPER     30  /* a street sweeper opening the gutter tap */
+#define NPC_SMOKER      31  /* a man smoking under a lamp (Jiwon 2026-11-24) */
+#define NPC_WALKER      32  /* a lady out early with her poodle, */
+#define NPC_POODLE      33  /* and the poodle */
+#define NPC_ARCHIVIST   26  /* cameo, brasserie: big hair and a beard (Perec, unnamed) */
 
 /* Persistent story flags (game_flags bits) */
 #define FLAG_MET_STRANGER   0x0001
@@ -74,11 +93,14 @@ extern uint8_t clue_flags;
 #define X_PAINTER   0x04   /* phoned the painter's wife, then told him */
 #define X_WIFE      0x08   /* (step) phoned the painter's wife */
 #define X_MET_SINGER 0x10  /* (not a goal) heard the singer's first lines */
+#define X_MET_MEAT  0x40   /* (not a goal) the meat porter spoke once */
+#define X_STAYED    0x20   /* (not a goal) Fernand stays: the poem ends with it */
 #define X_COUNT     3
 #define X_ALL       (X_TICKETS | X_BUTCHER | X_PAINTER)
 extern uint8_t extra_flags;
+extern uint16_t cameo_met;   /* bit k: cameo/night person NPC_ACTOR + k met */
 extern uint8_t new_extra;      /* an extra was just completed: show a note */
-uint8_t extra_total(void);
+uint8_t extra_total(void) BANKED;
 
 /* Hidden secrets (secret_flags bits 0-8): seven spots to examine
    (DLG_SECRET_COIN.., bit = id - DLG_SECRET_COIN), knocking three times on
@@ -88,7 +110,13 @@ uint8_t extra_total(void);
 #define SECRET_MOTH  8
 extern uint16_t secret_flags;
 extern uint8_t new_secret;     /* a secret was just found: show a note */
-uint8_t secret_total(void);
+uint8_t secret_total(void) BANKED;
+/* Curiosities: vanished objects found as "???", then shown to someone who
+   knows what they are. Bit i = found, bit 4+i = identified. */
+#define CURIO_COUNT 3
+extern uint8_t curio_flags;
+extern uint8_t new_curio;      /* 1: a curiosity found, 2: one identified */
+uint8_t curio_total(void) BANKED;   /* identified */
 
 /* Main quests: each is completed by the clue it rewards. */
 #define QUEST_COUNT 5               /* rush, who wrote, crates, plate, Fernand */
@@ -96,8 +124,8 @@ uint8_t secret_total(void);
 #define QF_SOUP     0x02            /* carrying the gratinee for her */
 extern uint8_t quest_flags;
 extern uint8_t new_quest;           /* 1-4: that quest was just completed */
-uint8_t quest_done(uint8_t q);      /* q = 0..QUEST_COUNT-1 */
+uint8_t quest_done(uint8_t q) BANKED;      /* q = 0..QUEST_COUNT-1 */
 extern uint8_t new_clue;   /* set when a clue was just found; main shows a note */
-uint8_t clue_total(void);
+uint8_t clue_total(void) BANKED;
 
 #endif

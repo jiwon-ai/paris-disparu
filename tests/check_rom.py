@@ -23,8 +23,10 @@ def main(path):
         errors.append("Nintendo logo bytes at 0x104 are wrong")
     if rom[0x143] not in (0x80, 0xC0):
         errors.append("CGB flag 0x143 = 0x%02X (expected 0x80 or 0xC0)" % rom[0x143])
-    if rom[0x147] != 0x19:
-        errors.append("cartridge type 0x147 = 0x%02X (expected 0x19, MBC5)" % rom[0x147])
+    if rom[0x147] != 0x1B:
+        errors.append("cartridge type 0x147 = 0x%02X (expected 0x1B, MBC5+RAM+BATTERY)" % rom[0x147])
+    if rom[0x149] != 0x02:
+        errors.append("RAM size 0x149 = 0x%02X (expected 0x02, 8 KiB)" % rom[0x149])
     if (0x8000 << rom[0x148]) != size:
         errors.append("ROM size code 0x148 = %d does not match file size %d" % (rom[0x148], size))
     hc = 0

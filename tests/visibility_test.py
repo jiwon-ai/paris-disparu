@@ -5,6 +5,7 @@ or the bridge beside the opening pushed the player off the top: invisible).
 
 Usage: python3 tests/visibility_test.py ROM
 """
+import io
 import os
 import re
 import sys
@@ -25,7 +26,8 @@ for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", 
 PLAYER_TILES = range(hdr["SPR_PLAYER_DOWN_0"], hdr["SPR_PORTER_0"])
 ROOMS = ["street", "entrance", "market", "cafe", "quai", "pont"]
 
-pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False)
+pb = PyBoy(ROM, window="null", cgb=True, sound_emulated=False,
+           ram_file=io.BytesIO(bytes(8192)))   # blank battery RAM: no save
 mem = pb.memory
 failures = []
 
@@ -83,11 +85,13 @@ def cross(start_room_name, x, y, button, expect_room):
 pb.tick(150, False)
 hold("start", 2)
 pb.tick(20, False)
+hold("a", 2)                     # language menu: English
+pb.tick(20, False)
 hold("b", 2)                     # skip the intro
 pb.tick(40, False)
 hold("b", 2)                     # close the opening caption
 STREET, ENTRANCE, QUAI, PONT = 0, 1, 4, 5
-for x in (4, 20, 40, 60, 80, 100, 130):         # rue Rambuteau <-> rue Baltard
+for x in (40, 60, 80, 100, 112):                # rue Rambuteau <-> rue Baltard (a car at x<32, a lorry at x>=128)
     cross("street", x, 126, "down", ENTRANCE)   # rue Baltard is open at x=32-127
     cross("entrance", x if 32 <= x <= 112 else 88, 0, "up", STREET)
 cross("street", 60, 126, "down", ENTRANCE)

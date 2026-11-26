@@ -8,14 +8,14 @@ gggggggggggggggggggg
 ffffffffffffffffffff
 ffffffffffffffffffff
 ffffffffffffffffffff
-ffffIfffffffffffIfff
-ffffIfffffffffffIfff
-ffffffffffffffffffff
-ffffffffffffffffffff
+ffffIfffffffffffIfρρ
+ffffIfffffffffffIfσσ
+fρρfffffffffffffffXX
+fσσfffffffffffffffXX
 fXXfffffffffffffffff
 fXXfffffffffffffffff
-ffffffffffffffffffff
-ffffffffffffffffffff
+ffffffffffffffffιιιι
+ffffffffffffffffιιιι
 IIIIIIIIffffIIIIIIII
 !sign 1 2 CHOUX
 !sign 7 2 POMMES

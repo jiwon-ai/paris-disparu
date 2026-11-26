@@ -1,7 +1,7 @@
 ; Rue Baltard (20x18): the open central street between the two groups of
 ; pavilions (west x0-3, east x16-19). North: rue Rambuteau. South: towards the
 ; Seine (rue du Pont-Neuf). Arch into a pavilion x16-18 rows 3-5; covered
-; streets rows 7-8 (west) and 12-13 (east). Metro steps x11-13 rows 13-14, open west.
+; streets rows 7-8 (west) and 12-13 (east). Morris column x13-14 rows 8-10. Metro steps x11-13 rows 13-14, open west.
 IggI.,,,,,,,,,,.IggI
 IggI.,,,,,,,,,,.IggI
 IggI.,,,,,,,,,,.IggI
@@ -9,10 +9,10 @@ IggI.,,,,,,,,,,.OOOI
 IggI.,,,,,,,,,,.oooI
 IggI.,,,,,,,,,,.oooI
 IggI.HHH,,,,,,,.IggI
-oooo.,,,,,,,,,,.IggI
-oooo.,,,,,,,,,,.IggI
-IggI.,,,,,,,,XX.IggI
-IggI.,,,,,,,,XX.IggI
+ØØØØ.,,,,,,,,,,.IggI
+ØØØØ.,,,,,,,,12.IggI
+IggI.,,,,,,,,34.IggI
+IggI.,,,,,,,,56.IggI
 IggI.,,,,,,,,,,.IggI
 IggI.,,,,,VVVVV.oooo
 IggI.,,,,,,UUUV.oooo

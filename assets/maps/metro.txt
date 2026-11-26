@@ -3,10 +3,10 @@
 BBBBBBBBBBBBBBBBBBBB
 BBBBBBBBBBBBBBBBBBBB
 BBBBBBBBBBBBBBBBBBBB
-BBBBBBBBBBBBBBBBBBBB
-BBGGGBBBBBBBBBBBBBBB
-BBGGGBBBBBBBJJJJBBBB
-BBTTTBBBBBBBJJJJBBBB
+BBBBBBBBBBBBBBBBBμνB
+BBGGGBBBBBBBBBBBBξοB
+BBGGGBαβγδBBJJJJBBBB
+BBTTTBεζηθBBJJJJBBBB
 ffffffffffffffffffff
 ffffffffffffffffffff
 ffffffffffffffffffff
@@ -15,8 +15,8 @@ ffffffffffffffffffff
 ffffffffffffffffffff
 ffffffffffffffffffff
 ffffffffffffffffffff
-ffffffffffffffffffff
+ffffκλffffffffffffff
 BBBBBBBBUUUUBBBBBBBB
 BBBBBBBBUUUUBBBBBBBB
 ; signs: x y text
-!sign 5 1 LES HALLES
+!plaque 5 1 LES HALLES

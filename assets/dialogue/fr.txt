@@ -1,296 +1,965 @@
-# NOT USED BY THE BUILD: the game is in English (assets/dialogue/en.txt).
-# Kept as a draft for a future French version; it may be out of date.
-# French dialogue. [id] starts an entry; a blank line forces a new page.
-# Text is word-wrapped to 18 columns, 3 lines per page, by tools/gen_assets.py.
-# A last line "? Oui | Non" ends the entry with a two-way choice.
-# All characters and situations are fictional (see docs/HISTORICAL_RESEARCH.md).
+# French dialogue: same [ids] as en.txt; a missing id falls back to English.
+# Same rules as en.txt. Spaces before ! ? : ; » and after « are made
+# unbreakable by tools/fr_gen.py. A native review is still advisable.
+
+# ---------------------------------------------------------------- secrets
+[secret_coin]
+Entre deux pavés, quelque chose brille : une petite pièce ! Tu fais un vœu et tu la gardes.
+
+[secret_eyes]
+Dans le noir de la rue couverte, deux yeux verts clignent. Un chat du marché, qui garde une feuille de chou comme un trésor.
+
+[secret_heart]
+Quelqu'un a gravé un minuscule cœur dans la fonte. Dedans : J + M.
+
+[secret_cat]
+Le chat de la rue ! Roulé en boule dans le coin, tout chaud, il ronronne. Il ouvre un œil, puis ronronne plus fort.
+
+[secret_pigeon]
+Un pigeon avec une croûte de pain plus grosse que sa tête. Il s'éloigne en sautillant. Il ne partagera pas.
+
+[secret_mascaron]
+Le long de la corniche, des visages de pierre sourient à la Seine. L'un d'eux semble te faire un clin d'œil.
+
+[secret_mouse]
+Une petite souris file le long des carreaux blancs… et passe sous le portillon. Sans ticket !
+
+[secret_knock]
+Toc, toc, toc. Une fenêtre s'ouvre d'un coup : « TROIS HEURES DU MATIN ! Il y a des gens qui dorment ! » Bang. Les ronflements reprennent.
+
+[secret_moth]
+Tu fixes le réverbère longtemps. Un papillon de nuit te fixe aussi. Aucun de vous deux ne cligne le premier.
 
 # ---------------------------------------------------------------- the stranger
 [stranger_hello]
-L'HOMME AU CARNET: Chut. Je compte.
+HOMME AU CARNET : Chaque nuit à trois heures, le chapeau jaune de Fernand passe. Cette nuit : rien. Noté.
 
-Trois camions. Un chat. Deux casquettes. Une personne en imperméable.
+Mes vieux carnets sont chez moi. Ma femme les lit. Appelle ARC 4127, depuis le café.
 
-Ah, c'est vous, l'imperméable. Bonsoir. Ou bonjour. À cette heure, on ne sait plus.
+[stranger_knows]
+HOMME AU CARNET : Tu as trouvé où il est allé. Ça se lit sur ton visage. Noté.
 
-Je note tout ce qui passe dans cette rue. Personne ne le fait jamais.
+Un jeune écrivain a eu le Renaudot il y a deux ans, avec un roman intitulé Les Choses. Cette année, il est entré dans un club d'écrivains qui écrivent sous contrainte.
 
-Le bruit, au bout? Les Halles. Allez-y. Je vous noterai au retour.
+Moi, je note seulement ce que je vois. L'ordinaire. Personne ne le regarde.
 
-Et si vous voyez quelque chose d'étonnant, appelez-moi. 4127. Je note aussi les appels.
-
-[stranger_wait]
-L'HOMME AU CARNET: Une personne en imperméable hésite devant un réverbère. Noté.
-
-[stranger_market]
-L'HOMME AU CARNET: Une personne revient du marché. Elle sent le chou. Noté.
-
-[stranger_crates]
-L'HOMME AU CARNET: Une personne revient, les bras fatigués. Elle a porté des caisses. Noté!
-
-[stranger_phone]
-L'HOMME AU CARNET: Elle a téléphoné, aussi. À qui? Non, ne dites rien. Je ne note pas les secrets.
-
-[stranger_river]
-L'HOMME AU CARNET: Une personne revient de la Seine. Ses chaussures sont humides. Noté.
+[stranger_again]
+HOMME AU CARNET : Toujours pas de chapeau jaune. Appelle mes carnets, ARC 4127. Hier expliquera peut-être cette nuit.
 
 # ---------------------------------------------------------------- the porter
 [porter_hello]
-FERNAND: Attention, ça passe! Tu traînes à cette heure-ci, toi?
+DÉDÉ : Eh, toi ! T'as pas vu Fernand ? Grand comme une armoire, chapeau jaune. Trente ans, jamais raté une nuit.
 
-Alors rends-toi utile. Trois caisses à livrer aux étals, à l'intérieur.
+Sa charrette est encore là, pleine. Et moi, mon dos a lâché. Crac, à minuit.
 
-Chaque caisse a son étal. Tu sais lire? Alors tu sais faire. Tu m'aides?
+Germaine attend ses caisses. Chacune à son étal : lis les panneaux. Tu me donnes un coup de main ?
 ? Oui | Non
 
 [porter_ask]
-FERNAND: Alors, tu m'aides ou tu regardes?
+DÉDÉ : Alors ? Tu m'aides avec les caisses de Fernand ?
 ? Oui | Non
 
 [porter_yes]
-FERNAND: Bien. Prends-les dans ma charrette, une par une. Regarde ce qu'il y a dedans.
+DÉDÉ : Brave petit. Une caisse à la fois. Regarde ce qu'il y a dedans.
 
-Et porte avec les jambes, pas avec le dos. Le dos, c'est pour la vie.
+Et soulève avec les jambes, comme un fort. Un dos, c'est pour la vie. Demande au mien.
 
 [porter_no]
-FERNAND: Comme tu veux. Les caisses, elles, ne vont pas se porter toutes seules.
+DÉDÉ : Comme tu veux. Mais les caisses marcheront pas toutes seules. Je leur ai demandé.
 
 [porter_working]
-FERNAND: La charrette est là, les étals sont dedans. Allez, allez!
+DÉDÉ : La charrette est là, les étals sont dedans. Allez, allez !
 
 [porter_done]
-FERNAND: Trois caisses, trois étals. Pas mal, pour un débutant.
+DÉDÉ : Trois caisses, trois étals. Pas mal, pour un maigrichon.
 
-Moi, j'en porte comme ça toute la nuit. Le matin, je ne sens plus mes épaules.
-
-Va au café, dans la rue. Dis à Simone que c'est Fernand qui t'envoie.
+Va voir Germaine, dedans. Si quelqu'un sait ce qui travaille Fernand, c'est elle. Elle sait tout. Même ce que t'as mangé hier soir.
 
 [porter_after]
-FERNAND: Encore là? Le café, c'est dans la rue. Simone ne mord pas. Presque pas.
+DÉDÉ : Retrouve Fernand, hein ? C'est trop calme sans sa grande gueule.
 
 # ---------------------------------------------------------------- the cart and stalls
 [cart_look]
-La charrette de Fernand. Trois caisses, bien sanglées.
+La charrette de Fernand. Trois caisses bien sanglées. Personne pour la tirer.
 
 [cart_choux]
-Une caisse de choux. Lourde! Les feuilles sentent la terre mouillée.
+Une caisse de CHOUX. Lourde ! Les feuilles sentent la terre mouillée.
 
 [cart_pommes]
-Une caisse de pommes. Elles roulent un peu à chaque pas.
+Une caisse de POMMES. Elles roulent un peu à chaque pas.
 
 [cart_carottes]
-Une caisse de carottes, encore pleines de terre.
+Une caisse de CAROTTES, encore pleines de terre.
 
 [cart_full]
-Tu as déjà les bras pleins.
+Tu as déjà les bras chargés.
 
 [cart_empty]
-La charrette est vide. Fernand l'a déjà oubliée.
+La charrette est vide. La charrette de Fernand, sans Fernand.
 
 [stall_choux]
-Des choux, rangés en pyramide.
+Des choux, empilés en pyramide.
 
 [stall_pommes]
-Des pommes, frottées une par une pour qu'elles brillent.
+Des pommes, astiquées une à une pour qu'elles brillent.
 
 [stall_carottes]
-Des carottes en bottes, les fanes vers le haut.
+Des carottes en bottes, fanes vers le haut.
 
 [stall_ok]
 Tu poses la caisse sur l'étal. Quelqu'un hoche la tête, sans un mot.
 
 [stall_wrong]
-Ce n'est pas le bon étal. Regarde l'enseigne.
+Mauvais étal. Lis le panneau.
 
 [stall_wrong_germaine]
-GERMAINE: Ça, chez moi? Ici, c'est des choux, mon petit. Lis l'enseigne!
+GERMAINE : Ça, ici ? C'est un étal de choux, mon petit. Lis le panneau !
 
 [stall_ok_germaine]
-GERMAINE: Mes choux! Pose-les là, doucement. Merci, mon petit.
+GERMAINE : Mes choux ! Pose-les là, doucement. Merci, mon petit.
 
 # ---------------------------------------------------------------- the merchant
 [merchant_hello]
-GERMAINE: Tu cherches quoi, à cette heure? Les acheteurs arrivent bientôt.
+GERMAINE : Attention à mes choux, mon poulet ! Les acheteurs vont arriver, tout doit briller.
 
-Il faut que tout soit beau avant. Un chou qui a mauvaise mine, personne n'en veut.
+Un chou triste, personne en veut. Les gens, pareil. Souris.
 
-Le prix? Ça dépend de l'heure, de la pluie et de la tête du client.
+Le prix ? Ça dépend de l'heure, de la pluie et de la tête du client. Toi, je te ferais le double.
+
+[merchant_rungis]
+GERMAINE : Tu as porté pour moi ? Merci, mon poulet. D'habitude, c'est Fernand.
+
+Toute la semaine, il a parlé que de Rungis. Le nouveau marché qu'ils construisent là-bas.
+
+« Du béton et des camions, qu'il dit. Pas de verre, pas de fer. Pas de place pour un vieux fort. »
+
+Là-bas, ils voudront d'un homme de soixante ans ? Il a peur, mon poulet. Tout costaud qu'il est.
 
 [merchant_again]
-GERMAINE: Pousse-toi un peu, tu me caches mes choux.
+GERMAINE : Pousse-toi, mon poulet, tu caches mes choux. On achète pas ce qu'on voit pas.
 
 # ---------------------------------------------------------------- the cafe
 [cafe_hello]
-SIMONE: Entre, il fait frais. Ici, ceux du marché déjeunent quand les autres dorment.
+SIMONE : Ce chat ! Toujours le premier. Et toi ? Tu cherches Fernand aussi ? Dédé demande à tout le monde.
 
-Un café?
+Il est entré à minuit, il a accroché son coltin là, et il est reparti tête nue. Pas un mot.
+
+Regarde-moi ce monde ! Des forts, des noctambules, des Marie-Chantal en fourrure. Donne-moi un coup de main et le coltin est à toi.
 ? Oui | Non
 
-[cafe_yes]
-SIMONE: Voilà. Brûlant. Ne souffle pas dessus, ça me vexe.
-
-[cafe_no]
-SIMONE: Comme tu veux. Le comptoir, lui, ne ferme pas.
-
-[cafe_fernand]
-SIMONE: Fernand t'envoie? Alors c'est la maison qui offre. Ne le répète pas.
-
 [cafe_jeton]
-SIMONE: Le téléphone? Il te faut un jeton. Tiens, un. Ne le perds pas.
+SIMONE : Le téléphone ? Il te faut un jeton. Je n'en ai plus !
+
+Le fort au comptoir en a plein les poches. Bats-le à son jeu des gobelets.
+
+[cafe_bleu]
+SIMONE : Un petit bleu ? Oui ! Le coursier l'a apporté hier après-midi. Fernand l'a laissé ici.
+
+Ce n'est pas à moi de le lire… mais c'est pour son bien. Tiens.
+
+« Fernand. Je suis allé voir Rungis dimanche. Du béton à perte de vue. »
+
+« Pas de verre, pas de fer, pas de café au coin. Pas de place pour des gars comme nous. J'arrête. Marcel. »
+
+[cafe_bleu_again]
+SIMONE : Pauvre Marcel. Pauvre Fernand. Trente ans sous cette verrière, tous les deux.
 
 [cafe_again]
-SIMONE: Encore un? Tu vas trembler toute la journée.
+SIMONE : Des nouvelles de Fernand ? Son café a refroidi.
+
+La deuxième chaîne est en couleur depuis octobre. En couleur ! Comme si j'avais le temps de regarder la télé.
 
 [worker_hello]
-UN FORT: Chut. Je dors debout. C'est un métier, ça aussi.
+UN FORT : Chut. Je dors debout. Vingt ans pour apprendre.
+
+[worker_fernand]
+UN FORT : Fernand ? Il était sur le banc avec moi à onze heures. Il tournait et retournait sa plaque dans ses mains.
+
+Sa plaque de fort, celle avec son nom. Comme s'il lui disait adieu.
 
 [worker_phone]
-UN FORT: Tu as appelé qui? La boucherie? Ha! Ils ne décrochent jamais avant six heures.
+UN FORT : Tu as appelé qui ? Le boucher ? Ha ! Ils ne décrochent jamais avant six heures.
+
+Et les taxis ont augmenté hier. Un franc quatre-vingt-dix avant même que les roues tournent ! J'irai à pied.
 
 [phone_look]
-Un téléphone, accroché au mur. Il y a une fente… trop petite pour une pièce.
+Un téléphone au mur. Il y a une fente… trop petite pour une pièce.
 
-Au mur, griffonné au crayon: BOUCHERIE 0614.
+Griffonné au crayon sur le mur : BOUCHER ROQ 0614. Et dessous, à l'encre : L'HEURE ? ODÉ 8400.
 
 [phone_use]
-Tu as un jeton. Tu le glisses dans la fente?
+Tu as un jeton. Le glisser dans la fente ?
 ? Oui | Non
 
 [cafe_jeton_more]
-SIMONE: Encore un jeton? Tiens. Tu téléphones à tout Paris, ce matin.
+SIMONE : Encore un jeton ? Tiens. Tu appelles la moitié de Paris, ce matin.
 
 [call_0614]
-Ça sonne longtemps. « Boucherie! On ouvre à six heures! Qui appelle à une heure pareille? » Clac.
+Ça sonne longtemps. « Boucherie ! On ouvre à six heures ! Qui appelle à cette heure-ci ? » Clic.
 
 [call_4127]
-« Allô? Ah, c'est vous, l'imperméable. Vous appelez d'un café: j'entends les tasses. Noté. »
+Une femme répond. « Ses carnets ? Attendez… » Des pages bruissent.
+
+« Hier, 16 h 10 : un coursier à mobylette. Un petit bleu, livré au café. »
+
+« Minuit : le chapeau jaune entre au café. Il ressort sans. Bizarre, mon petit. »
 
 [call_7302]
-Une voix endormie: « Des livres? À cette heure? Vous êtes poète ou insomniaque? »
-
-« Les deux? Alors passez à midi. »
+Un homme bâille : « Ma femme ? Les livres, toujours les livres… Elle est déjà partie à sa boîte, sur le quai. »
 
 [call_2508]
-« Il peint? À quatre heures du matin? Dites-lui que la soupe est froide. »
+« Il peint ? À quatre heures du matin ? Dites-lui que la soupe est froide. »
 
 « Et que je l'aime. Mais surtout, la soupe. »
+
+[call_clock]
+Une voix calme, seule sur la ligne, égrène l'heure, seconde après seconde. L'horloge parlante : ODÉon 8400.
 
 [call_none]
 Ça sonne dans le vide. Personne. Le jeton ne revient pas.
 
 [lift_miss]
-La caisse glisse et retombe dans la charrette. FERNAND: Avec les jambes, j'ai dit!
+La caisse retombe sur la charrette. DÉDÉ : Avec les jambes, j'ai dit !
 
 [shelf]
-Des bouteilles, alignées devant le miroir. Certaines n'ont plus d'étiquette.
+Des bouteilles devant le miroir, et un petit poste qui joue un air yé-yé, tout bas. Ma grande sœur monterait le son à fond.
+
+[soup]
+Une soupe à l'oignon gratinée, encore fumante. Qui mange de la soupe à quatre heures du matin ?
+
+Tout le monde, ici. Les forts avant le travail, les noctambules avant d'aller dormir.
 
 [table]
-Une table ronde. Quelqu'un y a oublié un journal plié en quatre.
+Quelqu'un a laissé « Salut les copains » ouvert sur les photos des chanteurs. J'ai le même numéro sous mon lit.
 
 # ---------------------------------------------------------------- the street
 [plaque]
-Une plaque bleue, émaillée: RUE RAMBUTEAU.
+RUE RAMBUTEAU, en blanc sur émail bleu. Au moins, je sais où je suis.
 
 [door]
-La porte est fermée. Derrière, quelqu'un ronfle.
+Fermée. Quelqu'un ronfle derrière. Il a de la chance.
 
 [lamp]
-Un réverbère. Sa lumière jaune tremble un peu.
+Le réverbère clignote. Un peu inquiétant.
+
+Chaque réverbère garde pour lui un petit rond de jour.
 
 [shop]
-Vitrine éteinte. Des bouteilles vides attendent le livreur.
+Une vitrine éteinte. Des bouteilles vides attendent le livreur. Pas un seul bonbon.
 
 [hotel]
-HOTEL. Au deuxième, une fenêtre est encore allumée.
+HOTEL. Une fenêtre encore allumée. Dans l'entrée, une affiche : Ionesco, « La Cantatrice chauve », à la Huchette depuis 1957. Dix ans la même pièce ?
 
 [cafe_window]
-Derrière la vitre embuée, des silhouettes au comptoir. Ça sent le café.
+Vitre embuée, du monde au comptoir. Ça sent le café. Je suis gelé.
 
 # ---------------------------------------------------------------- the pavilion
 [pavilion]
-Du verre et du fer, très haut. La lumière du dedans fait briller la rue.
+Du verre et du fer des deux côtés, comme des serres géantes. La rue Baltard passe juste au milieu.
+
+[covered]
+Une rue couverte vers le pavillon suivant. Au moins, on y est au sec.
+
+[eustache]
+Saint-Eustache, immense, qui regarde la grande rue du marché. Ses cloches doivent réveiller tout le monde.
+
+Une vieille pierre qui surveille le marché. Elle ne cligne jamais des yeux.
 
 [crates]
-Des cageots vides, empilés. Ils repartiront ce soir.
+Des cageots vides, empilés plus haut que moi. Ils seront pleins ce soir.
+
+Du bois qui sent la pomme et la pluie. Même vides, ils se souviennent.
+
+[morris]
+Une colonne Morris verte, couverte d'affiches pour les spectacles de ce soir. J'irais à tous.
+
+[wallace]
+Une fontaine Wallace : quatre dames de pierre qui tiennent un petit dôme de fer. L'eau est gratuite, et glacée. Brr.
+
+[lorry]
+Un camion de la campagne, on le décharge à la main. La nuit, il y en a partout autour du marché.
+
+Le chauffeur dort dans sa cabine. Il ronfle. Comment il fait ?
+
+[solex]
+Un VéloSolex noir contre le mur. Mon cousin va au lycée avec : le galet sur la roue avant pédale à sa place.
+
+Il dit qu'il ne tombe jamais en panne. Il le dit souvent.
+
+[busstop]
+Un arrêt de bus. Personne à cette heure-ci.
+
+Le jour, je monte sur la plate-forme ouverte à l'arrière. Le vent dans la figure !
+
+[defense]
+Peint en travers du mur : DÉFENSE D'AFFICHER, LOI DU 29 JUILLET 1881.
+
+Et juste en dessous… une affiche. Évidemment.
 
 [column]
-Une colonne de fonte. Elle est froide, et un peu collante.
+Une colonne en fonte. Froide, et un peu collante. Beurk.
 
 # ---------------------------------------------------------------- the quai
 [quai_box]
-Une boîte verte de bouquiniste, cadenassée. Sur le couvercle, une carte:
+Une boîte verte de bouquiniste, cadenassée. Sur le couvercle, une carte :
 
-« Livres anciens. Mme Roux. 7302. »
+« Livres anciens. Mme Roux. MED 7302. »
 
 [quai_box2]
-Une autre boîte verte, fermée. On devine les livres serrés dedans, qui dorment.
+Une autre boîte verte, fermée. Par une fente : un vieux Zola, « Le Ventre de Paris ». Celui-là parle des Halles ! En 1873.
 
 [gaslamp]
-Un bec de gaz. Derrière la vitre, la flamme siffle doucement.
+Un bec de gaz. La flamme siffle derrière la vitre comme un chat endormi.
 
 [tree]
-Un platane. Ses feuilles font un bruit de papier froissé.
+Un platane. Les feuilles crissent comme du papier.
 
 [river]
-En bas, la Seine. Noire, et pourtant pleine de lumières.
+La Seine, en bas. Noire, mais pleine de lumières.
+
+Quelque chose de blanc sur l'eau noire. Ça s'envole. Un cygne ? La nuit, il faut regarder de près.
 
 [quai_shop]
-Volets fermés. Une affiche à moitié arrachée annonce un bal samedi.
+Rideau baissé. Une affiche du nouveau film de Jacques Tati, « Playtime » : un Paris tout en verre et en acier. « Prochainement. » Drôle, ici tout est en vieille pierre.
 
 # ---------------------------------------------------------------- the bridge
 [painter_hello]
-LE PEINTRE: Ne bouge pas! … Non, bouge. Je peins la Seine, pas toi.
+LE PEINTRE : Ne bouge pas ! … Non, bouge. Je peins la Seine, pas toi.
 
-La nuit, l'eau a des couleurs que personne ne regarde. Moi, je les vole.
+Il y a un grand gaillard au bout du pont. Sans chapeau. Ça fait une heure qu'il est là.
 
-Si tu croises ma femme… Non. Appelle-la plutôt: 2508. Dis-lui que je peins.
+Il regarde la lueur du marché, comme un homme devant une maison à vendre.
+
+Si tu croises ma femme… Non. Appelle-la plutôt : PAS 2508. Dis-lui que je peins.
 
 [painter_again]
-LE PEINTRE: Regarde la péniche. Elle passe sous le pont comme sous une porte.
+LE PEINTRE : Un poète l'a écrit il y a longtemps : « Le vieux Paris n'est plus (la forme d'une ville
+
+change plus vite, hélas ! que le cœur d'un mortel). » Baudelaire. Alors je peins vite.
+
+Tout Paris a fait la queue au Petit Palais cette année pour l'or de Toutânkhamon. Moi, je peins des oignons et de l'eau.
+
+Ma femme est allée au nouvel Orchestre de Paris la semaine dernière. Très chic. Moi, je suis resté ici avec le fleuve.
 
 [barrier]
-Des barrières: TRAVAUX. Le reste du pont attendra le jour.
+TRAVAUX. Le reste du pont attendra le jour.
 
 [watch_water]
-Tu te penches. L'eau file sous le pont, très vite, sans un bruit.
+Le Pont-Neuf : malgré son nom, le plus vieux pont de Paris. En dessous, l'eau file sans un bruit.
+
+L'eau ne s'arrête pour personne. Même pas pour un poème.
 
 # ---------------------------------------------------------------- barks
-# One-page lines that NPCs say by themselves when the player comes close.
 [bark_stranger]
-L'HOMME AU CARNET: Psst! Vous, là! Approchez.
+HOMME AU CARNET : Psst ! Fernand…
 
 [bark_stranger_met]
-L'HOMME AU CARNET: Je note, je note…
+HOMME AU CARNET : Je note, je note…
 
 [bark_porter]
-FERNAND: Eh, toi! Un coup de main?
+DÉDÉ : Hé, toi ! Tu as vu Fernand ?
 
 [bark_porter_cart]
-FERNAND: La charrette, là! Prends une caisse!
+DÉDÉ : À la charrette, vite !
 
 [bark_porter_carry]
-FERNAND: Dedans! Lis bien les enseignes!
+DÉDÉ : Dedans ! Lis les panneaux !
 
 [bark_porter_back]
-FERNAND: Alors? Elles sont livrées?
+DÉDÉ : Alors ? Tout est livré ?
 
 [bark_porter_done]
-FERNAND: Merci, petit! Va au café, en face.
+DÉDÉ : Merci ! Va voir Germaine.
 
 [bark_merchant]
-GERMAINE: Choux! Beaux choux! Pas cher!
+GERMAINE : Choux ! Pas chers !
 
 [bark_merchant_choux]
-GERMAINE: Oh! C'est pour moi, ça?
+GERMAINE : Oh ! C'est pour moi ?
 
 [bark_cafe]
-SIMONE: Entre! Un petit café?
+SIMONE : Entre ! Pour Fernand ?
+
+[bark_cafe_met]
+SIMONE : Fernand ? Du nouveau ?
 
 [bark_cafe_jeton]
-SIMONE: Le téléphone? Il faut un jeton. Demande!
+SIMONE : Il faut un jeton !
 
 [bark_worker]
-UN FORT: Zzz… zzz…
+UN FORT : Zzz… zzz…
+
+[fernand_hello]
+FERNAND : Laisse-moi, petit. Je regarde l'eau.
+
+Il se frotte le crâne nu. FERNAND : Froid, sans mon coltin. Je l'ai laissé chez Simone.
+
+[fernand_why]
+FERNAND : Mon coltin… Simone l'a gardé, hein ? Ça ne fait rien.
+
+Pourquoi je suis parti ? Demande à celui qui m'a écrit. Un coursier est venu au café hier.
+
+[fernand_plate]
+FERNAND : Le bleu de Marcel… Alors tu l'as lu.
+
+Ma plaque en laiton ? Partie. Je l'ai vendue à quelqu'un sur le quai, du côté des livres. Va demander.
+
+[fernand_talk]
+FERNAND : Laisse-moi, petit… Qu'est-ce que c'est ? Mon coltin ?
+
+Tu lui tends son chapeau, sa plaque en laiton, et tu lui parles du petit bleu de Marcel.
+
+FERNAND : Alors tu sais. Trente ans que je porte pour les Halles. Mon père avant moi.
+
+Et maintenant, ils emmènent le marché à Rungis. Du béton, des camions. Marcel a raison.
+
+Qui voudra d'un vieux fort là-bas ? Autant arrêter maintenant, avant qu'on m'arrête.
+
+Il tourne le coltin dans ses grosses mains. FERNAND : Tu ferais quoi, toi, petit ?
+? Rester | Partir
+
+[end_stay]
+Tu lui dis : il reste encore deux hivers sous la verrière. Passe-les ici.
+
+FERNAND : Deux hivers… Les choux de Germaine ne vont pas se porter tout seuls, hein ?
+
+Il remet son coltin. Ensemble, vous repartez vers la lumière des pavillons.
+
+Au café, Simone réchauffe son café. Dédé rit. Fernand est revenu.
+
+À la porte, le photographe lève son appareil. Clic. Un visage de plus des Halles, avant que tout disparaisse.
+
+[end_go]
+Tu lui dis : si le marché s'en va, va avec lui. Porte pour Germaine là-bas aussi.
+
+FERNAND : Là-bas… Les choux seront les mêmes choux, hein ? Et mon dos, le même dos.
+
+Il remet son coltin. FERNAND : Alors on ira tous ensemble. Marcel aussi. Je le traînerai.
+
+Au café, Simone réchauffe son café. Dédé rit. Fernand est revenu.
+
+À la porte, le photographe lève son appareil. Clic. Un visage de plus des Halles, avant que tout disparaisse.
+
+[photo_hello]
+LE PHOTOGRAPHE : Ne fais pas attention à moi. Une fois par semaine, je monte de Montrouge à trois heures du matin.
+
+Pour ça. Les camions, les caisses, la vapeur sur le dos des forts. Personne ne le regarde.
+
+Ils vont bientôt emmener tout ça à Rungis. Alors je le photographie. Chaque semaine, tant que c'est là.
+
+Un fort manquait cette nuit ? Le grand, Fernand. Je l'ai photographié la semaine dernière, en train de rire sous son chapeau.
+
+[photo_again]
+LE PHOTOGRAPHE : La lumière change. Dans une heure, le marché ressemblera à n'importe quel endroit.
+
+Le mois dernier, ils ont ouvert la gare routière de Rungis. J'y suis allé. Du béton, et pas un visage qui vaille une photo.
+
+[photo_knows]
+LE PHOTOGRAPHE : Tu as trouvé Fernand ? Ramène-le sous la verrière. J'aimerais une dernière photo de lui.
+
+[bark_photo]
+LE PHOTOGRAPHE : Chut, bouge pas !
+
+[bark_fernand]
+FERNAND : …
 
 [bark_painter]
-LE PEINTRE: Chut… je peins la nuit.
+LE PEINTRE : Chut… je peins.
+
+[puncher_hello]
+LE POINÇONNEUR : Ticket ! Pas de trou, pas de train. Personne passe sans son petit trou.
+
+Pas de ticket ? Le guichet est là. Frappe fort, l'employé dort comme une souche.
+
+[metro_window]
+Tu tapes à la vitre. Un employé endormi glisse dessous un petit ticket marron de deuxième classe.
+
+[metro_window_again]
+L'employé s'est replongé dans son journal du soir.
+
+Gros titre : LA LIVRE DÉVALUÉE.
+
+Plus bas : LE GONCOURT POUR « LA MARGE ».
+
+[puncher_ticket]
+LE POINÇONNEUR : Fais voir. Clac ! Un joli petit trou. Bon pour un voyage.
+
+Des centaines par jour, clac, clac. Tu veux essayer ? Voilà les premiers voyageurs.
+? Oui | Non
+
+[punch_ok]
+Clac ! Un trou net. Le voyageur hoche la tête et passe.
+
+LE POINÇONNEUR : Pas mal ! Un autre ?
+? Oui | Non
+
+[punch_miss]
+Clac ! Tu as poinçonné le vide. Le voyageur soupire.
+
+LE POINÇONNEUR : Le poignet, petit, pas l'épaule. Tu coupes pas du bois.
+? Oui | Non
+
+[punch_done]
+Clac ! Trois trous bien nets. LE POINÇONNEUR : Ça, c'est un poignet !
+
+Il paraît qu'un jour des machines vérifieront les tickets toutes seules. Et moi ? Je poinçonnerai mon journal.
+
+Tu lui parles d'un grand type au chapeau jaune.
+
+LE POINÇONNEUR : Un costaud ? Y en a un qui est descendu cette nuit. Pas de chapeau, pas de ticket. Il voulait pas de train.
+
+Il est resté planté à regarder les rails. Puis il est remonté, vers la Seine.
+
+[puncher_after]
+LE POINÇONNEUR : Un chanteur a fait une chanson sur un gars comme moi, à la porte des Lilas.
+
+Depuis, tout le monde me la fredonne. Tous les jours. Clac. Ton costaud, il est parti vers la Seine.
+
+[bark_puncher]
+LE POINÇONNEUR : Vos tickets !
+
+[bark_puncher_done]
+LE POINÇONNEUR : Clac ! Clac !
+
+[metro_sign]
+L'escalier du métro. Un souffle d'air chaud monte d'en bas.
+
+[metro_name]
+LES HALLES. Papa dit que la ligne 4 s'arrête sous le marché depuis 1908. C'est plus vieux que Pépé !
+
+[metro_tiles]
+Des petits carreaux blancs, les mêmes dans toutes les stations. Ils brillent même dans le noir.
+
+Un mur de petites lunes.
+
+[metro_gate]
+La grille du quai. En bas, ça sent le fer chaud et la poussière.
+
+Depuis cet été, les rames de la ligne 4 roulent sur pneus. C'est bien plus silencieux.
+
+Mais pas ce soir. D'abord Fernand.
+
+[baskets]
+Des paniers de poireaux et d'oignons. J'ai déjà les yeux qui piquent.
+
+[poster]
+Des affiches collées épaule contre épaule. Ici, personne ne se soucie de la loi de 1881.
+
+[bench]
+Un banc de bois, poli par mille manteaux.
+
+[chairs]
+Des chaises de bistrot en bois courbé. Celle-ci est encore chaude.
+
+[metro_map]
+LIGNE 4 : PORTE DE CLIGNANCOURT - PORTE D'ORLÉANS. Un rond blanc autour de LES HALLES : vous êtes ici.
+
+Au nord : gare de l'Est, gare du Nord, Barbès. Au sud, sous la Seine : Cité, Saint-Michel, Saint-Germain, Montparnasse.
+
+Chaque épisode ouvre de nouvelles stations sur la ligne. Cette nuit, Paris s'arrête ici.
+
+[painter_wife]
+LE PEINTRE : Tu l'as appelée ? Qu'est-ce qu'elle a dit ?
+
+La soupe froide… et qu'elle m'aime. Mais surtout la soupe. Ha ! C'est bien elle.
+
+Je finis ce ciel et je rentre. Merci, mon ami. Vas-y doucement avec le grand gaillard.
+
+[end_bonus]
+À la porte du café, le photographe baisse son appareil. LE PHOTOGRAPHE : Tu étais partout, cette nuit.
+
+Le métro, le boucher, la femme du peintre… Tiens.
+
+Il te promet un tirage : toi, en train de rire, avec un ticket plein de trous.
+
+[singer_hello]
+LE CHANTEUR : Chut. J'écoute la Seine. Elle fredonne en mineur.
+
+Je suis descendu pour la soupe à l'oignon. Par ici, on la sert toute la nuit, aux forts et aux gens comme moi.
+
+Un jour, j'ai écrit une chanson sur un homme qui fait des trous dans les tickets de métro. Il y en a un comme lui sous le marché.
+
+Un fort disparu, tu dis ? Reviens si tu bloques. Je remarque les choses. C'est mon métier.
+
+[singer_hat]
+LE CHANTEUR : Un fort sans son chapeau, c'est une chanson sans paroles. Quelqu'un a gardé son chapeau. Essaie le café.
+
+[singer_bleu]
+LE CHANTEUR : Un fort qui s'en va comme ça ? Quelqu'un lui a écrit. Un petit bleu, je parie. Demande qui l'a apporté.
+
+[singer_plate]
+LE CHANTEUR : Un fort ne vend sa plaque que quand il en a assez. Demande aux livres, le long du quai.
+
+[singer_ready]
+LE CHANTEUR : Tu sais tout, maintenant. Ton grand bonhomme est sur le pont, petit. Vas-y, avant le jour.
+
+[bark_singer]
+LE CHANTEUR : La la… Non. Pas ça.
+
+[cafe_rush]
+SIMONE : Encore là ? Le coup de feu n'attendra pas. Aide-moi et le coltin est à toi.
+? Oui | Non
+
+[serve_win]
+SIMONE : Pas une goutte renversée ! Tu as ça dans le sang.
+
+Elle décroche le coltin. SIMONE : Tiens. Le chapeau de Fernand. Rapporte-le-lui.
+
+[serve_lose]
+SIMONE : Oh là là, du café partout ! Encore : lâche quand ça arrive dans la partie foncée.
+? Oui | Non
+
+[cafe_soup]
+SIMONE : Une gratinée pour Mme Roux ? Elle gèle sur ce quai tous les matins, la pauvre.
+
+Tiens, toute chaude, sortie du four. Porte-la doucement !
+
+[worker_cups]
+UN FORT : Un jeton ? J'en ai plein les poches. Gagnes-en un : trouve-le sous mes gobelets.
+? Oui | Non
+
+[cups_win]
+UN FORT : Ha ! Bon œil. Voilà ton jeton. N'appelle pas le boucher, il mord.
+
+[cups_lose]
+UN FORT : Vide ! Il était sous l'autre. On recommence ?
+? Oui | Non
+
+[merchant_catch]
+GERMAINE : Tu as porté pour Fernand, mon petit. Encore un service : ma pyramide s'écroule !
+
+Attrape les choux qui dégringolent. Après, je te dirai ce qui ronge Fernand.
+? Oui | Non
+
+[catch_lose]
+GERMAINE : Mes pauvres choux, par terre partout ! On réessaie ?
+? Oui | Non
+
+[roux_hello]
+MME ROUX : Brr ! Ouvrir ma boîte à cette heure-ci, pour les lève-tôt.
+
+Une plaque en laiton ? Oui, un grand fort me l'a vendue hier soir. FORT, MARCHAND. Il n'en aura plus besoin, il a dit.
+
+Je n'en voulais pas ! Tu peux la reprendre. Mais apporte-moi d'abord quelque chose de chaud. Une gratinée !
+
+[roux_wait]
+MME ROUX : Une gratinée, mon petit. Au café de Simone, en haut de la rue. J'ai les doigts bleus.
+
+[roux_soup]
+MME ROUX : Une gratinée ! Encore fumante ! Tu es un ange.
+
+Tiens : sa plaque. Un fort sans sa plaque, ce n'est qu'un grand gaillard qui a mal au dos.
+
+[thief]
+Un homme en casquette te bouscule. « Pardon ! » Ta poche paraît plus légère… La plaque de Fernand !
+
+Il file le long du quai. Rattrape-le !
+
+[chase_win]
+Tu l'attrapes par la manche sous un bec de gaz. La plaque tombe sur les pavés.
+
+LE VOLEUR : Rien que du laiton ?! Toute la ville est folle de l'or cette semaine, j'ai cru… Bah !
+
+Il se dégage et disparaît dans le noir. La plaque est de nouveau à toi.
+
+[chase_lose]
+Il s'arrête au parapet pour reprendre son souffle, et sourit. LE VOLEUR : Trop lent !
+
+Lui aussi est fatigué. Allez, encore une fois !
+
+[roux_after]
+MME ROUX : Zola, Hugo, Balzac… De vieux livres pour un vieux Paris. Fais attention à toi.
+
+Les nouveautés ? Tout le monde me demande « Vendredi », de Tournier. L'Académie lui a donné son prix la semaine dernière.
+
+Cinquante millions de Français maintenant, disent les journaux. Et toujours personne pour acheter des livres à quatre heures du matin.
+
+[bark_roux]
+MME ROUX : Brr ! Déjà debout ?
+
+[bark_roux_soup]
+MME ROUX : Ça sent la soupe, non ?
+
+[bark_cafe_rush]
+SIMONE : Vite ! On a du monde !
+
+[bark_worker_cups]
+UN FORT : Psst. Un jeton ?
+
+# ---------------------------------------------------------------- cameos (2)
+[actor_hello]
+L'ACTEUR : Souper à la brasserie de la rue Coquillière, puis une balade dans le marché. La meilleure fin de nuit.
+
+Des admirateurs ? À quatre heures du matin, seuls les forts sont réveillés. Et toi.
+
+[actor_again]
+L'ACTEUR : Un conseil d'un homme qui lit des scénarios : regarde là où personne ne regarde. Caniveaux, coins, réverbères. Paris cache ses petites blagues.
+
+[chanteuse_hello]
+LA CHANTEUSE : Je viens de Saint-Germain. Là-bas, on parle de livres toute la nuit. Ici, au moins, les gens travaillent.
+
+Un jeune auteur m'a écrit une chanson, autrefois. Il traîne au bord de la Seine, paraît-il.
+
+[chanteuse_again]
+Tu lui parles de Fernand.
+
+LA CHANTEUSE : Un homme qui arrête de travailler arrête de chanter. Rapporte à ton fort ce qu'il a laissé. Son chapeau d'abord.
+
+[philosopher_hello]
+LE PHILOSOPHE : D'habitude, j'écris dans un café de Saint-Germain, avec ma compagne. Cette nuit, je voulais voir des gens qui font des choses de leurs mains.
+
+[philosopher_again]
+Tu lui parles de Fernand.
+
+LE PHILOSOPHE : Ton fort est libre de partir. Libre de rester, aussi. Apporte-lui des raisons, pas des ordres.
+
+Il y a trois ans, on m'a donné le plus grand prix qui existe. J'ai essayé de le refuser. Un écrivain ne doit pas devenir une institution.
+
+Cette année, j'ai siégé dans un tribunal qui jugeait la guerre du Vietnam. Les mots peuvent encore agir.
+
+[filmmaker_hello]
+LE CINÉASTE : Mon nouveau film sort en décembre. Une ville de verre et d'acier. Je suis venu voir l'ancienne avant qu'elle parte.
+
+[filmmaker_again]
+LE CINÉASTE : Regarde les gens, pas les choses. Cette vitre d'hôtel, rue Rambuteau : frappe, attends, frappe encore. Le comique, c'est la patience.
+
+[writer_hello]
+L'ÉCRIVAIN : J'ai écrit un jour sur une petite fille venue à Paris rien que pour prendre le métro. Il était en grève, bien sûr.
+
+[writer_again]
+L'ÉCRIVAIN : Regarde les carreaux, en bas, près du mur. Même les souris prennent le métro. Certaines sans ticket.
+
+[novelist_hello]
+LA ROMANCIÈRE : Je n'arrive pas à dormir, alors je marche. À cette heure, Paris appartient à ceux qui travaillent et à ceux qui écrivent.
+
+Un nouveau livre de moi est sorti cette année. Ne me demande pas de quoi il parle.
+
+Un jour, j'ai écrit un film au titre comme un soupir : une si longue absence.
+
+[novelist_again]
+LA ROMANCIÈRE : Un homme qui disparaît laisse toujours quelque chose. Un chapeau, une lettre, un nom. Rassemble-les, et il te revient.
+
+[playwright_hello]
+LE DRAMATURGE : Un Irlandais. Je suis venu à Paris avant la guerre, et j'y suis resté pendant.
+
+Une pièce de moi a été créée ici en 53. Deux hommes qui attendent au bord de la route. Les gens attendent encore avec eux.
+
+Je jouais aux échecs dans les cafés avec des peintres. De longs silences. Un bon entraînement.
+
+[playwright_again]
+LE DRAMATURGE : Le grand gaillard au bout du pont attend depuis longtemps. Attendre rien, c'est dur. Va lui donner quelque chose.
+
+[critic_hello]
+LE CRITIQUE : Le vin rouge, le bifteck-frites, une nouvelle voiture… J'ai écrit de petits essais sur ces choses-là. Les mythes de la France de tous les jours.
+
+Cette année, j'ai publié tout un livre sur la mode. Tout est signe, si on regarde de près.
+
+[critic_again]
+LE CRITIQUE : Pense à Mme Roux au bord de l'eau, avec ses doigts bleus. Une gratinée chaude lui dirait plus que n'importe quel mot.
+
+[young_man_hello]
+LE JEUNE HOMME : J'ai vingt-deux ans et j'écris mon premier roman. Paris sous l'Occupation, et des gens qui ont disparu.
+
+Mon ancien prof de géométrie écrit des romans. Il est par ici, quelque part. Il dit que je dois continuer.
+
+[young_man_again]
+LE JEUNE HOMME : Les gens ne disparaissent jamais tout à fait. Ils laissent des adresses, des numéros, des mots. Quelqu'un se souvient toujours.
+
+[fort2_hello]
+UN FORT : Cinq minutes assis. Gare à tes pieds, petit. Les chariots ont pas de freins.
+
+[fort2_again]
+Tu lui parles de Fernand.
+
+UN FORT : Fernand ? Le meilleur dos du pavillon. Laisser une charrette pleine ? Lui ? Y a quelque chose qui va pas.
+
+[cook_hello]
+UN CUISINIER : J'achète ici avant l'aube, je sers à midi. Mes clients croient que les carottes poussent dans ma cuisine.
+
+[cook_again]
+UN CUISINIER : Les choux de Germaine sont les meilleurs du pavillon. Ne le dis pas aux autres.
+
+[sleeper_hello]
+UN OUVRIER DE NUIT : Hm ? J'attends juste le premier métro. Puis la maison, puis le lit.
+
+[sleeper_again]
+UN OUVRIER DE NUIT : Zzz… Il paraît que tout le marché part à Rungis… Zzz…
+
+# ---------------------------------------------------------------- curiosities
+[curio_0_find]
+Sous le banc, un petit ticket vert. Le tien est marron. À quoi pourrait bien servir un vert ?
+
+[curio_1_find]
+Parmi les pelures d'oignon, un petit rouleau strié, noir de crasse. Il vient d'une machine… mais laquelle ?
+
+[curio_2_find]
+Sur la chaise, un billet déchiré : un masque d'or, et les mots PETIT PALAIS. À qui est ce visage ?
+
+[curio_0_solve]
+LE POINÇONNEUR : Vert ? C'est la première classe, petit. Le marron, c'est la deuxième, comme le tien.
+
+La première coûte plus cher et a ses propres voitures, celles avec les marques jaunes. Je le garde. Clac !
+
+[curio_1_solve]
+LE JEUNE HOMME : Ça vient d'un VéloSolex ! Le galet appuie sur le pneu avant et le petit moteur le fait tourner.
+
+Les étudiants en ont partout. Quelqu'un rentre à pied, cette nuit.
+
+[curio_2_solve]
+LE PEINTRE : Toutânkhamon ! L'or du roi enfant, au Petit Palais cette année.
+
+Tout Paris a fait la queue. Plus d'un million de personnes. Garde-le : un jour, personne ne te croira.
+
+# ---------------------------------------------------------------- l'ouest des Halles (2026-11-24)
+[bourse]
+LA BOURSE DE COMMERCE : un bâtiment rond sous une coupole de fer. Pépé dit que c'était la halle aux blés. Maintenant, des messieurs y crient le prix du blé.
+
+[bourse_door]
+La grande porte est fermée. Derrière, les prix du blé et du sucre dorment jusqu'au matin.
+
+[medici]
+Une colonne de pierre toute seule contre la rotonde, avec une cage de fer en haut. Quelqu'un montait là-haut lire les étoiles. Courageux.
+
+[vespasienne]
+Pouah, ça pue. Une pissotière en fonte verte, deux chaussures sous le paravent, quelqu'un qui siffle dedans.
+
+Il y en a tellement, à Paris. Et le mur d'à côté sent encore plus fort.
+
+[rat]
+Un rat ! Il traverse les pavés comme s'il était chez lui. Autour du marché, il y en a partout.
+
+[brasserie_front]
+Une brasserie, éclairée de haut en bas. Des forts à une table, des gens en tenue de soirée à la suivante. Elle ferme un jour ?
+
+[west_pavilion]
+Encore des pavillons de verre et de fer. La rue couverte ramène rue Baltard.
+
+[hotel_keys]
+Le tableau des clés. Presque tous les crochets sont vides : tout le monde dort, ou traîne aux Halles.
+
+[hotel_mirror]
+Un miroir piqué. Tu as la tête de quelqu'un qui n'a pas dormi. C'est le cas.
+
+[hotel_stairs]
+L'escalier grince rien qu'à le regarder. En haut, quelqu'un ronfle.
+
+[hotel_switch]
+Le téléphone de l'hôtel, derrière le comptoir. LE VEILLEUR DE NUIT : Une ligne ? Les clients descendent et je les passe. C'est un jeton, comme au café.
+
+[hotel_switch_use]
+LE VEILLEUR DE NUIT : Un jeton ? Bon, je vous passe la ligne. Donnez-moi le numéro.
+? Oui | Non
+
+[bra_mirror]
+Des miroirs sur tous les murs. Deux fois plus de monde, deux fois plus de bruit.
+
+[bra_table]
+Des tables de marbre, un pot de moutarde, la soupe à l'oignon de quelqu'un qui refroidit. Quel gâchis.
+
+[hotel_chair]
+Un fauteuil usé. Le journal du veilleur est plié à la page des courses. Je parie qu'il a perdu.
+
+[waiter_hello]
+LE GARÇON : Ouvert toute la nuit, toutes les nuits, depuis 47. Des forts à une table, des noctambules à la suivante. Qu'est-ce que je vous sers ?
+
+[waiter_again]
+LE GARÇON : Le téléphone ? Au fond, près des miroirs. Avec un jeton, comme partout.
+
+[nightporter_hello]
+LE VEILLEUR DE NUIT : Chut ! Les clients dorment. Et non, c'est complet. Les gars du marché frappent à toute heure pour un lit de trois heures.
+
+[nightporter_again]
+LE VEILLEUR DE NUIT : Vous cherchez quelqu'un à cette heure ? Demandez dans les cafés. Aux Halles, tout le monde passe par un café.
+
+[souper_hello]
+UN FORT, le nez dans sa soupe : Premier truc chaud depuis minuit. Me regarde pas comme ça, y en a plus.
+
+Quand le marché partira à Rungis, on mangera où, à quatre heures du matin ? Dans le béton ?
+
+[souper_again]
+UN FORT : Fernand ? Il s'assoit toujours là, près du miroir. Pas ce soir. Drôle, ça.
+
+[archivist_hello]
+L'ARCHIVISTE : Toi non plus, tu ne dors pas ? Un livre de moi est sorti cette année, sur un homme qui dort. Et moi, je suis bien réveillé.
+
+Le jour, je range des papiers dans un labo qui étudie le cerveau. La nuit, je compte. Ici : six tables. Des miroirs, plein.
+
+Ce printemps, des écrivains m'ont pris dans leur club. On écrit avec des règles, comme un jeu.
+
+[archivist_again]
+L'ARCHIVISTE : Tu as perdu quelqu'un ? Fais une liste. Tout ce qu'il a laissé, un par un. Une liste, ça aide toujours.
+
+[meat_hello]
+UN PORTEUR DE VIANDE : Gare ! Gare ! Attention au dos, petit !
+
+Casquette enfoncée jusqu'aux oreilles, il porte le quartier de bœuf sur l'épaule, calé avec la tête.
+
+UN PORTEUR DE VIANDE : Plus lourd que ma belle-mère. Et ça râle moins.
+
+Du camion au pavillon, toute la nuit. J'ai l'endosse en compote. Ma blouse était blanche à minuit. Regarde-la.
+
+[meat_again]
+Tu lui parles d'un grand type au chapeau jaune.
+
+UN PORTEUR DE VIANDE : Fernand ? Il est descendu par la rue du Pont-Neuf, vers la flotte. Même pas un « salut ». Ça lui ressemble pas.
+
+Allez, lercimuche !
+
+« Lercimuche » ? Tu le notes. On dirait un bout de poème.
+
+[waiter_jeton]
+LE GARÇON : Un jeton pour le téléphone ? Vos vingt centimes sur le zinc... voilà. Votre jeton.
+
+[car]
+Tiens, une deux-chevaux grise. La même que celle de mon oncle ! Lui, il l'appelle « le parapluie sur roues ».
+
+Quelqu'un a oublié un béret sur le siège.
+
+[van]
+Une camionnette toute ondulée, comme une planche à laver. Le boucher de notre rue a la même.
+
+Son pare-brise garde un morceau de ciel.
+
+[pinball]
+Un flipper qui clignote même quand personne ne joue. Mon cousin y laisse tout son argent de poche, vingt centimes la partie.
+
+[scopitone]
+Un juke-box avec un petit écran ! On met une pièce, et une chanteuse danse dans la boîte. Ma sœur resterait là toute la nuit.
+
+[dog]
+UN PETIT CHIEN : Ouaf !
+
+Il renifle chaque réverbère, très sérieux. Attention où tu marches : il n'est pas le seul chien passé par ici.
+
+[police]
+UN AGENT : On traîne, jeune homme ? On écrit des lettres d'amour sous les réverbères ?
+
+Méfie-toi des charrettes. Et des coudes des forts.
+
+Il s'appuie sur son vélo, la pèlerine sur les épaules, comme une grande hirondelle bleue.
+
+[sweeper]
+UN BALAYEUR : Attention aux pieds ! L'eau arrive.
+
+Il ouvre un petit robinet de fer au bord du trottoir, et le caniveau se met à couler, emportant feuilles de chou et mégots.
+
+[smoker]
+UN FUMEUR : T'as du feu ? Non ? Tant pis, j'ai des allumettes.
+
+Il protège la flamme dans ses mains. La fumée reste longtemps sous le réverbère.
+
+[walker]
+UNE DAME ET SON CANICHE : Déjà debout ? Pompon me réveille à cinq heures, tous les jours, qu'il pleuve ou qu'il vente.
+
+Le caniche marche comme un danseur, sur la pointe des pattes. Son souffle fait de petits nuages.
+
+[poodle]
+POMPON : Wouf ! Wouf !
+
+Tout juste toiletté, un pompon au bout de la queue. Il te regarde comme si c'était toi, en laisse.
+
+[tabac]
+L'étagère du tabac derrière le comptoir : des paquets alignés comme des petites briques. Un homme en achète deux, en allume un avant la porte.
+
+La fumée monte. Les idées montent. Rien ne redescend.
+

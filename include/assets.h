@@ -14,10 +14,11 @@
 
 #define ASSET_BANK 1   /* bank of src/assets.c, normally mapped */
 #define DLG_BANK 2     /* bank of src/dialogue_text.c */
+#define ROOM_BANK 16   /* bank of src/room_data.c: room maps */
 #define TITLE_BANK 3   /* bank of src/title_art.c */
 #define PORTRAIT_BANK 4 /* bank of src/portrait_art.c */
 #define FONT_BASE 128
-#define FONT_TILE_COUNT 115
+#define FONT_TILE_COUNT 118
 #define GLYPH_SPACE 128
 #define GLYPH_ARROW_DOWN 230
 #define GLYPH_ARROW_RIGHT 231
@@ -32,75 +33,77 @@
 #define GLYPH_BAR 240
 #define GLYPH_BAR_ZONE 241
 #define GLYPH_BAR_CURSOR 242
+#define GLYPH_POUR_ZONE 243
+#define GLYPH_COFFEE 244
+#define GLYPH_COFFEE_ZONE 245
 
-#define ENV_TILE_COUNT 59
-#define TILE_SKY 0
-#define TILE_ROOFTOP 1
-#define TILE_ROOF 2
-#define TILE_DORMER 3
-#define TILE_CORNICE 4
-#define TILE_WALL 5
-#define TILE_WIN_T 6
-#define TILE_WIN_B 7
-#define TILE_DWIN_T 8
-#define TILE_DWIN_B 9
-#define TILE_DOOR_T 10
-#define TILE_DOOR_B 11
-#define TILE_AWNING 12
-#define TILE_SHOPGLASS 13
-#define TILE_PAVE 14
-#define TILE_CURB 15
-#define TILE_COBBLE 16
-#define TILE_LAMP_HEAD 17
-#define TILE_LAMP_POST 18
-#define TILE_CRATE 19
-#define TILE_PLAQUE 20
-#define TILE_GLASS 21
-#define TILE_COLUMN 22
-#define TILE_ARCH 23
-#define TILE_OPENING 24
-#define TILE_CART 25
-#define TILE_FLOOR 26
-#define TILE_CABBAGE 27
-#define TILE_APPLES 28
-#define TILE_CARROTS 29
-#define TILE_COUNTER 30
-#define TILE_PANEL 31
-#define TILE_SHELF 32
-#define TILE_MIRROR 33
-#define TILE_PHONE 34
-#define TILE_ZINC_TOP 35
-#define TILE_ZINC_FRONT 36
-#define TILE_CHECKER 37
-#define TILE_TABLE 38
-#define TILE_WATER 39
-#define TILE_PARAPET 40
-#define TILE_BOX_L 41
-#define TILE_BOX_R 42
-#define TILE_BPAR_L 43
-#define TILE_BPAR_R 44
-#define TILE_GASLAMP 45
-#define TILE_TREE_TL 46
-#define TILE_TREE_TR 47
-#define TILE_TREE_BL 48
-#define TILE_TREE_BR 49
-#define TILE_MTILE 50
-#define TILE_GATE 51
-#define TILE_STAIRS 52
-#define TILE_RAIL 53
-#define TILE_BARRIER 54
-#define TILE_PINNACLE 55
-#define TILE_BUTTRESS 56
-#define TILE_LANCET_T 57
-#define TILE_LANCET_B 58
+#define ENV_TILE_COUNT 158   /* all scenery tiles, in ROM */
+#define ENV_SLOTS 128   /* per room: count byte + tile ids (room_env) */
+#define TILE_WATER 0   /* pinned slots, the same in every room */
 #define SPRITE_TILE_COUNT 128
-#define SPR1_ACTOR 232   /* VRAM bank 1: use palette | S_BANK1 */
-#define SPR1_CHANTEUSE 236   /* VRAM bank 1: use palette | S_BANK1 */
-#define SPR1_PHILOSOPHER 240   /* VRAM bank 1: use palette | S_BANK1 */
-#define SPR1_FILMMAKER 244   /* VRAM bank 1: use palette | S_BANK1 */
-#define SPR1_WRITER 248   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_MARK 232   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_PRESS 234   /* VRAM bank 1: use palette | S_BANK1 */
+#define SPR1_THIEF_0 0   /* VRAM bank 1, low tiles */
+#define SPR1_THIEF_1 4   /* VRAM bank 1, low tiles */
+#define SPR1_SPARKLE 8   /* VRAM bank 1, low tiles */
+#define SPR1_NOVELIST 12   /* VRAM bank 1, low tiles */
+#define SPR1_PLAYWRIGHT 16   /* VRAM bank 1, low tiles */
+#define SPR1_CRITIC 20   /* VRAM bank 1, low tiles */
+#define SPR1_YOUNG_MAN 24   /* VRAM bank 1, low tiles */
+#define SPR1_ROUX 28   /* VRAM bank 1, low tiles */
+#define SPR1_COOK 32   /* VRAM bank 1, low tiles */
+#define SPR1_FORT2 36   /* VRAM bank 1, low tiles */
+#define SPR1_SLEEPER 40   /* VRAM bank 1, low tiles */
+#define SPR1_WORKER_CAFE 44   /* VRAM bank 1, low tiles */
+#define SPR1_WAITER 48   /* VRAM bank 1, low tiles */
+#define SPR1_ACTOR 52   /* VRAM bank 1, low tiles */
+#define SPR1_CHANTEUSE 56   /* VRAM bank 1, low tiles */
+#define SPR1_PHILOSOPHER 60   /* VRAM bank 1, low tiles */
+#define SPR1_FILMMAKER 64   /* VRAM bank 1, low tiles */
+#define SPR1_WRITER 68   /* VRAM bank 1, low tiles */
+#define SPR1_ARCHIVIST 72   /* VRAM bank 1, low tiles */
+#define SPR1_MEATPORTER 76   /* VRAM bank 1, low tiles */
+#define SPR1_DOG 80   /* VRAM bank 1, low tiles */
+#define SPR1_POLICE 84   /* VRAM bank 1, low tiles */
+#define SPR1_SWEEPER 88   /* VRAM bank 1, low tiles */
+#define SPR1_SMOKER 92   /* VRAM bank 1, low tiles */
+#define SPR1_WALKER 96   /* VRAM bank 1, low tiles */
+#define SPR1_POODLE 100   /* VRAM bank 1, low tiles */
+#define LOW_TILE_COUNT 104   /* all pool sprites, in ROM */
+#define TILE_CHAIR 1
+#define TILE_TABLE 2
+#define PAL_CHAIR 5
+#define PAL_TABLE 6   /* the ending's café table */
+#define LOW_FIXED 12        /* tiles always loaded (thief, sparkle) */
+#define POOL_SLOTS 10       /* bank-1 sprites one room can hold */
+/* VRAM bank 1 sprite tiles of the item picture (12 from ITEM_TILE) */
+#define ITEM_TILE 52
+#define NO_ITEM 0
+#define EXCH_COUNT 9
+#define EX_ALE 0
+#define EX_ARC 1
+#define EX_BRE 2
+#define EX_CAR 3
+#define EX_MED 4
+#define EX_ODE 5
+#define EX_OPE 6
+#define EX_PAS 7
+#define EX_ROQ 8
+#define ITEM_CUP 1
+#define ITEM_COLTIN 2
+#define ITEM_BLEU 3
+#define ITEM_PLATE 4
+#define ITEM_GRATINEE 5
+#define ITEM_JETON 6
+#define ITEM_TICKET 7
+#define ITEM_GREEN 8
+#define ITEM_ROLLER 9
+#define ITEM_STUB 10
+#define GLYPH_DIGIT0 198
+#define GLYPH_CUP 227
+#define GLYPH_COIN 228
 #define PORTRAIT_BASE 64
-#define PORTRAIT_TILE_COUNT 188
+#define PORTRAIT_TILE_COUNT 172
 #define NO_PORTRAIT 0xFF
 #define SPR_PLAYER_DOWN_0 0
 #define SPR_PLAYER_DOWN_1 4
@@ -142,7 +145,10 @@
 #define ROOM_QUAI 4
 #define ROOM_PONT 5
 #define ROOM_METRO 6
-#define ROOM_COUNT 7
+#define ROOM_BOURSE 7
+#define ROOM_HOTEL 8
+#define ROOM_BRASSERIE 9
+#define ROOM_COUNT 10
 
 enum {
     DLG_SECRET_COIN,
@@ -195,6 +201,7 @@ enum {
     DLG_CALL_4127,
     DLG_CALL_7302,
     DLG_CALL_2508,
+    DLG_CALL_CLOCK,
     DLG_CALL_NONE,
     DLG_LIFT_MISS,
     DLG_SHELF,
@@ -210,6 +217,17 @@ enum {
     DLG_COVERED,
     DLG_EUSTACHE,
     DLG_CRATES,
+    DLG_MORRIS,
+    DLG_WALLACE,
+    DLG_LORRY,
+    DLG_CAR,
+    DLG_VAN,
+    DLG_PINBALL,
+    DLG_TABAC,
+    DLG_SCOPITONE,
+    DLG_SOLEX,
+    DLG_BUSSTOP,
+    DLG_DEFENSE,
     DLG_COLUMN,
     DLG_QUAI_BOX,
     DLG_QUAI_BOX2,
@@ -217,10 +235,113 @@ enum {
     DLG_TREE,
     DLG_RIVER,
     DLG_QUAI_SHOP,
+    DLG_BOURSE,
+    DLG_BOURSE_DOOR,
+    DLG_MEDICI,
+    DLG_VESPASIENNE,
+    DLG_RAT,
+    DLG_BRASSERIE_FRONT,
+    DLG_WEST_PAVILION,
+    DLG_HOTEL_KEYS,
+    DLG_HOTEL_MIRROR,
+    DLG_HOTEL_STAIRS,
+    DLG_HOTEL_SWITCH,
+    DLG_HOTEL_SWITCH_USE,
+    DLG_BRA_MIRROR,
+    DLG_BRA_TABLE,
+    DLG_HOTEL_CHAIR,
+    DLG_WAITER_JETON,
     DLG_PAINTER_HELLO,
     DLG_PAINTER_AGAIN,
     DLG_BARRIER,
     DLG_WATCH_WATER,
+    DLG_PUNCHER_HELLO,
+    DLG_METRO_WINDOW,
+    DLG_METRO_WINDOW_AGAIN,
+    DLG_PUNCHER_TICKET,
+    DLG_PUNCH_OK,
+    DLG_PUNCH_MISS,
+    DLG_PUNCH_DONE,
+    DLG_PUNCHER_AFTER,
+    DLG_BARK_PUNCHER,
+    DLG_BARK_PUNCHER_DONE,
+    DLG_METRO_SIGN,
+    DLG_METRO_NAME,
+    DLG_METRO_TILES,
+    DLG_METRO_GATE,
+    DLG_BASKETS,
+    DLG_POSTER,
+    DLG_BENCH,
+    DLG_CHAIRS,
+    DLG_METRO_MAP,
+    DLG_PAINTER_WIFE,
+    DLG_END_BONUS,
+    DLG_SINGER_HELLO,
+    DLG_SINGER_HAT,
+    DLG_SINGER_BLEU,
+    DLG_SINGER_PLATE,
+    DLG_SINGER_READY,
+    DLG_BARK_SINGER,
+    DLG_CAFE_RUSH,
+    DLG_SERVE_WIN,
+    DLG_SERVE_LOSE,
+    DLG_CAFE_SOUP,
+    DLG_WORKER_CUPS,
+    DLG_CUPS_WIN,
+    DLG_CUPS_LOSE,
+    DLG_MERCHANT_CATCH,
+    DLG_CATCH_LOSE,
+    DLG_ROUX_HELLO,
+    DLG_ROUX_WAIT,
+    DLG_ROUX_SOUP,
+    DLG_THIEF,
+    DLG_CHASE_WIN,
+    DLG_CHASE_LOSE,
+    DLG_ROUX_AFTER,
+    DLG_BARK_ROUX,
+    DLG_BARK_ROUX_SOUP,
+    DLG_BARK_CAFE_RUSH,
+    DLG_BARK_WORKER_CUPS,
+    DLG_ACTOR_HELLO,
+    DLG_ACTOR_AGAIN,
+    DLG_CHANTEUSE_HELLO,
+    DLG_CHANTEUSE_AGAIN,
+    DLG_PHILOSOPHER_HELLO,
+    DLG_PHILOSOPHER_AGAIN,
+    DLG_FILMMAKER_HELLO,
+    DLG_FILMMAKER_AGAIN,
+    DLG_WRITER_HELLO,
+    DLG_WRITER_AGAIN,
+    DLG_NOVELIST_HELLO,
+    DLG_NOVELIST_AGAIN,
+    DLG_PLAYWRIGHT_HELLO,
+    DLG_PLAYWRIGHT_AGAIN,
+    DLG_CRITIC_HELLO,
+    DLG_CRITIC_AGAIN,
+    DLG_YOUNG_MAN_HELLO,
+    DLG_YOUNG_MAN_AGAIN,
+    DLG_FORT2_HELLO,
+    DLG_FORT2_AGAIN,
+    DLG_COOK_HELLO,
+    DLG_COOK_AGAIN,
+    DLG_SLEEPER_HELLO,
+    DLG_SLEEPER_AGAIN,
+    DLG_WAITER_HELLO,
+    DLG_WAITER_AGAIN,
+    DLG_NIGHTPORTER_HELLO,
+    DLG_NIGHTPORTER_AGAIN,
+    DLG_SOUPER_HELLO,
+    DLG_SOUPER_AGAIN,
+    DLG_ARCHIVIST_HELLO,
+    DLG_ARCHIVIST_AGAIN,
+    DLG_MEAT_HELLO,
+    DLG_MEAT_AGAIN,
+    DLG_CURIO_0_FIND,
+    DLG_CURIO_1_FIND,
+    DLG_CURIO_2_FIND,
+    DLG_CURIO_0_SOLVE,
+    DLG_CURIO_1_SOLVE,
+    DLG_CURIO_2_SOLVE,
     DLG_BARK_STRANGER,
     DLG_BARK_STRANGER_MET,
     DLG_BARK_PORTER,
@@ -246,220 +367,344 @@ enum {
     DLG_BARK_PHOTO,
     DLG_BARK_FERNAND,
     DLG_BARK_PAINTER,
-    DLG_PUNCHER_HELLO,
-    DLG_METRO_WINDOW,
-    DLG_METRO_WINDOW_AGAIN,
-    DLG_PUNCHER_TICKET,
-    DLG_PUNCH_OK,
-    DLG_PUNCH_MISS,
-    DLG_PUNCH_DONE,
-    DLG_PUNCHER_AFTER,
-    DLG_BARK_PUNCHER,
-    DLG_BARK_PUNCHER_DONE,
-    DLG_METRO_SIGN,
-    DLG_METRO_NAME,
-    DLG_METRO_TILES,
-    DLG_METRO_GATE,
-    DLG_PAINTER_WIFE,
-    DLG_END_BONUS,
-    DLG_SINGER_HELLO,
-    DLG_SINGER_HAT,
-    DLG_SINGER_BLEU,
-    DLG_SINGER_PLATE,
-    DLG_SINGER_READY,
-    DLG_BARK_SINGER,
-    DLG_CAFE_RUSH,
-    DLG_SERVE_WIN,
-    DLG_SERVE_LOSE,
-    DLG_CAFE_SOUP,
-    DLG_WORKER_CUPS,
-    DLG_CUPS_WIN,
-    DLG_CUPS_LOSE,
-    DLG_MERCHANT_CATCH,
-    DLG_CATCH_LOSE,
-    DLG_ROUX_HELLO,
-    DLG_ROUX_WAIT,
-    DLG_ROUX_SOUP,
-    DLG_ROUX_AFTER,
-    DLG_BARK_ROUX,
-    DLG_BARK_ROUX_SOUP,
-    DLG_BARK_CAFE_RUSH,
-    DLG_BARK_WORKER_CUPS,
-    DLG_ACTOR_HELLO,
-    DLG_ACTOR_AGAIN,
-    DLG_CHANTEUSE_HELLO,
-    DLG_CHANTEUSE_AGAIN,
-    DLG_PHILOSOPHER_HELLO,
-    DLG_PHILOSOPHER_AGAIN,
-    DLG_FILMMAKER_HELLO,
-    DLG_FILMMAKER_AGAIN,
-    DLG_WRITER_HELLO,
-    DLG_WRITER_AGAIN,
+    DLG_DOG,
+    DLG_POLICE,
+    DLG_SWEEPER,
+    DLG_SMOKER,
+    DLG_WALKER,
+    DLG_POODLE,
     DLG_COUNT
 };
 
 extern const palette_color_t bg_palettes[32];
+extern const uint8_t bubble_tiles[];   /* 8x16 speech bubble, bank-0 sprite tiles 254-255 */
+extern const palette_color_t bg_day[32];          /* daybreak after the ending */
 extern const palette_color_t spr_palettes[32];
 extern const uint8_t font_tiles[];
-extern const uint8_t env_tiles[];
+extern const uint8_t env_tiles[];             /* bank PORTRAIT_BANK */
+extern const uint8_t room_env[];              /* bank PORTRAIT_BANK, (ENV_SLOTS+1) per room */
 extern const uint8_t water_frames[];   /* 2 tiles, swapped into TILE_WATER */
 extern const uint8_t sprite_tiles[];
-extern const uint8_t * const room_tiles[ROOM_COUNT];
+extern const uint8_t * const room_tiles[ROOM_COUNT];   /* bank ROOM_BANK */
 extern const uint8_t * const room_attrs[ROOM_COUNT];
 extern const uint8_t * const room_solid[ROOM_COUNT];
 extern const uint8_t dlg_pages[];
-extern const uint16_t dlg_first_page[DLG_COUNT];
-extern const uint8_t dlg_page_count[DLG_COUNT];
-extern const uint8_t dlg_choice[DLG_COUNT];   /* 0 = none, else pair index + 1 */
+extern const uint16_t dlg_first_page[DLG_COUNT];   /* bank TITLE_BANK */
+extern const uint8_t dlg_page_count[DLG_COUNT];   /* bank TITLE_BANK */
+extern const uint8_t dlg_choice[DLG_COUNT];   /* bank TITLE_BANK; 0 = none, else pair index + 1 */
 extern const uint8_t choice_text[];           /* 14 bytes per pair: 7 + 7 */
 extern const uint8_t portrait_tiles[];        /* bank PORTRAIT_BANK */
+extern const uint8_t item_tiles[];            /* bank PORTRAIT_BANK, 192 bytes per item */
+extern const uint8_t item_pal[];              /* bank PORTRAIT_BANK */
+#define RAT_TILE 60   /* VRAM bank 1: the rat, over the item picture's last tiles */
+extern const uint8_t rat_tiles[];             /* bank PORTRAIT_BANK: rat 64 bytes, then pigeon 128 */
+#define PIGEON_TILE 44   /* VRAM bank 1: the quai pigeon, 2 frames, in the last two pool slots (the quai uses 3) */
+extern const uint8_t item_icon[];             /* bank PORTRAIT_BANK: 8x16 HUD icons, 32 bytes each */
+extern const uint8_t low_tiles[];             /* bank PORTRAIT_BANK, VRAM bank 1 tile 0.. */
 extern const uint8_t portrait_pal[];          /* sprite palette per portrait */
 extern const uint8_t dlg_portrait[DLG_COUNT]; /* speaker of the first page, or NO_PORTRAIT */
-extern const uint8_t txt_title_5[];
-extern const uint8_t txt_intro_a0[];
-extern const uint8_t txt_intro_a1[];
-extern const uint8_t txt_intro_a2[];
-extern const uint8_t txt_intro_a3[];
-extern const uint8_t txt_intro_a4[];
-extern const uint8_t txt_intro_a5[];
-extern const uint8_t txt_intro_a6[];
-extern const uint8_t txt_intro_a7[];
-extern const uint8_t txt_intro_b0[];
-extern const uint8_t txt_intro_b1[];
-extern const uint8_t txt_intro_b2[];
-extern const uint8_t txt_intro_b3[];
-extern const uint8_t txt_intro_b4[];
-extern const uint8_t txt_intro_b5[];
-extern const uint8_t txt_intro_b6[];
-extern const uint8_t txt_intro_b7[];
-extern const uint8_t txt_intro_b8[];
-extern const uint8_t txt_intro_c0[];
-extern const uint8_t txt_intro_c1[];
-extern const uint8_t txt_intro_c2[];
-extern const uint8_t txt_intro_c3[];
-extern const uint8_t txt_intro_c4[];
-extern const uint8_t txt_intro_c5[];
-extern const uint8_t txt_intro_c6[];
-extern const uint8_t txt_intro_more[];
-extern const uint8_t txt_caption[];
-extern const uint8_t txt_caption_2[];
-extern const uint8_t txt_cat_gone[];
-extern const uint8_t txt_cat_gone_2[];
-extern const uint8_t txt_new_clue[];
-extern const uint8_t txt_nb_title[];
-extern const uint8_t txt_nb_clues[];
-extern const uint8_t txt_nb_phone[];
-extern const uint8_t txt_nb_close[];
-extern const uint8_t txt_nb_of[];
-extern const uint8_t txt_goal_0a[];
-extern const uint8_t txt_goal_0b[];
-extern const uint8_t txt_goal_1a[];
-extern const uint8_t txt_goal_1b[];
-extern const uint8_t txt_goal_2a[];
-extern const uint8_t txt_goal_2b[];
-extern const uint8_t txt_goal_4a[];
-extern const uint8_t txt_goal_4b[];
-extern const uint8_t txt_goal_5a[];
-extern const uint8_t txt_goal_5b[];
-extern const uint8_t txt_goal_6a[];
-extern const uint8_t txt_goal_6b[];
-extern const uint8_t txt_goal_7a[];
-extern const uint8_t txt_goal_7b[];
-extern const uint8_t txt_goal_8a[];
-extern const uint8_t txt_goal_8b[];
-extern const uint8_t txt_goal_3a[];
-extern const uint8_t txt_goal_3b[];
-extern const uint8_t txt_clue_0[];
-extern const uint8_t txt_clue_1[];
-extern const uint8_t txt_clue_2[];
-extern const uint8_t txt_clue_3[];
-extern const uint8_t txt_clue_4[];
-extern const uint8_t txt_clue_5[];
-extern const uint8_t txt_num_0[];
-extern const uint8_t txt_num_1[];
-extern const uint8_t txt_num_2[];
-extern const uint8_t txt_num_3[];
-extern const uint8_t txt_end_1[];
-extern const uint8_t txt_end_2[];
-extern const uint8_t txt_end_3[];
-extern const uint8_t txt_end_4[];
-extern const uint8_t txt_end_5[];
-extern const uint8_t txt_end_6[];
-extern const uint8_t txt_end_7[];
-extern const uint8_t txt_end_8[];
-extern const uint8_t txt_end_9[];
-extern const uint8_t txt_end_10[];
-extern const uint8_t txt_end_11[];
-extern const uint8_t txt_dmg_1[];
-extern const uint8_t txt_dmg_2[];
-extern const uint8_t txt_lift_1[];
-extern const uint8_t txt_lift_2[];
-extern const uint8_t txt_dial_1[];
-extern const uint8_t txt_dial_2[];
-extern const uint8_t txt_digits[];
-extern const uint8_t txt_bark_hint[];
-extern const uint8_t txt_punch_1[];
-extern const uint8_t txt_punch_2[];
-extern const uint8_t txt_nb_next[];
-extern const uint8_t txt_nb_prev[];
-extern const uint8_t txt_extra_done[];
-extern const uint8_t txt_extra_of[];
-extern const uint8_t txt_extra_more[];
-extern const uint8_t txt_secret_done[];
-extern const uint8_t txt_secret_of[];
-extern const uint8_t txt_secrets[];
-extern const uint8_t txt_x_title[];
-extern const uint8_t txt_x_todo[];
-extern const uint8_t txt_x_done[];
-extern const uint8_t txt_x_0[];
-extern const uint8_t txt_x_0h[];
-extern const uint8_t txt_x_1[];
-extern const uint8_t txt_x_1h[];
-extern const uint8_t txt_x_2[];
-extern const uint8_t txt_x_2h[];
-extern const uint8_t txt_x_note_1[];
-extern const uint8_t txt_x_note_2[];
-extern const uint8_t txt_end_x[];
-extern const uint8_t txt_next_0[];
-extern const uint8_t txt_next_1[];
-extern const uint8_t txt_next_2[];
-extern const uint8_t txt_next_3[];
-extern const uint8_t txt_next_4[];
-extern const uint8_t txt_next_5[];
-extern const uint8_t txt_next_6[];
-extern const uint8_t txt_next_7[];
-extern const uint8_t txt_next_8[];
-extern const uint8_t txt_title_6[];
-extern const uint8_t txt_srv_title[];
-extern const uint8_t txt_srv_of[];
-extern const uint8_t txt_srv_0[];
-extern const uint8_t txt_srv_1[];
-extern const uint8_t txt_srv_2[];
-extern const uint8_t txt_srv_table[];
-extern const uint8_t txt_srv_ok[];
-extern const uint8_t txt_srv_bad[];
-extern const uint8_t txt_cup[];
-extern const uint8_t txt_coin[];
-extern const uint8_t txt_cup_watch[];
-extern const uint8_t txt_cup_pick[];
-extern const uint8_t txt_catch_hud[];
-extern const uint8_t txt_quest_done[];
-extern const uint8_t txt_q_0[];
-extern const uint8_t txt_q_0r[];
-extern const uint8_t txt_q_1[];
-extern const uint8_t txt_q_1r[];
-extern const uint8_t txt_q_2[];
-extern const uint8_t txt_q_2r[];
-extern const uint8_t txt_q_3[];
-extern const uint8_t txt_q_3r[];
-extern const uint8_t txt_q_4[];
-extern const uint8_t txt_nb_quests[];
+extern const uint8_t ui_text[];
+#define txt_title_5 (ui_text + 0)
+#define txt_lang_title (ui_text + 12)
+#define txt_lang_en (ui_text + 21)
+#define txt_lang_fr (ui_text + 29)
+#define txt_lang_go (ui_text + 38)
+#define txt_save_cont (ui_text + 48)
+#define txt_save_new (ui_text + 57)
+#define txt_save_back (ui_text + 66)
+#define txt_intro_a0 (ui_text + 80)
+#define txt_intro_a1 (ui_text + 98)
+#define txt_intro_a2 (ui_text + 114)
+#define txt_intro_a3 (ui_text + 132)
+#define txt_intro_a4 (ui_text + 150)
+#define txt_intro_a5 (ui_text + 168)
+#define txt_intro_a6 (ui_text + 182)
+#define txt_intro_a7 (ui_text + 200)
+#define txt_intro_b0 (ui_text + 215)
+#define txt_intro_b1 (ui_text + 223)
+#define txt_intro_b2 (ui_text + 241)
+#define txt_intro_b3 (ui_text + 259)
+#define txt_intro_b4 (ui_text + 272)
+#define txt_intro_b5 (ui_text + 281)
+#define txt_intro_b6 (ui_text + 297)
+#define txt_intro_b7 (ui_text + 313)
+#define txt_intro_b8 (ui_text + 328)
+#define txt_intro_c0 (ui_text + 342)
+#define txt_intro_c1 (ui_text + 351)
+#define txt_intro_c2 (ui_text + 364)
+#define txt_intro_c3 (ui_text + 383)
+#define txt_intro_c4 (ui_text + 397)
+#define txt_intro_c5 (ui_text + 414)
+#define txt_intro_c6 (ui_text + 426)
+#define txt_intro_more (ui_text + 435)
+#define txt_caption (ui_text + 452)
+#define txt_caption_2 (ui_text + 470)
+#define txt_cat_gone (ui_text + 486)
+#define txt_cat_gone_2 (ui_text + 505)
+#define txt_new_clue (ui_text + 523)
+#define txt_nb_title (ui_text + 539)
+#define txt_nb_clues (ui_text + 548)
+#define txt_nb_phone (ui_text + 554)
+#define txt_nb_close (ui_text + 568)
+#define txt_nb_of (ui_text + 574)
+#define txt_goal_0a (ui_text + 577)
+#define txt_goal_0b (ui_text + 596)
+#define txt_goal_1a (ui_text + 609)
+#define txt_goal_1b (ui_text + 628)
+#define txt_goal_2a (ui_text + 645)
+#define txt_goal_2b (ui_text + 663)
+#define txt_goal_4a (ui_text + 678)
+#define txt_goal_4b (ui_text + 696)
+#define txt_goal_5a (ui_text + 709)
+#define txt_goal_5b (ui_text + 725)
+#define txt_goal_6a (ui_text + 739)
+#define txt_goal_6b (ui_text + 756)
+#define txt_goal_7a (ui_text + 770)
+#define txt_goal_7b (ui_text + 787)
+#define txt_goal_8a (ui_text + 804)
+#define txt_goal_8b (ui_text + 821)
+#define txt_goal_3a (ui_text + 837)
+#define txt_goal_3b (ui_text + 856)
+#define txt_goal_9a (ui_text + 872)
+#define txt_goal_9b (ui_text + 890)
+#define txt_clue_0 (ui_text + 908)
+#define txt_clue_1 (ui_text + 927)
+#define txt_clue_2 (ui_text + 946)
+#define txt_clue_3 (ui_text + 964)
+#define txt_clue_4 (ui_text + 983)
+#define txt_clue_5 (ui_text + 1002)
+#define txt_num_0 (ui_text + 1018)
+#define txt_num_1 (ui_text + 1035)
+#define txt_num_2 (ui_text + 1050)
+#define txt_num_3 (ui_text + 1068)
+#define txt_end_1 (ui_text + 1085)
+#define txt_end_2 (ui_text + 1093)
+#define txt_end_3 (ui_text + 1106)
+#define txt_end_4 (ui_text + 1124)
+#define txt_end_5 (ui_text + 1141)
+#define txt_end_6 (ui_text + 1156)
+#define txt_end_7 (ui_text + 1171)
+#define txt_end_8 (ui_text + 1185)
+#define txt_end_9 (ui_text + 1201)
+#define txt_end_10 (ui_text + 1217)
+#define txt_end_11 (ui_text + 1232)
+#define txt_dmg_1 (ui_text + 1248)
+#define txt_dmg_2 (ui_text + 1266)
+#define txt_lift_1 (ui_text + 1282)
+#define txt_lift_2 (ui_text + 1299)
+#define txt_dial_1 (ui_text + 1316)
+#define txt_dial_2 (ui_text + 1332)
+#define txt_dial_3 (ui_text + 1349)
+#define txt_digits (ui_text + 1368)
+#define txt_bark_hint (ui_text + 1379)
+#define txt_punch_1 (ui_text + 1387)
+#define txt_punch_2 (ui_text + 1405)
+#define txt_nb_next (ui_text + 1422)
+#define txt_nb_prev (ui_text + 1429)
+#define txt_nb_album (ui_text + 1437)
+#define txt_al_title (ui_text + 1445)
+#define txt_al_0 (ui_text + 1460)
+#define txt_al_0f (ui_text + 1467)
+#define txt_al_1 (ui_text + 1486)
+#define txt_al_1f (ui_text + 1497)
+#define txt_al_2 (ui_text + 1512)
+#define txt_al_2f (ui_text + 1525)
+#define txt_al_3 (ui_text + 1544)
+#define txt_al_3f (ui_text + 1557)
+#define txt_al_4 (ui_text + 1571)
+#define txt_al_4f (ui_text + 1580)
+#define txt_al_none (ui_text + 1599)
+#define txt_extra_done (ui_text + 1603)
+#define txt_extra_of (ui_text + 1615)
+#define txt_extra_more (ui_text + 1618)
+#define txt_secret_done (ui_text + 1634)
+#define txt_secret_of (ui_text + 1648)
+#define txt_secrets (ui_text + 1651)
+#define txt_x_title (ui_text + 1665)
+#define txt_x_todo (ui_text + 1672)
+#define txt_x_done (ui_text + 1675)
+#define txt_x_0 (ui_text + 1678)
+#define txt_x_0h (ui_text + 1692)
+#define txt_x_1 (ui_text + 1706)
+#define txt_x_1h (ui_text + 1716)
+#define txt_x_2 (ui_text + 1731)
+#define txt_x_2h (ui_text + 1745)
+#define txt_x_note_1 (ui_text + 1758)
+#define txt_x_note_2 (ui_text + 1771)
+#define txt_end_x (ui_text + 1789)
+#define txt_next_0 (ui_text + 1802)
+#define txt_next_1 (ui_text + 1818)
+#define txt_next_2 (ui_text + 1831)
+#define txt_next_3 (ui_text + 1849)
+#define txt_next_4 (ui_text + 1863)
+#define txt_next_5 (ui_text + 1875)
+#define txt_next_6 (ui_text + 1889)
+#define txt_next_7 (ui_text + 1907)
+#define txt_next_8 (ui_text + 1924)
+#define txt_next_9 (ui_text + 1937)
+#define txt_title_6 (ui_text + 1955)
+#define txt_srv_title (ui_text + 1963)
+#define txt_srv_of (ui_text + 1976)
+#define txt_srv_ok (ui_text + 1979)
+#define txt_srv_bad (ui_text + 1995)
+#define txt_cup (ui_text + 2011)
+#define txt_coin (ui_text + 2013)
+#define txt_cup_watch (ui_text + 2015)
+#define txt_cup_pick (ui_text + 2032)
+#define txt_catch_hud (ui_text + 2046)
+#define txt_quest_done (ui_text + 2065)
+#define txt_q_0 (ui_text + 2081)
+#define txt_q_0r (ui_text + 2093)
+#define txt_q_1 (ui_text + 2110)
+#define txt_q_1r (ui_text + 2125)
+#define txt_q_2 (ui_text + 2140)
+#define txt_q_2r (ui_text + 2154)
+#define txt_q_3 (ui_text + 2170)
+#define txt_q_3r (ui_text + 2186)
+#define txt_q_4 (ui_text + 2202)
+#define txt_nb_quests (ui_text + 2215)
+#define txt_howto (ui_text + 2222)
+#define txt_howto_go (ui_text + 2234)
+#define txt_how_l0 (ui_text + 2252)
+#define txt_how_l1 (ui_text + 2267)
+#define txt_how_l2 (ui_text + 2286)
+#define txt_how_l3 (ui_text + 2302)
+#define txt_how_l4 (ui_text + 2319)
+#define txt_how_p0 (ui_text + 2338)
+#define txt_how_d0 (ui_text + 2355)
+#define txt_how_d1 (ui_text + 2369)
+#define txt_how_d2 (ui_text + 2388)
+#define txt_how_d3 (ui_text + 2406)
+#define txt_how_d4 (ui_text + 2422)
+#define txt_how_s0 (ui_text + 2440)
+#define txt_how_s1 (ui_text + 2452)
+#define txt_how_s2 (ui_text + 2468)
+#define txt_how_s3 (ui_text + 2485)
+#define txt_how_s4 (ui_text + 2500)
+#define txt_how_c0 (ui_text + 2518)
+#define txt_how_c1 (ui_text + 2531)
+#define txt_how_c2 (ui_text + 2547)
+#define txt_how_c3 (ui_text + 2563)
+#define txt_how_c4 (ui_text + 2579)
+#define txt_how_k0 (ui_text + 2597)
+#define txt_how_k1 (ui_text + 2616)
+#define txt_how_k2 (ui_text + 2633)
+#define txt_how_k3 (ui_text + 2652)
+#define txt_how_k4 (ui_text + 2668)
+#define txt_how_t0 (ui_text + 2683)
+#define txt_how_t1 (ui_text + 2696)
+#define txt_how_t2 (ui_text + 2713)
+#define txt_how_t3 (ui_text + 2732)
+#define txt_how_t4 (ui_text + 2750)
+#define txt_chase_hud (ui_text + 2765)
+#define txt_clock_0 (ui_text + 2776)
+#define txt_clock_1 (ui_text + 2782)
+#define txt_clock_2 (ui_text + 2788)
+#define txt_clock_3 (ui_text + 2794)
+#define txt_clock_4 (ui_text + 2800)
+#define txt_rank (ui_text + 2806)
+#define txt_rank_0 (ui_text + 2812)
+#define txt_rank_1 (ui_text + 2820)
+#define txt_rank_2 (ui_text + 2830)
+#define txt_rank_3 (ui_text + 2840)
+#define txt_rank_4 (ui_text + 2850)
+#define txt_nb_myst (ui_text + 2863)
+#define txt_cu_title (ui_text + 2875)
+#define txt_cu_found (ui_text + 2885)
+#define txt_cu_found2 (ui_text + 2900)
+#define txt_cu_solved (ui_text + 2915)
+#define txt_cu_solved2 (ui_text + 2930)
+#define txt_cu_of (ui_text + 2947)
+#define txt_cu_0q (ui_text + 2950)
+#define txt_cu_0h (ui_text + 2967)
+#define txt_cu_0 (ui_text + 2985)
+#define txt_cu_0f (ui_text + 3002)
+#define txt_cu_1q (ui_text + 3019)
+#define txt_cu_1h (ui_text + 3037)
+#define txt_cu_1 (ui_text + 3055)
+#define txt_cu_1f (ui_text + 3068)
+#define txt_cu_2q (ui_text + 3085)
+#define txt_cu_2h (ui_text + 3099)
+#define txt_cu_2 (ui_text + 3114)
+#define txt_cu_2f (ui_text + 3131)
+#define txt_intro_c7 (ui_text + 3149)
+#define txt_music_off (ui_text + 3163)
+#define txt_music_on (ui_text + 3174)
+#define txt_nb_snd_on (ui_text + 3184)
+#define txt_nb_snd_off (ui_text + 3201)
+#define txt_of_6 (ui_text + 3219)
+#define txt_srv_hold (ui_text + 3222)
+#define txt_srv_hint (ui_text + 3238)
+#define txt_got (ui_text + 3257)
+#define txt_it_0 (ui_text + 3266)
+#define txt_it_1 (ui_text + 3280)
+#define txt_it_2 (ui_text + 3291)
+#define txt_it_3 (ui_text + 3306)
+#define txt_it_4 (ui_text + 3322)
+#define txt_it_5 (ui_text + 3337)
+#define txt_it_6 (ui_text + 3345)
+#define txt_it_7 (ui_text + 3360)
+#define txt_it_8 (ui_text + 3375)
+#define txt_it_9 (ui_text + 3391)
+#define txt_ex_0 (ui_text + 3405)
+#define txt_ex_1 (ui_text + 3409)
+#define txt_ex_2 (ui_text + 3413)
+#define txt_ex_3 (ui_text + 3417)
+#define txt_ex_4 (ui_text + 3421)
+#define txt_ex_5 (ui_text + 3425)
+#define txt_ex_6 (ui_text + 3429)
+#define txt_ex_7 (ui_text + 3433)
+#define txt_ex_8 (ui_text + 3437)
+#define txt_day_0 (ui_text + 3441)
+#define txt_day_1 (ui_text + 3457)
+#define txt_day_2 (ui_text + 3474)
+#define txt_day_3 (ui_text + 3492)
+#define txt_coin_0 (ui_text + 3509)
+#define txt_coin_1 (ui_text + 3527)
+#define txt_coin_2 (ui_text + 3546)
+#define txt_nb_extras (ui_text + 3564)
+#define txt_poem_title (ui_text + 3573)
+#define txt_poem_none (ui_text + 3581)
+#define txt_poem_new (ui_text + 3587)
+#define txt_poem_end_title (ui_text + 3605)
+#define txt_poem_end (ui_text + 3622)
+#define txt_pl_0 (ui_text + 3639)
+#define txt_pl_1 (ui_text + 3658)
+#define txt_pl_2 (ui_text + 3677)
+#define txt_pl_3 (ui_text + 3696)
+#define txt_pl_4 (ui_text + 3711)
+#define txt_pl_5 (ui_text + 3730)
+#define txt_pl_6 (ui_text + 3747)
+#define txt_pl_7 (ui_text + 3765)
+#define txt_pl_8 (ui_text + 3782)
+#define txt_pl_9 (ui_text + 3801)
+#define txt_pc_sa (ui_text + 3816)
+#define txt_pc_sb (ui_text + 3835)
+#define txt_pc_ga (ui_text + 3851)
+#define txt_pc_gb (ui_text + 3869)
+/* French (src/fr_data.c, bank FR_BANK; pages in FR_PAGE_BANK..) */
+#define FR_BANK 11
+#define FR_PAGE_BANK 12
+#define FR_PAGES_PER_BANK 455
+extern const uint16_t fr_first_page[DLG_COUNT];
+extern const uint8_t fr_page_count[DLG_COUNT];
+extern const uint8_t fr_choice_text[];
+extern const uint16_t fr_ui_at[];        /* by offset in ui_text */
+extern const uint8_t fr_ui_text[];
+extern const uint8_t * const fr_page_base[];
+extern const uint8_t fr_pages_0[];
+extern const uint8_t fr_pages_1[];
+extern const uint8_t fr_pages_2[];
 #define TITLE_TILE_COUNT 176
 extern const uint8_t title_tiles[];   /* bank TITLE_BANK */
 extern const uint8_t title_map[];
 extern const uint8_t title_attr[];
 extern const palette_color_t title_pal[];
-#define DLG_PAGES_LO 455   /* pages in bank DLG_BANK; the rest in TITLE_BANK */
-extern const uint8_t dlg_pages_hi[];  /* bank TITLE_BANK */
+#define DLG_PAGES_LO 455   /* pages in bank DLG_BANK; the rest in banks DLG_HI_BANK.. */
+#define DLG_HI_BANK 8
+#define DLG_HI_PER_BANK 455
+extern const uint8_t * const dlg_hi_base[];   /* bank ASSET_BANK */
+extern const uint8_t dlg_pages_0[];
+extern const uint8_t dlg_pages_1[];
 
 #endif

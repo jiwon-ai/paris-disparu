@@ -25,8 +25,22 @@ BG_PALETTES = [
     [(29, 28, 24), (29, 28, 24), (17, 15, 13), (3, 3, 6)],
     # 6 produce and wood: dark, brown, green, orange wood
     [(4, 4, 8), (14, 8, 4), (8, 18, 6), (26, 17, 7)],
-    # 7 zinc roofs: sky, dark zinc, zinc, light zinc
-    [(4, 5, 11), (7, 8, 13), (11, 13, 18), (17, 19, 23)],
+    # 7 zinc roofs and enamel plaques: sky, dark zinc / plaque blue, zinc,
+    #   light zinc / plaque white
+    [(4, 5, 11), (6, 8, 15), (11, 13, 18), (24, 25, 28)],
+]
+
+# Daybreak after the ending (about 8 a.m.): the same palettes in a pale,
+# overcast November morning; lamps and shop lights off. Reconstruction.
+BG_DAY = [
+    [(25, 22, 22), (13, 12, 12), (24, 22, 17), (30, 28, 23)],
+    [(24, 22, 17), (6, 6, 8), (13, 14, 17), (21, 23, 26)],
+    [(10, 10, 12), (15, 15, 17), (20, 19, 19), (25, 24, 23)],
+    [(20, 19, 19), (3, 3, 6), (17, 17, 15), (23, 23, 21)],
+    [(25, 22, 22), (14, 4, 5), (25, 8, 7), (30, 27, 22)],
+    [(29, 28, 24), (29, 28, 24), (17, 15, 13), (3, 3, 6)],
+    [(14, 13, 14), (17, 10, 5), (11, 21, 8), (28, 19, 9)],
+    [(25, 22, 23), (9, 12, 19), (15, 18, 23), (27, 28, 30)],
 ]
 
 SPR_PALETTES = [
@@ -35,7 +49,7 @@ SPR_PALETTES = [
     [(0, 0, 0), (3, 3, 6), (8, 11, 17), (27, 21, 9)],    # 1 fort: blue-grey blouse, yellow leather coltin
     [(0, 0, 0), (3, 3, 6), (18, 6, 6), (28, 21, 16)],    # 2 merchant
     [(0, 0, 0), (3, 3, 6), (28, 28, 27), (25, 18, 13)],  # 3 cafe: black waistcoat (outline colour), white apron
-    [(0, 0, 0), (3, 3, 6), (12, 11, 10), (27, 20, 15)],  # 4 stranger: grey overcoat and hat
+    [(0, 0, 0), (3, 3, 6), (15, 15, 16), (27, 20, 15)],  # 4 stranger: grey overcoat and hat (cool grey, apart from the beige player)
     [(0, 0, 0), (3, 3, 6), (8, 19, 6), (24, 16, 7)],     # 5 crate of cabbages
     [(0, 0, 0), (3, 3, 6), (23, 5, 5), (24, 16, 7)],     # 6 crate of apples
     [(0, 0, 0), (3, 3, 6), (30, 15, 3), (24, 16, 7)],    # 7 crate of carrots
@@ -185,6 +199,58 @@ TILES = {
                  "21000012", "21010012", "21010012", "21010012"],
     "lancet_b": ["21010012", "21010012", "21010012", "21010012",
                  "21111112", "22222222", "11111111", "22222222"],
+    # Morris column (16x24): green dome, frieze, theatre posters. Wallace
+    # fountain (8x16): dome on four caryatids over a basin, drawn in the lamp
+    # palette's iron colour (real ones are dark green; 8-palette limit).
+    "morris_tl": ['00000001', '00000012', '00001222', '00012222', '00122222', '01111111', '01222222', '01111111'],
+    "morris_tr": ['10000000', '21000000', '22210000', '22221000', '22222100', '11111110', '22222210', '11111110'],
+    "morris_ml": ['01333331', '01311131', '01333331', '01311331', '01333331', '01111111', '01333311', '01311311'],
+    "morris_mr": ['13333310', '13111310', '13333310', '13311310', '13333310', '11111110', '33333310', '31111310'],
+    "morris_bl": ['01333311', '01333311', '01333311', '01111111', '01222222', '01222222', '11111111', '00000000'],
+    "morris_br": ['33333310', '31131310', '33333310', '11111110', '22222210', '22222210', '11111111', '00000000'],
+    "wallace_t": ["00011000", "00111100", "01121110", "01111110",
+                  "00100100", "01011010", "01011010", "01011010"],
+    "wallace_b": ["01011010", "00111100", "01111110", "00011000",
+                  "00011000", "00111100", "01111110", "00000000"],
+    # Transport (2026-11-24): a market lorry (32x16, side view, cab left),
+    # a VeloSolex (16x8, roller on the front wheel) and a bus-stop post.
+    # Generic original shapes, no make or livery copied.
+    "lorry_0": ["00000000", "00000000", "00011111", "00122222", "01223332", "01223332", "01222222", "01222222"],
+    "lorry_1": ["00011111", "00133333", "10131131", "10133333", "10131131", "10133333", "10131131", "10133333"],
+    "lorry_2": ["11111111", "33333333", "13113113", "33333333", "13113113", "33333333", "13113113", "33333333"],
+    "lorry_3": ["11111110", "33333310", "11311310", "33333310", "11311310", "33333310", "11311310", "33333310"],
+    "lorry_4": ["01222222", "01222222", "01111111", "00011111", "00110001", "00110301", "00011111", "00000000"],
+    "lorry_5": ["11111111", "22222222", "11111111", "00000000", "10000000", "10000000", "00000000", "00000000"],
+    "lorry_6": ["11111111", "22222222", "11111111", "00000001", "00000011", "00000011", "00000001", "00000000"],
+    "lorry_7": ["11111110", "22222210", "11111110", "11110000", "00011000", "03011000", "11110000", "00000000"],
+    "solex_0": ["00000000", "01110000", "00010000", "00011111", "00111000", "01000100", "01000100", "00111000"],
+    "solex_1": ["00001100", "00000100", "00111112", "11111110", "00111100", "01000010", "01000010", "00111100"],
+    "busstop_t": ["00000000", "01111110", "01333310", "01311310", "01333310", "01311310", "01333310", "01111110"],
+    "busstop_b": ["00011000", "00011000", "00011000", "00011000", "00011000", "00011000", "00111100", "00000000"],
+    # West end of Les Halles (2026-11-24): Bourse de commerce dome, Medici
+    # column, a vespasienne (street urinal), a rat on the setts.
+    "dome_ul": ['00000000', '00000000', '00000011', '00001122', '00112222', '01122322', '01223222', '12223222'],
+    "dome_u": ['00000000', '11111111', '22222222', '23222322', '23222322', '23222322', '23222322', '23222322'],
+    "dome_ur": ['00000000', '00000000', '11000000', '22110000', '22221100', '22322110', '22232210', '22232221'],
+    "dome_l": ['00000012', '00000122', '00001232', '00012322', '00122322', '01223222', '01232222', '12232222'],
+    "dome_m": ['23222322', '23222322', '23222322', '23222322', '23222322', '23222322', '23222322', '11111111'],
+    "dome_r": ['21000000', '22100000', '23210000', '22321000', '22322100', '22232210', '22223210', '22223221'],
+    "medici_t": ['00011000', '00111100', '01011010', '01011010', '01011010', '11111111', '00123100', '00123100'],
+    "medici_s": ['00123100', '00123100', '00123100', '00111100', '00123100', '00123100', '00123100', '00111100'],
+    "vesp_tl": ['00000003', '00000001', '00222222', '02111111', '00222222', '00020001', '00020001', '00222222'],
+    "vesp_tr": ['30000000', '10000000', '22222200', '11111120', '22222200', '10002000', '10002000', '22222200'],
+    "vesp_bl": ['00212121', '00222222', '00212121', '00222222', '00222222', '00000000', '00000110', '00000110'],
+    "vesp_br": ['21212200', '22222200', '21212200', '22222200', '22222200', '00000000', '01100000', '01100000'],
+    # A little grey car (32x16, nose left), round roof and fenders: a
+    # simplified original drawing in the spirit of the deux-chevaux.
+    "car_0": ['00000000', '00000000', '00000000', '00000001', '00000012', '00000012', '00011122', '00122222'],
+    "car_1": ['00000000', '00111111', '11222222', '21111211', '11111211', '11111211', '22222222', '22222222'],
+    "car_2": ['00000000', '11100000', '22211100', '11122210', '11112221', '11111222', '22222222', '22222222'],
+    "car_3": ['00000000', '00000000', '00000000', '00000000', '10000000', '11000000', '22210000', '22210000'],
+    "car_4": ['01232111', '01222122', '01221112', '00111001', '00010333', '00010333', '00001000', '00000111'],
+    "car_5": ['22222222', '22222222', '12222222', '11111111', '01000000', '01000000', '10000000', '00000000'],
+    "car_6": ['22222221', '22222222', '22222221', '11111110', '00000001', '00000001', '00000000', '00000000'],
+    "car_7": ['22221000', '12221000', '11221000', '00111000', '03330100', '03330100', '10001000', '01110000'],
 }
 
 # Map legend: character -> (tile name, bg palette, solid[, priority over sprites])
@@ -206,7 +272,7 @@ LEGEND = {
     ".": ("pave", 2, False),
     "_": ("curb", 2, False),
     ",": ("cobble", 2, False),
-    "L": ("lamp_head", 3, True),
+    "L": ("lamp_head", 3, False, True),   # walk behind the lamp head (depth)
     "|": ("lamp_post", 2, True),
     "X": ("crate", 6, True),
     "P": ("plaque", 0, True),
@@ -237,8 +303,8 @@ LEGEND = {
     "<": ("bpar_l", 0, True),
     ">": ("bpar_r", 0, True),
     "l": ("gaslamp", 3, True),
-    "{": ("tree_tl", 6, True),
-    "}": ("tree_tr", 6, True),
+    "{": ("tree_tl", 6, False, True),   # crown drawn over sprites: walk behind it
+    "}": ("tree_tr", 6, False, True),
     "(": ("tree_bl", 6, True),
     ")": ("tree_br", 6, True),
     "%": ("barrier", 4, True),
@@ -250,50 +316,91 @@ LEGEND = {
     "C": ("buttress", 0, True),
     "N": ("lancet_t", 0, True),
     "u": ("lancet_b", 0, True),
+    "1": ("morris_tl", 6, False, True),        # Morris column (reconstruction)
+    "2": ("morris_tr", 6, False, True),
+    "3": ("morris_ml", 6, True),
+    "4": ("morris_mr", 6, True),
+    "5": ("morris_bl", 6, True),
+    "6": ("morris_br", 6, True),
+    "7": ("wallace_t", 3, False, True),        # Wallace fountain (reconstruction)
+    "8": ("wallace_b", 3, True),
+    "c": ("lorry_0", 6, True),
+    "e": ("lorry_1", 6, True),
+    "h": ("lorry_2", 6, True),
+    "i": ("lorry_3", 6, True),
+    "j": ("lorry_4", 6, True),
+    "r": ("lorry_5", 6, True),
+    "s": ("lorry_6", 6, True),
+    "x": ("lorry_7", 6, True),
+    "y": ("solex_0", 3, True),
+    "0": ("solex_1", 3, True),
+    "9": ("busstop_t", 3, True),
+    "@": ("busstop_b", 3, True),
+    "Ø": ("opening", 0, False),         # covered street you can walk through
+    "Γ": ("dome_ul", 7, True),          # Bourse de commerce: round, iron dome
+    "Δ": ("dome_u", 7, True),
+    "Θ": ("dome_ur", 7, True),
+    "Λ": ("dome_l", 7, True),
+    "Ξ": ("dome_m", 7, True),
+    "Π": ("dome_r", 7, True),
+    "Σ": ("medici_t", 0, True),         # Medici column: caged top
+    "Φ": ("medici_s", 0, True),
+    "Ψ": ("vesp_tl", 6, True),          # vespasienne, bottle green
+    "Ω": ("vesp_tr", 6, True),
+    "Б": ("vesp_bl", 6, True),
+    "Д": ("vesp_br", 6, True),
+    "Ж": ("car_0", 7, True),            # a little grey car (street)
+    "З": ("car_1", 7, True),
+    "И": ("car_2", 7, True),
+    "Й": ("car_3", 7, True),
+    "К": ("car_4", 7, True),
+    "Л": ("car_5", 7, True),
+    "М": ("car_6", 7, True),
+    "Н": ("car_7", 7, True),
 }
 
 # ---------------------------------------------------------------------------
 # Sprites: 16x16, built from a 12-row upper body and 4-row legs.
 # ---------------------------------------------------------------------------
-P_DOWN = [
+P_DOWN = [   # the young poet: longish hair, a long dark scarf
     "......####......",
     ".....######.....",
     "....########....",
-    "....#ssssss#....",
-    "....s#ssss#s....",
-    ".....ssssss.....",
+    "...##ssssss##...",
+    "...#s#ssss#s#...",
+    "...#.ssssss.#...",
     "......#ss#......",
-    "....#oooooo#....",
-    "...#oooooooo#...",
-    "...#oo#oo#oo#...",
-    "...so#oooo#os...",
+    "....########....",
+    "...#o##ooooo#...",
+    "...#o##o#oo#....",
+    "...so##ooo#os...",
     "....#oooooo#....",
 ]
-P_UP = [
+P_UP = [   # the young poet: longish hair, a long dark scarf
     "......####......",
     ".....######.....",
     "....########....",
-    "....########....",
-    "....########....",
-    ".....######.....",
+    "...##########...",
+    "...##########...",
+    "...#.######.#...",
     "......#ss#......",
-    "....#oooooo#....",
-    "...#oooooooo#...",
-    "...#oooooooo#...",
-    "...so#oooo#os...",
+    "....########....",
+    "...#ooo##ooo#...",
+    "...#ooo##ooo#...",
+    "...so#o##o#os...",
     "....#oooooo#....",
 ]
-P_SIDE = [
+P_SIDE = [   # the young poet: longish hair, a long dark scarf
     "......####......",
     ".....######.....",
-    ".....#######....",
-    ".....##sssss....",
-    ".....#sss#ss....",
-    "......sssss.....",
+    "....########....",
+    "....###sssss....",
+    "....##sss#ss....",
+    "....#.sssss.....",
     ".......#ss......",
-    "......#ooo#.....",
-    ".....#oooooo#...",
-    ".....#ooo#oo#...",
+    "....########....",
+    "...##oooooo#....",
+    "...#.#ooo#oo#...",
     ".....#ooso#o#...",
     "......#oooo#....",
 ]
@@ -688,10 +795,731 @@ WRITER = [           # glasses, bow tie, a notebook open in the hand
     ".....##..##.....",
     "....###..###....",
 ]
-BANK1_SPRITES = [
+# A Paris pigeon (Time, 18 Oct 1963: "The French have prohibited the feeding of
+# pigeons in Paris, but they don't enforce the law"). Facing left, palette 4.
+PIGEON_A = ["................"] * 6 + [   # head up
+    "...##...........",
+    "..#oo#..........",
+    ".s#o#o#.........",
+    "...#oo#####.....",
+    "...#ooooooo##...",
+    "....#oooooooo#..",
+    ".....#ooooo###..",
+    "......#####.....",
+    ".......s.s......",
+    "......ss.ss.....",
+]
+PIGEON_B = ["................"] * 8 + [   # pecking
+    "......#####.....",
+    "....##ooooo##...",
+    "...#ooooooooo#..",
+    "..#oo#ooooooo##.",
+    ".#o#o#oooooo#...",
+    "s#ooo#oooo##....",
+    ".###..#####.....",
+    "......ss.ss.....",
+]
+
+RAT = [              # a market rat, side view facing right (palette 4: grey, pink)
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "..........###...",
+    ".........#sss#..",
+    "......#####ss#..",
+    "....##ooooo##o#.",
+    "...#oooooooo#o##",
+    "..#ooooooooooo#s",
+    ".#oooooooooo####",
+    "s#ooooooooo#....",
+    "s.#o##o###o#....",
+    ".ss#..#...#.....",
+]
+BANK1_SPRITES = []   # cameos moved to the per-room pool (BANK1_LOW_SPRITES)
+
+
+# UI icons in VRAM bank 1, 8x16 sprites (palette 3: '#' black, 'o' white):
+# "!" over the person to talk to next, "A" over the player when something
+# in front of them can be talked to or looked at.
+ICON_MARK = [
+    "..####..", ".#oooo#.", ".#o##o#.", ".#o##o#.", ".#o##o#.", ".#o##o#.",
+    ".#oooo#.", ".#o##o#.", ".#oooo#.", "..####..", "...##...", "....#...",
+    "........", "........", "........", "........",
+]
+ICON_PRESS = [
+    "..####..", ".#oooo#.", "#oo##oo#", "#o#oo#o#", "#o####o#", "#o#oo#o#",
+    "#o#oo#o#", ".#oooo#.", "..####..", "...##...", "....#...", "........",
+    "........", "........", "........", "........",
+]
+BANK1_ICONS = [("MARK", ICON_MARK), ("PRESS", ICON_PRESS)]
+
+# Speech bubble over an NPC who calls out (VRAM bank 0 sprite tiles 254-255,
+# palette 3): the line itself opens only when the player presses A.
+BUBBLE = [
+    ".######.", "#oooooo#", "#o#o#oo#", "#oooooo#", ".##o###.", "..#o#...",
+    "..##....", "........", "........", "........", "........", "........",
+    "........", "........", "........", "........",
+]
+
+# Sprites loaded at tile 0.. of VRAM bank 1 (0x8000-0x83FF is free: the
+# scenery is at 0x9000). Two-frame run, facing right; mirrored in code.
+THIEF_0 = [          # flat cap, turned-up collar, dark jacket, running
+    "................",
+    "....######......",
+    "...########.....",
+    "......#ssss#....",
+    "......#ss#s#....",
+    ".....#sssss.....",
+    "....###sss#.....",
+    "...#ooo###oo#...",
+    "..#oooooooooo#..",
+    "..s#ooooooo#.s..",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    "....##o##o##....",
+    "...##.....##....",
+    "..##.......##...",
+    ".##.........##..",
+]
+THIEF_1 = THIEF_0[:12] + [
+    ".....##oo##.....",
+    ".....##..##.....",
+    ".....##..##.....",
+    "....###..###....",
+]
+# Writer cameos (2026-11-24), unnamed: see docs/HISTORICAL_RESEARCH.md
+# "Cameos". Generic figures, no likeness attempted. Low tiles of VRAM bank 1.
+NOVELIST = [         # short dark hair, coat, a notebook held to the chest
+    "................",
+    ".....#####......",
+    "....#######.....",
+    "....##ssss##....",
+    "....#s#ss#s#....",
+    "....#ssssss#....",
+    ".....#s##s#.....",
+    "......#ss#......",
+    "....#oooooo#....",
+    "...#oo#sss#o#...",
+    "...so#s#s#os....",
+    "....#o#sss#.....",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....s....s.....",
+    "....##....##....",
+]
+PLAYWRIGHT = [       # very tall and thin, short brushed-up hair, turtleneck
+    ".....#.#.#......",
+    ".....######.....",
+    ".....#ssss#.....",
+    ".....#s#s##.....",
+    ".....#ssss#.....",
+    "......#ss#......",
+    ".....#oooo#.....",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    "....so#oo#os....",
+    ".....#oooo#.....",
+    ".....#oooo#.....",
+    ".....#o##o#.....",
+    ".....#o#.#o#....",
+    ".....#.#..#.....",
+    "....##....##....",
+]
+CRITIC = [           # neat side parting, scarf, jacket
+    "................",
+    ".....#####......",
+    "....###.###.....",
+    "....#ssssss#....",
+    "....#s#ss#s#....",
+    "....#ssssss#....",
+    ".....#s##s#.....",
+    "....#ssssss#....",
+    "...#oooooooo#...",
+    "...#o######o#...",
+    "...so#oooo#os...",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....##..##.....",
+    "....###..###....",
+]
+YOUNG_MAN = [        # lanky student, longish hair, books under the arm
+    "................",
+    "....#######.....",
+    "...#########....",
+    "...##ssssss#....",
+    "...#s#ss#s#.....",
+    "....#ssssss.....",
+    ".....#ssss#.....",
+    "....#oooooo#....",
+    "...#oooooo#ss##.",
+    "...#oooooo#s#s#.",
+    "...#oooooo#ss##.",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....#o##o#.....",
+    ".....#o..o#.....",
+    "....##....##....",
+]
+# People of the night, each with their own silhouette (2026-11-24, after
+# "everyone dresses alike"). Coltin: read (HISTORICAL_RESEARCH Clothing);
+# the rest are drawing choices, no claim.
+ROUX = [             # bouquiniste: hair in a bun, scarf, long coat, gloved hands
+    "......###.......",
+    ".....#####......",
+    "....#######.....",
+    "....#ssssss#....",
+    "....s#ss#ss.....",
+    ".....ssssss.....",
+    "....##s##s##....",
+    "...#oo####oo#...",
+    "...#oooooooo#...",
+    "..s#oooooooo#s..",
+    "...#oooooooo#...",
+    "...#oooooooo#...",
+    "..#oooooooooo#..",
+    "..#oooooooooo#..",
+    "...##########...",
+    "....##....##....",
+]
+COOK = [             # moustache, white double-breasted jacket, a basket on the arm
+    "................",
+    ".....#####......",
+    "....#######.....",
+    "....#ssssss#....",
+    "....s#ss#ss.....",
+    ".....#####......",
+    "......ssss......",
+    "....#oooooo#....",
+    "...#o#oo#oo#....",
+    "...#oooooo#s###.",
+    "...#oooooo#####.",
+    "...#oooooo#s#s#.",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....##..##.....",
+    "....###..###....",
+]
+FORT2 = [            # a fort with a sack on his shoulder (coltin)
+    "......####......",
+    ".....#ssss#.....",
+    "#ssssssssssssss#",
+    ".##############.",
+    "....#ssssss#####",
+    "....#s#ss#s#sss#",
+    ".....#ssss#ssss#",
+    "...##oooooo#sss#",
+    "..#oooooooo####.",
+    "..#oo#ss#ooo#...",
+    "..so#oooooo#os..",
+    "...#oooooooo#...",
+    "...#oooooooo#...",
+    "....#ooooooo#...",
+    "....###..###....",
+    "...####..####...",
+]
+SLEEPER = [          # flat cap, dark scarf, eyes shut, hands in pockets
+    "................",
+    "................",
+    ".....######.....",
+    "....#########...",
+    "....#ssssss#....",
+    "....s##s##s.....",
+    ".....ssssss.....",
+    "....########....",
+    "...#oooooooo#...",
+    "...#oooooooo#...",
+    "...#o#oooo#o#...",
+    "...#oooooooo#...",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....##..##.....",
+    "....###..###....",
+]
+WORKER_CAFE = [      # a fort dozing at the counter: coltin, eyes shut, a cup
+    "......####......",
+    ".....#ssss#.....",
+    "#ssssssssssssss#",
+    ".##############.",
+    "....#ssssss#....",
+    "....s##s##s.....",
+    ".....#ssss#.....",
+    "...##oooooo##...",
+    "..#oooooooooo#..",
+    "..#oo#ss#oooo#..",
+    "..so#oooooo#s##.",
+    "...#oooooooo#s#.",
+    "...#oooooooo#...",
+    "....#ooooooo#...",
+    "....###..###....",
+    "...####..####...",
+]
+
+
+def _sparkle():
+    """16x16 four-point star with short diagonals: the "got it!" burst.
+    Sprite palette 7 (orange 'o', gold 's')."""
+    rows = []
+    for y in range(16):
+        r = ""
+        for x in range(16):
+            dx, dy = abs(x - 7.5), abs(y - 7.5)
+            axis = (dx < 1 and dy < 7) or (dy < 1 and dx < 7)
+            diag = abs(dx - dy) < 0.6 and 1.5 < dx < 4.5
+            if axis or diag:
+                r += "s" if max(dx, dy) < 3 else "o"
+            else:
+                r += "."
+        rows.append(r)
+    return rows
+
+
+SPARKLE = _sparkle()
+
+WAITER = [           # brasserie waiter: moustache, bow tie, waistcoat, long apron
+    "................",
+    ".....#####......",
+    "....#######.....",
+    "....#ssssss#....",
+    "....s#ss#ss.....",
+    ".....#####......",
+    "......#ss#......",
+    "....o######o....",
+    "...oo##oo##oo...",
+    "...o###oo###o...",
+    "...s#oooooo#s...",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....##..##.....",
+    "....###..###....",
+]
+ARCHIVIST = [        # lots of wavy hair, sideburns, a beard but no moustache
+    "...#.##.##.#....",
+    "..###########...",
+    "..############..",
+    "..###ssssss###..",
+    "..##s#ss#sss##..",
+    "..##ssssssss##..",
+    "...##ssssss##...",
+    "....##s##s##....",
+    "....########....",
+    "...#oo####oo#...",
+    "...#oooooooo#...",
+    "...so#oooo#os...",
+    "....#oooooo#....",
+    "....#oooooo#....",
+    ".....##..##.....",
+    "....###..###....",
+]
+MEATPORTER = [       # meat porter drawn with S_SPLIT: left half palette 3 (white cap and
+    # coat, skin), right half palette 2 (red meat, cream fat and bone). Cap pulled down
+    # over the ears, a side of beef on the shoulder steadied against his head, shank
+    # bone up (Barnes, June 1969; see HISTORICAL_RESEARCH "Meat porters").
+"............##..",
+"...........#ss#.",
+"...........#ss#.",
+"..........#sss#.",
+"...####...#oos#.",
+"..#oooo#.#ooos#.",
+".#oooooo#soosos#",
+".########ososoo#",
+"..#s#s#s#soosos#",
+"..#ssss##ososoo#",
+"...#ss##sosooos#",
+".##oooo#soosoos#",
+"#oooooo#ssoooss#",
+"#s#oooo#.#ssss#.",
+"#o#ooooo#.####..",
+"..##.##.........",
+]
+DOG = [              # a little street dog (palette 4: grey coat, tan)
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "...........##...",
+    "..........#oo#..",
+    "..#.......#o#o#.",
+    "..#o#####.#oooo#",
+    "...#ooooo##ooo#.",
+    "...#oooooooo#...",
+    "...#oooooooo#...",
+    "....#o#..#o#....",
+    "....#o#..#o#....",
+    "....##...##.....",
+]
+POLICE = [           # "hirondelle": kepi and a blue cape (bicycle police, until 1984)
+    "................",
+    ".....######.....",
+    ".....#oooo#.....",
+    "....########....",
+    "....#ssssss#....",
+    "....s#ss#ss.....",
+    ".....#ssss#.....",
+    "......#ss#......",
+    "....##oooo##....",
+    "...#oooooooo#...",
+    "..#oooooooooo#..",
+    "..#oooooooooo#..",
+    ".#oooooooooooo#.",
+    ".##############.",
+    ".....#o..o#.....",
+    "....##....##....",
+]
+SWEEPER = [          # street sweeper with a broom
+    "................",
+    ".....#####......",
+    "....#######.....",
+    "....#ssssss#....",
+    "....s#ss#ss.....",
+    ".....ssssss.....",
+    "......#ss#.....#",
+    "....#oooooo#..#.",
+    "...#oooooooo##..",
+    "...#ooooooo##...",
+    "...so#ooo#os#...",
+    "....#oooooo##...",
+    "....#oooooo#.#..",
+    ".....##..##.##..",
+    ".....##..##.###.",
+    "....###..###....",
+]
+SMOKER = [           # a man in a cap, cigarette, smoke rising (palette 4)
+    "..........o.....",
+    ".....#####..o...",
+    "....#######.o...",
+    "...#########o...",
+    "....#ssss#.o....",
+    "....s#ss#s......",
+    ".....ssssssoo...",
+    "......#ss#......",
+    "....#oooooo#....",
+    "...#oo#oo#oo#...",
+    "...#oo#oo#oo#...",
+    "...s#oooooo#s...",
+    "....#oooooo#....",
+    ".....##..##.....",
+    ".....##..##.....",
+    "....###..###....",
+]
+WALKER = [           # a lady in a headscarf and coat, leash to the right (palette 2)
+    "................",
+    ".....#####......",
+    "....#ooooo#.....",
+    "....#osssso#....",
+    "....os#s#so.....",
+    ".....ssssss.....",
+    "......#ss#......",
+    "....#oooooo#....",
+    "...#oooooooo#...",
+    "...#ooo#oooo#...",
+    "...#oooooooos###",
+    "...#oooooooo#...",
+    "....#oooooo#....",
+    ".....#s..s#.....",
+    ".....#s..s#.....",
+    "....##...##.....",
+]
+POODLE = [           # a clipped white poodle, leash from the left (palette 3)
+    "................",
+    "................",
+    "................",
+    "................",
+    "....###.........",
+    "...#ooo#........",
+    "..#ooooo#...##..",
+    ".#oo#ooo#..#oo#.",
+    "#oooooo#....#...",
+    ".###ooo######...",
+    "####oooooooo#...",
+    ".....#ooooo#....",
+    ".....#o#.#o#....",
+    ".....#o#.#o#....",
+    "....#oo#.#oo#...",
+    "....###..###....",
+]
+BANK1_LOW_SPRITES = [      # the first LOW_FIXED (3) stay loaded; the rest are
+    ("THIEF_0", THIEF_0),  # copied per room into a pool (pool_load, notebook.c)
+    ("THIEF_1", THIEF_1),
+    ("SPARKLE", SPARKLE),
+    ("NOVELIST", NOVELIST),
+    ("PLAYWRIGHT", PLAYWRIGHT),
+    ("CRITIC", CRITIC),
+    ("YOUNG_MAN", YOUNG_MAN),
+    ("ROUX", ROUX),
+    ("COOK", COOK),
+    ("FORT2", FORT2),
+    ("SLEEPER", SLEEPER),
+    ("WORKER_CAFE", WORKER_CAFE),
+    ("WAITER", WAITER),
     ("ACTOR", ACTOR),
     ("CHANTEUSE", CHANTEUSE),
     ("PHILOSOPHER", PHILOSOPHER),
     ("FILMMAKER", FILMMAKER),
     ("WRITER", WRITER),
+    ("ARCHIVIST", ARCHIVIST),
+    ("MEATPORTER", MEATPORTER),
+    ("DOG", DOG),
+    ("POLICE", POLICE),
+    ("SWEEPER", SWEEPER),
+    ("SMOKER", SMOKER),
+    ("WALKER", WALKER),
+    ("POODLE", POODLE),
 ]
+
+
+# ---------------------------------------------------------------------------
+# "DEFENSE D'AFFICHER" painted on a facade (2026-11-24): 3x5 capitals on a
+# 4 px pitch, dark ink (colour 0) on stone (2), wall palette 0. 9 tiles.
+# ---------------------------------------------------------------------------
+_MICRO = {
+    "D": ["110", "101", "101", "101", "110"], "E": ["111", "100", "110", "100", "111"],
+    "F": ["111", "100", "110", "100", "100"], "N": ["110", "101", "101", "101", "101"],
+    "S": ["011", "100", "010", "001", "110"], "A": ["010", "101", "111", "101", "101"],
+    "I": ["111", "010", "010", "010", "111"], "C": ["011", "100", "100", "100", "011"],
+    "H": ["101", "101", "111", "101", "101"], "R": ["110", "101", "110", "101", "101"],
+    "'": ["010", "010", "000", "000", "000"], " ": ["000"] * 5,
+}
+
+
+def _inscription(text, accents=(1,)):
+    w = 4 * len(text)
+    w += -w % 8
+    rows = [["2"] * w for _ in range(8)]
+    for i, ch in enumerate(text):
+        for r, bits in enumerate(_MICRO[ch]):
+            for c, b in enumerate(bits):
+                if b == "1":
+                    rows[2 + r][4 * i + c] = "0"
+    for i in accents:                       # the accent of DÉFENSE
+        rows[1][4 * i + 1] = "0"
+    rows[7] = ["1"] * w                     # mortar line, as on the wall tile
+    return ["".join(r) for r in rows]
+
+
+_INSCR = _inscription("DEFENSE D'AFFICHER")
+INSCRIPTION_CHARS = "$&*/:?`'\""
+for _k in range(len(_INSCR[0]) // 8):
+    TILES["inscr_%d" % _k] = [r[8 * _k:8 * _k + 8] for r in _INSCR]
+    LEGEND[INSCRIPTION_CHARS[_k]] = ("inscr_%d" % _k, 0, True)
+
+
+def _line_map():
+    """Line 4 map on the ticket-hall wall, 32x16, palette 7 (blue enamel
+    board, white line, stations as dots; LES HALLES as a ring). Drawing
+    is a reconstruction: no photo of the 1967 board was found."""
+    rows = [["1"] * 32 for _ in range(16)]
+    for x in range(32):
+        rows[0][x] = rows[15][x] = "0"
+    for y in range(16):
+        rows[y][0] = rows[y][31] = "0"
+    for x in range(3, 29):                  # the line
+        rows[8][x] = rows[9][x] = "3"
+    for x in (4, 8, 12, 20, 24, 28):        # other stops: closed for now
+        for y in (7, 10):
+            rows[y][x - 1] = rows[y][x] = "2"
+    for y in range(5, 13):                  # LES HALLES: a ring
+        for x in range(13, 19):
+            edge = y in (5, 12) or x in (13, 18)
+            if edge and not ((y in (5, 12)) and (x in (13, 18))):
+                rows[y][x] = "3"
+    for x in (15, 16):                      # arrow: you are here
+        rows[2][x] = rows[3][x] = "3"
+    rows[3][14] = rows[3][17] = "3"
+    return ["".join(r) for r in rows]
+
+
+_MAP4 = _line_map()
+for _k, _ch in enumerate("αβγδ"):
+    TILES["map4_%d" % _k] = [r[8 * _k:8 * _k + 8] for r in _MAP4[:8]]
+for _k, _ch in enumerate("εζηθ"):
+    TILES["map4_%d" % (4 + _k)] = [r[8 * _k:8 * _k + 8] for r in _MAP4[8:]]
+for _k, _ch in enumerate("αβγδεζηθ"):
+    LEGEND[_ch] = ("map4_%d" % _k, 7, True)
+
+
+# ---------------------------------------------------------------------------
+# Furniture to fill the rooms (2026-11-24, generic, no claim beyond "a
+# market had baskets, a café chairs, a station benches and posters").
+# ---------------------------------------------------------------------------
+TILES["basket"] = ["02020200", "22222222", "13131313", "31313131",
+                   "13131313", "31313131", "11111111", "00000000"]
+# Chair drawn over the café floor tile (palette 5): dark wood (3) on the
+# checker pattern, so it does not sit in a dark box.
+_CHAIR = ["..33....", ".3..3...", ".3..3...", ".333333.",
+          ".3....3.", ".3....3.", ".3....3.", "........"]
+TILES["chair"] = ["".join(c if c != "." else f for c, f in zip(cr, fr))
+                  for cr, fr in zip(_CHAIR, ["22111122", "21111112", "11111111", "11111111",
+                                             "11111111", "11111111", "21111112", "22111122"])]
+TILES["bench_l"] = ["11111111", "33333333", "11111111", "00000000",
+                    "33333333", "11111111", "01000000", "01000000"]
+TILES["bench_r"] = ["11111111", "33333333", "11111111", "00000000",
+                    "33333333", "11111111", "00000010", "00000010"]
+_POSTER = [
+    "3333333333333333", "3222222222222223", "3222333333332223", "3223322222233223",
+    "3223222222223223", "3223222112223223", "3223221111223223", "3223221111223223",
+    "3223222112223223", "3223222222223223", "3223322222233223", "3222333333332223",
+    "3222222222222223", "3211111111111123", "3222222222222223", "3333333333333333",
+]
+for _k, (_x, _y) in enumerate(((0, 0), (8, 0), (0, 8), (8, 8))):
+    TILES["poster_%d" % _k] = [r[_x:_x + 8] for r in _POSTER[_y:_y + 8]]
+LEGEND["ι"] = ("basket", 6, True)
+LEGEND["π"] = ("chair", 5, True)
+LEGEND["κ"] = ("bench_l", 6, True)
+LEGEND["λ"] = ("bench_r", 6, True)
+for _k, _ch in enumerate("μνξο"):
+    LEGEND[_ch] = ("poster_%d" % _k, 4, True)
+
+
+# ---------------------------------------------------------------------------
+# Less repetition (2026-11-24, Jiwon's art review: "too many repeated tiles"):
+# common surfaces get variants (cracks, wet patches, soot, chipped stone),
+# picked per map cell by a fixed hash, so every room looks hand-placed while
+# the maps stay simple. Pavement right under a facade gets a shade strip
+# (depth). Lit windows vary: plain, curtains, a half-closed shutter.
+# Texture only: no historical claim.
+# ---------------------------------------------------------------------------
+TILES["pave_crack"] = ["22222221", "12222221", "21222221", "22122221",
+                       "22212221", "22221121", "22222211", "11111111"]
+TILES["pave_wet"] = ["22222221", "22222221", "22212221", "22222221",
+                     "21222221", "22222121", "22222221", "11111111"]
+TILES["pave_shade"] = ["11111111", "11111111", "21212121", "12121212",
+                       "22222221", "22222221", "22222221", "11111111"]
+TILES["cobble_b"] = ["32033203", "21032103", "11021102", "00000000",
+                     "03320332", "03210321", "02110211", "00000000"]
+TILES["cobble_wet"] = ["03330332", "03320321", "02210211", "00000000",
+                       "32033203", "21032103", "11021102", "00000000"]
+TILES["floor_crack"] = ["33333332", "23333332", "32333332", "33233332",
+                        "33323332", "33332232", "33333322", "22222222"]
+TILES["floor_wet"] = ["33333332", "33333332", "33323332", "33333332",
+                      "32333332", "33333232", "33333332", "22222222"]
+TILES["wall_chip"] = ["22222221", "22122221", "22222221", "11111111",
+                      "22212222", "22212222", "21212222", "11111111"]
+TILES["wall_soot"] = ["22222221", "22122221", "22122221", "11111111",
+                      "22212122", "22212122", "22212122", "11111111"]
+TILES["checker_worn"] = ["22111122", "21111112", "11111111", "11121111",
+                         "11111111", "11111111", "21111112", "22111122"]
+TILES["win_t_c"] = ["00000000", "01111110", "01322310", "01322310",
+                    "01322310", "01322310", "01111110", "01322310"]
+TILES["win_b_c"] = ["01322310", "01322310", "01322310", "01322310",
+                    "01111110", "11111111", "00000000", "00000000"]
+TILES["win_t_s"] = ["00000000", "11111110", "11132210", "11122210",
+                    "11122210", "11122210", "11111110", "11122210"]
+TILES["win_b_s"] = ["11122210", "11122210", "11122210", "11122210",
+                    "11111110", "11111111", "00000000", "00000000"]
+
+VARIANTS = {   # tile: [(variant, weight), ...]
+    "pave": [("pave", 7), ("pave_crack", 1), ("pave_wet", 1)],
+    "cobble": [("cobble", 6), ("cobble_b", 3), ("cobble_wet", 1)],
+    "floor": [("floor", 7), ("floor_crack", 1), ("floor_wet", 1)],
+    "wall": [("wall", 6), ("wall_chip", 2), ("wall_soot", 1)],
+    "checker": [("checker", 9), ("checker_worn", 1)],
+}
+SHADE_ABOVE = set("#GEdDAKkWwgoOIB")   # facades: the pavement below is in shade
+
+
+def _hash(x, y, r):
+    h = (x * 73856093) ^ (y * 19349663) ^ (r * 83492791)
+    h ^= h >> 13
+    return (h * 1274126177) & 0xFFFF
+
+
+def variant(tname, x, y, r, grid):
+    """The tile actually drawn for map cell (x, y) of room index r."""
+    if tname == "pave" and y > 0 and grid[y - 1][x] in SHADE_ABOVE:
+        return "pave_shade"
+    if tname in ("win_t", "win_b"):          # a window keeps its look top to bottom
+        k = _hash(x, y if tname == "win_t" else y - 1, r) % 7
+        return tname + ("" if k < 4 else "_c" if k < 6 else "_s")
+    if tname in VARIANTS:
+        opts = VARIANTS[tname]
+        k = _hash(x, y, r) % sum(w for _, w in opts)
+        for name, w in opts:
+            if k < w:
+                return name
+            k -= w
+    return tname
+
+# Crate towers (Jiwon's reference photo: towers of wooden crates beside
+# Saint-Eustache; Lhermitte 1895 for the clutter). The top crate is drawn over
+# sprites and can be walked behind: someone behind a tower is half hidden.
+TILES["crate_e"] = ["11111111", "13333331", "13000031", "13333331",
+                    "13000031", "13333331", "11111111", "10000001"]
+TILES["crate_lid"] = ["00000000", "11111111", "13333331", "13000031",
+                      "13333331", "13000031", "13333331", "11111111"]
+LEGEND["ρ"] = ("crate_lid", 6, False, True)
+LEGEND["σ"] = ("crate_e", 6, True)
+
+
+# ---------------------------------------------------------------------------
+# 1967 everyday objects (2026-11-24, Jiwon: "more period objects"). Sources in
+# docs/HISTORICAL_RESEARCH.md:
+#  - van with a corrugated body (Citroën H type, built 1947-1981, mostly sold
+#    in France; Wikipedia). Generic drawing, no badge. 4x3 tiles, palette 2;
+#    the roof row is drawn over sprites (walk behind it).
+#  - pinball machine in the café ("most cafés had one", success 1950s-1990s;
+#    1964: 20 centimes a game; Wikipedia FR "Flipper").
+#  - a jukebox with a small film screen in the brasserie (the Scopitone spread
+#    in French cafés in the early 1960s; Wikipedia FR "Juke-box").
+# ---------------------------------------------------------------------------
+def _van():
+    g = [[0] * 32 for _ in range(24)]
+    def rect(x0, y0, x1, y1, c):
+        for y in range(y0, y1 + 1):
+            for x in range(x0, x1 + 1):
+                g[y][x] = c
+    rect(1, 1, 31, 19, 1)              # outline
+    rect(2, 2, 30, 18, 3)              # light grey body
+    for x in range(11, 30, 2):         # corrugated panels
+        rect(x, 5, x, 16, 2)
+    rect(3, 3, 8, 8, 1)                # windscreen
+    g[4][4] = g[4][5] = g[5][4] = 3
+    rect(9, 3, 9, 18, 1)               # door line
+    g[11][7] = g[11][8] = 1            # handle
+    rect(2, 13, 3, 14, 2)              # headlamp
+    rect(1, 19, 31, 19, 1)             # sill
+    for cx in (7, 25):                 # wheels: dark tyre, light hub
+        for y in range(18, 24):
+            for x in range(cx - 3, cx + 4):
+                d = (x - cx) ** 2 + (y - 21) ** 2
+                if d <= 10:
+                    g[y][x] = 2 if d <= 2 else 1
+    return ["".join(str(c) for c in r) for r in g]
+
+
+_VAN = _van()
+_VAN_CH = "ПРСТУФХЦЧШЩЪ"
+for _ty in range(3):
+    for _tx in range(4):
+        _n = "van_%d" % (_ty * 4 + _tx)
+        TILES[_n] = [r[_tx * 8:_tx * 8 + 8] for r in _VAN[_ty * 8:_ty * 8 + 8]]
+        LEGEND[_VAN_CH[_ty * 4 + _tx]] = (_n, 2, _ty > 0, _ty == 0)
+TILES["pin_t"] = ["11111111", "13232321", "12323231", "13232321",
+                  "11111111", "12222221", "12322321", "12233221"]
+TILES["pin_b"] = ["12222221", "12232221", "12222221", "11111111",
+                  "01000010", "01000010", "01000010", "11000011"]
+TILES["sco_t"] = ["01111110", "13333331", "13111131", "13122131",
+                  "13111131", "13333331", "11111111", "12323231"]
+TILES["sco_b"] = ["12323231", "11111111", "12222221", "12121221",
+                  "12222221", "12222221", "11111111", "01100110"]
+LEGEND["Ы"] = ("pin_t", 6, True)
+LEGEND["Ь"] = ("pin_b", 6, True)
+LEGEND["Э"] = ("sco_t", 3, True)
+LEGEND["Ю"] = ("sco_b", 3, True)
+
+# Café-tabac (Jiwon 2026-11-24). Carotte: the tabac sign, obligatory since 1906,
+# "originally brown or red" (Connexion); this red spindle with a cream highlight
+# is a reconstruction of its 1960s look (palette 4, on the café awning row).
+TILES["carotte"] = ["00011000", "00122100", "01232210", "01232210",
+                    "01232210", "01222210", "00122100", "00011000"]
+# The tobacco shelf behind the café counter: generic packets, no brands (palette 6).
+TILES["tabac_rack"] = ["11111111", "12330233", "12330233", "11111111",
+                       "13220322", "13220322", "11111111", "10000001"]
+LEGEND["Я"] = ("carotte", 4, True)
+LEGEND["я"] = ("tabac_rack", 6, True)

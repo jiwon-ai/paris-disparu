@@ -39,21 +39,25 @@ You stare at the lamp for a long time. A moth stares back. Neither of you blinks
 [stranger_hello]
 MAN WITH NOTEBOOK: Every night at three, Fernand's yellow hat goes by. Tonight: nothing. Noted.
 
-My old notebooks are at home. My wife reads them out. Call 4127, from the café.
+My old notebooks are at home. My wife reads them out. Call ARC 4127, from the café.
 
 [stranger_knows]
 MAN WITH NOTEBOOK: You found out where he went. I can see it on your face. Noted.
 
+A young writer won the Renaudot two years ago with a novel called Things. This year he joined a club of writers who write by rules.
+
+Me, I only write down what I see. The ordinary. Nobody looks at it.
+
 [stranger_again]
-MAN WITH NOTEBOOK: Still no yellow hat. Call my notebooks, 4127. Yesterday may explain tonight.
+MAN WITH NOTEBOOK: Still no yellow hat. Call my notebooks, ARC 4127. Yesterday may explain tonight.
 
 # ---------------------------------------------------------------- the porter
 [porter_hello]
-DÉDÉ: You! Have you seen Fernand? Thirty years, he never missed a night.
+DÉDÉ: Hey, you! Seen Fernand? Big as a wardrobe, yellow hat. Thirty years, never missed a night.
 
-His cart's still here, full. And my back's done in. Can't lift a thing.
+His cart's still here, full. And my back's gone. Went "crac" at midnight.
 
-Germaine needs her crates. Each one goes to its stall: read the signs. Help me?
+Germaine's waiting for her crates. Each one to its stall: read the signs. Give us a hand?
 ? Yes | No
 
 [porter_ask]
@@ -61,23 +65,23 @@ DÉDÉ: So? Helping with Fernand's crates?
 ? Yes | No
 
 [porter_yes]
-DÉDÉ: Good. Take them from the cart, one at a time. Look at what's inside.
+DÉDÉ: Good lad. One crate at a time. Look what's inside.
 
-And lift with your legs, like a fort. A back has to last a lifetime.
+And lift with your legs, like a fort. A back's for life. Ask mine.
 
 [porter_no]
-DÉDÉ: Suit yourself. The crates won't carry themselves, though.
+DÉDÉ: Suit yourself. The crates won't walk, though. I asked them.
 
 [porter_working]
 DÉDÉ: Cart's here, stalls are inside. Go on, go on!
 
 [porter_done]
-DÉDÉ: Three crates, three stalls. Fernand would be proud.
+DÉDÉ: Three crates, three stalls. Not bad for a skinny one.
 
-Germaine wants a word with you, inside. She knows him better than anyone.
+Go and see Germaine, inside. If anyone knows what's eating Fernand, it's her. She knows everything. Even what you had for dinner.
 
 [porter_after]
-DÉDÉ: Find Fernand, will you? It isn't the same without his big voice.
+DÉDÉ: Find Fernand, eh? It's too quiet without his big mouth.
 
 # ---------------------------------------------------------------- the cart and stalls
 [cart_look]
@@ -121,31 +125,31 @@ GERMAINE: My cabbages! Put them down there, gently. Thank you, dear.
 
 # ---------------------------------------------------------------- the merchant
 [merchant_hello]
-GERMAINE: What are you after at this hour? The buyers will be here soon.
+GERMAINE: Mind my cabbages, chick! The buyers will be here soon and everything has to shine.
 
-Everything has to look good first. A sad cabbage, nobody wants it.
+A sad cabbage, nobody wants it. Same with people. Smile.
 
-The price? Depends on the hour, the rain and the customer's face.
+The price? Depends on the hour, the rain and the customer's face. For yours, I'd charge double.
 
 [merchant_rungis]
-GERMAINE: You carried for me? Thank you, dear. Fernand always does it.
+GERMAINE: You carried for me? Thank you, chick. That's Fernand's job, usually.
 
-All week he talked about one thing. Rungis. The new market they're building out there.
+All week he's talked of nothing but Rungis. The new market they're building out there.
 
-"Concrete and lorries," he said. "No glass, no iron. No place for old forts."
+"Concrete and lorries," he says. "No glass, no iron. No place for an old fort."
 
-When they move us out there, will they want a man of sixty? He's afraid, dear.
+Will they want a man of sixty out there? He's scared, chick. Big as he is.
 
 [merchant_again]
-GERMAINE: Move over a bit, you're hiding my cabbages.
+GERMAINE: Shift over, chick, you're hiding my cabbages. Nobody buys what they can't see.
 
 # ---------------------------------------------------------------- the cafe
 [cafe_hello]
-SIMONE: That cat! Always first in. You're looking for Fernand too?
+SIMONE: That cat! Always first in. And you? After Fernand too? Dédé's asking everybody.
 
-He came in at midnight, hung his coltin on that hook and walked out bareheaded.
+He came in at midnight, hung his coltin on that hook and walked out bareheaded. Not a word.
 
-But look at this crowd! The night shift wants feeding. Give me a hand, and the coltin's yours.
+Look at this crowd! Porters, night owls, fur coats. Give me a hand and the coltin's yours.
 ? Yes | No
 
 [cafe_jeton]
@@ -168,8 +172,10 @@ SIMONE: Poor Marcel. Poor Fernand. Thirty years under that glass roof, both of t
 [cafe_again]
 SIMONE: Any sign of Fernand? His coffee's gone cold.
 
+The second channel's been in colour since October. Colour! As if I had time for television.
+
 [worker_hello]
-A PORTER: Shh. I'm sleeping on my feet. That's a skill too.
+A PORTER: Shh. I'm sleeping standing up. Took me twenty years to learn.
 
 [worker_fernand]
 A PORTER: Fernand? Sat on the bench with me at eleven. Kept turning his plate in his hands.
@@ -179,10 +185,12 @@ His fort's plate, the one with his name. Like he was saying goodbye to it.
 [worker_phone]
 A PORTER: Who did you call? The butcher? Ha! They never pick up before six.
 
+And taxis went up yesterday. One franc ninety before the wheels even turn! I'll walk.
+
 [phone_look]
 A telephone on the wall. There's a slot… too small for a coin.
 
-Scribbled in pencil on the wall: BUTCHER 0614.
+Scribbled in pencil on the wall: BUTCHER ROQ 0614. And under it, in ink: THE TIME? ODÉ 8400.
 
 [phone_use]
 You have a jeton. Drop it in the slot?
@@ -209,6 +217,9 @@ A man yawns: "My wife? Books, books… She's already gone to her box on the quai
 
 "And that I love him. But mostly, the soup."
 
+[call_clock]
+A calm voice, all alone on the line, reads out the time, second after second. The speaking clock: ODÉon 8400.
+
 [call_none]
 It rings into nothing. Nobody. The jeton doesn't come back.
 
@@ -216,71 +227,179 @@ It rings into nothing. Nobody. The jeton doesn't come back.
 The crate slips back onto the cart. DÉDÉ: With your legs, I said!
 
 [shelf]
-Bottles lined up in front of the mirror. Between them a little radio plays a yé-yé song, very low.
+Bottles in front of the mirror, and a little radio playing a yé-yé song, very low. My big sister would turn it right up.
 
 [soup]
-A bowl of onion soup, gratinée, still steaming. Here it's eaten between midnight and dawn.
+Onion soup, gratinée, still steaming. Who eats soup at four in the morning?
 
-By market workers starting their day, and by night owls ending theirs.
+Everyone here, it seems. The porters before work, the night owls before bed.
 
 [table]
-A round table. Someone left a copy of "Salut les copains" open on the singers' photos.
+Someone left "Salut les copains" open at the singers' photos. I've got the same issue under my bed.
 
 # ---------------------------------------------------------------- the street
 [plaque]
-A blue enamel street sign: RUE RAMBUTEAU.
+RUE RAMBUTEAU, white on blue enamel. At least I know where I am.
 
 [door]
-The door is shut. Behind it, someone is snoring.
+Shut. Someone's snoring behind it. Lucky them.
 
 [lamp]
-A street lamp. Its yellow light trembles a little.
+The street lamp flickers. A bit spooky.
+
+Each lamp keeps a small circle of day for itself.
 
 [shop]
-A dark shop window. Empty bottles wait for the delivery man.
+A dark shop window. Empty bottles waiting for the delivery man. Not one sweet.
 
 [hotel]
-HOTEL. One window still lit. In the hall, a playbill: Ionesco, "The Bald Soprano", at the Huchette since 1957.
+HOTEL. One window still lit. A playbill in the hall: Ionesco, "The Bald Soprano", at the Huchette since 1957. Ten years of the same play?
 
 [cafe_window]
-Behind the misted glass, figures at the counter. It smells of coffee.
+Steamed-up glass, people at the counter. It smells of coffee. I'm frozen.
 
 # ---------------------------------------------------------------- the pavilion
 [pavilion]
-Pavilions of glass and iron on both sides. This is rue Baltard, the open street between the two groups.
+Glass and iron on both sides, like giant greenhouses. Rue Baltard runs right between them.
 
 [covered]
-A covered street joins this pavilion to the next one.
+A covered street to the next pavilion. Dry in there, at least.
 
 [eustache]
-The church of Saint-Eustache. Its east end looks down the central street of the market.
+Saint-Eustache, enormous, staring down the main street of the market. Its bells must wake everybody.
+
+Old stone watching the market. It never blinks.
 
 [crates]
-Empty crates, stacked up. They'll go back out tonight.
+Empty crates, stacked higher than me. They'll be full again tonight.
+
+Wood that smells of apples and rain. Even empty, they remember.
+
+[morris]
+A green Morris column, plastered with posters for tonight's shows. I'd go to all of them.
+
+[wallace]
+A Wallace fountain: four stone ladies holding up a tiny iron dome. Free water, ice cold. Brr.
+
+[lorry]
+A lorry from the country, crates going off it by hand. At night they're everywhere round the market.
+
+The driver's asleep in his cab. Snoring. How?
+
+[car]
+Hey, a grey deux-chevaux. Just like my uncle's! He calls his "the umbrella on wheels".
+
+Someone left a beret on the seat.
+
+[van]
+A van all ribbed like a washboard. The butcher on our street drives the same one.
+
+Its windscreen holds a piece of the sky.
+
+[pinball]
+A pinball machine, blinking even with nobody playing. My cousin leaves all his pocket money in there, twenty centimes a game.
+
+[tabac]
+The tobacco shelf behind the counter: packets lined up like little bricks. A man buys two and lights one before the door.
+
+Smoke goes up. Ideas go up. Neither one comes back down.
+
+[scopitone]
+A jukebox with a little screen on top! Drop in a coin and a singer dances inside the box. My sister would stay here all night.
+
+[solex]
+A black VéloSolex against the wall. My cousin rides one to school: the roller on the front wheel does the pedalling.
+
+He says it never breaks down. He says that a lot.
+
+[busstop]
+A bus stop. Nobody waiting at this hour.
+
+In the daytime I ride on the open platform at the back. Wind in your face!
+
+[defense]
+Painted right across the wall: DÉFENSE D'AFFICHER, LOI DU 29 JUILLET 1881. Post no bills.
+
+And just underneath... a poster. Of course.
 
 [column]
-A cast-iron column. Cold, and a little sticky.
+A cast-iron column. Cold, and a bit sticky. Yuck.
 
 # ---------------------------------------------------------------- the quai
 [quai_box]
 A bookseller's green box, padlocked. On the lid, a card:
 
-"Old books. Mme Roux. 7302."
+"Old books. Mme Roux. MED 7302."
 
 [quai_box2]
-Another green box, shut. Through a crack: an old Zola, "Le Ventre de Paris". A novel set in these very Halles, in 1873.
+Another green box, shut. Through a crack: an old Zola, "Le Ventre de Paris". That one's about Les Halles! In 1873.
 
 [gaslamp]
-A gas lamp. Behind the glass, the flame hisses softly.
+A gas lamp. The flame hisses behind the glass like a sleepy cat.
 
 [tree]
-A plane tree. Its leaves rustle like paper.
+A plane tree. The leaves rattle like paper.
 
 [river]
-Below, the Seine. Black, and yet full of lights.
+The Seine down below. Black, but full of lights.
+
+Something white on the black water. It lifts off and flies away. A swan? At night you have to look closely.
 
 [quai_shop]
-Shutters closed. A poster: Jacques Tati's new film, "Playtime". A Paris all glass and steel. "Soon."
+Shutters down. A poster for Jacques Tati's new film, "Playtime": a Paris all glass and steel. "Soon." Funny, round here it's all old stone.
+
+# ---------------------------------------------------------------- west end (2026-11-24)
+# Sources: HISTORICAL_RESEARCH.md "West end of Les Halles" and "Street life".
+[bourse]
+THE BOURSE DE COMMERCE: a round building under an iron dome. Grandpa says it was the grain hall once. Now men shout wheat prices in there.
+
+[bourse_door]
+The big door's shut. Behind it, the wheat and sugar prices are asleep till morning.
+
+[medici]
+A lone stone column against the rotunda, with an iron cage on top. Someone used to climb up there to read the stars. Brave.
+
+[vespasienne]
+Ugh, it stinks. A green iron pissoir, two boots under the screen, someone whistling inside.
+
+Paris has so many of these. And the wall next door still smells worse.
+
+[rat]
+A rat! Strolling across the cobbles like it owns the place. Round the market they're everywhere.
+
+[brasserie_front]
+A brasserie, lit up from top to bottom. Porters at one table, people in evening clothes at the next. Does it ever close?
+
+[west_pavilion]
+More pavilions of glass and iron. The covered street goes back to rue Baltard.
+
+[hotel_keys]
+The key board. Most of the hooks are empty: everyone's asleep, or out at the market.
+
+[hotel_mirror]
+A spotted mirror. You look like someone who hasn't slept. You haven't.
+
+[hotel_stairs]
+The stairs creak just from looking at them. Upstairs, someone is snoring.
+
+[hotel_switch]
+The hotel telephone, behind the desk. THE NIGHT PORTER: A line? Guests come down and I put them through. It's a jeton, same as the café.
+
+[hotel_switch_use]
+THE NIGHT PORTER: A jeton? Right, I'll put you through. Give me the number.
+? Yes | No
+
+[bra_mirror]
+Mirrors all along the walls. Twice the people, twice the noise.
+
+[bra_table]
+Marble tables, a pot of mustard, somebody's onion soup going cold. What a waste.
+
+[hotel_chair]
+A worn armchair. The porter's paper is folded at the racing page. I bet he lost.
+
+[waiter_jeton]
+THE WAITER: A jeton for the telephone? Twenty centimes on the zinc... there. Here's your jeton.
 
 # ---------------------------------------------------------------- the bridge
 [painter_hello]
@@ -290,21 +409,425 @@ There's a big fellow at the end of the bridge. No hat. Been there an hour.
 
 Staring at the glow of the market, like a man looking at a house that's for sale.
 
-If you meet my wife… No. Call her instead: 2508. Tell her I'm painting.
+If you meet my wife… No. Call her instead: PAS 2508. Tell her I'm painting.
 
 [painter_again]
 THE PAINTER: A poet wrote it long ago: "Le vieux Paris n'est plus (la forme d'une ville
 
 change plus vite, hélas ! que le cœur d'un mortel)." Baudelaire. So I paint fast.
 
+All Paris queued at the Petit Palais this year for Tutankhamun's gold. Me, I paint onions and water.
+
+My wife went to the new Orchestre de Paris last week. Very grand. I stayed here with the river.
+
 [barrier]
-Barriers: ROADWORKS. The rest of the bridge will wait for daylight.
+ROADWORKS. The rest of the bridge will have to wait for daylight.
 
 [watch_water]
 The Pont Neuf: despite its name, the oldest bridge in Paris. Below, the water races by without a sound.
 
+The water doesn't stop for anyone. Not even for a poem.
+
 # ---------------------------------------------------------------- barks
 # One-page lines that NPCs call out by themselves when the player comes close.
+[puncher_hello]
+TICKET PUNCHER: Ticket! No hole, no train. Nobody gets past me without a hole.
+
+No ticket? Window's right there. Knock hard, the clerk sleeps like a log.
+
+[metro_window]
+You tap on the glass. A sleepy clerk slides a small brown second-class ticket under it.
+
+[metro_window_again]
+The clerk has gone back to his evening paper.
+
+Headline: THE POUND DEVALUED.
+
+Lower down: GONCOURT PRIZE FOR "LA MARGE".
+
+[puncher_ticket]
+TICKET PUNCHER: Let's see it. Clac! A neat little hole. Good for one trip.
+
+Hundreds a day, clac, clac. Fancy a go? Here come the first passengers.
+? Yes | No
+
+[punch_ok]
+Clac! A clean hole. The passenger nods and goes through.
+
+TICKET PUNCHER: Not bad! Another one?
+? Yes | No
+
+[punch_miss]
+Clac! You punched the air. The passenger sighs.
+
+TICKET PUNCHER: Wrist, kid, not shoulder. You're not chopping wood.
+? Yes | No
+
+[punch_done]
+Clac! Three clean holes. TICKET PUNCHER: Now that's a wrist!
+
+They say one day machines will check the tickets by themselves. And me? I'll punch holes in my newspaper.
+
+You ask about a big man in a yellow hat.
+
+TICKET PUNCHER: A big fellow? One came down tonight. No hat, no ticket. Didn't want a train.
+
+Just stood there staring at the rails. Then back up the stairs, off towards the river.
+
+[puncher_after]
+TICKET PUNCHER: A singer once made a song about a man like me, out at Porte des Lilas.
+
+Now everybody hums it at me. Every day. Clac. Your big fellow went towards the river.
+
+[bark_puncher]
+TICKET PUNCHER: Tickets, please!
+
+[bark_puncher_done]
+TICKET PUNCHER: Clac! Clac!
+
+[metro_sign]
+Steps down to the Métro. A warm breath of air comes up from below.
+
+[metro_name]
+LES HALLES. Dad says line 4 has stopped under the market since 1908. That's older than Grandpa!
+
+[metro_tiles]
+Little white tiles, the same in every station. They shine even in the dark.
+
+A wall of little moons.
+
+[metro_gate]
+The gate to the platform. Down there it smells of hot iron and dust.
+
+Since the summer the trains on line 4 run on rubber tyres. So much quieter.
+
+Not tonight, though. Fernand first.
+
+[baskets]
+Baskets of leeks and onions. My eyes are watering already.
+
+[poster]
+Posters glued shoulder to shoulder. Nobody down here cares about the law of 1881.
+
+[bench]
+A wooden bench, polished by a thousand coats.
+
+[chairs]
+Bentwood café chairs. This one's still warm.
+
+[metro_map]
+LINE 4: PORTE DE CLIGNANCOURT to PORTE D'ORLÉANS. A white ring round LES HALLES: you are here.
+
+North: Gare de l'Est, Gare du Nord, Barbès. South, under the Seine: Cité, Saint-Michel, Saint-Germain, Montparnasse.
+
+Each episode opens new stops on the line. Tonight, Paris stops here.
+
+[painter_wife]
+THE PAINTER: You called her? What did she say?
+
+Cold soup… and she loves me. But mostly the soup. Ha! That's her.
+
+I'll finish this sky and go home. Thank you, my friend. Go easy with the big fellow.
+
+[end_bonus]
+At the café door the photographer lowers his camera. THE PHOTOGRAPHER: You were everywhere tonight.
+
+The métro, the butcher, the painter's wife… Here.
+
+He promises you a print: you, laughing, holding a ticket full of holes.
+
+[singer_hello]
+THE SINGER: Shh. I'm listening to the Seine. It hums in a minor key.
+
+I came down for the onion soup. Round here they serve it all night, to forts and to people like me.
+
+Once I wrote a song about a man who punches holes in métro tickets. There's one like him under the market.
+
+A missing fort, you say? Come back if you're stuck. I notice things. It's my job.
+
+[singer_hat]
+THE SINGER: A fort without his hat is like a song without words. Somebody kept his hat. Try the café.
+
+[singer_bleu]
+THE SINGER: A fort who walks off like that? Somebody wrote to him. A little blue letter, I'd bet. Ask who brought it.
+
+[singer_plate]
+THE SINGER: A fort sells his brass plate only when he's had enough. Ask the books along the quai.
+
+[singer_ready]
+THE SINGER: You know everything now. Your big man is on the bridge, kid. Go, before the light comes.
+
+[bark_singer]
+THE SINGER: La la… No. Not that.
+
+[cafe_rush]
+SIMONE: Still here? The coffee rush won't wait. Help me and the coltin's yours.
+? Yes | No
+
+[serve_win]
+SIMONE: Not a drop spilt! You've got it in your blood.
+
+She takes the coltin off its hook. SIMONE: Here. Fernand's hat. Bring it back to him.
+
+[serve_lose]
+SIMONE: Oh là là, coffee everywhere! Again: let go when it reaches the dark part.
+? Yes | No
+
+[cafe_soup]
+SIMONE: A gratinée for Mme Roux? She's frozen on that quai every morning, poor thing.
+
+Here, hot from the oven. Carry it gently!
+
+[worker_cups]
+A PORTER: A jeton? I've got a pocketful. Win one: find it under my cups.
+? Yes | No
+
+[cups_win]
+A PORTER: Ha! Sharp eyes. Here's your jeton. Don't call the butcher, he bites.
+
+[cups_lose]
+A PORTER: Empty! It was under the other one. Again?
+? Yes | No
+
+[merchant_catch]
+GERMAINE: You carried for Fernand, dear. One more favour: my pyramid's falling apart!
+
+Catch the cabbages as they roll off. Then I'll tell you what's eating Fernand.
+? Yes | No
+
+[catch_lose]
+GERMAINE: My poor cabbages, all over the floor! Try again?
+? Yes | No
+
+[roux_hello]
+MME ROUX: Brr! Opening my box at this hour, for the early birds.
+
+A brass plate? Yes, a big fort sold it to me last night. FORT, MARCHAND. He'll have no use for it, he said.
+
+I didn't want it! You can have it back. But bring me something hot first. A gratinée!
+
+[roux_wait]
+MME ROUX: A gratinée, dear. Simone's café, up the street. My fingers are blue.
+
+[roux_soup]
+MME ROUX: A gratinée! Still steaming! You're an angel.
+
+Here: his brass plate. A fort without his plate is just a big man with a sore back.
+
+[thief]
+A man in a flat cap bumps into you. "Pardon!" Your pocket feels lighter… Fernand's brass plate!
+
+He's off along the quai. After him!
+
+[chase_win]
+You catch him by the sleeve under a gas lamp. The plate clatters onto the cobbles.
+
+THIEF: Only brass?! The whole city's mad for gold this week, I thought… Bah!
+
+He wriggles free and vanishes into the dark. The plate is yours again.
+
+[chase_lose]
+He stops by the parapet to catch his breath, and grins. THIEF: Too slow!
+
+He's tired too. Go on, once more!
+
+[roux_after]
+MME ROUX: Zola, Hugo, Balzac… Old books for an old Paris. Mind how you go.
+
+The new ones? Everyone asks for Tournier's "Vendredi". The Académie gave it its prize last week.
+
+Fifty million French now, the papers say. And still nobody buys books at four in the morning.
+
+[bark_roux]
+MME ROUX: Brr! Who's up so early?
+
+[bark_roux_soup]
+MME ROUX: Is that soup I smell?
+
+[bark_cafe_rush]
+SIMONE: Quick! Tables waiting!
+
+[bark_worker_cups]
+A PORTER: Pssst. Want a jeton?
+
+# ---------------------------------------------------------------- cameos (2)
+# Unnamed, recognisable by allusion; their presence tonight is fiction. Keep
+# the order: hello, again for each (see NPC_ACTOR in include/game.h).
+[actor_hello]
+THE ACTOR: Supper at the brasserie on rue Coquillière, then a walk through the market. The best end to a night.
+
+Fans? At four in the morning only the porters are awake. And you.
+
+[actor_again]
+THE ACTOR: A tip from a man who reads scripts: look where nobody looks. Gutters, corners, lamps. Paris hides its little jokes.
+
+[chanteuse_hello]
+THE CHANTEUSE: I came over from Saint-Germain. Over there they talk about books all night. Here, at least, people work.
+
+A young songwriter once wrote me a song. Now he wanders by the river, I hear.
+
+[chanteuse_again]
+You tell her about Fernand.
+
+THE CHANTEUSE: A man who stops working stops singing. Bring your porter back what he left behind. His hat first.
+
+[philosopher_hello]
+THE PHILOSOPHER: Usually I write in a café in Saint-Germain, with my companion. Tonight I wanted to see people who make things with their hands.
+
+[philosopher_again]
+You tell him about Fernand.
+
+THE PHILOSOPHER: Your porter is free to leave. Free to stay, too. Bring him reasons, not orders.
+
+Three years ago they gave me the biggest prize there is. I tried to refuse it. A writer shouldn't turn into an institution.
+
+This year I sat on a tribunal judging the war in Vietnam. Words can still act.
+
+[filmmaker_hello]
+THE FILMMAKER: My new film opens in December. A city of glass and steel. I came to look at the old one before it goes.
+
+[filmmaker_again]
+THE FILMMAKER: Watch people, not things. That hotel window in rue Rambuteau: knock, wait, knock again. Comedy is patience.
+
+[writer_hello]
+THE WRITER: I once wrote about a girl who came to Paris only to ride the métro. It was on strike, of course.
+
+[writer_again]
+THE WRITER: Look at the tiles, low down by the wall. Even mice take the métro. Some without a ticket.
+
+[novelist_hello]
+THE NOVELIST: I can't sleep, so I walk. At this hour Paris belongs to the people who work and the people who write.
+
+A new book of mine came out this year. Don't ask me what it's about.
+
+Once I wrote a film with a title like a sigh: such a long absence.
+
+[novelist_again]
+THE NOVELIST: A man who disappears always leaves something behind. A hat, a letter, a name. Gather them, and he comes back to you.
+
+[playwright_hello]
+THE PLAYWRIGHT: An Irishman. I came to Paris before the war, and stayed through it.
+
+A play of mine opened here in '53. Two men waiting by the road. People are still waiting with them.
+
+I used to play chess in the cafés with painters. Long silences. Good practice.
+
+[playwright_again]
+THE PLAYWRIGHT: The big man down the bridge has been waiting a long time. Waiting for nothing is hard. Go and give him something.
+
+[critic_hello]
+THE CRITIC: Red wine, steak and chips, a new car… I once wrote little essays on things like these. The myths of everyday France.
+
+This year I published a whole book on fashion. Everything is a sign, if you look closely.
+
+[critic_again]
+THE CRITIC: Think of Mme Roux by the river, with her blue fingers. A hot gratinée would say more to her than any word.
+
+[young_man_hello]
+THE YOUNG MAN: I'm twenty-two and I'm writing my first novel. Paris under the Occupation, and people who vanished.
+
+My old geometry teacher writes novels. He's down here somewhere. He says I should keep going.
+
+[young_man_again]
+THE YOUNG MAN: People never vanish completely. They leave addresses, phone numbers, notes. Someone always remembers.
+
+[fort2_hello]
+A PORTER: Five minutes off my feet. Mind yours, kid. The carts don't brake.
+
+[fort2_again]
+You ask about Fernand.
+
+A PORTER: Fernand? Best back in the pavilion. Leave a full cart? Him? Something's wrong.
+
+[cook_hello]
+A COOK: I buy here before dawn, I serve at noon. My customers think the carrots grow in my kitchen.
+
+[cook_again]
+A COOK: Germaine's cabbages are the best in the pavilion. Don't tell the others.
+
+[sleeper_hello]
+A NIGHT WORKER: Mm? Just waiting for the first train. Then home, then bed.
+
+[sleeper_again]
+A NIGHT WORKER: Zzz… They say the whole market's going out to Rungis… Zzz…
+
+[waiter_hello]
+THE WAITER: Open all night, every night, since forty-seven. Forts at one table, night owls at the next. What'll it be?
+
+[waiter_again]
+THE WAITER: The telephone? On the back wall, by the mirrors. Jetons only, like everywhere.
+
+[nightporter_hello]
+THE NIGHT PORTER: Shh! The guests are asleep. And no, we're full. Market men knock at all hours for a bed for three hours.
+
+[nightporter_again]
+THE NIGHT PORTER: Looking for someone at this hour? Ask in the cafés. Everybody at Les Halles passes through a café.
+
+[souper_hello]
+A FORT, over his soup: First hot thing since midnight. Don't look at me like that, there's none left.
+
+When the market goes to Rungis, where do we get soup at four in the morning? In the concrete?
+
+[souper_again]
+A FORT: Fernand? He always sits there, by the mirror. Not tonight. Funny, that.
+
+[archivist_hello]
+THE ARCHIVIST: You can't sleep either? A book of mine came out this year, about a man who sleeps. And look at me, wide awake.
+
+By day I file papers in a lab that studies the brain. By night I count things. Tables in here: six. Mirrors: lots.
+
+This spring some writers let me into their club. We write with rules, like a game.
+
+[archivist_again]
+THE ARCHIVIST: Lost someone? Make a list. Everything he left behind, one by one. A list always helps.
+
+[meat_hello]
+A MEAT PORTER: Gare! Gare! Mind your back, kid!
+
+His cap is pulled down over his ears. The side of beef rides on his shoulder, steadied with his head.
+
+A MEAT PORTER: Heavier than my mother-in-law. Complains less, too.
+
+Lorry to pavilion, all night long. My coat was white at midnight. Look at it now.
+
+[meat_again]
+You ask about a big man in a yellow hat.
+
+A MEAT PORTER: Fernand? Went down rue du Pont-Neuf, towards the water. Not even a "salut". Not like him.
+
+Allez, lercimuche!
+
+Lercimuche? You write it down. It sounds like half a poem.
+
+# ---------------------------------------------------------------- curiosities
+# Vanished objects found as "???" (curio_flags), then shown to the one person
+# who knows what they are. Keep the three _find entries, then the three
+# _solve entries, together and in this order. Sources: HISTORICAL_RESEARCH.md.
+[curio_0_find]
+Under the bench, a little green ticket. Yours is brown. What would a green one be for?
+
+[curio_1_find]
+Among the onion skins, a small ridged roller, black with grime. Off some machine… but which?
+
+[curio_2_find]
+On the chair, a ticket stub: a gold mask, and the words PETIT PALAIS. Whose face is that?
+
+[curio_0_solve]
+TICKET PUNCHER: Green? That's first class, kid. Brown is second class, like yours.
+
+First class costs more and rides in its own carriages, the ones with the yellow marks. I'll keep it. Clac!
+
+[curio_1_solve]
+THE YOUNG MAN: That's off a VéloSolex! The roller sits on the front tyre and the little motor turns it.
+
+Students ride them everywhere. Someone's walking home tonight.
+
+[curio_2_solve]
+THE PAINTER: Tutankhamun! The boy king's gold, at the Petit Palais this year.
+
+All Paris queued. Over a million people. Keep it: one day nobody will believe you.
+
+# --- moved here 2026-11-24 to keep hotspot dialogues below id 0x80 ---
 [bark_stranger]
 MAN WITH NOTEBOOK: Psst! Fernand…
 
@@ -324,7 +847,7 @@ DÉDÉ: Inside! Read the signs!
 DÉDÉ: Well? All delivered?
 
 [bark_porter_done]
-DÉDÉ: Thanks, kid! See Germaine.
+DÉDÉ: Thanks, pal! See Germaine.
 
 [bark_merchant]
 GERMAINE: Fine cabbages! Cheap!
@@ -347,7 +870,7 @@ A PORTER: Zzz… zzz…
 [fernand_hello]
 FERNAND: Leave me be, kid. I'm watching the water.
 
-He rubs his bare head. FERNAND: Cold, without my coltin. I left it at Simone's café.
+He rubs his bare head. FERNAND: Cold, without my coltin. Left it at Simone's.
 
 [fernand_why]
 FERNAND: My coltin… Simone kept it, eh? Doesn't matter.
@@ -407,6 +930,8 @@ A fort was missing tonight? The big one, Fernand. I photographed him last week, 
 [photo_again]
 THE PHOTOGRAPHER: The light's changing. In an hour the market will look like any other place.
 
+Last month they opened the lorry station out at Rungis. I went. Concrete, and not one face worth a photo.
+
 [photo_knows]
 THE PHOTOGRAPHER: You found Fernand? Bring him back under the glass. I'd like one more picture of him.
 
@@ -419,207 +944,35 @@ FERNAND: …
 [bark_painter]
 THE PAINTER: Shh… I'm painting.
 
-[puncher_hello]
-TICKET PUNCHER: Ticket, kid! Nobody goes down to the trains without a hole in his ticket.
+[dog]
+A LITTLE DOG: Woof!
 
-No ticket? The window's just there. Knock, the clerk's only dozing.
+He sniffs every lamp post on the street, very seriously. Watch your step: he's not the only dog who's been this way.
 
-[metro_window]
-You tap on the glass. A sleepy clerk slides a small brown second-class ticket under it.
+[police]
+A POLICEMAN: Out late, young man? Writing love letters by lamplight?
 
-[metro_window_again]
-The clerk has gone back to his newspaper.
+Keep clear of the carts. And of the porters' elbows.
 
-[puncher_ticket]
-TICKET PUNCHER: Let's see it. Clac! A neat little hole. Good for one trip.
+He leans on his bicycle, cape over his shoulders, like a big blue swallow.
 
-Hundreds a day, clac, clac. Fancy a go? Here come the first passengers.
-? Yes | No
+[sweeper]
+A STREET SWEEPER: Mind your feet! Water's coming.
 
-[punch_ok]
-Clac! A clean hole. The passenger nods and goes through.
+He opens a little iron tap at the kerb and the gutter starts to run, carrying cabbage leaves and cigarette ends away.
 
-TICKET PUNCHER: Not bad! Another one?
-? Yes | No
+[smoker]
+A SMOKER: Got a light? No? Never mind, I've got matches.
 
-[punch_miss]
-Clac! You punched the air. The passenger sighs.
+He cups the flame in his hands against the wind. The smoke hangs under the lamp a long time.
 
-TICKET PUNCHER: Again, kid. Wrist, not shoulder.
-? Yes | No
+[walker]
+A LADY WITH A POODLE: Up already? Pompon wakes me at five, every day, rain or shine.
 
-[punch_done]
-Clac! Three clean holes. TICKET PUNCHER: You've got the wrist, kid!
+The poodle walks like a dancer, on the tips of its toes. Its breath makes little clouds.
 
-They say one day machines will check the tickets by themselves. Then what will I do?
+[poodle]
+POMPON: Yap! Yap!
 
-Here, about your fort. A big one came down tonight. No hat, no ticket. He didn't want a train.
+Freshly clipped, a pompom on its tail. It looks at you as if you were the one on a leash.
 
-He just stood here, then went back up and off towards the river.
-
-[puncher_after]
-TICKET PUNCHER: A singer once made a song about a man like me, out at Porte des Lilas.
-
-Now everybody hums it at me. Clac! Your fort went towards the river, kid.
-
-[bark_puncher]
-TICKET PUNCHER: Tickets, please!
-
-[bark_puncher_done]
-TICKET PUNCHER: Clac! Clac!
-
-[metro_sign]
-Steps down to the Métro. A warm breath of air comes up from below.
-
-[metro_name]
-The station's name: LES HALLES. Line 4 has stopped under the market since 1908.
-
-[metro_tiles]
-Small white tiles, like in every station since 1900. They catch what little light there is.
-
-[metro_gate]
-The gate to the platform. Beyond it, the tunnel smells of hot iron and dust.
-
-[painter_wife]
-THE PAINTER: You called her? What did she say?
-
-Cold soup… and she loves me. But mostly the soup. Ha! That's her.
-
-I'll finish this sky and go home. Thank you, kid. Go easy with the big fellow.
-
-[end_bonus]
-At the café door the photographer lowers his camera. THE PHOTOGRAPHER: You were everywhere tonight.
-
-The métro, the butcher, the painter's wife… Here.
-
-He promises you a print: you, laughing, holding a ticket full of holes.
-
-[singer_hello]
-THE SINGER: Shh. I'm listening to the Seine. It hums in a minor key.
-
-I came down for the onion soup. Round here they serve it all night, to forts and to people like me.
-
-Once I wrote a song about a man who punches holes in métro tickets. There's one like him under the market.
-
-A missing fort, you say? Come back if you're stuck. I notice things. It's my job.
-
-[singer_hat]
-THE SINGER: A fort without his hat is like a song without words. Somebody kept his hat. Try the café.
-
-[singer_bleu]
-THE SINGER: Somebody wrote to your fort. In Paris, little blue letters fly through pipes under the streets. Ask who brought it.
-
-[singer_plate]
-THE SINGER: A fort sells his brass plate only when he's had enough. Ask the books along the quai.
-
-[singer_ready]
-THE SINGER: You know everything now. Your fort is on the bridge, kid. Go, before the light comes.
-
-[bark_singer]
-THE SINGER: La la… No. Not that.
-
-[cafe_rush]
-SIMONE: Still here? The coffee rush won't wait. Help me and the coltin's yours.
-? Yes | No
-
-[serve_win]
-SIMONE: Five tables, and not a drop spilt! You've got it in your blood.
-
-She takes the coltin off its hook. SIMONE: Here. Fernand's hat. Bring it back to him.
-
-[serve_lose]
-SIMONE: Oh là là, the wrong cups everywhere! Again, but listen to the tables.
-? Yes | No
-
-[cafe_soup]
-SIMONE: A gratinée for Mme Roux? She's frozen on that quai every morning, poor thing.
-
-Here, hot from the oven. Carry it gently!
-
-[worker_cups]
-A PORTER: A jeton? I've got a pocketful. Win one: find it under my cups.
-? Yes | No
-
-[cups_win]
-A PORTER: Ha! Sharp eyes. Here's your jeton. Don't call the butcher, he bites.
-
-[cups_lose]
-A PORTER: Empty! It was under the other one. Again?
-? Yes | No
-
-[merchant_catch]
-GERMAINE: You carried for Fernand, dear. One more favour: my pyramid's falling apart!
-
-Catch the cabbages as they roll off. Then I'll tell you what's eating Fernand.
-? Yes | No
-
-[catch_lose]
-GERMAINE: My poor cabbages, all over the floor! Try again?
-? Yes | No
-
-[roux_hello]
-MME ROUX: Brr! Opening my box at this hour, for the early birds.
-
-A brass plate? Yes, a big fort sold it to me last night. FORT, MARCHAND. He'll have no use for it, he said.
-
-I didn't want it! You can have it back. But bring me something hot first. A gratinée!
-
-[roux_wait]
-MME ROUX: A gratinée, dear. Simone's café, up the street. My fingers are blue.
-
-[roux_soup]
-MME ROUX: A gratinée! Still steaming! You're an angel.
-
-Here: his brass plate. A fort without his plate is just a big man with a sore back.
-
-[roux_after]
-MME ROUX: Zola, Hugo, Balzac… Old books for an old Paris. Mind how you go.
-
-[bark_roux]
-MME ROUX: Brr! Who's up so early?
-
-[bark_roux_soup]
-MME ROUX: Is that soup I smell?
-
-[bark_cafe_rush]
-SIMONE: Quick! Tables waiting!
-
-[bark_worker_cups]
-A PORTER: Pssst. Want a jeton?
-
-# ---------------------------------------------------------------- cameos (2)
-# Unnamed, recognisable by allusion; their presence tonight is fiction. Keep
-# the order: hello, again for each (see NPC_ACTOR in include/game.h).
-[actor_hello]
-THE ACTOR: Supper at the brasserie on rue Coquillière, then a walk through the market. The best end to a night.
-
-Fans? At four in the morning only the porters are awake. And you.
-
-[actor_again]
-THE ACTOR: A tip from a man who reads scripts: look where nobody looks. Gutters, corners, lamps. Paris hides its little jokes.
-
-[chanteuse_hello]
-THE CHANTEUSE: I came over from Saint-Germain. Over there they talk about books all night. Here, at least, people work.
-
-A young songwriter once wrote me a song. Now he wanders by the river, I hear.
-
-[chanteuse_again]
-THE CHANTEUSE: A man who stops working stops singing. Bring your porter back what he left behind. His hat first.
-
-[philosopher_hello]
-THE PHILOSOPHER: Usually I write in a café in Saint-Germain, with my companion. Tonight I wanted to see people who make things with their hands.
-
-[philosopher_again]
-THE PHILOSOPHER: Your porter is free to leave. Free to stay, too. Bring him reasons, not orders.
-
-[filmmaker_hello]
-THE FILMMAKER: My new film opens in December. A city of glass and steel. I came to look at the old one before it goes.
-
-[filmmaker_again]
-THE FILMMAKER: Watch people, not things. That hotel door in rue Rambuteau: knock, wait, knock again. Comedy is patience.
-
-[writer_hello]
-THE WRITER: I once wrote about a girl who came to Paris only to ride the métro. It was on strike, of course.
-
-[writer_again]
-THE WRITER: Look at the tiles, low down by the wall. Even mice take the métro. Some without a ticket.

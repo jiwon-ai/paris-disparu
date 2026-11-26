@@ -1,7 +1,7 @@
 # PARIS DISPARU — La vie qui n'existe plus
 
 An original exploration game for the **Game Boy Color**, set in Paris around
-1967. The game is in **English**; signs and place names stay in French. You wander the streets around the old Les Halles market before dawn,
+1967. The game is in **English**, **French** or **Korean** (chosen after the title); signs and place names stay in French. You wander the streets around the old Les Halles market before dawn,
 meet the people who work there, and solve a small mystery that could only
 happen there and then: **Fernand, a fort des Halles for thirty years, has
 not come to work tonight.** Everyone knows the market will leave for Rungis.
@@ -27,7 +27,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Feature | State |
 |---|---|
 | CGB-only ROM with valid header (MBC5, CGB flag 0xC0) | done, checked by `tests/check_rom.py` |
-| The Fernand mystery: 6 clues (the man with the notebook, Simone and the coltin, call 4127, the petit bleu, call 7302 and the plate, Germaine after the crates), Fernand found on the bridge, two endings (Stay / Go with), an end screen with clues found and real dates (Rungis 1969, pneumatique closed 1984) | done, tested (both endings) |
+| The Fernand mystery: 6 clues (the man with the notebook, Simone and the coltin, call ARC 4127, the petit bleu, call MED 7302 and the plate, Germaine after the crates), Fernand found on the bridge, two endings (Stay / Go with), an end screen with clues found and real dates (Rungis 1969, pneumatique closed 1984) | done, tested (both endings) |
 | Notebook on START: current goal, clues found (n/6), phone numbers learned; a "New clue!" note when one is found | done, tested |
 | Title key art (night view: church with lantern tower behind a lit iron-and-glass pavilion, gas lamps, a fort carrying a crate), fade-in; speaker portraits on the dialogue box; flickering lamp light | done, tested in PyBoy; composition is original and not a measured drawing of Saint-Eustache |
 | One cameo: an unnamed photographer at dawn, inspired by a real photographer's documented weekly visits to Les Halles (see docs/HISTORICAL_RESEARCH.md, Cameos; needs legal review before release) | done, tested |
@@ -51,7 +51,25 @@ Everything below is in the ROM and exercised by the automated play-through
 | Player sprite visible after every room change (`tests/visibility_test.py`) | done, tested |
 | NPCs call out short lines by themselves when you come near, hinting at what to do ("A: talk" shown). The line stays until you walk away or press A/B; the opening caption stays 15 s or until A/B | done, tested |
 | Quiet scene-based sound: a soft knock every 1-3 s in the market, water on the quai, a faint cup tick in the café; one soft chime when a dialogue opens | done. Captured from the emulator (PyBoy) and checked for pitch, level and rate, **not yet heard by a person** |
-| Music | not started |
+| Original music: 7 loops composed for the game (title, street, market, café, river, métro, mini-games), musette waltzes and polkas, melody on the wave channel over a plucked accompaniment; effects borrow channel 1 | done. Pitches checked from an emulator (PyBoy) recording, **not yet heard by a person** |
+| "Vanished Paris" album: notebook page 3 collects five period objects with a sourced one-line fact each | done, tested (English; the Korean page is not screen-checked) |
+| Curiosities: three vanished objects found as "???" (a green first-class métro ticket, a VéloSolex roller, a Tutankhamun exhibition stub), each identified by the one person who knows; notebook page 4 "Mysteries" | done; ticket tested in a full playthrough, roller and stub identification tested from saves (`tests/save_test.py`); the roller and stub pick-ups are not covered by a test |
+| 1967 phone numbers: exchange + 4 digits ("ARC 4127"), the dial sets the exchange and the digits; ODÉ 8400 is the speaking clock | done, tested (English; Korean dial and rules card screenshot-checked) |
+| Item pictures: the object itself (coltin, petit bleu, plate, gratinée, jeton, tickets, roller, stub) above the note when you get it, and a cup in the coffee game | done, tested (tiles checked in VRAM; English and Korean screenshot-checked) |
+| Night clock 03:00 → 07:00 (one hour per quest, notebook) with the sky turning slightly bluer | done, tested (clock); palette change checked by screenshot |
+| End-screen rank (Tourist → Paris legend) | done, tested (one rank seen in the playthrough) |
+| French option: every dialogue and menu in French (same 8x8 font and layout as English; no-break spaces before ! ? : ;), chosen on the language menu (English / Français / 한국어) | done, tested (`tests/fr_test.py`: menu, intro, caption, notebook, a bark, a dialogue and its choice; notebook pages, dial, end screen and teaser screenshot-checked). **Written by Claude: a review by a native French speaker is advised** |
+| Korean option: dialogue, menus, notebook and captions in Galmuri11 (12-px glyphs, 16-px lines) | done; every Korean screen type screenshot-checked in PyBoy (intro, notebook 4 pages, captions, rules card, cup game, dial, choice, ending, teaser, continue menu) |
+| Sound on/off with SELECT (music, effects and ambience; 2026-11-24, was music only), remembered in the save, shown on the notebook's first page (SELECT works there too); the web page also has a "Sound" button | done, tested (`tests/save_test.py`) |
+| Ending: daybreak on the quai (night palettes fade to morning), "END OF EPISODE 1" caption, then score screen and Episode 2 card (2026-11-24) | done, tested (`tests/play_test.py`) |
+| Carried items shown as small icons top-left (up to 5) (2026-11-24) | done, tested (`tests/places_test.py`) |
+| A little grey deux-chevaux parked on rue Rambuteau, with a sourced description (2026-11-24) | done, tested (`tests/places_test.py`) |
+| Loose change: a 1967 20-centime coin by the Bourse (glint, picked up by walking over); the brasserie waiter sells a jeton for it (2026-11-24) | done, tested (`tests/places_test.py`) |
+| Save / continue: automatic save to battery RAM (room changes, closed dialogues), Continue / New game menu, cleared at the ending | done, tested (`tests/save_test.py`) |
+| Fuller rooms: baskets, chairs, a bench, posters and three more people (a fort, a cook, a night worker) | done, tested |
+| New places: the hotel lobby on rue Rambuteau (night porter), and west through the covered street of rue Baltard the Bourse de commerce (iron dome, Medici column, a vespasienne, a rat) with an all-night brasserie (waiter, a fort over his soup, the second public telephone) | done, tested (`tests/places_test.py`, English; French and Korean text written, not screen-checked) |
+| Mini-game fixes: the cups visibly slide past each other; the coffee gauge frames the dark zone and fills in a coffee colour; the A that opens the game does not pour | done, tested |
+| Juice: room fades, a star over the player on every find, a shake when the pickpocket bumps you | done, tested (the star is checked in OAM) |
 | Message on a monochrome Game Boy | written, **not tested** |
 | SameBoy / BGB / real hardware / ModRetro Chromatic | **not tested yet** |
 

@@ -5,6 +5,7 @@
 #include "input.h"
 #include "world.h"
 #include "events.h"
+#include "notebook.h"
 
 /* Player collision box (feet), relative to the sprite's top-left. */
 #define HIT_X0 3
@@ -39,6 +40,7 @@ void player_place(int16_t x, int16_t y, uint8_t dir) {
 void actors_init_room(void) {
     uint8_t i;
     npc_count = rooms[cur_room].npc_count;
+    pool_load();                 /* this room's bank-1 sprites */
     for (i = 2 + (npc_count + 1) * 2; i < 40; i++) move_sprite(i, 0, 0);
 }
 
@@ -47,8 +49,10 @@ static uint8_t blocked(int16_t x, int16_t y) {
     uint8_t i;
     int16_t x0 = x + HIT_X0, x1 = x + HIT_X1, y0 = y + HIT_Y0, y1 = y + HIT_Y1;
 
+    /* the hitbox is 10 px wide, so it can straddle a 1-tile post: test its middle too */
     if (world_solid(x0, y0) || world_solid(x1, y0) ||
-        world_solid(x0, y1) || world_solid(x1, y1))
+        world_solid(x0, y1) || world_solid(x1, y1) ||
+        world_solid(x + 8, y0) || world_solid(x + 8, y1))
         return 1;
     for (i = 0; i < npc_count; i++) {
         const npc_def_t *n = &rooms[cur_room].npcs[i];
@@ -146,7 +150,7 @@ uint8_t player_interact(void) {
 static void draw16(uint8_t oam, int16_t x, int16_t y, uint8_t tile, uint8_t prop) {
     uint8_t sx = (uint8_t)(x + 8), sy = (uint8_t)(y + 16);
     set_sprite_prop(oam, prop);
-    set_sprite_prop(oam + 1, prop);
+    set_sprite_prop(oam + 1, (prop & S_SPLIT) ? (prop & 0xE8) | 2 : prop);
     if (prop & S_FLIPX) {
         set_sprite_tile(oam, tile + 2);
         set_sprite_tile(oam + 1, tile);
@@ -199,7 +203,7 @@ void actors_draw(void) {
             const npc_def_t *n = &rooms[cur_room].npcs[k];
             /* Slow two-frame idle, offset per NPC so they do not breathe in sync. */
             uint8_t f = (n->palette & S_BANK1) ? 0 : ((uint8_t)(frame_count + k * 23) >> 5) & 1;
-            draw16(oam, n->x, n->y, n->frame + f * 4, n->palette);
+            draw16(oam, n->x, n->y, (n->palette & S_BANK1) ? npc_tile[k] : n->frame + f * 4, n->palette);
         }
     }
 }
