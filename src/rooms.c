@@ -9,7 +9,7 @@ static const npc_def_t street_npcs[] = {
     { 120, 64, SPR_STRANGER_0, 4, NPC_STRANGER },
     { 136, 100, SPR1_CHANTEUSE, 3 | S_BANK1, NPC_CHANTEUSE },   /* cameo */
     { 24, 108, SPR1_ACTOR, 6 | S_BANK1, NPC_ACTOR },            /* cameo */
-    { 140, 72, SPR1_SMOKER, 4 | S_BANK1, NPC_SMOKER },    /* smoking under the lamp */
+    { 140, 72, SPR1_SMOKER, 4 | S_BANK1, NPC_SMOKER },    /* the man with the pipe (Brassens-inspired) */
 };
 static const hotspot_t street_hotspots[] = {
     {  0, 5, 1, 4, DLG_PLAQUE },     /* plaque above reach: whole wall column */

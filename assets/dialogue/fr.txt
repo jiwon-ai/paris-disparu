@@ -944,9 +944,15 @@ UN BALAYEUR : Attention aux pieds ! L'eau arrive.
 Il ouvre un petit robinet de fer au bord du trottoir, et le caniveau se met à couler, emportant feuilles de chou et mégots.
 
 [smoker]
-UN FUMEUR : T'as du feu ? Non ? Tant pis, j'ai des allumettes.
+L'HOMME À LA PIPE : T'as du feu ? Ma pipe s'est éteinte. Elle boude quand il fait froid.
 
-Il protège la flamme dans ses mains. La fumée reste longtemps sous le réverbère.
+Une grosse moustache, une pipe, et des doigts qui ont l'air de connaître la guitare.
+
+Cette année, l'Académie m'a donné un prix de poésie. À moi ! J'écris des chansons. Ils devaient être à court de poètes.
+
+Là où j'habitais, la cour était pleine de chats, de chiens, de canaris, de tortues. Et une buse. Personne ne me croit pour la buse.
+
+Chez moi, à Sète, au bord de la mer, ils doivent partir à la pêche. Ici, le poisson arrive en camion.
 
 [walker]
 UNE DAME ET SON CANICHE : Déjà debout ? Pompon me réveille à cinq heures, tous les jours, qu'il pleuve ou qu'il vente.

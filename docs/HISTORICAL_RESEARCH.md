@@ -429,3 +429,11 @@ guesses from the notebook ("Writing love letters by lamplight?").
 Not found: recorded dialogue of forts or meat porters from the 1960s (the AFP
 2019 retrospective and Barnes 1969 quote no fort). So no line is presented as a
 real saying.
+
+## Cameo added 2026-11-26: the man with the pipe
+
+| In the game | Inspired by | Read in sources | Fiction / not found | Sources |
+|---|---|---|---|---|
+| THE MAN WITH THE PIPE, rue Rambuteau under the lamp (was "A SMOKER"; sprite now has a moustache and a pipe): his pipe "sulks in the cold"; "this year the Académie gave me a prize for poetry. Me! I write songs"; his old yard "full of cats, dogs, canaries, tortoises. And a buzzard"; "back home in Sète" | Georges Brassens (1921-1981) | "Il reçoit le Grand prix de poésie de l'Académie française en 1967"; "la pipe et la moustache"; at 9 impasse Florimont (22 years from 1944) the yard had "chiens, chats, canaris, tortues, buse"; born in Sète; instrument: acoustic guitar | Where he lived in November 1967 is not given; being at Les Halles that night is fiction; no lyrics, titles or melodies used | [fr.Wikipedia, Georges Brassens](https://fr.wikipedia.org/wiki/Georges_Brassens); [Wikipedia EN](https://en.wikipedia.org/wiki/Georges_Brassens) |
+
+Episode 2 artist NPCs (René Char, Montand, Gainsbourg, Prévert, Bill Coleman) are listed in docs/episode2/RESEARCH.md on branch `episode2`.
