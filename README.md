@@ -60,7 +60,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | End-screen rank (Tourist → Paris legend) | done, tested (one rank seen in the playthrough) |
 | French option: every dialogue and menu in French (same 8x8 font and layout as English; no-break spaces before ! ? : ;), chosen on the language menu (English / Français / 한국어) | done, tested (`tests/fr_test.py`: menu, intro, caption, notebook, a bark, a dialogue and its choice; notebook pages, dial, end screen and teaser screenshot-checked). **Written by Claude: a review by a native French speaker is advised** |
 | Korean option: dialogue, menus, notebook and captions in Galmuri11 (12-px glyphs, 16-px lines) | done; every Korean screen type screenshot-checked in PyBoy (intro, notebook 4 pages, captions, rules card, cup game, dial, choice, ending, teaser, continue menu) |
-| Sound on/off with SELECT (music, effects and ambience; 2026-11-24, was music only), remembered in the save, shown on the notebook's first page (SELECT works there too); the web page also has a "Sound" button | done, tested (`tests/save_test.py`) |
+| Sound on/off with SELECT (music, effects and ambience; 2026-11-24, was music only), remembered in the save, shown in the notebook's SELECT menu (2026-11-26: the menu also has Save and quit); the web page also has a "Sound" button | done, tested (`tests/save_test.py`) |
 | Ending: daybreak on the quai (night palettes fade to morning), "END OF EPISODE 1" caption, then score screen and Episode 2 card (2026-11-24) | done, tested (`tests/play_test.py`) |
 | Carried items shown as small icons top-left (up to 5) (2026-11-24) | done, tested (`tests/places_test.py`) |
 | A little grey deux-chevaux parked on rue Rambuteau, with a sourced description (2026-11-24) | done, tested (`tests/places_test.py`) |
@@ -84,7 +84,15 @@ all characters are fiction (see docs/HISTORICAL_RESEARCH.md).
 | D-pad | Walk |
 | A | Talk, examine, next page |
 | B | Close dialogue |
-| START | Start game / pause |
+| START | Start game; notebook (pause) |
+| SELECT | Sound on/off; in the notebook: menu (sound, **save and quit** to the title, back) |
+
+Quitting: a Game Boy game cannot close the emulator, so "Save and quit" saves
+and returns to the title screen (Continue resumes there). After the ending,
+START shows the Episode 2 hook, then a menu: **Go to Episode 2** or **Title
+screen**. Episode 2 is its own ROM: in an emulator the game says to open
+`PARIS DISPARU 2`; the browser version (branch `web-player`) loads it at once
+(the ROM writes `EP2!` at cartridge RAM 0xA080, which the page watches).
 
 ## Building
 

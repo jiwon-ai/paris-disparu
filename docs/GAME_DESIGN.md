@@ -99,7 +99,9 @@ extras n/3.
 
 ## Hook to Episode 2
 
-After the end screen, START shows "NEXT: EPISODE 2": 3 March 1969, the last
+After the end screen, START shows "NEXT: EPISODE 2" and START again a menu,
+"Go to Episode 2" / "Title screen" (2026-11-26, Jiwon asked for a way to quit
+and to go on to Episode 2). The teaser itself: 3 March 1969, the last
 night of the fruit and vegetable trade at Les Halles (Rungis opened that day,
 see HISTORICAL_RESEARCH), and an open thread from Episode 1: Fernand's brass
 plate is gone from Mme Roux's box. Who took it? (fiction). The teaser ends
@@ -114,7 +116,7 @@ screen ("Find Fernand, the missing porter!"). A cat sits nearby: walk up and it
 runs ahead in short dashes to the café door, and the game says "Follow!".
 
 ## Controls
-D-pad walk · A (or START) talk/examine/confirm/next page · B close · START notebook.
+D-pad walk · A (or START) talk/examine/confirm/next page · B close · START notebook · SELECT sound, or in the notebook a menu with Save and quit (to the title).
 
 
 ## Secrets (9)
