@@ -16,6 +16,16 @@ const AUDIO_FRAMES = 4096, AUDIO_LATENCY_SEC = 0.1;
 const EVENT_NEW_FRAME = 1, EVENT_AUDIO_BUFFER_FULL = 2, EVENT_UNTIL_TICKS = 4;
 const CGB_COLOR_CURVE = 2;              // Gambatte-like LCD colours
 const SAVE_KEY = "paris-disparu-state-1";
+const EPISODE_KEY = "paris-disparu-episode";
+// Episodes in this page: Episode 1, and Episode 2 when build.py embedded it.
+// Header and story text of each, shown when it is playing.
+const EPISODES = [
+  { rom: "GAME_ROM_B64", key: SAVE_KEY, h1: null },
+  { rom: "GAME_ROM2_B64", key: "paris-disparu-2-state-1", h1: "PARIS DISPARU 2",
+    sub: "The last night · Les Halles, 1969",
+    story: "Paris, 27 February 1969: the last night of the Les Halles market. Fernand's brass " +
+           "porter's plate has been stolen. Ride the métro, play, talk and look, and get it back before dawn." },
+].filter((ep) => window[ep.rom]);
 const BUTTONS = ["up", "down", "left", "right", "a", "b", "start", "select"];
 
 // Keyboard: event.code is the physical key, so it also works with a Korean
@@ -44,23 +54,11 @@ function storageGet(k) { try { return localStorage.getItem(k); } catch (e) { ret
 function storageSet(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
 
 class Player {
-  constructor(module, rom) {
+  constructor(module, rom, saveKey) {
     this.m = module;
-    const size = (rom.byteLength + 0x7fff) & ~0x7fff;     // align to 32 KiB
-    this.romPtr = module._malloc(size);
-    this.heap(this.romPtr, size).fill(0).set(rom);
     this.actx = new (window.AudioContext || window.webkitAudioContext)();
-    this.e = module._emulator_new_simple(this.romPtr, size, this.actx.sampleRate,
-                                         AUDIO_FRAMES, CGB_COLOR_CURVE);
-    if (!this.e) throw new Error("Invalid ROM");
-    // The emulator reads buttons through this callback (wrapper.c).
     this.joyBuf = module._joypad_new();
-    module._emulator_set_default_joypad_callback(this.e, this.joyBuf);
-
-    this.frame = this.heap(module._get_frame_buffer_ptr(this.e),
-                           module._get_frame_buffer_size(this.e));
-    this.audioBuf = this.heap(module._get_audio_buffer_ptr(this.e),
-                              module._get_audio_buffer_capacity(this.e));
+    this.load(rom, saveKey);
     const canvas = $("#screen");
     this.ctx = canvas.getContext("2d");
     this.img = this.ctx.createImageData(SCREEN_W, SCREEN_H);
@@ -80,6 +78,78 @@ class Player {
   }
 
   heap(ptr, size) { return new Uint8Array(this.m.HEAP8.buffer, ptr, size); }
+
+  // Put a ROM in the emulator (a new one replaces the old: Episode 1 -> 2).
+  // Its cartridge RAM (the game's own save) is restored from localStorage.
+  load(rom, saveKey) {
+    const m = this.m;
+    if (this.e) {
+      this.saveExtRam();
+      m._emulator_delete(this.e);
+      m._free(this.romPtr);
+    }
+    this.saveKey = saveKey;                              // F6 / F9 state
+    this.sramKey = saveKey.replace("-state-", "-sram-"); // in-game save
+    const size = (rom.byteLength + 0x7fff) & ~0x7fff;    // align to 32 KiB
+    this.romPtr = m._malloc(size);
+    this.heap(this.romPtr, size).fill(0).set(rom);
+    this.e = m._emulator_new_simple(this.romPtr, size, this.actx.sampleRate,
+                                    AUDIO_FRAMES, CGB_COLOR_CURVE);
+    if (!this.e) throw new Error("Invalid ROM");
+    // The emulator reads buttons through this callback (wrapper.c).
+    m._emulator_set_default_joypad_callback(this.e, this.joyBuf);
+    this.frame = this.heap(m._get_frame_buffer_ptr(this.e), m._get_frame_buffer_size(this.e));
+    this.audioBuf = this.heap(m._get_audio_buffer_ptr(this.e), m._get_audio_buffer_capacity(this.e));
+    this.held = Object.fromEntries(BUTTONS.map((b) => [b, false]));
+    this.leftover = 0;
+    this.loadExtRam();
+  }
+
+  // Cartridge RAM <-> localStorage, so "Continue" works after the page is
+  // closed, as on a real cartridge with a battery.
+  withExtRam(fn) {
+    const fd = this.m._ext_ram_file_data_new(this.e);
+    const buf = this.heap(this.m._get_file_data_ptr(fd), this.m._get_file_data_size(fd));
+    const out = fn(fd, buf);
+    this.m._file_data_delete(fd);
+    return out;
+  }
+
+  loadExtRam() {
+    const data = storageGet(this.sramKey);
+    if (!data) return;
+    const bytes = b64ToBytes(data);
+    this.withExtRam((fd, buf) => {
+      if (buf.length !== bytes.length) return;
+      buf.set(bytes);
+      this.m._emulator_read_ext_ram(this.e, fd);
+    });
+  }
+
+  saveExtRam() {
+    return this.withExtRam((fd, buf) => {
+      this.m._emulator_write_ext_ram(this.e, fd);
+      storageSet(this.sramKey, bytesToB64(buf));
+      return buf.slice();
+    });
+  }
+
+  // Called a few times a second: keep the in-game save, and see whether the
+  // game asks for Episode 2 (Episode 1 writes "EP2!" at cartridge RAM 0x80).
+  checkExtRam() {
+    if (!this.m._emulator_was_ext_ram_updated(this.e)) return;
+    const ram = this.saveExtRam();
+    if (this.onEpisode2 && ram[0x80] === 0x45 && ram[0x81] === 0x50 && ram[0x82] === 0x32 && ram[0x83] === 0x21) {
+      this.withExtRam((fd, buf) => {    // done: clear it, not again next visit
+        buf.set(ram);
+        buf[0x80] = 0;
+        this.m._emulator_read_ext_ram(this.e, fd);
+      });
+      this.saveExtRam();
+      setTimeout(this.onEpisode2);      // after this emulator step
+
+    }
+  }
 
   get ticks() { return this.m._emulator_get_ticks_f64(this.e); }
 
@@ -136,7 +206,10 @@ class Player {
     const until = this.ticks + dt * CPU_TICKS_PER_SEC - this.leftover;
     for (;;) {
       const ev = this.m._emulator_run_until_f64(this.e, until);
-      if (ev & EVENT_NEW_FRAME) { this.img.data.set(this.frame); this.frames++; }
+      if (ev & EVENT_NEW_FRAME) {
+        this.img.data.set(this.frame);
+        if ((++this.frames & 15) === 0) this.checkExtRam();
+      }
       if (ev & EVENT_AUDIO_BUFFER_FULL) this.pushAudio();
       if (ev & EVENT_UNTIL_TICKS) break;
     }
@@ -177,11 +250,11 @@ class Player {
       this.m._emulator_write_state(this.e, fd);
       return bytesToB64(buf);
     });
-    return storageSet(SAVE_KEY, data);
+    return storageSet(this.saveKey, data);
   }
 
   loadState() {
-    const data = storageGet(SAVE_KEY);
+    const data = storageGet(this.saveKey);
     if (!data) return false;
     const bytes = b64ToBytes(data);
     return this.withStateFile((fd, buf) => {
@@ -307,8 +380,36 @@ function bindUi(p) {
         return {};
       },
     });
-    const p = new Player(module, b64ToBytes(window.GAME_ROM_B64));
+    const head = $("header h1"), sub = $("header p"), story = $("aside .card:nth-child(2) p");
+    EPISODES[0].h1 = head.textContent;
+    EPISODES[0].sub = sub.textContent;
+    EPISODES[0].story = story.textContent;
+    let ep = EPISODES.length > 1 && storageGet(EPISODE_KEY) === "2" ? 1 : 0;
+    const p = new Player(module, b64ToBytes(window[EPISODES[ep].rom]), EPISODES[ep].key);
     window.player = p;                 // used by the automated browser test
+    const epBtn = $("#btn-ep");
+    const show = () => {
+      const e = EPISODES[ep];
+      head.textContent = e.h1;
+      sub.textContent = e.sub;
+      story.textContent = e.story;
+      document.title = e.h1.replace(/(^|\s)(\S)(\S*)/g, (m, s, a, b) => s + a + b.toLowerCase());
+      epBtn.hidden = EPISODES.length < 2;
+      epBtn.textContent = ep ? "◀ Episode 1" : "Episode 2 ▶";
+      $("#btn-load").classList.toggle("has-save", !!storageGet(p.saveKey));
+      // Episode 1's end menu, "Go to Episode 2", lands here.
+      p.onEpisode2 = !ep && EPISODES.length > 1 ? () => switchTo(1) : null;
+    };
+    const switchTo = (i) => {
+      ep = i;
+      storageSet(EPISODE_KEY, String(i + 1));
+      p.load(b64ToBytes(window[EPISODES[i].rom]), EPISODES[i].key);
+      show();
+      toast(EPISODES[i].h1);
+    };
+    epBtn.onclick = () => switchTo(ep ? 0 : 1);
+    addEventListener("pagehide", () => p.saveExtRam());
+    show();
     bindKeyboard(p);
     bindTouch(p);
     bindUi(p);
@@ -328,7 +429,6 @@ function bindUi(p) {
       e.stopImmediatePropagation();    // this key press only starts the player
       begin();
     }, true);
-    if (storageGet(SAVE_KEY)) $("#btn-load").classList.add("has-save");
   } catch (err) {
     console.error(err);
     overlay.querySelector("button").textContent = "Could not start: " + err.message;

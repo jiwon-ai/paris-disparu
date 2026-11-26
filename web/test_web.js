@@ -140,6 +140,55 @@ async function open(browser, url, ctxOpts = {}) {
     await ctx.close();
   }
 
+  console.log("in-game save kept in the browser; Episode 1 -> Episode 2");
+  {
+    const { ctx, page, errors } = await open(browser, base, { viewport: { width: 1280, height: 800 } });
+    const two = await page.evaluate(() => !!window.GAME_ROM2_B64);
+    if (two) check(await page.isVisible("#btn-ep") && (await page.textContent("#btn-ep")).includes("Episode 2"),
+                   "an Episode 2 button");
+    await page.click("#overlay");
+    await wait(page, 2500);
+    await tapKey(page, "Enter"); await wait(page, 600);    // title
+    await tapKey(page, "KeyX"); await wait(page, 600);     // language: English
+    await tapKey(page, "KeyZ"); await wait(page, 1500);    // skip the intro
+    await tapKey(page, "KeyZ"); await wait(page, 300);
+    await tapKey(page, "Backspace"); await wait(page, 800); // SELECT: sound off, saved
+    const sram = await page.evaluate(() => atob(localStorage.getItem("paris-disparu-sram-1") || "").slice(0, 4));
+    check(sram === "PDS4", `the game's own save is kept in localStorage (${JSON.stringify(sram)})`);
+    if (two) {
+      // The ROM writes "EP2!" at cartridge RAM 0x80 when the player picks "Go to
+      // Episode 2" (checked by tests/play_test.py); put it there the same way.
+      await page.evaluate(() => {
+        const p = window.player, m = p.m, orig = m._emulator_was_ext_ram_updated;
+        p.withExtRam((fd, buf) => { m._emulator_write_ext_ram(p.e, fd); buf.set([0x45, 0x50, 0x32, 0x21], 0x80); m._emulator_read_ext_ram(p.e, fd); });
+        m._emulator_was_ext_ram_updated = () => { m._emulator_was_ext_ram_updated = orig; return 1; };
+      });
+      await wait(page, 1500);
+      check(await page.textContent("header h1") === "PARIS DISPARU 2" &&
+            await page.evaluate(() => window.player.saveKey) === "paris-disparu-2-state-1",
+            "the mark loads Episode 2: " + await page.textContent("header h1"));
+      check((await page.textContent("#btn-ep")).includes("Episode 1"), "the button now goes back to Episode 1");
+      const ep1 = await page.evaluate(() => atob(localStorage.getItem("paris-disparu-sram-1")).charCodeAt(0x80));
+      check(ep1 === 0, "the mark is cleared in Episode 1's save");
+      check(await frames(page) > 0, "Episode 2 runs");
+      await shot(page, "web_20_episode2");
+      await page.reload();
+      await page.waitForFunction(() => !document.querySelector("#overlay button").disabled);
+      check(await page.textContent("header h1") === "PARIS DISPARU 2", "a reload stays on Episode 2");
+      await page.click("#btn-ep");
+      check(await page.textContent("header h1") === "PARIS DISPARU", "the button switches back to Episode 1");
+      await page.click("#overlay");
+      await wait(page, 500);
+      const back = await page.evaluate(() => window.player.withExtRam((fd, buf) => {
+        window.player.m._emulator_write_ext_ram(window.player.e, fd);
+        return String.fromCharCode(...buf.slice(0, 4));
+      }));
+      check(back === "PDS4", `Episode 1's save is back in the cartridge after a reload (${JSON.stringify(back)})`);
+    }
+    check(errors.length === 0, "no errors in the console" + (errors.length ? ": " + errors.join(" | ") : ""));
+    await ctx.close();
+  }
+
   console.log("opened straight from the unzipped folder (file://)");
   {
     const { ctx, page, errors } = await open(browser, "file://" + path.join(DIR, "index.html"));

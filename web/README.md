@@ -4,7 +4,7 @@ Plays the Game Boy Color ROM in a web page: no install, works on Windows,
 macOS, Linux, iPhone/iPad and Android in a current browser.
 
     make                      # build/paris-disparu.gbc
-    python3 web/build.py      # build/web/ and build/paris-disparu-web.zip
+    python3 web/build.py [EP1_ROM] [EP2_ROM]   # build/web/ and build/paris-disparu-web.zip
     node web/test_web.js [shot_dir]   # headless Chromium test (needs Playwright)
 
 `build/paris-disparu-web.zip` has `index.html` at its root and is ready to
@@ -28,8 +28,21 @@ browser test and uploads the zip as the `paris-disparu-web` artifact.
 ## Controls
 
 Arrows or WASD: move. X / K / Space: A. Z / J: B. Enter: START.
-Right Shift: SELECT. F6 / F9: save / load a state (kept in the browser's
-localStorage; the cartridge has no save memory). Standard gamepads work.
+Backspace or Right Shift: SELECT. F6 / F9: save / load a state. Standard
+gamepads work.
+
+## Saves and episodes (2026-11-26)
+
+- The game's own save (cartridge RAM, battery-backed in the ROM header) is
+  kept in localStorage (`paris-disparu-sram-1`, `paris-disparu-2-sram-1`), so
+  the title's **Continue** works after the page is closed. In the notebook,
+  SELECT -> "Save and quit" returns to the title.
+- With a second ROM, `build.py` embeds Episode 2 in the same page. Episode 1's
+  end menu "Go to Episode 2" writes `EP2!` at cartridge RAM 0x80; the page
+  sees it, clears it and loads Episode 2. A button under the screen switches
+  episodes; the page remembers the last one (`paris-disparu-episode`).
+- F6/F9 states: `paris-disparu-state-1` / `paris-disparu-2-state-1`.
+- Episode 2 alone: `episode2/web/pack.py` on a one-ROM zip (branch `episode2`).
 On touch screens: the D-pad and buttons under the screen.
 
 ## Third-party code and licence
