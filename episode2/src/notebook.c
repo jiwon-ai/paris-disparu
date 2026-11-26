@@ -12,6 +12,7 @@
 #include "ko.h"
 #include "actor.h"
 #include "sound.h"
+#include "input.h"
 
 static const uint8_t * const quest_txt[QUEST_COUNT] = {
     txt_q_0, txt_q_1, txt_q_2, txt_q_3, txt_q_4, txt_q_5
@@ -137,7 +138,7 @@ void notebook_show(void) BANKED {
     }
     box_print(1, 14, txt_nb_coins);
     box_tile(10, 14, digit_glyph(money));
-    box_print(1, 15, music_muted ? txt_nb_snd_off : txt_nb_snd_on);
+    box_print(1, 15, txt_nb_menu);     /* sound and quit: nb_menu() */
     box_print(1, 17, txt_nb_next);
     box_print(14, 17, txt_nb_close);
     box_flush();
@@ -286,7 +287,7 @@ void teaser_show(void) BANKED {
     box_open(SCREEN_H / 8);
     for (i = 0; i < 13; i++)
         if (teaser_txt[i]) box_print(1, 2 + i, teaser_txt[i]);
-    box_print(1, 16, txt_end_11);
+    box_print(1, 16, txt_teaser_go);   /* START: back to the title */
     box_flush();
 }
 
@@ -498,3 +499,46 @@ void intro_show(uint8_t page) BANKED {
     box_print(2, 16, txt_intro_more);
     box_flush();
 }
+
+/* A full-screen menu (pause, quit, end of the episode): a title, an optional
+   line under it, up to four options two rows apart (Korean lines are two rows
+   high) and the controls. Returns the option picked with A, or MENU_BACK for
+   B / START. */
+uint8_t menu_pick(const uint8_t *title, const uint8_t *sub,
+                  const uint8_t * const *opt, uint8_t n, uint8_t sel) BANKED {
+    uint8_t i;
+    box_open(SCREEN_H / 8);
+    box_print(1, 2, title);
+    if (sub) box_print(1, 4, sub);
+    for (i = 0; i < n; i++) box_print(2, 7 + i * 2, opt[i]);   /* 17 columns */
+    box_print(1, 15, txt_menu_go);
+    box_flush();
+    while (1) {
+        for (i = 0; i < n; i++) box_tile(1, 7 + i * 2, sel == i ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        wait_vbl_done();
+        input_update();
+        if (joy_pressed & (J_DOWN | J_SELECT)) { sel = sel + 1 == n ? 0 : sel + 1; sound_blip(); }
+        if (joy_pressed & J_UP) { sel = sel ? sel - 1 : n - 1; sound_blip(); }
+        if (joy_pressed & J_A) { sound_confirm(); return sel; }
+        if (joy_pressed & (J_B | J_START)) { sound_blip(); return MENU_BACK; }
+    }
+}
+
+/* SELECT in the notebook: sound on/off, save and quit to the title (a
+   Game Boy game cannot close the emulator), back. 1 = quit (the caller
+   saves and resets). */
+static const uint8_t * const menu_on[3] = { txt_menu_snd_on, txt_menu_quit, txt_menu_back };
+static const uint8_t * const menu_off[3] = { txt_menu_snd_off, txt_menu_quit, txt_menu_back };
+static const uint8_t * const quit_opt[2] = { txt_quit_yes, txt_quit_no };
+
+uint8_t nb_menu(void) BANKED {
+    uint8_t sel = 0;
+    while (1) {
+        sel = menu_pick(txt_menu_title, 0, music_muted ? menu_off : menu_on, 3, sel);
+        if (sel == 0) music_set_muted(!music_muted);
+        else if (sel == 1) {
+            if (menu_pick(txt_quit_q, txt_quit_saved, quit_opt, 2, 1) == 0) return 1;
+        } else return 0;
+    }
+}
+

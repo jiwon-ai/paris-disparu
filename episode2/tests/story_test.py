@@ -243,6 +243,26 @@ shot("01_baltard")
 
 talk(64, 40)
 check(has(H["F_MET_FERNAND"]), "Fernand: the plate is stolen")
+# Save and quit (notebook, SELECT, "Save and quit", Yes), then Continue
+settle()
+before = (room(), M[sym["_player"]], M[sym["_player"] + 2])
+press("start", after=60)
+check(state() == ST_NOTEBOOK, "START: the notebook")
+press("select", after=40)
+press("down")
+press("a", after=40)
+press("up")
+press("a", after=120)
+check(not has(H["F_MET_FERNAND"]), "save and quit: back at the title (RAM reset)")
+run(200)
+press("start")
+run(40)
+press("a")            # English
+run(40)
+press("a", after=90)  # Continue
+settle()
+check(has(H["F_MET_FERNAND"]) and (room(), M[sym["_player"]], M[sym["_player"] + 2]) == before,
+      "continue after quitting: same place and story")
 walk("down", 72, 124)
 check(room() == H["ROOM_QUAI"], "rue Baltard -> the quai")
 talk(40, 46)
@@ -327,6 +347,10 @@ for _ in range(3000):           # flowers, dawn, epilogue, the end
         press("a" if s != ST_WALK else "start", 3, 10)
 shot("06_end")
 check(state() == ST_END, "THE END screen reached")
+press("start", after=30)          # the next episode's hook
+check(state() == ST_END, "START: the hook")
+press("start", after=90)          # its footer: START: title
+check(not has(H["F_SOLVED"]), "START again: back at the title")
 print("%d frames (%.1f min of play)" % (frames, frames / 60 / 60))
 pb.stop(save=False)
 print("FAILED: %d" % len(failures) if failures else "ALL OK")

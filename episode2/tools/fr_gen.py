@@ -29,6 +29,8 @@ ROOM = {"nb_title": 13, "nb_quests": 12, "nb_next": 12, "nb_prev": 12, "nb_album
         "secret_done": 13, "extra_done": 13, "lang_title": 13, "save_cont": 12, "save_new": 12,
         "lang_go": 13, "srv_title": 14, "chase_hud": 14}
 ROOM.update({"q_%d" % i: 15 for i in range(5)})
+ROOM.update({k: 17 for k in ("menu_snd_on", "menu_snd_off", "menu_quit", "menu_back", "quit_yes",
+                             "quit_no")})   # menu_pick(): from column 2
 ROOM.update({"rank_%d" % i: 12 for i in range(5)})
 ROOM.update({k: 14 for k in ("x_0", "x_0h", "x_1", "x_1h", "x_2", "x_2h")})
 INTRO_ROOM = 17          # intro pages are printed from column 2

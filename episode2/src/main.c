@@ -728,9 +728,12 @@ void main(void) {
             if (joy_pressed & (J_START | J_B)) {
                 box_close();
                 state = ST_WALK;
-            } else if (joy_pressed & J_SELECT) {          /* sound on / off, shown on page 1 */
-                music_set_muted(!music_muted);
-                save_write();
+            } else if (joy_pressed & J_SELECT) {          /* menu: sound, save and quit */
+                if (nb_menu()) {     /* save and quit: back to the title */
+                    save_write();
+                    reset();
+                }
+                save_write();        /* the sound setting */
                 nb_open();
             } else if (joy_pressed & (J_UP | J_DOWN)) {      /* Korean: long page, other half */
                 if (box_more()) sound_blip();
@@ -770,7 +773,7 @@ void main(void) {
             }
             break;
 
-        case ST_END:          /* START: the next episode's teaser, then the title */
+        case ST_END:          /* START: the next episode's teaser; START again: the title */
             if (joy_pressed & (J_A | J_UP | J_DOWN)) {    /* Korean: long page, other half */
                 if (box_more()) sound_blip();
             } else if (joy_pressed & J_START) {
