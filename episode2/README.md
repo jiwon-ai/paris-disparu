@@ -43,3 +43,11 @@ still Episode 1's and are not updated for Episode 2.
 | 10 secrets, 4 extras, 6 album objects, a rank at the end | done, not all in the story test |
 | Epilogue (3 March 1969) and an Episode 3 teaser | done, reached in the story test |
 | French and Korean | done. A native speaker review is advisable. |
+
+## Quit and continue (2026-11-26)
+
+SELECT in the notebook opens a menu: sound on/off, **Save and quit** (saves,
+back to the title; Continue resumes) and back. After the Episode 3 hook,
+START returns to the title. Episode 1's end menu "Go to Episode 2" opens this
+episode in the browser version (one page holds both ROMs; `web/build.py
+EP1_ROM EP2_ROM` on branch `web-player`).
