@@ -9,7 +9,8 @@ void notebook_show(void) BANKED;   /* START: goal, clues found, phone numbers kn
 uint16_t ambience_play(uint8_t r) BANKED;   /* a room sound; frames to the next */
 void coin_note(void) BANKED;
 void rat_update(uint8_t walking) BANKED;
-uint8_t frag_note(void) BANKED;    /* caption after a dialogue that gave a word; 1 if shown */
+uint8_t frag_note(void) BANKED;
+void phrase_print(uint8_t n) BANKED;   /* secret n's phrase on row 2 of the open box */    /* caption after a dialogue that gave a word; 1 if shown */
 void bubble_update(uint8_t npc) BANKED;
 extern uint8_t npc_tile[8];                /* VRAM bank-1 tile of each NPC of this room */
 void pool_load(void) BANKED;               /* copy this room's bank-1 sprites into VRAM */    /* speech bubble over NPC npc (NO_BARK: none) */   /* the rat by the Bourse (OAM 18-19) */            /* caption: a coin picked up */

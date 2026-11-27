@@ -11,6 +11,7 @@ typedef struct {
 } player_t;
 
 extern player_t player;
+extern uint8_t crowd_open;   /* nonzero: people don't block the player (the chase) */
 
 void actors_init_room(void);              /* spawn NPCs of cur_room */
 void player_place(int16_t x, int16_t y, uint8_t dir);

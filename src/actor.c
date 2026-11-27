@@ -22,6 +22,7 @@
 player_t player;
 
 static uint8_t npc_count;
+uint8_t crowd_open;          /* the chase: everyone slips through the crowd */
 static uint8_t frame_count;
 static uint8_t slow_step;
 
@@ -54,6 +55,7 @@ static uint8_t blocked(int16_t x, int16_t y) {
         world_solid(x0, y1) || world_solid(x1, y1) ||
         world_solid(x + 8, y0) || world_solid(x + 8, y1))
         return 1;
+    if (crowd_open) return 0;
     for (i = 0; i < npc_count; i++) {
         const npc_def_t *n = &rooms[cur_room].npcs[i];
         if (x1 >= n->x + NPC_X0 && x0 <= n->x + NPC_X1 &&

@@ -794,3 +794,7 @@ POMPON: Yap! Yap!
 
 Freshly clipped, a pompom on its tail. It looks at you as if you were the one on a leash.
 
+[fernand_wait]
+FERNAND: A poet, eh? Then read me your poem first.
+
+Not finished? The night hides more than words. Look closer.

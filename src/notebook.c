@@ -13,6 +13,7 @@
 #include "actor.h"
 #include "sound.h"
 #include "input.h"
+#include "items.h"
 
 static const uint8_t * const quest_txt[QUEST_COUNT] = {
     txt_q_0, txt_q_1, txt_q_2, txt_q_3, txt_q_4
@@ -23,12 +24,12 @@ static uint8_t quests_total(void) {
     for (i = 0; i < QUEST_COUNT; i++) n += quest_done(i);
     return n;
 }
-static const uint8_t * const goal_txt[20] = {
+static const uint8_t * const goal_txt[22] = {
     txt_goal_0a, txt_goal_0b, txt_goal_1a, txt_goal_1b,
     txt_goal_2a, txt_goal_2b, txt_goal_3a, txt_goal_3b,
     txt_goal_4a, txt_goal_4b, txt_goal_5a, txt_goal_5b,
     txt_goal_6a, txt_goal_6b, txt_goal_7a, txt_goal_7b,
-    txt_goal_8a, txt_goal_8b, txt_goal_9a, txt_goal_9b
+    txt_goal_8a, txt_goal_8b, txt_goal_9a, txt_goal_9b, txt_goal_10a, txt_goal_10b
 };
 static const uint8_t * const num_txt[4] = { txt_num_0, txt_num_1, txt_num_2, txt_num_3 };
 static const uint16_t num_flag[4] = {
@@ -37,7 +38,7 @@ static const uint16_t num_flag[4] = {
 
 /* What to do next, from the furthest step reached. */
 static uint8_t goal(void) {
-    if ((clue_flags & CLUE_READY) == CLUE_READY) return 3;
+    if ((clue_flags & CLUE_READY) == CLUE_READY) return poem_ready() ? 3 : 10;
     if (clue_flags & CLUE_COLTIN) {    /* the first missing clue */
         if (!(clue_flags & CLUE_BLEU)) {
             if (clue_flags & CLUE_COURIER) return 4;
@@ -52,9 +53,9 @@ static uint8_t goal(void) {
 }
 
 /* Who to talk to for each goal (a "!" is drawn over them). */
-static const uint8_t goal_who[10] = {
+static const uint8_t goal_who[11] = {
     NPC_STRANGER, NPC_CAFE, 0xFF, NPC_FERNAND, NPC_CAFE,
-    NPC_ROUX, NPC_CAFE, NPC_CAFE, NPC_ROUX, NPC_WORKER
+    NPC_ROUX, NPC_CAFE, NPC_CAFE, NPC_ROUX, NPC_WORKER, 0xFF
 };
 
 uint8_t goal_npc(void) BANKED {
@@ -107,8 +108,10 @@ static const uint8_t * const clock_txt[5] = {
     txt_clock_0, txt_clock_1, txt_clock_2, txt_clock_3, txt_clock_4
 };
 
+static void count_print(uint8_t x, uint8_t y, uint8_t n);
+
 void notebook_show(void) BANKED {
-    uint8_t i, y, g = goal() * 2;
+    uint8_t i, g = goal() * 2;
     box_open(SCREEN_H / 8);
     box_print(1, 1, txt_nb_title);
     box_tile(15, 1, digit_glyph(quests_total()));
@@ -121,15 +124,46 @@ void notebook_show(void) BANKED {
         box_print(1, 6 + i, quest_done(i) ? txt_x_done : txt_x_todo);
         box_print(4, 6 + i, quest_txt[i]);
     }
-    (void)y;
-    box_print(1, 11, txt_nb_menu);     /* sound and quit: menu_pick() */
-    box_print(1, 12, txt_nb_phone);
-    y = 13;
+    box_print(1, 12, txt_nb_menu);     /* sound and quit: menu_pick() */
+    box_print(1, 14, txt_fw_title);    /* the poem so far: what the ending needs */
+    count_print(14, 14, frag_total());
+    box_print(1, 15, txt_secrets);
+    box_tile(15, 15, digit_glyph(secret_total()));
+    box_print(16, 15, txt_secret_of);
+    box_print(1, 17, txt_nb_tk);
+    box_print(14, 17, txt_nb_close);
+    box_flush();
+}
+
+/* Second page: the phone numbers, pencilled on the back of an old metro
+   ticket, apart from the poet's notebook (Jiwon 2026-11-26: "two notebooks
+   are confusing; write the phone numbers on the back of a metro ticket").
+   The ticket's picture (ITEM_TICKET, the brown second-class one) sits in
+   the corner. */
+static void ticket_hide(void) {
+    uint8_t i;
+    for (i = 24; i < 30; i++) move_sprite(i, 0, 0);   /* PORTRAIT_OAM */
+}
+
+static void ticket_show(void) {
+    uint8_t i, y = 3;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_tk_title);
     for (i = 0; i < 4; i++)
         if (game_flags & num_flag[i]) box_print(1, y++, num_txt[i]);
+    if (y == 3) box_print(1, 3, txt_tk_none);
+    box_print(1, 9, txt_tk_0);
+    box_print(1, 10, txt_tk_1);
     box_print(1, 17, txt_nb_next);
     box_print(14, 17, txt_nb_close);
     box_flush();
+    {   /* the box hides sprites (attribute priority): not under the picture */
+        static const uint8_t a[3] = { 5, 5, 5 };
+        VBK_REG = VBK_ATTRIBUTES;
+        for (y = 12; y < 16; y++) set_win_tiles(14, y, 3, 1, a);
+        VBK_REG = VBK_TILES;
+    }
+    item_show(ITEM_TICKET, 8 + 14 * 8, 16 + 12 * 8);
 }
 
 /* Second page: the poet's words (Jiwon 2026-11-26: "collect words and
@@ -155,11 +189,28 @@ static void count_print(uint8_t x, uint8_t y, uint8_t n) {   /* "nn/24" */
     box_print(x + 2, y, txt_fw_of);
 }
 
+/* Each secret gives a phrase, a colour or an image (Jiwon 2026-11-26:
+   "sometimes collect a sentence, or one the word brings to mind, colours").
+   Index = SECRET_* (events.c secret()). */
+static const uint8_t * const phrase_txt[9] = {
+    txt_ph_0, txt_ph_1, txt_ph_2, txt_ph_3, txt_ph_4, txt_ph_5, txt_ph_6, txt_ph_7, txt_ph_8
+};
+
+void phrase_print(uint8_t n) BANKED {
+    box_print(1, 2, phrase_txt[n]);
+}
+
+/* For each stanza the first word found; after stanzas 2, 5 and 7 the next
+   phrase found (up to 3). */
 static uint8_t poem_print(uint8_t y) {
-    uint8_t i, k;
-    for (i = 0; i < FRAG_COUNT; i += 3)
+    uint8_t i, k, p = 0;
+    for (i = 0; i < FRAG_COUNT; i += 3) {
         for (k = i; k < i + 3; k++)
             if (frag_has(k)) { box_print(1, y++, frag_line[k]); break; }
+        if (i == 3 || i == 12 || i == 18)
+            for (; p < 9; p++)
+                if (secret_flags & ((uint16_t)1 << p)) { box_print(1, y++, phrase_txt[p++]); break; }
+    }
     return y;
 }
 
@@ -171,7 +222,10 @@ static void poem_show(void) {
     count_print(14, 1, frag_total());
     for (i = 0; i < FRAG_COUNT; i++)
         box_print((i & 1) ? 10 : 1, 3 + (i >> 1), frag_has(i) ? frag_word[i] : txt_fw_none);
-    box_print(1, 15, txt_fw_hint);
+    box_print(1, 15, txt_secrets);     /* each secret: a phrase */
+    box_tile(15, 15, digit_glyph(secret_total()));
+    box_print(16, 15, txt_secret_of);
+    box_print(1, 16, txt_fw_hint);
     box_print(1, 17, txt_nb_extras);
     box_print(14, 17, txt_nb_close);
     box_flush();
@@ -206,16 +260,19 @@ static uint8_t nb_page;
 
 void nb_open(void) BANKED {
     nb_page = 0;
+    ticket_hide();
     notebook_show();
 }
 
 void nb_turn(uint8_t right) BANKED {
-    nb_page = right ? (nb_page == 4 ? 0 : nb_page + 1) : (nb_page ? nb_page - 1 : 4);
+    nb_page = right ? (nb_page == 5 ? 0 : nb_page + 1) : (nb_page ? nb_page - 1 : 5);
+    ticket_hide();
     switch (nb_page) {
-    case 1:  poem_show(); break;
-    case 2:  extras_show(); break;
-    case 3:  album_show(); break;
-    case 4:  curio_show(); break;
+    case 1:  ticket_show(); break;
+    case 2:  poem_show(); break;
+    case 3:  extras_show(); break;
+    case 4:  album_show(); break;
+    case 5:  curio_show(); break;
     default: notebook_show();
     }
 }

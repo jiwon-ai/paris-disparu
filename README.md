@@ -71,6 +71,7 @@ Everything below is in the ROM and exercised by the automated play-through
 | Mini-game fixes: the cups visibly slide past each other; the coffee gauge frames the dark zone and fills in a coffee colour; the A that opens the game does not pour | done, tested |
 | Juice: room fades, a star over the player on every find, a shake when the pickpocket bumps you | done, tested (the star is checked in OAM) |
 | Words for the poem (2026-11-26): 24 words from talks and sights, notebook page 2 "MY WORDS" as the inventory, and at daybreak a poem made from the words found (one line per stanza, 8 stanzas) | done, tested (`tests/play_test.py` words page and ending poem; Korean page screenshot-checked) |
+| Poem gates the ending (2026-11-26): 12 words + 4 secrets before Fernand listens; secrets give colour phrases; phone numbers on the back of a métro ticket page; 3-grab thief chase | done, tested (`tests/play_test.py`) |
 | Message on a monochrome Game Boy | written, **not tested** |
 | SameBoy / BGB / real hardware / ModRetro Chromatic | **not tested yet** |
 

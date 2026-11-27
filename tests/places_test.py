@@ -364,7 +364,8 @@ def play_catch():
 
 
 def play_chase():
-    """The thief on the quai: walk straight at him (the larger gap first)."""
+    """The thief on the quai: walk straight at him (the larger gap first);
+    blocked, try the other axis. Three grabs."""
     stuck = 0
     for f in range(30 * 60 + 60):
         if not (window_on() and window_row(1).startswith("Catch him")):

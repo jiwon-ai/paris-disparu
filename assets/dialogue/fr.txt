@@ -780,3 +780,8 @@ Tout juste toiletté, un pompon au bout de la queue. Il te regarde comme si c'é
 
 [tabac]
 Des paquets de cigarettes alignés comme des petites briques.
+
+[fernand_wait]
+FERNAND : Un poète ? Alors lis-moi ton poème d'abord.
+
+Pas fini ? La nuit cache plus que des mots. Regarde mieux.

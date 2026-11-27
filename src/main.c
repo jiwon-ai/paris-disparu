@@ -525,7 +525,8 @@ static void open_dialogue(uint8_t d) {
             box_print(1, 1, sec ? txt_secret_done : txt_extra_done);
             box_tile(15, 1, txt_digits[sec ? secret_total() : extra_total()]);
             box_print(16, 1, sec ? txt_secret_of : txt_extra_of);
-            box_print(1, 2, txt_extra_more);
+            if (sec) phrase_print(sec - 1);   /* its phrase for the poem */
+            else box_print(1, 2, txt_extra_more);
             caption_timer = 240;
             caption_note = 1;
             if (sec) fanfare = 16;         /* a little two-note "ding" */

@@ -100,9 +100,10 @@ static const uint8_t frag_dlg[FRAG_COUNT] = {
 
 uint8_t frag_has(uint8_t i) BANKED { return frag_flags[i >> 3] & (1 << (i & 7)); }
 
-uint8_t frag_total(void) BANKED {
-    uint8_t i, n = 0;
-    for (i = 0; i < FRAG_COUNT; i++) if (frag_has(i)) n++;
+uint8_t frag_total(void) BANKED {   /* cheap: goal() asks every frame */
+    uint8_t i, n = 0, x;
+    for (i = 0; i < 3; i++)
+        for (x = frag_flags[i]; x; x >>= 1) n += x & 1;
     return n;
 }
 
@@ -171,9 +172,16 @@ static uint8_t secret(uint8_t n, uint8_t dlg) {
     uint16_t bit = (uint16_t)1 << n;
     if (!(secret_flags & bit)) {
         secret_flags |= bit;
-        new_secret = 1;
+        new_secret = n + 1;            /* which one: its phrase is shown */
     }
     return dlg;
+}
+
+/* The ending needs the night looked at, not only the case solved (Jiwon
+   2026-11-26: "it's odd that the game ends without digging up the secrets"):
+   Fernand hears the poet's poem before he decides. */
+uint8_t poem_ready(void) BANKED {
+    return frag_total() >= POEM_WORDS && secret_total() >= POEM_SECRETS;
 }
 
 uint8_t secret_total(void) BANKED {
@@ -407,7 +415,8 @@ uint8_t event_talk(uint8_t npc) BANKED {
         return DLG_PUNCHER_HELLO;
 
     case NPC_FERNAND:   /* he only opens up to someone who understands */
-        if ((clue_flags & CLUE_READY) == CLUE_READY) return DLG_FERNAND_TALK;
+        if ((clue_flags & CLUE_READY) == CLUE_READY)   /* the poem first (Jiwon 11-26) */
+            return poem_ready() ? DLG_FERNAND_TALK : DLG_FERNAND_WAIT;
         if (!CLUE(CLUE_COLTIN)) return DLG_FERNAND_HELLO;      /* says what is missing */
         return CLUE(CLUE_BLEU) ? DLG_FERNAND_PLATE : DLG_FERNAND_WHY;
     }

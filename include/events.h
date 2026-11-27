@@ -29,6 +29,9 @@ extern uint8_t coin_flags;
 extern uint8_t frag_flags[3];
 extern uint8_t new_frag;
 #define FRAG_COUNT 24
+#define POEM_WORDS 12     /* Fernand listens once the poem has this many words */
+#define POEM_SECRETS 4    /* ... and this many secrets (each gives a phrase) */
+uint8_t poem_ready(void) BANKED;
 uint8_t frag_has(uint8_t i) BANKED;      /* word i of the poem found */
 uint8_t frag_total(void) BANKED;
 void frag_seen(uint8_t d) BANKED;        /* dialogue d opens: its word, if any */

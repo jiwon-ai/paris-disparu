@@ -373,7 +373,8 @@ def play_catch():
 
 
 def play_chase():
-    """The thief on the quai: walk straight at him (the larger gap first)."""
+    """The thief on the quai: walk straight at him (the larger gap first);
+    blocked, try the other axis. Three grabs."""
     stuck = 0
     for f in range(30 * 60 + 60):
         if not (window_on() and window_row(1).startswith("Catch him")):
@@ -560,7 +561,9 @@ tap("start", 10)
 check(window_on() and "NOTEBOOK" in window_row(1) and "0/5" in window_row(1), "START opens the notebook: %r" % window_row(1))
 check("Quests" in window_row(5) and "Coffee rush" in window_row(6), "the notebook lists the quests: %r" % window_row(6))
 check("café" in window_row(3), "goal: ask at the cafe: %r" % window_row(3))
-check("ARC 4127" in window_row(13), "the notebooks' number is written down: %r" % window_row(13))
+check("▶ Ticket" in window_row(17), "the notebook points to the ticket page: %r" % window_row(17))
+tap("right", 10)
+check("ARC 4127" in window_row(3), "the notebooks' number is on the ticket: %r" % window_row(3))
 tap("start", 10)
 check(not window_on(), "START closes the notebook")
 
@@ -912,7 +915,15 @@ check(any("river" in l for l in lines), "his hint: Fernand went towards the rive
 check(window_on() and "Extra done" in window_row(1) and "1/3" in window_row(1), "side goal noted: %r" % window_row(1))
 tap("b", 4)
 tap("start", 10)
+check("MY WORDS" in window_row(14) and "Secrets found" in window_row(15),
+      "notebook page 1 shows the poem's progress: %r %r" % (window_row(14), window_row(15)))
 tap("right", 10)
+tk = [window_row(r) for r in range(18)]
+check("BACK OF MY TICKET" in tk[1] and "ROQ 0614" in tk[3] and item_shown(HDR["ITEM_TICKET"]),
+      "page 2: phone numbers on the back of a metro ticket: %r" % tk[1:11])
+shot("46_ticket")
+tap("right", 10)
+check(not item_shown(HDR["ITEM_TICKET"]), "the ticket picture goes with its page")
 poem = [window_row(r) for r in range(18)]
 check("MY WORDS" in poem[1] and "/24" in poem[1] and any("coffee" in r for r in poem) and any("clac" in r for r in poem)
       and any("....." in r for r in poem), "notebook page 2, the words collected so far: %r" % poem[1:17])
@@ -1016,9 +1027,16 @@ get_jeton()
 phone("ODÉ 8400", "speaking clock")       # ODÉon 8400 (read): pencilled under the butcher
 get_jeton()
 phone("CAR 4127", "rings into nothing")   # right digits, wrong exchange
+push("right")                             # the pinball by the phone: a word
+tap("a", 0)
+lines = dialogue()
+check(any("pinball" in l.lower() for l in lines), "the pinball: %s" % lines[:1])
+if window_on() and window_row(1).startswith("A new word"):
+    tap("b", 4)
 tap("start", 10)
 check("3/5" in window_row(1) and "Take the soup" in window_row(2), "notebook: 3/5 quests, goal: %r %r" % (window_row(1), window_row(2)))
-check(any("MED 7302" in window_row(r) for r in range(13, 17)), "Mme Roux's number noted")
+tap("right", 10)
+check(any("MED 7302" in window_row(r) for r in range(3, 7)), "Mme Roux's number noted on the ticket")
 shot("04_notebook")
 tap("start", 10)
 cafe_to_street()
@@ -1044,6 +1062,17 @@ lines = dialogue()
 check(any("soup" in l for l in lines), "the painter gets his wife's message: %s" % lines[:1])
 check(window_on() and "3/3" in window_row(1), "all three extras done: %r" % window_row(1))
 tap("b", 4)
+# One more word for the poem on the bridge: the water.
+for x, y, d, says in ((66, 84, "left", "oldest bridge"),):
+    goto(x, y, "xy")
+    push(d)
+    tap("a", 0)
+    lines = dialogue()
+    check(any(says in l for l in lines), "on the bridge: %s" % lines[:1])
+    if window_on() and window_row(1).startswith("A new word"):
+        tap("b", 4)
+goto(98, 40, "yx")                    # away from Fernand, so he calls out again
+goto(66, 40, "yx")
 to_fernand()
 check(bubble(), "Fernand's silent call-out (bubble)")
 # Before all three clues he must say what is missing (and the notebook too).
@@ -1061,6 +1090,24 @@ for have, says, goal in ((0x01, "Simone's", "Help Simone"),
           "clues 0x%02x: notebook goal %r %r" % (have, window_row(2), window_row(3)))
     tap("start", 10)
 mem[sym["_clue_flags"]] = full
+# The poem first: too few words or secrets and he waits (Jiwon 11-26).
+words = [mem[sym["_frag_flags"] + i] for i in range(3)]
+secrets = mem[sym["_secret_flags"]] | (mem[sym["_secret_flags"] + 1] << 8)
+nwords = sum(bin(b).count("1") for b in words)
+print("    words %d, secrets 0x%03x" % (nwords, secrets))
+for i in range(3):
+    mem[sym["_frag_flags"] + i] = 0
+mem[sym["_frag_flags"]] = 0x0F        # 4 words
+tap("a", 70)
+lines = dialogue()
+check(any("poem first" in l for l in lines), "4 words: Fernand wants the poem first: %s" % lines[:2])
+tap("start", 10)
+check("Finish your poem" in window_row(2) and "12 words" in window_row(3),
+      "notebook goal: %r %r" % (window_row(2), window_row(3)))
+tap("start", 10)
+for i in range(3):
+    mem[sym["_frag_flags"] + i] = words[i]
+check(nwords >= 12, "the walkthrough found 12+ words: %d" % nwords)
 tap("a", 70)
 shot("15_fernand")
 lines = dialogue(choice=0, max_pages=60)
