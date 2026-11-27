@@ -1,0 +1,748 @@
+/* The player's notebook (START) and the end screen. ROM bank 7: strings go
+   through box_print (it maps bank 1); digits through digit_glyph. */
+#pragma bank 7
+#include <gb/gb.h>
+#include "assets.h"
+#include "dialogue.h"
+#include "game.h"
+#include "notebook.h"
+#include "events.h"
+#include "world.h"
+#include "music.h"
+#include "ko.h"
+#include "actor.h"
+#include "sound.h"
+#include "input.h"
+#include "items.h"
+
+static const uint8_t * const quest_txt[QUEST_COUNT] = {
+    txt_q_0, txt_q_1, txt_q_2, txt_q_3, txt_q_4
+};
+
+static uint8_t quests_total(void) {
+    uint8_t i, n = 0;
+    for (i = 0; i < QUEST_COUNT; i++) n += quest_done(i);
+    return n;
+}
+static const uint8_t * const goal_txt[22] = {
+    txt_goal_0a, txt_goal_0b, txt_goal_1a, txt_goal_1b,
+    txt_goal_2a, txt_goal_2b, txt_goal_3a, txt_goal_3b,
+    txt_goal_4a, txt_goal_4b, txt_goal_5a, txt_goal_5b,
+    txt_goal_6a, txt_goal_6b, txt_goal_7a, txt_goal_7b,
+    txt_goal_8a, txt_goal_8b, txt_goal_9a, txt_goal_9b, txt_goal_10a, txt_goal_10b
+};
+static const uint8_t * const num_txt[4] = { txt_num_0, txt_num_1, txt_num_2, txt_num_3 };
+static const uint16_t num_flag[4] = {
+    FLAG_SAW_PHONE, FLAG_MET_STRANGER, FLAG_KNOW_7302, FLAG_MET_PAINTER
+};
+
+/* What to do next, from the furthest step reached. */
+static uint8_t goal(void) {
+    if ((clue_flags & CLUE_READY) == CLUE_READY) return poem_ready() ? 3 : 10;
+    if (clue_flags & CLUE_COLTIN) {    /* the first missing clue */
+        if (!(clue_flags & CLUE_BLEU)) {
+            if (clue_flags & CLUE_COURIER) return 4;
+            return (game_flags & (FLAG_HAS_JETON | FLAG_PHONE_DONE)) ? 2 : 9;
+        }
+        if (quest_flags & QF_SOUP) return 8;
+        return (quest_flags & QF_ROUX) ? 6 : 5;
+    }
+    if (game_flags & FLAG_MET_CAFE) return 7;   /* the coffee rush */
+    if (clue_flags & CLUE_CASE) return 1;
+    return 0;
+}
+
+/* Who to talk to for each goal (a "!" is drawn over them). */
+static const uint8_t goal_who[11] = {
+    NPC_STRANGER, NPC_CAFE, 0xFF, NPC_FERNAND, NPC_CAFE,
+    NPC_ROUX, NPC_CAFE, NPC_CAFE, NPC_ROUX, NPC_WORKER, 0xFF
+};
+
+uint8_t goal_npc(void) BANKED {
+    return goal_who[goal()];
+}
+
+static const uint16_t num_value[4] = { 614, 4127, 7302, 2508 };
+static const uint8_t num_exch[4] = { EX_ROQ, EX_ARC, EX_MED, EX_PAS };
+static uint8_t num_next;
+uint8_t notebook_exch;
+
+uint16_t notebook_number(void) BANKED {
+    uint8_t i;
+    for (i = 0; i < 4; i++) {
+        uint8_t k = num_next++ & 3;
+        if (game_flags & num_flag[k]) { notebook_exch = num_exch[k]; return num_value[k]; }
+    }
+    return 0;
+}
+
+/* Rules card: EV_* - EV_FIRST indexes the rows (EV_END has none). */
+static const uint8_t * const howto_txt[8][5] = {
+    { txt_how_t0, txt_how_t1, txt_how_t2, txt_how_t3, txt_how_t4 },   /* EV_CHASE */
+    { txt_how_k0, txt_how_k1, txt_how_k2, txt_how_k3, txt_how_k4 },   /* EV_CATCH */
+    { txt_how_c0, txt_how_c1, txt_how_c2, txt_how_c3, txt_how_c4 },   /* EV_CUPS */
+    { txt_how_s0, txt_how_s1, txt_how_s2, txt_how_s3, txt_how_s4 },   /* EV_SERVE */
+    { txt_how_p0, txt_how_l1, txt_how_l2, txt_how_l3, txt_how_l4 },   /* EV_PUNCH */
+    { 0, 0, 0, 0, 0 },                                                 /* EV_END */
+    { txt_how_d0, txt_how_d1, txt_how_d2, txt_how_d3, txt_how_d4 },   /* EV_DIAL */
+    { txt_how_l0, txt_how_l1, txt_how_l2, txt_how_l3, txt_how_l4 },   /* EV_LIFT */
+};
+
+void howto_show(uint8_t ev) BANKED {
+    uint8_t i;
+    const uint8_t * const *t = howto_txt[ev - EV_FIRST];
+    box_open(10);
+    box_print(1, 1, txt_howto);
+    for (i = 0; i < 5; i++) box_print(1, 3 + i, t[i]);
+    box_print(1, 8, txt_howto_go);
+}
+
+/* The current goal on two rows of the open box (also under "New clue!"). */
+void goal_print(uint8_t y) BANKED {
+    uint8_t g = goal() * 2;
+    box_print(1, y, goal_txt[g]);
+    box_print(1, y + 1, goal_txt[g + 1]);
+}
+
+static const uint8_t * const clock_txt[5] = {
+    txt_clock_0, txt_clock_1, txt_clock_2, txt_clock_3, txt_clock_4
+};
+
+static void count_print(uint8_t x, uint8_t y, uint8_t n);
+
+void notebook_show(void) BANKED {
+    uint8_t i, g = goal() * 2;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_nb_title);
+    box_tile(15, 1, digit_glyph(quests_total()));
+    box_print(16, 1, txt_nb_of);
+    box_print(1, 2, goal_txt[g]);
+    box_print(1, 3, goal_txt[g + 1]);
+    box_print(1, 5, txt_nb_quests);
+    box_print(14, 5, clock_txt[dawn_stage]);   /* the hour: dawn comes with each quest */
+    for (i = 0; i < QUEST_COUNT; i++) {
+        box_print(1, 6 + i, quest_done(i) ? txt_x_done : txt_x_todo);
+        box_print(4, 6 + i, quest_txt[i]);
+    }
+    box_print(1, 12, txt_nb_menu);     /* sound and quit: menu_pick() */
+    box_print(1, 14, txt_fw_title);    /* the poem so far: what the ending needs */
+    count_print(14, 14, frag_total());
+    box_print(1, 15, txt_secrets);
+    box_tile(15, 15, digit_glyph(secret_total()));
+    box_print(16, 15, txt_secret_of);
+    box_print(1, 17, txt_nb_tk);
+    box_print(14, 17, txt_nb_close);
+    box_flush();
+}
+
+/* Second page: the phone numbers, pencilled on the back of an old metro
+   ticket, apart from the poet's notebook (Jiwon 2026-11-26: "two notebooks
+   are confusing; write the phone numbers on the back of a metro ticket").
+   The ticket's picture (ITEM_TICKET, the brown second-class one) sits in
+   the corner. */
+static void ticket_hide(void) {
+    uint8_t i;
+    for (i = 24; i < 30; i++) move_sprite(i, 0, 0);   /* PORTRAIT_OAM */
+}
+
+static void ticket_show(void) {
+    uint8_t i, y = 3;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_tk_title);
+    for (i = 0; i < 4; i++)
+        if (game_flags & num_flag[i]) box_print(1, y++, num_txt[i]);
+    if (y == 3) box_print(1, 3, txt_tk_none);
+    box_print(1, 9, txt_tk_0);
+    box_print(1, 10, txt_tk_1);
+    box_print(1, 17, txt_nb_next);
+    box_print(14, 17, txt_nb_close);
+    box_flush();
+    {   /* the box hides sprites (attribute priority): not under the picture */
+        static const uint8_t a[3] = { 5, 5, 5 };
+        VBK_REG = VBK_ATTRIBUTES;
+        for (y = 12; y < 16; y++) set_win_tiles(14, y, 3, 1, a);
+        VBK_REG = VBK_TILES;
+    }
+    item_show(ITEM_TICKET, 8 + 14 * 8, 16 + 12 * 8);
+}
+
+/* Second page: the poet's words (Jiwon 2026-11-26: "collect words and
+   phrases by talking to people and watching the street; the notebook is the
+   inventory; at the ending the words make the poem by themselves").
+   24 words in 8 stanzas of 3 (events.c frag_dlg): each word comes with a
+   line; at daybreak the poem takes, for each stanza, the first word found
+   there, then Fernand's couplet. Every player's poem differs (original). */
+static const uint8_t * const frag_word[FRAG_COUNT] = {
+    txt_fw_0, txt_fw_1, txt_fw_2, txt_fw_3, txt_fw_4, txt_fw_5, txt_fw_6, txt_fw_7,
+    txt_fw_8, txt_fw_9, txt_fw_10, txt_fw_11, txt_fw_12, txt_fw_13, txt_fw_14, txt_fw_15,
+    txt_fw_16, txt_fw_17, txt_fw_18, txt_fw_19, txt_fw_20, txt_fw_21, txt_fw_22, txt_fw_23
+};
+static const uint8_t * const frag_line[FRAG_COUNT] = {
+    txt_fl_0, txt_fl_1, txt_fl_2, txt_fl_3, txt_fl_4, txt_fl_5, txt_fl_6, txt_fl_7,
+    txt_fl_8, txt_fl_9, txt_fl_10, txt_fl_11, txt_fl_12, txt_fl_13, txt_fl_14, txt_fl_15,
+    txt_fl_16, txt_fl_17, txt_fl_18, txt_fl_19, txt_fl_20, txt_fl_21, txt_fl_22, txt_fl_23
+};
+
+static void count_print(uint8_t x, uint8_t y, uint8_t n) {   /* "nn/24" */
+    if (n > 9) box_tile(x, y, digit_glyph(n / 10));
+    box_tile(x + 1, y, digit_glyph(n % 10));
+    box_print(x + 2, y, txt_fw_of);
+}
+
+/* Each secret gives a phrase, a colour or an image (Jiwon 2026-11-26:
+   "sometimes collect a sentence, or one the word brings to mind, colours").
+   Index = SECRET_* (events.c secret()). */
+static const uint8_t * const phrase_txt[9] = {
+    txt_ph_0, txt_ph_1, txt_ph_2, txt_ph_3, txt_ph_4, txt_ph_5, txt_ph_6, txt_ph_7, txt_ph_8
+};
+
+void phrase_print(uint8_t n) BANKED {
+    box_print(1, 2, phrase_txt[n]);
+}
+
+/* For each stanza the first word found; after stanzas 2, 5 and 7 the next
+   phrase found (up to 3). */
+static uint8_t poem_print(uint8_t y) {
+    uint8_t i, k, p = 0;
+    for (i = 0; i < FRAG_COUNT; i += 3) {
+        for (k = i; k < i + 3; k++)
+            if (frag_has(k)) { box_print(1, y++, frag_line[k]); break; }
+        if (i == 3 || i == 12 || i == 18)
+            for (; p < 9; p++)
+                if (secret_flags & ((uint16_t)1 << p)) { box_print(1, y++, phrase_txt[p++]); break; }
+    }
+    return y;
+}
+
+/* The words found so far, in two columns; dots for the ones still out there. */
+static void poem_show(void) {
+    uint8_t i;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_fw_title);
+    count_print(14, 1, frag_total());
+    for (i = 0; i < FRAG_COUNT; i++)
+        box_print((i & 1) ? 10 : 1, 3 + (i >> 1), frag_has(i) ? frag_word[i] : txt_fw_none);
+    box_print(1, 15, txt_secrets);     /* each secret: a phrase */
+    box_tile(15, 15, digit_glyph(secret_total()));
+    box_print(16, 15, txt_secret_of);
+    box_print(1, 16, txt_fw_hint);
+    box_print(1, 17, txt_nb_extras);
+    box_print(14, 17, txt_nb_close);
+    box_flush();
+}
+
+/* The caption after a dialogue that gave a word: the word and the count. */
+uint8_t frag_note(void) BANKED {
+    uint8_t i = new_frag;
+    if (!i) return 0;
+    new_frag = 0;
+    box_open(5);
+    box_print(1, 1, txt_fw_new);
+    box_print(2, 2, frag_word[i - 1]);
+    box_print(1, 3, txt_fw_title);
+    count_print(12, 3, frag_total());
+    return 1;
+}
+
+/* The ending: the poem the night wrote, closed by Fernand's choice. */
+static void poem_final(void) {
+    uint8_t y;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_poem_end_title);
+    y = poem_print(3) + 1;
+    box_print(1, y, (extra_flags & X_STAYED) ? txt_pc_sa : txt_pc_ga);
+    box_print(1, y + 1, (extra_flags & X_STAYED) ? txt_pc_sb : txt_pc_gb);
+    box_print(1, 17, txt_poem_end);
+    box_flush();
+}
+
+static uint8_t nb_page;
+
+void nb_open(void) BANKED {
+    nb_page = 0;
+    ticket_hide();
+    notebook_show();
+}
+
+void nb_turn(uint8_t right) BANKED {
+    nb_page = right ? (nb_page == 5 ? 0 : nb_page + 1) : (nb_page ? nb_page - 1 : 5);
+    ticket_hide();
+    switch (nb_page) {
+    case 1:  ticket_show(); break;
+    case 2:  poem_show(); break;
+    case 3:  extras_show(); break;
+    case 4:  album_show(); break;
+    case 5:  curio_show(); break;
+    default: notebook_show();
+    }
+}
+
+/* Third page: optional side goals, each with where to look. */
+static const uint8_t * const extra_txt[X_COUNT * 2] = {
+    txt_x_0, txt_x_0h, txt_x_1, txt_x_1h, txt_x_2, txt_x_2h
+};
+
+void extras_show(void) BANKED {
+    uint8_t i;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_x_title);
+    box_tile(15, 1, digit_glyph(extra_total()));
+    box_print(16, 1, txt_extra_of);
+    for (i = 0; i < X_COUNT; i++) {
+        box_print(1, 3 + i * 3, (extra_flags & (1 << i)) ? txt_x_done : txt_x_todo);
+        box_print(5, 3 + i * 3, extra_txt[i * 2]);
+        box_print(5, 4 + i * 3, extra_txt[i * 2 + 1]);
+    }
+    box_print(1, 13, txt_x_note_1);
+    box_print(1, 14, txt_x_note_2);
+    box_print(1, 15, txt_secrets);
+    box_tile(15, 15, digit_glyph(secret_total()));
+    box_print(16, 15, txt_secret_of);
+    box_print(1, 17, txt_nb_album);
+    box_print(14, 17, txt_nb_close);
+    box_flush();
+}
+
+/* Fourth page: the vanished-Paris album. Each object found shows a one-line
+   fact read in a source (docs/HISTORICAL_RESEARCH.md); the rest show ???. */
+#define ALBUM_COUNT 5
+static const uint8_t * const album_txt[ALBUM_COUNT * 2] = {
+    txt_al_0, txt_al_0f, txt_al_1, txt_al_1f, txt_al_2, txt_al_2f,
+    txt_al_3, txt_al_3f, txt_al_4, txt_al_4f
+};
+
+static uint8_t album_has(uint8_t i) {
+    switch (i) {
+    case 0:  return (clue_flags & CLUE_COLTIN) != 0;
+    case 1:  return (clue_flags & CLUE_BLEU) != 0;
+    case 2:  return (game_flags & FLAG_TICKET) != 0;
+    case 3:  return (clue_flags & CLUE_PLATE) != 0;
+    default: return (quest_flags & QF_SOUP) || (clue_flags & CLUE_PLATE);
+    }
+}
+
+void album_show(void) BANKED {
+    uint8_t i, n = 0;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_al_title);
+    for (i = 0; i < ALBUM_COUNT; i++) {
+        if (album_has(i)) {
+            n++;
+            box_print(1, 3 + i * 3, album_txt[i * 2]);
+            box_print(1, 4 + i * 3, album_txt[i * 2 + 1]);
+        } else {
+            box_print(1, 3 + i * 3, txt_al_none);
+        }
+    }
+    box_tile(16, 1, digit_glyph(n));
+    box_print(17, 1, txt_nb_of);       /* "/5" */
+    box_print(1, 17, txt_nb_myst);
+    box_print(14, 17, txt_nb_close);
+    box_flush();
+}
+
+static uint8_t album_total(void) {
+    uint8_t i, n = 0;
+    for (i = 0; i < ALBUM_COUNT; i++) n += album_has(i);
+    return n;
+}
+
+/* Fifth page: curiosities. Unknown: ???. Found: what it looks like and who
+   might know. Identified: what it was (facts: docs/HISTORICAL_RESEARCH.md). */
+static const uint8_t * const curio_txt[CURIO_COUNT * 4] = {
+    txt_cu_0q, txt_cu_0h, txt_cu_0, txt_cu_0f,
+    txt_cu_1q, txt_cu_1h, txt_cu_1, txt_cu_1f,
+    txt_cu_2q, txt_cu_2h, txt_cu_2, txt_cu_2f
+};
+
+void curio_show(void) BANKED {
+    uint8_t i, y;
+    box_open(SCREEN_H / 8);
+    box_print(1, 1, txt_cu_title);
+    box_tile(16, 1, digit_glyph(curio_total()));
+    box_print(17, 1, txt_cu_of);
+    for (i = 0; i < CURIO_COUNT; i++) {
+        y = 3 + i * 4;
+        if (curio_flags & (0x10 << i)) {
+            box_print(1, y, curio_txt[i * 4 + 2]);
+            box_print(1, y + 1, curio_txt[i * 4 + 3]);
+        } else if (curio_flags & (1 << i)) {
+            box_print(1, y, curio_txt[i * 4]);
+            box_print(1, y + 1, curio_txt[i * 4 + 1]);
+        } else {
+            box_print(1, y, txt_al_none);
+        }
+    }
+    box_print(1, 17, txt_nb_prev);
+    box_print(14, 17, txt_nb_close);
+    box_flush();
+}
+
+/* After the end screen: a look at the next episode. */
+static const uint8_t * const teaser_txt[13] = {
+    txt_next_0, 0, txt_next_1, txt_next_2, txt_next_3, txt_next_4, 0,
+    txt_next_5, txt_next_6, txt_next_7, 0, txt_next_8, txt_next_9
+};
+
+void teaser_show(void) BANKED {
+    uint8_t i;
+    box_open(SCREEN_H / 8);
+    for (i = 0; i < 13; i++)
+        if (teaser_txt[i]) box_print(1, 2 + i, teaser_txt[i]);
+    box_print(1, 16, txt_end_11);
+    box_flush();
+}
+
+/* A random background sound for this room; returns frames to the next. */
+uint16_t ambience_play(uint8_t r) BANKED {
+    switch (rooms[cur_room].ambience) {
+    case AMBIENCE_STREET:   /* only near the south side, where the market is */
+        if (player.y > 100) sound_market(1);
+        break;
+    case AMBIENCE_MARKET:
+        sound_market(2 + (r & 1));
+        return 60 + (r & 127);
+    case AMBIENCE_HALL:
+        sound_market(2);
+        break;
+    case AMBIENCE_RIVER:
+        sound_water();
+        return 70 + (r & 63);
+    case AMBIENCE_CAFE:
+        sound_clink();
+        return 180 + r;
+    default:
+        return 255;
+    }
+    return 90 + (r & 127);
+}
+
+/* A rat scurries along the setts by the Bourse, stops, turns, runs back. */
+#define RAT_OAM 18
+static uint8_t rat_x = 24, rat_wait = 40, rat_left, rat_on;
+
+/* A pigeon pecks by the parapet on the quai; it flies off if you come near
+   and comes back a while later. Same OAM pair as the rat (another room). */
+static uint8_t pg_on, pg_t, pg_fly;
+#define PG_X 76   /* on the pavement between the two lamps by the bridge */
+#define PG_Y 84
+static int16_t pg_x = PG_X, pg_y = PG_Y;
+
+static void pigeon_update(void) {
+    int16_t dx, dy;
+    if (!pg_on) {
+        static uint8_t buf[128];
+        far_read(PORTRAIT_BANK, rat_tiles + 64, buf, 128);
+        VBK_REG = 1;
+        set_sprite_data(PIGEON_TILE, 8, buf);
+        VBK_REG = 0;
+        pg_on = 1;
+    }
+    pg_t++;
+    if (pg_fly) {
+        if (pg_fly == 1) {                      /* flying up and away */
+            pg_x -= 1; pg_y -= 2;
+            if (pg_y < -16) { pg_fly = 2; pg_t = 0; }
+        } else if (pg_t == 255) {               /* back when you're gone */
+            dx = player.x - PG_X; dy = player.y - PG_Y;
+            if (dx > 48 || dx < -48 || dy > 40 || dy < -40) { pg_fly = 0; pg_x = PG_X; pg_y = PG_Y; }
+        }
+    } else {
+        dx = player.x - pg_x; dy = player.y - pg_y;
+        if (dx < 24 && dx > -24 && dy < 20 && dy > -20) pg_fly = 1;
+    }
+    if (pg_fly == 2) { move_sprite(RAT_OAM, 0, 0); move_sprite(RAT_OAM + 1, 0, 0); return; }
+    sprite16(RAT_OAM, pg_x, pg_y, PIGEON_TILE + ((pg_fly || ((pg_t >> 4) & 3) == 0) ? 0 : 4),
+             4 | S_BANK1);
+}
+
+void rat_update(uint8_t walking) BANKED {
+    if (!walking || cur_room != ROOM_QUAI) {
+        if (pg_on) { move_sprite(RAT_OAM, 0, 0); move_sprite(RAT_OAM + 1, 0, 0); pg_on = 0; }
+    }
+    if (walking && cur_room == ROOM_QUAI) { pigeon_update(); return; }
+    if (!walking || cur_room != ROOM_BOURSE) {
+        if (rat_on) {
+            move_sprite(RAT_OAM, 0, 0);
+            move_sprite(RAT_OAM + 1, 0, 0);
+            rat_on = 0;
+        }
+        return;
+    }
+    if (!rat_on) {                      /* its tiles share the item picture's */
+        static uint8_t buf[64];
+        far_read(PORTRAIT_BANK, rat_tiles, buf, 64);
+        VBK_REG = 1;
+        set_sprite_data(RAT_TILE, 4, buf);
+        VBK_REG = 0;
+        rat_on = 1;
+    }
+    if (rat_wait) rat_wait--;
+    else {
+        rat_x += rat_left ? -2 : 2;
+        if (rat_x >= 64 || rat_x <= 8) {
+            rat_left ^= 1;
+            rat_wait = 50 + (DIV_REG & 127);
+        }
+    }
+    sprite16(RAT_OAM, rat_x, rat_wait ? 112 : 112 - ((rat_x >> 1) & 1),
+             RAT_TILE, 4 | S_BANK1 | (rat_left ? S_FLIPX : 0));
+}
+
+/* Bank-1 sprites (cameos, Mme Roux, the waiter...) are kept in ROM and
+   copied, per room, into VRAM bank 1 tiles LOW_FIXED.. (POOL_SLOTS of them):
+   any number of such characters in the game, up to POOL_SLOTS per room. */
+uint8_t npc_tile[8];
+
+void pool_load(void) BANKED {
+    static uint8_t buf[64];
+    uint8_t i, j, used = 0, slot_frame[POOL_SLOTS];
+    const room_def_t *r = &rooms[cur_room];
+    for (i = 0; i < r->npc_count && i < 8; i++) {
+        uint8_t f = r->npcs[i].frame;
+        if (!(r->npcs[i].palette & S_BANK1) || f < LOW_FIXED) { npc_tile[i] = f; continue; }
+        for (j = 0; j < used && slot_frame[j] != f; j++) ;
+        if (j == used) {
+            if (used == POOL_SLOTS) { npc_tile[i] = 0; continue; }
+            slot_frame[used++] = f;
+            far_read(PORTRAIT_BANK, low_tiles + (uint16_t)f * 16, buf, 64);
+            VBK_REG = 1;
+            set_sprite_data(LOW_FIXED + j * 4, 4, buf);
+            VBK_REG = 0;
+        }
+        npc_tile[i] = LOW_FIXED + j * 4;
+    }
+}
+
+/* A speech bubble over the NPC who calls out (index in this room, or
+   NO_BARK): it bobs until the player walks away; A opens the talk. */
+#define BUBBLE_OAM 35
+void bubble_update(uint8_t npc) BANKED {
+    const npc_def_t *n;
+    if (npc >= rooms[cur_room].npc_count) {
+        move_sprite(BUBBLE_OAM, 0, 0);
+        return;
+    }
+    n = &rooms[cur_room].npcs[npc];
+    set_sprite_tile(BUBBLE_OAM, 254);
+    set_sprite_prop(BUBBLE_OAM, 3);
+    move_sprite(BUBBLE_OAM, (uint8_t)(n->x + 18), (uint8_t)(n->y + 7 - ((sys_time >> 4) & 1)));
+}
+
+/* The caption when a coin is picked up. */
+void coin_note(void) BANKED {
+    box_open(5);
+    box_print(1, 1, txt_coin_0);
+    box_print(1, 2, txt_coin_1);
+    box_print(1, 3, txt_coin_2);
+}
+
+/* The ending: the sky pales over 2 s (16 steps from tonight's colours to
+   bg_day), then a caption. Returns 1 on A/START after the caption. */
+static uint8_t day_t;
+static palette_color_t day_mix[32];
+
+/* Per-room tilesets: room_env holds, for each room, a count and the ids of
+   the scenery tiles it uses; they go to VRAM bank 1 BG tiles 0.. in order. */
+void env_load(uint8_t room) BANKED {
+    static uint8_t ids[ENV_SLOTS + 1];
+    uint8_t i, j;
+    far_read(PORTRAIT_BANK, room_env + (uint16_t)room * (ENV_SLOTS + 1), ids, (uint8_t)(ENV_SLOTS + 1));
+    VBK_REG = 1;
+    for (i = 0; i < ids[0]; i = j) {        /* runs of consecutive tiles in one copy */
+        for (j = i + 1; j < ids[0] && ids[j + 1] == ids[j] + 1; j++) ;
+        far_bkg_data(PORTRAIT_BANK, i, j - i, env_tiles + (uint16_t)ids[i + 1] * 16);
+    }
+    VBK_REG = 0;
+}
+
+/* A café table on the pavement of rue Rambuteau, drawn over the poet's
+   legs (BG priority) so he seems to sit at it. */
+void day_start(void) BANKED {
+    static const uint8_t t[3] = { TILE_CHAIR, TILE_TABLE, TILE_TABLE };
+    static const uint8_t a[3] = { PAL_CHAIR | 0x88, PAL_TABLE | 0x88, PAL_TABLE | 0x88 };
+    day_t = 0;
+    if (cur_room != ROOM_STREET) return;
+    wait_vbl_done();
+    VBK_REG = 1;
+    set_bkg_tiles(3, 10, 3, 1, a);
+    VBK_REG = 0;
+    set_bkg_tiles(3, 10, 3, 1, t);
+}
+
+uint8_t day_update(uint8_t pressed) BANKED {
+    uint8_t i, k;
+    if (day_t >= 160) {             /* A: the finished poem, then A: the end screen */
+        if (day_t == 161 && (pressed & (J_UP | J_DOWN))) {   /* Korean: the other half */
+            if (box_more()) sound_blip();
+            return 0;
+        }
+        if (!(pressed & (J_A | J_START))) return 0;
+        if (day_t == 161) return 1;
+        day_t = 161;
+        poem_final();
+        sound_confirm();
+        return 0;
+    }
+    day_t++;
+    if (!(day_t & 7) && day_t <= 128) {
+        k = day_t >> 3;
+        far_read(ASSET_BANK, (const uint8_t *)bg_day, (uint8_t *)day_mix, 64);
+        for (i = 0; i < 32; i++) {
+            uint16_t a = bg_live[i], b = day_mix[i];
+            int16_t r = a & 31, g = (a >> 5) & 31, bl = (a >> 10) & 31;
+            r += (((int16_t)(b & 31) - r) * k) >> 4;
+            g += (((int16_t)((b >> 5) & 31) - g) * k) >> 4;
+            bl += (((int16_t)((b >> 10) & 31) - bl) * k) >> 4;
+            day_mix[i] = (uint16_t)r | ((uint16_t)g << 5) | ((uint16_t)bl << 10);
+        }
+        wait_vbl_done();
+        set_bkg_palette(0, 8, day_mix);
+    }
+    if (day_t == 160) {
+        box_open(6);
+        box_print(1, 1, txt_day_0);
+        box_print(1, 2, txt_day_1);
+        box_print(1, 3, txt_day_2);
+        box_print(1, 4, txt_day_3);
+        box_flush();
+        sound_confirm();
+    }
+    return 0;
+}
+
+void end_show(void) BANKED {
+    HIDE_SPRITES;
+    box_open(SCREEN_H / 8);
+    box_print(6, 2, txt_end_1);
+    box_print(1, 4, txt_end_2);
+    box_tile(14, 4, digit_glyph(clue_total()));
+    box_print(15, 4, txt_of_6);
+    box_print(1, 5, txt_end_x);
+    box_tile(14, 5, digit_glyph(extra_total()));
+    box_print(15, 5, txt_extra_of);
+    box_print(1, 6, txt_end_3);
+    box_print(1, 7, txt_end_4);
+    box_print(1, 8, txt_end_5);
+    box_print(1, 9, txt_end_6);
+    box_print(1, 10, txt_end_7);
+    box_print(1, 11, txt_end_8);
+    box_print(1, 12, txt_end_9);
+    box_print(1, 13, txt_secrets);
+    box_tile(15, 13, digit_glyph(secret_total()));
+    box_print(16, 13, txt_secret_of);
+    box_print(1, 14, txt_end_10);
+    {   /* everything found, out of 26 */
+        static const uint8_t * const rank_txt[5] = {
+            txt_rank_0, txt_rank_1, txt_rank_2, txt_rank_3, txt_rank_4
+        };
+        uint8_t s = clue_total() + extra_total() + secret_total() + album_total() + curio_total()
+                    + (frag_total() >> 2);    /* words collected: up to 6 more */
+        box_print(1, 15, txt_rank);
+        box_print(7, 15, rank_txt[s < 9 ? 0 : s < 15 ? 1 : s < 21 ? 2 : s < 26 ? 3 : 4]);
+    }
+    box_print(1, 16, txt_end_11);
+    box_flush();
+}
+
+/* The short explanation after the title: three pages, A = next, B = skip.
+   Each page: rows of text, 0 = blank row. */
+static const uint8_t * const intro_pages[3][11] = {
+    { txt_intro_a0, 0, txt_intro_a1, txt_intro_a2, txt_intro_a3, 0, txt_intro_a4, 0,
+      txt_intro_a5, txt_intro_a6, txt_intro_a7 },
+    { txt_intro_b0, 0, txt_intro_b1, txt_intro_b2, txt_intro_b3, txt_intro_b4, 0,
+      txt_intro_b5, txt_intro_b6, txt_intro_b7, txt_intro_b8 },
+    { txt_intro_c0, 0, txt_intro_c1, txt_intro_c2, txt_intro_c3, txt_intro_c4, txt_intro_c7,
+      0, txt_intro_c5, txt_intro_c6, 0 },
+};
+
+void intro_show(uint8_t page) BANKED {
+    uint8_t i;
+    box_open(SCREEN_H / 8);
+    for (i = 0; i < 11; i++)
+        if (intro_pages[page][i]) box_print(2, 3 + i, intro_pages[page][i]);
+    box_print(2, 16, txt_intro_more);
+    box_flush();
+}
+
+/* A full-screen menu (pause, quit, end of the episode): a title, an optional
+   line under it, up to four options two rows apart (Korean lines are two rows
+   high) and the controls. Returns the option picked with A, or MENU_BACK for
+   B / START. */
+uint8_t menu_pick(const uint8_t *title, const uint8_t *sub,
+                  const uint8_t * const *opt, uint8_t n, uint8_t sel) BANKED {
+    uint8_t i;
+    box_open(SCREEN_H / 8);
+    box_print(1, 2, title);
+    if (sub) box_print(1, 4, sub);
+    for (i = 0; i < n; i++) box_print(2, 7 + i * 2, opt[i]);   /* 17 columns */
+    box_print(1, 15, txt_menu_go);
+    box_flush();
+    while (1) {
+        for (i = 0; i < n; i++) box_tile(1, 7 + i * 2, sel == i ? GLYPH_ARROW_RIGHT : GLYPH_SPACE);
+        wait_vbl_done();
+        input_update();
+        if (joy_pressed & (J_DOWN | J_SELECT)) { sel = sel + 1 == n ? 0 : sel + 1; sound_blip(); }
+        if (joy_pressed & J_UP) { sel = sel ? sel - 1 : n - 1; sound_blip(); }
+        if (joy_pressed & J_A) { sound_confirm(); return sel; }
+        if (joy_pressed & (J_B | J_START)) { sound_blip(); return MENU_BACK; }
+    }
+}
+
+/* Episode 2 is another ROM. Leave a mark in cartridge RAM (the browser
+   player watches for it and loads Episode 2), then say how to go on in an
+   emulator. Any button: back. */
+void ep2_show(void) BANKED {
+    ENABLE_RAM;
+    SWITCH_RAM(0);
+    ((volatile uint8_t *)EP2_MARK_AT)[0] = 'E';
+    ((volatile uint8_t *)EP2_MARK_AT)[1] = 'P';
+    ((volatile uint8_t *)EP2_MARK_AT)[2] = '2';
+    ((volatile uint8_t *)EP2_MARK_AT)[3] = '!';
+    DISABLE_RAM;
+    box_open(SCREEN_H / 8);
+    box_print(1, 2, txt_ep2_a);
+    box_print(1, 4, txt_ep2_b);
+    box_print(1, 6, txt_ep2_c);
+    box_print(1, 8, txt_ep2_d);
+    box_print(1, 10, txt_ep2_e);
+    box_print(1, 15, txt_go_title);
+    box_flush();
+    do {
+        wait_vbl_done();
+        input_update();
+    } while (!(joy_pressed & (J_A | J_B | J_START)));
+    sound_confirm();
+}
+
+void ep2_mark_clear(void) BANKED {    /* at power-on: a new visit */
+    ENABLE_RAM;
+    SWITCH_RAM(0);
+    ((volatile uint8_t *)EP2_MARK_AT)[0] = 0;
+    DISABLE_RAM;
+}
+
+/* SELECT in the notebook: sound on/off, save and quit to the title (a
+   Game Boy game cannot close the emulator), back. 1 = quit (the caller
+   saves and resets). */
+static const uint8_t * const menu_on[3] = { txt_menu_snd_on, txt_menu_quit, txt_menu_back };
+static const uint8_t * const menu_off[3] = { txt_menu_snd_off, txt_menu_quit, txt_menu_back };
+static const uint8_t * const quit_opt[2] = { txt_quit_yes, txt_quit_no };
+
+uint8_t nb_menu(void) BANKED {
+    uint8_t sel = 0;
+    while (1) {
+        sel = menu_pick(txt_menu_title, 0, music_muted ? menu_off : menu_on, 3, sel);
+        if (sel == 0) music_set_muted(!music_muted);
+        else if (sel == 1) {
+            if (menu_pick(txt_quit_q, txt_quit_saved, quit_opt, 2, 1) == 0) return 1;
+        } else return 0;
+    }
+}
+
+/* After the next episode's teaser: go on to Episode 2, or the title. */
+static const uint8_t * const end_opt[2] = { txt_endm_ep2, txt_endm_title_scr };
+
+void end_menu(void) BANKED {
+    if (menu_pick(txt_endm_title, 0, end_opt, 2, 0) == 0) ep2_show();
+}

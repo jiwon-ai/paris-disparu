@@ -1,0 +1,22 @@
+; A small hotel on rue Rambuteau (20x18): the night porter's desk, the key
+; board, stairs up. Fictional hotel; furnishings are a reconstruction. Door at
+; the bottom, x=9-10. Switchboard telephone at x=12, row 3: guests came down to
+; reception to be put through (HISTORICAL_RESEARCH "West end").
+YYYYYYYYYYYYYYYYYYYY
+YSSSSSYmmmmYYYUUUUYY
+YSSSSSYmmmmYYYUUUUYY
+YYYYYYYYYYYYQYUUUUYY
+ffffffffffffffUUUUff
+TTTTTTTTffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffπtffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffπtffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+YYYYYYYYYffYYYYYYYYY

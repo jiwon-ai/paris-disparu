@@ -1,0 +1,24 @@
+; Rue Rambuteau, north edge of Les Halles (20x18 tiles). Legend: tools/art.py
+; Cafe door at x=4. Lorry parked x16-19 rows 15-16; VeloSolex x6-7 row 10; bus stop x12; "DEFENSE D'AFFICHER" painted at row 5 x2-10. East end of Saint-Eustache at x=14-19. South: rue Baltard.
+^^^^^^^^^^^^^^+ ++ +
+RRMRRRRMRRRRMRCNCCNC
+==============CuCCuC
+#W#K#W##W#K#W#CNCCNC
+#w#k#w##w#k#w#CuCCuC
+##$&*/:?`'"###CCCCCC
+AAAAAЯ##AAAAAACNCCNC
+GGGGDG##GGDGGGCuCCuC
+GGGGEG##GGEGGGCCCCCC
+..L.....L...9.....L.
+..|...y0|...@.....|.
+____________________
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,cehi
+ЖЗИЙ,,,,,,,,,,,,jrsx
+КЛМН................
+; signs: x y text
+!plaque 0 2 RUE RAMBUTEAU
+!sign 1 6 CAFÉ
+!sign 9 6 HOTEL

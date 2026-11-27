@@ -1,0 +1,22 @@
+; Les Halles metro station, ticket hall (20x18). Reconstruction: white tiles,
+; ticket window, the puncher's post at the platform gate. Steps up at x=8-11.
+BBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBμνB
+BBGGGBBBBBBBBBBBBξοB
+BBGGGBαβγδBBJJJJBBBB
+BBTTTBεζηθBBJJJJBBBB
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffffffffffffffffff
+ffffκλffffffffffffff
+BBBBBBBBUUUUBBBBBBBB
+BBBBBBBBUUUUBBBBBBBB
+; signs: x y text
+!plaque 5 1 LES HALLES
